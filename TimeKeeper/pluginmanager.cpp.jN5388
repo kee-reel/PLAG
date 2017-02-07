@@ -1,0 +1,214 @@
+#include "pluginmanager.h"
+
+PluginManager::PluginManager(QWidget* parent) : QObject(parent)
+{
+    this->parent = parent;
+    mainPlugin = NULL;
+    pluginTypesNames = QMetaEnum::fromType<IPlugin::PluginTypes>();
+}
+
+PluginManager::~PluginManager()
+{
+    for(QMap<IPlugin*, PluginMetaInfo*>::Iterator i = pluginsMap.begin(); i != pluginsMap.end(); ++i)
+    {
+        delete i.value();
+        delete i.key();
+    }
+
+    for(QMap<IDatabaseManager*, PluginMetaInfo*>::Iterator i = databaseManagersMap.begin(); i != databaseManagersMap.end(); ++i)
+    {
+        delete i.value();
+        delete i.key();
+    }
+}
+
+void PluginManager::SetupPlugins()
+{
+    QDir path(QDir::currentPath() + "/Modules");
+    qDebug() << "Modules path is " << path.absolutePath();
+
+    foreach (QString file, path.entryList(QDir::Files))
+    {
+        SetupPlugin(path.absolutePath() + "/" + file);
+    }
+
+    SetupPluginsConnections();
+}
+
+void PluginManager::SetupPluginsConnections()
+{
+    if(mainPluginsMap.count() == 1)
+    {
+        mainPlugin = mainPluginsMap.begin().key();
+        QWidget* widget = mainPlugin->GetWidget();
+        widget->setParent(parent);
+        widget->setGeometry(parent->geometry());
+        mainPlugin->Open();
+    }
+    else
+    {
+        qDebug() << "You have several main plugins.";
+    }
+
+    // Maybe run in new thread
+    QHash<QString, IPlugin*>::Iterator
+            i = pluginsNamesHash.begin(),
+            searchRes,
+            end = pluginsNamesHash.end();
+    while(i != end)
+    {
+        searchRes = pluginsParentNamesHash.find(i.key());
+        if(searchRes != end)
+        {
+            IPlugin* plugin = i.value();
+            plugin->AddChildPlugin(searchRes.value(), pluginsMap[searchRes.value()]);
+        }
+        else
+        {
+            qDebug() << "Plugin" << i.value() << "cant find parent" << i.key();
+        }
+    }
+}
+
+bool PluginManager::SetupPlugin(QString pluginName)
+{
+    QPluginLoader* loader = LoadPlugin(pluginName);
+    if(!loader) return false;
+
+    QObject* possiblePlugin = GetPluginInstance(loader);
+    if(!possiblePlugin) return false;
+
+    PluginMetaInfo* pluginType = GetPluginMeta(loader);
+    if(!pluginType) return false;
+
+    bool isBinded = BindPluginToSystem(loader, possiblePlugin, pluginType);
+    if(!isBinded) return false;
+}
+
+QPluginLoader *PluginManager::LoadPlugin(QString pluginName)
+{
+    if(!QLibrary::isLibrary(pluginName))
+    {
+        qDebug() << "Can't load the plugin" << pluginName << ": not a library file.";
+        return NULL;
+    }
+    QPluginLoader* loader = new QPluginLoader(pluginName);
+    if(!loader)
+    {
+        qDebug() << "Load null.";
+    }
+    return loader;
+}
+
+QObject* PluginManager::GetPluginInstance(QPluginLoader* loader)
+{
+    QObject* possiblePlugin = loader->instance();
+    if(!possiblePlugin)
+    {
+        qDebug() << "Can't load the plugin" << loader->fileName() << ": not a plugin."
+                 << "Error:" + loader->errorString();
+    }
+    return possiblePlugin;
+}
+
+IPlugin::PluginMetaInfo* PluginManager::GetPluginMeta(QPluginLoader* loader)
+{
+    const QString FieldName             = "Name";
+    const QString FieldModuleType       = "ModuleType";
+    const QString FieldParentModuleName = "ParentModuleName";
+    QJsonObject metaData = loader->metaData()["MetaData"].toObject();
+
+    // Check if all meta fields exists
+    QStringList metaFieldsNames;
+    metaFieldsNames << FieldName << FieldModuleType << FieldParentModuleName;
+    foreach (QString metaFieldName, metaFieldsNames) {
+        QString typeStr = metaData[metaFieldName].toString();
+        if(typeStr == "")
+        {
+            qDebug() << "Meta has no field:" << metaFieldName << "But has fields:";
+            for(QJsonObject::Iterator i = metaData.begin(); i != metaData.end(); ++i)
+                qDebug() << i.key() << " = " << i.value();
+            return NULL;
+        }
+    }
+
+    PluginMetaInfo* metaInfo = new PluginMetaInfo();
+    // Set module name
+    metaInfo->Name = metaData[FieldName].toString();
+    if(metaInfo->Name == "")
+    {
+        qDebug() << "Meta error: field" << FieldName << "is empty.";
+        delete metaInfo;
+        return NULL;
+    }
+    // Set module type
+    QString moduleTypeStr = metaData[FieldModuleType].toString().toUpper();
+    metaInfo->Type = (PluginManager::PluginTypes)pluginTypesNames.keyToValue(moduleTypeStr.toStdString().c_str());
+    if(metaInfo->Type == PluginManager::UNDEFINED)
+    {
+        qDebug() << "Meta error: field" << FieldModuleType << "value is incorrect -" << moduleTypeStr;
+        delete metaInfo;
+        return NULL;
+    }
+    // Set module parent name
+    metaInfo->ParentModuleName = metaData[FieldParentModuleName].toString();
+    if(metaInfo->ParentModuleName == "")
+    {
+        qDebug() << "Meta error: field" << FieldParentModuleName << "is empty.";
+        delete metaInfo;
+        return NULL;
+    }
+
+    return metaInfo;
+}
+
+bool PluginManager::BindPluginToSystem(QPluginLoader* loader, QObject* possiblePlugin, IPlugin::PluginMetaInfo* moduleMeta)
+{
+    if(moduleMeta->Type == PluginTypes::MAIN || moduleMeta->Type == PluginTypes::TOOL)
+    {
+        IPlugin* plugin = CastToPlugin<IPlugin>(loader, possiblePlugin);
+        if(!plugin) return false;
+        bool isSetup = CheckPluginWidget(plugin);
+        if(!isSetup) return false;
+        if(moduleMeta->Type == PluginTypes::TOOL)
+        {
+            pluginsMap.insert(plugin, moduleMeta);
+            pluginsNamesHash.insert(moduleMeta->Name, plugin);
+            pluginsParentNamesHash.insert(moduleMeta->ParentModuleName, plugin);
+        }
+        else
+            mainPluginsMap.insert(plugin, moduleMeta);
+    }
+    else
+    {
+        IDatabaseManager* databaseManagerPlugin = CastToPlugin<IDatabaseManager>(loader, possiblePlugin);
+        if(!databaseManagerPlugin) return false;
+        databaseManagersMap.insert(databaseManagerPlugin, moduleMeta);
+    }
+
+    qDebug() << pluginTypesNames.valueToKey(moduleMeta->Type) << "module" << moduleMeta->Name << "succesfully added to system.";
+    return true;
+}
+
+template <class Type>
+Type *PluginManager::CastToPlugin(QPluginLoader* loader, QObject* possiblePlugin)
+{
+    Type* plugin = qobject_cast<Type*>(possiblePlugin);
+    if(!plugin)
+    {
+        qDebug() << "Can't load the plugin " << loader->fileName() << ": not QObject."
+                    << "Error: " + loader->errorString();
+    }
+    return plugin;
+}
+
+bool PluginManager::CheckPluginWidget(IPlugin* plugin)
+{
+    QWidget* pluginWidget = plugin->GetWidget();
+    if(!pluginWidget)
+    {
+        qDebug() << "Can't load the plugin: it has no widget.";
+        return false;
+    }
+    return true;
+}

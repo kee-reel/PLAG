@@ -1,0 +1,5 @@
+{
+    "ModuleType": "DBManager",
+    "Name": "CipherSQLiteDBManager",
+    "ParentModuleName": "Core"
+}

@@ -1,0 +1,5 @@
+{
+    "ModuleType": "DBTool",
+    "Name": "TaskDBTool",
+    "ParentModuleName": "Core"
+}
