@@ -28,12 +28,14 @@ PluginManager::~PluginManager()
 
 void PluginManager::SetupPlugins()
 {
-    QDir path(QDir::currentPath() + "/Modules");
-    qDebug() << "Modules path is " << path.absolutePath();
-
-    foreach (QString file, path.entryList(QDir::Files))
+    foreach (QString file, QApplication::libraryPaths())
     {
-        SetupPlugin(path.absolutePath() + "/" + file);
+        QDir path = file;
+        qDebug() << "Path" << file;
+        foreach (QString file, path.entryList(QDir::Files))
+        {
+            SetupPlugin(path.absolutePath() + "/" + file);
+        }
     }
     SetupPluginsConnections();
     qDebug() << "Everything done." << endl;
@@ -41,16 +43,39 @@ void PluginManager::SetupPlugins()
 
 void PluginManager::SetupPluginsConnections()
 {
+    qDebug() << "Setup connections";
+    // Setup DBManager
+    if(DBManagerMap.count() == 1)
+    {
+        DBManager = DBManagerMap.begin().key();
+        qDebug() << "Current database driver is" << DBManagerMap.begin().value()->Name << endl;
+        DBManager->SetupDatabase();
+    }
+    else
+    {
+        qDebug() << "You have several database plugins.";
+    }
+
+    // Setup DBTools
+    qDebug() << "System contains" << DBToolMap.count() << "DBToolPlugins:";
+    foreach(IDBToolPlugin* tool, DBToolMap.keys())
+    {
+        qDebug() << DBToolMap[tool]->Name;
+        tool->SetDBManager(DBManager);
+    }
+
     //TODO: Maybe run in new thread
     QHash<QString, IPluginModel*>::Iterator parentPluginModelIterator = pluginModelNameHash.begin();
     QHash<QString, IPluginModel*>::Iterator childPluginModelIterator;
     QHash<QString, IPluginView*>::Iterator childPluginViewIterator;
-    qDebug() << "Linking" << pluginModelParentNameHash.count() << "IModelPlugins and" <<
-                pluginViewParentNameHash.count() << "IViewPlugins";
+    qDebug() << "=====Linking" << pluginModelParentNameHash.count() << "IModelPlugins and" <<
+                pluginViewParentNameHash.count() << "IViewPlugins=====";
     // For all child plugins
     while(parentPluginModelIterator != pluginModelNameHash.end())
     {
-        // Search in all plugins
+        qDebug() << endl << "Search relations for" << parentPluginModelIterator.key();
+
+        // Search for related models
         childPluginModelIterator = pluginModelParentNameHash.find(parentPluginModelIterator.key());
         if(childPluginModelIterator != pluginModelParentNameHash.end())
         {
@@ -69,6 +94,7 @@ void PluginManager::SetupPluginsConnections()
             qDebug() << "Plugin" << parentPluginModelIterator.key() << "has no childs.";
         }
 
+        // Search for related views
         childPluginViewIterator = pluginViewParentNameHash.find(parentPluginModelIterator.key());
         if(childPluginViewIterator != pluginViewParentNameHash.end())
         {
@@ -76,9 +102,8 @@ void PluginManager::SetupPluginsConnections()
                 IPluginView* childPlugin = childPluginViewIterator.value();
                 IPluginModel* parentPlugin = parentPluginModelIterator.value();
                 MetaInfo* meta = pluginViewMap[childPlugin];
-                childPlugin->SetModel(pluginModelInstancesMap[parentPlugin]);
-                childPlugin->Open(parent);
-                qDebug() << "Plugin" << pluginModelMap[parentPlugin]->Name <<
+                parentPlugin->AddView(childPlugin, meta);
+                qDebug() << "Plugin model" << pluginModelMap[parentPlugin]->Name <<
                             "binds with view" << meta->Name;
                 ++childPluginViewIterator;
             }while(childPluginViewIterator != pluginViewParentNameHash.end() &&
@@ -88,58 +113,57 @@ void PluginManager::SetupPluginsConnections()
         {
             qDebug() << "Plugin" << parentPluginModelIterator.key() << "has no views.";
         }
-
         ++parentPluginModelIterator;
     }
+
+    // Search for related DBTools
+    QHash<QString, IPluginModel*>::Iterator pluginModelWithDBToolIterator = pluginDBToolNameHash.begin();
+    while(pluginModelWithDBToolIterator != pluginDBToolNameHash.end())
+    {
+        qDebug() << "Linking DBTool for" << pluginModelMap[pluginModelWithDBToolIterator.value()]->Name;
+        QObject* DBTool = DBToolNameHash[pluginModelWithDBToolIterator.key()];
+        pluginModelWithDBToolIterator.value()->SetDBTool(DBTool);
+        qDebug() << pluginModelMap[pluginModelWithDBToolIterator.value()]->Name << "linked with"
+                 << pluginModelWithDBToolIterator.key();
+        ++pluginModelWithDBToolIterator;
+    }
+
+    qDebug() << "-----Linking finished-----" << endl;
 
     if(mainPluginMap.count() == 1)
     {
         mainPlugin = mainPluginMap.begin().key();
         qDebug() << "Starting main plugin" << mainPluginMap.begin().value()->Name << endl;
+        mainPlugin->Open(parent);
     }
     else
     {
         qDebug() << "You have several main plugins.";
     }
 
-    if(DBManagerMap.count() == 1)
-    {
-        DBManager = DBManagerMap.begin().key();
-        qDebug() << "Current database driver is" << DBManagerMap.begin().value()->Name << endl;
-    }
-    else
-    {
-        qDebug() << "You have several database plugins.";
-    }
-
-    qDebug() << "System contains" << DBToolMap.count() << "DBToolPlugins:";
-    foreach(IDBToolPlugin* tool, DBToolMap.keys())
-    {
-        qDebug() << DBToolMap[tool]->Name;
-        tool->SetDBManager(DBManager);
-    }
 }
 
 bool PluginManager::SetupPlugin(QString pluginName)
 {
-    qDebug() << "----------";
+    qDebug() << "=====" << pluginName << "=====";
     QPluginLoader* loader = LoadPlugin(pluginName);
     if(!loader) return false;
-
-    QObject* possiblePlugin = GetPluginInstance(loader);
-    if(!possiblePlugin) return false;
 
     MetaInfo* pluginType = GetPluginMeta(loader);
     if(!pluginType) return false;
 
+    QObject* possiblePlugin = GetPluginInstance(loader);
+    if(!possiblePlugin) return false;
+
     bool isBinded = BindPluginToSystem(loader, possiblePlugin, pluginType);
     if(!isBinded) return false;
-    qDebug() << "----------" << endl;
+    qDebug() << "=====" << pluginName << "=====";
     return true;
 }
 
 QPluginLoader *PluginManager::LoadPlugin(QString pluginName)
 {
+    qDebug() << "Load plugin";
     if(!QLibrary::isLibrary(pluginName))
     {
         qDebug() << "Can't load the plugin" << pluginName << ": not a library file.";
@@ -150,12 +174,12 @@ QPluginLoader *PluginManager::LoadPlugin(QString pluginName)
     {
         qDebug() << "Load null.";
     }
-    loader->load();
     return loader;
 }
 
 QObject* PluginManager::GetPluginInstance(QPluginLoader* loader)
 {
+    qDebug() << "Get instance";
     QObject* possiblePlugin = loader->instance();
     if(!possiblePlugin)
     {
@@ -167,9 +191,11 @@ QObject* PluginManager::GetPluginInstance(QPluginLoader* loader)
 
 MetaInfo* PluginManager::GetPluginMeta(QPluginLoader* loader)
 {
+    qDebug() << "Get meta";
     const QString FieldName             = "Name";
     const QString FieldModuleType       = "ModuleType";
     const QString FieldParentModuleName = "ParentModuleName";
+    const QString FieldDBToolName       = "DBTool";
     QJsonObject metaData = loader->metaData()["MetaData"].toObject();
 
     // Check if all meta fields exists
@@ -197,11 +223,6 @@ MetaInfo* PluginManager::GetPluginMeta(QPluginLoader* loader)
         return NULL;
     }
     qDebug() << "Name:" << newMetaInfo->Name;
-    if(pluginModelNameHash.contains(newMetaInfo->Name))
-    {
-        qDebug() << "Module with name" << newMetaInfo->Name << "already exists!";
-        return NULL;
-    }
 
     // Set module type
     QString moduleTypeStr = metaData[FieldModuleType].toString().toUpper();
@@ -213,6 +234,14 @@ MetaInfo* PluginManager::GetPluginMeta(QPluginLoader* loader)
     }
     newMetaInfo->Type = pluginTypesNames[moduleTypeStr];
     qDebug() << "Type:" << moduleTypeStr;
+
+    // Set DBTool name
+    if(newMetaInfo->Type == MAIN || newMetaInfo->Type == TOOLMODEL)
+    {
+        newMetaInfo->DBToolName = metaData[FieldDBToolName].toString();
+        if(newMetaInfo->DBToolName != "")
+            qDebug() << "DBTool:" << newMetaInfo->DBToolName;
+    }
 
     // Set module parent name
     newMetaInfo->ParentPluginName = metaData[FieldParentModuleName].toString();
@@ -226,49 +255,55 @@ MetaInfo* PluginManager::GetPluginMeta(QPluginLoader* loader)
     return newMetaInfo;
 }
 
-bool PluginManager::BindPluginToSystem(QPluginLoader* loader, QObject* possiblePlugin, MetaInfo* moduleMeta)
+bool PluginManager::BindPluginToSystem(QPluginLoader* loader, QObject* possiblePlugin, MetaInfo* meta)
 {
-    switch (moduleMeta->Type) {
+    qDebug() << "Bind plugin to system";
+    switch (meta->Type) {
     case TOOLMODEL:{
         IPluginModel* plugin = CastToPlugin<IPluginModel>(loader, possiblePlugin);
         if(!plugin) return false;
-        pluginModelMap.insert(plugin, moduleMeta);
-        pluginModelInstancesMap.insert(plugin, possiblePlugin);
-        pluginModelNameHash.insert(moduleMeta->Name, plugin);
-        pluginModelParentNameHash.insert(moduleMeta->ParentPluginName, plugin);
+        pluginModelMap.insert(plugin, meta);
+        //pluginModelInstancesMap.insert(plugin, possiblePlugin);
+        pluginModelNameHash.insert(meta->Name, plugin);
+        pluginModelParentNameHash.insert(meta->ParentPluginName, plugin);
+        if(meta->DBToolName != "")
+            pluginDBToolNameHash.insert(meta->DBToolName, plugin);
         break;
     }
 
     case TOOLVIEW:{
         IPluginView* plugin = CastToPlugin<IPluginView>(loader, possiblePlugin);
         if(!plugin) return false;
-        pluginViewMap.insert(plugin, moduleMeta);
-        pluginViewParentNameHash.insert(moduleMeta->ParentPluginName, plugin);
+        pluginViewMap.insert(plugin, meta);
+        pluginViewParentNameHash.insert(meta->ParentPluginName, plugin);
         break;
     }
 
     case DBMANAGER:{
         IDBManagerPlugin* plugin = CastToPlugin<IDBManagerPlugin>(loader, possiblePlugin);
         if(!plugin) return false;
-        DBManagerMap.insert(plugin, moduleMeta);
+        DBManagerMap.insert(plugin, meta);
         break;
     }
 
     case DBTOOL:{
         IDBToolPlugin* plugin = CastToPlugin<IDBToolPlugin>(loader, possiblePlugin);
         if(!plugin) return false;
-        DBToolMap.insert(plugin, moduleMeta);
+        DBToolMap.insert(plugin, meta);
+        DBToolNameHash.insert(meta->Name, possiblePlugin);
         break;
     }
 
     case MAIN:{
         IPluginModel* plugin = CastToPlugin<IPluginModel>(loader, possiblePlugin);
         if(!plugin) return false;
-        pluginModelMap.insert(plugin, moduleMeta);
-        pluginModelInstancesMap.insert(plugin, possiblePlugin);
-        pluginModelNameHash.insert(moduleMeta->Name, plugin);
-        pluginModelParentNameHash.insert(moduleMeta->ParentPluginName, plugin);
-        mainPluginMap.insert(plugin, moduleMeta);
+        pluginModelMap.insert(plugin, meta);
+        //pluginModelInstancesMap.insert(plugin, possiblePlugin);
+        pluginModelNameHash.insert(meta->Name, plugin);
+        pluginModelParentNameHash.insert(meta->ParentPluginName, plugin);
+        if(meta->DBToolName != "")
+            pluginDBToolNameHash.insert(meta->DBToolName, plugin);
+        mainPluginMap.insert(plugin, meta);
         break;
     }
 
@@ -279,7 +314,7 @@ bool PluginManager::BindPluginToSystem(QPluginLoader* loader, QObject* possibleP
 
     }
 
-    qDebug() << "Module" << moduleMeta->Name << "succesfully added to system.";
+    qDebug() << "Module" << meta->Name << "succesfully added to system.";
     return true;
 }
 
@@ -291,17 +326,5 @@ Type *PluginManager::CastToPlugin(QPluginLoader* loader, QObject* possiblePlugin
     {
         qDebug() << "Can't load the plugin " << possiblePlugin->objectName() << ": not QObject.";
     }
-    qDebug() << "Inherits: " <<  possiblePlugin->inherits("IPluginModel");
     return plugin;
-}
-
-bool PluginManager::CheckPluginWidget(IPluginModel* plugin)
-{
-//    QWidget* pluginWidget = plugin->GetWidget();
-//    if(!pluginWidget)
-//    {
-//        qDebug() << "Can't load the plugin: it has no widget.";
-//        return false;
-//    }
-    return true;
 }

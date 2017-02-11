@@ -12,7 +12,7 @@ SOURCES += \
 
 HEADERS += \
     cipherdatabasemanagermodule.h \
-    idbmanagerplugin.h
+    ../TimeKeeper/interfaces.h
 
 unix {
     target.path = /usr/lib

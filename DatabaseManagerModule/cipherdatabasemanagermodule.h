@@ -5,7 +5,7 @@
 #include <QtSql>
 #include <QDebug>
 
-#include "idbmanagerplugin.h"
+#include "../TimeKeeper/interfaces.h"
 
 #define CONNECTION_FAILED -1
 
@@ -25,7 +25,7 @@ private:
 
 public:
     // IDBManagerPlugin interface
-    QSqlDatabase *SetupDatabase() override;
+    void SetupDatabase() override;
     QSqlQuery *ExecuteQuery(QString queryText) override;
 };
 

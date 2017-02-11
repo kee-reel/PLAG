@@ -15,17 +15,19 @@ QSqlQuery* CipherDatabaseManagerModule::ExecuteQuery(QString queryText)
     return query;
 }
 
-QSqlDatabase* CipherDatabaseManagerModule::SetupDatabase()
+void CipherDatabaseManagerModule::SetupDatabase()
 {
     if(dbconn.isOpen())
     {
         qDebug() << "Driver already runs.";
-        return &dbconn;
+        return;
     }
 
-    qDebug() << "My driver is" << driverName << "Existing drivers are" << QSqlDatabase::drivers();
+    qDebug() << "My driver is" << driverName <<
+                "Existing drivers are" << QSqlDatabase::drivers();
 
     // Connect to database
+    qDebug() << QSqlDatabase::isDriverAvailable(driverName);
     dbconn = QSqlDatabase::addDatabase(driverName);
     // Create database
     dbconn.setDatabaseName("test_c.db");
@@ -34,6 +36,4 @@ QSqlDatabase* CipherDatabaseManagerModule::SetupDatabase()
     if (!dbconn.open()) {
         qDebug() << "Can not open connection: " << dbconn.lastError().driverText();
     }
-
-    return &dbconn;
 }

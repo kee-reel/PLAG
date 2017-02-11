@@ -1,0 +1,6 @@
+{
+    "Name": "EmptyModel",
+    "ModuleType": "ToolModel",
+    "ParentModuleName": "MainMenuModel",
+    "DBTool": ""
+}

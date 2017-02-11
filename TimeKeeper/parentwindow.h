@@ -2,6 +2,7 @@
 #define PARENTWINDOW_H
 
 #include <QWidget>
+#include <QScreen>
 
 #include "pluginmanager.h"
 

@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DraggableButton_t {
     QByteArrayData data[3];
-    char stringdata0[25];
+    char stringdata0[27];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,11 +32,11 @@ struct qt_meta_stringdata_DraggableButton_t {
 static const qt_meta_stringdata_DraggableButton_t qt_meta_stringdata_DraggableButton = {
     {
 QT_MOC_LITERAL(0, 0, 15), // "DraggableButton"
-QT_MOC_LITERAL(1, 16, 7), // "clicked"
-QT_MOC_LITERAL(2, 24, 0) // ""
+QT_MOC_LITERAL(1, 16, 9), // "OnClicked"
+QT_MOC_LITERAL(2, 26, 0) // ""
 
     },
-    "DraggableButton\0clicked\0"
+    "DraggableButton\0OnClicked\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,10 +54,10 @@ static const uint qt_meta_data_DraggableButton[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   19,    2, 0x06 /* Public */,
+       1,    1,   19,    2, 0x06 /* Public */,
 
  // signals: parameters
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    2,
 
        0        // eod
 };
@@ -68,21 +68,20 @@ void DraggableButton::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         DraggableButton *_t = static_cast<DraggableButton *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->clicked(); break;
+        case 0: _t->OnClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (DraggableButton::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&DraggableButton::clicked)) {
+            typedef void (DraggableButton::*_t)(int );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&DraggableButton::OnClicked)) {
                 *result = 0;
                 return;
             }
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject DraggableButton::staticMetaObject = {
@@ -122,9 +121,10 @@ int DraggableButton::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void DraggableButton::clicked()
+void DraggableButton::OnClicked(int _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

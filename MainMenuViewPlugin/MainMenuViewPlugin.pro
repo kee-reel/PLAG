@@ -15,9 +15,8 @@ SOURCES += \
 HEADERS +=\
     draggablebutton.h \
     mainwindow.h \
-    pluginstructs.h \
-    imainmenumodule.h \
     mainmenupluginview.h \
+    ../MainMenuModelPlugin/imainmenumodule.h \
     ../TimeKeeper/interfaces.h
 
 unix {

@@ -63,7 +63,7 @@ static const uint qt_meta_data_PluginManager[] = {
        4,    0,   27,    2, 0x0a /* Public */,
 
  // signals: parameters
-    QMetaType::Int, QMetaType::Bool,    3,
+    QMetaType::Void, QMetaType::Bool,    3,
 
  // slots: parameters
     QMetaType::Void,
@@ -77,8 +77,7 @@ void PluginManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         PluginManager *_t = static_cast<PluginManager *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: { int _r = _t->OnAllSetup((*reinterpret_cast< bool(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 0: _t->OnAllSetup((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 1: _t->SetupPlugins(); break;
         default: ;
         }
@@ -86,7 +85,7 @@ void PluginManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef int (PluginManager::*_t)(bool );
+            typedef void (PluginManager::*_t)(bool );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&PluginManager::OnAllSetup)) {
                 *result = 0;
                 return;
@@ -132,12 +131,10 @@ int PluginManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-int PluginManager::OnAllSetup(bool _t1)
+void PluginManager::OnAllSetup(bool _t1)
 {
-    int _t0 = int();
-    void *_a[] = { const_cast<void*>(reinterpret_cast<const void*>(&_t0)), const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
-    return _t0;
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

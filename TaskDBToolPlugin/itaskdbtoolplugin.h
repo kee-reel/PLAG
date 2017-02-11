@@ -1,17 +1,13 @@
 #ifndef ITASKDBTOOLPLUGIN_H
 #define ITASKDBTOOLPLUGIN_H
 
-#include "idbtoolplugin.h"
+#include "../TimeKeeper/interfaces.h"
 
-class ITaskDBManagerPlugin : public IDBToolPlugin
+class ITaskDBToolPlugin : public IDBToolPlugin
 {
-    // IDBToolPlugin interface
-public:
-    virtual bool SetDBManager(IDBManagerPlugin *DBManager) = 0;
-
 public:
     virtual bool CreateNewTask() = 0;
 };
-Q_DECLARE_INTERFACE(ITaskDBManagerPlugin, "ITaskDBManagerPlugin v0.1")
+Q_DECLARE_INTERFACE(ITaskDBToolPlugin, "ITaskDBToolPlugin v0.1")
 
 #endif // ITASKDBTOOLPLUGIN_H

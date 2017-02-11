@@ -16,10 +16,9 @@ DISTFILES += \
     PluginMeta.json
 
 HEADERS += \
-    idbmanagerplugin.h \
-    idbtoolplugin.h \
     taskdbtoolplugin.h \
-    itaskdbtoolplugin.h
+    itaskdbtoolplugin.h \
+    ../TimeKeeper/interfaces.h
 
 SOURCES += \
     taskdbtoolplugin.cpp

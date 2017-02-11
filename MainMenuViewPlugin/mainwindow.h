@@ -16,14 +16,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void AddNewModuleView(MetaInfo *meta);
+    void AddNewButton(int id, QString task);
 
 private:
     QList<DraggableButton*> modulesButtons;
 
-private slots:
-
-
+signals:
+    void OnButtonPressed(int);
 };
 
 #endif // MAINWINDOW_H

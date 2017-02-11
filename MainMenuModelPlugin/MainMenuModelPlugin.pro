@@ -12,9 +12,9 @@ SOURCES += \
 
 HEADERS +=\
     imainmenumodule.h \
-    itaskdbtoolplugin.h \
     mainmenumodelplugin.h \
-    ../TimeKeeper/interfaces.h
+    ../TimeKeeper/interfaces.h \
+    ../TaskDBToolPlugin/itaskdbtoolplugin.h
 
 unix {
     target.path = /usr/lib

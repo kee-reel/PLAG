@@ -5,7 +5,7 @@
 #include <QDebug>
 
 #include "imainmenumodule.h"
-#include "itaskdbtoolplugin.h"
+#include "../TaskDBToolPlugin/itaskdbtoolplugin.h"
 
 class MainMenuModelPlugin : public QObject, IMainMenuPluginModel
 {
@@ -19,19 +19,28 @@ public:
 
 private:
     QMap<IPluginModel*, MetaInfo*> childPlugins;
+    QMap<IPluginView*, MetaInfo*> viewPlugins;
+    IPluginView* activeView;
+
+    QWidget* parent;
+
     ITaskDBToolPlugin* DBTool;
 
     // IPlugin interface
 public:
-    void DoSomething() override;
     void AddChildPlugin(IPluginModel*, MetaInfo*) override;
-    void AddDBTool(QObject*) override;
+    void SetDBTool(QObject*) override;
+    void AddView(IPluginView *, MetaInfo *) override;
+
+    bool Open(QWidget *parent) override;
+    bool Close() override;
 
     QString GetError() override;
 
     // IMainMenuPluginModel interface
 public:
-    virtual QStringList GetTasks();
+    QList<MetaInfo *> GetChildPlugins() override;
+    void RunPlugin(int pluginId) override;
 };
 
 #endif // MAINMENUMODULE_H

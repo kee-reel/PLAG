@@ -3,11 +3,13 @@
 
 #include "../TimeKeeper/interfaces.h"
 
-class QStringList;
+template<class Type>
+class QList;
 class IMainMenuPluginModel : public IPluginModel
-{
+{ 
 public:
-    virtual QStringList GetTasks() = 0;
+    virtual QList<MetaInfo*> GetChildPlugins() = 0;
+    virtual void RunPlugin(int pluginId) = 0;
 };
 Q_DECLARE_INTERFACE(IMainMenuPluginModel, "IMainMenuModule v0.1")
 #endif // IMAINMENUMODULE_H

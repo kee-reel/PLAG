@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QDebug>
 
-#include "imainmenumodule.h"
+#include "../MainMenuModelPlugin/imainmenumodule.h"
 #include "mainwindow.h"
 
 class MainMenuPluginView : public QObject, IPluginView
@@ -27,6 +27,9 @@ public:
 
     bool Open(QWidget*) override;
     bool Close() override;
+
+private slots:
+    void OpenChildPlugin(int id);
 };
 
 #endif // MAINMENUPLUGINVIEW_H

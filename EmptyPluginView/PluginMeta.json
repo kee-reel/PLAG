@@ -1,0 +1,5 @@
+{
+    "Name": "EmptyView",
+    "ModuleType": "ToolView",
+    "ParentModuleName": "EmptyModel"
+}
