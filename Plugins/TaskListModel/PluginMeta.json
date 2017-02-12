@@ -1,0 +1,6 @@
+{
+    "Name": "TaskListModel",
+    "ModuleType": "ToolModel",
+    "ParentModuleName": "MainMenuModel",
+    "DBTool": "TaskDBTool"
+}

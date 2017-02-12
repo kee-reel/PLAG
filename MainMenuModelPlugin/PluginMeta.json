@@ -1,6 +1,0 @@
-{
-    "Name": "MainMenuModel",
-    "ModuleType": "Main",
-    "ParentModuleName": "Core",
-    "DBTool": "TaskDBTool"
-}
