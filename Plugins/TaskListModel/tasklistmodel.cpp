@@ -17,9 +17,9 @@ void TaskListModel::AddChildPlugin(IPluginModel *plugin, MetaInfo *meta)
     childPlugins.insert(plugin, meta);
 }
 
-void TaskListModel::SetDBTool(QObject *DBTool)
+void TaskListModel::SetDataManager(QObject *DBTool)
 {
-    this->DBTool = qobject_cast<ITaskDBToolPlugin*>(DBTool);
+    this->DBTool = qobject_cast<ITaskDataManagerPlugin*>(DBTool);
     if(!this->DBTool)
     {
         qDebug() << DBTool->objectName() << "is not ITaskDBToolPlugin.";

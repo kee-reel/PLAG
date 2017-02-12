@@ -40,13 +40,13 @@ private:
     IPluginView* activeView;
 
     // Unique part
-    ITaskDBToolPlugin* DBTool;
+    ITaskDataManagerPlugin* DBTool;
     ITaskListModel::TaskInfo* rootTask;
 
     // IPluginModel interface
 public:
     virtual void AddChildPlugin(IPluginModel *, MetaInfo *);
-    virtual void SetDBTool(QObject *);
+    virtual void SetDataManager(QObject *);
     virtual void AddView(IPluginView *plugin, MetaInfo *meta);
     virtual bool Open(QWidget *parent);
     virtual bool Close();

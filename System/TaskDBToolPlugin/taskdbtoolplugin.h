@@ -3,18 +3,19 @@
 
 #include <QString>
 #include <QtSql>
+#include <QObject>
 
 #include "itaskdbtoolplugin.h"
 
-class TaskDBToolPlugin : public QObject, ITaskDBToolPlugin
+class TaskDataManagerPlugin : public QObject, ITaskDataManagerPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TaskDBToolPlugin" FILE "PluginMeta.json")
-    Q_INTERFACES(IDBToolPlugin ITaskDBToolPlugin)
+    Q_INTERFACES(IDataManagerPlugin ITaskDataManagerPlugin)
 
-    // ITaskDBManagerPlugin interface
+    // IDataManagerPlugin interface
 public:
-    virtual bool SetDBManager(IDBManagerPlugin *DBManager) override;
+    virtual bool SetDataSource(QObject *dataSource);
     virtual QString GetError();
 
     // ITaskDBToolPlugin interface
@@ -25,16 +26,17 @@ public:
     virtual bool DeleteTask(TaskInfo *taskTree);
 
 public:
-    TaskDBToolPlugin();
-    ~TaskDBToolPlugin();
+    TaskDataManagerPlugin();
+    ~TaskDataManagerPlugin();
 
 private:
-    IDBManagerPlugin* DBManager;
+    IDataBaseSourcePlugin* dataSource;
     QMap<QString, QString> tableStruct;
 
     bool IsTableExists(QString tableName);
     bool IsTableRightStructure(QString tableName);
     QString GetStringStruct();
+
 };
 
 #endif // TASKDBTOOLPLUGIN_H

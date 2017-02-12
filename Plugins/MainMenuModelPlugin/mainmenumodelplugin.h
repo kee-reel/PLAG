@@ -26,8 +26,8 @@ private:
 
     // IPlugin interface
 public:
-    void AddChildPlugin(IPluginModel*, MetaInfo*) override;
-    void SetDBTool(QObject*) override;
+    void AddChildPlugin(IPluginModel *, MetaInfo*) override;
+    void SetDataManager(QObject*) override;
     void AddView(IPluginView *, MetaInfo *) override;
 
     bool Open(QWidget *parent) override;

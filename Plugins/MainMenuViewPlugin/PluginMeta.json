@@ -1,5 +1,6 @@
 {
-    "Name": "MainMenuView",
-    "ModuleType": "ToolView",
-    "ParentModuleName": "MainMenuModel"
+    "Name":         "MainMenuView",
+    "PluginType":   "ToolView",
+    "ParentName":   "",
+    "DataManager":  ""
 }

@@ -1,5 +1,6 @@
 {
-    "Name": "EmptyView",
-    "ModuleType": "ToolView",
-    "ParentModuleName": "EmptyModel"
+    "Name":         "EmptyView",
+    "PluginType":   "ToolView",
+    "ParentName":   "EmptyModel",
+    "DataManager":  ""
 }

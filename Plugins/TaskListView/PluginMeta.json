@@ -1,5 +1,6 @@
 {
-    "Name": "TaskListView",
-    "ModuleType": "ToolView",
-    "ParentModuleName": "TaskListModel"
+    "Name":         "TaskListView",
+    "PluginType":   "ToolView",
+    "ParentName":   "",
+    "DataManager":  ""
 }

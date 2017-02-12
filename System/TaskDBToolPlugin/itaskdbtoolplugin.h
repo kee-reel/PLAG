@@ -5,7 +5,7 @@
 
 template <class T>
 class QList;
-class ITaskDBToolPlugin : public IDBToolPlugin
+class ITaskDataManagerPlugin : public IDataManagerPlugin
 {
 public:
     class TaskInfo{
@@ -22,6 +22,6 @@ public:
     virtual bool EditTask(TaskInfo* taskTree) = 0;
     virtual bool DeleteTask(TaskInfo* taskTree) = 0;
 };
-Q_DECLARE_INTERFACE(ITaskDBToolPlugin, "ITaskDBToolPlugin v0.1")
+Q_DECLARE_INTERFACE(ITaskDataManagerPlugin, "ITaskDataManagerPlugin v0.1")
 
 #endif // ITASKDBTOOLPLUGIN_H

@@ -1,6 +1,6 @@
 {
-    "Name": "EmptyModel",
-    "ModuleType": "ToolModel",
-    "ParentModuleName": "MainMenuModel",
-    "DBTool": ""
+    "Name":         "EmptyModel",
+    "PluginType":   "ToolModel",
+    "ParentName":   "",
+    "DataManager":  ""
 }

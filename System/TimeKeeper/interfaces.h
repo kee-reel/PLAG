@@ -10,16 +10,16 @@ class QSqlQuery;
 enum PluginTypes{
     TOOLMODEL,
     TOOLVIEW,
-    DBMANAGER,
-    DBTOOL,
-    MAIN
+    DATASOURCE,
+    DATAMANAGER,
+    MAINMODEL
 };
 
 struct MetaInfo{
     QString Name;
     PluginTypes Type;
     QString ParentPluginName;
-    QString DBToolName;
+    QString DataManagerlName;
 };
 
 // TODO: Make realization of interface classes
@@ -39,7 +39,7 @@ public:
     virtual ~IPluginModel() {}
     virtual void AddChildPlugin(IPluginModel*, MetaInfo*) = 0;
     virtual void AddView(IPluginView *, MetaInfo *) = 0;
-    virtual void SetDBTool(QObject*) = 0;
+    virtual void SetDataManager(QObject*) = 0;
     virtual bool Open(QWidget* parent) = 0;
     virtual bool Close() = 0;
 
@@ -47,21 +47,28 @@ public:
 };
 Q_DECLARE_INTERFACE(IPluginModel, "IModelPlugin v0.1")
 
-class IDBManagerPlugin
+class IDataSourcePlugin
 {
 public:
-    virtual ~IDBManagerPlugin() {}
-    virtual void SetupDatabase() = 0;
+    virtual ~IDataSourcePlugin() {}
+    virtual void Setup() = 0;
+};
+Q_DECLARE_INTERFACE(IDataSourcePlugin, "IDataSourcePlugin v0.1")
+
+class IDataBaseSourcePlugin : public IDataSourcePlugin
+{
+public:
+    virtual ~IDataBaseSourcePlugin() {}
     virtual QSqlQuery ExecuteQuery(QString query) = 0;
 };
-Q_DECLARE_INTERFACE(IDBManagerPlugin, "IDBManagerPlugin v0.1")
+Q_DECLARE_INTERFACE(IDataBaseSourcePlugin, "IDataBaseSourcePlugin v0.1")
 
-class IDBToolPlugin
+class IDataManagerPlugin
 {
 public:
-    virtual ~IDBToolPlugin() {}
-    virtual bool SetDBManager(IDBManagerPlugin* DBManager) = 0;
+    virtual ~IDataManagerPlugin() {}
+    virtual bool SetDataSource(QObject* dataSource) = 0;
     virtual QString GetError() = 0;
 };
-Q_DECLARE_INTERFACE(IDBToolPlugin, "IDBToolPlugin v0.1")
+Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
 #endif // INTERFACES_H

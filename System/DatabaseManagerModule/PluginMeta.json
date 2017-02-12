@@ -1,5 +1,6 @@
 {
-    "ModuleType": "DBManager",
-    "Name": "CipherSQLiteDBManager",
-    "ParentModuleName": "Core"
+    "Name":         "CipherDatabaseSource",
+    "PluginType":   "DataSource",
+    "ParentName":   "",
+    "DataManager":  ""
 }

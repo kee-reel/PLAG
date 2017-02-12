@@ -8,11 +8,11 @@ TEMPLATE = lib
 QT += core sql
 
 SOURCES += \
-    cipherdatabasemanagermodule.cpp
+    cipherdatabasesourceplugin.cpp
 
 HEADERS += \
-    cipherdatabasemanagermodule.h \
-    ../../System/TimeKeeper/interfaces.h
+    ../../System/TimeKeeper/interfaces.h \
+    cipherdatabasesourceplugin.h
 
 unix {
     target.path = /usr/lib

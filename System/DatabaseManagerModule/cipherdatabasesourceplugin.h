@@ -9,24 +9,27 @@
 
 #define CONNECTION_FAILED -1
 
-class CipherDatabaseManagerModule : public QObject, IDBManagerPlugin
+class CipherDatabaseSourcePlugin : public QObject, IDataBaseSourcePlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.DBModule.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IDBManagerPlugin)
+    Q_INTERFACES(IDataSourcePlugin IDataBaseSourcePlugin)
     const QString driverName = "SQLITECIPHER";
 
 public:
-    CipherDatabaseManagerModule();
-    ~CipherDatabaseManagerModule();
+    CipherDatabaseSourcePlugin();
+    ~CipherDatabaseSourcePlugin();
 
 private:
     QSqlDatabase dbconn;
 
+    // IDataSourcePlugin interface
 public:
-    // IDBManagerPlugin interface
-    void SetupDatabase() override;
-    QSqlQuery ExecuteQuery(QString queryText) override;
+    virtual void Setup();
+
+    // IDataBaseSourcePlugin interface
+public:
+    virtual QSqlQuery ExecuteQuery(QString query);
 };
 
 #endif // DATABASEMANAGERMODULE_H

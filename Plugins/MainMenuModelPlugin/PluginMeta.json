@@ -1,6 +1,6 @@
 {
-    "Name": "MainMenuModel",
-    "ModuleType": "Main",
-    "ParentModuleName": "Core",
-    "DBTool": ""
+    "Name":         "MainMenuModel",
+    "PluginType":   "MainModel",
+    "ParentName":   "",
+    "DataManager":  ""
 }

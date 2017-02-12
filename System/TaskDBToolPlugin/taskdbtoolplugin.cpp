@@ -1,9 +1,9 @@
 #include "taskdbtoolplugin.h"
 
 
-TaskDBToolPlugin::TaskDBToolPlugin()
+TaskDataManagerPlugin::TaskDataManagerPlugin()
 {
-    DBManager = NULL;
+    dataSource = NULL;
     tableStruct.insert("id",        "int");
     tableStruct.insert("name",      "varchar");
     tableStruct.insert("level",     "int");
@@ -11,29 +11,28 @@ TaskDBToolPlugin::TaskDBToolPlugin()
     tableStruct.insert("position",  "int");
 }
 
-TaskDBToolPlugin::~TaskDBToolPlugin()
+TaskDataManagerPlugin::~TaskDataManagerPlugin()
 {
 
 }
 
-bool TaskDBToolPlugin::SetDBManager(IDBManagerPlugin *DBManager)
+bool TaskDataManagerPlugin::SetDataSource(QObject *dataSource)
 {
-    if(this->DBManager)
+    this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(dataSource);
+    if(!this->dataSource)
     {
-        qDebug() << "DBManager already set!";
-        return false;
+        qDebug() << dataSource->objectName() << "is not IDataBaseSourcePlugin.";
     }
-    this->DBManager = DBManager;
-    qDebug() << "Set new DBManager!";
+    qDebug() << "IDataBaseSourcePlugin succesfully set.";
     return true;
 }
 
-QString TaskDBToolPlugin::GetError()
+QString TaskDataManagerPlugin::GetError()
 {
     return QString();
 }
 
-ITaskDBToolPlugin::TaskInfo* TaskDBToolPlugin::GetTaskTree(QString treeName)
+ITaskDataManagerPlugin::TaskInfo* TaskDataManagerPlugin::GetTaskTree(QString treeName)
 {
     qDebug() << "GetTaskTree";
     if(treeName == NULL || treeName == "")
@@ -42,14 +41,14 @@ ITaskDBToolPlugin::TaskInfo* TaskDBToolPlugin::GetTaskTree(QString treeName)
         return NULL;
     }
     treeName = treeName.toLower();
-    if(!DBManager)
+    if(!dataSource)
     {
         qDebug() << "DBManager isnt set!";
         return NULL;
     }
     qDebug() << "Creating table" << treeName;
     QSqlQuery queryRes =
-            DBManager->ExecuteQuery(QString("CREATE TABLE IF NOT EXISTS %1 (%2)")
+            dataSource->ExecuteQuery(QString("CREATE TABLE IF NOT EXISTS %1 (%2)")
                                     .arg(treeName)
                                     .arg(GetStringStruct()));
     qDebug() << IsTableExists(treeName);
@@ -62,36 +61,36 @@ ITaskDBToolPlugin::TaskInfo* TaskDBToolPlugin::GetTaskTree(QString treeName)
     return NULL;
 }
 
-bool TaskDBToolPlugin::AddTask(ITaskDBToolPlugin::TaskInfo *taskTree)
+bool TaskDataManagerPlugin::AddTask(ITaskDataManagerPlugin::TaskInfo *taskTree)
 {
     QString queryStr = "";
     //QSqlQuery *query = DBManager->ExecuteQuery(queryStr);
 }
 
-bool TaskDBToolPlugin::EditTask(ITaskDBToolPlugin::TaskInfo *taskTree)
+bool TaskDataManagerPlugin::EditTask(ITaskDataManagerPlugin::TaskInfo *taskTree)
 {
     QString queryStr = "";
     //QSqlQuery *query = DBManager->ExecuteQuery(queryStr);
 }
 
-bool TaskDBToolPlugin::DeleteTask(ITaskDBToolPlugin::TaskInfo *taskTree)
+bool TaskDataManagerPlugin::DeleteTask(ITaskDataManagerPlugin::TaskInfo *taskTree)
 {
     QString queryStr = "";
     //QSqlQuery *query = DBManager->ExecuteQuery(queryStr);
 }
 
-bool TaskDBToolPlugin::IsTableExists(QString tableName)
+bool TaskDataManagerPlugin::IsTableExists(QString tableName)
 {
     // BUG: Not work
     QString queryStr = QString("pragma table_info(%1)").arg(tableName);
-    QSqlQuery query = DBManager->ExecuteQuery(queryStr);
+    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
     return query.size() > 0;
 }
 
-bool TaskDBToolPlugin::IsTableRightStructure(QString tableName)
+bool TaskDataManagerPlugin::IsTableRightStructure(QString tableName)
 {
     QString queryStr = QString("pragma table_info(%1)").arg(tableName);
-    QSqlQuery query = DBManager->ExecuteQuery(queryStr);
+    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
 
     QString key, value;
     while (query.next())
@@ -108,7 +107,7 @@ bool TaskDBToolPlugin::IsTableRightStructure(QString tableName)
     return true;
 }
 
-QString TaskDBToolPlugin::GetStringStruct()
+QString TaskDataManagerPlugin::GetStringStruct()
 {
     QString structStr = "";
     foreach (QString key, tableStruct.keys()) {

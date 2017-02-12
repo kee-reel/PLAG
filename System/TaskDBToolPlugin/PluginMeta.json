@@ -1,5 +1,6 @@
 {
-    "ModuleType": "DBTool",
-    "Name": "TaskDBTool",
-    "ParentModuleName": "Core"
+    "Name":         "TaskDataManager",
+    "PluginType":   "DataManager",
+    "ParentName":   "CipherDatabaseSource",
+    "DataManager":  ""
 }

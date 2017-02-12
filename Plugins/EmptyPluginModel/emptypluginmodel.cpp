@@ -15,7 +15,7 @@ void EmptyPluginModel::AddChildPlugin(IPluginModel *plugin, MetaInfo *meta)
     childPlugins.insert(plugin, meta);
 }
 
-void EmptyPluginModel::SetDBTool(QObject *DBTool)
+void EmptyPluginModel::SetDataManager(QObject *DBTool)
 {
     qDebug() << "I dont need DBTool";
 }

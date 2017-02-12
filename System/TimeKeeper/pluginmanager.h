@@ -24,24 +24,32 @@ public:
 private:
     QWidget* parent;
     IPluginModel* mainPlugin;
-    IDBManagerPlugin* DBManager;
+    IDataSourcePlugin* mainDataSource;
 
+    // Link structs
+    template <class T>
+    struct LinkInfo
+    {
+        T *plugin;
+        QObject *instance;
+    };
 
     QMap<IPluginModel*, MetaInfo*> pluginModelMap;
-    //QMap<IPluginModel*, QObject*> pluginModelInstancesMap;
-
     QMap<IPluginView*, MetaInfo*> pluginViewMap;
     QMap<IPluginModel*, MetaInfo*> mainPluginMap;
-    QMap<IDBManagerPlugin*, MetaInfo*> DBManagerMap;
-    QMap<IDBToolPlugin*, MetaInfo*> DBToolMap;
+    QMap<IDataSourcePlugin*, MetaInfo*> dataSourceMap;
+    QMap<IDataManagerPlugin*, MetaInfo*> dataManagerMap;
 
-    QHash<QString, IPluginModel*> pluginModelNameHash;
-    QHash<QString, QVector<IPluginModel*>> pluginModelParentNameHash;
-    QHash<QString, QVector<IPluginView*>> pluginViewParentNameHash;
+    QHash<QString, LinkInfo<IDataSourcePlugin>>     dataSourcesLinkInfo;
+    QHash<QString, LinkInfo<IDataManagerPlugin>>    dataManagersLinkInfo;
+    QHash<QString, LinkInfo<IPluginModel>>          modelsLinkInfo;
+    QHash<QString, LinkInfo<IPluginView>>           viewsLinkInfo;
 
-    //DBTools
-    QHash<QString, QObject*> DBToolNameHash;
-    QHash<QString, IPluginModel*> pluginDBToolNameHash;
+    QHash<QString, QVector<IDataManagerPlugin*>> sourceToManagersLink;
+    QHash<QString, QVector<IPluginModel*>>       managerToModelsLink;
+    QHash<QString, QVector<IPluginModel*>>       modelToModelsLink;
+    QHash<QString, QVector<IPluginView*>>        modelToViewsLink;
+
 
 public slots:
     void SetupPlugins();
@@ -54,10 +62,19 @@ private:
     QPluginLoader* LoadPlugin(QString pluginName);
     QObject* GetPluginInstance(QPluginLoader* loader);
     MetaInfo *GetPluginMeta(QPluginLoader* loader);
-    bool BindPluginToSystem(QPluginLoader* loader, QObject* possiblePlugin, MetaInfo *moduleMeta);
+    bool BindPluginToSystem(QPluginLoader* loader, QObject* instance, MetaInfo *meta);
 
     template<class Type>
     Type *CastToPlugin(QPluginLoader* loader, QObject* possiblePlugin);
+    void LinkSourceToManagers();
+    void LinkManagerToModels();
+    void LinkModelToModels();
+    void LinkModelToViews();
+
+    void SetDataSourceLinks(IDataSourcePlugin* plugin, QObject *instance, MetaInfo *meta);
+    void SetDataManagerLinks(IDataManagerPlugin* plugin, QObject *instance, MetaInfo *meta);
+    void SetPluginModelLinks(IPluginModel* plugin, QObject *instance, MetaInfo *meta);
+    void SetPluginViewLinks(IPluginView* plugin, QObject *instance, MetaInfo *meta);
 
     void SetupPluginsConnections();
 };

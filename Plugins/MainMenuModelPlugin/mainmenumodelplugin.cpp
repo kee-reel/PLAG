@@ -16,7 +16,7 @@ void MainMenuModelPlugin::AddChildPlugin(IPluginModel *plugin, MetaInfo *meta)
     childPlugins.insert(plugin, meta);
 }
 
-void MainMenuModelPlugin::SetDBTool(QObject *DBTool)
+void MainMenuModelPlugin::SetDataManager(QObject *DBTool)
 {
 }
 

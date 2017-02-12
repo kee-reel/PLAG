@@ -1,22 +1,22 @@
-#include "cipherdatabasemanagermodule.h"
+#include "cipherdatabasesourceplugin.h"
 
-CipherDatabaseManagerModule::CipherDatabaseManagerModule()
+CipherDatabaseSourcePlugin::CipherDatabaseSourcePlugin()
 {
 }
 
-CipherDatabaseManagerModule::~CipherDatabaseManagerModule()
+CipherDatabaseSourcePlugin::~CipherDatabaseSourcePlugin()
 {
     dbconn.close();
 }
 
-QSqlQuery CipherDatabaseManagerModule::ExecuteQuery(QString queryText)
+QSqlQuery CipherDatabaseSourcePlugin::ExecuteQuery(QString queryText)
 {
     QSqlQuery query;
     query.exec(queryText);
     return query;
 }
 
-void CipherDatabaseManagerModule::SetupDatabase()
+void CipherDatabaseSourcePlugin::Setup()
 {
     if(dbconn.isOpen())
     {

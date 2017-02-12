@@ -1,6 +1,6 @@
 {
-    "Name": "TaskListModel",
-    "ModuleType": "ToolModel",
-    "ParentModuleName": "MainMenuModel",
-    "DBTool": "TaskDBTool"
+    "Name":         "TaskListModel",
+    "PluginType":   "ToolModel",
+    "ParentName":   "",
+    "DataManager":  "TaskDataManager"
 }
