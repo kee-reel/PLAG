@@ -50,14 +50,9 @@ private:
     QHash<QString, QVector<IPluginModel*>>       modelToModelsLink;
     QHash<QString, QVector<IPluginView*>>        modelToViewsLink;
 
+    QDir internalPluginsPath;
 
-public slots:
-    void SetupPlugins();
-
-signals:
-    void OnAllSetup(bool isSucced);
-
-private:
+    void LoadPluginsToHome();
     bool SetupPlugin(QString pluginName);
     QPluginLoader* LoadPlugin(QString pluginName);
     QObject* GetPluginInstance(QPluginLoader* loader);
@@ -77,6 +72,13 @@ private:
     void SetPluginViewLinks(IPluginView* plugin, QObject *instance, MetaInfo *meta);
 
     void SetupPluginsConnections();
+
+
+public slots:
+    void SetupPlugins();
+
+signals:
+    void OnAllSetup(bool isSucced);
 };
 
 #endif // PLUGINMANAGER_H

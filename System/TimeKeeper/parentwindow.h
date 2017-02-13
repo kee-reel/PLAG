@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QScreen>
+#include <QPainter>
 
 #include "pluginmanager.h"
 
@@ -13,6 +14,7 @@ public:
     explicit ParentWindow(QWidget *parent = 0);
 private:
     PluginManager* pluginManager;
+    void paintEvent(QPaintEvent *event);
 signals:
 
 public slots:
