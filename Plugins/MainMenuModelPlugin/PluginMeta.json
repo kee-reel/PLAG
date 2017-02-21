@@ -1,6 +1,6 @@
 {
     "Name":         "MainMenuModel",
-    "PluginType":   "MainModel",
+    "PluginType":   "RootModel",
     "ParentName":   "",
     "DataManager":  ""
 }

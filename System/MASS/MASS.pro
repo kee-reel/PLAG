@@ -4,11 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += widgets sql
+QT       += widgets sql gui qml quick
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET = TimeKeeper
+TARGET = MASS
 TEMPLATE = app
 CONFIG += plugin release
 
@@ -18,7 +16,6 @@ SOURCES += main.cpp\
 
 HEADERS  += \
     pluginmanager.h \
-    mainplugininterface.h \
     parentwindow.h \
     interfaces.h
 

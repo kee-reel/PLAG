@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QDebug>
+#include <QApplication>
 
 #include "imainmenumodule.h"
 #include "../../System/TaskDBToolPlugin/itaskdbtoolplugin.h"
@@ -18,11 +19,21 @@ public:
     ~MainMenuModelPlugin();
 
 private:
-    QMap<IPluginModel*, MetaInfo*> childPlugins;
-    QMap<IPluginView*, MetaInfo*> viewPlugins;
-    IPluginView* activeView;
+    IPluginModel *myParent;
+    QWidget *myParentWidget;
+    int myModelId;
+    int activeViewId;
+    int activeModelId;
 
-    QWidget* parent;
+    template <class T>
+    struct PluginInfo
+    {
+        T *plugin;
+        MetaInfo *meta;
+    };
+
+    QList< PluginInfo<IPluginModel> > childModelPlugins;
+    QList< PluginInfo<IPluginView> > viewPlugins;
 
     // IPlugin interface
 public:
@@ -30,9 +41,9 @@ public:
     void SetDataManager(QObject*) override;
     void AddView(IPluginView *, MetaInfo *) override;
 
-    bool Open(QWidget *parent) override;
+    bool Open(IPluginModel *myParent, QWidget *parentWidget, int id) override;
     bool Close() override;
-
+    void ChildSelfClosed(int id) override;
     QString GetError() override;
 
     // IMainMenuPluginModel interface

@@ -1,7 +1,7 @@
 #ifndef IEMPTYPLUGINMODEL_H
 #define IEMPTYPLUGINMODEL_H
 
-#include "../../System/TimeKeeper/interfaces.h"
+#include "../../System/MASS/interfaces.h"
 
 class IEmptyPluginModel : public IPluginModel
 {

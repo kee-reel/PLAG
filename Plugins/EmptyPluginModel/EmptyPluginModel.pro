@@ -11,7 +11,7 @@ SOURCES += \
     emptypluginmodel.cpp
 
 HEADERS += \
-    ../../System/TimeKeeper/interfaces.h \
+    ../../System/MASS/interfaces.h \
     emptypluginmodel.h \
     iemptypluginmodel.h
 

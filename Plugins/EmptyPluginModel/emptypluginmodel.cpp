@@ -2,7 +2,7 @@
 
 EmptyPluginModel::EmptyPluginModel()
 {
-    activeView = NULL;
+    activeViewId = -1;
 }
 
 EmptyPluginModel::~EmptyPluginModel()
@@ -12,7 +12,16 @@ EmptyPluginModel::~EmptyPluginModel()
 void EmptyPluginModel::AddChildPlugin(IPluginModel *plugin, MetaInfo *meta)
 {
     qDebug() << "New child" << meta->Name;
-    childPlugins.insert(plugin, meta);
+    PluginInfo<IPluginModel> newPlugin = {plugin, meta};
+    childModelPlugins.append(newPlugin);
+}
+
+void EmptyPluginModel::AddView(IPluginView *plugin, MetaInfo *meta)
+{
+    PluginInfo<IPluginView> newPlugin = {plugin, meta};
+    viewPlugins.append(newPlugin);
+    newPlugin.plugin->SetModel(qobject_cast<QObject*>(this));
+    qDebug() << "IPluginView succesfully set.";
 }
 
 void EmptyPluginModel::SetDataManager(QObject *DBTool)
@@ -20,43 +29,43 @@ void EmptyPluginModel::SetDataManager(QObject *DBTool)
     qDebug() << "I dont need DBTool";
 }
 
-QString EmptyPluginModel::GetError()
-{
-
-}
-
-bool EmptyPluginModel::Open(QWidget *parent)
+bool EmptyPluginModel::Open(IPluginModel* parent, QWidget* parentWidget, int id)
 {
     qDebug() << "EmptyModel runs";
-    this->parent = parent;
-    if(viewPlugins.count() == 0)
-    {
+    if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
     }
-    if(activeView != NULL)
-    {
-        bool isClosed = activeView->Close();
-        if(!isClosed) return false;
+
+    myModelId = id;
+    myParent = parent;
+    myParentWidget = parentWidget;
+    activeViewId = 0;
+
+    if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget)){
+        qDebug() << "Can't open first view!";
+        return false;
     }
-    activeView = viewPlugins.begin().key();
-    return activeView->Open(this->parent);
+
+    return true;
 }
 
+/// Only view can call
 bool EmptyPluginModel::Close()
 {
-    if(activeView != NULL)
-        return activeView->Close();
-    else
-        return true;
+    activeViewId = -1;
+    myParent->ChildSelfClosed(myModelId);
+    return true;
 }
 
-void EmptyPluginModel::AddView(IPluginView *plugin, MetaInfo *meta)
+void EmptyPluginModel::ChildSelfClosed(int id)
 {
-    IPluginView* view = plugin;
-    viewPlugins.insert(view, meta);
-    view->SetModel(qobject_cast<QObject*>(this));
-    qDebug() << "IPluginView succesfully set.";
+
+}
+
+QString EmptyPluginModel::GetError()
+{
+
 }
 
 void EmptyPluginModel::TestFunc()

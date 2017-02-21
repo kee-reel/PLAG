@@ -5,15 +5,17 @@
 #-------------------------------------------------
 TARGET = TaskListView
 TEMPLATE = lib
-QT += widgets
+QT += widgets qml quick
 
 SOURCES += \
-    tasklistview.cpp
+    tasklistview.cpp \
+    mainform.cpp
 
 HEADERS +=\
     ../TaskListModel/itasklistmodel.h \
     tasklistview.h \
-    ../../System/TimeKeeper/interfaces.h
+    ../../System/MASS/interfaces.h \
+    mainform.h
 
 unix {
     target.path = /usr/lib
@@ -22,3 +24,8 @@ unix {
 
 DISTFILES += \
     PluginMeta.json
+
+RESOURCES +=
+
+FORMS += \
+    mainform.ui

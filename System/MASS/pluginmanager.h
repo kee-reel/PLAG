@@ -12,9 +12,11 @@
 #include <QtSql>
 
 #include "interfaces.h"
+
 class PluginManager : QObject
 {
     Q_OBJECT
+    QString packageName = "com.MASS";
 public:
     explicit PluginManager(QWidget *parent = 0);
     ~PluginManager();

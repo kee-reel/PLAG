@@ -8,11 +8,11 @@ class QSqlDatabase;
 class QSqlQuery;
 
 enum PluginTypes{
+    ROOTMODEL,
     TOOLMODEL,
     TOOLVIEW,
     DATASOURCE,
     DATAMANAGER,
-    MAINMODEL
 };
 
 struct MetaInfo{
@@ -28,7 +28,7 @@ class IPluginView
 public:
     virtual ~IPluginView() {}
     virtual void SetModel(QObject *) = 0;
-    virtual bool Open(QWidget* parent) = 0;
+    virtual bool Open(int id, QWidget* parent) = 0;
     virtual bool Close() = 0;
 };
 Q_DECLARE_INTERFACE(IPluginView, "IPluginView v0.1")
@@ -37,11 +37,13 @@ class IPluginModel
 {
 public:
     virtual ~IPluginModel() {}
-    virtual void AddChildPlugin(IPluginModel*, MetaInfo*) = 0;
-    virtual void AddView(IPluginView *, MetaInfo *) = 0;
-    virtual void SetDataManager(QObject*) = 0;
-    virtual bool Open(QWidget* parent) = 0;
+    virtual void AddChildPlugin(IPluginModel *model, MetaInfo *meta) = 0;
+    virtual void AddView(IPluginView *view, MetaInfo *meta) = 0;
+    virtual void SetDataManager(QObject *dataManager) = 0;
+
+    virtual bool Open(IPluginModel* parent, QWidget* parentWidget, int id) = 0;
     virtual bool Close() = 0;
+    virtual void ChildSelfClosed(int id) = 0;
 
     virtual QString GetError() = 0;
 };

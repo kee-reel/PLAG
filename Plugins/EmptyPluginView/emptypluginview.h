@@ -5,6 +5,7 @@
 #include <QDebug>
 
 #include "iemptypluginmodel.h"
+#include "mainwindow.h"
 
 class EmptyPluginView : public QObject, IPluginView
 {
@@ -17,12 +18,15 @@ public:
     ~EmptyPluginView();
 
 private:
-    IEmptyPluginModel* model;
+    IEmptyPluginModel* myModel;
+    int myId;
+
+    MainWindow *mainWindow;
 
     // IPluginView interface
-public:
-    virtual void SetModel(QObject* model);
-    virtual bool Open(QWidget *parent);
+public slots:
+    virtual void SetModel(QObject* myModel);
+    virtual bool Open(int id, QWidget *parent);
     virtual bool Close();
 };
 

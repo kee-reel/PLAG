@@ -8,54 +8,59 @@
 #include "itasklistmodel.h"
 #include "../../System/TaskDBToolPlugin/itaskdbtoolplugin.h"
 
-// TODO: Make recursive delete
-//class ExtendedTaskInfo
-//{
-//public:
-//    ITaskListModel::TaskInfo* task;
-//    ~ExtendedTaskInfo()
-//    {
-//        for(int i = 0; i < childTasks.count(); i++)
-//            delete childTasks[i];
-//    }
-//};
-
 class TaskListModel : public QObject, ITaskListModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(IPluginModel ITaskListModel)
-
+    QString tableName = "TaskList";
 public:
     TaskListModel();
     ~TaskListModel();
 
 private:
     // Native part
-    QWidget* parent;
-    QWidget* pluginWidget;
+    IPluginModel *myParent;
+    QWidget *myParentWidget;
+    int myModelId;
+    int activeViewId;
+    int activeModelId;
 
-    QMap<IPluginModel*, MetaInfo*> childPlugins;
-    QMap<IPluginView*, MetaInfo*> viewPlugins;
-    IPluginView* activeView;
+    template <class T>
+    struct PluginInfo
+    {
+        T *plugin;
+        MetaInfo *meta;
+    };
+
+    QList< PluginInfo<IPluginModel> > childModelPlugins;
+    QList< PluginInfo<IPluginView> > viewPlugins;
 
     // Unique part
-    ITaskDataManagerPlugin* DBTool;
-    ITaskListModel::TaskInfo* rootTask;
+
+    ITaskDataManagerPlugin* dataManager;
+    ITaskListModel::TaskInfo *rootTask;
+
+    ITaskDataManagerPlugin::TaskInfo ConvertToManagerTaskInfo(TaskInfo &task);
+    void DeleteTaskRecursive(TaskInfo *task);
 
     // IPluginModel interface
 public:
-    virtual void AddChildPlugin(IPluginModel *, MetaInfo *);
-    virtual void SetDataManager(QObject *);
-    virtual void AddView(IPluginView *plugin, MetaInfo *meta);
-    virtual bool Open(QWidget *parent);
-    virtual bool Close();
-    virtual QString GetError();  
+    void AddChildPlugin(IPluginModel *, MetaInfo *);
+    void SetDataManager(QObject *);
+    void AddView(IPluginView *plugin, MetaInfo *meta);
+
+    bool Open(IPluginModel *parent, QWidget *parentWidget, int id);
+    bool Close();
+    void ChildSelfClosed(int id);
+    QString GetError();
 
     // ITaskListModel interface
 public:
     TaskInfo *GetRootTask() override;
-    void SetRootTask(TaskInfo* rootTask) override;
+    bool AddTask(TaskInfo *taskParent, TaskInfo taskData) override;
+    bool EditTask(TaskInfo *task, TaskInfo taskData) override;
+    bool DeleteTask(TaskInfo *task) override;
 };
 
 #endif // TASKLISTMODEL_H

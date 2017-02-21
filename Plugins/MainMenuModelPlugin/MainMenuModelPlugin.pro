@@ -13,7 +13,7 @@ SOURCES += \
 HEADERS +=\
     imainmenumodule.h \
     mainmenumodelplugin.h \
-    ../../System/TimeKeeper/interfaces.h \
+    ../../System/MASS/interfaces.h \
     ../../System/TaskDBToolPlugin/itaskdbtoolplugin.h
 
 unix {

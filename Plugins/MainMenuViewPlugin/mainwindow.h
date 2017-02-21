@@ -4,9 +4,10 @@
 #include <QDebug>
 #include <QWidget>
 #include <QString>
+#include <QPainter>
 
 #include "draggablebutton.h"
-#include "../../System/TimeKeeper/interfaces.h"
+#include "../../System/MASS/interfaces.h"
 
 class MainWindow : public QWidget
 {
@@ -17,9 +18,10 @@ public:
     ~MainWindow();
 
     void AddNewButton(int id, QString task);
-
+    void WipeAllButtons();
 private:
     QList<DraggableButton*> modulesButtons;
+    void paintEvent(QPaintEvent *event);
 
 signals:
     void OnButtonPressed(int);

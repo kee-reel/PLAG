@@ -5,6 +5,7 @@
 #include <QDebug>
 
 #include "../TaskListModel/itasklistmodel.h"
+#include "mainform.h"
 
 class TaskListView : public QObject, IPluginView
 {
@@ -16,14 +17,21 @@ public:
     TaskListView();
     ~TaskListView();
 
+    ITaskListModel::TaskInfo *rootTask;
+
 private:
-    ITaskListModel* model;
+    ITaskListModel *myModel;
+    int myId;
+    MainForm *mainForm;
 
     // IPluginView interface
 public:
     virtual void SetModel(QObject* model);
-    virtual bool Open(QWidget *parent);
+    virtual bool Open(int id, QWidget* parent);
     virtual bool Close();
+
+private slots:
+    void onClose();
 };
 
 #endif // EMPTYMODULE_H

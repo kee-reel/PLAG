@@ -2,41 +2,46 @@
 
 TaskListView::TaskListView()
 {
-    model = NULL;
+    mainForm = new MainForm;
 }
 
 TaskListView::~TaskListView()
 {
+    delete mainForm;
 }
 
 void TaskListView::SetModel(QObject* model)
 {
-    this->model = qobject_cast<ITaskListModel*>(model);
-    if(!this->model)
+    myModel = qobject_cast<ITaskListModel*>(model);
+    if(myModel)
     {
         qDebug() << model->objectName() << "is not ITaskListModel.";
     }
-    qDebug() << "IMainMenuPluginModel succesfully set.";
+    qDebug() << "ITaskListModel succesfully set.";
 }
 
-bool TaskListView::Open(QWidget* parent)
+bool TaskListView::Open(int id, QWidget* parent)
 {
-    if(!model)
-    {
-        qDebug() << "Model isnt set!";
-        return false;
-    }
-    qDebug() << "Open empty plugin.";
-    return false;
+    qDebug() << "View OPEN";
+    myId = id;
+    mainForm->setParent(parent);
+    mainForm->resize(parent->size());
+    mainForm->setVisible(true);
+
+    rootTask = myModel->GetRootTask();
+
+    connect(mainForm, SIGNAL(onClose()), this, SLOT(onClose()));
+    return true;
 }
 
 bool TaskListView::Close()
 {
-    if(!model)
-    {
-        qDebug() << "Model isnt set!";
-        return false;
-    }
-    qDebug() << "Close empty plugin.";
+    mainForm->setVisible(false);
+    disconnect(mainForm, SIGNAL(onClose()), this, SLOT(onClose()));
     return true;
+}
+
+void TaskListView::onClose()
+{
+    myModel->Close();
 }

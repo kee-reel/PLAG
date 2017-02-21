@@ -18,19 +18,33 @@ public:
     ~EmptyPluginModel();
 
 private:
-    QMap<IPluginModel*, MetaInfo*> childPlugins;
-    QMap<IPluginView*, MetaInfo*> viewPlugins;
-    IPluginView* activeView;
+    IPluginModel *myParent;
+    QWidget *myParentWidget;
+    int myModelId;
+    int activeViewId;
+    int activeModelId;
 
-    QWidget* parent;
+    template <class T>
+    struct PluginInfo
+    {
+        T *plugin;
+        MetaInfo *meta;
+    };
+
+    QList< PluginInfo<IPluginModel> > childModelPlugins;
+    QList< PluginInfo<IPluginView> > viewPlugins;
 
     // IPluginModel interface
 public:
     virtual void AddChildPlugin(IPluginModel *, MetaInfo *);
-    virtual void SetDataManager(QObject *);
     virtual void AddView(IPluginView *plugin, MetaInfo *meta);
-    virtual bool Open(QWidget *parent);
+    virtual void SetDataManager(QObject *);
+
+    virtual bool Open(IPluginModel* parent, QWidget* parentWidget, int id);
+
+public slots:
     virtual bool Close();
+    virtual void ChildSelfClosed(int id);
     virtual QString GetError();
 
     // IEmptyPluginModel interface

@@ -11,7 +11,7 @@ SOURCES += \
     cipherdatabasesourceplugin.cpp
 
 HEADERS += \
-    ../../System/TimeKeeper/interfaces.h \
+    ../../System/MASS/interfaces.h \
     cipherdatabasesourceplugin.h
 
 unix {

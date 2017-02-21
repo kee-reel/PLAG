@@ -5,7 +5,7 @@
 #-------------------------------------------------
 TARGET = MainMenuViewPlugin
 TEMPLATE = lib
-QT += widgets sql
+QT += widgets
 
 SOURCES += \
     draggablebutton.cpp \
@@ -17,7 +17,7 @@ HEADERS +=\
     mainwindow.h \
     mainmenupluginview.h \
     ../MainMenuModelPlugin/imainmenumodule.h \
-    ../../System/TimeKeeper/interfaces.h
+    ../../System/MASS/interfaces.h
 
 unix {
     target.path = /usr/lib
@@ -26,3 +26,6 @@ unix {
 
 DISTFILES += \
     PluginMeta.json
+
+RESOURCES += \
+    mainwindow.qrc

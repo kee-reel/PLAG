@@ -1,7 +1,7 @@
 #ifndef IMAINMENUMODULE_H
 #define IMAINMENUMODULE_H
 
-#include "../../System/TimeKeeper/interfaces.h"
+#include "../../System/MASS/interfaces.h"
 
 template<class Type>
 class QList;

@@ -4,11 +4,12 @@ PluginManager::PluginManager(QWidget* parent) : QObject(parent)
 {
     this->parent = parent;
     mainPlugin = NULL;
+
+    pluginTypesNames.insert("ROOTMODEL",    ROOTMODEL);
     pluginTypesNames.insert("TOOLMODEL",    TOOLMODEL);
     pluginTypesNames.insert("TOOLVIEW",     TOOLVIEW);
     pluginTypesNames.insert("DATASOURCE",   DATASOURCE);
     pluginTypesNames.insert("DATAMANAGER",  DATAMANAGER);
-    pluginTypesNames.insert("MAINMODEL",    MAINMODEL);
 }
 
 PluginManager::~PluginManager()
@@ -29,10 +30,14 @@ PluginManager::~PluginManager()
 void PluginManager::LoadPluginsToHome()
 {
     qDebug() << QDir::homePath() << "===" << QDir::rootPath() << "===" << QDir::currentPath() << "===" << QDir::tempPath();
-    internalPluginsPath = QDir(QDir::currentPath());//TODO: + "/Modules/");
+    internalPluginsPath = QDir(QDir::currentPath() + "/Modules/");
     //TODO: DT entry
 #ifdef Q_OS_ANDROID
-    QDir storageDirectoryPath("/storage/emulated/0/Android/data/Modules/");
+    QDir storageDirectoryPath("/storage/emulated/0/Android/data/" + packageName);
+    if(!internalPluginsPath.exists())
+    {
+        internalPluginsPath.mkdir(internalPluginsPath.absolutePath());
+    }
     qDebug() << "Paths" << storageDirectoryPath.absolutePath() << internalPluginsPath;
 //    foreach (QString file, storageDirectoryPath.entryList(QDir::AllEntries))
 //    {
@@ -40,12 +45,23 @@ void PluginManager::LoadPluginsToHome()
 //    }
 
     QFile fileToCopy;
+    QFile existingFile;
     foreach (QString file, storageDirectoryPath.entryList(QDir::Files))
     {
+        // If internal file already exists - delete it
+        existingFile.setFileName(internalPluginsPath.absolutePath() + "/" + file);
+        if(existingFile.exists())
+        {
+            existingFile.remove();
+        }
+
+        // Copy storage file to internal storage
         QDir storagePluginPath(storageDirectoryPath.absolutePath() + "/" + file);
         fileToCopy.setFileName(storagePluginPath.absolutePath());
         fileToCopy.open(QIODevice::ReadOnly);
         fileToCopy.copy(internalPluginsPath.absolutePath() + "/" + file);
+        fileToCopy.close();
+        qDebug() << fileToCopy.remove();
         qDebug() << storagePluginPath.absolutePath() << fileToCopy.isOpen() << fileToCopy.errorString();
         qDebug() << internalPluginsPath.absolutePath() + file << fileToCopy.errorString();
         fileToCopy.close();
@@ -180,7 +196,7 @@ bool PluginManager::BindPluginToSystem(QPluginLoader* loader, QObject* instance,
 {
     qDebug() << "Bind plugin to system";
     switch (meta->Type) {
-        case MAINMODEL:
+        case ROOTMODEL:
         case TOOLMODEL:{
             IPluginModel* plugin = CastToPlugin<IPluginModel>(loader, instance);
             if(!plugin) return false;
@@ -238,7 +254,7 @@ void PluginManager::SetupPluginsConnections()
     {
         mainPlugin = mainPluginMap.begin().key();
         qDebug() << "Starting main plugin" << mainPluginMap.begin().value()->Name << endl;
-        mainPlugin->Open(parent);
+        mainPlugin->Open(NULL, parent, 0);
     }
     else
     {
@@ -365,7 +381,7 @@ void PluginManager::SetPluginModelLinks(IPluginModel *plugin, QObject* instance,
     pluginModelMap.insert(plugin, meta);
     LinkInfo<IPluginModel> info = {plugin, instance};
 
-    if(meta->Type == MAINMODEL)
+    if(meta->Type == ROOTMODEL)
     {
         mainPluginMap.insert(plugin, meta);
         modelsLinkInfo[""] = info;

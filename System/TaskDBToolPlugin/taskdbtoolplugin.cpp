@@ -4,11 +4,12 @@
 TaskDataManagerPlugin::TaskDataManagerPlugin()
 {
     dataSource = NULL;
-    tableStruct.insert("id",        "int");
-    tableStruct.insert("name",      "varchar");
-    tableStruct.insert("level",     "int");
-    tableStruct.insert("parent",    "int");
-    tableStruct.insert("position",  "int");
+
+    tableStruct.append(CombineFormInfo("id",        "integer"));
+    tableStruct.append(CombineFormInfo("name",      "varchar"));
+    //tableStruct.append(CombineFormInfo("level",     "integer"));
+    tableStruct.append(CombineFormInfo("parent",    "integer"));
+    tableStruct.append(CombineFormInfo("position",  "integer"));
 }
 
 TaskDataManagerPlugin::~TaskDataManagerPlugin()
@@ -32,51 +33,87 @@ QString TaskDataManagerPlugin::GetError()
     return QString();
 }
 
-ITaskDataManagerPlugin::TaskInfo* TaskDataManagerPlugin::GetTaskTree(QString treeName)
+QList<ITaskDataManagerPlugin::TaskInfo> TaskDataManagerPlugin::GetTaskTree(QString treeName)
 {
     qDebug() << "GetTaskTree";
     if(treeName == NULL || treeName == "")
     {
         qDebug() << "Tree name is empty!";
-        return NULL;
+        return QList<ITaskDataManagerPlugin::TaskInfo>();
     }
     treeName = treeName.toLower();
     if(!dataSource)
     {
         qDebug() << "DBManager isnt set!";
-        return NULL;
+        return QList<ITaskDataManagerPlugin::TaskInfo>();
     }
-    qDebug() << "Creating table" << treeName;
-    QSqlQuery queryRes =
-            dataSource->ExecuteQuery(QString("CREATE TABLE IF NOT EXISTS %1 (%2)")
-                                    .arg(treeName)
-                                    .arg(GetStringStruct()));
-    qDebug() << IsTableExists(treeName);
+    QString queryStr = QString("CREATE TABLE IF NOT EXISTS %1 (%2)")
+            .arg(treeName)
+            .arg(GetStringStruct());
+    qDebug() << "Creating table" << queryStr;
+    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+    qDebug() << query.lastError();
     if(!IsTableRightStructure(treeName))
     {
         qDebug() << "Table" << treeName << "has wrong structure";
-        return NULL;
+        return QList<ITaskDataManagerPlugin::TaskInfo>();
     }
 
-    return NULL;
+    query = dataSource->ExecuteQuery(QString("select * from %1").arg(treeName));
+    QList<TaskInfo> taskTree;
+    TaskInfo buf;
+    while (query.next()) {
+        buf.id = query.value(0).toInt();
+        buf.name = query.value(1).toString();
+        //buf.level = query.value(2).toInt();
+        buf.parent = query.value(2).toInt();
+        buf.position = query.value(3).toInt();
+        qDebug() << query.value(0).toInt() << ": " << query.value(1).toString()
+                    << query.value(2).toInt() << ": " << query.value(3).toInt();
+        taskTree.append(buf);
+    }
+    return taskTree;
 }
 
-bool TaskDataManagerPlugin::AddTask(ITaskDataManagerPlugin::TaskInfo *taskTree)
+int TaskDataManagerPlugin::AddTask(QString treeName, ITaskDataManagerPlugin::TaskInfo task)
 {
-    QString queryStr = "";
-    //QSqlQuery *query = DBManager->ExecuteQuery(queryStr);
+    qDebug() << "Add Task";
+    treeName = treeName.toLower();
+    QString queryStr = QString("insert into %1 values (NULL, '%2', %3, %4)")
+            .arg(treeName)
+            .arg(task.name)
+            //.arg(task.level)
+            .arg(task.parent)
+            .arg(task.position)
+            ;
+    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+    qDebug() << query.lastError();
+    return query.lastInsertId().toInt();
 }
 
-bool TaskDataManagerPlugin::EditTask(ITaskDataManagerPlugin::TaskInfo *taskTree)
+bool TaskDataManagerPlugin::EditTask(QString treeName, ITaskDataManagerPlugin::TaskInfo task)
 {
-    QString queryStr = "";
-    //QSqlQuery *query = DBManager->ExecuteQuery(queryStr);
+    treeName = treeName.toLower();
+    QString queryStr = QString("update %1 set name='%3', parent=%4, position=%5 where id=%2")
+            .arg(treeName)
+            .arg(task.id)
+            .arg(task.name)
+            //.arg(task.level)
+            .arg(task.parent)
+            .arg(task.position)
+            ;
+    qDebug() << "Edit Task" << queryStr;
+    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+    qDebug() << query.lastError();
 }
 
-bool TaskDataManagerPlugin::DeleteTask(ITaskDataManagerPlugin::TaskInfo *taskTree)
+bool TaskDataManagerPlugin::DeleteTask(QString treeName, int id)
 {
-    QString queryStr = "";
-    //QSqlQuery *query = DBManager->ExecuteQuery(queryStr);
+    treeName = treeName.toLower();
+    QString queryStr = QString("delete from %1 where id=%2").arg(treeName).arg(id);
+    qDebug() << "Delete Task" << queryStr;
+    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+    qDebug() << query.lastError();
 }
 
 bool TaskDataManagerPlugin::IsTableExists(QString tableName)
@@ -91,16 +128,19 @@ bool TaskDataManagerPlugin::IsTableRightStructure(QString tableName)
 {
     QString queryStr = QString("pragma table_info(%1)").arg(tableName);
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+    QString name, type;
+    QMap<QString, QString> fieldNamesCheckInfo;
+    for(int i = 0; i < tableStruct.count(); i++)
+        fieldNamesCheckInfo.insert(tableStruct[i].name, tableStruct[i].type);
 
-    QString key, value;
     while (query.next())
     {
         qDebug() << query.value(0).toInt() << ": " << query.value(1).toString() << ": " << query.value(2).toString();
-        key = query.value(1).toString();
-        value = query.value(2).toString();
-        if(!tableStruct.contains(key) || tableStruct[key] != value)
+        name = query.value(1).toString();
+        type = query.value(2).toString();
+        if(!fieldNamesCheckInfo.contains(name) || fieldNamesCheckInfo[name] != type)
         {
-            qDebug() << key << value << "cant exist in right table structure";
+            qDebug() << name << type << "cant exist in right table structure";
             return false;
         }
     }
@@ -110,10 +150,22 @@ bool TaskDataManagerPlugin::IsTableRightStructure(QString tableName)
 QString TaskDataManagerPlugin::GetStringStruct()
 {
     QString structStr = "";
-    foreach (QString key, tableStruct.keys()) {
-        structStr.append(QString("%1 %2,").arg(key).arg(tableStruct[key]));
+    QString valuesStr;
+
+    for(int i = 0; i < tableStruct.count(); i++)
+    {
+        valuesStr = "%1 %2";
+        if(i == 0) valuesStr.append(" primary key autoincrement");
+        if(i != tableStruct.count()-1) valuesStr.append(",");
+        structStr.append(valuesStr.arg(tableStruct[i].name).arg(tableStruct[i].type));
     }
     return structStr;
+}
+
+TaskDataManagerPlugin::ColumnInfo TaskDataManagerPlugin::CombineFormInfo(QString name, QString type)
+{
+    TaskDataManagerPlugin::ColumnInfo info = {name, type};
+    return info;
 }
 
 //bool TaskDBToolPlugin::CreateNewTask()

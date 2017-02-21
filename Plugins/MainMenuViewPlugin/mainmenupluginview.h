@@ -18,14 +18,15 @@ public:
     ~MainMenuPluginView();
 
 private:
+    IMainMenuPluginModel *myModel;
+    int myId;
     MainWindow* mainWindow;
-    IMainMenuPluginModel* model;
+
 
     // IPluginView interface
 public:
     virtual void SetModel(QObject *model);
-
-    bool Open(QWidget*) override;
+    bool Open(int id, QWidget* parent) override;
     bool Close() override;
 
 private slots:

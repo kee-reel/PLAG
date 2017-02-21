@@ -8,12 +8,14 @@ TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    emptypluginview.cpp
+    emptypluginview.cpp \
+    mainwindow.cpp
 
 HEADERS += \
-    ../../System/TimeKeeper/interfaces.h \
+    ../../System/MASS/interfaces.h \
     iemptypluginmodel.h \
-    emptypluginview.h
+    emptypluginview.h \
+    mainwindow.h
 
 unix {
     target.path = /usr/lib

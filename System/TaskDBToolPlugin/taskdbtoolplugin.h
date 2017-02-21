@@ -20,10 +20,10 @@ public:
 
     // ITaskDBToolPlugin interface
 public:
-    virtual TaskInfo *GetTaskTree(QString treeName);
-    virtual bool AddTask(TaskInfo *taskTree);
-    virtual bool EditTask(TaskInfo *taskTree);
-    virtual bool DeleteTask(TaskInfo *taskTree);
+    virtual QList<TaskInfo> GetTaskTree(QString treeName);
+    virtual int AddTask(QString treeName, TaskInfo task);
+    virtual bool EditTask(QString treeName, TaskInfo task);
+    virtual bool DeleteTask(QString treeName, int id);
 
 public:
     TaskDataManagerPlugin();
@@ -31,12 +31,16 @@ public:
 
 private:
     IDataBaseSourcePlugin* dataSource;
-    QMap<QString, QString> tableStruct;
+    struct ColumnInfo{
+        QString name;
+        QString type;
+    };
+    QVector<ColumnInfo> tableStruct;
 
     bool IsTableExists(QString tableName);
     bool IsTableRightStructure(QString tableName);
     QString GetStringStruct();
-
+    ColumnInfo CombineFormInfo(QString name, QString type);
 };
 
 #endif // TASKDBTOOLPLUGIN_H

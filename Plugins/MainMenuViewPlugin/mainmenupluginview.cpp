@@ -3,6 +3,7 @@
 MainMenuPluginView::MainMenuPluginView()
 {
     mainWindow = new MainWindow;
+    connect(mainWindow, SIGNAL(OnButtonPressed(int)), this, SLOT(OpenChildPlugin(int)));
 }
 
 MainMenuPluginView::~MainMenuPluginView()
@@ -12,31 +13,35 @@ MainMenuPluginView::~MainMenuPluginView()
 
 void MainMenuPluginView::SetModel(QObject *model)
 {
-    this->model = qobject_cast<IMainMenuPluginModel*>(model);
-    if(!this->model)
+    myModel = qobject_cast<IMainMenuPluginModel*>(model);
+    if(myModel)
     {
         qDebug() << model->objectName() << "is not IMainMenuPluginModel.";
     }
     qDebug() << "IMainMenuPluginModel succesfully set.";
 }
 
-bool MainMenuPluginView::Open(QWidget* parent)
+bool MainMenuPluginView::Open(int id, QWidget* parent)
 {
+    myId = id;
     mainWindow->setParent(parent);
-    mainWindow->setGeometry(parent->geometry());
-    qDebug() << "===============" << parent->geometry();
-    QList<MetaInfo*> list = model->GetChildPlugins();
+    mainWindow->resize(parent->size());
+    mainWindow->setVisible(true);
+
+    QList<MetaInfo*> list = myModel->GetChildPlugins();
     for(int i = 0; i < list.count(); i++)
     {
         qDebug() << list[i]->Name;
         mainWindow->AddNewButton(i, list[i]->Name);
     }
-    connect(mainWindow, SIGNAL(OnButtonPressed(int)), this, SLOT(OpenChildPlugin(int)));
+
     return true;
 }
 
 bool MainMenuPluginView::Close()
 {
+    mainWindow->setVisible(false);
+    mainWindow->WipeAllButtons();
     disconnect(mainWindow, SIGNAL(OnButtonPressed(int)), this, SLOT(OpenChildPlugin(int)));
     return true;
 }
@@ -44,5 +49,6 @@ bool MainMenuPluginView::Close()
 void MainMenuPluginView::OpenChildPlugin(int id)
 {
     qDebug() << "Open plugin" << id;
-    model->RunPlugin(id);
+    mainWindow->setVisible(false);
+    myModel->RunPlugin(id);
 }

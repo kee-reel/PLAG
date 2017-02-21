@@ -1,7 +1,7 @@
 #ifndef ITASKDBTOOLPLUGIN_H
 #define ITASKDBTOOLPLUGIN_H
 
-#include "../../System/TimeKeeper/interfaces.h"
+#include "../../System/MASS/interfaces.h"
 
 template <class T>
 class QList;
@@ -12,15 +12,14 @@ public:
     public:
         int id;
         QString name;
-        int level;
+        //int level;
         int parent;
         int position;
-        QList<TaskInfo*> childTasks;
     };
-    virtual TaskInfo *GetTaskTree(QString treeName) = 0;
-    virtual bool AddTask(TaskInfo* taskTree) = 0;
-    virtual bool EditTask(TaskInfo* taskTree) = 0;
-    virtual bool DeleteTask(TaskInfo* taskTree) = 0;
+    virtual QList<TaskInfo> GetTaskTree(QString treeName) = 0;
+    virtual int AddTask(QString treeName, TaskInfo task) = 0;
+    virtual bool EditTask(QString treeName, TaskInfo task) = 0;
+    virtual bool DeleteTask(QString treeName, int id) = 0;
 };
 Q_DECLARE_INTERFACE(ITaskDataManagerPlugin, "ITaskDataManagerPlugin v0.1")
 

@@ -18,7 +18,7 @@ DISTFILES += \
 HEADERS += \
     taskdbtoolplugin.h \
     itaskdbtoolplugin.h \
-    ../../System/TimeKeeper/interfaces.h
+    ../../System/MASS/interfaces.h
 
 SOURCES += \
     taskdbtoolplugin.cpp

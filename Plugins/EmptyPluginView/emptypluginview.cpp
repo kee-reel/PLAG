@@ -2,7 +2,9 @@
 
 EmptyPluginView::EmptyPluginView()
 {
-    model = NULL;
+    mainWindow = new MainWindow;
+    mainWindow->setVisible(false);
+    myModel = NULL;
 }
 
 EmptyPluginView::~EmptyPluginView()
@@ -11,32 +13,28 @@ EmptyPluginView::~EmptyPluginView()
 
 void EmptyPluginView::SetModel(QObject* model)
 {
-    this->model = qobject_cast<IEmptyPluginModel*>(model);
-    if(!this->model)
+    this->myModel = qobject_cast<IEmptyPluginModel*>(model);
+    if(!this->myModel)
     {
         qDebug() << model->objectName() << "is not IMainMenuPluginModel.";
     }
     qDebug() << "IMainMenuPluginModel succesfully set.";
 }
 
-bool EmptyPluginView::Open(QWidget* parent)
+bool EmptyPluginView::Open(int id, QWidget *parent)
 {
-    if(!model)
-    {
-        qDebug() << "Model isnt set!";
-        return false;
-    }
+    myId = id;
+    mainWindow->setParent(parent);
+    mainWindow->setVisible(true);
+    connect(mainWindow, SIGNAL(onClose()), this, SLOT(Close()));
     qDebug() << "Open empty plugin.";
-    return false;
+    return true;
 }
 
 bool EmptyPluginView::Close()
 {
-    if(!model)
-    {
-        qDebug() << "Model isnt set!";
-        return false;
-    }
+    mainWindow->setVisible(false);
+    myModel->Close();
     qDebug() << "Close empty plugin.";
     return true;
 }

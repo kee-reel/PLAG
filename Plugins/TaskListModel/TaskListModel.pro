@@ -5,7 +5,7 @@
 #-------------------------------------------------
 TARGET = TaskListModel
 TEMPLATE = lib
-QT += core
+QT += widgets
 
 SOURCES += \
     tasklistmodel.cpp
@@ -14,7 +14,7 @@ HEADERS +=\
     itasklistmodel.h \
     tasklistmodel.h \
     ../TaskDBToolPlugin/itaskdbtoolplugin.h \
-    ../../System/TimeKeeper/interfaces.h
+    ../../System/MASS/interfaces.h
 
 unix {
     target.path = /usr/lib
