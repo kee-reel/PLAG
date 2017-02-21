@@ -6,8 +6,8 @@ PluginManager::PluginManager(QWidget* parent) : QObject(parent)
     mainPlugin = NULL;
 
     pluginTypesNames.insert("ROOTMODEL",    ROOTMODEL);
-    pluginTypesNames.insert("TOOLMODEL",    TOOLMODEL);
-    pluginTypesNames.insert("TOOLVIEW",     TOOLVIEW);
+    pluginTypesNames.insert("PLUGINMODEL",  PLUGINMODEL);
+    pluginTypesNames.insert("PLUGINVIEW",   PLUGINVIEW);
     pluginTypesNames.insert("DATASOURCE",   DATASOURCE);
     pluginTypesNames.insert("DATAMANAGER",  DATAMANAGER);
 }
@@ -197,14 +197,14 @@ bool PluginManager::BindPluginToSystem(QPluginLoader* loader, QObject* instance,
     qDebug() << "Bind plugin to system";
     switch (meta->Type) {
         case ROOTMODEL:
-        case TOOLMODEL:{
+        case PLUGINMODEL:{
             IPluginModel* plugin = CastToPlugin<IPluginModel>(loader, instance);
             if(!plugin) return false;
             SetPluginModelLinks(plugin, instance, meta);
             break;
         }
 
-        case TOOLVIEW:{
+        case PLUGINVIEW:{
             IPluginView* plugin = CastToPlugin<IPluginView>(loader, instance);
             if(!plugin) return false;
             SetPluginViewLinks(plugin, instance, meta);

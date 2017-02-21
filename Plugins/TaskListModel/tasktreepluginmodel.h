@@ -5,18 +5,19 @@
 #include <QDebug>
 #include <QString>
 
-#include "itasklistmodel.h"
+#include "itasktreemodel.h"
 #include "../../System/TaskDBToolPlugin/itaskdbtoolplugin.h"
+#include "tasktreeitemmodel.h"
 
-class TaskListModel : public QObject, ITaskListModel
+class TaskTreePluginModel : public QObject, ITaskTreeModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IPluginModel ITaskListModel)
-    QString tableName = "TaskList";
+    Q_INTERFACES(IPluginModel ITaskTreeModel)
+
 public:
-    TaskListModel();
-    ~TaskListModel();
+    TaskTreePluginModel();
+    ~TaskTreePluginModel();
 
 private:
     // Native part
@@ -37,19 +38,15 @@ private:
     QList< PluginInfo<IPluginView> > viewPlugins;
 
     // Unique part
-
+    QString tableName;
     ITaskDataManagerPlugin* dataManager;
-    ITaskListModel::TaskInfo *rootTask;
-
-    ITaskDataManagerPlugin::TaskInfo ConvertToManagerTaskInfo(TaskInfo &task);
-    void DeleteTaskRecursive(TaskInfo *task);
+    TaskTreeItemModel* treeModel;
 
     // IPluginModel interface
 public:
     void AddChildPlugin(IPluginModel *, MetaInfo *);
     void SetDataManager(QObject *);
     void AddView(IPluginView *plugin, MetaInfo *meta);
-
     bool Open(IPluginModel *parent, QWidget *parentWidget, int id);
     bool Close();
     void ChildSelfClosed(int id);
@@ -57,10 +54,8 @@ public:
 
     // ITaskListModel interface
 public:
-    TaskInfo *GetRootTask() override;
-    bool AddTask(TaskInfo *taskParent, TaskInfo taskData) override;
-    bool EditTask(TaskInfo *task, TaskInfo taskData) override;
-    bool DeleteTask(TaskInfo *task) override;
+    QAbstractItemModel *GetTaskTree() override;
+
 };
 
 #endif // TASKLISTMODEL_H

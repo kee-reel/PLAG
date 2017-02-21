@@ -1,9 +1,11 @@
 #ifndef MAINFORM_H
 #define MAINFORM_H
 
+#include <QDebug>
 #include <QWidget>
 #include <QPainter>
-#include "../../Plugins/TaskListModel/itasklistmodel.h"
+#include <QAbstractItemModel>
+#include "../../Plugins/TaskListModel/itasktreemodel.h"
 
 namespace Ui {
 class MainForm;
@@ -17,9 +19,9 @@ public:
     explicit MainForm(QWidget *parent = 0);
     ~MainForm();
 
-private:
+    void SetModel(QAbstractItemModel *taskTree);
+
     Ui::MainForm *ui;
-    ITaskListModel::TaskInfo *rootTask;
 
 //    void paintEvent(QPaintEvent *event);
 //    void mousePressEvent(QMouseEvent *event);

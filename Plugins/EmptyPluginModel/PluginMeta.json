@@ -1,6 +1,6 @@
 {
     "Name":         "EmptyModel",
-    "PluginType":   "ToolModel",
+    "PluginType":   "PluginModel",
     "ParentName":   "",
     "DataManager":  ""
 }

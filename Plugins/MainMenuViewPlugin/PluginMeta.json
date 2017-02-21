@@ -1,6 +1,6 @@
 {
     "Name":         "MainMenuView",
-    "PluginType":   "ToolView",
+    "PluginType":   "PluginView",
     "ParentName":   "",
     "DataManager":  ""
 }

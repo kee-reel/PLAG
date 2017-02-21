@@ -5,17 +5,20 @@
 #-------------------------------------------------
 TARGET = TaskListView
 TEMPLATE = lib
-QT += widgets qml quick
-
+QT += widgets
 SOURCES += \
     tasklistview.cpp \
     mainform.cpp
 
 HEADERS +=\
-    ../TaskListModel/itasklistmodel.h \
     tasklistview.h \
     ../../System/MASS/interfaces.h \
-    mainform.h
+    mainform.h \
+    ../TaskListModel/itasktreemodel.h
+
+windows{
+    DESTDIR = C:/Users/Curunir/Desktop/Qt/System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
+}
 
 unix {
     target.path = /usr/lib

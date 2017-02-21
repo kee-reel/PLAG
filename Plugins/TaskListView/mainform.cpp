@@ -13,6 +13,12 @@ MainForm::~MainForm()
     delete ui;
 }
 
+void MainForm::SetModel(QAbstractItemModel *taskTree)
+{
+//    if(taskTree)
+//        ui->treeView->setModel(taskTree);
+}
+
 //void MainForm::paintEvent(QPaintEvent *event)
 //{
 //    QPainter p;
@@ -38,5 +44,4 @@ MainForm::~MainForm()
 void MainForm::on_pushButton_clicked()
 {
 
-    ui->label->text() =;
 }
