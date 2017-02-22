@@ -1,4 +1,4 @@
-#-------------------------------------------------
+ #-------------------------------------------------
 #
 # Project created by QtCreator 2017-02-01T20:08:55
 #
@@ -20,7 +20,7 @@ HEADERS +=\
     ../../System/MASS/interfaces.h
 
 windows{
-    DESTDIR = C:/Users/Curunir/Desktop/Qt/System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
+    DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
 }
 
 unix {

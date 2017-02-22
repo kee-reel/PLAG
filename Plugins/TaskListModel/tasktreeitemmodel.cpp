@@ -18,8 +18,8 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
         treeItem = new TreeItem();
         managerTaskData = &data[i];
 
-        treeItem->SetId(managerTaskData->id);
-        treeItem->SetName(managerTaskData->name);
+        treeItem->SetData(0, managerTaskData->id);
+        treeItem->SetData(1, managerTaskData->name);
 
         treeItemIdMap.insert(managerTaskData->id, treeItem);
         qDebug() << managerTaskData->id << managerTaskData->name << managerTaskData->position << managerTaskData->parent;
@@ -41,10 +41,22 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
         for(int j = 0; j < childItemsList.count(); j++)
         {
            childItemsList[j]->parentItem = parent;
-           qDebug() << "P" << childItemsList[j]->GetId() << parent->GetId();
+           qDebug() << "P" << childItemsList[j]->GetData(0) << parent->GetData(0);
         }
         parent->SetChilds(childItemsList);
     }
+
+    QList<QVariant> testData;
+    testData << QVariant(777) << QVariant("TeSt");
+    rootItem = new TreeItem(NULL, testData);
+    rootItem->AddChild(0, new TreeItem(rootItem, testData));
+    TreeItem *item = new TreeItem(rootItem, testData);
+    rootItem->AddChild(1, item);
+    rootItem->AddChild(2, new TreeItem(rootItem, testData));
+    rootItem->AddChild(3, new TreeItem(rootItem, testData));
+    item->AddChild(1, new TreeItem(item, testData));
+    item->AddChild(2, new TreeItem(item, testData));
+    item->AddChild(3, new TreeItem(item, testData));
 }
 
 TaskTreeItemModel::~TaskTreeItemModel()
@@ -58,28 +70,44 @@ QVariant TaskTreeItemModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    if (role != Qt::DisplayRole)
-        return QVariant();
-
     TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
 
-    return item->GetName();
+    switch (role) {
+    case Qt::DisplayRole:
+        return item->GetData(index.column());
+        break;
+    case Qt::SizeHintRole:
+        return QSize(0, 30);
+        break;
+    case Qt::ToolTipRole:
+        return item->GetData(0);
+        break;
+    case Qt::FontRole:
+        return QFont("Segoe UI", 14, QFont::Bold);
+        break;
+    case Qt::BackgroundRole:
+        return QBrush(QColor(180 - index.row()*10, 180, 180));
+        break;
+    default:
+        return QVariant();
+        break;
+    }
+
 }
 
 Qt::ItemFlags TaskTreeItemModel::flags(const QModelIndex &index) const
 {
-    qDebug() << "flags";
     if (!index.isValid())
-             return 0;
+        return Qt::NoItemFlags;
 
     return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 }
 
 QVariant TaskTreeItemModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    qDebug() << "headerData" << rootItem;
-    if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-        return rootItem->GetName();
+//    qDebug() << "headerData" << rootItem;
+//    if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
+//        return rootItem->GetData(section);
 
     return QVariant();
 }
@@ -169,18 +197,26 @@ bool TaskTreeItemModel::insertRow(int row, const QModelIndex &parent)
 
 bool TaskTreeItemModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
+    if(!index.isValid())
+        return false;
 
+    TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+
+    item->SetData(index.column(), value);
+    //EditTask(item, value);
+
+    return true;
 }
 
 ITaskDataManagerPlugin::TaskInfo TaskTreeItemModel::ConvertToManagerTaskInfo(TreeItem* item)
 {
     ITaskDataManagerPlugin::TaskInfo managerStruct;
     //Set id
-    managerStruct.id = item->GetId().toInt();
+    managerStruct.id = item->GetData(0).toInt();
     // Set name
-    managerStruct.name = item->GetName().toString();
+    managerStruct.name = item->GetData(1).toString();
     // Set parent
-    managerStruct.parent = item->parentItem ? item->parentItem->GetId().toInt() : -1;
+    managerStruct.parent = item->parentItem ? item->parentItem->GetData(0).toInt() : -1;
     // Set position
     if(item->parentItem)
         managerStruct.position = item->parentItem->GetChildPosition(item);
@@ -195,14 +231,14 @@ void TaskTreeItemModel::DeleteFromManagerRecursive(TreeItem *task)
         for(int i = 0; i < task->ChildCount(); i++)
             DeleteFromManagerRecursive(task->GetChild(i));
 
-    dataManager->DeleteTask(tableName, task->GetId().toInt());
+    dataManager->DeleteTask(tableName, task->GetData(0).toInt());
 }
 
 bool TaskTreeItemModel::AddTask(TreeItem *taskParent, TreeItem &taskData)
 {
     qDebug() << "Add task";
     TreeItem *newTask = new TreeItem();
-    newTask->SetName(taskData.GetName().toString());
+    newTask->SetData(1, taskData.GetData(1));
     qDebug() << taskParent;
     if(taskParent != NULL)
         taskParent->AddChild(taskParent->ChildCount(), newTask);
@@ -210,17 +246,17 @@ bool TaskTreeItemModel::AddTask(TreeItem *taskParent, TreeItem &taskData)
 
     ITaskDataManagerPlugin::TaskInfo managerTask = ConvertToManagerTaskInfo(newTask);
     qDebug() << managerTask.id << managerTask.name << managerTask.parent << managerTask.position;
-    newTask->SetId(dataManager->AddTask(tableName, managerTask));
+    newTask->SetData(0, dataManager->AddTask(tableName, managerTask));
 }
 
-//bool TaskTreeItemModel::EditTask(ITaskTreeModel::TaskInfo *task, ITaskTreeModel::TaskInfo taskData)
-//{
+bool TaskTreeItemModel::EditTask(TreeItem *task, TreeItem taskData)
+{
 //    task->id = taskData.id;
 //    task->name = taskData.name;
 
 //    ITaskDataManagerPlugin::TaskInfo managerTask = ConvertToManagerTaskInfo(*task);
 //    dataManager->EditTask(tableName, managerTask);
-//}
+}
 
 //bool TaskTreeItemModel::DeleteTask(ITaskTreeModel::TaskInfo *task)
 //{

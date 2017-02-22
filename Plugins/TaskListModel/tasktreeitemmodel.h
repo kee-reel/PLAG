@@ -3,6 +3,9 @@
 
 #include <QAbstractItemModel>
 #include <QDebug>
+#include <QSize>
+#include <QFont>
+#include <QBrush>
 
 #include "../../System/TaskDBToolPlugin/itaskdbtoolplugin.h"
 #include "treeitem.h"
@@ -35,7 +38,7 @@ private:
     void DeleteFromManagerRecursive(TreeItem *task);
 
     bool AddTask(TreeItem *taskParent, TreeItem &taskData);
-//    bool EditTask(TreeItem *task, TreeItem taskData);
+    bool EditTask(TreeItem *task, TreeItem taskData);
 //    bool DeleteTask(TreeItem *task);
 
 };
