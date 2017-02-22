@@ -23,6 +23,9 @@ public:
     QModelIndex parent(const QModelIndex &index) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    bool setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles);
+    bool insertRow(int row, const QModelIndex &parent);
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role);
 
 private:
     void setupModelData(const QStringList &lines, TreeItem *parent);
@@ -31,9 +34,10 @@ private:
     ITaskDataManagerPlugin::TaskInfo ConvertToManagerTaskInfo(TreeItem* item);
     void DeleteFromManagerRecursive(TreeItem *task);
 
-//    bool AddTask(TreeItem *taskParent, TreeItem taskData);
+    bool AddTask(TreeItem *taskParent, TreeItem &taskData);
 //    bool EditTask(TreeItem *task, TreeItem taskData);
 //    bool DeleteTask(TreeItem *task);
+
 };
 
 #endif // TASKTREEMODEL_H

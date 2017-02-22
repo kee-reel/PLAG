@@ -24,14 +24,11 @@ bool TaskListView::Open(int id, QWidget* parent)
 {
     qDebug() << "View OPEN";
     taskTree = myModel->GetTaskTree();
-    qDebug() << "Q!";
     mainForm->SetModel(taskTree);
     myId = id;
-    qDebug() << mainForm;
     mainForm->setParent(parent);
     mainForm->resize(parent->size());
     mainForm->setVisible(true);
-    qDebug() << "Q!";
     connect(mainForm, SIGNAL(onClose()), this, SLOT(onClose()));
     return true;
 }

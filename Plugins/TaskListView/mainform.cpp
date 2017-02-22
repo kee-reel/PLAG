@@ -15,8 +15,8 @@ MainForm::~MainForm()
 
 void MainForm::SetModel(QAbstractItemModel *taskTree)
 {
-//    if(taskTree)
-//        ui->treeView->setModel(taskTree);
+    if(taskTree)
+        ui->treeView->setModel(taskTree);
 }
 
 //void MainForm::paintEvent(QPaintEvent *event)
@@ -36,12 +36,14 @@ void MainForm::SetModel(QAbstractItemModel *taskTree)
 //    p.end();
 //}
 
-//void MainForm::mousePressEvent(QMouseEvent *event)
-//{
-//    emit onClose();
-//}
-
-void MainForm::on_pushButton_clicked()
+void MainForm::on_buttonAdd_clicked()
 {
 
 }
+
+void MainForm::on_buttonExit_clicked()
+{
+    emit onClose();
+}
+
+

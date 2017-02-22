@@ -23,13 +23,11 @@ public:
 
     Ui::MainForm *ui;
 
-//    void paintEvent(QPaintEvent *event);
-//    void mousePressEvent(QMouseEvent *event);
-
 signals:
     void onClose();
 private slots:
-    void on_pushButton_clicked();
+    void on_buttonExit_clicked();
+    void on_buttonAdd_clicked();
 };
 
 #endif // MAINFORM_H

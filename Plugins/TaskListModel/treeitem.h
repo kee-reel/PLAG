@@ -16,16 +16,16 @@ public:
     inline int ChildCount() { return childItems.count(); }
 
     inline static int columnCount()     { return 1; }
-    inline QVariant GetId()             { return itemData[0]; }
-    inline QVariant GetName()           { return itemData[1]; }
-    inline void SetId(int id)           { itemData[0] = id; }
-    inline void SetName(QString name)   { itemData[1] = name; }
+    inline QVariant GetId()             { return idData; }
+    inline QVariant GetName()           { return nameData; }
+    inline void SetId(int id)           { idData = id; }
+    inline void SetName(QString name)   { nameData = name; }
 
     inline int GetRow() { return parentItem->GetChildPosition(this); }
 
     TreeItem *parentItem;
 private:
-    QList<QVariant> itemData;
+    QVariant idData, nameData;
     QList<TreeItem*> childItems;
 };
 

@@ -54,6 +54,7 @@ TaskTreeItemModel::~TaskTreeItemModel()
 
 QVariant TaskTreeItemModel::data(const QModelIndex &index, int role) const
 {
+    qDebug() << "data";
     if (!index.isValid())
         return QVariant();
 
@@ -67,14 +68,16 @@ QVariant TaskTreeItemModel::data(const QModelIndex &index, int role) const
 
 Qt::ItemFlags TaskTreeItemModel::flags(const QModelIndex &index) const
 {
+    qDebug() << "flags";
     if (!index.isValid())
              return 0;
 
-    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 }
 
 QVariant TaskTreeItemModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
+    qDebug() << "headerData" << rootItem;
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
         return rootItem->GetName();
 
@@ -83,6 +86,7 @@ QVariant TaskTreeItemModel::headerData(int section, Qt::Orientation orientation,
 
 QModelIndex TaskTreeItemModel::index(int row, int column, const QModelIndex &parent) const
 {
+    qDebug() << "index";
     if (!hasIndex(row, column, parent))
         return QModelIndex();
 
@@ -102,6 +106,7 @@ QModelIndex TaskTreeItemModel::index(int row, int column, const QModelIndex &par
 
 QModelIndex TaskTreeItemModel::parent(const QModelIndex &index) const
 {
+    qDebug() << "parent";
     if (!index.isValid())
         return QModelIndex();
 
@@ -116,6 +121,7 @@ QModelIndex TaskTreeItemModel::parent(const QModelIndex &index) const
 
 int TaskTreeItemModel::rowCount(const QModelIndex &parent) const
 {
+    qDebug() << "rowCount";
     TreeItem *parentItem;
     if (parent.column() > 0)
         return 0;
@@ -124,16 +130,46 @@ int TaskTreeItemModel::rowCount(const QModelIndex &parent) const
         parentItem = rootItem;
     else
         parentItem = static_cast<TreeItem*>(parent.internalPointer());
-
+    qDebug() << parentItem;
     return parentItem->ChildCount();
 }
 
 int TaskTreeItemModel::columnCount(const QModelIndex &parent) const
 {
+    qDebug() << "columnCount";
     if (parent.isValid())
-             return static_cast<TreeItem*>(parent.internalPointer())->columnCount();
-         else
-             return rootItem->columnCount();
+        return static_cast<TreeItem*>(parent.internalPointer())->columnCount();
+    else
+        return rootItem->columnCount();
+}
+
+bool TaskTreeItemModel::setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles)
+{
+    qDebug() << "setItemData";
+//    if (!index.isValid())
+//        return false;
+//    static_cast<TreeItem*>(index.internalPointer())->SetName(roles);
+}
+
+bool TaskTreeItemModel::insertRow(int row, const QModelIndex &parent)
+{
+//    TreeItem *parentItem;
+
+//    if (!parent.isValid())
+//        parentItem = rootItem;
+//    else
+//        parentItem = static_cast<TreeItem*>(parent.internalPointer());
+
+//    TreeItem *childItem = parentItem->AddChild(row, );
+//    if (childItem)
+//        return createIndex(row, column, childItem);
+//    else
+    //        return QModelIndex();
+}
+
+bool TaskTreeItemModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+
 }
 
 ITaskDataManagerPlugin::TaskInfo TaskTreeItemModel::ConvertToManagerTaskInfo(TreeItem* item)
@@ -162,20 +198,20 @@ void TaskTreeItemModel::DeleteFromManagerRecursive(TreeItem *task)
     dataManager->DeleteTask(tableName, task->GetId().toInt());
 }
 
-//bool TaskTreeItemModel::AddTask(TaskInfo *taskParent, TaskInfo taskData)
-//{
-//    qDebug() << "Add task";
-//    TaskInfo *newTask = new TaskInfo();
-//    newTask->name = taskData.name;
-//    qDebug() << taskParent->childTasks;
-//    if(taskParent != NULL)
-//        taskParent->childTasks.append(newTask);
-//    newTask->parent = taskParent;
+bool TaskTreeItemModel::AddTask(TreeItem *taskParent, TreeItem &taskData)
+{
+    qDebug() << "Add task";
+    TreeItem *newTask = new TreeItem();
+    newTask->SetName(taskData.GetName().toString());
+    qDebug() << taskParent;
+    if(taskParent != NULL)
+        taskParent->AddChild(taskParent->ChildCount(), newTask);
+    newTask->parentItem = taskParent;
 
-//    ITaskDataManagerPlugin::TaskInfo managerTask = ConvertToManagerTaskInfo(*newTask);
-//    qDebug() << managerTask.id << managerTask.name << managerTask.parent << managerTask.position;
-//    newTask->id = dataManager->AddTask(tableName, managerTask);
-//}
+    ITaskDataManagerPlugin::TaskInfo managerTask = ConvertToManagerTaskInfo(newTask);
+    qDebug() << managerTask.id << managerTask.name << managerTask.parent << managerTask.position;
+    newTask->SetId(dataManager->AddTask(tableName, managerTask));
+}
 
 //bool TaskTreeItemModel::EditTask(ITaskTreeModel::TaskInfo *task, ITaskTreeModel::TaskInfo taskData)
 //{
