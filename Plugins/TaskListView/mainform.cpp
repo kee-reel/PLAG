@@ -6,6 +6,7 @@ MainForm::MainForm(QWidget *parent) :
     ui(new Ui::MainForm)
 {
     ui->setupUi(this);
+    addForm = new AddForm(this);
 }
 
 MainForm::~MainForm()
@@ -13,27 +14,16 @@ MainForm::~MainForm()
     delete ui;
 }
 
-void MainForm::SetModel(QAbstractItemModel *taskTree)
+void MainForm::SetModel(QAbstractItemModel *model)
 {
-    if(taskTree)
-        ui->treeView->setModel(taskTree);
+    this->model = model;
+    ui->treeView->setModel(model);
+    addForm->SetModel(model);
 }
 
-//void MainForm::paintEvent(QPaintEvent *event)
+//void MainForm::resizeEvent(QResizeEvent *event)
 //{
-//    QPainter p;
-//    p.begin(this);
-
-//    p.setRenderHint(QPainter::Antialiasing);
-//    p.setPen(QPen(QColor(Qt::black), 5));
-//    p.drawRect(rect());
-
-//    QFont m_font;
-//    m_font.setBold(true);
-
-//    p.setFont(QFont("Arial", 9));
-
-//    p.end();
+//    addForm->resize(event->size());
 //}
 
 void MainForm::on_buttonAdd_clicked()
@@ -46,4 +36,7 @@ void MainForm::on_buttonExit_clicked()
     emit onClose();
 }
 
-
+void MainForm::on_treeView_doubleClicked(const QModelIndex &index)
+{
+    addForm->ShowModelData(index);
+}

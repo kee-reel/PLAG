@@ -7,8 +7,9 @@ class TreeItem
 {
 public:
     TreeItem();
-    TreeItem(TreeItem *parent, QList<QVariant> data);
+    TreeItem(TreeItem *parent, int id, QList<QVariant> data);
     ~TreeItem();
+
 
     void SetChilds(QList<TreeItem *> childs);
     void AddChild(int row, TreeItem *child);
@@ -16,20 +17,27 @@ public:
     inline int GetChildPosition(TreeItem *item) { return childItems.indexOf(item); }
     inline int ChildCount() { return childItems.count(); }
 
-    inline static int columnCount()     { return 2; }
+    inline static int columnCount() { return dataColumnsCount; }
+
+    inline int GetId()              { return id; }
+    QVariant GetCoreData();
     QVariant GetData(int column);
+
+    inline void SetId(int id)       { this->id = id; }
     void SetData(int column, QVariant data);
-//    inline QVariant GetId()             { return itemData; }
-//    inline QVariant GetName()           { return nameData; }
-//    inline void SetId(int id)           { idData = id; }
-//    inline void SetName(QString name)   { nameData = name; }
+    void SetCoreData(QVariant data);
 
     inline int GetRow() { return parentItem->GetChildPosition(this); }
 
     TreeItem *parentItem;
 private:
+    int id;
     QList<QVariant> itemData;
     QList<TreeItem*> childItems;
+
+    static const int coreDataIndex = 1;
+    static const int dataColumnsCount = 1;
+
 };
 
 #endif // TREEITEM_H

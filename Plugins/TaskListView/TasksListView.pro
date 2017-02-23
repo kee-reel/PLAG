@@ -8,13 +8,15 @@ TEMPLATE = lib
 QT += widgets
 SOURCES += \
     tasklistview.cpp \
-    mainform.cpp
+    mainform.cpp \
+    addform.cpp
 
 HEADERS +=\
     tasklistview.h \
     ../../System/MASS/interfaces.h \
     mainform.h \
-    ../TaskListModel/itasktreemodel.h
+    ../TaskListModel/itasktreemodel.h \
+    addform.h
 
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
@@ -31,4 +33,5 @@ DISTFILES += \
 RESOURCES +=
 
 FORMS += \
-    mainform.ui
+    mainform.ui \
+    addform.ui
