@@ -15,6 +15,9 @@ HEADERS += \
     emptypluginmodel.h \
     iemptypluginmodel.h
 
+windows{
+    DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
+}
 unix {
     target.path = /usr/lib
     INSTALLS += target

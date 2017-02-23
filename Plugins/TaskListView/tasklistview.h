@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QDebug>
 
-#include "../TaskListModel/itasklistmodel.h"
+#include "../TaskListModel/itasktreemodel.h"
 #include "mainform.h"
 
 class TaskListView : public QObject, IPluginView
@@ -17,10 +17,10 @@ public:
     TaskListView();
     ~TaskListView();
 
-    ITaskListModel::TaskInfo *rootTask;
+    QAbstractItemModel *taskTree;
 
 private:
-    ITaskListModel *myModel;
+    ITaskTreeModel *myModel;
     int myId;
     MainForm *mainForm;
 

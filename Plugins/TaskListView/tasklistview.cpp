@@ -12,7 +12,7 @@ TaskListView::~TaskListView()
 
 void TaskListView::SetModel(QObject* model)
 {
-    myModel = qobject_cast<ITaskListModel*>(model);
+    myModel = qobject_cast<ITaskTreeModel*>(model);
     if(myModel)
     {
         qDebug() << model->objectName() << "is not ITaskListModel.";
@@ -23,13 +23,12 @@ void TaskListView::SetModel(QObject* model)
 bool TaskListView::Open(int id, QWidget* parent)
 {
     qDebug() << "View OPEN";
+    taskTree = myModel->GetTaskTree();
+    mainForm->SetModel(taskTree);
     myId = id;
     mainForm->setParent(parent);
     mainForm->resize(parent->size());
     mainForm->setVisible(true);
-
-    rootTask = myModel->GetRootTask();
-
     connect(mainForm, SIGNAL(onClose()), this, SLOT(onClose()));
     return true;
 }

@@ -8,14 +8,21 @@ TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    tasklistmodel.cpp
+    tasktreeitemmodel.cpp \
+    treeitem.cpp \
+    tasktreepluginmodel.cpp
 
 HEADERS +=\
-    itasklistmodel.h \
-    tasklistmodel.h \
     ../TaskDBToolPlugin/itaskdbtoolplugin.h \
-    ../../System/MASS/interfaces.h
+    ../../System/MASS/interfaces.h \
+    tasktreeitemmodel.h \
+    itasktreemodel.h \
+    treeitem.h \
+    tasktreepluginmodel.h
 
+windows{
+    DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
+}
 unix {
     target.path = /usr/lib
     INSTALLS += target

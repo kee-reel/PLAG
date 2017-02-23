@@ -10,6 +10,10 @@ QT += core sql
 SOURCES += \
     cipherdatabasesourceplugin.cpp
 
+windows{
+    DESTDIR = ../build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
+}
+
 HEADERS += \
     ../../System/MASS/interfaces.h \
     cipherdatabasesourceplugin.h

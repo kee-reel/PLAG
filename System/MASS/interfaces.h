@@ -9,8 +9,8 @@ class QSqlQuery;
 
 enum PluginTypes{
     ROOTMODEL,
-    TOOLMODEL,
-    TOOLVIEW,
+    PLUGINMODEL,
+    PLUGINVIEW,
     DATASOURCE,
     DATAMANAGER,
 };

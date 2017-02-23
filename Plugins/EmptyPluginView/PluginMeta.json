@@ -1,6 +1,6 @@
 {
     "Name":         "EmptyView",
-    "PluginType":   "ToolView",
+    "PluginType":   "PluginView",
     "ParentName":   "EmptyModel",
     "DataManager":  ""
 }

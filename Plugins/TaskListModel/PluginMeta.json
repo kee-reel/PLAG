@@ -1,6 +1,6 @@
 {
-    "Name":         "TaskListModel",
-    "PluginType":   "ToolModel",
+    "Name":         "TaskTreeModel",
+    "PluginType":   "PluginModel",
     "ParentName":   "",
     "DataManager":  "TaskDataManager"
 }
