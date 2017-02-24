@@ -17,7 +17,7 @@ public:
     inline int GetChildPosition(TreeItem *item) { return childItems.indexOf(item); }
     inline int ChildCount() { return childItems.count(); }
 
-    inline static int columnCount() { return dataColumnsCount; }
+    inline int columnCount() { return itemData.count(); }
 
     inline int GetId()              { return id; }
     QVariant GetCoreData();

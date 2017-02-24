@@ -47,8 +47,10 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
     }
 
     QList<QVariant> testData;
-    testData << QVariant("TeSt");
+    testData << QVariant("Name") << QVariant("Value");
     rootItem = new TreeItem(NULL, 0, testData);
+    testData.clear();
+    testData << QVariant("TeSt") << QVariant(12345);
     rootItem->AddChild(0, new TreeItem(rootItem, 1, testData));
     TreeItem *item = new TreeItem(rootItem, 2, testData);
     rootItem->AddChild(1, item);
@@ -107,9 +109,29 @@ Qt::ItemFlags TaskTreeItemModel::flags(const QModelIndex &index) const
 
 QVariant TaskTreeItemModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-//    qDebug() << "headerData" << rootItem;
-//    if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-//        return rootItem->GetData(section);
+    switch (role) {
+    case Qt::DisplayRole:
+        return rootItem->GetData(section);
+        break;
+    case Qt::SizeHintRole:
+        return QSize(0, 30);
+        break;
+    case Qt::ToolTipRole:
+        return rootItem->GetData(0);
+        break;
+    case Qt::FontRole:
+        return QFont("Segoe UI", 14, QFont::Bold);
+        break;
+    case Qt::BackgroundRole:
+        return QBrush(QColor(180 - section*10, 180, 180));
+        break;
+    case Qt::EditRole:
+        return rootItem->GetData(section);
+        break;
+    default:
+        return QVariant();
+        break;
+    }
 
     return QVariant();
 }
