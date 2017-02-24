@@ -14,9 +14,9 @@ class TaskTreeItemModel : public QAbstractItemModel
 {
 public:
     QString tableName;
-    ITaskDataManagerPlugin* dataManager;
+    ITreeDataManagerPlugin* dataManager;
 
-    TaskTreeItemModel(QString tableName, ITaskDataManagerPlugin* dataManager, QList<ITaskDataManagerPlugin::TaskInfo> &data, QObject *parent = 0);
+    TaskTreeItemModel(QString tableName, ITreeDataManagerPlugin* dataManager, QList<ITreeDataManagerPlugin::TaskInfo> &data, QObject *parent = 0);
     ~TaskTreeItemModel();
 
     QVariant data(const QModelIndex &index, int role) const;
@@ -34,7 +34,7 @@ private:
     void setupModelData(const QStringList &lines, TreeItem *parent);
     TreeItem *rootItem;
 
-    ITaskDataManagerPlugin::TaskInfo ConvertToManagerTaskInfo(TreeItem* item);
+    ITreeDataManagerPlugin::TaskInfo ConvertToManagerTaskInfo(TreeItem* item);
     void DeleteFromManagerRecursive(TreeItem *task);
 
     bool AddTask(TreeItem *taskParent, TreeItem &taskData);

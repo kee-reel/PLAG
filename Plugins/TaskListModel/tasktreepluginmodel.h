@@ -39,7 +39,7 @@ private:
 
     // Unique part
     QString tableName;
-    ITaskDataManagerPlugin* dataManager;
+    ITreeDataManagerPlugin* dataManager;
     TaskTreeItemModel* treeModel;
 
     // IPluginModel interface

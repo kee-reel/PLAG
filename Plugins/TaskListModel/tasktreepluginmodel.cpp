@@ -20,7 +20,7 @@ void TaskTreePluginModel::AddChildPlugin(IPluginModel *plugin, MetaInfo *meta)
 
 void TaskTreePluginModel::SetDataManager(QObject *DBTool)
 {
-    this->dataManager = qobject_cast<ITaskDataManagerPlugin*>(DBTool);
+    this->dataManager = qobject_cast<ITreeDataManagerPlugin*>(DBTool);
     if(!this->dataManager)
     {
         qDebug() << DBTool->objectName() << "is not ITaskDBToolPlugin.";
@@ -41,7 +41,7 @@ QAbstractItemModel* TaskTreePluginModel::GetTaskTree()
         qDebug() << "Data manager not set!";
         return NULL;
     }
-    QList<ITaskDataManagerPlugin::TaskInfo> managerTaskList = dataManager->GetTaskTree(tableName);
+    QList<ITreeDataManagerPlugin::TaskInfo> managerTaskList = dataManager->GetTaskTree(tableName);
     treeModel = new TaskTreeItemModel(tableName, dataManager, managerTaskList);
     return treeModel;
 }

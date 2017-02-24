@@ -2,8 +2,8 @@
 
 
 TaskTreeItemModel::TaskTreeItemModel(QString tableName,
-                                     ITaskDataManagerPlugin* dataManager,
-                                     QList<ITaskDataManagerPlugin::TaskInfo> &data,
+                                     ITreeDataManagerPlugin* dataManager,
+                                     QList<ITreeDataManagerPlugin::TaskInfo> &data,
                                      QObject *parent)
 {
     this->tableName = tableName;
@@ -12,7 +12,7 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
     QMap<int, TreeItem*> treeItemIdMap;
     QMap<int, QMap<int, TreeItem*>> treeItemParentMap;
     TreeItem *treeItem;
-    ITaskDataManagerPlugin::TaskInfo *managerTaskData;
+    ITreeDataManagerPlugin::TaskInfo *managerTaskData;
     for(int i = 0; i < data.count(); i++)
     {
         treeItem = new TreeItem();
@@ -236,9 +236,9 @@ bool TaskTreeItemModel::setData(const QModelIndex &index, const QVariant &value,
     return true;
 }
 
-ITaskDataManagerPlugin::TaskInfo TaskTreeItemModel::ConvertToManagerTaskInfo(TreeItem* item)
+ITreeDataManagerPlugin::TaskInfo TaskTreeItemModel::ConvertToManagerTaskInfo(TreeItem* item)
 {
-    ITaskDataManagerPlugin::TaskInfo managerStruct;
+    ITreeDataManagerPlugin::TaskInfo managerStruct;
     //Set id
     managerStruct.id = item->GetData(0).toInt();
     // Set name
@@ -272,7 +272,7 @@ bool TaskTreeItemModel::AddTask(TreeItem *taskParent, TreeItem &taskData)
         taskParent->AddChild(taskParent->ChildCount(), newTask);
     newTask->parentItem = taskParent;
 
-    ITaskDataManagerPlugin::TaskInfo managerTask = ConvertToManagerTaskInfo(newTask);
+    ITreeDataManagerPlugin::TaskInfo managerTask = ConvertToManagerTaskInfo(newTask);
     qDebug() << managerTask.id << managerTask.name << managerTask.parent << managerTask.position;
     newTask->SetId(dataManager->AddTask(tableName, managerTask));
 }
