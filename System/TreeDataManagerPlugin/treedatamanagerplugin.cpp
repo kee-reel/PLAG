@@ -1,13 +1,13 @@
-#include "taskdbtoolplugin.h"
+#include "treedatamanagerplugin.h"
 
 
 TreeDataManagerPlugin::TreeDataManagerPlugin()
 {
     dataSource = NULL;
 
-    coreTableStruct.insert("id",         QVariant::Int);
-    coreTableStruct.insert("parent",     QVariant::Int);
-    coreTableStruct.insert("position",   QVariant::Int);
+    coreTableStruct.append(TableStructItem() = {"id",       QVariant::Int});
+    coreTableStruct.append(TableStructItem() = {"parent",   QVariant::Int});
+    coreTableStruct.append(TableStructItem() = {"position", QVariant::Int});
 }
 
 TreeDataManagerPlugin::~TreeDataManagerPlugin()
@@ -33,6 +33,7 @@ QString TreeDataManagerPlugin::GetError()
 
 QList<TreeDataManagerPlugin::TreeItemInfo> TreeDataManagerPlugin::GetTreeData(QString treeName)
 {
+    // Is name valid
     qDebug() << "GetTaskTree";
     if(treeName == NULL || treeName == "")
     {
@@ -40,55 +41,49 @@ QList<TreeDataManagerPlugin::TreeItemInfo> TreeDataManagerPlugin::GetTreeData(QS
         return QList<TreeItemInfo>();
     }
     treeName = treeName.toLower();
+
+    // Is DataSource set
     if(!dataSource)
     {
         qDebug() << "DBManager isnt set!";
         return QList<TreeItemInfo>();
     }
+
+    // Create query
     QString queryStr = QString("CREATE TABLE IF NOT EXISTS %1 (%2)")
             .arg(treeName)
-            .arg(GetCoreTableStructString());
+            .arg(GetTableStructString(coreTableStruct));
     qDebug() << "Creating table" << queryStr;
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
-    qDebug() << query.lastError();
+
+    // Is table has right structure
     if(!IsTableRightStructure(treeName))
     {
         qDebug() << "Table" << treeName << "has wrong structure";
         return QList<TreeItemInfo>();
     }
 
-    query = dataSource->ExecuteQuery(QString("select * from %1").arg(treeName));
-    QList<TreeItemInfo> taskTree;
-    TreeItemInfo buf;
-    while (query.next()) {
-        buf.id = query.value(0).toInt();
-        buf.parent = query.value(1).toInt();
-        buf.position = query.value(2).toInt();
-        qDebug() << query.value(0).toInt() << ": " << query.value(1).toInt() << query.value(2).toInt();
-        for(int i = 3; i < query.size(); i++)
-        {
-            buf.data.append(query.value(i));
-        }
-        taskTree.append(buf);
-    }
-    return taskTree;
+    // Return tree data
+    return GetDataFromTableGroup(treeName);
 }
 
-QMap<QString, QVariant::Type> TreeDataManagerPlugin::GetTreeHeader(QString treeName)
+QVector<ITreeDataManagerPlugin::TableStructItem> TreeDataManagerPlugin::GetTreeHeader(QString treeName)
 {
-    QMap<QString, QVariant::Type> result;
-    result.unite(coreTableStruct);
+    QVector<TableStructItem> result;
+    for(int i = 0; i < coreTableStruct.count(); i++)
+        result.append(coreTableStruct[i]);
 
     QList<QString> relationTablesNames = relationsMap[treeName];
-
-    QString structStr = "";
     for(int i = 0; i < relationTablesNames.count(); i++)
     {
-        result.unite(relationsDataMap[relationTablesNames[i]]);
+        QVector<TableStructItem> relationStruct = relationsTableStruct[relationTablesNames[i]];
+        for(int i = 0; i < relationStruct.count(); i++)
+            result.append(relationStruct[i]);
     }
+    return result;
 }
 
-bool TreeDataManagerPlugin::SetRelation(QString mainName, QString relationName, QMap<QString, QVariant::Type> fields)
+bool TreeDataManagerPlugin::SetRelation(QString mainName, QString relationName, QVector<TableStructItem> fields)
 {
     qDebug() << "SetRelation";
     QString dataFields = GetTableStructString(fields);
@@ -98,15 +93,14 @@ bool TreeDataManagerPlugin::SetRelation(QString mainName, QString relationName, 
         return false;
     }
 
-    QString queryStr = QString("CREATE TABLE IF NOT EXISTS %1_%2 (%2)")
+    QString queryStr = QString("CREATE TABLE IF NOT EXISTS r_%1_%2 (%2)")
             .arg(mainName)
             .arg(relationName)
             .arg(dataFields);
     QSqlQuery queryResult = dataSource->ExecuteQuery(queryStr);
-    qDebug() << queryResult.lastError();
 
     relationsMap[mainName].append(relationName);
-    relationsDataMap.insert(relationName, fields);
+    relationsTableStruct.insert(relationName, fields);
     return true;
 }
 
@@ -117,9 +111,8 @@ bool TreeDataManagerPlugin::DeleteRelation(QString mainName, QString relationNam
             .arg(mainName)
             .arg(relationName);
     QSqlQuery queryResult = dataSource->ExecuteQuery(queryStr);
-    qDebug() << queryResult.lastError();
     relationsMap[mainName].removeOne(relationName);
-    relationsDataMap.remove(relationName);
+    relationsTableStruct.remove(relationName);
     return true;
 }
 
@@ -127,19 +120,13 @@ int TreeDataManagerPlugin::AddItem(QString treeName, TreeItemInfo item)
 {
     qDebug() << "Add Task";
     treeName = treeName.toLower();
-    QString itemData = "";
-//    for(int i = 0; i < item.data.count(); i++)
-//    {
-//        itemData.append();
-//    }
 
-    QString queryStr = QString("insert into %1 values (NULL, '%2', %3, %4)")
+    QString queryStr = QString("insert into %1 values (NULL, '%2', %3)")
             .arg(treeName)
             .arg(item.parent)
             .arg(item.position);
 
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
-    qDebug() << query.lastError();
     return query.lastInsertId().toInt();
 }
 
@@ -154,7 +141,6 @@ bool TreeDataManagerPlugin::EditItem(QString treeName, TreeItemInfo item)
             ;
     qDebug() << "Edit Task" << queryStr;
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
-    qDebug() << query.lastError();
 }
 
 bool TreeDataManagerPlugin::DeleteItem(QString treeName, int id)
@@ -163,7 +149,6 @@ bool TreeDataManagerPlugin::DeleteItem(QString treeName, int id)
     QString queryStr = QString("delete from %1 where id=%2").arg(treeName).arg(id);
     qDebug() << "Delete Task" << queryStr;
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
-    qDebug() << query.lastError();
 }
 
 bool TreeDataManagerPlugin::IsTableExists(QString tableName)
@@ -181,12 +166,17 @@ bool TreeDataManagerPlugin::IsTableRightStructure(QString tableName)
     QString name;
     QVariant::Type type;
 
-    while (query.next())
+    for(int i = 0; i < coreTableStruct.count(); i++)
     {
+        if(!query.next())
+        {
+            qDebug() << "Too few records!";
+            return false;
+        }
         qDebug() << query.value(0).toInt() << ": " << query.value(1).toString() << ": " << query.value(2).toString();
         name = query.value(1).toString();
         type = query.value(2).type();
-        if(!coreTableStruct.contains(name) || coreTableStruct[name] != type)
+        if(coreTableStruct[i].name != name || coreTableStruct[i].type != type)
         {
             qDebug() << name << type << "cant exist in right table structure";
             return false;
@@ -195,38 +185,52 @@ bool TreeDataManagerPlugin::IsTableRightStructure(QString tableName)
     return true;
 }
 
-QString TreeDataManagerPlugin::GetCoreTableStructString()
+QString TreeDataManagerPlugin::GetTableStructString(QVector<TableStructItem> &tableStruct)
 {
     QString structStr = "";
-    QList<QString> keys = coreTableStruct.keys();
-    for(int i = 0; i < keys.count(); i++)
+    for(int i = 0; i < tableStruct.count(); i++)
     {
-        qDebug() << structStr << keys[i] << coreTableStruct[keys[i]] << QVariant::typeToName(coreTableStruct[keys[i]]);
-        structStr.append( QString("%1 %2")
-                          .arg(keys[i])
-                          .arg( QVariant::typeToName(coreTableStruct[keys[i]]) )
-                          );
+        qDebug() << structStr << tableStruct[i].name << tableStruct[i].type
+                 << QVariant::typeToName(tableStruct[i].type);
+        structStr.append(QString("%1 %2")
+                         .arg(tableStruct[i].name)
+                         .arg( QVariant::typeToName(tableStruct[i].type) )
+                         );
         if(i == 0) structStr.append(" primary key autoincrement");
-        if(i != keys.count()-1) structStr.append(",");
+        if(i != tableStruct.count()-1) structStr.append(",");
     }
     return structStr;
 }
 
-QString TreeDataManagerPlugin::GetTableStructString(QMap<QString, QVariant::Type> tableStruct)
+QList<ITreeDataManagerPlugin::TreeItemInfo> TreeDataManagerPlugin::GetDataFromTableGroup(QString &treeName)
 {
-    QString structStr = "";
-    QList<QString> keys = tableStruct.keys();
-    for(int i = 0; i < keys.count(); i++)
+    QString queryStr = "";
+    queryStr = QString("select * from %1 ").arg(treeName);
+    //left outer join on
+    QStringList joinTables = relationsMap[treeName];
+    for(int i = 0; i < joinTables.count(); i++)
     {
-        qDebug() << structStr << keys[i] << tableStruct[keys[i]] << QVariant::typeToName(tableStruct[keys[i]]);
-        structStr.append(QString("%1 %2")
-                         .arg(keys[i])
-                         .arg( QVariant::typeToName(tableStruct[keys[i]]) )
+        queryStr.append( QString("left outer join %2 on %1.id=%2.id ")
+                         .arg(treeName)
+                         .arg(joinTables[i])
                          );
-        if(i == 0) structStr.append(" primary key autoincrement");
-        if(i != keys.count()-1) structStr.append(",");
     }
-    return structStr;
+    qDebug() << queryStr;
+//    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+//    QList<TreeItemInfo> taskTree;
+//    TreeItemInfo buf;
+//    while (query.next()) {
+//        buf.id = query.value(0).toInt();
+//        buf.parent = query.value(1).toInt();
+//        buf.position = query.value(2).toInt();
+//        qDebug() << query.value(0).toInt() << ": " << query.value(1).toInt() << query.value(2).toInt();
+//        for(int i = 3; i < query.size(); i++)
+//        {
+//            buf.data.append(query.value(i));
+//        }
+//        taskTree.append(buf);
+//    }
+    return QList<TreeItemInfo>();
 }
 
 //bool TaskDBToolPlugin::CreateNewTask()

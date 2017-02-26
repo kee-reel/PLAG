@@ -6,14 +6,14 @@
 #include <QString>
 
 #include "itasktreemodel.h"
-#include "../../System/TaskDBToolPlugin/itaskdbtoolplugin.h"
 #include "tasktreeitemmodel.h"
+#include "../../System/TreeDataManagerPlugin/itreedatamanagerplugin.h"
 
-class TaskTreePluginModel : public QObject, ITaskTreeModel
+class TaskTreePluginModel : public QObject, ITreeModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IPluginModel ITaskTreeModel)
+    Q_INTERFACES(IPluginModel ITreeModel)
 
 public:
     TaskTreePluginModel();
@@ -54,7 +54,7 @@ public:
 
     // ITaskListModel interface
 public:
-    QAbstractItemModel *GetTaskTree() override;
+    QAbstractItemModel *GetTreeModel() override;
 
 };
 

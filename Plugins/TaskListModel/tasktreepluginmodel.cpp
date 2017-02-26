@@ -34,7 +34,7 @@ QString TaskTreePluginModel::GetError()
 
 }
 
-QAbstractItemModel* TaskTreePluginModel::GetTaskTree()
+QAbstractItemModel* TaskTreePluginModel::GetTreeModel()
 {
     if(!dataManager)
     {

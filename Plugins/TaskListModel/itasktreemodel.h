@@ -2,17 +2,16 @@
 #define ITASKLISTMODEL_H
 
 #include "../../System/MASS/interfaces.h"
-#include "../../System/TaskDBToolPlugin/itaskdbtoolplugin.h"
 
 template <class A>
 class QVector;
 class QAbstractItemModel;
-class ITaskTreeModel : public IPluginModel
+class ITreeModel : public IPluginModel
 {
 public:
     /// Get all data
-    virtual QAbstractItemModel* GetTaskTree() = 0;
+    virtual QAbstractItemModel* GetTreeModel() = 0;
 };
-Q_DECLARE_INTERFACE(ITaskTreeModel, "ITaskTreeModel v0.1")
+Q_DECLARE_INTERFACE(ITreeModel, "ITreeModel v0.1")
 
 #endif // ITASKLISTMODEL_H

@@ -7,7 +7,7 @@
 #include <QFont>
 #include <QBrush>
 
-#include "../../System/TaskDBToolPlugin/itaskdbtoolplugin.h"
+#include "../../System/TreeDataManagerPlugin/itreedatamanagerplugin.h"
 #include "treeitem.h"
 
 class TaskTreeItemModel : public QAbstractItemModel
@@ -16,7 +16,7 @@ public:
     QString tableName;
     ITreeDataManagerPlugin* dataManager;
 
-    TaskTreeItemModel(QString tableName, ITreeDataManagerPlugin* dataManager, QList<ITreeDataManagerPlugin::TaskInfo> &data, QObject *parent = 0);
+    TaskTreeItemModel(QString tableName, ITreeDataManagerPlugin* dataManager, QList<TreeItem> &data, QObject *parent = 0);
     ~TaskTreeItemModel();
 
     QVariant data(const QModelIndex &index, int role) const;
@@ -34,7 +34,7 @@ private:
     void setupModelData(const QStringList &lines, TreeItem *parent);
     TreeItem *rootItem;
 
-    ITreeDataManagerPlugin::TaskInfo ConvertToManagerTaskInfo(TreeItem* item);
+    ITreeDataManagerPlugin::TreeItemInfo ConvertToManagerTaskInfo(TreeItem* item);
     void DeleteFromManagerRecursive(TreeItem *task);
 
     bool AddTask(TreeItem *taskParent, TreeItem &taskData);

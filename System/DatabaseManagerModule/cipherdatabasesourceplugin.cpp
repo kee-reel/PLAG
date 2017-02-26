@@ -13,6 +13,8 @@ QSqlQuery CipherDatabaseSourcePlugin::ExecuteQuery(QString queryText)
 {
     QSqlQuery query;
     query.exec(queryText);
+    if(query.lastError().text() != "")
+        qDebug() << query.lastError();
     return query;
 }
 

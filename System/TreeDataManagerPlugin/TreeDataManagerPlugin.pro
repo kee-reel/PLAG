@@ -20,9 +20,9 @@ DISTFILES += \
     PluginMeta.json
 
 HEADERS += \
-    taskdbtoolplugin.h \
-    itaskdbtoolplugin.h \
-    ../../System/MASS/interfaces.h
+    ../../System/MASS/interfaces.h \
+    treedatamanagerplugin.h \
+    itreedatamanagerplugin.h
 
 SOURCES += \
-    taskdbtoolplugin.cpp
+    treedatamanagerplugin.cpp

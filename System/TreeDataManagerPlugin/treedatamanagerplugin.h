@@ -5,7 +5,7 @@
 #include <QtSql>
 #include <QObject>
 
-#include "itaskdbtoolplugin.h"
+#include "itreedatamanagerplugin.h"
 
 class TreeDataManagerPlugin : public QObject, ITreeDataManagerPlugin
 {
@@ -21,9 +21,9 @@ public:
     QString GetError() override;
 
     QList<TreeItemInfo> GetTreeData(QString treeName) override;
-    QMap<QString, QVariant::Type> GetTreeHeader(QString treeName) override;
+    QVector<TableStructItem> GetTreeHeader(QString treeName) override;
 
-    bool SetRelation(QString mainName, QString relationName, QMap<QString, QVariant::Type> fields) override;
+    bool SetRelation(QString mainName, QString relationName, QVector<TableStructItem> fields) override;
     bool DeleteRelation(QString mainName, QString relationName) override;
 
     int AddItem(QString treeName, TreeItemInfo item) override;
@@ -33,16 +33,16 @@ public:
 private:
     bool IsTableExists(QString tableName);
     bool IsTableRightStructure(QString tableName);
-    QString GetCoreTableStructString();
-    QString GetTableStructString(QMap<QString, QVariant::Type> tableStruct);
+    QString GetTableStructString(QVector<TableStructItem> &tableStruct);
+    QList<TreeItemInfo> GetDataFromTableGroup(QString &treeName);
 
     IDataBaseSourcePlugin* dataSource;
 
-    QMap<QString, QVariant::Type> coreTableStruct;
+    QVector<TableStructItem> coreTableStruct;
+    QVector<TableStructItem> wholeTableStruct;
 
     QMap<QString, QList<QString>> relationsMap;
-    QMap<QString, QMap<QString, QVariant::Type>> relationsDataMap;
-
+    QMap<QString, QVector<TableStructItem>> relationsTableStruct;
 };
 
 #endif // TASKDBTOOLPLUGIN_H

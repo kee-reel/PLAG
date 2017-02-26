@@ -20,7 +20,7 @@ public:
     QAbstractItemModel *taskTree;
 
 private:
-    ITaskTreeModel *myModel;
+    ITreeModel *myModel;
     int myId;
     MainForm *mainForm;
 

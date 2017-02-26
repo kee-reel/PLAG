@@ -3,7 +3,7 @@
 
 TaskTreeItemModel::TaskTreeItemModel(QString tableName,
                                      ITreeDataManagerPlugin* dataManager,
-                                     QList<ITreeDataManagerPlugin::TaskInfo> &data,
+                                     QList<ITreeDataManagerPlugin::TreeItemInfo> &data,
                                      QObject *parent)
 {
     this->tableName = tableName;
@@ -12,7 +12,7 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
     QMap<int, TreeItem*> treeItemIdMap;
     QMap<int, QMap<int, TreeItem*>> treeItemParentMap;
     TreeItem *treeItem;
-    ITreeDataManagerPlugin::TaskInfo *managerTaskData;
+    ITreeDataManagerPlugin::TreeItemInfo *managerTaskData;
     for(int i = 0; i < data.count(); i++)
     {
         treeItem = new TreeItem();
@@ -236,9 +236,9 @@ bool TaskTreeItemModel::setData(const QModelIndex &index, const QVariant &value,
     return true;
 }
 
-ITreeDataManagerPlugin::TaskInfo TaskTreeItemModel::ConvertToManagerTaskInfo(TreeItem* item)
+ITreeDataManagerPlugin::TreeItemInfo TaskTreeItemModel::ConvertToManagerTaskInfo(TreeItem* item)
 {
-    ITreeDataManagerPlugin::TaskInfo managerStruct;
+    ITreeDataManagerPlugin::TreeItemInfo managerStruct;
     //Set id
     managerStruct.id = item->GetData(0).toInt();
     // Set name

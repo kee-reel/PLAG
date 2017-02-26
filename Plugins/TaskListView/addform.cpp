@@ -21,7 +21,7 @@ void AddForm::SetModel(QAbstractItemModel *model)
     mapper->setModel(model);
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
 
-    ui->label_2->setText(model->headerData(0, Qt::Horizontal).type() .toString());
+    ui->label_2->setText(model->headerData(0, Qt::Horizontal).typeName());
     mapper->addMapping(ui->lineEdit_2, 0);
 }
 
