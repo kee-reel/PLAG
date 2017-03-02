@@ -16,7 +16,10 @@ void CipherDatabaseSourcePlugin::OnAllSetup()
 
 QString CipherDatabaseSourcePlugin::GetLastError()
 {
-    return lastError=="" ? dbconn.lastError() : lastError;
+    if(lastError!="")
+        return lastError;
+    else
+        return dbconn.lastError().text();
 }
 
 QSqlQuery CipherDatabaseSourcePlugin::ExecuteQuery(QString queryText)

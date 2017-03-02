@@ -18,7 +18,7 @@ void TaskTreePluginModel::AddChildModel(IPluginModel *plugin, MetaInfo *meta)
     childModelPlugins.append(newPlugin);
 }
 
-void TaskTreePluginModel::SetDataManager(QObject *DBTool)
+void TaskTreePluginModel::AddDataManager(QObject *DBTool)
 {
     this->dataManager = qobject_cast<ITreeDataManagerPlugin*>(DBTool);
     if(!this->dataManager)

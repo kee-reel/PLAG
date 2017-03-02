@@ -241,7 +241,27 @@ void PluginManager::SetupPluginsConnections()
 {
     qDebug() << "Setup connections";
 
+    if(mainPluginMap.count() == 1)
+    {
+        mainPlugin = mainPluginMap.begin().key();
+    }
+    else
+    {
+        qDebug() << "You have" << mainPluginMap.count() << "main plugins.";
+        return;
+    }
+
     LinkSourceToManagers();
+
+    foreach (QMap<IDataManagerPlugin*, MetaInfo*>::Iterator i, dataSourceMap) {
+        mainPlugin->AddDataManager(i.key());
+    }
+    foreach (QMap<IPluginModel*, MetaInfo*>::Iterator i, pluginModelMap) {
+        mainPlugin->AddChildModel(i.key());
+    }
+    foreach (QMap<IPluginView*, MetaInfo*>::Iterator i, pluginViewMap) {
+        mainPlugin->AddView(i.key());
+    }
 
     LinkManagerToModels();
 
@@ -250,17 +270,6 @@ void PluginManager::SetupPluginsConnections()
     LinkModelToViews();
 
     qDebug() << "-----Linking finished-----" << endl;
-
-    if(mainPluginMap.count() == 1)
-    {
-        mainPlugin = mainPluginMap.begin().key();
-        qDebug() << "Starting main plugin" << mainPluginMap.begin().value()->Name << endl;
-        mainPlugin->Open(NULL, parent, 0);
-    }
-    else
-    {
-        qDebug() << "You have several main plugins.";
-    }
 }
 
 void PluginManager::LinkSourceToManagers()
@@ -306,7 +315,7 @@ void PluginManager::LinkManagerToModels()
         QObject* dataManager = dataManagersLinkInfo[dataManagerIter.key()].instance;
         for(int i = 0; i < childPlugins.count(); i++)
         {
-            childPlugins[i]->SetDataManager(dataManager);
+            childPlugins[i]->AddDataManager(dataManager);
             qDebug() << pluginModelMap[childPlugins[i]]->Name << "linked with"
                      << dataManagerIter.key();
         }

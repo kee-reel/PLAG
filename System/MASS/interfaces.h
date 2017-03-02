@@ -47,7 +47,7 @@ public:
     virtual ~IPluginModel() {}
     virtual void AddChildModel(IPluginModel *model, MetaInfo *meta) = 0;
     virtual void AddView(IPluginView *view, MetaInfo *meta) = 0;
-    virtual void SetDataManager(QObject *dataManager) = 0;
+    virtual void AddDataManager(QObject *dataManager) = 0;
 
     virtual bool Open(IPluginModel* parent, QWidget* parentWidget, int id) = 0;
     virtual bool Close() = 0;
