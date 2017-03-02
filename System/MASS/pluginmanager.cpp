@@ -329,7 +329,7 @@ void PluginManager::LinkModelToModels()
                 MetaInfo* meta = pluginModelMap[childPlugins[i]];
                 IPluginModel* plugin = modelsLinkInfo[meta->Name].plugin;
 
-                parentModel->AddChildPlugin(plugin, meta);
+                parentModel->AddChildModel(plugin, meta);
                 qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
             }
         }

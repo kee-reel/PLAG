@@ -44,7 +44,7 @@ private:
 
     // IPluginModel interface
 public:
-    void AddChildPlugin(IPluginModel *, MetaInfo *);
+    void AddChildModel(IPluginModel *, MetaInfo *);
     void SetDataManager(QObject *);
     void AddView(IPluginView *plugin, MetaInfo *meta);
     bool Open(IPluginModel *parent, QWidget *parentWidget, int id);

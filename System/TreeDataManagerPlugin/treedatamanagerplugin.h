@@ -16,16 +16,16 @@ class TreeDataManagerPlugin : public QObject, ITreeDataManagerPlugin
 public:
     TreeDataManagerPlugin();
     ~TreeDataManagerPlugin();
+    virtual void OnAllSetup();
+    virtual QString GetLastError();
 
     bool SetDataSource(QObject *dataSource) override;
-    QString GetError() override;
 
     QList<TreeItemInfo> GetTreeData(QString treeName) override;
     QVector<TableStructItem> GetTreeHeader(QString treeName) override;
 
     bool SetRelation(QString mainName, QString relationName, QVector<TableStructItem> fields) override;
     bool DeleteRelation(QString mainName, QString relationName) override;
-
     int AddItem(QString treeName, TreeItemInfo item) override;
     bool EditItem(QString treeName, TreeItemInfo item) override;
     bool DeleteItem(QString treeName, int id) override;

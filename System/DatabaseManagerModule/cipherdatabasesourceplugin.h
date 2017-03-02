@@ -19,17 +19,17 @@ class CipherDatabaseSourcePlugin : public QObject, IDataBaseSourcePlugin
 public:
     CipherDatabaseSourcePlugin();
     ~CipherDatabaseSourcePlugin();
+    virtual void OnAllSetup();
+    virtual QString GetLastError();
 
-private:
-    QSqlDatabase dbconn;
-
-    // IDataSourcePlugin interface
-public:
     virtual void Setup();
 
-    // IDataBaseSourcePlugin interface
-public:
     virtual QSqlQuery ExecuteQuery(QString query);
+
+private:
+    QString lastError;
+
+    QSqlDatabase dbconn;
 };
 
 #endif // DATABASEMANAGERMODULE_H

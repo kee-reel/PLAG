@@ -9,6 +9,16 @@ CipherDatabaseSourcePlugin::~CipherDatabaseSourcePlugin()
     dbconn.close();
 }
 
+void CipherDatabaseSourcePlugin::OnAllSetup()
+{
+
+}
+
+QString CipherDatabaseSourcePlugin::GetLastError()
+{
+    return lastError=="" ? dbconn.lastError() : lastError;
+}
+
 QSqlQuery CipherDatabaseSourcePlugin::ExecuteQuery(QString queryText)
 {
     QSqlQuery query;

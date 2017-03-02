@@ -15,6 +15,16 @@ TreeDataManagerPlugin::~TreeDataManagerPlugin()
 
 }
 
+void TreeDataManagerPlugin::OnAllSetup()
+{
+
+}
+
+QString TreeDataManagerPlugin::GetLastError()
+{
+    return QString();
+}
+
 bool TreeDataManagerPlugin::SetDataSource(QObject *dataSource)
 {
     this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(dataSource);
@@ -24,11 +34,6 @@ bool TreeDataManagerPlugin::SetDataSource(QObject *dataSource)
     }
     qDebug() << "IDataBaseSourcePlugin succesfully set.";
     return true;
-}
-
-QString TreeDataManagerPlugin::GetError()
-{
-    return QString();
 }
 
 QList<TreeDataManagerPlugin::TreeItemInfo> TreeDataManagerPlugin::GetTreeData(QString treeName)

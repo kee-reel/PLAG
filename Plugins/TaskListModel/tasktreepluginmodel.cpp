@@ -11,7 +11,7 @@ TaskTreePluginModel::~TaskTreePluginModel()
 {
 }
 
-void TaskTreePluginModel::AddChildPlugin(IPluginModel *plugin, MetaInfo *meta)
+void TaskTreePluginModel::AddChildModel(IPluginModel *plugin, MetaInfo *meta)
 {
     qDebug() << "New child" << meta->Name;
     PluginInfo<IPluginModel> newPlugin = {plugin, meta};

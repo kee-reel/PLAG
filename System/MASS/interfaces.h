@@ -22,8 +22,16 @@ struct MetaInfo{
     QString DataManagerlName;
 };
 
+class IPlugin
+{
+public:
+    virtual ~IPlugin() {}
+    virtual void OnAllSetup() = 0;
+    virtual QString GetLastError() = 0;
+};
+
 // TODO: Make realization of interface classes
-class IPluginView
+class IPluginView : public IPlugin
 {
 public:
     virtual ~IPluginView() {}
@@ -33,23 +41,21 @@ public:
 };
 Q_DECLARE_INTERFACE(IPluginView, "IPluginView v0.1")
 
-class IPluginModel
+class IPluginModel : public IPlugin
 {
 public:
     virtual ~IPluginModel() {}
-    virtual void AddChildPlugin(IPluginModel *model, MetaInfo *meta) = 0;
+    virtual void AddChildModel(IPluginModel *model, MetaInfo *meta) = 0;
     virtual void AddView(IPluginView *view, MetaInfo *meta) = 0;
     virtual void SetDataManager(QObject *dataManager) = 0;
 
     virtual bool Open(IPluginModel* parent, QWidget* parentWidget, int id) = 0;
     virtual bool Close() = 0;
     virtual void ChildSelfClosed(int id) = 0;
-
-    virtual QString GetError() = 0;
 };
 Q_DECLARE_INTERFACE(IPluginModel, "IModelPlugin v0.1")
 
-class IDataSourcePlugin
+class IDataSourcePlugin : public IPlugin
 {
 public:
     virtual ~IDataSourcePlugin() {}
@@ -65,12 +71,11 @@ public:
 };
 Q_DECLARE_INTERFACE(IDataBaseSourcePlugin, "IDataBaseSourcePlugin v0.1")
 
-class IDataManagerPlugin
+class IDataManagerPlugin : public IPlugin
 {
 public:
     virtual ~IDataManagerPlugin() {}
     virtual bool SetDataSource(QObject* dataSource) = 0;
-    virtual QString GetError() = 0;
 };
 Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
 #endif // INTERFACES_H
