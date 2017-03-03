@@ -8,13 +8,15 @@ TEMPLATE = lib
 QT += widgets sql
 
 SOURCES += \
-    mainmenumodelplugin.cpp
+    mainmenumodelplugin.cpp \
+    pluginlinker.cpp
 
 HEADERS +=\
     imainmenumodule.h \
     mainmenumodelplugin.h \
     ../../System/MASS/interfaces.h \
-    ../../System/TaskDBToolPlugin/itaskdbtoolplugin.h
+    ../../System/ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h \
+    pluginlinker.h
 
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules

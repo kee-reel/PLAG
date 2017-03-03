@@ -5,7 +5,7 @@
 
 template<class Type>
 class QList;
-class IMainMenuPluginModel : public IPluginModel
+class IMainMenuPluginModel : public IRootModelPlugin
 { 
 public:
     virtual QList<MetaInfo*> GetChildPlugins() = 0;

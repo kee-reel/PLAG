@@ -11,13 +11,13 @@ TEMPLATE = app
 CONFIG += plugin release
 
 SOURCES += main.cpp\
-    pluginmanager.cpp \
-    parentwindow.cpp
+    parentwindow.cpp \
+    pluginloader.cpp
 
 HEADERS  += \
-    pluginmanager.h \
     parentwindow.h \
-    interfaces.h
+    interfaces.h \
+    pluginloader.h
 
 android {
     QT += androidextras

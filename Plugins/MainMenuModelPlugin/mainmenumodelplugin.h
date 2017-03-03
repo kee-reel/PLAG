@@ -6,20 +6,36 @@
 #include <QApplication>
 
 #include "imainmenumodule.h"
-#include "../../System/TaskDBToolPlugin/itaskdbtoolplugin.h"
+#include "../../System/ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 
 class MainMenuModelPlugin : public QObject, IMainMenuPluginModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IPluginModel IMainMenuPluginModel)
+    Q_INTERFACES(IModelPlugin IRootModelPlugin IMainMenuPluginModel)
 
 public:
     MainMenuModelPlugin();
     ~MainMenuModelPlugin();
 
+    void OnAllSetup() override;
+    QString GetLastError() override;
+
+    void AddDataSource(IDataSourcePlugin *model, MetaInfo *meta) override;
+    void AddDataManager(IDataManagerPlugin *model, MetaInfo *meta) override;
+    void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
+    void AddView(IViewPlugin *, MetaInfo *) override;
+
+    bool Open(IModelPlugin *myParent, QWidget *parentWidget, int id) override;
+    bool Close() override;
+    void ChildSelfClosed(int id) override;
+
+    QList<MetaInfo *> GetChildPlugins() override;
+    void RunPlugin(int pluginId) override;
+
 private:
-    IPluginModel *myParent;
+
+    IModelPlugin *myParent;
     QWidget *myParentWidget;
     int myModelId;
     int activeViewId;
@@ -32,24 +48,10 @@ private:
         MetaInfo *meta;
     };
 
-    QList< PluginInfo<IPluginModel> > childModelPlugins;
-    QList< PluginInfo<IPluginView> > viewPlugins;
-
-    // IPlugin interface
-public:
-    void AddChildPlugin(IPluginModel *, MetaInfo*) override;
-    void SetDataManager(QObject*) override;
-    void AddView(IPluginView *, MetaInfo *) override;
-
-    bool Open(IPluginModel *myParent, QWidget *parentWidget, int id) override;
-    bool Close() override;
-    void ChildSelfClosed(int id) override;
-    QString GetError() override;
-
-    // IMainMenuPluginModel interface
-public:
-    QList<MetaInfo *> GetChildPlugins() override;
-    void RunPlugin(int pluginId) override;
+    QMap<IModelPlugin*, MetaInfo*>          modelMap;
+    QMap<IViewPlugin*, MetaInfo*>           viewMap;
+    QMap<IDataSourcePlugin*, MetaInfo*>     dataSourceMap;
+    QMap<IDataManagerPlugin*, MetaInfo*>    dataManagerMap;
 };
 
 #endif // MAINMENUMODULE_H

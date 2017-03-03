@@ -5,17 +5,17 @@
 #include <QtSql>
 #include <QObject>
 
-#include "itreedatamanagerplugin.h"
+#include "iextendabledatabasemanagerplugin.h"
 
-class TreeDataManagerPlugin : public QObject, ITreeDataManagerPlugin
+class ExtendableDataBaseManagerPlugin : public QObject, IExtendableDataBaseManagerPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TreeDataManagerPlugin" FILE "PluginMeta.json")
-    Q_INTERFACES(IDataManagerPlugin ITreeDataManagerPlugin)
+    Q_INTERFACES(IDataManagerPlugin IExtendableDataBaseManagerPlugin)
 
 public:
-    TreeDataManagerPlugin();
-    ~TreeDataManagerPlugin();
+    ExtendableDataBaseManagerPlugin();
+    ~ExtendableDataBaseManagerPlugin();
     virtual void OnAllSetup();
     virtual QString GetLastError();
 
@@ -35,6 +35,8 @@ private:
     bool IsTableRightStructure(QString tableName);
     QString GetTableStructString(QVector<TableStructItem> &tableStruct);
     QList<TreeItemInfo> GetDataFromTableGroup(QString &treeName);
+
+    QString lastError;
 
     IDataBaseSourcePlugin* dataSource;
 

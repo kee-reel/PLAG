@@ -1,7 +1,6 @@
-#include "treedatamanagerplugin.h"
+#include "extendabledatabasemanagerplugin.h"
 
-
-TreeDataManagerPlugin::TreeDataManagerPlugin()
+ExtendableDataBaseManagerPlugin::ExtendableDataBaseManagerPlugin()
 {
     dataSource = NULL;
 
@@ -10,22 +9,22 @@ TreeDataManagerPlugin::TreeDataManagerPlugin()
     coreTableStruct.append(TableStructItem() = {"position", QVariant::Int});
 }
 
-TreeDataManagerPlugin::~TreeDataManagerPlugin()
+ExtendableDataBaseManagerPlugin::~ExtendableDataBaseManagerPlugin()
 {
 
 }
 
-void TreeDataManagerPlugin::OnAllSetup()
+void ExtendableDataBaseManagerPlugin::OnAllSetup()
 {
 
 }
 
-QString TreeDataManagerPlugin::GetLastError()
+QString ExtendableDataBaseManagerPlugin::GetLastError()
 {
-    return QString();
+    return lastError;
 }
 
-bool TreeDataManagerPlugin::SetDataSource(QObject *dataSource)
+bool ExtendableDataBaseManagerPlugin::SetDataSource(QObject *dataSource)
 {
     this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(dataSource);
     if(!this->dataSource)
@@ -36,7 +35,7 @@ bool TreeDataManagerPlugin::SetDataSource(QObject *dataSource)
     return true;
 }
 
-QList<TreeDataManagerPlugin::TreeItemInfo> TreeDataManagerPlugin::GetTreeData(QString treeName)
+QList<ExtendableDataBaseManagerPlugin::TreeItemInfo> ExtendableDataBaseManagerPlugin::GetTreeData(QString treeName)
 {
     // Is name valid
     qDebug() << "GetTaskTree";
@@ -72,7 +71,7 @@ QList<TreeDataManagerPlugin::TreeItemInfo> TreeDataManagerPlugin::GetTreeData(QS
     return GetDataFromTableGroup(treeName);
 }
 
-QVector<ITreeDataManagerPlugin::TableStructItem> TreeDataManagerPlugin::GetTreeHeader(QString treeName)
+QVector<IExtendableDataBaseManagerPlugin::TableStructItem> ExtendableDataBaseManagerPlugin::GetTreeHeader(QString treeName)
 {
     QVector<TableStructItem> result;
     for(int i = 0; i < coreTableStruct.count(); i++)
@@ -88,7 +87,7 @@ QVector<ITreeDataManagerPlugin::TableStructItem> TreeDataManagerPlugin::GetTreeH
     return result;
 }
 
-bool TreeDataManagerPlugin::SetRelation(QString mainName, QString relationName, QVector<TableStructItem> fields)
+bool ExtendableDataBaseManagerPlugin::SetRelation(QString mainName, QString relationName, QVector<TableStructItem> fields)
 {
     qDebug() << "SetRelation";
     QString dataFields = GetTableStructString(fields);
@@ -109,7 +108,7 @@ bool TreeDataManagerPlugin::SetRelation(QString mainName, QString relationName, 
     return true;
 }
 
-bool TreeDataManagerPlugin::DeleteRelation(QString mainName, QString relationName)
+bool ExtendableDataBaseManagerPlugin::DeleteRelation(QString mainName, QString relationName)
 {
     qDebug() << "DeleteRelation";
     QString queryStr = QString("DROP TABLE IF EXISTS  %1_%2")
@@ -121,7 +120,7 @@ bool TreeDataManagerPlugin::DeleteRelation(QString mainName, QString relationNam
     return true;
 }
 
-int TreeDataManagerPlugin::AddItem(QString treeName, TreeItemInfo item)
+int ExtendableDataBaseManagerPlugin::AddItem(QString treeName, TreeItemInfo item)
 {
     qDebug() << "Add Task";
     treeName = treeName.toLower();
@@ -135,7 +134,7 @@ int TreeDataManagerPlugin::AddItem(QString treeName, TreeItemInfo item)
     return query.lastInsertId().toInt();
 }
 
-bool TreeDataManagerPlugin::EditItem(QString treeName, TreeItemInfo item)
+bool ExtendableDataBaseManagerPlugin::EditItem(QString treeName, TreeItemInfo item)
 {
     treeName = treeName.toLower();
     QString queryStr = QString("update %1 set name='%3', parent=%4, position=%5 where id=%2")
@@ -146,17 +145,29 @@ bool TreeDataManagerPlugin::EditItem(QString treeName, TreeItemInfo item)
             ;
     qDebug() << "Edit Task" << queryStr;
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+    if(query.lastError().text() != "")
+    {
+        lastError = query.lastError().text();
+        return false;
+    }
+    return true;
 }
 
-bool TreeDataManagerPlugin::DeleteItem(QString treeName, int id)
+bool ExtendableDataBaseManagerPlugin::DeleteItem(QString treeName, int id)
 {
     treeName = treeName.toLower();
     QString queryStr = QString("delete from %1 where id=%2").arg(treeName).arg(id);
     qDebug() << "Delete Task" << queryStr;
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+    if(query.lastError().text() != "")
+    {
+        lastError = query.lastError().text();
+        return false;
+    }
+    return true;
 }
 
-bool TreeDataManagerPlugin::IsTableExists(QString tableName)
+bool ExtendableDataBaseManagerPlugin::IsTableExists(QString tableName)
 {
     // BUG: Not work
     QString queryStr = QString("pragma table_info(%1)").arg(tableName);
@@ -164,7 +175,7 @@ bool TreeDataManagerPlugin::IsTableExists(QString tableName)
     return query.size() > 0;
 }
 
-bool TreeDataManagerPlugin::IsTableRightStructure(QString tableName)
+bool ExtendableDataBaseManagerPlugin::IsTableRightStructure(QString tableName)
 {
     QString queryStr = QString("pragma table_info(%1)").arg(tableName);
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
@@ -190,7 +201,7 @@ bool TreeDataManagerPlugin::IsTableRightStructure(QString tableName)
     return true;
 }
 
-QString TreeDataManagerPlugin::GetTableStructString(QVector<TableStructItem> &tableStruct)
+QString ExtendableDataBaseManagerPlugin::GetTableStructString(QVector<TableStructItem> &tableStruct)
 {
     QString structStr = "";
     for(int i = 0; i < tableStruct.count(); i++)
@@ -207,7 +218,7 @@ QString TreeDataManagerPlugin::GetTableStructString(QVector<TableStructItem> &ta
     return structStr;
 }
 
-QList<ITreeDataManagerPlugin::TreeItemInfo> TreeDataManagerPlugin::GetDataFromTableGroup(QString &treeName)
+QList<IExtendableDataBaseManagerPlugin::TreeItemInfo> ExtendableDataBaseManagerPlugin::GetDataFromTableGroup(QString &treeName)
 {
     QString queryStr = "";
     queryStr = QString("select * from %1 ").arg(treeName);

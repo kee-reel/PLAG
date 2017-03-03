@@ -21,8 +21,8 @@ DISTFILES += \
 
 HEADERS += \
     ../../System/MASS/interfaces.h \
-    treedatamanagerplugin.h \
-    itreedatamanagerplugin.h
+    extendabledatabasemanagerplugin.h \
+    iextendabledatabasemanagerplugin.h
 
 SOURCES += \
-    treedatamanagerplugin.cpp
+    extendabledatabasemanagerplugin.cpp

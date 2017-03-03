@@ -30,31 +30,6 @@ public:
     virtual QString GetLastError() = 0;
 };
 
-// TODO: Make realization of interface classes
-class IPluginView : public IPlugin
-{
-public:
-    virtual ~IPluginView() {}
-    virtual void SetModel(QObject *) = 0;
-    virtual bool Open(int id, QWidget* parent) = 0;
-    virtual bool Close() = 0;
-};
-Q_DECLARE_INTERFACE(IPluginView, "IPluginView v0.1")
-
-class IPluginModel : public IPlugin
-{
-public:
-    virtual ~IPluginModel() {}
-    virtual void AddChildModel(IPluginModel *model, MetaInfo *meta) = 0;
-    virtual void AddView(IPluginView *view, MetaInfo *meta) = 0;
-    virtual void AddDataManager(QObject *dataManager) = 0;
-
-    virtual bool Open(IPluginModel* parent, QWidget* parentWidget, int id) = 0;
-    virtual bool Close() = 0;
-    virtual void ChildSelfClosed(int id) = 0;
-};
-Q_DECLARE_INTERFACE(IPluginModel, "IModelPlugin v0.1")
-
 class IDataSourcePlugin : public IPlugin
 {
 public:
@@ -78,4 +53,37 @@ public:
     virtual bool SetDataSource(QObject* dataSource) = 0;
 };
 Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
+
+class IViewPlugin : public IPlugin
+{
+public:
+    virtual ~IViewPlugin() {}
+    virtual void SetModel(QObject *) = 0;
+    virtual bool Open(int id, QWidget* parent) = 0;
+    virtual bool Close() = 0;
+};
+Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
+
+class IModelPlugin : public IPlugin
+{
+public:
+    virtual ~IModelPlugin() {}
+    virtual void AddChildModel(IModelPlugin *model, MetaInfo *meta) = 0;
+    virtual void AddView(IViewPlugin *view, MetaInfo *meta) = 0;
+    virtual void AddDataManager(QObject *dataManager) = 0;
+
+    virtual bool Open(IModelPlugin* parent, QWidget* parentWidget, int id) = 0;
+    virtual bool Close() = 0;
+    virtual void ChildSelfClosed(int id) = 0;
+};
+Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
+
+class IRootModelPlugin : public IModelPlugin
+{
+public:
+    virtual ~IRootModelPlugin() {}
+    virtual void AddDataSource(IDataSourcePlugin *view, MetaInfo *meta) = 0;
+    virtual void AddDataManager(IDataManagerPlugin *view, MetaInfo *meta) = 0;
+};
+Q_DECLARE_INTERFACE(IRootModelPlugin, "IRootModelPlugin v0.1")
 #endif // INTERFACES_H

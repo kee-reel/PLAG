@@ -6,7 +6,7 @@
 #include <QPainter>
 #include <QResizeEvent>
 
-#include "pluginmanager.h"
+#include "pluginloader.h"
 
 class ParentWindow : public QWidget
 {
@@ -14,7 +14,7 @@ class ParentWindow : public QWidget
 public:
     explicit ParentWindow(QWidget *parent = 0);
 private:
-    PluginManager* pluginManager;
+    PluginLoader* pluginManager;
 
 signals:
 

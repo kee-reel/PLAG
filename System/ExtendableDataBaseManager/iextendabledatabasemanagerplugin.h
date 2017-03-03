@@ -9,7 +9,7 @@ template <class A, class B> class QMap;
 class QVariant;
 enum QVariant::Type;
 
-class ITreeDataManagerPlugin : public IDataManagerPlugin
+class IExtendableDataBaseManagerPlugin : public IDataManagerPlugin
 {
 public:
     class TreeItemInfo{
@@ -35,6 +35,6 @@ public:
     virtual bool EditItem(QString treeName, TreeItemInfo task) = 0;
     virtual bool DeleteItem(QString treeName, int id) = 0;
 };
-Q_DECLARE_INTERFACE(ITreeDataManagerPlugin, "ITreeDataManagerPlugin v0.1")
+Q_DECLARE_INTERFACE(IExtendableDataBaseManagerPlugin, "IExtendableDataBaseManagerPlugin v0.1")
 
 #endif // ITASKDBTOOLPLUGIN_H
