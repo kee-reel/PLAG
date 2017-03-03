@@ -21,8 +21,12 @@ public:
     void OnAllSetup() override;
     QString GetLastError() override;
 
-    void AddDataSource(IDataSourcePlugin *model, MetaInfo *meta) override;
-    void AddDataManager(IDataManagerPlugin *model, MetaInfo *meta) override;
+    void AddDataSource(IDataSourcePlugin *view, QObject *instance, MetaInfo *meta) override;
+    void AddDataManager(IDataManagerPlugin *view, QObject *instance, MetaInfo *meta) override;
+    void AddView(IDataSourcePlugin *view, QObject *instance, MetaInfo *meta) override;
+    void AddModel(IDataManagerPlugin *view, QObject *instance, MetaInfo *meta) override;
+
+    void AddDataManager(QObject *dataManager) override;
     void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
     void AddView(IViewPlugin *, MetaInfo *) override;
 
@@ -35,23 +39,11 @@ public:
 
 private:
 
-    IModelPlugin *myParent;
     QWidget *myParentWidget;
     int myModelId;
     int activeViewId;
     int activeModelId;
 
-    template <class T>
-    struct PluginInfo
-    {
-        T *plugin;
-        MetaInfo *meta;
-    };
-
-    QMap<IModelPlugin*, MetaInfo*>          modelMap;
-    QMap<IViewPlugin*, MetaInfo*>           viewMap;
-    QMap<IDataSourcePlugin*, MetaInfo*>     dataSourceMap;
-    QMap<IDataManagerPlugin*, MetaInfo*>    dataManagerMap;
 };
 
 #endif // MAINMENUMODULE_H

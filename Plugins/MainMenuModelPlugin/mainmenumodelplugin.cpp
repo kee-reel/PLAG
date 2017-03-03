@@ -24,6 +24,26 @@ QString MainMenuModelPlugin::GetLastError()
 
 }
 
+void MainMenuModelPlugin::AddDataSource(IDataSourcePlugin *view, QObject *instance, MetaInfo *meta)
+{
+
+}
+
+void MainMenuModelPlugin::AddDataManager(IDataManagerPlugin *view, QObject *instance, MetaInfo *meta)
+{
+
+}
+
+void MainMenuModelPlugin::AddView(IDataSourcePlugin *view, QObject *instance, MetaInfo *meta)
+{
+
+}
+
+void MainMenuModelPlugin::AddModel(IDataManagerPlugin *view, QObject *instance, MetaInfo *meta)
+{
+
+}
+
 void MainMenuModelPlugin::AddDataSource(IDataSourcePlugin *model, MetaInfo *meta)
 {
     dataSourceMap.insert(model, meta);

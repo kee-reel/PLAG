@@ -8,12 +8,24 @@ class PluginLinker
 public:
     PluginLinker();
 
-    void SetDataSourceLinks(IDataSourcePlugin* plugin, MetaInfo *meta);
-    void SetDataManagerLinks(IDataManagerPlugin* plugin, MetaInfo *meta);
-    void SetPluginModelLinks(IModelPlugin* plugin, MetaInfo *meta);
-    void SetPluginViewLinks(IViewPlugin* plugin, MetaInfo *meta);
+    void SetDataSourceLinks(IDataSourcePlugin* plugin, QObject* instance, MetaInfo *meta);
+    void SetDataManagerLinks(IDataManagerPlugin* plugin, QObject* instance, MetaInfo *meta);
+    void SetPluginModelLinks(IModelPlugin* plugin, QObject* instance, MetaInfo *meta);
+    void SetPluginViewLinks(IViewPlugin* plugin, QObject* instance, MetaInfo *meta);
 
     void SetupLinks();
+
+    template <class T>
+    struct PluginInfo
+    {
+        T *plugin;
+        MetaInfo *meta;
+    };
+
+    QMap<IModelPlugin*, MetaInfo*>          modelMap;
+    QMap<IViewPlugin*, MetaInfo*>           viewMap;
+    QMap<IDataSourcePlugin*, MetaInfo*>     dataSourceMap;
+    QMap<IDataManagerPlugin*, MetaInfo*>    dataManagerMap;
 
 private:
     void LinkSourceToManagers();
@@ -33,9 +45,9 @@ private:
         QObject *instance;
     };
     QHash<QString, LinkInfo<IDataSourcePlugin>>  dataSourcesLinkInfo;
-    QHash<QString, LinkInfo<IDataManagerPlugin>>    dataManagersLinkInfo;
-    QHash<QString, LinkInfo<IModelPlugin>>          modelsLinkInfo;
-    QHash<QString, LinkInfo<IViewPlugin>>           viewsLinkInfo;
+    QHash<QString, LinkInfo<IDataManagerPlugin>> dataManagersLinkInfo;
+    QHash<QString, LinkInfo<IModelPlugin>>       modelsLinkInfo;
+    QHash<QString, LinkInfo<IViewPlugin>>        viewsLinkInfo;
 };
 
 #endif // PLUGINLINKER_H

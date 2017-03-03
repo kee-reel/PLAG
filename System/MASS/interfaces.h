@@ -82,8 +82,10 @@ class IRootModelPlugin : public IModelPlugin
 {
 public:
     virtual ~IRootModelPlugin() {}
-    virtual void AddDataSource(IDataSourcePlugin *view, MetaInfo *meta) = 0;
-    virtual void AddDataManager(IDataManagerPlugin *view, MetaInfo *meta) = 0;
+    virtual void AddDataSource(IDataSourcePlugin *view, QObject* instance, MetaInfo *meta) = 0;
+    virtual void AddDataManager(IDataManagerPlugin *view, QObject* instance, MetaInfo *meta) = 0;
+    virtual void AddView(IDataSourcePlugin *view, QObject* instance, MetaInfo *meta) = 0;
+    virtual void AddModel(IDataManagerPlugin *view, QObject* instance, MetaInfo *meta) = 0;
 };
 Q_DECLARE_INTERFACE(IRootModelPlugin, "IRootModelPlugin v0.1")
 #endif // INTERFACES_H

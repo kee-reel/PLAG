@@ -1,20 +1,20 @@
 #include "cipherdatabasesourceplugin.h"
 
-CipherDatabaseSourcePlugin::CipherDatabaseSourcePlugin()
+CipherDataBaseSourcePlugin::CipherDataBaseSourcePlugin()
 {
 }
 
-CipherDatabaseSourcePlugin::~CipherDatabaseSourcePlugin()
+CipherDataBaseSourcePlugin::~CipherDataBaseSourcePlugin()
 {
     dbconn.close();
 }
 
-void CipherDatabaseSourcePlugin::OnAllSetup()
+void CipherDataBaseSourcePlugin::OnAllSetup()
 {
 
 }
 
-QString CipherDatabaseSourcePlugin::GetLastError()
+QString CipherDataBaseSourcePlugin::GetLastError()
 {
     if(lastError!="")
         return lastError;
@@ -22,7 +22,7 @@ QString CipherDatabaseSourcePlugin::GetLastError()
         return dbconn.lastError().text();
 }
 
-QSqlQuery CipherDatabaseSourcePlugin::ExecuteQuery(QString queryText)
+QSqlQuery CipherDataBaseSourcePlugin::ExecuteQuery(QString queryText)
 {
     QSqlQuery query;
     query.exec(queryText);
@@ -31,7 +31,7 @@ QSqlQuery CipherDatabaseSourcePlugin::ExecuteQuery(QString queryText)
     return query;
 }
 
-void CipherDatabaseSourcePlugin::Setup()
+void CipherDataBaseSourcePlugin::Setup()
 {
     if(dbconn.isOpen())
     {

@@ -9,7 +9,7 @@
 
 #define CONNECTION_FAILED -1
 
-class CipherDatabaseSourcePlugin : public QObject, IDataBaseSourcePlugin
+class CipherDataBaseSourcePlugin : public QObject, IDataBaseSourcePlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.DBModule.Test" FILE "PluginMeta.json")
@@ -17,8 +17,8 @@ class CipherDatabaseSourcePlugin : public QObject, IDataBaseSourcePlugin
     const QString driverName = "SQLITECIPHER";
 
 public:
-    CipherDatabaseSourcePlugin();
-    ~CipherDatabaseSourcePlugin();
+    CipherDataBaseSourcePlugin();
+    ~CipherDataBaseSourcePlugin();
     virtual void OnAllSetup();
     virtual QString GetLastError();
 
