@@ -14,9 +14,9 @@ SOURCES += \
 HEADERS +=\
     imainmenumodule.h \
     mainmenumodelplugin.h \
-    ../../System/MASS/interfaces.h \
-    ../../System/ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h \
-    pluginlinker.h
+    ../../System/MASS/rootinterfaces.h \
+    pluginlinker.h \
+    interfaces.h
 
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules

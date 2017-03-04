@@ -1,7 +1,8 @@
 #ifndef INTERFACES_H
 #define INTERFACES_H
 
-class QObject;
+#include "../../System/MASS/rootinterface.h"
+
 class QWidget;
 class QString;
 class QSqlDatabase;
@@ -20,6 +21,13 @@ struct MetaInfo{
     PluginTypes Type;
     QString ParentPluginName;
     QString DataManagerlName;
+};
+
+template <class T>
+struct PluginInfo
+{
+    T *plugin;
+    MetaInfo *meta;
 };
 
 class IPlugin
@@ -78,14 +86,4 @@ public:
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
 
-class IRootModelPlugin : public IModelPlugin
-{
-public:
-    virtual ~IRootModelPlugin() {}
-    virtual void AddDataSource(IDataSourcePlugin *view, QObject* instance, MetaInfo *meta) = 0;
-    virtual void AddDataManager(IDataManagerPlugin *view, QObject* instance, MetaInfo *meta) = 0;
-    virtual void AddView(IDataSourcePlugin *view, QObject* instance, MetaInfo *meta) = 0;
-    virtual void AddModel(IDataManagerPlugin *view, QObject* instance, MetaInfo *meta) = 0;
-};
-Q_DECLARE_INTERFACE(IRootModelPlugin, "IRootModelPlugin v0.1")
 #endif // INTERFACES_H

@@ -11,7 +11,7 @@
 #include <QStandardPaths>
 #include <QtSql>
 
-#include "interfaces.h"
+#include "rootinterface.h"
 
 class PluginLoader : QObject
 {
@@ -21,28 +21,20 @@ public:
     explicit PluginLoader(QWidget *parent = 0);
     ~PluginLoader();
 
-    QMap<QString, PluginTypes> pluginTypesNames;
-
 private:
     QWidget* parent;
     IRootModelPlugin* rootModel;
 
-    // Link structs
-    QMap<IRootModelPlugin*, MetaInfo*> rootModelMap;
-
-    QMap<IModelPlugin*, MetaInfo*>          pluginModelMap;
-    QMap<IViewPlugin*, MetaInfo*>           pluginViewMap;
-    QMap<IDataSourcePlugin*, MetaInfo*>     dataSourceMap;
-    QMap<IDataManagerPlugin*, MetaInfo*>    dataManagerMap;
+    QList<IRootModelPlugin*> rootModes;
+    QMap<QObject*, QJsonObject> pluginInstances;
 
     QDir internalPluginsPath;
 
     void LoadPluginsToHome();
     bool SetupPlugin(QString pluginName);
     QPluginLoader* LoadPlugin(QString pluginName);
-    QObject* GetPluginInstance(QPluginLoader* loader);
-    MetaInfo *GetPluginMeta(QPluginLoader* loader);
-    bool BindPluginToSystem(QObject* instance, MetaInfo *meta);
+    QObject* GetPluginInstance(QPluginLoader* loader);   
+    void BindPluginToSystem(QObject* instance, QPluginLoader* loader);
 
     template<class Type>
     Type *CastToPlugin(QObject* possiblePlugin);
@@ -51,9 +43,6 @@ private:
 
 public slots:
     void SetupPlugins();
-
-signals:
-    void OnAllSetup(bool isSucced);
 };
 
 #endif // PLUGINMANAGER_H

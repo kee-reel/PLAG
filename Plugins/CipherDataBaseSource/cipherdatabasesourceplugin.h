@@ -5,7 +5,7 @@
 #include <QtSql>
 #include <QDebug>
 
-#include "../../System/MASS/interfaces.h"
+#include "../../Plugins/MainMenuModelPlugin/interfaces.h"
 
 #define CONNECTION_FAILED -1
 

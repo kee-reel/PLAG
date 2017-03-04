@@ -3,6 +3,7 @@
 TaskListView::TaskListView()
 {
     mainForm = new MainForm;
+    myModel = NULL;
 }
 
 TaskListView::~TaskListView()
@@ -10,19 +11,35 @@ TaskListView::~TaskListView()
     delete mainForm;
 }
 
+void TaskListView::OnAllSetup()
+{
+
+}
+
+QString TaskListView::GetLastError()
+{
+
+}
+
 void TaskListView::SetModel(QObject* model)
 {
     myModel = qobject_cast<ITreeModel*>(model);
-    if(myModel)
+    if(!myModel)
     {
         qDebug() << model->objectName() << "is not ITaskListModel.";
+        return;
     }
     qDebug() << "ITaskListModel succesfully set.";
 }
 
 bool TaskListView::Open(int id, QWidget* parent)
 {
-    qDebug() << "View OPEN";
+    qDebug() << "View OPEN" << parent;
+    if(!myModel)
+    {
+        qDebug() << "Model isn't set!";
+        return false;
+    }
     taskTree = myModel->GetTreeModel();
     mainForm->SetModel(taskTree);
     myId = id;

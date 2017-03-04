@@ -13,12 +13,10 @@ SOURCES += \
     tasktreepluginmodel.cpp
 
 HEADERS +=\
-    ../../System/MASS/interfaces.h \
     tasktreeitemmodel.h \
     itasktreemodel.h \
     treeitem.h \
-    tasktreepluginmodel.h \
-    ../../System/TreeDataManagerPlugin/itreedatamanagerplugin.h
+    tasktreepluginmodel.h
 
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules

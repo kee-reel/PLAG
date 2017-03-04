@@ -1,11 +1,11 @@
 #ifndef IMAINMENUMODULE_H
 #define IMAINMENUMODULE_H
 
-#include "../../System/MASS/interfaces.h"
+#include "interfaces.h"
 
 template<class Type>
 class QList;
-class IMainMenuPluginModel : public IRootModelPlugin
+class IMainMenuPluginModel : public IModelPlugin
 { 
 public:
     virtual QList<MetaInfo*> GetChildPlugins() = 0;

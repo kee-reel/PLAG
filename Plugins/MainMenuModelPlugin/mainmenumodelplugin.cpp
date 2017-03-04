@@ -11,78 +11,53 @@ MainMenuModelPlugin::~MainMenuModelPlugin()
 
 }
 
+void MainMenuModelPlugin::AddPlugin(QObject *instance, QJsonObject *meta)
+{
+    pluginLinker.AddNewPlugin(instance, meta);
+}
+
+void MainMenuModelPlugin::Open(QWidget *parentWidget)
+{
+    this->parentWidget = parentWidget;
+    pluginLinker.SetupLinks();
+    Open(NULL, parentWidget, 0);
+}
+
 void MainMenuModelPlugin::OnAllSetup()
 {
 
-
-    //PluginInfo<IPluginView> newPlugin = {plugin, meta};
-    //newPlugin.plugin->SetModel(qobject_cast<QObject*>(this));
 }
 
 QString MainMenuModelPlugin::GetLastError()
 {
-
+    return QString();
 }
 
-void MainMenuModelPlugin::AddDataSource(IDataSourcePlugin *view, QObject *instance, MetaInfo *meta)
+void MainMenuModelPlugin::AddChildModel(IModelPlugin *model, MetaInfo *meta)
 {
-
+    PluginInfo<IModelPlugin> info = {model, meta};
+    childModels.append(info);
 }
 
-void MainMenuModelPlugin::AddDataManager(IDataManagerPlugin *view, QObject *instance, MetaInfo *meta)
+void MainMenuModelPlugin::AddView(IViewPlugin *view, MetaInfo *meta)
 {
-
+    PluginInfo<IViewPlugin> info = {view, meta};
+    views.append(info);
 }
 
-void MainMenuModelPlugin::AddView(IDataSourcePlugin *view, QObject *instance, MetaInfo *meta)
+void MainMenuModelPlugin::AddDataManager(QObject *dataManager)
 {
 
-}
-
-void MainMenuModelPlugin::AddModel(IDataManagerPlugin *view, QObject *instance, MetaInfo *meta)
-{
-
-}
-
-void MainMenuModelPlugin::AddDataSource(IDataSourcePlugin *model, MetaInfo *meta)
-{
-    dataSourceMap.insert(model, meta);
-}
-
-void MainMenuModelPlugin::AddDataManager(IDataManagerPlugin *model, MetaInfo *meta)
-{
-    dataManagerMap.insert(model, meta);
-}
-
-void MainMenuModelPlugin::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
-{
-    qDebug() << "New child" << meta->Name;
-    modelMap.insert(plugin, meta);
-}
-
-void MainMenuModelPlugin::AddView(IViewPlugin *plugin, MetaInfo *meta)
-{
-    viewMap.insert(plugin, meta);
-    qDebug() << "IPluginView succesfully set.";
 }
 
 bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
 {
-    qDebug() << "EmptyModel runs";
-//    if(viewPlugins.count() == 0){
-//        qDebug() << "I dont have any views!";
-//        return false;
-//    }
+    qDebug() << "MainMenuModel runs";
 
-    myModelId = id;
-    myParent = myParent;
-    myParentWidget = parentWidget;
-    activeViewId = 0;
-
-//    if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget)){
-//        qDebug() << "Can't open first view!";
-//        return false;
-//    }
+    if(views.count())
+    {
+        views.first().plugin->Open(0, parentWidget);
+    }
 
     return true;
 }
@@ -94,30 +69,26 @@ bool MainMenuModelPlugin::Close()
 
 void MainMenuModelPlugin::ChildSelfClosed(int id)
 {
-//    if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget)){
-//        qDebug() << "Can't open first view!";
-//    }
+    Open(NULL, parentWidget, 0);
 }
 
 QList<MetaInfo*> MainMenuModelPlugin::GetChildPlugins()
 {
     QList<MetaInfo*> tasks;
-//    for(int i = 0; i < childModelPlugins.count(); i++)
-//        tasks.append(childModelPlugins[i].meta);
-//    return tasks;
+    for(int i = 0; i < childModels.count(); ++i)
+        tasks.append(childModels[i].meta);
+    return tasks;
 }
 
 void MainMenuModelPlugin::RunPlugin(int pluginId)
 {
-//    if(childModelPlugins.count() > pluginId)
-//    {
-//        qDebug() << "Open plugin" << childModelPlugins[pluginId].meta->Name;
-//        if(!childModelPlugins[pluginId].plugin->Open(this, myParentWidget, pluginId))
-//        {
-//            qDebug() << "Model wasn't opened";
-//            if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget)){
-//                qDebug() << "Can't open first view!";
-//            }
-//        }
-//    }
+    if(childModels.count() > pluginId)
+    {
+        qDebug() << "Open plugin" << childModels[pluginId].meta->Name;
+        if(!childModels[pluginId].plugin->Open(this, parentWidget, pluginId))
+        {
+            qDebug() << "Model wasn't opened";
+            Open(NULL, parentWidget, 0);
+        }
+    }
 }

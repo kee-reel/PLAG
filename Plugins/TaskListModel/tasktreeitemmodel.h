@@ -2,21 +2,28 @@
 #define TASKTREEMODEL_H
 
 #include <QAbstractItemModel>
+#include <QVariant>
+#include <QVector>
 #include <QDebug>
 #include <QSize>
 #include <QFont>
 #include <QBrush>
 
-#include "../../System/TreeDataManagerPlugin/itreedatamanagerplugin.h"
+#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 #include "treeitem.h"
 
 class TaskTreeItemModel : public QAbstractItemModel
 {
+    typedef IExtendableDataBaseManagerPlugin::TreeItemInfo TreeItemInfo;
+
 public:
     QString tableName;
-    ITreeDataManagerPlugin* dataManager;
+    QString coreRelationName;
+    IExtendableDataBaseManagerPlugin* dataManager;
 
-    TaskTreeItemModel(QString tableName, ITreeDataManagerPlugin* dataManager, QList<TreeItem> &data, QObject *parent = 0);
+    TaskTreeItemModel(QString tableName,
+                      IExtendableDataBaseManagerPlugin* dataManager,
+                      QObject *parent = 0);
     ~TaskTreeItemModel();
 
     QVariant data(const QModelIndex &index, int role) const;
@@ -34,7 +41,7 @@ private:
     void setupModelData(const QStringList &lines, TreeItem *parent);
     TreeItem *rootItem;
 
-    ITreeDataManagerPlugin::TreeItemInfo ConvertToManagerTaskInfo(TreeItem* item);
+    TreeItemInfo ConvertToManagerTaskInfo(TreeItem* item);
     void DeleteFromManagerRecursive(TreeItem *task);
 
     bool AddTask(TreeItem *taskParent, TreeItem &taskData);

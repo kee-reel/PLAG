@@ -1,14 +1,15 @@
 #ifndef MAINMENUMODULE_H
 #define MAINMENUMODULE_H
 
-#include <QObject>
+#include <QWidget>
 #include <QDebug>
 #include <QApplication>
+#include <QJsonObject>
 
 #include "imainmenumodule.h"
-#include "../../System/ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
+#include "pluginlinker.h"
 
-class MainMenuModelPlugin : public QObject, IMainMenuPluginModel
+class MainMenuModelPlugin : public QObject, IMainMenuPluginModel, IRootModelPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
@@ -18,19 +19,16 @@ public:
     MainMenuModelPlugin();
     ~MainMenuModelPlugin();
 
+    void AddPlugin(QObject *instance, QJsonObject *meta) override;
+    void Open(QWidget *parentWidget) override;
+
     void OnAllSetup() override;
     QString GetLastError() override;
 
-    void AddDataSource(IDataSourcePlugin *view, QObject *instance, MetaInfo *meta) override;
-    void AddDataManager(IDataManagerPlugin *view, QObject *instance, MetaInfo *meta) override;
-    void AddView(IDataSourcePlugin *view, QObject *instance, MetaInfo *meta) override;
-    void AddModel(IDataManagerPlugin *view, QObject *instance, MetaInfo *meta) override;
-
-    void AddDataManager(QObject *dataManager) override;
     void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
-    void AddView(IViewPlugin *, MetaInfo *) override;
-
-    bool Open(IModelPlugin *myParent, QWidget *parentWidget, int id) override;
+    void AddView(IViewPlugin *view, MetaInfo *meta) override;
+    void AddDataManager(QObject *dataManager) override;
+    bool Open(IModelPlugin *parent, QWidget *parentWidget, int id) override;
     bool Close() override;
     void ChildSelfClosed(int id) override;
 
@@ -38,11 +36,17 @@ public:
     void RunPlugin(int pluginId) override;
 
 private:
+    QList<PluginInfo<IModelPlugin>> childModels;
+    QList<PluginInfo<IViewPlugin>> views;
 
-    QWidget *myParentWidget;
-    int myModelId;
+    QWidget *parentWidget;
     int activeViewId;
     int activeModelId;
+
+    PluginLinker pluginLinker;
+
+    // IModelPlugin interface
+public:
 
 };
 

@@ -1,5 +1,5 @@
 {
-    "Name":         "TaskDataManager",
+    "Name":         "ExtendableDataBaseManager",
     "PluginType":   "DataManager",
     "ParentName":   "CipherDatabaseSource",
     "DataManager":  ""

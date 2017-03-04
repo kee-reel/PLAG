@@ -25,6 +25,7 @@ QString CipherDataBaseSourcePlugin::GetLastError()
 QSqlQuery CipherDataBaseSourcePlugin::ExecuteQuery(QString queryText)
 {
     QSqlQuery query;
+    qDebug() << "Executing" << queryText;
     query.exec(queryText);
     if(query.lastError().text() != "")
         qDebug() << query.lastError();

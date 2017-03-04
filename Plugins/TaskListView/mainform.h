@@ -5,9 +5,9 @@
 #include <QWidget>
 #include <QPainter>
 #include <QAbstractItemModel>
+
 #include <QResizeEvent>
 #include "../../Plugins/TaskListModel/itasktreemodel.h"
-
 #include "addform.h"
 
 namespace Ui {

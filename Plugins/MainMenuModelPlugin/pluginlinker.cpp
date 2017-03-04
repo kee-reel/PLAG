@@ -2,7 +2,183 @@
 
 PluginLinker::PluginLinker()
 {
+    pluginTypesNames.insert("ROOTMODEL",    ROOTMODEL);
+    pluginTypesNames.insert("PLUGINMODEL",  PLUGINMODEL);
+    pluginTypesNames.insert("PLUGINVIEW",   PLUGINVIEW);
+    pluginTypesNames.insert("DATASOURCE",   DATASOURCE);
+    pluginTypesNames.insert("DATAMANAGER",  DATAMANAGER);
+}
 
+void PluginLinker::AddNewPlugin(QObject *instance, QJsonObject *meta)
+{
+    MetaInfo* pluginMeta = GetPluginMeta(meta);
+    if(!pluginMeta) return;
+
+    bool isBinded = BindPluginToSystem(instance, pluginMeta);
+    if(!isBinded) return;
+}
+
+MetaInfo *PluginLinker::GetPluginMeta(QJsonObject *metaData)
+{
+    qDebug() << "Get meta";
+    QString FieldName             = "Name";
+    QString FieldModuleType       = "PluginType";
+    QString FieldParentModuleName = "ParentName";
+    QString FieldDataManagerName  = "DataManager";
+
+    QJsonObject metaInfo = metaData->value("MetaData").toObject();
+    // Check if all meta fields exists
+    QStringList metaFieldsNames;
+    metaFieldsNames << FieldName << FieldModuleType << FieldParentModuleName;
+    foreach (QString metaFieldName, metaFieldsNames) {
+        if(!metaInfo.contains(metaFieldName))
+        {
+            qDebug() << "Meta has no field:" << metaFieldName << "But has fields:";
+            for(QJsonObject::Iterator i = metaInfo.begin(); i != metaInfo.end(); ++i)
+                qDebug() << i.key() << " = " << i.value();
+            return NULL;
+        }
+    }
+
+    MetaInfo* newMetaInfo = new MetaInfo();
+    // Set module name
+    newMetaInfo->Name = metaInfo.value(FieldName).toString();
+    if(newMetaInfo->Name == "")
+    {
+        qDebug() << "Meta error: field" << FieldName << "is empty";
+        delete newMetaInfo;
+        return NULL;
+    }
+    qDebug() << "Name:" << newMetaInfo->Name;
+
+    // Set module type
+    QString moduleTypeStr = metaInfo.value(FieldModuleType).toString().toUpper();
+    if(!pluginTypesNames.contains(moduleTypeStr))
+    {
+        qDebug() << "Meta error: field" << FieldModuleType << "value is incorrect -" << moduleTypeStr;
+        delete newMetaInfo;
+        return NULL;
+    }
+    newMetaInfo->Type = pluginTypesNames[moduleTypeStr];
+    qDebug() << "Type:" << moduleTypeStr;
+
+    // Set DBTool name
+    newMetaInfo->DataManagerlName = metaInfo.value(FieldDataManagerName).toString();
+    qDebug() << "DataManager:" << newMetaInfo->DataManagerlName;
+
+    // Set module parent name
+    newMetaInfo->ParentPluginName = metaInfo.value(FieldParentModuleName).toString();
+    qDebug() << "Parent:" << newMetaInfo->ParentPluginName;
+    return newMetaInfo;
+}
+
+bool PluginLinker::BindPluginToSystem(QObject *instance, MetaInfo *meta)
+{
+    qDebug() << "Bind plugin to system";
+    switch (meta->Type) {
+        case ROOTMODEL:
+        case PLUGINMODEL:{
+            IModelPlugin* plugin = CastToPlugin<IModelPlugin>(instance);
+            if(!plugin) return false;
+            SetLinks(plugin, instance, meta);
+            break;
+        }
+
+        case PLUGINVIEW:{
+            IViewPlugin* plugin = CastToPlugin<IViewPlugin>(instance);
+            if(!plugin) return false;
+            pluginViewMap.insert(plugin, meta);
+            SetLinks(plugin, instance, meta);
+            break;
+        }
+
+        case DATASOURCE:{
+            IDataSourcePlugin* plugin = CastToPlugin<IDataSourcePlugin>(instance);
+            if(!plugin) return false;
+            dataSourceMap.insert(plugin, meta);
+            SetLinks(plugin, instance, meta);
+            break;
+        }
+
+        case DATAMANAGER:{
+            IDataManagerPlugin* plugin = CastToPlugin<IDataManagerPlugin>(instance);
+            if(!plugin) return false;
+            dataManagerMap.insert(plugin, meta);
+            SetLinks(plugin, instance, meta);
+            break;
+        }
+
+        default:{
+            return false;
+            break;
+        }
+
+    }
+
+    qDebug() << "Module" << meta->Name << "succesfully added to system." << endl;
+    return true;
+}
+
+template<class Type>
+Type *PluginLinker::CastToPlugin(QObject *possiblePlugin)
+{
+    Type* plugin = qobject_cast<Type*>(possiblePlugin);
+    if(!plugin)
+    {
+        qDebug() << "Can't load the plugin " << possiblePlugin->objectName() << ": not QObject.";
+    }
+    return plugin;
+}
+
+
+void PluginLinker::SetLinks(IDataSourcePlugin *plugin, QObject* instance, MetaInfo *meta)
+{
+    LinkInfo<IDataSourcePlugin> info = {plugin, instance};
+    dataSourcesLinkInfo[meta->Name] = info;
+    plugin->Setup();
+}
+
+void PluginLinker::SetLinks(IDataManagerPlugin *plugin, QObject* instance, MetaInfo *meta)
+{
+    LinkInfo<IDataManagerPlugin> info = {plugin, instance};
+    dataManagersLinkInfo[meta->Name] = info;
+
+    if(meta->ParentPluginName != "")
+        sourceToManagersLink[meta->ParentPluginName].append(plugin);
+}
+
+void PluginLinker::SetLinks(IModelPlugin *plugin, QObject* instance, MetaInfo *meta)
+{
+    pluginModelMap.insert(plugin, meta);
+    LinkInfo<IModelPlugin> info = {plugin, instance};
+
+    if(meta->Type == ROOTMODEL)
+    {
+        modelsLinkInfo[""] = info;
+        rootModel = plugin;
+    }
+    else
+        modelToModelsLink[meta->ParentPluginName].append(plugin);
+    modelsLinkInfo[meta->Name] = info;
+
+    if(meta->DataManagerlName != "")
+        managerToModelsLink[meta->DataManagerlName].append(plugin);
+}
+
+void PluginLinker::SetLinks(IViewPlugin *plugin, QObject* instance, MetaInfo *meta)
+{
+    qDebug() << "View";
+    LinkInfo<IViewPlugin> info = {plugin, instance};
+    viewsLinkInfo[meta->Name] = info;
+    modelToViewsLink[meta->ParentPluginName].append(plugin);
+}
+
+void PluginLinker::SetupLinks()
+{
+    LinkSourceToManagers();
+    LinkManagerToModels();
+    LinkModelToModels();
+    LinkModelToViews();
 }
 
 void PluginLinker::LinkSourceToManagers()
@@ -28,10 +204,13 @@ void PluginLinker::LinkManagerToModels()
     QHash<QString, QVector<IModelPlugin*>>::Iterator dataManagerIter = managerToModelsLink.begin();
     while(dataManagerIter != managerToModelsLink.end())
     {
-        QVector<IModelPlugin*> childPlugins = dataManagerIter.value();
-        QObject* dataManager = dataManagersLinkInfo[dataManagerIter.key()].instance;
-        for(int i = 0; i < childPlugins.count(); i++)
-            childPlugins[i]->AddDataManager(dataManager);
+        if(dataManagersLinkInfo.contains(dataManagerIter.key()))
+        {
+            QObject* dataManager = dataManagersLinkInfo[dataManagerIter.key()].instance;
+            QVector<IModelPlugin*> childPlugins = dataManagerIter.value();
+            for(int i = 0; i < childPlugins.count(); i++)
+                childPlugins[i]->AddDataManager(dataManager);
+        }
         ++dataManagerIter;
     }
 }
@@ -61,70 +240,26 @@ void PluginLinker::LinkModelToModels()
 
 void PluginLinker::LinkModelToViews()
 {
-    qDebug() << "=====Linking" << modelToViewsLink.count() << "IPluginViews";
+    qDebug() << "=====Linking" << modelToViewsLink.count() << "IPluginViews" << modelsLinkInfo.count();
     QHash<QString, QVector<IViewPlugin*>>::Iterator pluginModelIter = modelToViewsLink.begin();
     while(pluginModelIter != modelToViewsLink.end())
     {
+        qDebug() << "?" << pluginModelIter.key();
         if(modelsLinkInfo.contains(pluginModelIter.key()))
         {
+            qDebug() << "+" << pluginModelIter.key();
             QVector<IViewPlugin*> childPlugins = pluginModelIter.value();
-            IModelPlugin *parentModel = modelsLinkInfo[pluginModelIter.key()].plugin;
+            LinkInfo<IModelPlugin> parentModel = modelsLinkInfo.value(pluginModelIter.key());
             for(int i = 0; i < childPlugins.count(); i++)
             {
                 MetaInfo* meta = pluginViewMap[childPlugins[i]];
                 IViewPlugin* plugin = viewsLinkInfo[meta->Name].plugin;
 
-                parentModel->AddView(plugin, meta);
+                parentModel.plugin->AddView(plugin, meta);
+                plugin->SetModel(parentModel.instance);
                 qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
             }
         }
         ++pluginModelIter;
     }
-}
-
-void PluginLinker::SetDataSourceLinks(IDataSourcePlugin *plugin, QObject* instance, MetaInfo *meta)
-{
-    LinkInfo<IDataSourcePlugin> info = {plugin, instance};
-    dataSourcesLinkInfo[meta->Name] = info;
-    plugin->Setup();
-}
-
-void PluginLinker::SetDataManagerLinks(IDataManagerPlugin *plugin, QObject* instance, MetaInfo *meta)
-{
-    LinkInfo<IDataManagerPlugin> info = {plugin, instance};
-    dataManagersLinkInfo[meta->Name] = info;
-
-    if(meta->ParentPluginName != "")
-        sourceToManagersLink[meta->ParentPluginName].append(plugin);
-}
-
-void PluginLinker::SetPluginModelLinks(IModelPlugin *plugin, QObject* instance, MetaInfo *meta)
-{
-    LinkInfo<IModelPlugin> info = {plugin, instance};
-    if(meta->Type == ROOTMODEL)
-    {
-        modelsLinkInfo[""] = info;
-    }
-    else
-    {
-        modelToModelsLink[meta->ParentPluginName].append(plugin);
-        modelsLinkInfo[meta->Name] = info;
-    }
-    if(meta->DataManagerlName != "")
-        managerToModelsLink[meta->DataManagerlName].append(plugin);
-}
-
-void PluginLinker::SetPluginViewLinks(IViewPlugin *plugin, QObject* instance, MetaInfo *meta)
-{
-    LinkInfo<IViewPlugin> info = {plugin, instance};
-    viewsLinkInfo[meta->Name] = info;
-    modelToViewsLink[meta->ParentPluginName].append(plugin);
-}
-
-void PluginLinker::SetupLinks()
-{
-    LinkSourceToManagers();
-    LinkManagerToModels();
-    LinkModelToModels();
-    LinkModelToViews();
 }

@@ -11,22 +11,35 @@ TaskTreePluginModel::~TaskTreePluginModel()
 {
 }
 
-void TaskTreePluginModel::AddChildModel(IPluginModel *plugin, MetaInfo *meta)
+void TaskTreePluginModel::OnAllSetup()
+{
+
+}
+
+QString TaskTreePluginModel::GetLastError()
+{
+
+}
+
+void TaskTreePluginModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
 {
     qDebug() << "New child" << meta->Name;
-    PluginInfo<IPluginModel> newPlugin = {plugin, meta};
+    PluginInfo<IModelPlugin> newPlugin = {plugin, meta};
     childModelPlugins.append(newPlugin);
 }
 
 void TaskTreePluginModel::AddDataManager(QObject *DBTool)
 {
-    this->dataManager = qobject_cast<ITreeDataManagerPlugin*>(DBTool);
+    qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
+    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(DBTool);
     if(!this->dataManager)
     {
-        qDebug() << DBTool->objectName() << "is not ITaskDBToolPlugin.";
+        qDebug() << DBTool->objectName() << "is not IExtendableDataBaseManagerPlugin.";
         return;
     }
-    qDebug() << "ITaskDBToolPlugin succesfully set.";
+    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
+    if(!treeModel)
+        treeModel = new TaskTreeItemModel(tableName, dataManager);
 }
 
 QString TaskTreePluginModel::GetError()
@@ -36,20 +49,12 @@ QString TaskTreePluginModel::GetError()
 
 QAbstractItemModel* TaskTreePluginModel::GetTreeModel()
 {
-    if(!dataManager)
-    {
-        qDebug() << "Data manager not set!";
-        return NULL;
-    }
-    QList<ITreeDataManagerPlugin::TaskInfo> managerTaskList = dataManager->GetTaskTree(tableName);
-    treeModel = new TaskTreeItemModel(tableName, dataManager, managerTaskList);
     return treeModel;
 }
 
-bool TaskTreePluginModel::Open(IPluginModel *parent, QWidget *parentWidget, int id)
+bool TaskTreePluginModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
 {
     qDebug() << "TaskListModel runs";
-    qDebug() << "EmptyModel runs";
     if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
@@ -59,7 +64,10 @@ bool TaskTreePluginModel::Open(IPluginModel *parent, QWidget *parentWidget, int 
     myParentWidget = parentWidget;
     activeViewId = 0;
 
-    if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget)){
+    qDebug() << viewPlugins[activeViewId].meta->Name;
+    qDebug() << viewPlugins[activeViewId].plugin->Close();
+    if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget))
+    {
         qDebug() << "Can't open first view!";
         return false;
     }
@@ -92,10 +100,9 @@ void TaskTreePluginModel::ChildSelfClosed(int id)
 
 }
 
-void TaskTreePluginModel::AddView(IPluginView *plugin, MetaInfo *meta)
+void TaskTreePluginModel::AddView(IViewPlugin *plugin, MetaInfo *meta)
 {
-    PluginInfo<IPluginView> newPlugin = {plugin, meta};
+    PluginInfo<IViewPlugin> newPlugin = {plugin, meta};
     viewPlugins.append(newPlugin);
-    newPlugin.plugin->SetModel(qobject_cast<QObject*>(this));
     qDebug() << "IPluginView succesfully set.";
 }

@@ -1,7 +1,7 @@
 #ifndef ITASKDBTOOLPLUGIN_H
 #define ITASKDBTOOLPLUGIN_H
 
-#include "../../System/MASS/interfaces.h"
+#include "../../Plugins/MainMenuModelPlugin/interfaces.h"
 
 template <class T> class QVector;
 template <class T> class QList;
@@ -15,20 +15,13 @@ public:
     class TreeItemInfo{
     public:
         int id;
-        int parent;
-        int position;
-        QVector<QVariant> data;
+        QMap<QString, QVector<QVariant>> dataChunks;
     };
 
-    struct TableStructItem{
-        QString name;
-        QVariant::Type type;
-    };
+    virtual QList<TreeItemInfo> GetData(QString treeName) = 0;
+    virtual QMap<QString, QVariant::Type> GetTreeHeader(QString treeName) = 0;
 
-    virtual QList<TreeItemInfo> GetTreeData(QString treeName) = 0;
-    virtual QVector<TableStructItem> GetTreeHeader(QString treeName) = 0;
-
-    virtual bool SetRelation(QString mainName, QString relationName, QVector<TableStructItem> fields) = 0;
+    virtual bool SetRelation(QString mainName, QString relationName, QMap<QString, QVariant::Type> fields) = 0;
     virtual bool DeleteRelation(QString mainName, QString relationName) = 0;
 
     virtual int AddItem(QString treeName, TreeItemInfo task) = 0;

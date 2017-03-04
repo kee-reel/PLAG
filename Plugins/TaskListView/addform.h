@@ -1,6 +1,7 @@
 #ifndef ADDFORM_H
 #define ADDFORM_H
 
+#include <QDebug>
 #include <QWidget>
 #include <QDataWidgetMapper>
 #include <QAbstractItemModel>

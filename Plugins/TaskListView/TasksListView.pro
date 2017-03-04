@@ -6,6 +6,7 @@
 TARGET = TaskListView
 TEMPLATE = lib
 QT += widgets
+
 SOURCES += \
     tasklistview.cpp \
     mainform.cpp \
@@ -13,9 +14,7 @@ SOURCES += \
 
 HEADERS +=\
     tasklistview.h \
-    ../../System/MASS/interfaces.h \
     mainform.h \
-    ../TaskListModel/itasktreemodel.h \
     addform.h
 
 windows{
@@ -29,8 +28,6 @@ unix {
 
 DISTFILES += \
     PluginMeta.json
-
-RESOURCES +=
 
 FORMS += \
     mainform.ui \

@@ -1,12 +1,12 @@
 #ifndef ITASKLISTMODEL_H
 #define ITASKLISTMODEL_H
 
-#include "../../System/MASS/interfaces.h"
+#include "../MainMenuModelPlugin/interfaces.h"
 
 template <class A>
 class QVector;
 class QAbstractItemModel;
-class ITreeModel : public IPluginModel
+class ITreeModel : public IModelPlugin
 {
 public:
     /// Get all data

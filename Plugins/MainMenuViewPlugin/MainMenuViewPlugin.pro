@@ -16,9 +16,7 @@ HEADERS +=\
     draggablebutton.h \
     mainwindow.h \
     mainmenupluginview.h \
-    ../MainMenuModelPlugin/imainmenumodule.h \
-    ../../System/MASS/interfaces.h
-
+    ../MainMenuModelPlugin/imainmenumodule.h
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
 }

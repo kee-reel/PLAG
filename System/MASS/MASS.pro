@@ -16,8 +16,8 @@ SOURCES += main.cpp\
 
 HEADERS  += \
     parentwindow.h \
-    interfaces.h \
-    pluginloader.h
+    pluginloader.h \
+    rootinterface.h
 
 android {
     QT += androidextras

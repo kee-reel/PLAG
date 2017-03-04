@@ -7,30 +7,31 @@
 #include "../MainMenuModelPlugin/imainmenumodule.h"
 #include "mainwindow.h"
 
-class MainMenuPluginView : public QObject, IPluginView
+class MainMenuPluginView : public QObject, IViewPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IPluginView)
-
-public:
-    MainMenuPluginView();
-    ~MainMenuPluginView();
+    Q_INTERFACES(IViewPlugin)
 
 private:
     IMainMenuPluginModel *myModel;
     int myId;
     MainWindow* mainWindow;
 
-
-    // IPluginView interface
 public:
-    virtual void SetModel(QObject *model);
+    MainMenuPluginView();
+    ~MainMenuPluginView();
+
+    void OnAllSetup() override;
+    QString GetLastError() override;
+
+    void SetModel(QObject *model) override;
     bool Open(int id, QWidget* parent) override;
     bool Close() override;
 
 private slots:
     void OpenChildPlugin(int id);
+
 };
 
 #endif // MAINMENUPLUGINVIEW_H

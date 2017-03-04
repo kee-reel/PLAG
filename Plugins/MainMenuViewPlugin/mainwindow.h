@@ -7,7 +7,6 @@
 #include <QPainter>
 
 #include "draggablebutton.h"
-#include "../../System/MASS/interfaces.h"
 
 class MainWindow : public QWidget
 {

@@ -1,6 +1,5 @@
 #include "addform.h"
 #include "ui_addform.h"
-#include <QDebug>
 
 AddForm::AddForm(QWidget *parent) :
     QWidget(parent),

@@ -7,13 +7,13 @@
 
 #include "itasktreemodel.h"
 #include "tasktreeitemmodel.h"
-#include "../../System/TreeDataManagerPlugin/itreedatamanagerplugin.h"
+#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 
 class TaskTreePluginModel : public QObject, ITreeModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IPluginModel ITreeModel)
+    Q_INTERFACES(IModelPlugin ITreeModel)
 
 public:
     TaskTreePluginModel();
@@ -21,7 +21,7 @@ public:
 
 private:
     // Native part
-    IPluginModel *myParent;
+    IModelPlugin *myParent;
     QWidget *myParentWidget;
     int myModelId;
     int activeViewId;
@@ -34,20 +34,25 @@ private:
         MetaInfo *meta;
     };
 
-    QList< PluginInfo<IPluginModel> > childModelPlugins;
-    QList< PluginInfo<IPluginView> > viewPlugins;
+    QList< PluginInfo<IModelPlugin> > childModelPlugins;
+    QList< PluginInfo<IViewPlugin> > viewPlugins;
 
     // Unique part
     QString tableName;
-    ITreeDataManagerPlugin* dataManager;
+    IExtendableDataBaseManagerPlugin* dataManager;
     TaskTreeItemModel* treeModel;
+
+    // IPlugin interface
+public:
+    void OnAllSetup() override;
+    QString GetLastError() override;
 
     // IPluginModel interface
 public:
-    void AddChildModel(IPluginModel *, MetaInfo *);
+    void AddChildModel(IModelPlugin *, MetaInfo *);
     void AddDataManager(QObject *);
-    void AddView(IPluginView *plugin, MetaInfo *meta);
-    bool Open(IPluginModel *parent, QWidget *parentWidget, int id);
+    void AddView(IViewPlugin *plugin, MetaInfo *meta);
+    bool Open(IModelPlugin *parent, QWidget *parentWidget, int id);
     bool Close();
     void ChildSelfClosed(int id);
     QString GetError();
@@ -55,7 +60,6 @@ public:
     // ITaskListModel interface
 public:
     QAbstractItemModel *GetTreeModel() override;
-
 };
 
 #endif // TASKLISTMODEL_H

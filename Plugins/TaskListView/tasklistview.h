@@ -1,17 +1,17 @@
-#ifndef EMPTYMODULE_H
-#define EMPTYMODULE_H
+#ifndef TASKLISTVIEW_H
+#define TASKLISTVIEW_H
 
-#include <QObject>
+#include <QApplication>
 #include <QDebug>
 
 #include "../TaskListModel/itasktreemodel.h"
 #include "mainform.h"
 
-class TaskListView : public QObject, IPluginView
+class TaskListView : public QObject, IViewPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IPluginView)
+    Q_INTERFACES(IViewPlugin)
 
 public:
     TaskListView();
@@ -24,14 +24,19 @@ private:
     int myId;
     MainForm *mainForm;
 
+    // IPlugin interface
+public:
+    void OnAllSetup() override;
+    QString GetLastError() override;
+
     // IPluginView interface
 public:
-    virtual void SetModel(QObject* model);
-    virtual bool Open(int id, QWidget* parent);
-    virtual bool Close();
+    void SetModel(QObject* model) override;
+    bool Open(int id, QWidget* parent) override;
+    bool Close() override;
 
 private slots:
     void onClose();
 };
 
-#endif // EMPTYMODULE_H
+#endif // TASKLISTVIEW_H
