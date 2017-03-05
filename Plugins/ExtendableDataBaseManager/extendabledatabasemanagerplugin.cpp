@@ -31,7 +31,7 @@ bool ExtendableDataBaseManagerPlugin::SetDataSource(QObject *dataSource)
     return true;
 }
 
-QList<ExtendableDataBaseManagerPlugin::TreeItemInfo> ExtendableDataBaseManagerPlugin::GetData(QString tableName)
+QList<ExtendableDataBaseManagerPlugin::ManagerItemInfo> ExtendableDataBaseManagerPlugin::GetData(QString tableName)
 {
     if(!tableHandlers.contains(tableName))
         tableHandlers[tableName] = new TableHandler(dataSource, tableName);
@@ -60,12 +60,12 @@ bool ExtendableDataBaseManagerPlugin::DeleteRelation(QString tableName, QString 
     return tableHandlers[tableName]->DeleteRelation(relationName);
 }
 
-int ExtendableDataBaseManagerPlugin::AddItem(QString tableName, TreeItemInfo item)
+int ExtendableDataBaseManagerPlugin::AddItem(QString tableName, ManagerItemInfo item)
 {
     return tableHandlers[tableName]->AddItem(item);
 }
 
-bool ExtendableDataBaseManagerPlugin::EditItem(QString tableName, TreeItemInfo item)
+bool ExtendableDataBaseManagerPlugin::EditItem(QString tableName, ManagerItemInfo item)
 {
     return tableHandlers[tableName]->EditItem(item);
 }

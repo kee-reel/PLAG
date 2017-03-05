@@ -14,7 +14,7 @@
 
 class TaskTreeItemModel : public QAbstractItemModel
 {
-    typedef IExtendableDataBaseManagerPlugin::TreeItemInfo TreeItemInfo;
+    typedef IExtendableDataBaseManagerPlugin::ManagerItemInfo ManagerItemInfo;
 
 public:
     QString tableName;
@@ -33,20 +33,26 @@ public:
     QModelIndex parent(const QModelIndex &index) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    bool setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles);
-    bool insertRow(int row, const QModelIndex &parent);
+    bool insertRows(int row, int count, const QModelIndex &parent) override;
+    bool removeRows(int row, int count, const QModelIndex &parent) override;
     virtual bool setData(const QModelIndex &index, const QVariant &value, int role);
 
 private:
+    int nameIndex;
+    int parentIndex;
+    int positionIndex;
+
+    TreeItem defaultTask;
+
     void setupModelData(const QStringList &lines, TreeItem *parent);
     TreeItem *rootItem;
 
-    TreeItemInfo ConvertToManagerTaskInfo(TreeItem* item);
+    ManagerItemInfo ConvertToManagerTaskInfo(TreeItem* item);
     void DeleteFromManagerRecursive(TreeItem *task);
 
-    bool AddTask(TreeItem *taskParent, TreeItem &taskData);
-    bool EditTask(TreeItem *task, TreeItem taskData);
-//    bool DeleteTask(TreeItem *task);
+    TreeItem *AddTask(TreeItem *taskParent, TreeItem *taskData = NULL);
+    bool EditTask(TreeItem *task, int column, QVariant dataField);
+    bool DeleteTask(TreeItem *task);
 
 };
 

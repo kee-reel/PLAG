@@ -4,16 +4,25 @@
 TreeItem::TreeItem()
 {
     parentItem = NULL;
-    itemData.append(QVariant(""));
-    itemData.append(QVariant(-1));
 }
 
-TreeItem::TreeItem(TreeItem *parent, int id, QList<QVariant> data)
+TreeItem::TreeItem(TreeItem *parent, TreeItem *copy)
+{
+    qDebug() << copy;
+    parentItem = parent;
+    itemData.id = copy->itemData.id;
+    itemData.dataChunks = copy->itemData.dataChunks;
+    activeChunkName = copy->activeChunkName;
+    activeChunk = &itemData.dataChunks[activeChunkName];
+}
+
+TreeItem::TreeItem(TreeItem *parent, int id, QString chunkName, QMap<QString, QVector<QVariant>> dataChunks)
 {
     parentItem = parent;
-    this->id = id;
-    for(int i = 0; i < data.count(); i++)
-        itemData.append(data[i]);
+    itemData.id = id;
+    itemData.dataChunks = dataChunks;
+    activeChunkName = chunkName;
+    activeChunk = &itemData.dataChunks[activeChunkName];
 }
 
 TreeItem::~TreeItem()
@@ -33,23 +42,39 @@ void TreeItem::AddChild(int row, TreeItem *child)
     childItems.insert(row, child);
 }
 
-QVariant TreeItem::GetCoreData()
+void TreeItem::RemoveChild(TreeItem *child)
 {
-    return itemData[coreDataIndex];
+    childItems.removeOne(child);
 }
 
-QVariant TreeItem::GetData(int column)
+void TreeItem::RemoveChildAt(int row)
 {
-    return (column < itemData.count()) ? itemData[column] : QVariant();
+    childItems.removeAt(row);
 }
 
-void TreeItem::SetData(int column, QVariant data)
+void TreeItem::SetActiveChunkName(QString &chunkName)
 {
-    if(column < itemData.count())
-        itemData[column] = data;
+    activeChunkName = chunkName;
+    activeChunk = &(itemData.dataChunks[activeChunkName]);
 }
 
-void TreeItem::SetCoreData(QVariant data)
+QVector<QVariant> TreeItem::GetChunkData(QString chunkName)
 {
-    itemData[coreDataIndex] = data;
+    return itemData.dataChunks[chunkName];
 }
+
+QVariant TreeItem::GetChunkDataElement(int column)
+{
+    return (*activeChunk)[column];
+}
+
+void TreeItem::SetChunkData(QString chunkName, QVector<QVariant> data)
+{
+    itemData.dataChunks[chunkName] = data;
+}
+
+void TreeItem::SetChunkDataElement(int column, QVariant data)
+{
+    (*activeChunk)[column] = data;
+}
+

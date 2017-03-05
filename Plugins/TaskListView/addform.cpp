@@ -19,15 +19,16 @@ void AddForm::SetModel(QAbstractItemModel *model)
 {
     mapper->setModel(model);
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
-
-    ui->label_2->setText(model->headerData(0, Qt::Horizontal).typeName());
+    ui->label_2->setText(model->headerData(0, Qt::Horizontal).toString());
     mapper->addMapping(ui->lineEdit_2, 0);
 }
 
 void AddForm::ShowModelData(const QModelIndex &index)
 {
     show();
+    mapper->setRootIndex(index.parent());
     mapper->setCurrentModelIndex(index);
+    qDebug() << "=========================" << index.data() << index.row() << mapper->currentIndex();
 }
 
 void AddForm::on_buttonOk_clicked()

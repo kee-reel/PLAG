@@ -24,13 +24,13 @@ public:
 
     bool SetDataSource(QObject *dataSource) override;
 
-    QList<TreeItemInfo> GetData(QString tableName) override;
+    QList<ManagerItemInfo> GetData(QString tableName) override;
     QMap<QString, QVariant::Type> GetTreeHeader(QString tableName) override;
 
     bool SetRelation(QString tableName, QString relationName, QMap<QString, QVariant::Type> fields) override;
     bool DeleteRelation(QString tableName, QString relationName) override;
-    int AddItem(QString tableName, TreeItemInfo item) override;
-    bool EditItem(QString tableName, TreeItemInfo item) override;
+    int AddItem(QString tableName, ManagerItemInfo item) override;
+    bool EditItem(QString tableName, ManagerItemInfo item) override;
     bool DeleteItem(QString tableName, int id) override;
 
 private:

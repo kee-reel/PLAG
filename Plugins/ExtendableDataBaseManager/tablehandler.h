@@ -10,7 +10,7 @@
 
 class TableHandler
 {
-    typedef IExtendableDataBaseManagerPlugin::TreeItemInfo TreeItemInfo;
+    typedef IExtendableDataBaseManagerPlugin::ManagerItemInfo ManagerItemInfo;
     typedef QMap<QString, QVariant::Type> TableStructMap;
 
 private:
@@ -32,14 +32,15 @@ public:
     bool SetRelation(QString relationName, TableStructMap fields);
     bool DeleteRelation(QString relationName);
 
-    QList<TreeItemInfo> GetData();
-    int AddItem(TreeItemInfo item);
-    bool EditItem(TreeItemInfo item);
+    QList<ManagerItemInfo> GetData();
+    int AddItem(ManagerItemInfo item);
+    bool EditItem(ManagerItemInfo item);
     bool DeleteItem(int id);
 
     TableStructMap GetHeader();
     QString GetHeaderString(TableStructMap &tableStruct, bool createRelation = false);
-    QString GetValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData);
+    QString GetInsertValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData);
+    QString GetUpdateValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData);
 
     bool IsTableExists(QString tableName);
     //bool IsTableRightStructure(QString tableName);

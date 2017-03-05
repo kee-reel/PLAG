@@ -63,7 +63,6 @@ bool TableHandler::SetRelation(QString relationName, TableStructMap fields)
         return false;
     }
 
-    fields.insert("id", QVariant::Int);
     QString dataFields = GetHeaderString(fields, true);
     if(dataFields == "")
     {
@@ -78,7 +77,6 @@ bool TableHandler::SetRelation(QString relationName, TableStructMap fields)
             .arg(dataFields);
     QSqlQuery queryResult = dataSource->ExecuteQuery(queryStr);
 
-    fields.remove("id");
     relationTableStructs.insert(relationName, fields);
     return true;
 }
@@ -96,7 +94,7 @@ bool TableHandler::DeleteRelation(QString relationName)
     return true;
 }
 
-QList<IExtendableDataBaseManagerPlugin::ManagerItemInfo> TableHandler::GetData()
+QList<IExtendableDataBaseManagerPlugin::TreeItemInfo> TableHandler::GetData()
 {
     QString queryStr = "";
     queryStr = QString("SELECT * FROM %1 ").arg(tableName);
@@ -104,44 +102,41 @@ QList<IExtendableDataBaseManagerPlugin::ManagerItemInfo> TableHandler::GetData()
     QStringList joinTables = relationTableStructs.keys();
     for(int i = 0; i < joinTables.count(); i++)
     {
-        queryStr.append(QString(" NATURAL JOIN r_%1_%2 ")
+        queryStr.append(QString(" LEFT JOIN r_%1_%2 ON %1.id = r_%1_%2.id ")
                         .arg(tableName)
                         .arg(joinTables[i]));
     }
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
-    QList<ManagerItemInfo> itemInfoList;
-    ManagerItemInfo buf;
+    QList<TreeItemInfo> itemInfo;
+    TreeItemInfo buf;
 
     QString bufStr;
     int queryFieldNum;
 
     while (query.next()) {
-        qDebug() << "+++++++++++++++++Query result";
         bufStr = "";
         queryFieldNum = 0;
-
-        qDebug() << query.value(queryFieldNum);
-        buf.id = query.value(queryFieldNum).toInt();
-        ++queryFieldNum;
 
         for(int i = 0; i < joinTables.count(); ++i)
         {
             qDebug() << "======" << joinTables[i];
-            for(int j = 0; j < relationTableStructs[joinTables[i]].count(); ++j)
+            for(int j = 0; j < relationTableStructs[joinTables[i]].count(); j++)
             {
                 qDebug() << query.value(queryFieldNum);
                 buf.dataChunks[joinTables[i]].append( query.value(queryFieldNum) );
                 ++queryFieldNum;
             }
         }
-
-        itemInfoList.append(buf);
-        buf.dataChunks.clear();
+//        for(int i = 3; i < query.size(); i++)
+//        {
+//            buf.data.append(query.value(i));
+//        }
+//        taskTree.append(buf);
     }
-    return itemInfoList;
+    return QList<TreeItemInfo>();
 }
 
-int TableHandler::AddItem(ManagerItemInfo item)
+int TableHandler::AddItem(TreeItemInfo item)
 {
     qDebug() << "AddItem";
 
@@ -153,7 +148,7 @@ int TableHandler::AddItem(ManagerItemInfo item)
     qDebug() << joinTables.count();
     for(int i = 0; i < joinTables.count(); i++)
     {
-        QString valuesString = GetInsertValuesString(relationTableStructs[joinTables[i]], lastId, item.dataChunks[joinTables[i]]);
+        QString valuesString = GetValuesString(relationTableStructs[joinTables[i]], lastId, item.dataChunks[joinTables[i]]);
         if(valuesString != "")
         {
             queryStr = "";
@@ -170,44 +165,42 @@ int TableHandler::AddItem(ManagerItemInfo item)
         }
     }
 
+    //QStringList relationsNames = relationsMap[treeName];
+
     return lastId;
 }
 
-bool TableHandler::EditItem(ManagerItemInfo item)
+bool TableHandler::EditItem(TreeItemInfo item)
 {
-    qDebug() << "AddItem";
-
-    QString queryStr;
-
-    QStringList joinTables = item.dataChunks.keys();
-    qDebug() << joinTables.count();
-    for(int i = 0; i < joinTables.count(); i++)
-    {
-        QString valuesString = GetUpdateValuesString(relationTableStructs[joinTables[i]], item.id, item.dataChunks[joinTables[i]]);
-        if(valuesString != "")
-        {
-            queryStr = "";
-            queryStr.append(QString("UPDATE r_%1_%2 SET %3")
-                            .arg(tableName)
-                            .arg(joinTables[i])
-                            .arg(valuesString)
-                            );
-            dataSource->ExecuteQuery(queryStr);
-        }
-        else
-        {
-            qDebug() << "Empty string!";
-        }
-    }
-    return true;
+//    treeName = treeName.toLower();
+//    QString queryStr = QString("update %1 set name='%3', parent=%4, position=%5 where id=%2")
+//            .arg(treeName)
+//            .arg(item.id)
+//            .arg(item.parent)
+//            .arg(item.position)
+//            ;
+//    qDebug() << "Edit Task" << queryStr;
+//    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+//    if(query.lastError().text() != "")
+//    {
+//        lastError = query.lastError().text();
+//        return false;
+//    }
+//    return true;
 }
 
 bool TableHandler::DeleteItem(int id)
 {
-    QString queryStr = QString("delete from %1 where id=%2").arg(tableName).arg(id);
-    qDebug() << "Delete Task" << queryStr;
-    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
-    return true;
+//    treeName = treeName.toLower();
+//    QString queryStr = QString("delete from %1 where id=%2").arg(treeName).arg(id);
+//    qDebug() << "Delete Task" << queryStr;
+//    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+//    if(query.lastError().text() != "")
+//    {
+//        lastError = query.lastError().text();
+//        return false;
+//    }
+//    return true;
 }
 
 TableHandler::TableStructMap TableHandler::GetHeader()
@@ -237,7 +230,7 @@ QString TableHandler::GetHeaderString(TableStructMap &tableStruct, bool createRe
     return structStr;
 }
 
-QString TableHandler::GetInsertValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData)
+QString TableHandler::GetValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData)
 {
     if(tableStruct.count() != itemData.count())
     {
@@ -245,20 +238,27 @@ QString TableHandler::GetInsertValuesString(TableStructMap &tableStruct, int id,
         return QString();
     }
 
-    QString fieldNamesStr = "(id, ";
-    QString valuesStr = QString("(%1, ").arg(QString::number(id));
+    QString fieldNamesStr = "(";
+    QString valuesStr = "(";
     TableStructMap::Iterator structIter = tableStruct.begin();
     TableStructMap::Iterator lastElement = --tableStruct.end();
     QVector<QVariant>::Iterator dataIter = itemData.begin();
     while(structIter != tableStruct.end())
     {
-        fieldNamesStr.append(structIter.key());
-        QString buf;
-        if(dataIter->type() == QVariant::String)
-            buf = QString("'%1'").arg(dataIter->toString());
+        fieldNamesStr.append( QString("%1").arg(structIter.key()) );
+        if(structIter.key() == "id")
+        {
+            valuesStr.append(QString::number(id));
+        }
         else
-            buf = dataIter->toString();
-        valuesStr.append(buf);
+        {
+            QString buf;
+            if(dataIter->type() == QVariant::String)
+                buf = QString("'%1'").arg(dataIter->toString());
+            else
+                buf = dataIter->toString();
+            valuesStr.append(buf);
+        }
 
         if(structIter != lastElement)
         {
@@ -274,37 +274,6 @@ QString TableHandler::GetInsertValuesString(TableStructMap &tableStruct, int id,
         ++dataIter;
     }
     return QString("%1 VALUES %2").arg(fieldNamesStr).arg(valuesStr);
-}
-
-QString TableHandler::GetUpdateValuesString(TableHandler::TableStructMap &tableStruct, int id, QVector<QVariant> &itemData)
-{
-    if(tableStruct.count() != itemData.count())
-    {
-        qDebug() << "Wrong size" << tableStruct.count() << itemData.count();
-        return QString();
-    }
-
-    QString resultStr = "";
-    TableStructMap::Iterator structIter = tableStruct.begin();
-    TableStructMap::Iterator lastElement = --tableStruct.end();
-    QVector<QVariant>::Iterator dataIter = itemData.begin();
-    while(structIter != tableStruct.end())
-    {
-        resultStr.append(structIter.key()).append("=");
-
-        if(dataIter->type() == QVariant::String)
-            resultStr.append(QString("'%1'").arg(dataIter->toString()));
-        else
-            resultStr.append(dataIter->toString());
-
-        if(structIter != lastElement)
-            resultStr.append(",");
-
-        ++structIter;
-        ++dataIter;
-    }
-    resultStr.append(" where id=").append(QString::number(id));
-    return resultStr;
 }
 
 bool TableHandler::IsTableExists(QString tableName)

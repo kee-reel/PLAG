@@ -5,8 +5,8 @@
 #include <QWidget>
 #include <QPainter>
 #include <QAbstractItemModel>
-
 #include <QResizeEvent>
+
 #include "../../Plugins/TaskListModel/itasktreemodel.h"
 #include "addform.h"
 
@@ -26,11 +26,12 @@ public:
 
 private:
 
-    //void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event);
 
     Ui::MainForm *ui;
     AddForm *addForm;
     QAbstractItemModel *model;
+    const QModelIndex *currentModelIndex;
 
 signals:
     void onClose();
@@ -38,6 +39,9 @@ private slots:
     void on_buttonExit_clicked();
     void on_buttonAdd_clicked();
     void on_treeView_doubleClicked(const QModelIndex &index);
+    void on_buttonDelete_clicked();
+    void on_treeView_pressed(const QModelIndex &index);
+    void on_buttonEdit_clicked();
 };
 
 #endif // MAINFORM_H
