@@ -17,7 +17,7 @@ MainForm::~MainForm()
 void MainForm::SetModel(QAbstractItemModel *model)
 {
     this->model = model;
-
+    currentModelIndex = NULL;
     ui->treeView->setModel(model);
     addForm->SetModel(model);
 }
@@ -29,8 +29,10 @@ void MainForm::resizeEvent(QResizeEvent *event)
 
 void MainForm::on_buttonAdd_clicked()
 {
-    qDebug() << "on_buttonAdd_clicked";
-    model->insertRows(currentModelIndex->row(), 1, currentModelIndex->parent());
+    if(currentModelIndex)
+        model->insertRows(currentModelIndex->row(), 1, *currentModelIndex);
+    else
+        model->insertRows(0, 1);
 }
 
 void MainForm::on_buttonExit_clicked()
@@ -40,22 +42,23 @@ void MainForm::on_buttonExit_clicked()
 
 void MainForm::on_treeView_doubleClicked(const QModelIndex &index)
 {
-    addForm->ShowModelData(index);
+    if(currentModelIndex)
+        addForm->ShowModelData(index);
 }
 
 void MainForm::on_buttonDelete_clicked()
 {
-    qDebug() << "on_buttonDelete_clicked";
-    model->removeRows(currentModelIndex->row(), 1, currentModelIndex->parent());
+    if(currentModelIndex)
+        model->removeRows(currentModelIndex->row(), 1, currentModelIndex->parent());
 }
 
 void MainForm::on_treeView_pressed(const QModelIndex &index)
 {
     currentModelIndex = &index;
-    qDebug() << currentModelIndex->row();
 }
 
 void MainForm::on_buttonEdit_clicked()
 {
-    addForm->ShowModelData(*currentModelIndex);
+    if(currentModelIndex)
+        addForm->ShowModelData(*currentModelIndex);
 }
