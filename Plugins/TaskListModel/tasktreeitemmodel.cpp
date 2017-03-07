@@ -110,13 +110,13 @@ QVariant TaskTreeItemModel::data(const QModelIndex &index, int role) const
         return item->GetChunkDataElement(index.column());
         break;
     case Qt::SizeHintRole:
-        return QSize(0, 30);
+        return QSize(0, 50);
         break;
     case Qt::ToolTipRole:
         return item->GetId();
         break;
     case Qt::FontRole:
-        return QFont("Segoe UI", 14, QFont::Bold);
+        return QFont("Segoe UI", 20, QFont::Bold);
         break;
     case Qt::BackgroundRole:
         return QBrush(QColor(180 - index.row()*10, 180, 180));

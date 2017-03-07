@@ -5,6 +5,7 @@ TaskTreePluginModel::TaskTreePluginModel()
     tableName = "TaskTree";
     activeViewId = -1;
     dataManager = NULL;
+    treeModel = NULL;
 }
 
 TaskTreePluginModel::~TaskTreePluginModel()

@@ -25,10 +25,10 @@ void PluginLoader::LoadPluginsToHome()
         internalPluginsPath.mkdir(internalPluginsPath.absolutePath());
     }
     qDebug() << "Paths" << storageDirectoryPath.absolutePath() << internalPluginsPath;
-//    foreach (QString file, storageDirectoryPath.entryList(QDir::AllEntries))
-//    {
-//        qDebug() << file;
-//    }
+    foreach (QString file, storageDirectoryPath.entryList(QDir::AllEntries))
+    {
+        qDebug() << file;
+    }
 
     QFile fileToCopy;
     QFile existingFile;
