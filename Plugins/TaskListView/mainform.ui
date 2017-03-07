@@ -39,7 +39,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/Icons/ic_add_black_24dp.png</normaloff>:/Icons/ic_add_black_24dp.png</iconset>
+         <normaloff>:/Res/ic_add_black_24dp.png</normaloff>:/Res/ic_add_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -68,7 +68,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/Icons/ic_mode_edit_black_24dp.png</normaloff>:/Icons/ic_mode_edit_black_24dp.png</iconset>
+         <normaloff>:/Res/ic_mode_edit_black_24dp.png</normaloff>:/Res/ic_mode_edit_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -94,7 +94,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/Icons/ic_delete_black_24dp.png</normaloff>:/Icons/ic_delete_black_24dp.png</iconset>
+         <normaloff>:/Res/ic_delete_black_24dp.png</normaloff>:/Res/ic_delete_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -120,7 +120,7 @@
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
-         <normaloff>:/Icons/ic_exit_to_app_black_24dp.png</normaloff>:/Icons/ic_exit_to_app_black_24dp.png</iconset>
+         <normaloff>:/Res/ic_exit_to_app_black_24dp.png</normaloff>:/Res/ic_exit_to_app_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
         <size>
