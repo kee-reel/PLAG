@@ -40,15 +40,12 @@ bool TaskListView::Open(int id, QWidget* parent)
         qDebug() << "Model isn't set!";
         return false;
     }
-    qDebug() << "A";
     taskTree = myModel->GetTreeModel();
-    qDebug() << "A";
     mainForm->SetModel(taskTree);
-    qDebug() << "A";
     myId = id;
+
+    parent->layout()->addWidget(mainForm);
     mainForm->setParent(parent);
-    qDebug() << "A";
-    mainForm->resize(parent->size());
     mainForm->setVisible(true);
     connect(mainForm, SIGNAL(onClose()), this, SLOT(onClose()));
     return true;

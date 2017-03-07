@@ -28,10 +28,18 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
     QFont m_font;
     m_font.setBold(true);
-    p.setFont(QFont("Corbel", width()/20));
-    p.drawText(rect(), Qt::AlignCenter, "Multiple\nApplication\nSupport\nSystem");
+    p.setFont(QFont("Corbel", width()/15));
+    p.drawText(rect(), Qt::AlignCenter, "MASS");
 
     p.end();
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    for(int i = 0; i < modulesButtons.count(); i++)
+    {
+        modulesButtons[i]->resize(event->size().width()/3, event->size().width()/3);
+    }
 }
 
 void MainWindow::WipeAllButtons()

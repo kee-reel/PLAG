@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QString>
 #include <QPainter>
+#include <QApplication>
 
 #include "draggablebutton.h"
 
@@ -20,7 +21,9 @@ public:
     void WipeAllButtons();
 private:
     QList<DraggableButton*> modulesButtons;
+
     void paintEvent(QPaintEvent *event);
+    void resizeEvent(QResizeEvent *event);
 
 signals:
     void OnButtonPressed(int);

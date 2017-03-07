@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>358</width>
-    <height>460</height>
+    <width>368</width>
+    <height>633</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,29 +25,87 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="buttonAdd">
-       <property name="text">
+       <property name="toolTip">
         <string>Add</string>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="buttonDelete">
        <property name="text">
-        <string>Delete</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Icons/ic_add_black_24dp/android/drawable-xhdpi/ic_add_black_24dp.png</normaloff>../../../Icons/ic_add_black_24dp/android/drawable-xhdpi/ic_add_black_24dp.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonEdit">
-       <property name="text">
+       <property name="toolTip">
         <string>Edit</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Icons/ic_mode_edit_black_24dp/android/drawable-xhdpi/ic_mode_edit_black_24dp.png</normaloff>../../../Icons/ic_mode_edit_black_24dp/android/drawable-xhdpi/ic_mode_edit_black_24dp.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonDelete">
+       <property name="toolTip">
+        <string>Delete</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Icons/ic_delete_black_24dp/android/drawable-xhdpi/ic_delete_black_24dp.png</normaloff>../../../Icons/ic_delete_black_24dp/android/drawable-xhdpi/ic_delete_black_24dp.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="buttonExit">
-       <property name="text">
+       <property name="toolTip">
         <string>Exit</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../Icons/ic_exit_to_app_black_24dp/android/drawable-xhdpi/ic_exit_to_app_black_24dp.png</normaloff>../../../Icons/ic_exit_to_app_black_24dp/android/drawable-xhdpi/ic_exit_to_app_black_24dp.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
        </property>
       </widget>
      </item>

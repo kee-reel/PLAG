@@ -24,6 +24,7 @@ void MainForm::SetModel(QAbstractItemModel *model)
 
 void MainForm::resizeEvent(QResizeEvent *event)
 {
+    qDebug() << "Resize";
     addForm->resize(event->size());
 }
 

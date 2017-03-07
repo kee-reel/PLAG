@@ -42,8 +42,8 @@ bool MainMenuPluginView::Open(int id, QWidget* parent)
     }
 
     myId = id;
+    parent->layout()->addWidget(mainWindow);
     mainWindow->setParent(parent);
-    mainWindow->resize(parent->size());
     mainWindow->setVisible(true);
     QList<MetaInfo*> list = myModel->GetChildPlugins();
     for(int i = 0; i < list.count(); i++)

@@ -1,6 +1,7 @@
 #ifndef MAINMENUPLUGINVIEW_H
 #define MAINMENUPLUGINVIEW_H
 
+#include <QLayout>
 #include <QObject>
 #include <QDebug>
 
@@ -17,6 +18,7 @@ private:
     IMainMenuPluginModel *myModel;
     int myId;
     MainWindow* mainWindow;
+
 
 public:
     MainMenuPluginView();

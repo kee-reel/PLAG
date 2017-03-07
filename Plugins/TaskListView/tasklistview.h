@@ -3,6 +3,7 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QLayout>
 
 #include "../TaskListModel/itasktreemodel.h"
 #include "mainform.h"
