@@ -4,8 +4,10 @@
 #include <QApplication>
 #include <QDebug>
 #include <QLayout>
+#include <QAbstractProxyModel>
 
 #include "../TaskListModel/itasktreemodel.h"
+#include "designproxymodel.h"
 #include "mainform.h"
 
 class TaskListView : public QObject, IViewPlugin
@@ -24,6 +26,7 @@ private:
     ITreeModel *myModel;
     int myId;
     MainForm *mainForm;
+    DesignProxyModel *proxyModel;
 
     // IPlugin interface
 public:

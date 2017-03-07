@@ -109,17 +109,8 @@ QVariant TaskTreeItemModel::data(const QModelIndex &index, int role) const
     case Qt::DisplayRole:
         return item->GetChunkDataElement(index.column());
         break;
-    case Qt::SizeHintRole:
-        return QSize(0, 50);
-        break;
     case Qt::ToolTipRole:
         return item->GetId();
-        break;
-    case Qt::FontRole:
-        return QFont("Segoe UI", 20, QFont::Bold);
-        break;
-    case Qt::BackgroundRole:
-        return QBrush(QColor(180 - index.row()*10, 180, 180));
         break;
     case Qt::EditRole:
         return item->GetChunkDataElement(index.column());
@@ -145,17 +136,8 @@ QVariant TaskTreeItemModel::headerData(int section, Qt::Orientation orientation,
     case Qt::DisplayRole:
         return rootItem->GetChunkDataElement(section);
         break;
-    case Qt::SizeHintRole:
-        return QSize(0, 30);
-        break;
     case Qt::ToolTipRole:
         return rootItem->GetId();
-        break;
-    case Qt::FontRole:
-        return QFont("Segoe UI", 14, QFont::Bold);
-        break;
-    case Qt::BackgroundRole:
-        return QBrush(QColor(180 - section*10, 180, 180));
         break;
     case Qt::EditRole:
         return rootItem->GetChunkDataElement(section);

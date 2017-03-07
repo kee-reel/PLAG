@@ -10,12 +10,14 @@ QT += widgets
 SOURCES += \
     tasklistview.cpp \
     mainform.cpp \
-    addform.cpp
+    addform.cpp \
+    designproxymodel.cpp
 
 HEADERS +=\
     tasklistview.h \
     mainform.h \
-    addform.h
+    addform.h \
+    designproxymodel.h
 
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
@@ -36,3 +38,6 @@ DISTFILES += \
 FORMS += \
     mainform.ui \
     addform.ui
+
+RESOURCES += \
+    res.qrc

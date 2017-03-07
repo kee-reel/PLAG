@@ -11,6 +11,10 @@ ParentWindow::ParentWindow(QWidget *parent) : QWidget(parent)
     QScreen *screen = QApplication::primaryScreen();
     this->resize(screen->size().width(),
         screen->size().height());
+#else
+    QScreen *screen = QApplication::primaryScreen();
+    this->resize(screen->size().width()/3,
+        screen->size().height()/2);
 #endif
     pluginManager->SetupPlugins();
 }

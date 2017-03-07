@@ -3,7 +3,10 @@
 TaskListView::TaskListView()
 {
     mainForm = new MainForm;
+
     myModel = NULL;
+    taskTree = NULL;
+    proxyModel = NULL;
 }
 
 TaskListView::~TaskListView()
@@ -40,13 +43,19 @@ bool TaskListView::Open(int id, QWidget* parent)
         qDebug() << "Model isn't set!";
         return false;
     }
-    taskTree = myModel->GetTreeModel();
-    mainForm->SetModel(taskTree);
-    myId = id;
 
-    parent->layout()->addWidget(mainForm);
+    if(!taskTree)
+    {
+        taskTree = myModel->GetTreeModel();
+        proxyModel = new DesignProxyModel(taskTree);
+        mainForm->SetModel(proxyModel);
+        parent->layout()->addWidget(mainForm);
+    }
+
+    myId = id;
     mainForm->setParent(parent);
     mainForm->setVisible(true);
+
     connect(mainForm, SIGNAL(onClose()), this, SLOT(onClose()));
     return true;
 }

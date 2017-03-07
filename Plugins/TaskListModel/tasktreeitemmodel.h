@@ -5,9 +5,6 @@
 #include <QVariant>
 #include <QVector>
 #include <QDebug>
-#include <QSize>
-#include <QFont>
-#include <QBrush>
 
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 #include "treeitem.h"
@@ -35,7 +32,7 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     bool insertRows(int row, int count, const QModelIndex &parent) override;
     bool removeRows(int row, int count, const QModelIndex &parent) override;
-    virtual bool setData(const QModelIndex &index, const QVariant &value, int role);
+    bool setData(const QModelIndex &index, const QVariant &value, int role) override;
 
 private:
     int nameIndex;
