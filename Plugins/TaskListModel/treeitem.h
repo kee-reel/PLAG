@@ -24,7 +24,7 @@ public:
     void AddChild(int row, TreeItem *child);
     void RemoveChild(TreeItem *child);
     void RemoveChildAt(int row);
-    inline TreeItem *GetChildAt(int row) { return childItems[row]; qDebug() << "Get child" << row; }
+    inline TreeItem *GetChildAt(int row) { return childItems.count() > row ? childItems[row] : NULL;}
     inline int ChildCount() { return childItems.count(); }
     inline int GetChildPosition(TreeItem *item) { return childItems.indexOf(item); }
 

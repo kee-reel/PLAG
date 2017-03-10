@@ -245,6 +245,44 @@ bool TaskTreeItemModel::removeRows(int row, int count, const QModelIndex &parent
     endRemoveRows();
 }
 
+bool TaskTreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild)
+{
+    qDebug() << "moveRows" << sourceParent << sourceRow << count << destinationParent << destinationChild;
+    destinationChild++;
+    int sourceLast = sourceRow+count;
+
+    if(!beginMoveRows(sourceParent, sourceRow, sourceLast, destinationParent, destinationChild))
+    {
+        qDebug() << "Wrong move";
+        return false;
+    }
+
+    if(sourceParent == destinationParent && sourceRow < destinationChild)
+    {
+        qDebug() << "That's it!" << sourceRow << destinationChild << (sourceRow+count);
+        destinationChild -= count+1;
+        //sourceLast = sourceRow+count;
+    }
+
+    TreeItem *sourceParentItem = (!sourceParent.isValid()) ? rootItem : static_cast<TreeItem*>(sourceParent.internalPointer());
+    TreeItem *destinationParentItem = (!destinationParent.isValid()) ? rootItem : static_cast<TreeItem*>(destinationParent.internalPointer());
+    for(int i = sourceRow+count; i >= sourceRow; i--)
+    {
+        qDebug() << "I =" << i;
+        TreeItem *item = sourceParentItem->GetChildAt(i);
+        if(!item || !sourceParentItem || !destinationParentItem){
+            qDebug() << "Null pointer" << item << sourceParentItem << destinationParentItem;
+            continue;
+        }
+        sourceParentItem->RemoveChildAt(i);
+        destinationParentItem->AddChild(destinationChild++, item);
+        item->parentItem = destinationParentItem;
+    }
+    qDebug() << "SHIT";
+    endMoveRows();
+    qDebug() << sourceParent.internalPointer() << destinationParent.internalPointer();
+}
+
 bool TaskTreeItemModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     qDebug() << "setData";
@@ -265,6 +303,96 @@ bool TaskTreeItemModel::setData(const QModelIndex &index, const QVariant &value,
         break;
     }
 
+    return true;
+}
+
+QStringList TaskTreeItemModel::mimeTypes() const
+{
+    qDebug() << "mimeTypes";
+    QStringList types;
+    types << "application/vnd.text.list";
+    return types;
+}
+
+QMimeData *TaskTreeItemModel::mimeData(const QModelIndexList &indexes) const
+{
+    qDebug() << "mimeData" << indexes.count();
+    QMimeData *mimeData = new QMimeData();
+    QByteArray encodedData;
+
+    QDataStream stream(&encodedData, QIODevice::WriteOnly);
+    foreach (const QModelIndex &index, indexes) {
+        if (index.isValid()) {
+            int row = index.row();
+            int column = index.column();
+            quintptr parent = (quintptr)index.internalPointer();
+            qDebug() << "Pointer" << parent << index.internalPointer();
+            QString text = data(index, Qt::DisplayRole).toString();
+            qDebug() << row << column << parent << text;
+            stream << row << column << parent << text;
+        }
+    }
+
+    mimeData->setData("application/vnd.text.list", encodedData);
+    return mimeData;
+}
+
+bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
+{
+    qDebug() << "dropMimeData";
+    if (action == Qt::IgnoreAction)
+        return true;
+
+    if (!data->hasFormat("application/vnd.text.list"))
+        return false;
+
+    if (column > 0)
+        return false;
+    int beginRow;
+
+    if (row != -1)
+        beginRow = row;
+    else if (parent.isValid())
+        beginRow = parent.row();
+    else
+        beginRow = rowCount(QModelIndex());
+
+    QByteArray encodedData = data->data("application/vnd.text.list");
+    QDataStream stream(&encodedData, QIODevice::ReadOnly);
+    QVector<QVector<QVariant>> newItems;
+    int rows = 0;
+
+    while (!stream.atEnd()) {
+        int row;
+        int column;
+        quintptr parent;
+        QString text;
+        stream >> row;
+        stream >> column;
+        stream >> parent;
+        stream >> text;
+        qDebug() << row << column << parent << text;
+
+        newItems.append(QVector<QVariant>());
+        newItems.last().resize(4);
+        newItems.last()[0] = row;
+        newItems.last()[1] = column;
+        newItems.last()[2] = parent;
+        newItems.last()[3] = text;
+        ++rows;
+    }
+
+    for(int i = newItems.count()-1; i >= 0; --i)
+    {
+        QModelIndex previdx = createIndex(newItems[i][0].toInt(), newItems[i][1].toInt(), newItems[i][2].toUInt());
+        if(!previdx.isValid())
+        {
+            qDebug() << "previdx is empty";
+            continue;
+        }
+        moveRows(previdx.parent(), previdx.row(), 0, parent.parent(), beginRow);
+        beginRow++;
+    }
     return true;
 }
 
@@ -342,110 +470,4 @@ bool TaskTreeItemModel::DeleteTask(TreeItem *task)
         task->parentItem->RemoveChild(task);
     DeleteFromManagerRecursive(task);
     qDebug() << "DeleteTask1";
-}
-
-QStringList TaskTreeItemModel::mimeTypes() const
-{
-    qDebug() << "mimeTypes";
-    QStringList types;
-    types << "application/vnd.text.list";
-    return types;
-}
-
-QMimeData *TaskTreeItemModel::mimeData(const QModelIndexList &indexes) const
-{
-    qDebug() << "mimeData" << indexes.count();
-    QMimeData *mimeData = new QMimeData();
-    QByteArray encodedData;
-
-    QDataStream stream(&encodedData, QIODevice::WriteOnly);
-    foreach (const QModelIndex &index, indexes) {
-        if (index.isValid()) {
-            int row = index.row();
-            int column = index.column();
-            quintptr parent = (quintptr)index.internalPointer();
-            qDebug() << "Pointer" << parent << index.internalPointer();
-            QString text = data(index, Qt::DisplayRole).toString();
-            qDebug() << row << column << parent << text;
-            stream << row << column << parent << text;
-        }
-    }
-
-    mimeData->setData("application/vnd.text.list", encodedData);
-    return mimeData;
-}
-
-bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
-{
-    qDebug() << "dropMimeData";
-    if (action == Qt::IgnoreAction)
-        return true;
-
-    if (!data->hasFormat("application/vnd.text.list"))
-        return false;
-
-    if (column > 0)
-        return false;
-    int beginRow;
-
-    if (row != -1)
-        beginRow = row;
-    else if (parent.isValid())
-        beginRow = parent.row();
-    else
-        beginRow = rowCount(QModelIndex());
-
-    QByteArray encodedData = data->data("application/vnd.text.list");
-    QDataStream stream(&encodedData, QIODevice::ReadOnly);
-    QList< QVector<QVariant> >  newItems;
-    int rows = 0;
-
-    while (!stream.atEnd()) {
-        newItems.append( QVector<QVariant>() );
-        newItems[rows].resize(4);
-        int row;
-        int column;
-        quintptr parent;
-        QString text;
-        stream >> row;
-        stream >> column;
-        stream >> parent;
-        stream >> text;
-        qDebug() << row << column << parent << text;
-        newItems[rows][0] = row;
-        newItems[rows][1] = column;
-        newItems[rows][2] = parent;
-        newItems[rows][3] = text;
-        ++rows;
-    }
-
-//    for(int i = 0; i < newItems.count(); i++) {
-//        qDebug() << "X";
-//        QModelIndex previdx = createIndex(newItems[i][0].toInt(), newItems[i][1].toInt(), newItems[i][2].toUInt());
-//        qDebug() << previdx.internalId() << previdx.internalPointer();
-//    }
-
-    for(int i = 0; i < newItems.count(); i++) {
-        QModelIndex idx = index(beginRow, 0, parent);
-        QModelIndex previdx = createIndex(newItems[i][0].toInt(), newItems[i][1].toInt(), newItems[i][2].toUInt());
-        if(!previdx.isValid())
-        {
-            qDebug() << "previdx is empty";
-            continue;
-        }
-        qDebug() << "RM" << previdx.data();
-        removeRows(previdx.row(), 1, previdx.parent());
-        insertRows(parent.row()+i, 1, parent.parent());
-        setData(index(parent.row()+i, 0, parent.parent()), newItems[i][3], Qt::EditRole);
-
-
-        beginRow++;
-    }
-
-    return true;
-}
-
-bool TaskTreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild)
-{
-    qDebug() << "moveRows";
 }

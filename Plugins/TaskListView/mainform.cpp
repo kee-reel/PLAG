@@ -7,12 +7,10 @@ MainForm::MainForm(QWidget *parent) :
 {
     ui->setupUi(this);
     addForm = new AddForm(this);
+    myTreeView = ui->treeView;//new MyTreeView(this);
+    ui->verticalLayout->addWidget(myTreeView);
 
-//    ui->treeView->setSelectionMode(QAbstractItemView::ExtendedSelection);
-//    ui->treeView->setDragEnabled(true);
-//    ui->treeView->setAcceptDrops(true);
-//    ui->treeView->setDropIndicatorShown(true);
-//    ui->treeView->setDragDropMode(QAbstractItemView::InternalMove);
+    setAcceptDrops(true);
 }
 
 MainForm::~MainForm()
@@ -24,7 +22,7 @@ void MainForm::SetModel(QAbstractItemModel *model)
 {
     this->model = model;
     currentModelIndex = NULL;
-    ui->treeView->setModel(model);
+    myTreeView->setModel(model);
     addForm->SetModel(model);
 }
 
@@ -36,7 +34,7 @@ void MainForm::resizeEvent(QResizeEvent *event)
 
 void MainForm::on_buttonAdd_clicked()
 {
-    QModelIndexList list = ui->treeView->selectionModel()->selectedIndexes();
+    QModelIndexList list = myTreeView->selectionModel()->selectedIndexes();
     for(int i = 0; i < list.count(); i++) {
         model->insertRows(list[i].row(), 1, list[i]);
     }
@@ -54,7 +52,7 @@ void MainForm::on_treeView_doubleClicked(const QModelIndex &index)
 
 void MainForm::on_buttonDelete_clicked()
 {
-    QModelIndexList list = ui->treeView->selectionModel()->selectedIndexes();
+    QModelIndexList list = myTreeView->selectionModel()->selectedIndexes();
     for(int i = 0; i < list.count(); i++) {
         model->removeRows(list[i].row(), 1, list[i].parent());
     }

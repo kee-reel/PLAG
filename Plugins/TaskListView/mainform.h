@@ -9,6 +9,7 @@
 
 #include "../../Plugins/TaskListModel/itasktreemodel.h"
 #include "addform.h"
+#include "mytreeview.h"
 
 namespace Ui {
 class MainForm;
@@ -31,6 +32,7 @@ private:
     Ui::MainForm *ui;
     AddForm *addForm;
     QAbstractItemModel *model;
+    QTreeView *myTreeView;
     const QModelIndex *currentModelIndex;
 
 signals:

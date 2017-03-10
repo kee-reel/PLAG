@@ -49,7 +49,8 @@ void TreeItem::RemoveChild(TreeItem *child)
 
 void TreeItem::RemoveChildAt(int row)
 {
-    childItems.removeAt(row);
+    if(childItems.count() > row)
+        childItems.removeAt(row);
 }
 
 void TreeItem::SetActiveChunkName(QString &chunkName)

@@ -11,13 +11,15 @@ SOURCES += \
     tasklistview.cpp \
     mainform.cpp \
     addform.cpp \
-    designproxymodel.cpp
+    designproxymodel.cpp \
+    mytreeview.cpp
 
 HEADERS +=\
     tasklistview.h \
     mainform.h \
     addform.h \
-    designproxymodel.h
+    designproxymodel.h \
+    mytreeview.h
 
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules

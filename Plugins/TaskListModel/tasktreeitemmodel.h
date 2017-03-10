@@ -7,7 +7,8 @@
 #include <QDebug>
 #include <QMimeData>
 #include <QDataStream>
-#include <QHash>
+#include <QMap>
+#include <QApplication>
 
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 #include "treeitem.h"
@@ -21,9 +22,7 @@ public:
     QString coreRelationName;
     IExtendableDataBaseManagerPlugin* dataManager;
 
-    TaskTreeItemModel(QString tableName,
-                      IExtendableDataBaseManagerPlugin* dataManager,
-                      QObject *parent = 0);
+    TaskTreeItemModel(QString tableName, IExtendableDataBaseManagerPlugin* dataManager, QObject *parent = 0);
     ~TaskTreeItemModel();
 
     QVariant data(const QModelIndex &index, int role) const;
@@ -35,7 +34,11 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     bool insertRows(int row, int count, const QModelIndex &parent) override;
     bool removeRows(int row, int count, const QModelIndex &parent) override;
+    bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild) override;
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+    QStringList mimeTypes() const override;
+    QMimeData *mimeData(const QModelIndexList &indexes) const override;
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) override;
 
 private:
     int nameIndex;
@@ -43,30 +46,13 @@ private:
     int positionIndex;
 
     TreeItem defaultTask;
-    QList<int> mimeDataIndexes;
-
-    QHash<quintptr, QModelIndex> modelIndexes;
-
-    void setupModelData(const QStringList &lines, TreeItem *parent);
     TreeItem *rootItem;
-
-    ManagerItemInfo ConvertToManagerTaskInfo(TreeItem* item);
-    void DeleteFromManagerRecursive(TreeItem *task);
 
     TreeItem *AddTask(int row, TreeItem *taskParent, TreeItem *taskData = NULL);
     bool EditTask(TreeItem *task, int column, QVariant dataField);
     bool DeleteTask(TreeItem *task);
-
-
-    // QAbstractItemModel interface
-public:
-    QStringList mimeTypes() const override;
-    QMimeData *mimeData(const QModelIndexList &indexes) const override;
-    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) override;
-
-    // QAbstractItemModel interface
-public:
-    bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild) override;
+    void DeleteFromManagerRecursive(TreeItem *task);
+    ManagerItemInfo ConvertToManagerTaskInfo(TreeItem* item);
 };
 
 #endif // TASKTREEMODEL_H
