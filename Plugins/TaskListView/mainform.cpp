@@ -7,6 +7,12 @@ MainForm::MainForm(QWidget *parent) :
 {
     ui->setupUi(this);
     addForm = new AddForm(this);
+
+//    ui->treeView->setSelectionMode(QAbstractItemView::ExtendedSelection);
+//    ui->treeView->setDragEnabled(true);
+//    ui->treeView->setAcceptDrops(true);
+//    ui->treeView->setDropIndicatorShown(true);
+//    ui->treeView->setDragDropMode(QAbstractItemView::InternalMove);
 }
 
 MainForm::~MainForm()

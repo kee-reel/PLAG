@@ -5,6 +5,9 @@
 #include <QVariant>
 #include <QVector>
 #include <QDebug>
+#include <QMimeData>
+#include <QDataStream>
+#include <QHash>
 
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 #include "treeitem.h"
@@ -41,6 +44,8 @@ private:
 
     TreeItem defaultTask;
 
+    QHash<quintptr, QModelIndex> modelIndexes;
+
     void setupModelData(const QStringList &lines, TreeItem *parent);
     TreeItem *rootItem;
 
@@ -51,6 +56,16 @@ private:
     bool EditTask(TreeItem *task, int column, QVariant dataField);
     bool DeleteTask(TreeItem *task);
 
+
+    // QAbstractItemModel interface
+public:
+    QStringList mimeTypes() const override;
+    QMimeData *mimeData(const QModelIndexList &indexes) const override;
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) override;
+
+    // QAbstractItemModel interface
+public:
+    bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild) override;
 };
 
 #endif // TASKTREEMODEL_H
