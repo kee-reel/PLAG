@@ -36,10 +36,10 @@ void MainForm::resizeEvent(QResizeEvent *event)
 
 void MainForm::on_buttonAdd_clicked()
 {
-    if(currentModelIndex)
-        model->insertRows(currentModelIndex->row(), 1, *currentModelIndex);
-    else
-        model->insertRows(0, 1);
+    QModelIndexList list = ui->treeView->selectionModel()->selectedIndexes();
+    for(int i = 0; i < list.count(); i++) {
+        model->insertRows(list[i].row(), 1, list[i]);
+    }
 }
 
 void MainForm::on_buttonExit_clicked()
@@ -49,14 +49,15 @@ void MainForm::on_buttonExit_clicked()
 
 void MainForm::on_treeView_doubleClicked(const QModelIndex &index)
 {
-    if(currentModelIndex)
-        addForm->ShowModelData(index);
+    addForm->ShowModelData(index);
 }
 
 void MainForm::on_buttonDelete_clicked()
 {
-    if(currentModelIndex)
-        model->removeRows(currentModelIndex->row(), 1, currentModelIndex->parent());
+    QModelIndexList list = ui->treeView->selectionModel()->selectedIndexes();
+    for(int i = 0; i < list.count(); i++) {
+        model->removeRows(list[i].row(), 1, list[i].parent());
+    }
 }
 
 void MainForm::on_treeView_pressed(const QModelIndex &index)

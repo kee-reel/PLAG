@@ -43,6 +43,7 @@ private:
     int positionIndex;
 
     TreeItem defaultTask;
+    QList<int> mimeDataIndexes;
 
     QHash<quintptr, QModelIndex> modelIndexes;
 
@@ -52,7 +53,7 @@ private:
     ManagerItemInfo ConvertToManagerTaskInfo(TreeItem* item);
     void DeleteFromManagerRecursive(TreeItem *task);
 
-    TreeItem *AddTask(TreeItem *taskParent, TreeItem *taskData = NULL);
+    TreeItem *AddTask(int row, TreeItem *taskParent, TreeItem *taskData = NULL);
     bool EditTask(TreeItem *task, int column, QVariant dataField);
     bool DeleteTask(TreeItem *task);
 
