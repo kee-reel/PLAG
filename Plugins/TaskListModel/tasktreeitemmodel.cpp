@@ -54,7 +54,7 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
         else
         {
             qDebug() << "Child" << dataChunk->at(parentIndex) << dataChunk->at(positionIndex);
-            treeItemParentMap[dataChunk->at(parentIndex).toInt()].insert(dataChunk->at(positionIndex).toInt(), treeItem);
+            treeItemParentMap[dataChunk->at(parentIndex).toInt()].insertMulti(dataChunk->at(positionIndex).toInt(), treeItem);
         }
 
         treeItem->SetId(managerTaskData->id);
@@ -72,7 +72,7 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
         rootData << QVariant("Name");
         rootItem->SetChunkData(coreRelationName, rootData);
         rootItem->SetActiveChunkName(coreRelationName);
-        AddTask(NULL, rootItem);
+        AddTask(0, NULL, rootItem);
     }
 
     QList<int> keys = treeItemParentMap.keys();
@@ -212,7 +212,6 @@ int TaskTreeItemModel::columnCount(const QModelIndex &parent) const
 
 bool TaskTreeItemModel::insertRows(int row, int count, const QModelIndex &parent)
 {
-    beginInsertRows(parent, row, row+count);
     TreeItem *parentItem;
     qDebug() << "insertRow";
     if (!parent.isValid())
@@ -223,6 +222,8 @@ bool TaskTreeItemModel::insertRows(int row, int count, const QModelIndex &parent
     else
         parentItem = static_cast<TreeItem*>(parent.internalPointer());
 
+    if(row == -1) row = parentItem->ChildCount();
+    beginInsertRows(parent, row, row+count);
     TreeItem *childItem = AddTask(row, parentItem);
     endInsertRows();
 }
@@ -248,39 +249,54 @@ bool TaskTreeItemModel::removeRows(int row, int count, const QModelIndex &parent
 bool TaskTreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild)
 {
     qDebug() << "moveRows" << sourceParent << sourceRow << count << destinationParent << destinationChild;
-    destinationChild++;
     int sourceLast = sourceRow+count;
 
-    if(!beginMoveRows(sourceParent, sourceRow, sourceLast, destinationParent, destinationChild))
+    if(!beginMoveRows(sourceParent, sourceRow, sourceLast, destinationParent, destinationChild+1))
     {
         qDebug() << "Wrong move";
         return false;
     }
 
-    if(sourceParent == destinationParent && sourceRow < destinationChild)
-    {
-        qDebug() << "That's it!" << sourceRow << destinationChild << (sourceRow+count);
-        destinationChild -= count+1;
-        //sourceLast = sourceRow+count;
-    }
+//    if(sourceParent == destinationParent && sourceRow < destinationChild)
+//    {
+//        qDebug() << "That's it!" << sourceRow << destinationChild << (sourceRow+count);
+//        destinationChild -= count+1;
+//        //sourceLast = sourceRow+count;
+//    }
 
     TreeItem *sourceParentItem = (!sourceParent.isValid()) ? rootItem : static_cast<TreeItem*>(sourceParent.internalPointer());
     TreeItem *destinationParentItem = (!destinationParent.isValid()) ? rootItem : static_cast<TreeItem*>(destinationParent.internalPointer());
-    for(int i = sourceRow+count; i >= sourceRow; i--)
+    TreeItem *destinationChildItem = destinationParentItem->GetChildAt(destinationChild);
+    QList<TreeItem*> movingItems;
+    for(int i = sourceRow+count; i >= sourceRow; --i)
     {
-        qDebug() << "I =" << i;
-        TreeItem *item = sourceParentItem->GetChildAt(i);
-        if(!item || !sourceParentItem || !destinationParentItem){
-            qDebug() << "Null pointer" << item << sourceParentItem << destinationParentItem;
-            continue;
-        }
+        movingItems.append(sourceParentItem->GetChildAt(i));
+        qDebug() << movingItems.last()->GetRow() << i;
+        movingItems.last()->parentItem = destinationParentItem;
         sourceParentItem->RemoveChildAt(i);
-        destinationParentItem->AddChild(destinationChild++, item);
-        item->parentItem = destinationParentItem;
     }
-    qDebug() << "SHIT";
+
+    destinationChild = destinationChildItem->GetRow()+1;
+    for(int i = 0; i < movingItems.count(); ++i)
+    {
+        qDebug() << destinationChild+i << movingItems.count()-1-i;
+        destinationParentItem->AddChild(destinationChild+i, movingItems[movingItems.count()-1-i]);
+    }
+
+//    for(int i = sourceRow+count; i >= sourceRow; --i)
+//    {
+//        qDebug() << "I =" << i;
+//        TreeItem *item = sourceParentItem->GetChildAt(i);
+//        if(!item || !sourceParentItem || !destinationParentItem){
+//            qDebug() << "Null pointer" << item << sourceParentItem << destinationParentItem;
+//            continue;
+//        }
+//        sourceParentItem->RemoveChildAt(i);
+//        destinationParentItem->AddChild(destinationChild, item);
+//        item->parentItem = destinationParentItem;
+//    }
+    qDebug() << "Shit";
     endMoveRows();
-    qDebug() << sourceParent.internalPointer() << destinationParent.internalPointer();
 }
 
 bool TaskTreeItemModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -325,14 +341,13 @@ QMimeData *TaskTreeItemModel::mimeData(const QModelIndexList &indexes) const
         if (index.isValid()) {
             int row = index.row();
             int column = index.column();
-            quintptr parent = (quintptr)index.internalPointer();
-            qDebug() << "Pointer" << parent << index.internalPointer();
-            QString text = data(index, Qt::DisplayRole).toString();
-            qDebug() << row << column << parent << text;
-            stream << row << column << parent << text;
+            quintptr indexPtr = (quintptr)index.internalPointer();
+            quintptr parentPtr = (quintptr)index.parent().internalPointer();
+
+            qDebug() << row << column << indexPtr << parentPtr;
+            stream << row << column << indexPtr << parentPtr;
         }
     }
-
     mimeData->setData("application/vnd.text.list", encodedData);
     return mimeData;
 }
@@ -359,40 +374,84 @@ bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction actio
 
     QByteArray encodedData = data->data("application/vnd.text.list");
     QDataStream stream(&encodedData, QIODevice::ReadOnly);
-    QVector<QVector<QVariant>> newItems;
+    //QVector<QVector<QVariant>> newItems;
+    QMap<quintptr, QMap<int, quintptr>> newItems;
     int rows = 0;
 
     while (!stream.atEnd()) {
         int row;
         int column;
-        quintptr parent;
-        QString text;
+        quintptr idxPtr;
+        quintptr parentPtr;
         stream >> row;
         stream >> column;
-        stream >> parent;
-        stream >> text;
-        qDebug() << row << column << parent << text;
+        stream >> idxPtr;
+        stream >> parentPtr;
 
-        newItems.append(QVector<QVariant>());
-        newItems.last().resize(4);
-        newItems.last()[0] = row;
-        newItems.last()[1] = column;
-        newItems.last()[2] = parent;
-        newItems.last()[3] = text;
+        qDebug() << row << column << idxPtr << parentPtr;
+
+//        newItems.append(QVector<QVariant>());
+//        newItems.last().resize(4);
+//        newItems.last()[0] = row;
+//        newItems.last()[1] = column;
+//        newItems.last()[2] = parent;
+//        newItems.last()[3] = text;
+        newItems[parentPtr][row] = idxPtr;
+        qDebug() << newItems.count();
         ++rows;
     }
 
-    for(int i = newItems.count()-1; i >= 0; --i)
+    QMap<quintptr, QMap<int, quintptr>>::Iterator parentI = newItems.begin();
+    while(parentI != newItems.end())
     {
-        QModelIndex previdx = createIndex(newItems[i][0].toInt(), newItems[i][1].toInt(), newItems[i][2].toUInt());
-        if(!previdx.isValid())
+        qDebug() << "parentI" << parentI.key();
+        QMap<int, quintptr> rows = parentI.value();
+        QMap<int, quintptr>::Iterator rowsI = rows.begin();
+        QMap<int, quintptr>::Iterator lastRowI = --rows.end();
+        int itemsBlock = 0;
+        int prevRow = -1;
+        QModelIndex bufIdx, blockFirstIdx;
+        while(rowsI != rows.end())
         {
-            qDebug() << "previdx is empty";
-            continue;
+            qDebug() << "rowsI" << rowsI.key();
+            itemsBlock++;
+            bufIdx = createIndex(rowsI.key(), 0, rowsI.value());
+            if(itemsBlock == 1) blockFirstIdx = bufIdx;
+
+            if(rowsI == lastRowI)
+            {
+                qDebug() << "First";
+                moveRows(blockFirstIdx.parent(), blockFirstIdx.row(), itemsBlock-1, parent.parent(), beginRow);
+                beginRow += itemsBlock;
+                itemsBlock = 0;
+            }
+            else if( prevRow != -1 && (prevRow != rowsI.key()-1) )
+            {
+                qDebug() << "Second";
+                moveRows(blockFirstIdx.parent(), blockFirstIdx.row(), itemsBlock-1, parent.parent(), beginRow);
+                beginRow += itemsBlock;
+                blockFirstIdx = bufIdx;
+                itemsBlock = 1;
+            }
+
+            prevRow = rowsI.key();
+            ++rowsI;
         }
-        moveRows(previdx.parent(), previdx.row(), 0, parent.parent(), beginRow);
-        beginRow++;
+        ++parentI;
     }
+
+//    for(int i = newItems.count()-1; i >= 0; --i)
+//    {
+//        QModelIndex previdx = createIndex(newItems[i][0].toInt(), newItems[i][1].toInt(), newItems[i][2].toUInt());
+//        if(!previdx.isValid())
+//        {
+//            qDebug() << "previdx is empty";
+//            continue;
+//        }
+//        moveRows(previdx.parent(), previdx.row(), 0, parent.parent(), beginRow);
+//        if(previdx != parent && previdx.row() > beginRow)
+//            beginRow++;
+//    }
     return true;
 }
 

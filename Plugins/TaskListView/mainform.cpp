@@ -35,9 +35,14 @@ void MainForm::resizeEvent(QResizeEvent *event)
 void MainForm::on_buttonAdd_clicked()
 {
     QModelIndexList list = myTreeView->selectionModel()->selectedIndexes();
-    for(int i = 0; i < list.count(); i++) {
-        model->insertRows(list[i].row(), 1, list[i]);
+    if(list.count())
+    {
+        for(int i = 0; i < list.count(); i++) {
+            model->insertRows(list[i].row(), 1, list[i]);
+        }
     }
+    else
+        model->insertRows(-1, 1, QModelIndex());
 }
 
 void MainForm::on_buttonExit_clicked()
