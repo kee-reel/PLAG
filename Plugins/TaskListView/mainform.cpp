@@ -7,7 +7,7 @@ MainForm::MainForm(QWidget *parent) :
 {
     ui->setupUi(this);
     addForm = new AddForm(this);
-    myTreeView = new MyTreeView(this);
+    myTreeView = new MyTreeView(this);//ui->treeView;
     ui->verticalLayout->addWidget(myTreeView);
 
     setAcceptDrops(true);

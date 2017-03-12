@@ -2,59 +2,38 @@
 
 MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
 {
-//    this->setSelectionMode(QAbstractItemView::SingleSelection);
-//    this->setDragEnabled(true);
-//    this->setAcceptDrops(true);
-//    this->setAnimated(true);
-//    this->setDragDropOverwriteMode(true);
-//    this->viewport()->setAcceptDrops(true);
-//    this->setExpandsOnDoubleClick(false);
-//    this->setDragDropMode(QAbstractItemView::DragDrop);
-
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
-    setSelectionBehavior(QAbstractItemView::SelectRows);
+    setAnimated(true);
+    setWordWrap(true);
+    setAutoScroll(true);
     setDragEnabled(true);
     setAcceptDrops(true);
+    setHeaderHidden(true);
+    setAutoExpandDelay(1000);
     setDragDropMode(DragDrop);
     setDropIndicatorShown(true);
-    setAnimated(true);
-    setAutoScroll(true);
-    setWordWrap(true);
     setAlternatingRowColors(true);
-    setAutoScroll(true);
+    setDragDropOverwriteMode(false);
+    setSelectionBehavior(QAbstractItemView::SelectRows);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+
+    QScroller::grabGesture(viewport(), QScroller::TouchGesture);
+#ifdef Q_OS_ANDROID
+    setFocusPolicy(Qt::NoFocus);
+    QScroller::grabGesture(viewport(), QScroller::Dragging);
+#else
+    setFocusPolicy(Qt::StrongFocus);
+#endif
 }
 
-//void MyTreeView::dragMoveEvent(QDragMoveEvent* event)
-//{
-//    setDropIndicatorShown(true);
-//    QTreeView::dragMoveEvent(event);
-//}
+void MyTreeView::dragMoveEvent(QDragMoveEvent* event)
+{
+    qDebug() << "dragMoveEvent" << event->type();
+    QTreeView::dragMoveEvent(event);
+}
 
-//void MyTreeView::dropEvent(QDropEvent* event)
-//{
-
-//    bool dropOK = false;
-//    DropIndicatorPosition dropIndicator = dropIndicatorPosition();
-//    switch (dropIndicator)
-//    {
-//    case QAbstractItemView::AboveItem:
-//        dropOK = true;
-//        break;
-//    case QAbstractItemView::BelowItem:
-//        dropOK = true;
-//        break;
-//    case QAbstractItemView::OnItem:
-//        dropOK = true;
-//        break;
-//    case QAbstractItemView::OnViewport:
-//        dropOK = false;
-//        break;
-//    }
-//    qDebug() << "dropEvent" << dropOK;
-//    if(dropOK)
-//    {
-//        event->accept();
-//        QTreeView::dropEvent(event);
-//    }
-//    setDropIndicatorShown(false);
-//}
+void MyTreeView::dropEvent(QDropEvent* event)
+{
+    selectionModel()->clearSelection();
+    QTreeView::dropEvent(event);
+}

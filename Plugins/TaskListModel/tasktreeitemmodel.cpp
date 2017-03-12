@@ -251,27 +251,31 @@ bool TaskTreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow,
     qDebug() << "moveRows" << sourceParent << sourceRow << count << destinationParent << destinationChild;
     int sourceLast = sourceRow+count;
 
+
+
+    TreeItem *sourceParentItem = (!sourceParent.isValid()) ? rootItem : static_cast<TreeItem*>(sourceParent.internalPointer());
+    TreeItem *destinationParentItem = (!destinationParent.isValid()) ? rootItem : static_cast<TreeItem*>(destinationParent.internalPointer());
+    TreeItem *destinationChildItem = destinationParentItem->GetChildAt(destinationChild);
+    qDebug() << sourceParentItem << destinationChildItem << destinationParentItem->ChildCount() << sourceParentItem->ChildCount();
+    QList<TreeItem*> movingItems;
+
+
     if(!beginMoveRows(sourceParent, sourceRow, sourceLast, destinationParent, destinationChild))
     {
         qDebug() << "Wrong move";
         return false;
     }
 
-    TreeItem *sourceParentItem = (!sourceParent.isValid()) ? rootItem : static_cast<TreeItem*>(sourceParent.internalPointer());
-    TreeItem *destinationParentItem = (!destinationParent.isValid()) ? rootItem : static_cast<TreeItem*>(destinationParent.internalPointer());
-    TreeItem *destinationChildItem = destinationParentItem->GetChildAt(destinationChild);
-    qDebug() << destinationChildItem << destinationParentItem->ChildCount() << sourceParentItem->ChildCount();
-    QList<TreeItem*> movingItems;
     for(int i = sourceLast; i >= sourceRow; --i)
     {
         movingItems.append(sourceParentItem->GetChildAt(i));
-        qDebug() << movingItems.last()->GetRow() << i;
+        qDebug() << movingItems.last()->GetRow() << movingItems.last()->GetChunkDataElement(0) << i;
         movingItems.last()->parentItem = destinationParentItem;
         sourceParentItem->RemoveChildAt(i);
     }
 
     destinationChild = destinationChildItem ? destinationChildItem->GetRow() : destinationChild;
-    qDebug() << destinationChild;
+
     for(int i = 0; i < movingItems.count(); ++i)
     {
         qDebug() << destinationParentItem->ChildCount() << destinationChild+i << movingItems.count()-1-i;
@@ -378,6 +382,8 @@ bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction actio
     QModelIndex bufIdx;
     QModelIndex blockFirstIdx;
     QModelIndex parentIdx;
+    TreeItem *treeItem;
+    TreeItem *blockFirstTreeItem;
     if(!parent.isValid())
     {
         parentIdx = createIndex(-1, -1, newItems.begin().key());
@@ -396,7 +402,7 @@ bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction actio
         int itemsBlock = 0;
         int prevRow = -1;
         int parentGlitch = 0;
-
+        blockFirstTreeItem = NULL;
         while(rowsI != rows.end())
         {
             qDebug() << "rowsI" << rowsI.key();
@@ -406,18 +412,20 @@ bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction actio
             if( prevRow != -1 && (prevRow != rowsI.key()-1) )
             {
                 qDebug() << "Second";
-                moveRows(blockFirstIdx.parent(), blockFirstIdx.row()-parentGlitch, itemsBlock-1, parentIdx, beginRow);
-                beginRow += itemsBlock;
-                parentGlitch += itemsBlock;
+                TreeItem *treeItem = (TreeItem*)blockFirstIdx.internalPointer();
+                moveRows(blockFirstIdx.parent(), treeItem->GetRow(), itemsBlock-1, parentIdx, beginRow);
+                //beginRow += itemsBlock;
+                //parentGlitch += itemsBlock;
                 blockFirstIdx = bufIdx;
                 itemsBlock = 0;
             }
             if(rowsI == lastRowI)
             {
                 qDebug() << "First";
-                moveRows(blockFirstIdx.parent(), blockFirstIdx.row()-parentGlitch, itemsBlock, parentIdx, beginRow);
-                beginRow += itemsBlock;
-                parentGlitch += itemsBlock;
+                TreeItem *treeItem = (TreeItem*)blockFirstIdx.internalPointer();
+                moveRows(blockFirstIdx.parent(), treeItem->GetRow(), itemsBlock, parentIdx, beginRow);
+                //beginRow += itemsBlock;
+                //parentGlitch += itemsBlock;
                 itemsBlock = 0;
             }
 
@@ -439,16 +447,22 @@ TreeItem *TaskTreeItemModel::AddTask(int row, TreeItem *taskParent, TreeItem* ta
         qDebug() << "Data manager not set!";
         return false;
     }
-    if(taskData == NULL)
-    {
-        taskData = &defaultTask;
-    }
+    if(!taskData) taskData = &defaultTask;
+    if(!taskParent) taskParent = rootItem;
 
     qDebug() << "Add task";
     TreeItem *newTask = new TreeItem(taskParent, taskData);
     qDebug() << taskParent;
-    if(taskParent != NULL)
-        taskParent->AddChild(row, newTask);
+
+    taskParent->AddChild(row, newTask);
+    if(taskParent != rootItem)
+    {
+        TreeItem* taskParentParent = taskParent->parentItem;
+        if(taskParentParent->ChildCount()-1 != taskParent->GetRow())
+        {
+            taskParentParent->GetChildAt(taskParent->GetRow()+1)->AddChild(row, newTask);
+        }
+    }
 
     ManagerItemInfo managerTask = ConvertToManagerTaskInfo(newTask);
     int newTaskId = dataManager->AddItem(tableName, managerTask);
