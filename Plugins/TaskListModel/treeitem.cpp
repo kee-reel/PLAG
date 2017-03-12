@@ -40,6 +40,7 @@ void TreeItem::SetChilds(QList<TreeItem *> childs)
 void TreeItem::AddChild(int row, TreeItem *child)
 {
     childItems.insert(row, child);
+    qDebug() << "Add ITEM" << row << child << childItems.count();
 }
 
 void TreeItem::RemoveChild(TreeItem *child)

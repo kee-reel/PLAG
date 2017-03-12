@@ -50,6 +50,7 @@ private:
 
     TreeItem *AddTask(int row, TreeItem *taskParent, TreeItem *taskData = NULL);
     bool EditTask(TreeItem *task, int column, QVariant dataField);
+    bool UpdateTaskPositions(TreeItem *parent, int from);
     bool DeleteTask(TreeItem *task);
     void DeleteFromManagerRecursive(TreeItem *task);
     ManagerItemInfo ConvertToManagerTaskInfo(TreeItem* item);
