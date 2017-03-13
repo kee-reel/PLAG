@@ -455,14 +455,6 @@ TreeItem *TaskTreeItemModel::AddTask(int row, TreeItem *taskParent, TreeItem* ta
     qDebug() << taskParent;
 
     taskParent->AddChild(row, newTask);
-    if(taskParent != rootItem)
-    {
-        TreeItem* taskParentParent = taskParent->parentItem;
-        if(taskParentParent->ChildCount()-1 != taskParent->GetRow())
-        {
-            taskParentParent->GetChildAt(taskParent->GetRow()+1)->AddChild(row, newTask);
-        }
-    }
 
     ManagerItemInfo managerTask = ConvertToManagerTaskInfo(newTask);
     int newTaskId = dataManager->AddItem(tableName, managerTask);

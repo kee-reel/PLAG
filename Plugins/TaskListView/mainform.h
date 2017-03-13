@@ -26,7 +26,6 @@ public:
     void SetModel(QAbstractItemModel *model);
 
 private:
-
     void resizeEvent(QResizeEvent *event);
 
     Ui::MainForm *ui;
@@ -37,7 +36,10 @@ private:
 
 signals:
     void onClose();
+
 private slots:
+    void hideMainWidgets();
+
     void on_buttonExit_clicked();
     void on_buttonAdd_clicked();
     void on_treeView_doubleClicked(const QModelIndex &index);

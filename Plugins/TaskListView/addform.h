@@ -21,9 +21,12 @@ public:
     void SetModel(QAbstractItemModel *model);
     void ShowModelData(const QModelIndex &index);
 
-    QDataWidgetMapper *mapper;
+signals:
+    void OnClose();
+
 private:
     Ui::AddForm *ui;
+    QDataWidgetMapper *mapper;
 
 private slots:
     void on_buttonOk_clicked();

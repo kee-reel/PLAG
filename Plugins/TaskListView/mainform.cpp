@@ -6,11 +6,10 @@ MainForm::MainForm(QWidget *parent) :
     ui(new Ui::MainForm)
 {
     ui->setupUi(this);
-    addForm = new AddForm(this);
     myTreeView = new MyTreeView(this);//ui->treeView;
     ui->verticalLayout->addWidget(myTreeView);
 
-    setAcceptDrops(true);
+    addForm = new AddForm(this);
 }
 
 MainForm::~MainForm()
@@ -32,6 +31,11 @@ void MainForm::resizeEvent(QResizeEvent *event)
     addForm->resize(event->size());
 }
 
+void MainForm::hideMainWidgets()
+{
+    ui->verticalLayout->setEnabled(true);
+}
+
 void MainForm::on_buttonAdd_clicked()
 {
     QModelIndexList list = myTreeView->selectionModel()->selectedIndexes();
@@ -39,6 +43,7 @@ void MainForm::on_buttonAdd_clicked()
     {
         for(int i = 0; i < list.count(); i++) {
             model->insertRows(list[i].row(), 1, list[i]);
+            myTreeView->expand(list[i]);
         }
     }
     else
@@ -52,13 +57,14 @@ void MainForm::on_buttonExit_clicked()
 
 void MainForm::on_treeView_doubleClicked(const QModelIndex &index)
 {
+    ui->verticalLayout->setEnabled(false);
     addForm->ShowModelData(index);
 }
 
 void MainForm::on_buttonDelete_clicked()
 {
     QModelIndexList list = myTreeView->selectionModel()->selectedIndexes();
-    for(int i = 0; i < list.count(); i++) {
+    for(int i = list.count()-1; i >= 0; --i) {
         model->removeRows(list[i].row(), 1, list[i].parent());
     }
 }
@@ -70,6 +76,10 @@ void MainForm::on_treeView_pressed(const QModelIndex &index)
 
 void MainForm::on_buttonEdit_clicked()
 {
-    if(currentModelIndex)
-        addForm->ShowModelData(*currentModelIndex);
+    QModelIndexList list = myTreeView->selectionModel()->selectedIndexes();
+    if(list.count())
+    {
+        ui->verticalLayout->setEnabled(false);
+        addForm->ShowModelData(list.first());
+    }
 }

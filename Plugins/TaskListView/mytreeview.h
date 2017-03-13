@@ -7,18 +7,17 @@
 #include <QDropEvent>
 #include <QMouseEvent>
 #include <QDragMoveEvent>
+#include <QTapAndHoldGesture>
 
 class MyTreeView : public QTreeView
 {
 public:
     MyTreeView(QWidget *parent);
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 protected:
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
-
-
-private:
 
 };
 

@@ -34,10 +34,12 @@ void AddForm::ShowModelData(const QModelIndex &index)
 void AddForm::on_buttonOk_clicked()
 {
     mapper->submit();
+    emit OnClose();
     close();
 }
 
 void AddForm::on_buttonClose_clicked()
 {
+    emit OnClose();
     close();
 }
