@@ -22,7 +22,7 @@ class MainForm : public QWidget
 public:
     explicit MainForm(QWidget *parent = 0);
     ~MainForm();
-
+    bool eventFilter(QObject *watched, QEvent *event) override;
     void SetModel(QAbstractItemModel *model);
 
 private:
@@ -38,7 +38,7 @@ signals:
     void onClose();
 
 private slots:
-    void hideMainWidgets();
+    void OnAddFormClosed();
 
     void on_buttonExit_clicked();
     void on_buttonAdd_clicked();

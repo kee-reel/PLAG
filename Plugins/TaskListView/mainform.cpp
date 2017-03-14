@@ -6,16 +6,39 @@ MainForm::MainForm(QWidget *parent) :
     ui(new Ui::MainForm)
 {
     ui->setupUi(this);
-    myTreeView = new MyTreeView(this);//ui->treeView;
+    myTreeView = new MyTreeView(this);
+    myTreeView->installEventFilter(this);
     ui->verticalLayout->setDirection(QBoxLayout::BottomToTop);
     ui->verticalLayout->addWidget(myTreeView);
 
     addForm = new AddForm(this);
+    connect(addForm, SIGNAL(OnClose()), this, SLOT(OnAddFormClosed()));
 }
 
 MainForm::~MainForm()
 {
     delete ui;
+}
+
+bool MainForm::eventFilter(QObject *watched, QEvent *event)
+{
+    switch (event->type()) {
+    case QEvent::KeyRelease:{
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        switch (keyEvent->key()) {
+        case Qt::Key_Space:
+        case Qt::Key_Enter:
+            on_buttonEdit_clicked();
+            break;
+        default:
+            break;
+        }
+    }break;
+
+    default:
+        return false;
+        break;
+    }
 }
 
 void MainForm::SetModel(QAbstractItemModel *model)
@@ -32,9 +55,15 @@ void MainForm::resizeEvent(QResizeEvent *event)
     addForm->resize(event->size());
 }
 
-void MainForm::hideMainWidgets()
+void MainForm::OnAddFormClosed()
 {
-    ui->verticalLayout->setEnabled(true);
+    show();
+    ui->buttonAdd->setFocusPolicy(Qt::StrongFocus);
+    ui->buttonDelete->setFocusPolicy(Qt::StrongFocus);
+    ui->buttonEdit->setFocusPolicy(Qt::StrongFocus);
+    ui->buttonExit->setFocusPolicy(Qt::StrongFocus);
+    myTreeView->setFocusPolicy(Qt::StrongFocus);
+    myTreeView->setFocus();
 }
 
 void MainForm::on_buttonAdd_clicked()
@@ -80,7 +109,11 @@ void MainForm::on_buttonEdit_clicked()
     QModelIndexList list = myTreeView->selectionModel()->selectedIndexes();
     if(list.count())
     {
-        ui->verticalLayout->setEnabled(false);
+        ui->buttonAdd->setFocusPolicy(Qt::NoFocus);
+        ui->buttonDelete->setFocusPolicy(Qt::NoFocus);
+        ui->buttonEdit->setFocusPolicy(Qt::NoFocus);
+        ui->buttonExit->setFocusPolicy(Qt::NoFocus);
+        myTreeView->setFocusPolicy(Qt::NoFocus);
         addForm->ShowModelData(list.first());
     }
 }

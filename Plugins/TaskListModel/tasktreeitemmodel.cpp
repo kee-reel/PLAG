@@ -112,9 +112,6 @@ QVariant TaskTreeItemModel::data(const QModelIndex &index, int role) const
     case Qt::DisplayRole:
         return item->GetChunkDataElement(index.column());
         break;
-    case Qt::ToolTipRole:
-        return item->GetId();
-        break;
     case Qt::EditRole:
         return item->GetChunkDataElement(index.column());
         break;
@@ -382,7 +379,6 @@ bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction actio
     QModelIndex bufIdx;
     QModelIndex blockFirstIdx;
     QModelIndex parentIdx;
-    TreeItem *treeItem;
     TreeItem *blockFirstTreeItem;
     if(!parent.isValid())
     {
@@ -401,7 +397,6 @@ bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction actio
         QMap<int, quintptr>::Iterator lastRowI = --rows.end();
         int itemsBlock = 0;
         int prevRow = -1;
-        int parentGlitch = 0;
         blockFirstTreeItem = NULL;
         while(rowsI != rows.end())
         {
@@ -414,8 +409,6 @@ bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction actio
                 qDebug() << "Second";
                 TreeItem *treeItem = (TreeItem*)blockFirstIdx.internalPointer();
                 moveRows(blockFirstIdx.parent(), treeItem->GetRow(), itemsBlock-1, parentIdx, beginRow);
-                //beginRow += itemsBlock;
-                //parentGlitch += itemsBlock;
                 blockFirstIdx = bufIdx;
                 itemsBlock = 0;
             }
@@ -424,8 +417,6 @@ bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction actio
                 qDebug() << "First";
                 TreeItem *treeItem = (TreeItem*)blockFirstIdx.internalPointer();
                 moveRows(blockFirstIdx.parent(), treeItem->GetRow(), itemsBlock, parentIdx, beginRow);
-                //beginRow += itemsBlock;
-                //parentGlitch += itemsBlock;
                 itemsBlock = 0;
             }
 

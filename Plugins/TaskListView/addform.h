@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QDataWidgetMapper>
 #include <QAbstractItemModel>
+#include <QKeyEvent>
 
 namespace Ui {
 class AddForm;
@@ -31,6 +32,10 @@ private:
 private slots:
     void on_buttonOk_clicked();
     void on_buttonClose_clicked();
+
+    // QObject interface
+public:
+    bool event(QEvent *event) override;
 };
 
 #endif // ADDFORM_H
