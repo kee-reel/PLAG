@@ -3,19 +3,18 @@
 # Project created by QtCreator 2017-02-01T20:08:55
 #
 #-------------------------------------------------
-TARGET = EmptyPluginView
+TARGET = NeuralNetworkView
 TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    emptypluginview.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    neuralnetworkview.cpp
 
 HEADERS += \
     ../../System/MASS/interfaces.h \
-    iemptypluginmodel.h \
-    emptypluginview.h \
-    mainwindow.h
+    mainwindow.h \
+    neuralnetworkview.h
 
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules

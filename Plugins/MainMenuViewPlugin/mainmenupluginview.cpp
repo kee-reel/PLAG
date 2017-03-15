@@ -44,28 +44,26 @@ bool MainMenuPluginView::Open(int id, QWidget* parent)
     myId = id;
     parent->layout()->addWidget(mainWindow);
     mainWindow->setParent(parent);
-    mainWindow->setVisible(true);
+    mainWindow->show();
     QList<MetaInfo*> list = myModel->GetChildPlugins();
     for(int i = 0; i < list.count(); i++)
     {
         qDebug() << list[i]->Name;
         mainWindow->AddNewButton(i, list[i]->Name);
     }
-    mainWindow->AddNewButton(0, "Test");
     return true;
 }
 
 bool MainMenuPluginView::Close()
 {
-    mainWindow->setVisible(false);
+    mainWindow->hide();
     mainWindow->WipeAllButtons();
-    disconnect(mainWindow, SIGNAL(OnButtonPressed(int)), this, SLOT(OpenChildPlugin(int)));
     return true;
 }
 
 void MainMenuPluginView::OpenChildPlugin(int id)
 {
     qDebug() << "Open plugin" << id;
-    mainWindow->setVisible(false);
+    Close();
     myModel->RunPlugin(id);
 }

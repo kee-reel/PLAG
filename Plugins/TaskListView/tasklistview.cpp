@@ -49,25 +49,21 @@ bool TaskListView::Open(int id, QWidget* parent)
         taskTree = myModel->GetTreeModel();
         proxyModel = new DesignProxyModel(taskTree);
         mainForm->SetModel(proxyModel);
-        parent->layout()->addWidget(mainForm);
     }
 
+    parent->layout()->addWidget(mainForm);
+    connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     myId = id;
     mainForm->setParent(parent);
-    mainForm->setVisible(true);
-
-    connect(mainForm, SIGNAL(onClose()), this, SLOT(onClose()));
+    mainForm->show();
     return true;
 }
 
 bool TaskListView::Close()
 {
-    mainForm->setVisible(false);
-    disconnect(mainForm, SIGNAL(onClose()), this, SLOT(onClose()));
-    return true;
-}
-
-void TaskListView::onClose()
-{
+    qDebug() << "CLOSE";
+    disconnect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
+    mainForm->hide();
     myModel->Close();
+    return true;
 }

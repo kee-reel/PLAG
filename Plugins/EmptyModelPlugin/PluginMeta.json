@@ -1,5 +1,5 @@
 {
-    "Name":         "EmptyModel",
+    "Name":         "NeuralNetworkModel",
     "PluginType":   "PluginModel",
     "ParentName":   "",
     "DataManager":  ""

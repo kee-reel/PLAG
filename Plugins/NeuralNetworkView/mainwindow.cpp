@@ -25,5 +25,6 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
+    qDebug() << "CLOSE";
     emit onClose();
 }

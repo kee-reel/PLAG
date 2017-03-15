@@ -18,6 +18,7 @@ void MainWindow::AddNewButton(int id, QString task)
     moduleButton->setGeometry(0, 0, size, size);
     modulesButtons.append(moduleButton);
     connect(moduleButton, SIGNAL(OnClicked(int)), this, SIGNAL(OnButtonPressed(int)));
+    moduleButton->show();
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)

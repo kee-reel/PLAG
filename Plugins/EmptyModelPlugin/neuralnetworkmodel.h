@@ -1,23 +1,22 @@
-#ifndef TASKLISTMODEL_H
-#define TASKLISTMODEL_H
+#ifndef EMPTYPLUGINMODEL_H
+#define EMPTYPLUGINMODEL_H
 
 #include <QObject>
 #include <QDebug>
 #include <QString>
 
-#include "itasktreemodel.h"
-#include "tasktreeitemmodel.h"
+#include "ineuralnetworkmodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 
-class TaskTreePluginModel : public QObject, ITreeModel
+class NeuralNetworkModel : public QObject, INeuralNetworkModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IModelPlugin ITreeModel)
+    Q_INTERFACES(IModelPlugin INeuralNetworkModel)
 
 public:
-    TaskTreePluginModel();
-    ~TaskTreePluginModel();
+    NeuralNetworkModel();
+    ~NeuralNetworkModel();
 
 private:
     // Native part
@@ -40,26 +39,24 @@ private:
     // Unique part
     QString tableName;
     IExtendableDataBaseManagerPlugin* dataManager;
-    TaskTreeItemModel* treeModel;
 
     // IPlugin interface
 public:
     void OnAllSetup() override;
     QString GetLastError() override;
 
-    // IPluginModel interface
+    // IModelPlugin interface
 public:
-    void AddChildModel(IModelPlugin *, MetaInfo *);
-    void AddDataManager(QObject *);
-    void AddView(IViewPlugin *plugin, MetaInfo *meta);
-    bool Open(IModelPlugin *parent, QWidget *parentWidget, int id);
-    bool Close();
-    void ChildSelfClosed(int id);
-    QString GetError();
+    void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
+    void AddView(IViewPlugin *view, MetaInfo *meta) override;
+    void AddDataManager(QObject *dataManager) override;
+    bool Open(IModelPlugin *parent, QWidget *parentWidget, int id) override;
+    bool Close() override;
+    void ChildSelfClosed(int id) override;
 
-    // ITaskListModel interface
+    // INeuralNetworkModel interface
 public:
-    QAbstractItemModel *GetTreeModel() override;
+    void TestFunc() override;
 };
 
-#endif // TASKLISTMODEL_H
+#endif // EMPTYPLUGINMODEL_H

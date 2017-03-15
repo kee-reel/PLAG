@@ -1,59 +1,53 @@
-#include "tasktreepluginmodel.h"
+#include "neuralnetworkmodel.h"
 
-TaskTreePluginModel::TaskTreePluginModel()
+NeuralNetworkModel::NeuralNetworkModel()
 {
     tableName = "TaskTree";
     activeViewId = -1;
     dataManager = NULL;
-    treeModel = NULL;
 }
 
-TaskTreePluginModel::~TaskTreePluginModel()
+NeuralNetworkModel::~NeuralNetworkModel()
 {
 }
 
-void TaskTreePluginModel::OnAllSetup()
-{
-
-}
-
-QString TaskTreePluginModel::GetLastError()
+void NeuralNetworkModel::OnAllSetup()
 {
 
 }
 
-void TaskTreePluginModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
+QString NeuralNetworkModel::GetLastError()
+{
+
+}
+
+void NeuralNetworkModel::AddChildModel(IModelPlugin *model, MetaInfo *meta)
 {
     qDebug() << "New child" << meta->Name;
-    PluginInfo<IModelPlugin> newPlugin = {plugin, meta};
+    PluginInfo<IModelPlugin> newPlugin = {model, meta};
     childModelPlugins.append(newPlugin);
 }
 
-void TaskTreePluginModel::AddDataManager(QObject *DBTool)
+void NeuralNetworkModel::AddView(IViewPlugin *view, MetaInfo *meta)
+{
+    PluginInfo<IViewPlugin> newPlugin = {view, meta};
+    viewPlugins.append(newPlugin);
+    qDebug() << "IPluginView succesfully set.";
+}
+
+void NeuralNetworkModel::AddDataManager(QObject *dataManager)
 {
     qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
-    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(DBTool);
+    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(dataManager);
     if(!this->dataManager)
     {
-        qDebug() << DBTool->objectName() << "is not IExtendableDataBaseManagerPlugin.";
+        qDebug() << dataManager->objectName() << "is not IExtendableDataBaseManagerPlugin.";
         return;
     }
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
-    if(!treeModel)
-        treeModel = new TaskTreeItemModel(tableName, dataManager);
 }
 
-QString TaskTreePluginModel::GetError()
-{
-
-}
-
-QAbstractItemModel* TaskTreePluginModel::GetTreeModel()
-{
-    return treeModel;
-}
-
-bool TaskTreePluginModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
+bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
 {
     qDebug() << "TaskListModel runs";
     if(viewPlugins.count() == 0){
@@ -76,7 +70,7 @@ bool TaskTreePluginModel::Open(IModelPlugin *parent, QWidget *parentWidget, int 
     return true;
 }
 
-bool TaskTreePluginModel::Close()
+bool NeuralNetworkModel::Close()
 {
     if(activeViewId != -1)
     {
@@ -96,14 +90,12 @@ bool TaskTreePluginModel::Close()
         return true;
 }
 
-void TaskTreePluginModel::ChildSelfClosed(int id)
+void NeuralNetworkModel::ChildSelfClosed(int id)
 {
 
 }
 
-void TaskTreePluginModel::AddView(IViewPlugin *plugin, MetaInfo *meta)
+void NeuralNetworkModel::TestFunc()
 {
-    PluginInfo<IViewPlugin> newPlugin = {plugin, meta};
-    viewPlugins.append(newPlugin);
-    qDebug() << "IPluginView succesfully set.";
+
 }

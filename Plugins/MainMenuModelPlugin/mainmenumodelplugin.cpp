@@ -56,6 +56,7 @@ bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidget, int 
 
     if(views.count())
     {
+        qDebug() << "OPEN" << views.first().meta->Name;
         views.first().plugin->Open(0, parentWidget);
     }
 

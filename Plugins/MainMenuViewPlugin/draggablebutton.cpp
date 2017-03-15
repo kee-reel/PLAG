@@ -16,7 +16,6 @@ void DraggableButton::paintEvent(QPaintEvent *)
 
     QFont m_font;
     m_font.setBold(true);
-
     p.setPen(QPen(QColor(Qt::black), 2));
     p.drawEllipse(borderShift/2, borderShift/2, width()-borderShift, height()-borderShift);
     p.setFont(QFont("Arial", width()/15));

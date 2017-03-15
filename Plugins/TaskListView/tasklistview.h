@@ -20,13 +20,13 @@ public:
     TaskListView();
     ~TaskListView();
 
-    QAbstractItemModel *taskTree;
-
 private:
     ITreeModel *myModel;
     int myId;
+
     MainForm *mainForm;
     DesignProxyModel *proxyModel;
+    QAbstractItemModel *taskTree;
 
     // IPlugin interface
 public:
@@ -37,10 +37,8 @@ public:
 public:
     void SetModel(QObject* model) override;
     bool Open(int id, QWidget* parent) override;
+public slots:
     bool Close() override;
-
-private slots:
-    void onClose();
 };
 
 #endif // TASKLISTVIEW_H

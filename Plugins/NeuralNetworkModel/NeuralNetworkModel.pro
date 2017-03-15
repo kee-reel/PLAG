@@ -3,17 +3,21 @@
 # Project created by QtCreator 2017-02-01T20:08:55
 #
 #-------------------------------------------------
-TARGET = EmptyPluginModel
+TARGET = NeuralNetworkModel
 TEMPLATE = lib
 QT += core
 
 SOURCES += \
-    emptypluginmodel.cpp
+    neuralnetworkmodel.cpp \
+    neuralnetwork.cpp \
+    neurallayer.cpp
 
 HEADERS += \
     ../../System/MASS/interfaces.h \
-    emptypluginmodel.h \
-    iemptypluginmodel.h
+    neuralnetworkmodel.h \
+    ineuralnetworkmodel.h \
+    neuralnetwork.h \
+    neurallayer.h
 
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
