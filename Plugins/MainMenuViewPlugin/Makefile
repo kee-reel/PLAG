@@ -111,6 +111,8 @@ Makefile: MainMenuViewPlugin.pro D:/Qt/5.8/mingw53_32/mkspecs/win32-g++/qmake.co
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_fb_support_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_gamepad.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_gamepad_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_gui.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_gui_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_help.pri \
@@ -123,6 +125,8 @@ Makefile: MainMenuViewPlugin.pro D:/Qt/5.8/mingw53_32/mkspecs/win32-g++/qmake.co
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_network.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_network_private.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_networkauth.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_networkauth_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_nfc.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_nfc_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_opengl.pri \
@@ -135,6 +139,8 @@ Makefile: MainMenuViewPlugin.pro D:/Qt/5.8/mingw53_32/mkspecs/win32-g++/qmake.co
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_positioning_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_printsupport.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_printsupport_private.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_purchasing.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_purchasing_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_qml.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_qml_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_qmldebug_private.pri \
@@ -150,6 +156,10 @@ Makefile: MainMenuViewPlugin.pro D:/Qt/5.8/mingw53_32/mkspecs/win32-g++/qmake.co
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_quickwidgets.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_quickwidgets_private.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_script.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_script_private.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_scripttools.pri \
+		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_scripttools_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_scxml.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_scxml_private.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_sensors.pri \
@@ -191,6 +201,7 @@ Makefile: MainMenuViewPlugin.pro D:/Qt/5.8/mingw53_32/mkspecs/win32-g++/qmake.co
 		D:/Qt/5.8/mingw53_32/mkspecs/features/toolchain.prf \
 		D:/Qt/5.8/mingw53_32/mkspecs/features/default_pre.prf \
 		D:/Qt/5.8/mingw53_32/mkspecs/features/win32/default_pre.prf \
+		../../System/MASS/BuildInfo.pri \
 		D:/Qt/5.8/mingw53_32/mkspecs/features/resolve_config.prf \
 		D:/Qt/5.8/mingw53_32/mkspecs/features/exclusive_builds_post.prf \
 		D:/Qt/5.8/mingw53_32/mkspecs/features/default_post.prf \
@@ -266,6 +277,8 @@ D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_egl_support_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_fb_support_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_gamepad.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_gamepad_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_gui.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_gui_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_help.pri:
@@ -278,6 +291,8 @@ D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_multimediawidgets.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_network.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_network_private.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_networkauth.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_networkauth_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_nfc.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_nfc_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_opengl.pri:
@@ -290,6 +305,8 @@ D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_positioning.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_positioning_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_printsupport.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_printsupport_private.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_purchasing.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_purchasing_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_qml.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_qml_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_qmldebug_private.pri:
@@ -305,6 +322,10 @@ D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_quickparticles_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_quicktemplates2_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_quickwidgets.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_quickwidgets_private.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_script.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_script_private.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_scripttools.pri:
+D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_scripttools_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_scxml.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_scxml_private.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/modules/qt_lib_sensors.pri:
@@ -346,6 +367,7 @@ D:/Qt/5.8/mingw53_32/mkspecs/features/exclusive_builds.prf:
 D:/Qt/5.8/mingw53_32/mkspecs/features/toolchain.prf:
 D:/Qt/5.8/mingw53_32/mkspecs/features/default_pre.prf:
 D:/Qt/5.8/mingw53_32/mkspecs/features/win32/default_pre.prf:
+../../System/MASS/BuildInfo.pri:
 D:/Qt/5.8/mingw53_32/mkspecs/features/resolve_config.prf:
 D:/Qt/5.8/mingw53_32/mkspecs/features/exclusive_builds_post.prf:
 D:/Qt/5.8/mingw53_32/mkspecs/features/default_post.prf:
@@ -376,7 +398,7 @@ qmake_all: FORCE
 make_first: release-make_first debug-make_first  FORCE
 all: release-all debug-all  FORCE
 clean: release-clean debug-clean  FORCE
-	-$(DEL_FILE) ..\..\System\build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release\Modules\libMainMenuViewPlugin.a
+	-$(DEL_FILE) ..\..\System\build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Debug\Modules\libMainMenuViewPlugin.a
 distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile
 	-$(DEL_FILE) .qmake.stash

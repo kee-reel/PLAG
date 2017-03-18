@@ -6,11 +6,15 @@
 #include <QDebug>
 #include <QMatrix>
 
-class NeuralLayer : public QObject
+class NeuralLayer
 {
-    Q_OBJECT
 public:
-    explicit NeuralLayer(int NeuronsValue, NeuralLayer *PrevLayer);
+    NeuralLayer(int NeuronsValue,
+                NeuralLayer *PrevLayer,
+                float LearnSpeed = 0.7,
+                float Moment = 0.3,
+                float FuncIndent = 10,
+                float Bias = 0);
     inline int LayerSize() {return outputs.size();}
 
 public slots:
@@ -26,14 +30,23 @@ protected :
     QVector<float> inputs;
     QVector<float> outputs;
     QVector<float> currentLayerDelta;
-    static inline float ActivationFunc(float x) {return 1/(1+expf(0.6*-x));}
+
+    float learnSpeed;
+    float moment;
+    float funcIndent;
+    float bias;
+    inline float ActivationFunc(float x) {return 1 / (1 + expf(funcIndent*-x));}
+    inline float ActivationFuncDerivative(float x) {return funcIndent * (1 - x) * (x);}
 };
 
 class InputNeuralLayer : public NeuralLayer
 {
-    Q_OBJECT
 public:
-    InputNeuralLayer(int NeuronsValue);
+    InputNeuralLayer(int NeuronsValue,
+                     float LearnSpeed = 0.7,
+                     float Moment = 0.3,
+                     float FuncIndent = 2,
+                     float Bias = -0.5);
 
 public slots:
     void Forward(QVector<float> &inputSignals) override;
@@ -42,9 +55,13 @@ public slots:
 
 class OutputNeuralLayer : public NeuralLayer
 {
-    Q_OBJECT
 public:
-    OutputNeuralLayer(int NeuronsValue, NeuralLayer *PrevLayer);
+    OutputNeuralLayer(int NeuronsValue,
+                      NeuralLayer *PrevLayer,
+                      float LearnSpeed = 0.7,
+                      float Moment = 0.3,
+                      float FuncIndent = 2,
+                      float Bias = -0.5);
     inline QVector<float> GetOutputs() { return outputs; }
 
 public slots:

@@ -10,24 +10,16 @@ QT += core
 SOURCES += \
     neuralnetworkmodel.cpp \
     neuralnetwork.cpp \
-    neurallayer.cpp \
-    x.cpp
+    neurallayer.cpp
 
 HEADERS += \
     ../../System/MASS/interfaces.h \
     neuralnetworkmodel.h \
     ineuralnetworkmodel.h \
     neuralnetwork.h \
-    neurallayer.h \
-    x.h
+    neurallayer.h
 
-windows{
-    DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
-}
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
+include(../../System/MASS/BuildInfo.pri)
 
 DISTFILES += \
     PluginMeta.json

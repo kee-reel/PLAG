@@ -16,14 +16,7 @@ HEADERS += \
     mainwindow.h \
     neuralnetworkview.h
 
-windows{
-    DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules
-}
-
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
+include(../../System/MASS/BuildInfo.pri)
 
 DISTFILES += \
     PluginMeta.json

@@ -3,23 +3,23 @@
 NeuralNetwork::NeuralNetwork(int inputs) : QObject()
 {
     inputLayer = new InputNeuralLayer(inputs);
-    hiddenLayers.append(new NeuralLayer(2*inputs, inputLayer));
-    outputLayer = new OutputNeuralLayer(1, hiddenLayers.last());
+    //hiddenLayers.append(new NeuralLayer(2*inputs, inputLayer));
+    outputLayer = new OutputNeuralLayer(1, inputLayer);//hiddenLayers.last());
     maxEpoch = 100;
     resultError = 0;
     resultErrorThreshold = 0.01;
 
     TrainingPair buf;
-    buf.inputs = {100, 100};
+    buf.inputs = {1, 1};
     buf.outputs = {1};
     trainingSamples.append(buf);
-    buf.inputs = {-100, -100};
+    buf.inputs = {0, 0};
     buf.outputs = {0};
     trainingSamples.append(buf);
-    buf.inputs = {-100, 100};
+    buf.inputs = {0, 1};
     buf.outputs = {1};
     trainingSamples.append(buf);
-    buf.inputs = {100, -100};
+    buf.inputs = {1, 0};
     buf.outputs = {1};
     trainingSamples.append(buf);
 

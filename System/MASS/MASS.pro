@@ -8,7 +8,7 @@ QT       += widgets sql gui qml quick
 
 TARGET = MASS
 TEMPLATE = app
-CONFIG += plugin release
+CONFIG += plugin
 
 SOURCES += main.cpp\
     parentwindow.cpp \
@@ -61,3 +61,6 @@ android {
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 }
+
+DISTFILES += \
+    BuildInfo.pri
