@@ -10,14 +10,16 @@ QT += core
 SOURCES += \
     neuralnetworkmodel.cpp \
     neuralnetwork.cpp \
-    neurallayer.cpp
+    neurallayer.cpp \
+    x.cpp
 
 HEADERS += \
     ../../System/MASS/interfaces.h \
     neuralnetworkmodel.h \
     ineuralnetworkmodel.h \
     neuralnetwork.h \
-    neurallayer.h
+    neurallayer.h \
+    x.h
 
 windows{
     DESTDIR = ../../System/build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release/Modules

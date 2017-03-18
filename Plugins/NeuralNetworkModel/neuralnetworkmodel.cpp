@@ -5,6 +5,7 @@ NeuralNetworkModel::NeuralNetworkModel()
     tableName = "TaskTree";
     activeViewId = -1;
     dataManager = NULL;
+    neuralNetwork = NULL;
 }
 
 NeuralNetworkModel::~NeuralNetworkModel()
@@ -58,6 +59,16 @@ bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget, int i
     myParent = parent;
     myParentWidget = parentWidget;
     activeViewId = 0;
+
+    if(!neuralNetwork)
+    {
+        neuralNetwork = new NeuralNetwork(2);
+    }
+    else
+    {
+        delete neuralNetwork;
+        neuralNetwork = new NeuralNetwork(2);
+    }
 
     qDebug() << viewPlugins[activeViewId].meta->Name;
     if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget))

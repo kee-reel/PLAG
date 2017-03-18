@@ -7,6 +7,7 @@
 
 #include "ineuralnetworkmodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
+#include "neuralnetwork.h"
 
 class NeuralNetworkModel : public QObject, INeuralNetworkModel
 {
@@ -39,6 +40,7 @@ private:
     // Unique part
     QString tableName;
     IExtendableDataBaseManagerPlugin* dataManager;
+    NeuralNetwork *neuralNetwork;
 
     // IPlugin interface
 public:
