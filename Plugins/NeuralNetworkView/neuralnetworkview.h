@@ -7,7 +7,7 @@
 
 #include "../NeuralNetworkModel/ineuralnetworkmodel.h"
 #include "../MainMenuModelPlugin/interfaces.h"
-#include "mainwindow.h"
+#include "mainform.h"
 
 class NeuralNetworkView : public QObject, IViewPlugin
 {
@@ -23,7 +23,7 @@ private:
     INeuralNetworkModel* myModel;
     int myId;
 
-    MainWindow *mainWindow;
+    MainForm *mainForm;
 
     // IPlugin interface
 public:

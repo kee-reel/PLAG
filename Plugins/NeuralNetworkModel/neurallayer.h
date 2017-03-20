@@ -21,7 +21,7 @@ public slots:
     virtual void Forward(QVector<float> &prevOutputs);
     virtual void Back(QVector<float> &nextLayerDelta);
 
-protected :
+public:
     NeuralLayer *prevLayer;
     NeuralLayer *nextLayer;
     QVector<QVector<float>> inputWeights;
@@ -29,7 +29,7 @@ protected :
     QVector<QVector<float>> *outputWeights;
     QVector<float> inputs;
     QVector<float> outputs;
-    QVector<float> currentLayerDelta;
+    QVector<float> layerDelta;
 
     float learnSpeed;
     float moment;
@@ -43,10 +43,7 @@ class InputNeuralLayer : public NeuralLayer
 {
 public:
     InputNeuralLayer(int NeuronsValue,
-                     float LearnSpeed = 0.7,
-                     float Moment = 0.3,
-                     float FuncIndent = 2,
-                     float Bias = -0.5);
+                     float Bias = 0);
 
 public slots:
     void Forward(QVector<float> &inputSignals) override;
@@ -60,9 +57,9 @@ public:
                       NeuralLayer *PrevLayer,
                       float LearnSpeed = 0.7,
                       float Moment = 0.3,
-                      float FuncIndent = 2,
-                      float Bias = -0.5);
-    inline QVector<float> GetOutputs() { return outputs; }
+                      float Bias = -0.5,
+                      float FuncIndent = 2);
+    inline QVector<float> *GetOutputs() { return &outputs; }
 
 public slots:
     void Forward(QVector<float> &inputSignals) override;

@@ -58,7 +58,15 @@ public:
 
     // INeuralNetworkModel interface
 public:
-    void TestFunc() override;
+    void SetupNetwork(NetworkParams params) override;
+    void AddLayer(LayerType type, LayerParams params) override;
+
+    // INeuralNetworkModel interface
+public:
+    bool RunTraining() override;
+    void SetupTrainingSamples(QVector<TrainSample> *samples) override;
+    bool RunTest() override;
+    void SetupTestSamples(QVector<TrainSample> *samples) override;
 };
 
 #endif // EMPTYPLUGINMODEL_H

@@ -5,19 +5,18 @@
 #include <QDebug>
 #include <QString>\
 
-#include "itasktreemodel.h"
-#include "tasktreeitemmodel.h"
+#include "itasksketchmodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 
-class TaskTreeModel : public QObject, ITreeModel
+class TaskSketchModel : public QObject, ITaskSketchModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IModelPlugin ITreeModel)
+    Q_INTERFACES(IModelPlugin ITaskSketchModel)
 
 public:
-    TaskTreeModel();
-    ~TaskTreeModel();
+    TaskSketchModel();
+    ~TaskSketchModel();
 
 private:
     // Native part
@@ -40,7 +39,6 @@ private:
     // Unique part
     QString tableName;
     IExtendableDataBaseManagerPlugin* dataManager;
-    TaskTreeItemModel* treeModel;
 
     // IPlugin interface
 public:
@@ -56,9 +54,6 @@ public:
     bool Close();
     void ChildSelfClosed(int id);
 
-    // ITaskListModel interface
-public:
-    QAbstractItemModel *GetTreeModel() override;
 };
 
 #endif // TASKLISTMODEL_H

@@ -1,42 +1,41 @@
-#include "tasktreemodel.h"
+#include "tasksketchmodel.h"
 
-TaskTreeModel::TaskTreeModel()
+TaskSketchModel::TaskSketchModel()
 {
     tableName = "TaskTree";
     activeViewId = -1;
     dataManager = NULL;
-    treeModel = NULL;
 }
 
-TaskTreeModel::~TaskTreeModel()
+TaskSketchModel::~TaskSketchModel()
 {
 }
 
-void TaskTreeModel::OnAllSetup()
-{
-
-}
-
-QString TaskTreeModel::GetLastError()
+void TaskSketchModel::OnAllSetup()
 {
 
 }
 
-void TaskTreeModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
+QString TaskSketchModel::GetLastError()
+{
+
+}
+
+void TaskSketchModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
 {
     qDebug() << "New child" << meta->Name;
     PluginInfo<IModelPlugin> newPlugin = {plugin, meta};
     childModelPlugins.append(newPlugin);
 }
 
-void TaskTreeModel::AddView(IViewPlugin *view, MetaInfo *meta)
+void TaskSketchModel::AddView(IViewPlugin *view, MetaInfo *meta)
 {
     PluginInfo<IViewPlugin> newPlugin = {view, meta};
     viewPlugins.append(newPlugin);
     qDebug() << "IPluginView succesfully set.";
 }
 
-void TaskTreeModel::AddDataManager(QObject *DBTool)
+void TaskSketchModel::AddDataManager(QObject *DBTool)
 {
     qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
     this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(DBTool);
@@ -45,12 +44,10 @@ void TaskTreeModel::AddDataManager(QObject *DBTool)
         qDebug() << DBTool->objectName() << "is not IExtendableDataBaseManagerPlugin.";
         return;
     }
-    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
-    if(!treeModel)
-        treeModel = new TaskTreeItemModel(tableName, dataManager);
+    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";\
 }
 
-bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
+bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
 {
     qDebug() << "TaskListModel runs";
     if(viewPlugins.count() == 0){
@@ -62,8 +59,6 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
     myParentWidget = parentWidget;
     activeViewId = 0;
 
-    QAudioDeviceInfo info = QAudioDeviceInfo::defaultInputDevice();
-
     qDebug() << viewPlugins[activeViewId].meta->Name;
     if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget))
     {
@@ -74,19 +69,14 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
     return true;
 }
 
-bool TaskTreeModel::Close()
+bool TaskSketchModel::Close()
 {
     myParent->ChildSelfClosed(myModelId);
     activeViewId = -1;
     return true;
 }
 
-void TaskTreeModel::ChildSelfClosed(int id)
+void TaskSketchModel::ChildSelfClosed(int id)
 {
 
-}
-
-QAbstractItemModel* TaskTreeModel::GetTreeModel()
-{
-    return treeModel;
 }

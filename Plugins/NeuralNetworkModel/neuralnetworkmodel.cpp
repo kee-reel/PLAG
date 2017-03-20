@@ -60,16 +60,6 @@ bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget, int i
     myParentWidget = parentWidget;
     activeViewId = 0;
 
-    if(!neuralNetwork)
-    {
-        neuralNetwork = new NeuralNetwork(2);
-    }
-    else
-    {
-        delete neuralNetwork;
-        neuralNetwork = new NeuralNetwork(2);
-    }
-
     qDebug() << viewPlugins[activeViewId].meta->Name;
     if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget))
     {
@@ -92,7 +82,46 @@ void NeuralNetworkModel::ChildSelfClosed(int id)
 
 }
 
-void NeuralNetworkModel::TestFunc()
+void NeuralNetworkModel::SetupNetwork(INeuralNetworkModel::NetworkParams params)
 {
+    if(neuralNetwork) delete neuralNetwork;
+    neuralNetwork = new NeuralNetwork(params);
+}
 
+void NeuralNetworkModel::AddLayer(INeuralNetworkModel::LayerType type, INeuralNetworkModel::LayerParams params)
+{
+    switch (type) {
+    case INeuralNetworkModel::Input:
+        if(!neuralNetwork) return;
+        neuralNetwork->AddInputLayer(params);
+        break;
+    case INeuralNetworkModel::Hidden:
+        if(!neuralNetwork) return;
+        neuralNetwork->AddHiddenLayer(params);
+        break;
+    case INeuralNetworkModel::Output:
+        if(!neuralNetwork) return;
+        neuralNetwork->AddOutputLayer(params);
+        break;
+    }
+}
+
+bool NeuralNetworkModel::RunTraining()
+{
+    return neuralNetwork->RunTraining();
+}
+
+void NeuralNetworkModel::SetupTrainingSamples(QVector<INeuralNetworkModel::TrainSample> *samples)
+{
+    neuralNetwork->trainingSamples = samples;
+}
+
+bool NeuralNetworkModel::RunTest()
+{
+    return neuralNetwork->RunTest();
+}
+
+void NeuralNetworkModel::SetupTestSamples(QVector<INeuralNetworkModel::TrainSample> *samples)
+{
+    neuralNetwork->testSamples = samples;
 }
