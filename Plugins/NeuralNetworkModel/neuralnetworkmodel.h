@@ -52,9 +52,9 @@ public:
     void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
     void AddView(IViewPlugin *view, MetaInfo *meta) override;
     void AddDataManager(QObject *dataManager) override;
-    bool Open(IModelPlugin *parent, QWidget *parentWidget, int id) override;
+    bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
     bool Close() override;
-    void ChildSelfClosed(int id) override;
+    void ChildSelfClosed(IModelPlugin *child) override;
 
     // INeuralNetworkModel interface
 public:

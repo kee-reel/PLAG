@@ -3,7 +3,6 @@
 MainMenuModelPlugin::MainMenuModelPlugin()
 {
     activeViewId = -1;
-
 }
 
 MainMenuModelPlugin::~MainMenuModelPlugin()
@@ -19,8 +18,8 @@ void MainMenuModelPlugin::AddPlugin(QObject *instance, QJsonObject *meta)
 void MainMenuModelPlugin::Open(QWidget *parentWidget)
 {
     this->parentWidget = parentWidget;
-    pluginLinker.SetupLinks();
-    Open(NULL, parentWidget, 0);
+    rootMenuItem = pluginLinker.SetupLinks();
+    Open(NULL, parentWidget);
 }
 
 void MainMenuModelPlugin::OnAllSetup()
@@ -50,14 +49,14 @@ void MainMenuModelPlugin::AddDataManager(QObject *dataManager)
 
 }
 
-bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
+bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidge)
 {
     qDebug() << "MainMenuModel runs";
 
     if(views.count())
     {
         qDebug() << "OPEN" << views.first().meta->Name;
-        views.first().plugin->Open(0, parentWidget);
+        views.first().plugin->Open(0, parentWidge);
     }
 
     return true;
@@ -68,28 +67,28 @@ bool MainMenuModelPlugin::Close()
     QApplication::exit();
 }
 
-void MainMenuModelPlugin::ChildSelfClosed(int id)
+void MainMenuModelPlugin::ChildSelfClosed(IModelPlugin *child)
 {
-    Open(NULL, parentWidget, 0);
+    Open(NULL, parentWidget);
 }
 
-QList<MetaInfo*> MainMenuModelPlugin::GetChildPlugins()
+IMainMenuPluginModel::MenuItem *MainMenuModelPlugin::GetRootMenuItem()
 {
-    QList<MetaInfo*> tasks;
+    return rootMenuItem;
+}
+
+void MainMenuModelPlugin::RunItem(IMainMenuPluginModel::MenuItem *item)
+{
     for(int i = 0; i < childModels.count(); ++i)
-        tasks.append(childModels[i].meta);
-    return tasks;
-}
-
-void MainMenuModelPlugin::RunPlugin(int pluginId)
-{
-    if(childModels.count() > pluginId)
     {
-        qDebug() << "Open plugin" << childModels[pluginId].meta->Name;
-        if(!childModels[pluginId].plugin->Open(this, parentWidget, pluginId))
+        if(childModels[i].meta == item->meta)
         {
-            qDebug() << "Model wasn't opened";
-            Open(NULL, parentWidget, 0);
+            qDebug() << "Open plugin" << item->meta->Name;
+            if(!childModels[i].plugin->Open(this, parentWidget))
+            {
+                qDebug() << "Model wasn't opened";
+                Open(NULL, parentWidget);
+            }
         }
     }
 }

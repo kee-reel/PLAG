@@ -47,14 +47,13 @@ void TaskSketchModel::AddDataManager(QObject *DBTool)
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";\
 }
 
-bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
+bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
     qDebug() << "TaskListModel runs";
     if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
     }
-    myModelId = id;
     myParent = parent;
     myParentWidget = parentWidget;
     activeViewId = 0;
@@ -71,12 +70,12 @@ bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
 
 bool TaskSketchModel::Close()
 {
-    myParent->ChildSelfClosed(myModelId);
+    myParent->ChildSelfClosed((IModelPlugin*)this);
     activeViewId = -1;
     return true;
 }
 
-void TaskSketchModel::ChildSelfClosed(int id)
+void TaskSketchModel::ChildSelfClosed(IModelPlugin *child)
 {
 
 }

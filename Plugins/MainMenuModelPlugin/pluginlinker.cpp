@@ -173,12 +173,13 @@ void PluginLinker::SetLinks(IViewPlugin *plugin, QObject* instance, MetaInfo *me
     modelToViewsLink[meta->ParentPluginName].append(plugin);
 }
 
-void PluginLinker::SetupLinks()
+IMainMenuPluginModel::MenuItem* PluginLinker::SetupLinks()
 {
     LinkSourceToManagers();
     LinkManagerToModels();
     LinkModelToModels();
     LinkModelToViews();
+    return rootMenuItem;
 }
 
 void PluginLinker::LinkSourceToManagers()
@@ -231,6 +232,11 @@ void PluginLinker::LinkModelToModels()
                 IModelPlugin* plugin = modelsLinkInfo[meta->Name].plugin;
 
                 parentModel->AddChildModel(plugin, meta);
+                menuItems[meta].meta = meta;
+                pluginModelMap[]
+                menuItems[meta].SubItems.append(menuItems[meta]);
+                if(meta->Type == ROOTMODEL)
+                    rootMenuItem = menuItems[meta];
                 qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
             }
         }

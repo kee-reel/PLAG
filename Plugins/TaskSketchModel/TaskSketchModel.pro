@@ -8,7 +8,7 @@ TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    tasktreemodel.cpp
+    tasksketchmodel.cpp
 
 HEADERS +=\
     itasksketchmodel.h \

@@ -52,9 +52,9 @@ public:
     void AddChildModel(IModelPlugin *, MetaInfo *);
     void AddDataManager(QObject *);
     void AddView(IViewPlugin *view, MetaInfo *meta);
-    bool Open(IModelPlugin *parent, QWidget *parentWidget, int id);
+    bool Open(IModelPlugin *parent, QWidget *parentWidget);
     bool Close();
-    void ChildSelfClosed(int id);
+    void ChildSelfClosed(IModelPlugin *child);
 
     // ITaskListModel interface
 public:

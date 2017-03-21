@@ -28,12 +28,12 @@ public:
     void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
     void AddView(IViewPlugin *view, MetaInfo *meta) override;
     void AddDataManager(QObject *dataManager) override;
-    bool Open(IModelPlugin *parent, QWidget *parentWidget, int id) override;
+    bool Open(IModelPlugin *parent, QWidget *parentWidge) override;
     bool Close() override;
-    void ChildSelfClosed(int id) override;
+    void ChildSelfClosed(IModelPlugin *child) override;
 
-    QList<MetaInfo *> GetChildPlugins() override;
-    void RunPlugin(int pluginId) override;
+    MenuItem *GetRootMenuItem() override;
+    void RunItem(MenuItem *item) override;
 
 private:
     QList<PluginInfo<IModelPlugin>> childModels;
@@ -44,10 +44,7 @@ private:
     int activeModelId;
 
     PluginLinker pluginLinker;
-
-    // IModelPlugin interface
-public:
-
+    MenuItem *rootMenuItem;
 };
 
 #endif // MAINMENUMODULE_H

@@ -48,14 +48,13 @@ void NeuralNetworkModel::AddDataManager(QObject *dataManager)
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
 }
 
-bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
+bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
     qDebug() << "NeuralNetworkModel runs";
     if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
     }
-    myModelId = id;
     myParent = parent;
     myParentWidget = parentWidget;
     activeViewId = 0;
@@ -73,11 +72,11 @@ bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget, int i
 bool NeuralNetworkModel::Close()
 {
     activeViewId = -1;
-    myParent->ChildSelfClosed(myModelId);
+    myParent->ChildSelfClosed((IModelPlugin*)this);
     return true;
 }
 
-void NeuralNetworkModel::ChildSelfClosed(int id)
+void NeuralNetworkModel::ChildSelfClosed(IModelPlugin *child)
 {
 
 }

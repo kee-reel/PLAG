@@ -80,9 +80,9 @@ public:
     virtual void AddView(IViewPlugin *view, MetaInfo *meta) = 0;
     virtual void AddDataManager(QObject *dataManager) = 0;
 
-    virtual bool Open(IModelPlugin* parent, QWidget* parentWidget, int id) = 0;
+    virtual bool Open(IModelPlugin* parent, QWidget* parentWidget) = 0;
     virtual bool Close() = 0;
-    virtual void ChildSelfClosed(int id) = 0;
+    virtual void ChildSelfClosed(IModelPlugin *child) = 0;
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
 

@@ -47,12 +47,12 @@ public:
 
     // IPluginModel interface
 public:
-    void AddChildModel(IModelPlugin *, MetaInfo *);
-    void AddDataManager(QObject *);
-    void AddView(IViewPlugin *view, MetaInfo *meta);
-    bool Open(IModelPlugin *parent, QWidget *parentWidget, int id);
-    bool Close();
-    void ChildSelfClosed(int id);
+    void AddChildModel(IModelPlugin *, MetaInfo *) override;
+    void AddDataManager(QObject *) override;
+    void AddView(IViewPlugin *view, MetaInfo *meta) override;
+    bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
+    bool Close() override;
+    void ChildSelfClosed(IModelPlugin *child) override;
 
 };
 

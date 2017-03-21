@@ -50,19 +50,16 @@ void TaskTreeModel::AddDataManager(QObject *DBTool)
         treeModel = new TaskTreeItemModel(tableName, dataManager);
 }
 
-bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
+bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
     qDebug() << "TaskListModel runs";
     if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
     }
-    myModelId = id;
     myParent = parent;
     myParentWidget = parentWidget;
     activeViewId = 0;
-
-    QAudioDeviceInfo info = QAudioDeviceInfo::defaultInputDevice();
 
     qDebug() << viewPlugins[activeViewId].meta->Name;
     if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget))
@@ -76,12 +73,12 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
 
 bool TaskTreeModel::Close()
 {
-    myParent->ChildSelfClosed(myModelId);
+    myParent->ChildSelfClosed((IModelPlugin*)this);
     activeViewId = -1;
     return true;
 }
 
-void TaskTreeModel::ChildSelfClosed(int id)
+void TaskTreeModel::ChildSelfClosed(IModelPlugin *child)
 {
 
 }
