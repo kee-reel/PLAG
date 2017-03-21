@@ -33,7 +33,7 @@ void MainMenuPluginView::SetModel(QObject *model)
     qDebug() << "IMainMenuPluginModel succesfully set.";
 }
 
-bool MainMenuPluginView::Open(int id, QWidget* parent)
+bool MainMenuPluginView::Open(QWidget* parent)
 {
     if(!myModel)
     {
@@ -41,10 +41,10 @@ bool MainMenuPluginView::Open(int id, QWidget* parent)
         return false;
     }
 
-    myId = id;
     parent->layout()->addWidget(mainWindow);
     mainWindow->setParent(parent);
     mainWindow->show();
+    rootMenuItem = myModel->GetRootMenuItem();
 //    QList<MetaInfo*> list = myModel->GetChildPlugins();
 //    for(int i = 0; i < list.count(); i++)
 //    {
@@ -58,6 +58,7 @@ bool MainMenuPluginView::Close()
 {
     mainWindow->hide();
     mainWindow->WipeAllButtons();
+    myModel->CloseFromView(this);
     return true;
 }
 

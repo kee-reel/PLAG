@@ -9,6 +9,18 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
     this->dataManager = dataManager;
     coreRelationName = "tree";\
     rootItem = NULL;
+}
+
+TaskTreeItemModel::~TaskTreeItemModel()
+{
+    delete rootItem;
+}
+
+void TaskTreeItemModel::LoadData()
+{
+    qDebug() << "Load data";
+    if(!rootItem)
+        return;
 
     QMap<QString, QVariant::Type> newRelationStruct = {
         {"name",        QVariant::String},
@@ -21,8 +33,6 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
     nameIndex = relationFields.indexOf("name");
     parentIndex = relationFields.indexOf("parent");
     positionIndex = relationFields.indexOf("position");
-
-    qDebug() << nameIndex << parentIndex << positionIndex;
 
     QMap<int, TreeItem*> treeItemIdMap;
     QMap<int, QMap<int, TreeItem*>> treeItemParentMap;
@@ -37,25 +47,12 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
         treeItem = new TreeItem();
         managerTaskData = &data[i];
         dataChunk = &(data[i].dataChunks[coreRelationName]);
-
-        qDebug() << "New task"
-                    << managerTaskData->id
-                        << dataChunk->at(nameIndex)
-                            << dataChunk->at(parentIndex)
-                                << dataChunk->at(positionIndex);
-
         treeItemIdMap.insert(managerTaskData->id, treeItem);
-        qDebug() << managerTaskData->id << dataChunk->at(positionIndex) << dataChunk->at(parentIndex);
 
         if(dataChunk->at(parentIndex).toInt() == -1)
-        {
             rootItem = treeItem;
-        }
         else
-        {
-            qDebug() << "Child" << dataChunk->at(parentIndex) << dataChunk->at(positionIndex);
             treeItemParentMap[dataChunk->at(parentIndex).toInt()].insertMulti(dataChunk->at(positionIndex).toInt(), treeItem);
-        }
 
         treeItem->SetId(managerTaskData->id);
         dataChunk->removeLast();
@@ -66,7 +63,6 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
 
     if(!rootItem)
     {
-        qDebug() << "Root is empty";
         rootItem = new TreeItem();
         QVector<QVariant> rootData;
         rootData << QVariant("Name");
@@ -82,24 +78,14 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
         if(!parent)
             parent = rootItem;
         QList<TreeItem*> childItemsList = treeItemParentMap[keys[i]].values();
-        qDebug() << "Parent" << parent->GetId() << "Childs" << childItemsList.count();
         for(int j = 0; j < childItemsList.count(); j++)
-        {
            childItemsList[j]->parentItem = parent;
-           qDebug() << "Childs" << childItemsList[j]->GetId() << "->" << parent->GetId();
-        }
         parent->SetChilds(childItemsList);
     }
 
     QVector<QVariant> defaultData;
-    defaultData << QVariant("New task") << QVariant(1) << QVariant(0);
     defaultTask.SetChunkData(coreRelationName, defaultData);
     defaultTask.SetActiveChunkName(coreRelationName);
-}
-
-TaskTreeItemModel::~TaskTreeItemModel()
-{
-    delete rootItem;
 }
 
 QVariant TaskTreeItemModel::data(const QModelIndex &index, int role) const

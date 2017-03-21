@@ -15,8 +15,7 @@ SOURCES += \
 HEADERS +=\
     draggablebutton.h \
     mainwindow.h \
-    mainmenupluginview.h \
-    ../MainMenuModelPlugin/imainmenumodule.h
+    mainmenupluginview.h
 
 include(../../System/MASS/BuildInfo.pri)
 

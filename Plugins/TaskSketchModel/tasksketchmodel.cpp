@@ -59,7 +59,7 @@ bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     activeViewId = 0;
 
     qDebug() << viewPlugins[activeViewId].meta->Name;
-    if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget))
+    if(!viewPlugins[activeViewId].plugin->Open(myParentWidget))
     {
         qDebug() << "Can't open first view!";
         return false;
@@ -68,9 +68,9 @@ bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     return true;
 }
 
-bool TaskSketchModel::Close()
+bool TaskSketchModel::CloseFromView(IViewPlugin *view)
 {
-    myParent->ChildSelfClosed((IModelPlugin*)this);
+    myParent->ChildSelfClosed(this);
     activeViewId = -1;
     return true;
 }

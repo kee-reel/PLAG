@@ -22,7 +22,6 @@ public:
 
 private:
     ITreeModel *myModel;
-    int myId;
 
     MainForm *mainForm;
     DesignProxyModel *proxyModel;
@@ -36,7 +35,7 @@ public:
     // IPluginView interface
 public:
     void SetModel(QObject* model) override;
-    bool Open(int id, QWidget* parent) override;
+    bool Open(QWidget* parent) override;
 public slots:
     bool Close() override;
 };

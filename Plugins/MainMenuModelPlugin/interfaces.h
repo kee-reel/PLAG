@@ -67,7 +67,7 @@ class IViewPlugin : public IPlugin
 public:
     virtual ~IViewPlugin() {}
     virtual void SetModel(QObject *) = 0;
-    virtual bool Open(int id, QWidget* parent) = 0;
+    virtual bool Open(QWidget* parent) = 0;
     virtual bool Close() = 0;
 };
 Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
@@ -81,7 +81,7 @@ public:
     virtual void AddDataManager(QObject *dataManager) = 0;
 
     virtual bool Open(IModelPlugin* parent, QWidget* parentWidget) = 0;
-    virtual bool Close() = 0;
+    virtual bool CloseFromView(IViewPlugin *view) = 0;
     virtual void ChildSelfClosed(IModelPlugin *child) = 0;
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")

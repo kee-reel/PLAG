@@ -21,8 +21,6 @@ public:
 
 private:
     INeuralNetworkModel* myModel;
-    int myId;
-
     MainForm *mainForm;
 
     // IPlugin interface
@@ -33,7 +31,7 @@ public:
     // IViewPlugin interface
 public:
     void SetModel(QObject *model) override;
-    bool Open(int id, QWidget *parent) override;
+    bool Open(QWidget *parent) override;
 public slots:
     bool Close() override;
 };

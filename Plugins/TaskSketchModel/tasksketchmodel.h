@@ -51,7 +51,7 @@ public:
     void AddDataManager(QObject *) override;
     void AddView(IViewPlugin *view, MetaInfo *meta) override;
     bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
-    bool Close() override;
+    bool CloseFromView(IViewPlugin *view) override;
     void ChildSelfClosed(IModelPlugin *child) override;
 
 };

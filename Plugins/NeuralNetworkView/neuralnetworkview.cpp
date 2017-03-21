@@ -32,7 +32,7 @@ void NeuralNetworkView::SetModel(QObject *model)
     qDebug() << "ITaskListModel succesfully set.";
 }
 
-bool NeuralNetworkView::Open(int id, QWidget *parent)
+bool NeuralNetworkView::Open(QWidget *parent)
 {
     qDebug() << "View OPEN" << parent;
     if(!myModel)
@@ -41,7 +41,6 @@ bool NeuralNetworkView::Open(int id, QWidget *parent)
         return false;
     }
     connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
-    myId = id;
     parent->layout()->addWidget(mainForm);
     mainForm->setParent(parent);
     mainForm->show();
@@ -104,6 +103,6 @@ bool NeuralNetworkView::Close()
 {
     disconnect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     mainForm->hide();
-    myModel->Close();
+    myModel->CloseFromView(this);
     return true;
 }

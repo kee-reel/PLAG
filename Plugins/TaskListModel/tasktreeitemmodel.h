@@ -24,6 +24,7 @@ public:
 
     TaskTreeItemModel(QString tableName, IExtendableDataBaseManagerPlugin* dataManager, QObject *parent = 0);
     ~TaskTreeItemModel();
+    void LoadData();
 
     QVariant data(const QModelIndex &index, int role) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;

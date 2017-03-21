@@ -28,8 +28,8 @@ public:
     void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
     void AddView(IViewPlugin *view, MetaInfo *meta) override;
     void AddDataManager(QObject *dataManager) override;
-    bool Open(IModelPlugin *parent, QWidget *parentWidge) override;
-    bool Close() override;
+    bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
+    bool CloseFromView(IViewPlugin *view) override;
     void ChildSelfClosed(IModelPlugin *child) override;
 
     MenuItem *GetRootMenuItem() override;

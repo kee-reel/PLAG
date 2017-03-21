@@ -16,9 +16,8 @@ class MainMenuPluginView : public QObject, IViewPlugin
 
 private:
     IMainMenuPluginModel *myModel;
-    int myId;
-    MainWindow* mainWindow;
-
+    MainWindow *mainWindow;
+    IMainMenuPluginModel::MenuItem *rootMenuItem;
 
 public:
     MainMenuPluginView();
@@ -28,7 +27,7 @@ public:
     QString GetLastError() override;
 
     void SetModel(QObject *model) override;
-    bool Open(int id, QWidget* parent) override;
+    bool Open(QWidget* parent) override;
     bool Close() override;
 
 private slots:

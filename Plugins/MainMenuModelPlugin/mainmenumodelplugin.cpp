@@ -49,20 +49,20 @@ void MainMenuModelPlugin::AddDataManager(QObject *dataManager)
 
 }
 
-bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidge)
+bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
     qDebug() << "MainMenuModel runs";
 
     if(views.count())
     {
         qDebug() << "OPEN" << views.first().meta->Name;
-        views.first().plugin->Open(0, parentWidge);
+        views.first().plugin->Open(parentWidget);
     }
 
     return true;
 }
 
-bool MainMenuModelPlugin::Close()
+bool MainMenuModelPlugin::CloseFromView(IViewPlugin *view)
 {
     QApplication::exit();
 }

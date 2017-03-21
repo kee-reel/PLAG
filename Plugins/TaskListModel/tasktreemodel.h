@@ -53,7 +53,7 @@ public:
     void AddDataManager(QObject *);
     void AddView(IViewPlugin *view, MetaInfo *meta);
     bool Open(IModelPlugin *parent, QWidget *parentWidget);
-    bool Close();
+    bool CloseFromView(IViewPlugin *view);
     void ChildSelfClosed(IModelPlugin *child);
 
     // ITaskListModel interface

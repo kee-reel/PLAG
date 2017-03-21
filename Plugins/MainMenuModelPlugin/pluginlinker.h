@@ -21,7 +21,7 @@ public:
 
     IModelPlugin *rootModel;
     IMainMenuPluginModel::MenuItem *rootMenuItem;
-    QMap<MetaInfo*, IMainMenuPluginModel::MenuItem> menuItems;
+    QMap<MetaInfo*, IMainMenuPluginModel::MenuItem*> menuItems;
 
     QMap<IModelPlugin*, MetaInfo*>          pluginModelMap;
     QMap<IViewPlugin*, MetaInfo*>           pluginViewMap;

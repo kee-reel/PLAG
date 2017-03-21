@@ -59,10 +59,12 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     }
     myParent = parent;
     myParentWidget = parentWidget;
-    activeViewId = 0;
+
+    if(treeModel)
+        treeModel->LoadData();
 
     qDebug() << viewPlugins[activeViewId].meta->Name;
-    if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget))
+    if(!viewPlugins[activeViewId].plugin->Open(myParentWidget))
     {
         qDebug() << "Can't open first view!";
         return false;
@@ -71,9 +73,9 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     return true;
 }
 
-bool TaskTreeModel::Close()
+bool TaskTreeModel::CloseFromView(IViewPlugin *view)
 {
-    myParent->ChildSelfClosed((IModelPlugin*)this);
+    myParent->ChildSelfClosed(this);
     activeViewId = -1;
     return true;
 }

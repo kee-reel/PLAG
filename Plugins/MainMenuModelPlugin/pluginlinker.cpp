@@ -152,10 +152,15 @@ void PluginLinker::SetLinks(IModelPlugin *plugin, QObject* instance, MetaInfo *m
     pluginModelMap.insert(plugin, meta);
     LinkInfo<IModelPlugin> info = {plugin, instance};
 
+    IMainMenuPluginModel::MenuItem *item = new IMainMenuPluginModel::MenuItem();
+    item->meta = meta;
+    menuItems.insert(meta, item);
+
     if(meta->Type == ROOTMODEL)
     {
         modelsLinkInfo[""] = info;
         rootModel = plugin;
+        rootMenuItem = menuItems[meta];
     }
     else
         modelToModelsLink[meta->ParentPluginName].append(plugin);
@@ -225,6 +230,7 @@ void PluginLinker::LinkModelToModels()
         if(modelsLinkInfo.contains(pluginModelIter.key()))
         {
             IModelPlugin *parentModel = modelsLinkInfo[pluginModelIter.key()].plugin;
+            MetaInfo *parentMeta = pluginModelMap[parentModel];
             QVector<IModelPlugin*> childPlugins = pluginModelIter.value();
             for(int i = 0; i < childPlugins.count(); i++)
             {
@@ -232,11 +238,7 @@ void PluginLinker::LinkModelToModels()
                 IModelPlugin* plugin = modelsLinkInfo[meta->Name].plugin;
 
                 parentModel->AddChildModel(plugin, meta);
-                menuItems[meta].meta = meta;
-                pluginModelMap[]
-                menuItems[meta].SubItems.append(menuItems[meta]);
-                if(meta->Type == ROOTMODEL)
-                    rootMenuItem = menuItems[meta];
+                menuItems[parentMeta]->SubItems.append(menuItems[meta]);
                 qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
             }
         }

@@ -60,7 +60,7 @@ bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     activeViewId = 0;
 
     qDebug() << viewPlugins[activeViewId].meta->Name;
-    if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget))
+    if(!viewPlugins[activeViewId].plugin->Open(myParentWidget))
     {
         qDebug() << "Can't open first view!";
         return false;
@@ -69,10 +69,10 @@ bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     return true;
 }
 
-bool NeuralNetworkModel::Close()
+bool NeuralNetworkModel::CloseFromView(IViewPlugin *view)
 {
     activeViewId = -1;
-    myParent->ChildSelfClosed((IModelPlugin*)this);
+    myParent->ChildSelfClosed(this);
     return true;
 }
 

@@ -21,7 +21,6 @@ public:
 
 private:
     ITaskSketchModel *myModel;
-    int myId;
 
     MainForm *mainForm;
 
@@ -33,7 +32,7 @@ public:
     // IPluginView interface
 public:
     void SetModel(QObject* model) override;
-    bool Open(int id, QWidget* parent) override;
+    bool Open(QWidget* parent) override;
 public slots:
     bool Close() override;
 };

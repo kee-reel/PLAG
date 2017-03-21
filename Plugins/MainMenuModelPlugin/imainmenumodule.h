@@ -10,7 +10,7 @@ class IMainMenuPluginModel : public IModelPlugin
 public:
     struct MenuItem{
         MetaInfo* meta;
-        QList<MenuItem> SubItems;
+        QList<MenuItem*> SubItems;
     };
 
     virtual MenuItem* GetRootMenuItem() = 0;
