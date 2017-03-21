@@ -9,6 +9,7 @@
 #include <QHash>
 
 #include "interfaces.h"
+#include "imainmenumodule.h"
 
 class PluginLinker
 {
@@ -16,9 +17,11 @@ public:
     PluginLinker();
 
     void AddNewPlugin(QObject* instance, QJsonObject* meta);
-    void SetupLinks();
+    IMainMenuPluginModel::MenuItem *SetupLinks();
 
-    IModelPlugin* rootModel;
+    IModelPlugin *rootModel;
+    IMainMenuPluginModel::MenuItem *rootMenuItem;
+    QMap<MetaInfo*, IMainMenuPluginModel::MenuItem> menuItems;
 
     QMap<IModelPlugin*, MetaInfo*>          pluginModelMap;
     QMap<IViewPlugin*, MetaInfo*>           pluginViewMap;

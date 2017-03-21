@@ -248,8 +248,6 @@ bool TaskTreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow,
     qDebug() << "moveRows" << sourceParent << sourceRow << count << destinationParent << destinationChild;
     int sourceLast = sourceRow+count;
 
-
-
     TreeItem *sourceParentItem = (!sourceParent.isValid()) ? rootItem : static_cast<TreeItem*>(sourceParent.internalPointer());
     TreeItem *destinationParentItem = (!destinationParent.isValid()) ? rootItem : static_cast<TreeItem*>(destinationParent.internalPointer());
     TreeItem *destinationChildItem = destinationParentItem->GetChildAt(destinationChild);

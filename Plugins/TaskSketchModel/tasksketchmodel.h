@@ -1,23 +1,22 @@
-#ifndef EMPTYPLUGINMODEL_H
-#define EMPTYPLUGINMODEL_H
+#ifndef TASKLISTMODEL_H
+#define TASKLISTMODEL_H
 
 #include <QObject>
 #include <QDebug>
-#include <QString>
+#include <QString>\
 
-#include "ineuralnetworkmodel.h"
+#include "itasksketchmodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
-#include "neuralnetwork.h"
 
-class NeuralNetworkModel : public QObject, INeuralNetworkModel
+class TaskSketchModel : public QObject, ITaskSketchModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IModelPlugin INeuralNetworkModel)
+    Q_INTERFACES(IModelPlugin ITaskSketchModel)
 
 public:
-    NeuralNetworkModel();
-    ~NeuralNetworkModel();
+    TaskSketchModel();
+    ~TaskSketchModel();
 
 private:
     // Native part
@@ -40,33 +39,21 @@ private:
     // Unique part
     QString tableName;
     IExtendableDataBaseManagerPlugin* dataManager;
-    NeuralNetwork *neuralNetwork;
 
     // IPlugin interface
 public:
     void OnAllSetup() override;
     QString GetLastError() override;
 
-    // IModelPlugin interface
+    // IPluginModel interface
 public:
-    void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
+    void AddChildModel(IModelPlugin *, MetaInfo *) override;
+    void AddDataManager(QObject *) override;
     void AddView(IViewPlugin *view, MetaInfo *meta) override;
-    void AddDataManager(QObject *dataManager) override;
     bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
     bool Close() override;
     void ChildSelfClosed(IModelPlugin *child) override;
 
-    // INeuralNetworkModel interface
-public:
-    void SetupNetwork(NetworkParams params) override;
-    void AddLayer(LayerType type, LayerParams params) override;
-
-    // INeuralNetworkModel interface
-public:
-    bool RunTraining() override;
-    void SetupTrainingSamples(QVector<TrainSample> *samples) override;
-    bool RunTest() override;
-    void SetupTestSamples(QVector<TrainSample> *samples) override;
 };
 
-#endif // EMPTYPLUGINMODEL_H
+#endif // TASKLISTMODEL_H

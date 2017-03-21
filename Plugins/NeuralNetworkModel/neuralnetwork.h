@@ -5,33 +5,37 @@
 #include <QVector>
 #include <QList>
 #include <QDebug>
+#include <QPair>
 #include "neurallayer.h"
+#include "ineuralnetworkmodel.h"
 
 class NeuralNetwork : public QObject
 {
     Q_OBJECT
 public:
-    explicit NeuralNetwork(int inputs);
+    explicit NeuralNetwork(INeuralNetworkModel::NetworkParams params);
+    ~NeuralNetwork();
+    void AddInputLayer(INeuralNetworkModel::LayerParams params);
+    void AddHiddenLayer(INeuralNetworkModel::LayerParams params);
+    void AddOutputLayer(INeuralNetworkModel::LayerParams params);
+    bool RunTraining();
+    bool RunTest();
+
+    QVector<INeuralNetworkModel::TrainSample> *trainingSamples;
+    QVector<INeuralNetworkModel::TrainSample> *testSamples;
 
 private:
     InputNeuralLayer *inputLayer;
-    QList<NeuralLayer*> hiddenLayers;
+    QList<NeuralLayer*> layers;
     OutputNeuralLayer *outputLayer;
 
-    struct TrainingPair{
-        QVector<float> inputs;
-        QVector<float> outputs;
-    };
-    QVector<TrainingPair> trainingSamples;
     float resultError;
     float resultErrorThreshold;
-
     int maxEpoch;
 
 private slots:
-    void RunEpoch();
-    void RunTrainSet(int trainSet);
-
+    float RunTrainSet(INeuralNetworkModel::TrainSample &trainSet);
+    float RunTestSet(INeuralNetworkModel::TrainSample &testSet);
 };
 
 #endif // NEURALNETWORK_H

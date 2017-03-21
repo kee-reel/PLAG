@@ -48,27 +48,16 @@ void NeuralNetworkModel::AddDataManager(QObject *dataManager)
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
 }
 
-bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget, int id)
+bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
     qDebug() << "NeuralNetworkModel runs";
     if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
     }
-    myModelId = id;
     myParent = parent;
     myParentWidget = parentWidget;
     activeViewId = 0;
-
-    if(!neuralNetwork)
-    {
-        neuralNetwork = new NeuralNetwork(2);
-    }
-    else
-    {
-        delete neuralNetwork;
-        neuralNetwork = new NeuralNetwork(2);
-    }
 
     qDebug() << viewPlugins[activeViewId].meta->Name;
     if(!viewPlugins[activeViewId].plugin->Open(activeViewId, myParentWidget))
@@ -83,16 +72,55 @@ bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget, int i
 bool NeuralNetworkModel::Close()
 {
     activeViewId = -1;
-    myParent->ChildSelfClosed(myModelId);
+    myParent->ChildSelfClosed((IModelPlugin*)this);
     return true;
 }
 
-void NeuralNetworkModel::ChildSelfClosed(int id)
+void NeuralNetworkModel::ChildSelfClosed(IModelPlugin *child)
 {
 
 }
 
-void NeuralNetworkModel::TestFunc()
+void NeuralNetworkModel::SetupNetwork(INeuralNetworkModel::NetworkParams params)
 {
+    if(neuralNetwork) delete neuralNetwork;
+    neuralNetwork = new NeuralNetwork(params);
+}
 
+void NeuralNetworkModel::AddLayer(INeuralNetworkModel::LayerType type, INeuralNetworkModel::LayerParams params)
+{
+    switch (type) {
+    case INeuralNetworkModel::Input:
+        if(!neuralNetwork) return;
+        neuralNetwork->AddInputLayer(params);
+        break;
+    case INeuralNetworkModel::Hidden:
+        if(!neuralNetwork) return;
+        neuralNetwork->AddHiddenLayer(params);
+        break;
+    case INeuralNetworkModel::Output:
+        if(!neuralNetwork) return;
+        neuralNetwork->AddOutputLayer(params);
+        break;
+    }
+}
+
+bool NeuralNetworkModel::RunTraining()
+{
+    return neuralNetwork->RunTraining();
+}
+
+void NeuralNetworkModel::SetupTrainingSamples(QVector<INeuralNetworkModel::TrainSample> *samples)
+{
+    neuralNetwork->trainingSamples = samples;
+}
+
+bool NeuralNetworkModel::RunTest()
+{
+    return neuralNetwork->RunTest();
+}
+
+void NeuralNetworkModel::SetupTestSamples(QVector<INeuralNetworkModel::TrainSample> *samples)
+{
+    neuralNetwork->testSamples = samples;
 }

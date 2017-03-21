@@ -45,12 +45,12 @@ bool MainMenuPluginView::Open(int id, QWidget* parent)
     parent->layout()->addWidget(mainWindow);
     mainWindow->setParent(parent);
     mainWindow->show();
-    QList<MetaInfo*> list = myModel->GetChildPlugins();
-    for(int i = 0; i < list.count(); i++)
-    {
-        qDebug() << list[i]->Name;
-        mainWindow->AddNewButton(i, list[i]->Name);
-    }
+//    QList<MetaInfo*> list = myModel->GetChildPlugins();
+//    for(int i = 0; i < list.count(); i++)
+//    {
+//        qDebug() << list[i]->Name;
+//        mainWindow->AddNewButton(i, list[i]->Name);
+//    }
     return true;
 }
 
@@ -65,5 +65,5 @@ void MainMenuPluginView::OpenChildPlugin(int id)
 {
     qDebug() << "Open plugin" << id;
     Close();
-    myModel->RunPlugin(id);
+    //myModel->RunItem(id);
 }

@@ -1,42 +1,41 @@
-#include "tasktreemodel.h"
+#include "tasksketchmodel.h"
 
-TaskTreeModel::TaskTreeModel()
+TaskSketchModel::TaskSketchModel()
 {
     tableName = "TaskTree";
     activeViewId = -1;
     dataManager = NULL;
-    treeModel = NULL;
 }
 
-TaskTreeModel::~TaskTreeModel()
+TaskSketchModel::~TaskSketchModel()
 {
 }
 
-void TaskTreeModel::OnAllSetup()
-{
-
-}
-
-QString TaskTreeModel::GetLastError()
+void TaskSketchModel::OnAllSetup()
 {
 
 }
 
-void TaskTreeModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
+QString TaskSketchModel::GetLastError()
+{
+
+}
+
+void TaskSketchModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
 {
     qDebug() << "New child" << meta->Name;
     PluginInfo<IModelPlugin> newPlugin = {plugin, meta};
     childModelPlugins.append(newPlugin);
 }
 
-void TaskTreeModel::AddView(IViewPlugin *view, MetaInfo *meta)
+void TaskSketchModel::AddView(IViewPlugin *view, MetaInfo *meta)
 {
     PluginInfo<IViewPlugin> newPlugin = {view, meta};
     viewPlugins.append(newPlugin);
     qDebug() << "IPluginView succesfully set.";
 }
 
-void TaskTreeModel::AddDataManager(QObject *DBTool)
+void TaskSketchModel::AddDataManager(QObject *DBTool)
 {
     qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
     this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(DBTool);
@@ -45,12 +44,10 @@ void TaskTreeModel::AddDataManager(QObject *DBTool)
         qDebug() << DBTool->objectName() << "is not IExtendableDataBaseManagerPlugin.";
         return;
     }
-    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
-    if(!treeModel)
-        treeModel = new TaskTreeItemModel(tableName, dataManager);
+    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";\
 }
 
-bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
+bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
     qDebug() << "TaskListModel runs";
     if(viewPlugins.count() == 0){
@@ -71,19 +68,14 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     return true;
 }
 
-bool TaskTreeModel::Close()
+bool TaskSketchModel::Close()
 {
     myParent->ChildSelfClosed((IModelPlugin*)this);
     activeViewId = -1;
     return true;
 }
 
-void TaskTreeModel::ChildSelfClosed(IModelPlugin *child)
+void TaskSketchModel::ChildSelfClosed(IModelPlugin *child)
 {
 
-}
-
-QAbstractItemModel* TaskTreeModel::GetTreeModel()
-{
-    return treeModel;
 }

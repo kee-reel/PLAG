@@ -3,23 +3,18 @@
 # Project created by QtCreator 2017-02-01T20:08:55
 #
 #-------------------------------------------------
-TARGET = NeuralNetworkView
+TARGET = TaskSketchModel
 TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    neuralnetworkview.cpp \
-    mainform.cpp
+    tasksketchmodel.cpp
 
-HEADERS += \
-    ../../System/MASS/interfaces.h \
-    neuralnetworkview.h \
-    mainform.h
+HEADERS +=\
+    itasksketchmodel.h \
+    tasksketchmodel.h
 
 include(../../System/MASS/BuildInfo.pri)
 
 DISTFILES += \
     PluginMeta.json
-
-FORMS += \
-    mainform.ui
