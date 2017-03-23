@@ -1,6 +1,6 @@
 {
-    "Name":         "TaskTreeView",
+    "Name":         "TaskListView",
     "PluginType":   "PluginView",
-    "ParentName":   "TaskTreeModel",
+    "ParentName":   "TaskListModel",
     "DataManager":  ""
 }

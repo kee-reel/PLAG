@@ -1,5 +1,5 @@
 {
-    "Name":         "TaskTreeModel",
+    "Name":         "TaskListModel",
     "PluginType":   "PluginModel",
     "ParentName":   "",
     "DataManager":  "ExtendableDataBaseManager"

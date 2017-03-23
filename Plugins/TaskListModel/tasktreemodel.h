@@ -23,9 +23,8 @@ private:
     // Native part
     IModelPlugin *myParent;
     QWidget *myParentWidget;
-    int myModelId;
-    int activeViewId;
-    int activeModelId;
+    IViewPlugin *activeView;
+    IModelPlugin *activeModel;
 
     template <class T>
     struct PluginInfo

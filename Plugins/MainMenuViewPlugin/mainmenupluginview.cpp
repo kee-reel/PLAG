@@ -45,12 +45,12 @@ bool MainMenuPluginView::Open(QWidget* parent)
     mainWindow->setParent(parent);
     mainWindow->show();
     rootMenuItem = myModel->GetRootMenuItem();
-//    QList<MetaInfo*> list = myModel->GetChildPlugins();
-//    for(int i = 0; i < list.count(); i++)
-//    {
-//        qDebug() << list[i]->Name;
-//        mainWindow->AddNewButton(i, list[i]->Name);
-//    }
+    QList<IMainMenuPluginModel::MenuItem*> list = rootMenuItem->SubItems;
+    for(int i = 0; i < list.count(); i++)
+    {
+        qDebug() << list[i]->meta->Name;
+        mainWindow->AddNewButton(i, list[i]->meta->Name);
+    }
     return true;
 }
 
@@ -58,7 +58,7 @@ bool MainMenuPluginView::Close()
 {
     mainWindow->hide();
     mainWindow->WipeAllButtons();
-    myModel->CloseFromView(this);
+    //myModel->CloseFromView(this);
     return true;
 }
 
@@ -66,5 +66,5 @@ void MainMenuPluginView::OpenChildPlugin(int id)
 {
     qDebug() << "Open plugin" << id;
     Close();
-    //myModel->RunItem(id);
+    myModel->RunItem(rootMenuItem->SubItems[id]);
 }

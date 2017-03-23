@@ -19,7 +19,7 @@ TaskTreeItemModel::~TaskTreeItemModel()
 void TaskTreeItemModel::LoadData()
 {
     qDebug() << "Load data";
-    if(!rootItem)
+    if(rootItem)
         return;
 
     QMap<QString, QVariant::Type> newRelationStruct = {
