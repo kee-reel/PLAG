@@ -3,13 +3,13 @@
 MainMenuPluginView::MainMenuPluginView()
 {
     myModel = NULL;
-    mainWindow = new MainWindow;
-    connect(mainWindow, SIGNAL(OnButtonPressed(int)), this, SLOT(OpenChildPlugin(int)));
+    mainForm = new MainForm;
+    connect(mainForm, SIGNAL(OnButtonPressed(int)), this, SLOT(OpenChildPlugin(int)));
 }
 
 MainMenuPluginView::~MainMenuPluginView()
 {
-    delete mainWindow;
+    delete mainForm;
 }
 
 void MainMenuPluginView::OnAllSetup()
@@ -41,23 +41,18 @@ bool MainMenuPluginView::Open(QWidget* parent)
         return false;
     }
 
-    parent->layout()->addWidget(mainWindow);
-    mainWindow->setParent(parent);
-    mainWindow->show();
+    parent->layout()->addWidget(mainForm);
+    mainForm->setParent(parent);
+    mainForm->show();
     rootMenuItem = myModel->GetRootMenuItem();
-    QList<IMainMenuPluginModel::MenuItem*> list = rootMenuItem->SubItems;
-    for(int i = 0; i < list.count(); i++)
-    {
-        qDebug() << list[i]->meta->Name;
-        mainWindow->AddNewButton(i, list[i]->meta->Name);
-    }
+    mainForm->SetRootMenuItem(rootMenuItem);
     return true;
 }
 
 bool MainMenuPluginView::Close()
 {
-    mainWindow->hide();
-    mainWindow->WipeAllButtons();
+    mainForm->hide();
+    mainForm->WipeAllItems();
     //myModel->CloseFromView(this);
     return true;
 }

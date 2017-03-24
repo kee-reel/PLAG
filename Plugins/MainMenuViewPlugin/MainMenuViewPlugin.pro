@@ -9,13 +9,15 @@ QT += widgets
 
 SOURCES += \
     draggablebutton.cpp \
-    mainwindow.cpp \
-    mainmenupluginview.cpp
+    mainmenupluginview.cpp \
+    mainform.cpp \
+    menuitem.cpp
 
 HEADERS +=\
     draggablebutton.h \
-    mainwindow.h \
-    mainmenupluginview.h
+    mainmenupluginview.h \
+    mainform.h \
+    menuitem.h
 
 include(../../System/MASS/BuildInfo.pri)
 
@@ -24,3 +26,6 @@ DISTFILES += \
 
 RESOURCES += \
     mainwindow.qrc
+
+FORMS += \
+    mainform.ui

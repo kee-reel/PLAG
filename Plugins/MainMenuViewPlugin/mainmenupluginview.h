@@ -6,7 +6,7 @@
 #include <QDebug>
 
 #include "../MainMenuModelPlugin/imainmenumodule.h"
-#include "mainwindow.h"
+#include "mainform.h"
 
 class MainMenuPluginView : public QObject, IViewPlugin
 {
@@ -16,7 +16,7 @@ class MainMenuPluginView : public QObject, IViewPlugin
 
 private:
     IMainMenuPluginModel *myModel;
-    MainWindow *mainWindow;
+    MainForm *mainForm;
     IMainMenuPluginModel::MenuItem *rootMenuItem;
 
 public:

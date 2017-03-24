@@ -64,7 +64,7 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     if(treeModel)
         treeModel->LoadData();
     if(!activeView)
-        activeView = viewPlugins.begin();
+        activeView = viewPlugins.first().plugin;
     if(!activeView->Open(myParentWidget))
     {
         qDebug() << "Can't open first view!";
