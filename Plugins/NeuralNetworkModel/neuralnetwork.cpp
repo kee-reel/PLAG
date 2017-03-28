@@ -31,8 +31,9 @@ void NeuralNetwork::AddHiddenLayer(INeuralNetworkModel::LayerParams params)
 
 void NeuralNetwork::AddOutputLayer(INeuralNetworkModel::LayerParams params)
 {
+    NeuralLayer *connectedLayer = layers.count() ? layers.last() : inputLayer;
     if(outputLayer) delete outputLayer;
-    outputLayer = new OutputNeuralLayer(params.size, layers.last(), params.LearnSpeed, params.Moment, params.FuncIndent, params.Bias);
+    outputLayer = new OutputNeuralLayer(params.size, connectedLayer, params.LearnSpeed, params.Moment, params.FuncIndent, params.Bias);
 }
 
 bool NeuralNetwork::RunTraining()

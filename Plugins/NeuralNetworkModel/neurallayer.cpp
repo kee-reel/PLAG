@@ -53,7 +53,8 @@ void NeuralLayer::Back(QVector<float> &nextLayerDelta)
         for(int j = 0; j < nextLayer->LayerSize(); ++j)
         {
             layerDelta[i] += nextLayer->inputWeights.at(j).at(i) * layerDelta[j];
-            delta = nextLayer->learnSpeed * nextLayerDelta[j] * outputs[i] + nextLayer->moment * nextLayer->weightsDelta[j][i]; // TODO: Moment
+            delta = nextLayer->learnSpeed * nextLayerDelta[j] * outputs[i]
+                    + nextLayer->moment * nextLayer->weightsDelta[j][i];
             nextLayer->inputWeights[j][i] -= delta;
             nextLayer->weightsDelta[j][i] = delta;
         }
@@ -83,7 +84,8 @@ void InputNeuralLayer::Back(QVector<float> &nextLayerDelta)
     {
         for(int j = 0; j < nextLayer->LayerSize(); ++j)
         {
-            delta = nextLayer->learnSpeed * nextLayerDelta[j] * outputs[i] + nextLayer->moment * nextLayer->weightsDelta[j][i]; // TODO: Moment
+            delta = nextLayer->learnSpeed * nextLayerDelta[j] * outputs[i]
+                    + nextLayer->moment * nextLayer->weightsDelta[j][i]; // TODO: Moment
             nextLayer->inputWeights[j][i] -= delta;
             nextLayer->weightsDelta[j][i] = delta;
         }
@@ -106,7 +108,7 @@ float OutputNeuralLayer::InitBackpropagation(QVector<float> &idealResult)
     float resultError = 0;
     for(int i = 0; i < idealResult.size(); ++i)
     {
-        layerDelta[i] = (idealResult[i] - outputs[i]) * ActivationFuncDerivative(outputs[i] + bias);
+        layerDelta[i] = (idealResult[i] - outputs[i]) * ActivationFuncDerivative(outputs[i]);
         resultError += outputs[i] - idealResult[i];
     }
     prevLayer->Back(layerDelta);
