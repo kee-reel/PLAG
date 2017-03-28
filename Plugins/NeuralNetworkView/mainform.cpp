@@ -10,9 +10,7 @@ MainForm::MainForm(QWidget *parent) :
     testSamples = new QVector<INeuralNetworkModel::TrainSample>();
     itemModel = new QStandardItemModel();
     ui->listView->setModel(itemModel);
-    connect(this->ui->spinEpoch,            SIGNAL(valueChanged(int)), this, SLOT(MarkNetworkStatsToUpdate()));
-    connect(this->ui->spinErrorThreshold,   SIGNAL(valueChanged(double)), this, SLOT(MarkNetworkStatsToUpdate()));
-    connect(this->ui->listView,   SIGNAL(indexesMoved(QModelIndexList)), this, SLOT(MarkNetworkStatsToUpdate()));
+    ui->tabWidget->setTabEnabled(0, false);
 }
 
 MainForm::~MainForm()
@@ -33,12 +31,17 @@ void MainForm::MarkNetworkStatsToUpdate()
     isStatsChanged = true;
 }
 
-void MainForm::UpdateNetworkStats()
+bool MainForm::UpdateNetworkStats()
 {
+
+    if(layersList.count() < 2)
+        return false;
+
     model->SetupNetwork(INeuralNetworkModel::NetworkParams() = {ui->spinEpoch->value(), ui->spinErrorThreshold->value()});
-    model->AddLayer(INeuralNetworkModel::Input, INeuralNetworkModel::LayerParams() = {2, 0, 0, 4, 0});
-    model->AddLayer(INeuralNetworkModel::Hidden, INeuralNetworkModel::LayerParams() = {2, 0.7, 0.3, 2, 0});
-    model->AddLayer(INeuralNetworkModel::Output, INeuralNetworkModel::LayerParams() = {1, 0.7, 0.5, 2, 0});
+    model->AddLayer(INeuralNetworkModel::Input, layersList.first());
+    for(int i = 1; i < layersList.count()-1; ++i)
+        model->AddLayer(INeuralNetworkModel::Hidden, layersList[i]);
+    model->AddLayer(INeuralNetworkModel::Output, layersList.last());
 
     trainingSamples->clear();
     testSamples->clear();
@@ -56,12 +59,32 @@ void MainForm::UpdateNetworkStats()
     model->SetupTestSamples(testSamples);
 
     isStatsChanged = false;
+    return true;
+}
+
+void MainForm::UpdateLayerStatsGUI()
+{
+    QModelIndex index = ui->listView->selectionModel()->currentIndex();
+    if(!index.isValid())
+    {
+        ui->tabWidget->setTabEnabled(0, false);
+        return;
+    }
+
+    ui->tabWidget->setTabEnabled(0, true);
+    INeuralNetworkModel::LayerParams params = layersList[index.row()];
+    ui->spinSize->setValue(params.size);
+    ui->spinLearnSpeed->setValue(params.LearnSpeed);
+    ui->spinMoment->setValue(params.Moment);
+    ui->spinFuncIndent->setValue(params.FuncIndent);
+    ui->spinBias->setValue(params.Bias);
 }
 
 void MainForm::on_buttonRunTrain_clicked()
 {
     if(isStatsChanged)
-        UpdateNetworkStats();
+        if(!UpdateNetworkStats())
+            return;
 
     if(model->RunTraining())
     {
@@ -74,7 +97,8 @@ void MainForm::on_buttonRunTrain_clicked()
 void MainForm::on_buttonRunTest_clicked()
 {
     if(isStatsChanged)
-        UpdateNetworkStats();
+        if(!UpdateNetworkStats())
+            return;
 
     if(model->RunTest())
     {
@@ -95,17 +119,11 @@ void MainForm::on_buttonAdd_clicked()
 {
     INeuralNetworkModel::LayerParams newLayer = {1, 0.7, 0.5, 2, 0};
     layersList.append(newLayer);
-    QStandardItem *item = new QStandardItem( QString("N=%0|S=%1|M=%2|In=%3|B=%4")
-                                             .arg(newLayer.size)
-                                             .arg(newLayer.LearnSpeed)
-                                             .arg(newLayer.Moment)
-                                             .arg(newLayer.FuncIndent)
-                                             .arg(newLayer.Bias)
-                                             );
+    QStandardItem *item = new QStandardItem(QString::number(layersList.count()));
     QBrush brush = QBrush(QColor(100+qrand()%20, 100+qrand()%50, 130+qrand()%120));
     item->setBackground(brush);
     itemModel->appendRow(item);
-
+    UpdateLayerStatsGUI();
 }
 
 void MainForm::on_buttonRemove_clicked()
@@ -116,13 +134,65 @@ void MainForm::on_buttonRemove_clicked()
         itemModel->removeRow(index.row());
         layersList.removeAt(index.row());
     }
+    UpdateLayerStatsGUI();
 }
 
 void MainForm::on_listView_clicked(const QModelIndex &index)
 {
-    if(index.isValid())
-    {
-        itemModel->removeRow(index.row());
-        layersList.removeAt(index.row());
-    }
+    UpdateLayerStatsGUI();
+}
+
+void MainForm::on_spinEpoch_valueChanged(int arg1)
+{
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinErrorThreshold_valueChanged(double arg1)
+{
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinSize_valueChanged(int arg1)
+{
+    QModelIndex index = ui->listView->selectionModel()->currentIndex();
+    if(!index.isValid())
+        return;
+    layersList[index.row()].size = arg1;
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinLearnSpeed_valueChanged(double arg1)
+{
+    QModelIndex index = ui->listView->selectionModel()->currentIndex();
+    if(!index.isValid())
+        return;
+    layersList[index.row()].LearnSpeed = arg1;
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinMoment_valueChanged(double arg1)
+{
+    QModelIndex index = ui->listView->selectionModel()->currentIndex();
+    if(!index.isValid())
+        return;
+    layersList[index.row()].Moment = arg1;
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinFuncIndent_valueChanged(double arg1)
+{
+    QModelIndex index = ui->listView->selectionModel()->currentIndex();
+    if(!index.isValid())
+        return;
+    layersList[index.row()].FuncIndent = arg1;
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinBias_valueChanged(double arg1)
+{
+    QModelIndex index = ui->listView->selectionModel()->currentIndex();
+    if(!index.isValid())
+        return;
+    layersList[index.row()].Bias = arg1;
+    MarkNetworkStatsToUpdate();
 }

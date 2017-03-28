@@ -37,6 +37,20 @@ private slots:
 
     void on_listView_clicked(const QModelIndex &index);
 
+    void on_spinEpoch_valueChanged(int arg1);
+
+    void on_spinErrorThreshold_valueChanged(double arg1);
+
+    void on_spinSize_valueChanged(int arg1);
+
+    void on_spinLearnSpeed_valueChanged(double arg1);
+
+    void on_spinMoment_valueChanged(double arg1);
+
+    void on_spinFuncIndent_valueChanged(double arg1);
+
+    void on_spinBias_valueChanged(double arg1);
+
 private:
     Ui::MainForm *ui;
     INeuralNetworkModel *model;
@@ -44,7 +58,8 @@ private:
     bool isStatsChanged;
     QList<INeuralNetworkModel::LayerParams> layersList;
 
-    void UpdateNetworkStats();
+    bool UpdateNetworkStats();
+    void UpdateLayerStatsGUI();
 };
 
 #endif // MAINFORM_H
