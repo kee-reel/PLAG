@@ -15,9 +15,8 @@ class NeuralNetwork : public QObject
 public:
     explicit NeuralNetwork(INeuralNetworkModel::NetworkParams params);
     ~NeuralNetwork();
-    void AddInputLayer(INeuralNetworkModel::LayerParams params);
-    void AddHiddenLayer(INeuralNetworkModel::LayerParams params);
-    void AddOutputLayer(INeuralNetworkModel::LayerParams params);
+    void AddLayer(INeuralNetworkModel::LayerType type, INeuralNetworkModel::LayerParams params);
+    void ResetLayers();
     bool RunTraining();
     bool RunTest();
 

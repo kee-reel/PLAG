@@ -63,7 +63,8 @@ public:
 
 public slots:
     void Forward(QVector<float> &inputSignals) override;
-    float InitBackpropagation(QVector<float> &idealResult);
+    float InitBack(QVector<float> &idealResult);
+
 };
 
 #endif // NEURALLAYER_H

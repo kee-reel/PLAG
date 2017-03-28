@@ -32,6 +32,7 @@ public:
 
     virtual void SetupNetwork(NetworkParams params) = 0;
     virtual void AddLayer(LayerType type, LayerParams params) = 0;
+    virtual void ResetLayers() = 0;
     virtual void SetupTrainingSamples(QVector<TrainSample> *samples) = 0;
     virtual bool RunTraining() = 0;
     virtual void SetupTestSamples(QVector<TrainSample> *samples) = 0;

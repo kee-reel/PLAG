@@ -24,7 +24,7 @@ NeuralLayer::NeuralLayer(int NeuronsValue, NeuralLayer *PrevLayer, float LearnSp
         weightsDelta[i].resize(prevLayer->LayerSize());
         for(int j = 0; j < inputWeights[i].size(); ++j)
         {
-            inputWeights[i][j] = -3 + ((float)(qrand()%600))/100;
+            inputWeights[i][j] = 0.4 + ((float)(qrand()%200))/1000;
             weightsDelta[i][j] = 0;
         }
     }
@@ -52,7 +52,7 @@ void NeuralLayer::Back(QVector<float> &nextLayerDelta)
         layerDelta[i] = ActivationFuncDerivative(outputs[i]);
         for(int j = 0; j < nextLayer->LayerSize(); ++j)
         {
-            layerDelta[i] += nextLayer->inputWeights.at(j).at(i) * layerDelta[j];
+            layerDelta[i] += nextLayer->inputWeights.at(j).at(i) * nextLayerDelta[j];
             delta = nextLayer->learnSpeed * nextLayerDelta[j] * outputs[i]
                     + nextLayer->moment * nextLayer->weightsDelta[j][i];
             nextLayer->inputWeights[j][i] -= delta;
@@ -103,13 +103,15 @@ void OutputNeuralLayer::Forward(QVector<float> &inputSignals)
     NeuralLayer::Forward(inputSignals);
 }
 
-float OutputNeuralLayer::InitBackpropagation(QVector<float> &idealResult)
+float OutputNeuralLayer::InitBack(QVector<float> &idealResult)
 {
     float resultError = 0;
+    float buf;
     for(int i = 0; i < idealResult.size(); ++i)
     {
-        layerDelta[i] = (idealResult[i] - outputs[i]) * ActivationFuncDerivative(outputs[i]);
-        resultError += outputs[i] - idealResult[i];
+        buf = outputs[i] - idealResult[i];
+        layerDelta[i] = buf * ActivationFuncDerivative(outputs[i]);
+        resultError += buf * buf;
     }
     prevLayer->Back(layerDelta);
     return resultError;
