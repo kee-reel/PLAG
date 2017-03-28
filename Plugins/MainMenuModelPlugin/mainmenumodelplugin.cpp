@@ -81,16 +81,22 @@ IMainMenuPluginModel::MenuItem *MainMenuModelPlugin::GetRootMenuItem()
 
 void MainMenuModelPlugin::RunItem(IMainMenuPluginModel::MenuItem *item)
 {
-    for(int i = 0; i < childModels.count(); ++i)
+    QMap<IModelPlugin*, MetaInfo*>::Iterator i = pluginLinker.pluginModelMap.begin();
+    while(i != pluginLinker.pluginModelMap.end())
     {
-        if(childModels[i].meta == item->meta)
+        if(i.value() == item->meta)
         {
             qDebug() << "Open plugin" << item->meta->Name;
-            if(!childModels[i].plugin->Open(this, parentWidget))
+            if(!i.key()->Open(this, parentWidget))
             {
                 qDebug() << "Model wasn't opened";
                 Open(NULL, parentWidget);
             }
+            return;
         }
+        ++i;
     }
+
+    qDebug() << "Model wasn't opened";
+    Open(NULL, parentWidget);
 }

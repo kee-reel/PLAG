@@ -20,12 +20,24 @@ void MainForm::SetModel(INeuralNetworkModel *Model)
 
 void MainForm::on_buttonRunTrain_clicked()
 {
-    model->RunTraining();
+    if(model->RunTraining())
+    {
+        qDebug() << "Network trained!";
+    }
+    else
+        qDebug() << "Network not trained!";
 }
 
 void MainForm::on_buttonRunTest_clicked()
 {
-    model->RunTest();
+    if(model->RunTest())
+    {
+        qDebug() << "Network passed all tests!";
+    }
+    else
+    {
+        qDebug() << "Network not passed tests!";
+    }
 }
 
 void MainForm::on_buttonClose_clicked()

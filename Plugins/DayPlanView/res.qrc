@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Res/ic_add_black_24dp.png</file>
+        <file>Res/ic_cancel_black_24dp.png</file>
+        <file>Res/ic_delete_black_24dp.png</file>
+        <file>Res/ic_done_black_24dp.png</file>
+        <file>Res/ic_exit_to_app_black_24dp.png</file>
+        <file>Res/ic_mode_edit_black_24dp.png</file>
+        <file>Res/sketch_to_task_24dp.png</file>
+        <file>Res/ic_filter_outline_black_24dp.png</file>
+        <file>Res/ic_filter_outline_grey600_24dp.png</file>
+        <file>Res/ic_restart_black_24dp.png</file>
+        <file>Res/ic_settings_black_48dp.png</file>
+    </qresource>
+</RCC>

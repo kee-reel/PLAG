@@ -4,11 +4,13 @@ MainMenuPluginView::MainMenuPluginView()
 {
     myModel = NULL;
     mainForm = new MainForm;
-    connect(mainForm, SIGNAL(OnButtonPressed(int)), this, SLOT(OpenChildPlugin(int)));
+    connect(mainForm, SIGNAL(OnItemSelected(IMainMenuPluginModel::MenuItem*)), this, SLOT(OpenChildPlugin(IMainMenuPluginModel::MenuItem*)));
+    connect(mainForm, SIGNAL(OnClose()), this, SLOT(CloseMainMenu()));
 }
 
 MainMenuPluginView::~MainMenuPluginView()
 {
+    mainForm->WipeAllItems();
     delete mainForm;
 }
 
@@ -52,14 +54,18 @@ bool MainMenuPluginView::Open(QWidget* parent)
 bool MainMenuPluginView::Close()
 {
     mainForm->hide();
-    mainForm->WipeAllItems();
-    //myModel->CloseFromView(this);
     return true;
 }
 
-void MainMenuPluginView::OpenChildPlugin(int id)
+void MainMenuPluginView::OpenChildPlugin(IMainMenuPluginModel::MenuItem *menuItem)
 {
-    qDebug() << "Open plugin" << id;
+    qDebug() << "Open plugin" << menuItem->meta->Name;
     Close();
-    myModel->RunItem(rootMenuItem->SubItems[id]);
+    myModel->RunItem(menuItem);
+}
+
+void MainMenuPluginView::CloseMainMenu()
+{
+    Close();
+    myModel->CloseFromView(this);
 }

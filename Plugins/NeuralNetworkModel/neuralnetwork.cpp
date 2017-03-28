@@ -26,18 +26,20 @@ void NeuralNetwork::AddInputLayer(INeuralNetworkModel::LayerParams params)
 void NeuralNetwork::AddHiddenLayer(INeuralNetworkModel::LayerParams params)
 {
     NeuralLayer *connectedLayer = layers.count() ? layers.last() : inputLayer;
-    layers.append(new NeuralLayer(params.size, connectedLayer, params.LearnSpeed, params.Moment, params.FuncIndent, params.Bias));
+    NeuralLayer *newLayer = new NeuralLayer(params.size, connectedLayer, params.LearnSpeed, params.Moment, params.FuncIndent, params.Bias);
+    layers.append(newLayer);
 }
 
 void NeuralNetwork::AddOutputLayer(INeuralNetworkModel::LayerParams params)
 {
     NeuralLayer *connectedLayer = layers.count() ? layers.last() : inputLayer;
     if(outputLayer) delete outputLayer;
+    NeuralLayer *connectedLayer = layers.count() ? layers.last() : inputLayer;
     outputLayer = new OutputNeuralLayer(params.size, connectedLayer, params.LearnSpeed, params.Moment, params.FuncIndent, params.Bias);
 }
 
 bool NeuralNetwork::RunTraining()
-{
+{   
     for(int epoch = 0; epoch < maxEpoch; ++epoch)
     {
         qDebug() << "Epoch" << epoch;

@@ -2,6 +2,7 @@
 #define MAINFORM_H
 
 #include <QWidget>
+#include <QDebug>
 #include "../NeuralNetworkModel/ineuralnetworkmodel.h"
 
 namespace Ui {

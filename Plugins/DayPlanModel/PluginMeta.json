@@ -1,0 +1,6 @@
+{
+    "Name":         "TaskSketchModel",
+    "PluginType":   "PluginModel",
+    "ParentName":   "TaskListModel",
+    "DataManager":  "ExtendableDataBaseManager"
+}

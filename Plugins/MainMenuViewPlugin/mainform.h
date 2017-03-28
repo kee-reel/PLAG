@@ -6,6 +6,7 @@
 #include <QGraphicsEllipseItem>
 
 #include "../MainMenuModelPlugin/imainmenumodule.h"
+#include "menuitem.h"
 
 namespace Ui {
 class MainForm;
@@ -19,13 +20,18 @@ public:
     ~MainForm();
 
     void SetRootMenuItem(IMainMenuPluginModel::MenuItem *RootMenuItem);
+    void AddSubitems(MenuItemGraphicsObject *ParentMenuItem, IMainMenuPluginModel::MenuItem *ParentMenuItemStruct);
     void WipeAllItems();
+
+signals:
+    void OnItemSelected(IMainMenuPluginModel::MenuItem *meta);
+    void OnClose();
 
 private:
     Ui::MainForm *ui;
     IMainMenuPluginModel::MenuItem *rootMenuItem;
     QGraphicsScene *scene;
-    QList<QGraphicsEllipseItem*> menuItems;
+    QList<MenuItemGraphicsObject*> menuItems;
 };
 
 #endif // MAINFORM_H

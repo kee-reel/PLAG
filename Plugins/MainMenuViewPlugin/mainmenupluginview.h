@@ -31,7 +31,8 @@ public:
     bool Close() override;
 
 private slots:
-    void OpenChildPlugin(int id);
+    void OpenChildPlugin(IMainMenuPluginModel::MenuItem *menuItem);
+    void CloseMainMenu();
 
 };
 

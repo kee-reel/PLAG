@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QDebug>
+#include <QMap>
 #include <QApplication>
 #include <QJsonObject>
 

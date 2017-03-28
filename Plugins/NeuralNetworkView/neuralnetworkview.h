@@ -22,6 +22,8 @@ public:
 private:
     INeuralNetworkModel* myModel;
     MainForm *mainForm;
+    QVector<INeuralNetworkModel::TrainSample> *trainingSamples;
+    QVector<INeuralNetworkModel::TrainSample> *testSamples;
 
     // IPlugin interface
 public:

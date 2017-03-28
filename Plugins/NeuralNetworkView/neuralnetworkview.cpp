@@ -9,6 +9,8 @@ NeuralNetworkView::NeuralNetworkView()
 
 NeuralNetworkView::~NeuralNetworkView()
 {
+    delete trainingSamples;
+    delete testSamples;
 }
 
 void NeuralNetworkView::OnAllSetup()
@@ -51,50 +53,36 @@ bool NeuralNetworkView::Open(QWidget *parent)
     //myModel->AddLayer(INeuralNetworkModel::Hidden, INeuralNetworkModel::LayerParams() = {2, 0.7, 0.3, 100, 0});
     myModel->AddLayer(INeuralNetworkModel::Output, INeuralNetworkModel::LayerParams() = {1, 0.7, 0.3, 2, 0});
 
-    QVector<INeuralNetworkModel::TrainSample> trainingSamples;
+    trainingSamples = new QVector<INeuralNetworkModel::TrainSample>();
     INeuralNetworkModel::TrainSample buf;
     buf.first = {1, 1};
     buf.second = {1};
-    trainingSamples.append(buf);
-    buf.first = {0, 0};
+    trainingSamples->append(buf);
+    buf.first = {-1, -1};
     buf.second = {0};
-    trainingSamples.append(buf);
-    buf.first = {0, 1};
+    trainingSamples->append(buf);
+    buf.first = {-1, 1};
     buf.second = {1};
-    trainingSamples.append(buf);
+    trainingSamples->append(buf);
+    buf.first = {1, -1};
+    buf.second = {1};
+    trainingSamples->append(buf);
+    myModel->SetupTrainingSamples(trainingSamples);
+
+    testSamples = new QVector<INeuralNetworkModel::TrainSample>();
     buf.first = {1, 0};
     buf.second = {1};
-    trainingSamples.append(buf);
-    myModel->SetupTrainingSamples(&trainingSamples);
-    if(myModel->RunTraining())
-    {
-        qDebug() << "Network trained!";
-        QVector<INeuralNetworkModel::TrainSample> testSamples;
-        INeuralNetworkModel::TrainSample buf;
-        buf.first = {1, 0.5};
-        buf.second = {1};
-        testSamples.append(buf);
-        buf.first = {0.1, 0};
-        buf.second = {0};
-        testSamples.append(buf);
-        buf.first = {0.1, 1};
-        buf.second = {1};
-        testSamples.append(buf);
-        buf.first = {0.7, 0};
-        buf.second = {1};
-        testSamples.append(buf);
-        myModel->SetupTestSamples(&testSamples);
-        if(myModel->RunTest())
-        {
-            qDebug() << "Network passed all tests!";
-        }
-        else
-        {
-            qDebug() << "Network not passed tests!";
-        }
-    }
-    else
-        qDebug() << "Network not trained!";
+    testSamples->append(buf);
+    buf.first = {0, -1};
+    buf.second = {0};
+    testSamples->append(buf);
+    buf.first = {-0.4, 1};
+    buf.second = {1};
+    testSamples->append(buf);
+    buf.first = {0.7, -1};
+    buf.second = {1};
+    testSamples->append(buf);
+    myModel->SetupTestSamples(testSamples);
 
     return true;
 }
