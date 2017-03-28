@@ -89,20 +89,12 @@ void NeuralNetworkModel::SetupNetwork(INeuralNetworkModel::NetworkParams params)
 
 void NeuralNetworkModel::AddLayer(INeuralNetworkModel::LayerType type, INeuralNetworkModel::LayerParams params)
 {
-    switch (type) {
-    case INeuralNetworkModel::Input:
-        if(!neuralNetwork) return;
-        neuralNetwork->AddInputLayer(params);
-        break;
-    case INeuralNetworkModel::Hidden:
-        if(!neuralNetwork) return;
-        neuralNetwork->AddHiddenLayer(params);
-        break;
-    case INeuralNetworkModel::Output:
-        if(!neuralNetwork) return;
-        neuralNetwork->AddOutputLayer(params);
-        break;
-    }
+    neuralNetwork->AddLayer(type, params);
+}
+
+void NeuralNetworkModel::ResetLayers()
+{
+    neuralNetwork->ResetLayers();
 }
 
 bool NeuralNetworkModel::RunTraining()

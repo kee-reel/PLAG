@@ -24,7 +24,7 @@ NeuralLayer::NeuralLayer(int NeuronsValue, NeuralLayer *PrevLayer, float LearnSp
         weightsDelta[i].resize(prevLayer->LayerSize());
         for(int j = 0; j < inputWeights[i].size(); ++j)
         {
-            inputWeights[i][j] = -3 + ((float)(qrand()%600))/100;
+            inputWeights[i][j] = 0.4 + ((float)(qrand()%200))/1000;
             weightsDelta[i][j] = 0;
         }
     }
@@ -108,7 +108,7 @@ float OutputNeuralLayer::InitBackpropagation(QVector<float> &idealResult)
     float resultError = 0;
     for(int i = 0; i < idealResult.size(); ++i)
     {
-        layerDelta[i] = (idealResult[i] - outputs[i]) * ActivationFuncDerivative(outputs[i]);
+        layerDelta[i] = (outputs[i] - idealResult[i]) * ActivationFuncDerivative(outputs[i]);
         resultError += outputs[i] - idealResult[i];
     }
     prevLayer->Back(layerDelta);

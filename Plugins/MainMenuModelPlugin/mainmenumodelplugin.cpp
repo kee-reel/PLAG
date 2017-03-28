@@ -53,13 +53,11 @@ bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
     qDebug() << "MainMenuModel runs";
 
-    childModels.first().plugin->Open(this, parentWidget);
-
-//    if(views.count())
-//    {
-//        qDebug() << "OPEN" << views.first().meta->Name;
-//        views.first().plugin->Open(parentWidget);
-//    }
+    if(views.count())
+    {
+        qDebug() << "OPEN" << views.first().meta->Name;
+        views.first().plugin->Open(parentWidget);
+    }
 
     return true;
 }
