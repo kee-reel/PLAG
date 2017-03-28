@@ -70,6 +70,7 @@ bool NeuralNetwork::RunTraining()
         for(int j = 0; j < trainingSamples->length(); ++j)
             resultError += RunTrainSet((*trainingSamples)[j]);
 
+
         resultError /= trainingSamples->length();
         qDebug() << "Current error" << resultError << "[" << (resultError - errBuf) << "]";
         if(resultError < resultErrorThreshold)
