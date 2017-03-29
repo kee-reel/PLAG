@@ -5,16 +5,18 @@
 #-------------------------------------------------
 TARGET = NeuralNetworkView
 TEMPLATE = lib
-QT += widgets
+QT += widgets printsupport
 
 SOURCES += \
     neuralnetworkview.cpp \
-    mainform.cpp
+    mainform.cpp \
+    qcustomplot.cpp
 
 HEADERS += \
     ../../System/MASS/interfaces.h \
     neuralnetworkview.h \
-    mainform.h
+    mainform.h \
+    qcustomplot.h
 
 include(../../System/MASS/BuildInfo.pri)
 

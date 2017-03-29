@@ -60,18 +60,18 @@ void NeuralNetwork::ResetLayers()
     layers.clear();
 }
 
-bool NeuralNetwork::RunTraining()
+bool NeuralNetwork::RunTraining(QVector<double> *errorVector)
 {   
     float errBuf = 0;
+    errorVector->clear();
     for(int epoch = 0; epoch < maxEpoch; ++epoch)
     {
         qDebug() << "Epoch" << epoch;
 
         for(int j = 0; j < trainingSamples->length(); ++j)
             resultError += RunTrainSet((*trainingSamples)[j]);
-
-
         resultError /= trainingSamples->length();
+        errorVector->append(resultError);
         qDebug() << "Current error" << resultError << "[" << (resultError - errBuf) << "]";
         if(resultError < resultErrorThreshold)
         {

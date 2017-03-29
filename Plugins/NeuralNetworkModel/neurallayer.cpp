@@ -24,7 +24,7 @@ NeuralLayer::NeuralLayer(int NeuronsValue, NeuralLayer *PrevLayer, float LearnSp
         weightsDelta[i].resize(prevLayer->LayerSize());
         for(int j = 0; j < inputWeights[i].size(); ++j)
         {
-            inputWeights[i][j] = 0.4 + ((float)(qrand()%200))/1000;
+            inputWeights[i][j] = -1 + ((float)(qrand()%2000))/1000;
             weightsDelta[i][j] = 0;
         }
     }
@@ -37,7 +37,7 @@ void NeuralLayer::Forward(QVector<float> &prevOutputs)
         outputs[myLayerNeuron] = 0;
         for(int prevLayerNeuron = 0; prevLayerNeuron < prevLayer->LayerSize(); ++prevLayerNeuron)
             outputs[myLayerNeuron] += prevOutputs[prevLayerNeuron] * inputWeights[myLayerNeuron][prevLayerNeuron];
-        outputs[myLayerNeuron] = ActivationFunc(outputs[myLayerNeuron] + bias);
+        outputs[myLayerNeuron] = ActivationFunc(outputs[myLayerNeuron]);
     }
 
     if(nextLayer)
@@ -73,8 +73,7 @@ void InputNeuralLayer::Forward(QVector<float> &inputSignals)
 {
     for(int i = 0; i < LayerSize(); ++i)
         outputs[i] = inputSignals[i] + bias;
-    outputs = inputSignals;
-    nextLayer->Forward(inputSignals);
+    nextLayer->Forward(outputs);
 }
 
 void InputNeuralLayer::Back(QVector<float> &nextLayerDelta)

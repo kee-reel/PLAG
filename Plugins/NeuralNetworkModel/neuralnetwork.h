@@ -17,7 +17,7 @@ public:
     ~NeuralNetwork();
     void AddLayer(INeuralNetworkModel::LayerType type, INeuralNetworkModel::LayerParams params);
     void ResetLayers();
-    bool RunTraining();
+    bool RunTraining(QVector<double> *errorVector);
     bool RunTest();
 
     QVector<INeuralNetworkModel::TrainSample> *trainingSamples;

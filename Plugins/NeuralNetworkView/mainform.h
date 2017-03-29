@@ -35,29 +35,19 @@ private slots:
     void on_buttonRunTrain_clicked();
     void on_buttonRunTest_clicked();
     void on_buttonClose_clicked();
-
     void on_buttonAdd_clicked();
-
     void on_buttonRemove_clicked();
 
     void on_listView_clicked(const QModelIndex &index);
-
     void on_spinEpoch_valueChanged(int arg1);
-
     void on_spinErrorThreshold_valueChanged(double arg1);
-
     void on_spinSize_valueChanged(int arg1);
-
     void on_spinLearnSpeed_valueChanged(double arg1);
-
     void on_spinMoment_valueChanged(double arg1);
-
     void on_spinFuncIndent_valueChanged(double arg1);
-
     void on_spinBias_valueChanged(double arg1);
 
     void on_buttonLoadImage_clicked();
-
     void on_buttonRemoveImages_clicked();
 
 private:
@@ -67,9 +57,11 @@ private:
     bool isStatsChanged;
     QList<INeuralNetworkModel::LayerParams> layersList;
     QList<QImage> inputImages;
+    QVector<double> errorVector;
 
     bool UpdateNetworkStats();
     void UpdateLayerStatsGUI();
+    void MakePlot(QVector<double> &x, QVector<double> &y);
 };
 
 #endif // MAINFORM_H

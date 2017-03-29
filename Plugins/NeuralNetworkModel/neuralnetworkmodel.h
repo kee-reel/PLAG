@@ -62,7 +62,7 @@ public:
     void AddLayer(LayerType type, LayerParams params) override;
     void ResetLayers() override;
 
-    bool RunTraining() override;
+    bool RunTraining(QVector<double> *errorVector) override;
     void SetupTrainingSamples(QVector<TrainSample> *samples) override;
     bool RunTest() override;
     void SetupTestSamples(QVector<TrainSample> *samples) override;

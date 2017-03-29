@@ -35,7 +35,7 @@ void MainForm::MarkNetworkStatsToUpdate()
 
 bool MainForm::UpdateNetworkStats()
 {
-    if(layersList.count() < 2)
+    if(layersList.count() < 2 || !inputImages.length())
         return false;
     int width = inputImages.first().width();
     int height = inputImages.first().height();
@@ -94,18 +94,37 @@ void MainForm::UpdateLayerStatsGUI()
     ui->spinBias->setValue(params.Bias);
 }
 
+void MainForm::MakePlot(QVector<double> &x, QVector<double> &y)
+{
+    ui->customPlot->clearGraphs();
+    // create graph and assign data to it:
+    ui->customPlot->addGraph();
+    ui->customPlot->graph(0)->setData(x, y);
+    // give the axes some labels:
+    ui->customPlot->xAxis->setLabel("x");
+    ui->customPlot->yAxis->setLabel("y");
+    // set axes ranges, so we see all data:
+    ui->customPlot->xAxis->setRange(0, x.last());
+    ui->customPlot->yAxis->setRange(0, 1);
+    ui->customPlot->replot();
+}
+
 void MainForm::on_buttonRunTrain_clicked()
 {
     if(isStatsChanged)
         if(!UpdateNetworkStats())
             return;
 
-    if(model->RunTraining())
+    if(model->RunTraining(&errorVector))
     {
         qDebug() << "Network trained!";
     }
     else
         qDebug() << "Network not trained!";
+    QVector<double> xValues(errorVector.length());
+    for(int i = 0; i < xValues.length(); ++i)
+        xValues[i] = i;
+    MakePlot(xValues, errorVector);
 }
 
 void MainForm::on_buttonRunTest_clicked()
