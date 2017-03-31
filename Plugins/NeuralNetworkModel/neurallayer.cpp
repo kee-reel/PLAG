@@ -1,16 +1,13 @@
 #include "neurallayer.h"
 
-NeuralLayer::NeuralLayer(int NeuronsValue, NeuralLayer *PrevLayer, float LearnSpeed, float Moment, float FuncIndent, float Bias)
+NeuralLayer::NeuralLayer(NeuralLayer *PrevLayer, INeuralNetworkModel::NetworkParams &NetworkParams, INeuralNetworkModel::LayerParams &Params)
 {
     qDebug() << "NeuralLayer created";
     prevLayer = PrevLayer;
     nextLayer = NULL;
-    learnSpeed = LearnSpeed;
-    moment = Moment;
-    funcIndent = FuncIndent;
-    bias = Bias;
-    outputs.resize(NeuronsValue);
-    layerDelta.resize(NeuronsValue);
+    params = Params;
+    outputs.resize(params.size);
+    layerDelta.resize(params.size);
     if(!PrevLayer)
         return;
 
@@ -18,13 +15,15 @@ NeuralLayer::NeuralLayer(int NeuronsValue, NeuralLayer *PrevLayer, float LearnSp
     prevLayer->outputWeights = &inputWeights;
     inputWeights.resize(LayerSize());
     weightsDelta.resize(LayerSize());
+
+    float range = NetworkParams.maxWeight - NetworkParams.minWeight;
     for(int i = 0; i < LayerSize(); ++i)
     {
         inputWeights[i].resize(prevLayer->LayerSize());
         weightsDelta[i].resize(prevLayer->LayerSize());
         for(int j = 0; j < inputWeights[i].size(); ++j)
         {
-            inputWeights[i][j] = -1 + ((float)(qrand()%2000))/1000;
+            inputWeights[i][j] = NetworkParams.minWeight + (qrand()/double(RAND_MAX))*range;
             weightsDelta[i][j] = 0;
         }
     }
@@ -53,8 +52,8 @@ void NeuralLayer::Back(QVector<float> &nextLayerDelta)
         for(int j = 0; j < nextLayer->LayerSize(); ++j)
         {
             layerDelta[i] += nextLayer->inputWeights.at(j).at(i) * nextLayerDelta[j];
-            delta = nextLayer->learnSpeed * nextLayerDelta[j] * outputs[i]
-                    + nextLayer->moment * nextLayer->weightsDelta[j][i];
+            delta = nextLayer->params.LearnSpeed * nextLayerDelta[j] * outputs[i]
+                    + nextLayer->params.Moment * nextLayer->weightsDelta[j][i];
             nextLayer->inputWeights[j][i] -= delta;
             nextLayer->weightsDelta[j][i] = delta;
         }
@@ -63,8 +62,8 @@ void NeuralLayer::Back(QVector<float> &nextLayerDelta)
         prevLayer->Back(layerDelta);
 }
 
-InputNeuralLayer::InputNeuralLayer(int NeuronsValue, float Bias)
-    : NeuralLayer(NeuronsValue, NULL, 0, 0, 0, Bias)
+InputNeuralLayer::InputNeuralLayer(INeuralNetworkModel::NetworkParams &NetworkParams, INeuralNetworkModel::LayerParams &Params)
+    : NeuralLayer(NULL, NetworkParams, Params)
 {
 
 }
@@ -72,7 +71,7 @@ InputNeuralLayer::InputNeuralLayer(int NeuronsValue, float Bias)
 void InputNeuralLayer::Forward(QVector<float> &inputSignals)
 {
     for(int i = 0; i < LayerSize(); ++i)
-        outputs[i] = inputSignals[i] + bias;
+        outputs[i] = inputSignals[i] + params.Bias;
     nextLayer->Forward(outputs);
 }
 
@@ -83,16 +82,16 @@ void InputNeuralLayer::Back(QVector<float> &nextLayerDelta)
     {
         for(int j = 0; j < nextLayer->LayerSize(); ++j)
         {
-            delta = nextLayer->learnSpeed * nextLayerDelta[j] * outputs[i]
-                    + nextLayer->moment * nextLayer->weightsDelta[j][i]; // TODO: Moment
+            delta = nextLayer->params.LearnSpeed * nextLayerDelta[j] * outputs[i]
+                    + nextLayer->params.Moment * nextLayer->weightsDelta[j][i];
             nextLayer->inputWeights[j][i] -= delta;
             nextLayer->weightsDelta[j][i] = delta;
         }
     }
 }
 
-OutputNeuralLayer::OutputNeuralLayer(int NeuronsValue, NeuralLayer *PrevLayer, float LearnSpeed, float Moment, float FuncIndent, float Bias)
-    : NeuralLayer(NeuronsValue, PrevLayer, LearnSpeed, Moment, FuncIndent, Bias)
+OutputNeuralLayer::OutputNeuralLayer(NeuralLayer *PrevLayer, INeuralNetworkModel::NetworkParams &networkParams, INeuralNetworkModel::LayerParams &params)
+    : NeuralLayer(PrevLayer, networkParams, params)
 {
 
 }

@@ -4,17 +4,14 @@
 #include <QObject>
 #include <QVector>
 #include <QDebug>
-#include <QMatrix>
+#include "ineuralnetworkmodel.h"
 
 class NeuralLayer
 {
 public:
-    NeuralLayer(int NeuronsValue,
-                NeuralLayer *PrevLayer,
-                float LearnSpeed = 0.7,
-                float Moment = 0.3,
-                float FuncIndent = 10,
-                float Bias = 0);
+    NeuralLayer(NeuralLayer *PrevLayer,
+                INeuralNetworkModel::NetworkParams &NetworkParams,
+                INeuralNetworkModel::LayerParams &Params);
     inline int LayerSize() {return outputs.size();}
 
 public slots:
@@ -31,19 +28,15 @@ public:
     QVector<float> outputs;
     QVector<float> layerDelta;
 
-    float learnSpeed;
-    float moment;
-    float funcIndent;
-    float bias;
-    inline float ActivationFunc(float x) {return 1 / (1 + expf(funcIndent*-x));}
-    inline float ActivationFuncDerivative(float x) {return funcIndent * (1 - x) * (x);}
+    INeuralNetworkModel::LayerParams params;
+    inline float ActivationFunc(float x) {return 1 / (1 + expf(params.FuncIndent * -x));}
+    inline float ActivationFuncDerivative(float x) {return params.FuncIndent * (1 - x) * (x);}
 };
 
 class InputNeuralLayer : public NeuralLayer
 {
 public:
-    InputNeuralLayer(int NeuronsValue,
-                     float Bias = 0);
+    InputNeuralLayer(INeuralNetworkModel::NetworkParams &NetworkParams, INeuralNetworkModel::LayerParams &Params);
 
 public slots:
     void Forward(QVector<float> &inputSignals) override;
@@ -53,12 +46,9 @@ public slots:
 class OutputNeuralLayer : public NeuralLayer
 {
 public:
-    OutputNeuralLayer(int NeuronsValue,
-                      NeuralLayer *PrevLayer,
-                      float LearnSpeed = 0.7,
-                      float Moment = 0.3,
-                      float Bias = -0.5,
-                      float FuncIndent = 2);
+    OutputNeuralLayer(NeuralLayer *PrevLayer,
+                      INeuralNetworkModel::NetworkParams &networkParams,
+                      INeuralNetworkModel::LayerParams &params);
     inline QVector<float> *GetOutputs() { return &outputs; }
 
 public slots:

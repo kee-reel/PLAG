@@ -20,10 +20,11 @@ class MainForm : public QWidget
     Q_OBJECT
 
 public:
-    QVector<INeuralNetworkModel::TrainSample> *trainingSamples;
-    QVector<INeuralNetworkModel::TrainSample> *testSamples;
-    QStandardItemModel *itemModel;
-    QStandardItemModel *imagesModel;
+    QVector<INeuralNetworkModel::TrainSample> trainingSamples;
+    QVector<INeuralNetworkModel::TrainSample> testSamples;
+    QStandardItemModel itemModel;
+    QStandardItemModel trainImagesModel;
+    QStandardItemModel testImagesModel;
 
     explicit MainForm(QWidget *parent = 0);
     ~MainForm();
@@ -39,8 +40,6 @@ private slots:
     void on_buttonRemove_clicked();
 
     void on_listView_clicked(const QModelIndex &index);
-    void on_spinEpoch_valueChanged(int arg1);
-    void on_spinErrorThreshold_valueChanged(double arg1);
     void on_spinSize_valueChanged(int arg1);
     void on_spinLearnSpeed_valueChanged(double arg1);
     void on_spinMoment_valueChanged(double arg1);
@@ -50,13 +49,30 @@ private slots:
     void on_buttonLoadImage_clicked();
     void on_buttonRemoveImages_clicked();
 
+    void on_buttonLoadImage_2_clicked();
+
+    void on_buttonRemoveImages_2_clicked();
+
+    void on_spinEpoch_editingFinished();
+
+    void on_spinErrorThreshold_editingFinished();
+
+    void on_spinMinWeight_editingFinished();
+
+    void on_spinMaxWeight_editingFinished();
+
+    void on_spinTestErrorThreshold_editingFinished();
+
+    void on_buttonResumeTraining_clicked();
+
 private:
     Ui::MainForm *ui;
     INeuralNetworkModel *model;
     QModelIndex currentIndex;
     bool isStatsChanged;
     QList<INeuralNetworkModel::LayerParams> layersList;
-    QList<QImage> inputImages;
+    QList<QImage> trainImages;
+    QList<QImage> testImages;
     QVector<double> errorVector;
 
     bool UpdateNetworkStats();

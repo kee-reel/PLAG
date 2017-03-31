@@ -97,9 +97,14 @@ void NeuralNetworkModel::ResetLayers()
     neuralNetwork->ResetLayers();
 }
 
-bool NeuralNetworkModel::RunTraining(QVector<double> *errorVector)
+bool NeuralNetworkModel::StartTraining(QVector<double> *errorVector)
 {
     return neuralNetwork->RunTraining(errorVector);
+}
+
+bool NeuralNetworkModel::ResumeTraining(QVector<double> *errorVector)
+{
+    return neuralNetwork->ResumeTraining(errorVector);
 }
 
 void NeuralNetworkModel::SetupTrainingSamples(QVector<INeuralNetworkModel::TrainSample> *samples)

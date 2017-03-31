@@ -25,3 +25,6 @@ DISTFILES += \
 
 FORMS += \
     mainform.ui
+
+RESOURCES += \
+    res.qrc

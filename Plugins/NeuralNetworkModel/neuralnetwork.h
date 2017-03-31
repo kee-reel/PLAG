@@ -18,6 +18,7 @@ public:
     void AddLayer(INeuralNetworkModel::LayerType type, INeuralNetworkModel::LayerParams params);
     void ResetLayers();
     bool RunTraining(QVector<double> *errorVector);
+    bool ResumeTraining(QVector<double> *errorVector);
     bool RunTest();
 
     QVector<INeuralNetworkModel::TrainSample> *trainingSamples;
@@ -29,8 +30,7 @@ private:
     OutputNeuralLayer *outputLayer;
 
     float resultError;
-    float resultErrorThreshold;
-    int maxEpoch;
+    INeuralNetworkModel::NetworkParams networkParams;
 
 private slots:
     float RunTrainSet(INeuralNetworkModel::TrainSample &trainSet);

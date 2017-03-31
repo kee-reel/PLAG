@@ -12,8 +12,11 @@ public:
     typedef QPair<QVector<float>, QVector<float>> TrainSample;
 
     struct NetworkParams{
-        float maxEpoch;
-        float resultErrorThreshold;
+        int maxEpoch;
+        float trainErrorThreshold;
+        float testErrorThreshold;
+        float minWeight;
+        float maxWeight;
     };
 
     struct LayerParams{
@@ -34,7 +37,8 @@ public:
     virtual void AddLayer(LayerType type, LayerParams params) = 0;
     virtual void ResetLayers() = 0;
     virtual void SetupTrainingSamples(QVector<TrainSample> *samples) = 0;
-    virtual bool RunTraining(QVector<double> *errorVector) = 0;
+    virtual bool StartTraining(QVector<double> *errorVector) = 0;
+    virtual bool ResumeTraining(QVector<double> *errorVector) = 0;
     virtual void SetupTestSamples(QVector<TrainSample> *samples) = 0;
     virtual bool RunTest() = 0;
 };

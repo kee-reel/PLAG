@@ -7,7 +7,7 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
 {
     this->tableName = tableName;
     this->dataManager = dataManager;
-    coreRelationName = "tree";\
+    coreRelationName = "tree";
     rootItem = NULL;
 }
 
@@ -84,6 +84,7 @@ void TaskTreeItemModel::LoadData()
     }
 
     QVector<QVariant> defaultData;
+    defaultData << "New task";
     defaultTask.SetChunkData(coreRelationName, defaultData);
     defaultTask.SetActiveChunkName(coreRelationName);
 }

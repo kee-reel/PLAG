@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += widgets sql gui qml quick multimedia
+QT       += widgets sql gui qml quick multimedia printsupport
 
 TARGET = MASS
 TEMPLATE = app

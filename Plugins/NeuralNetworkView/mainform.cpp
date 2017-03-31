@@ -6,20 +6,15 @@ MainForm::MainForm(QWidget *parent) :
     ui(new Ui::MainForm)
 {
     ui->setupUi(this);
-    trainingSamples = new QVector<INeuralNetworkModel::TrainSample>();
-    testSamples = new QVector<INeuralNetworkModel::TrainSample>();
-    itemModel = new QStandardItemModel();
-    imagesModel = new QStandardItemModel();
-    ui->listView->setModel(itemModel);
-    ui->listViewImages->setModel(imagesModel);
+    ui->listView->setModel(&itemModel);
+    ui->listViewImages->setModel(&trainImagesModel);
+    ui->listViewImages_2->setModel(&testImagesModel);
     ui->tabWidget->setTabEnabled(0, false);
 }
 
 MainForm::~MainForm()
 {
     delete ui;
-    delete trainingSamples;
-    delete testSamples;
 }
 
 void MainForm::SetModel(INeuralNetworkModel *Model)
@@ -31,46 +26,60 @@ void MainForm::SetModel(INeuralNetworkModel *Model)
 void MainForm::MarkNetworkStatsToUpdate()
 {
     isStatsChanged = true;
+    ui->buttonResumeTraining->setEnabled(false);
 }
 
 bool MainForm::UpdateNetworkStats()
 {
-    if(layersList.count() < 2 || !inputImages.length())
+    if(layersList.count() < 2 || !trainImages.length())
         return false;
-    int width = inputImages.first().width();
-    int height = inputImages.first().height();
+    int width = trainImages.first().width();
+    int height = trainImages.first().height();
     layersList.first().size = width * height;
-    layersList.last().size = inputImages.count();
+    layersList.last().size = trainImages.count();
 
-    model->SetupNetwork(INeuralNetworkModel::NetworkParams() = {ui->spinEpoch->value(), ui->spinErrorThreshold->value()});
+    model->SetupNetwork(INeuralNetworkModel::NetworkParams() =
+    {
+            ui->spinEpoch->value(),
+            ui->spinErrorThreshold->value(),
+            ui->spinTestErrorThreshold->value(),
+            ui->spinMinWeight->value(),
+            ui->spinMaxWeight->value()
+    });
     model->AddLayer(INeuralNetworkModel::Input, layersList.first());
     for(int i = 1; i < layersList.count()-1; ++i)
         model->AddLayer(INeuralNetworkModel::Hidden, layersList[i]);
     model->AddLayer(INeuralNetworkModel::Output, layersList.last());
 
-    trainingSamples->clear();
-    testSamples->clear();
+    trainingSamples.clear();
+    testSamples.clear();
 
     INeuralNetworkModel::TrainSample buf;
     buf.first.resize(layersList.first().size);
-    buf.second.resize(inputImages.count());
-    for(int i = 0; i < inputImages.count(); ++i)
+    buf.second.resize(trainImages.count());
+    for(int i = 0; i < trainImages.count(); ++i)
     {
         for(int h = 0; h < height; ++h)
             for(int w = 0; w < width; ++w)
-                buf.first[h*width + w] = inputImages[i].pixelColor(w, h).red()/255.;
-        for(int j = 0; j < inputImages.count(); ++j)
+                buf.first[h*width + w] = trainImages[i].pixelColor(w, h).red()/255.;
+        for(int j = 0; j < trainImages.count(); ++j)
             buf.second[j] = 0;
         buf.second[i] = 1;
-        trainingSamples->append(buf);
+        trainingSamples.append(buf);
     }
-    model->SetupTrainingSamples(trainingSamples);
+    model->SetupTrainingSamples(&trainingSamples);
 
-    testSamples->append({{1, 1.1},      {1}});
-    testSamples->append({{1, 0.5},      {1}});
-    testSamples->append({{0.2, 0},      {0}});
-    testSamples->append({{0.2, 0.1},    {0}});
-    model->SetupTestSamples(testSamples);
+    for(int i = 0; i < testImages.count(); ++i)
+    {
+        for(int h = 0; h < height; ++h)
+            for(int w = 0; w < width; ++w)
+                buf.first[h*width + w] = testImages[i].pixelColor(w, h).red()/255.;
+        for(int j = 0; j < testImages.count(); ++j)
+            buf.second[j] = 0;
+        buf.second[i] = 1;
+        testSamples.append(buf);
+    }
+    model->SetupTestSamples(&testSamples);
 
     isStatsChanged = false;
     return true;
@@ -92,6 +101,7 @@ void MainForm::UpdateLayerStatsGUI()
     ui->spinMoment->setValue(params.Moment);
     ui->spinFuncIndent->setValue(params.FuncIndent);
     ui->spinBias->setValue(params.Bias);
+    MarkNetworkStatsToUpdate();
 }
 
 void MainForm::MakePlot(QVector<double> &x, QVector<double> &y)
@@ -111,20 +121,15 @@ void MainForm::MakePlot(QVector<double> &x, QVector<double> &y)
 
 void MainForm::on_buttonRunTrain_clicked()
 {
-    if(isStatsChanged)
-        if(!UpdateNetworkStats())
-            return;
+    if(!UpdateNetworkStats())
+        return;
+    model->StartTraining(&errorVector);
 
-    if(model->RunTraining(&errorVector))
-    {
-        qDebug() << "Network trained!";
-    }
-    else
-        qDebug() << "Network not trained!";
     QVector<double> xValues(errorVector.length());
     for(int i = 0; i < xValues.length(); ++i)
         xValues[i] = i;
     MakePlot(xValues, errorVector);
+    ui->buttonResumeTraining->setEnabled(true);
 }
 
 void MainForm::on_buttonRunTest_clicked()
@@ -135,11 +140,11 @@ void MainForm::on_buttonRunTest_clicked()
 
     if(model->RunTest())
     {
-        qDebug() << "Network passed all tests!";
+        qDebug() << "Tests +";
     }
     else
     {
-        qDebug() << "Network not passed tests!";
+        qDebug() << "Tests -";
     }
 }
 
@@ -155,7 +160,7 @@ void MainForm::on_buttonAdd_clicked()
     QStandardItem *item = new QStandardItem(QString::number(layersList.count()));
     QBrush brush = QBrush(QColor(100+qrand()%20, 100+qrand()%50, 130+qrand()%120));
     item->setBackground(brush);
-    itemModel->appendRow(item);
+    itemModel.appendRow(item);
     UpdateLayerStatsGUI();
 }
 
@@ -164,7 +169,7 @@ void MainForm::on_buttonRemove_clicked()
     QModelIndex index = ui->listView->selectionModel()->currentIndex();
     if(index.isValid())
     {
-        itemModel->removeRow(index.row());
+        itemModel.removeRow(index.row());
         layersList.removeAt(index.row());
     }
     UpdateLayerStatsGUI();
@@ -173,16 +178,6 @@ void MainForm::on_buttonRemove_clicked()
 void MainForm::on_listView_clicked(const QModelIndex &index)
 {
     UpdateLayerStatsGUI();
-}
-
-void MainForm::on_spinEpoch_valueChanged(int arg1)
-{
-    MarkNetworkStatsToUpdate();
-}
-
-void MainForm::on_spinErrorThreshold_valueChanged(double arg1)
-{
-    MarkNetworkStatsToUpdate();
 }
 
 void MainForm::on_spinSize_valueChanged(int arg1)
@@ -232,15 +227,95 @@ void MainForm::on_spinBias_valueChanged(double arg1)
 
 void MainForm::on_buttonLoadImage_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Add Image"), "/home", tr("Image Files (*.png *.jpg *.bmp)"));
-    QImage image = QImage(fileName);
-    if(image.isNull()) return;
-    inputImages.append(image);
-    QStandardItem *item = new QStandardItem(QIcon(QPixmap::fromImage(image)), fileName);
-    imagesModel->appendRow(item);
+    QFileDialog dialog(
+                this,
+                "Add Image",
+                "/home",
+                "Image Files (*.png *.jpg *.bmp)");
+    dialog.setDirectory(QDir::homePath());
+    dialog.setFileMode(QFileDialog::ExistingFiles);
+    QStringList fileNames;
+    if(dialog.exec())
+    {
+        fileNames = dialog.selectedFiles();
+        for(int i = 0; i < fileNames.length(); ++i)
+        {
+            QImage image = QImage(fileNames[i]);
+            if(image.isNull()) return;
+            trainImages.append(image);
+            QStandardItem *item = new QStandardItem(QIcon(QPixmap::fromImage(image)), fileNames[i]);
+            trainImagesModel.appendRow(item);
+        }
+    }
 }
 
 void MainForm::on_buttonRemoveImages_clicked()
 {
+    trainImages.clear();
+    trainImagesModel.clear();
+}
 
+void MainForm::on_buttonLoadImage_2_clicked()
+{
+    QFileDialog dialog(
+                this,
+                "Add Image",
+                "/home",
+                "Image Files (*.png *.jpg *.bmp)");
+    dialog.setDirectory(QDir::homePath());
+    dialog.setFileMode(QFileDialog::ExistingFiles);
+    QStringList fileNames;
+    if(dialog.exec())
+    {
+        fileNames = dialog.selectedFiles();
+        for(int i = 0; i < fileNames.length(); ++i)
+        {
+            QImage image = QImage(fileNames[i]);
+            if(image.isNull()) return;
+            testImages.append(image);
+            QStandardItem *item = new QStandardItem(QIcon(QPixmap::fromImage(image)), fileNames[i]);
+            testImagesModel.appendRow(item);
+        }
+    }
+}
+
+void MainForm::on_buttonRemoveImages_2_clicked()
+{
+    testImages.clear();
+    testImagesModel.clear();
+}
+
+void MainForm::on_spinEpoch_editingFinished()
+{
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinErrorThreshold_editingFinished()
+{
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinMinWeight_editingFinished()
+{
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinMaxWeight_editingFinished()
+{
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_spinTestErrorThreshold_editingFinished()
+{
+    MarkNetworkStatsToUpdate();
+}
+
+void MainForm::on_buttonResumeTraining_clicked()
+{
+    model->ResumeTraining(&errorVector);
+
+    QVector<double> xValues(errorVector.length());
+    for(int i = 0; i < xValues.length(); ++i)
+        xValues[i] = i;
+    MakePlot(xValues, errorVector);
 }
