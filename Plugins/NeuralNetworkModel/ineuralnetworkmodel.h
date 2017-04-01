@@ -36,11 +36,12 @@ public:
     virtual void SetupNetwork(NetworkParams params) = 0;
     virtual void AddLayer(LayerType type, LayerParams params) = 0;
     virtual void ResetLayers() = 0;
+
+    virtual float RunTraining() = 0;
+    virtual float RunTest() = 0;
     virtual void SetupTrainingSamples(QVector<TrainSample> *samples) = 0;
-    virtual bool StartTraining(QVector<double> *errorVector) = 0;
-    virtual bool ResumeTraining(QVector<double> *errorVector) = 0;
     virtual void SetupTestSamples(QVector<TrainSample> *samples) = 0;
-    virtual bool RunTest() = 0;
+
 };
 Q_DECLARE_INTERFACE(INeuralNetworkModel, "INeuralNetworkModel v0.1")
 

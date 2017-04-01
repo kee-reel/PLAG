@@ -31,6 +31,7 @@ public:
     void SetModel(INeuralNetworkModel *Model);
 signals:
     void onClose();
+
 private slots:
     void MarkNetworkStatsToUpdate();
     void on_buttonRunTrain_clicked();
@@ -48,21 +49,13 @@ private slots:
 
     void on_buttonLoadImage_clicked();
     void on_buttonRemoveImages_clicked();
-
     void on_buttonLoadImage_2_clicked();
-
     void on_buttonRemoveImages_2_clicked();
-
     void on_spinEpoch_editingFinished();
-
     void on_spinErrorThreshold_editingFinished();
-
     void on_spinMinWeight_editingFinished();
-
     void on_spinMaxWeight_editingFinished();
-
     void on_spinTestErrorThreshold_editingFinished();
-
     void on_buttonResumeTraining_clicked();
 
 private:
@@ -73,11 +66,15 @@ private:
     QList<INeuralNetworkModel::LayerParams> layersList;
     QList<QImage> trainImages;
     QList<QImage> testImages;
-    QVector<double> errorVector;
+    QVector<double> trainErrorVector;
+    QVector<double> testErrorVector;
+    int epoch;
+    QVector<double> xValues;
 
     bool UpdateNetworkStats();
     void UpdateLayerStatsGUI();
-    void MakePlot(QVector<double> &x, QVector<double> &y);
+    void MakePlot(int graph, QVector<double> &x, QVector<double> &y);
+    void ReplotPlot();
 };
 
 #endif // MAINFORM_H

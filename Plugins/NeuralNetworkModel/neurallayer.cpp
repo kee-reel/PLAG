@@ -101,16 +101,13 @@ void OutputNeuralLayer::Forward(QVector<float> &inputSignals)
     NeuralLayer::Forward(inputSignals);
 }
 
-float OutputNeuralLayer::InitBack(QVector<float> &idealResult)
+void OutputNeuralLayer::InitBack(QVector<float> &idealResult)
 {
-    float resultError = 0;
     float buf;
     for(int i = 0; i < idealResult.size(); ++i)
     {
         buf = outputs[i] - idealResult[i];
         layerDelta[i] = buf * ActivationFuncDerivative(outputs[i]);
-        resultError += buf * buf;
     }
     prevLayer->Back(layerDelta);
-    return resultError;
 }
