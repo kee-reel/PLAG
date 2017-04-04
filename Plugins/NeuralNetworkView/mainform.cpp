@@ -10,6 +10,15 @@ MainForm::MainForm(QWidget *parent) :
     ui->listViewImages->setModel(&trainImagesModel);
     ui->listViewImages_2->setModel(&testImagesModel);
     ui->tabWidget->setTabEnabled(0, false);
+
+    ui->customPlot->clearGraphs();
+    ui->customPlot->xAxis->setLabel("x");
+    ui->customPlot->yAxis->setLabel("y");
+    ui->customPlot->yAxis->setRange(0, 1);
+    ui->customPlot->addGraph();
+    ui->customPlot->addGraph();
+    ui->customPlot->graph(0)->setPen(QPen(QColor(28, 156, 255)));
+    ui->customPlot->graph(1)->setPen(QPen(QColor(226, 6, 25)));
 }
 
 MainForm::~MainForm()
@@ -37,6 +46,8 @@ bool MainForm::UpdateNetworkStats()
     int height = trainImages.first().height();
     layersList.first().size = width * height;
     layersList.last().size = trainImages.count();
+    ui->checkTrain->setEnabled(false);
+    ui->checkTest->setEnabled(false);
 
     model->SetupNetwork(INeuralNetworkModel::NetworkParams() =
     {
@@ -104,32 +115,43 @@ void MainForm::UpdateLayerStatsGUI()
     MarkNetworkStatsToUpdate();
 }
 
-void MainForm::MakePlot(QVector<double> &x, QVector<double> &y)
+void MainForm::MakePlot(int graph, QVector<double> &x, QVector<double> &y)
 {
-    ui->customPlot->clearGraphs();
-    // create graph and assign data to it:
-    ui->customPlot->addGraph();
-    ui->customPlot->graph(0)->setData(x, y);
-    // give the axes some labels:
-    ui->customPlot->xAxis->setLabel("x");
-    ui->customPlot->yAxis->setLabel("y");
-    // set axes ranges, so we see all data:
-    ui->customPlot->xAxis->setRange(0, x.last());
-    ui->customPlot->yAxis->setRange(0, 1);
+    ui->customPlot->graph(graph)->setData(x, y);
+}
+
+void MainForm::ReplotPlot()
+{
+    xValues.append(epoch);
+    MakePlot(0, xValues, trainErrorVector);
+    MakePlot(1, xValues, testErrorVector);
     ui->customPlot->replot();
+    ui->customPlot->xAxis->setRange(0, epoch);
+    ui->labelEpoch->        setText(QString::number(epoch));
+    ui->labelTrainError->   setText(QString::number(trainErrorVector.last()));
+    ui->labelTestError->    setText(QString::number(testErrorVector.last()));
 }
 
 void MainForm::on_buttonRunTrain_clicked()
 {
     if(!UpdateNetworkStats())
         return;
-    model->StartTraining(&errorVector);
-
-    QVector<double> xValues(errorVector.length());
-    for(int i = 0; i < xValues.length(); ++i)
-        xValues[i] = i;
-    MakePlot(xValues, errorVector);
     ui->buttonResumeTraining->setEnabled(true);
+    ui->checkTrain->setEnabled(false);
+    ui->checkTest->setEnabled(false);
+    int n = ui->spinEpoch->value();
+    float threshold = ui->spinErrorThreshold->value();
+    for(epoch = 0; epoch < n; ++epoch)
+    {
+        trainErrorVector.append(model->RunTraining());
+        testErrorVector.append(model->RunTest());
+        ReplotPlot();
+        if(trainErrorVector.last() < threshold)
+        {
+            ui->checkTrain->setChecked(true);
+            return;
+        }
+    }
 }
 
 void MainForm::on_buttonRunTest_clicked()
@@ -138,15 +160,28 @@ void MainForm::on_buttonRunTest_clicked()
         if(!UpdateNetworkStats())
             return;
 
-    if(model->RunTest())
+    ui->checkTest->setChecked(model->RunTest() < ui->spinTestErrorThreshold->value());
+}
+
+void MainForm::on_buttonResumeTraining_clicked()
+{
+    int n = epoch + ui->spinEpoch->value();
+    float threshold = ui->spinErrorThreshold->value();
+    ui->checkTrain->setChecked(false);
+    ui->checkTest->setChecked(false);
+    for(; epoch < n; ++epoch)
     {
-        qDebug() << "Tests +";
-    }
-    else
-    {
-        qDebug() << "Tests -";
+        trainErrorVector.append(model->RunTraining());
+        testErrorVector.append(model->RunTest());
+        ReplotPlot();
+        if(trainErrorVector.last() < threshold)
+        {
+            ui->checkTrain->setChecked(true);
+            return;
+        }
     }
 }
+
 
 void MainForm::on_buttonClose_clicked()
 {
@@ -308,14 +343,4 @@ void MainForm::on_spinMaxWeight_editingFinished()
 void MainForm::on_spinTestErrorThreshold_editingFinished()
 {
     MarkNetworkStatsToUpdate();
-}
-
-void MainForm::on_buttonResumeTraining_clicked()
-{
-    model->ResumeTraining(&errorVector);
-
-    QVector<double> xValues(errorVector.length());
-    for(int i = 0; i < xValues.length(); ++i)
-        xValues[i] = i;
-    MakePlot(xValues, errorVector);
 }

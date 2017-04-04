@@ -59,85 +59,66 @@ void NeuralNetwork::ResetLayers()
     layers.clear();
 }
 
-bool NeuralNetwork::RunTraining(QVector<double> *errorVector)
+float NeuralNetwork::RunTraining()
 {   
-    float errBuf = 0;
-    errorVector->clear();
-    int epoch;
-    for(epoch = 0; epoch < networkParams.maxEpoch; ++epoch)
-    {
-        for(int j = 0; j < trainingSamples->length(); ++j)
-            resultError += RunTrainSet((*trainingSamples)[j]);
-        resultError /= trainingSamples->length();
-        errorVector->append(resultError);
-        qDebug() << "Epoch" << epoch;
-        qDebug() << "Current error" << resultError << "[" << (resultError - errBuf) << "]";
-        if(resultError < networkParams.trainErrorThreshold)
-        {
-            qDebug() << "Algorithm succeded";
-            return true;
-        }
-        errBuf = resultError;
-        resultError = 0;
-    }
-    return false;
+    resultError = 0;
+    for(int j = 0; j < trainingSamples->length(); ++j)
+        resultError += RunTrainSet((*trainingSamples)[j]);
+    resultError /= trainingSamples->length();
+//    float errBuf = 0;
+//    trainErrorVector->clear();
+//    int epoch;
+//    for(epoch = 0; epoch < networkParams.maxEpoch; ++epoch)
+//    {
+//        for(int j = 0; j < trainingSamples->length(); ++j)
+//            resultError += RunTrainSet((*trainingSamples)[j]);
+//        resultError /= trainingSamples->length();
+//        trainErrorVector->append(resultError);
+//        qDebug() << "Epoch" << epoch;
+//        qDebug() << "Current error" << resultError << "[" << (resultError - errBuf) << "]";
+//        if(resultError < networkParams.trainErrorThreshold)
+//        {
+//            qDebug() << "Algorithm succeded";
+//            return true;
+//        }
+//        errBuf = resultError;
+//        resultError = 0;
+//    }
+    return resultError;
 }
 
-bool NeuralNetwork::ResumeTraining(QVector<double> *errorVector)
+float NeuralNetwork::RunTest()
 {
-    float errBuf = 0;
-    int epoch;
-    for(epoch = 0; epoch < networkParams.maxEpoch; ++epoch)
-    {
-        for(int j = 0; j < trainingSamples->length(); ++j)
-            resultError += RunTrainSet((*trainingSamples)[j]);
-        resultError /= trainingSamples->length();
-        errorVector->append(resultError);
-        qDebug() << "Epoch" << epoch;
-        qDebug() << "Current error" << resultError << "[" << (resultError - errBuf) << "]";
-        if(resultError < networkParams.trainErrorThreshold)
-        {
-            qDebug() << "Algorithm succeded";
-            break;
-        }
-        errBuf = resultError;
-        resultError = 0;
-    }
-    return false;
+    resultError = 0;
+    for(int j = 0; j < testSamples->length(); ++j)
+        resultError += RunTestSet((*testSamples)[j]);
+    resultError /= testSamples->length();
+    return resultError;
 }
 
 float NeuralNetwork::RunTrainSet(INeuralNetworkModel::TrainSample &trainSet)
 {
     inputLayer->Forward(trainSet.first);
     QString result = "";
-    for(int i = 0; i < outputLayer->outputs.length(); ++i)
-        result.append(QString::number(trainSet.second[i]) + "~" + QString::number(outputLayer->outputs[i]) + ", ");
-    qDebug() << result;
-    float buf = outputLayer->InitBack(trainSet.second);
-    return buf;
-}
-
-bool NeuralNetwork::RunTest()
-{
     resultError = 0;
-    for(int j = 0; j < testSamples->length(); ++j)
+    for(int i = 0; i < outputLayer->outputs.length(); ++i)
     {
-        resultError += RunTestSet((*testSamples)[j]);
+        result.append(QString::number(trainSet.second[i]) + "~" + QString::number(outputLayer->outputs[i]) + ", ");
+        resultError += (trainSet.second[i] - outputLayer->outputs[i]) * (trainSet.second[i] - outputLayer->outputs[i]);
     }
-    resultError /= testSamples->length();
-    qDebug() << resultError;
-    return resultError < networkParams.testErrorThreshold;
+    outputLayer->InitBack(trainSet.second);
+    return resultError;
 }
 
 float NeuralNetwork::RunTestSet(INeuralNetworkModel::TrainSample &testSet)
 {
     inputLayer->Forward(testSet.first);
     QString result = "";
+    resultError = 0;
     for(int i = 0; i < outputLayer->outputs.length(); ++i)
     {
         result.append(QString::number(testSet.second[i]) + "~" + QString::number(outputLayer->outputs[i]) + ", ");
         resultError += (testSet.second[i] - outputLayer->outputs[i]) * (testSet.second[i] - outputLayer->outputs[i]);
     }
-    qDebug() << result;
     return resultError;
 }

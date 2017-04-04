@@ -97,24 +97,19 @@ void NeuralNetworkModel::ResetLayers()
     neuralNetwork->ResetLayers();
 }
 
-bool NeuralNetworkModel::StartTraining(QVector<double> *errorVector)
+float NeuralNetworkModel::RunTraining()
 {
-    return neuralNetwork->RunTraining(errorVector);
+    return neuralNetwork->RunTraining();
 }
 
-bool NeuralNetworkModel::ResumeTraining(QVector<double> *errorVector)
+float NeuralNetworkModel::RunTest()
 {
-    return neuralNetwork->ResumeTraining(errorVector);
+    return neuralNetwork->RunTest();
 }
 
 void NeuralNetworkModel::SetupTrainingSamples(QVector<INeuralNetworkModel::TrainSample> *samples)
 {
     neuralNetwork->trainingSamples = samples;
-}
-
-bool NeuralNetworkModel::RunTest()
-{
-    return neuralNetwork->RunTest();
 }
 
 void NeuralNetworkModel::SetupTestSamples(QVector<INeuralNetworkModel::TrainSample> *samples)

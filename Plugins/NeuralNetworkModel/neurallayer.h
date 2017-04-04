@@ -53,7 +53,7 @@ public:
 
 public slots:
     void Forward(QVector<float> &inputSignals) override;
-    float InitBack(QVector<float> &idealResult);
+    void InitBack(QVector<float> &idealResult);
 
 };
 
