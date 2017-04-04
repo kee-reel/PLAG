@@ -9,7 +9,7 @@ class QAbstractItemModel;
 class ITaskSketchModel: public IModelPlugin
 {
 public:
-    /// Get all data
+    virtual QAbstractItemModel* GetModel() = 0;
 };
 Q_DECLARE_INTERFACE(ITaskSketchModel, "ITaskSketchModel v0.1")
 

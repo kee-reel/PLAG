@@ -89,6 +89,7 @@ void MainForm::on_treeView_doubleClicked(const QModelIndex &index)
 {
     ui->verticalLayout->setEnabled(false);
     addForm->ShowModelData(index);
+    model->insertColumn(1);
 }
 
 void MainForm::on_buttonDelete_clicked()

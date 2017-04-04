@@ -6,6 +6,7 @@ GalleryForm::GalleryForm(QWidget *parent) :
     ui(new Ui::GalleryForm)
 {
     ui->setupUi(this);
+    connect(ui->buttonClose, SIGNAL(clicked(bool)), this, SLOT(close()));
 }
 
 GalleryForm::~GalleryForm()

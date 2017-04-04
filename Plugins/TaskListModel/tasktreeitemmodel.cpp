@@ -212,15 +212,18 @@ bool TaskTreeItemModel::insertRows(int row, int count, const QModelIndex &parent
     endInsertRows();
 }
 
+bool TaskTreeItemModel::insertColumns(int column, int count, const QModelIndex &parent)
+{
+
+}
+
 bool TaskTreeItemModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     beginRemoveRows(parent, row, row+count);
     TreeItem *parentItem;
     qDebug() << "removeRow";
     if (!parent.isValid())
-    {
         parentItem = rootItem;
-    }
     else
         parentItem = static_cast<TreeItem*>(parent.internalPointer());
 
@@ -240,7 +243,6 @@ bool TaskTreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow,
     TreeItem *destinationChildItem = destinationParentItem->GetChildAt(destinationChild);
     qDebug() << sourceParentItem << destinationChildItem << destinationParentItem->ChildCount() << sourceParentItem->ChildCount();
     QList<TreeItem*> movingItems;
-
 
     if(!beginMoveRows(sourceParent, sourceRow, sourceLast, destinationParent, destinationChild))
     {
@@ -264,7 +266,6 @@ bool TaskTreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow,
         destinationParentItem->AddChild(destinationChild+i, movingItems[movingItems.count()-1-i]);
     }
 
-    qDebug() << "Shit";
     endMoveRows();
 }
 

@@ -79,8 +79,8 @@ IMainMenuPluginModel::MenuItem *MainMenuModelPlugin::GetRootMenuItem()
 
 void MainMenuModelPlugin::RunItem(IMainMenuPluginModel::MenuItem *item)
 {
-    QMap<IModelPlugin*, MetaInfo*>::Iterator i = pluginLinker.pluginModelMap.begin();
-    while(i != pluginLinker.pluginModelMap.end())
+    QMap<IModelPlugin*, MetaInfo*>::Iterator i = pluginLinker.modelMap.begin();
+    while(i != pluginLinker.modelMap.end())
     {
         if(i.value() == item->meta)
         {

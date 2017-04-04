@@ -3,7 +3,7 @@
 TaskListView::TaskListView()
 {
     mainForm = new MainForm;
-
+    connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     myModel = NULL;
 }
 
@@ -43,7 +43,6 @@ bool TaskListView::Open(QWidget* parent)
     }
 
     parent->layout()->addWidget(mainForm);
-    connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     mainForm->setParent(parent);
     mainForm->show();
     return true;
@@ -52,7 +51,6 @@ bool TaskListView::Open(QWidget* parent)
 bool TaskListView::Close()
 {
     qDebug() << "CLOSE";
-    disconnect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     mainForm->hide();
     myModel->CloseFromView(this);
     return true;

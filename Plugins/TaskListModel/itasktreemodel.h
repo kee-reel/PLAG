@@ -9,7 +9,7 @@ class QAbstractItemModel;
 class ITreeModel : public IModelPlugin
 {
 public:
-    /// Get all data
+    virtual QString GetDataName() = 0;
     virtual QAbstractItemModel* GetTreeModel() = 0;
 };
 Q_DECLARE_INTERFACE(ITreeModel, "ITreeModel v0.1")

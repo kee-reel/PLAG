@@ -87,7 +87,7 @@ bool PluginLinker::BindPluginToSystem(QObject *instance, MetaInfo *meta)
         case PLUGINVIEW:{
             IViewPlugin* plugin = CastToPlugin<IViewPlugin>(instance);
             if(!plugin) return false;
-            pluginViewMap.insert(plugin, meta);
+            viewMap.insert(plugin, meta);
             SetLinks(plugin, instance, meta);
             break;
         }
@@ -95,7 +95,7 @@ bool PluginLinker::BindPluginToSystem(QObject *instance, MetaInfo *meta)
         case DATASOURCE:{
             IDataSourcePlugin* plugin = CastToPlugin<IDataSourcePlugin>(instance);
             if(!plugin) return false;
-            dataSourceMap.insert(plugin, meta);
+            sourceMap.insert(plugin, meta);
             SetLinks(plugin, instance, meta);
             break;
         }
@@ -103,7 +103,7 @@ bool PluginLinker::BindPluginToSystem(QObject *instance, MetaInfo *meta)
         case DATAMANAGER:{
             IDataManagerPlugin* plugin = CastToPlugin<IDataManagerPlugin>(instance);
             if(!plugin) return false;
-            dataManagerMap.insert(plugin, meta);
+            managerMap.insert(plugin, meta);
             SetLinks(plugin, instance, meta);
             break;
         }
@@ -117,6 +117,22 @@ bool PluginLinker::BindPluginToSystem(QObject *instance, MetaInfo *meta)
 
     qDebug() << "Module" << meta->Name << "succesfully added to system." << endl;
     return true;
+}
+
+void PluginLinker::CallOnAllSetup()
+{
+    QList<IDataSourcePlugin*> sources = sourceMap.keys();
+    for(int i = 0; i < sources.length(); ++i)
+        sources[i]->OnAllSetup();
+    QList<IDataManagerPlugin*> managers = managerMap.keys();
+    for(int i = 0; i < managers.length(); ++i)
+        managers[i]->OnAllSetup();
+    QList<IModelPlugin*> models = modelMap.keys();
+    for(int i = 0; i < models.length(); ++i)
+        models[i]->OnAllSetup();
+    QList<IViewPlugin*> views = viewMap.keys();
+    for(int i = 0; i < views.length(); ++i)
+        views[i]->OnAllSetup();
 }
 
 template<class Type>
@@ -149,7 +165,7 @@ void PluginLinker::SetLinks(IDataManagerPlugin *plugin, QObject* instance, MetaI
 
 void PluginLinker::SetLinks(IModelPlugin *plugin, QObject* instance, MetaInfo *meta)
 {
-    pluginModelMap.insert(plugin, meta);
+    modelMap.insert(plugin, meta);
     LinkInfo<IModelPlugin> info = {plugin, instance};
 
     IMainMenuPluginModel::MenuItem *item = new IMainMenuPluginModel::MenuItem();
@@ -184,6 +200,7 @@ IMainMenuPluginModel::MenuItem* PluginLinker::SetupLinks()
     LinkManagerToModels();
     LinkModelToModels();
     LinkModelToViews();
+    CallOnAllSetup();
     return rootMenuItem;
 }
 
@@ -230,11 +247,11 @@ void PluginLinker::LinkModelToModels()
         if(modelsLinkInfo.contains(pluginModelIter.key()))
         {
             IModelPlugin *parentModel = modelsLinkInfo[pluginModelIter.key()].plugin;
-            MetaInfo *parentMeta = pluginModelMap[parentModel];
+            MetaInfo *parentMeta = modelMap[parentModel];
             QVector<IModelPlugin*> childPlugins = pluginModelIter.value();
             for(int i = 0; i < childPlugins.count(); i++)
             {
-                MetaInfo* meta = pluginModelMap[childPlugins[i]];
+                MetaInfo* meta = modelMap[childPlugins[i]];
                 IModelPlugin* plugin = modelsLinkInfo[meta->Name].plugin;
 
                 parentModel->AddChildModel(plugin, meta);
@@ -260,7 +277,7 @@ void PluginLinker::LinkModelToViews()
             LinkInfo<IModelPlugin> parentModel = modelsLinkInfo.value(pluginModelIter.key());
             for(int i = 0; i < childPlugins.count(); i++)
             {
-                MetaInfo* meta = pluginViewMap[childPlugins[i]];
+                MetaInfo* meta = viewMap[childPlugins[i]];
                 IViewPlugin* plugin = viewsLinkInfo[meta->Name].plugin;
 
                 parentModel.plugin->AddView(plugin, meta);

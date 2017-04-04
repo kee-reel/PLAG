@@ -86,6 +86,11 @@ void TaskTreeModel::ChildSelfClosed(IModelPlugin *child)
 
 }
 
+QString TaskTreeModel::GetDataName()
+{
+    return tableName;
+}
+
 QAbstractItemModel* TaskTreeModel::GetTreeModel()
 {
     return treeModel;

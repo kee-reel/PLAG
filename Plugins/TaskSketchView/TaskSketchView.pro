@@ -10,12 +10,16 @@ QT += widgets
 SOURCES += \
     tasklistview.cpp \
     mainform.cpp \
-    galleryform.cpp
+    galleryform.cpp \
+    paintwidget.cpp \
+    galleryitem.cpp
 
 HEADERS +=\
     tasklistview.h \
     mainform.h \
-    galleryform.h
+    galleryform.h \
+    paintwidget.h \
+    galleryitem.h
 
 include(../../System/MASS/BuildInfo.pri)
 
@@ -24,7 +28,8 @@ DISTFILES += \
 
 FORMS += \
     mainform.ui \
-    galleryform.ui
+    galleryform.ui \
+    galleryitem.ui
 
 RESOURCES += \
     res.qrc

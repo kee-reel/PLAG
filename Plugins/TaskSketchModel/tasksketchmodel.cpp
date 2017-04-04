@@ -79,3 +79,8 @@ void TaskSketchModel::ChildSelfClosed(IModelPlugin *child)
 {
 
 }
+
+QAbstractItemModel *TaskSketchModel::GetModel()
+{
+
+}

@@ -23,10 +23,10 @@ public:
     IMainMenuPluginModel::MenuItem *rootMenuItem;
     QMap<MetaInfo*, IMainMenuPluginModel::MenuItem*> menuItems;
 
-    QMap<IModelPlugin*, MetaInfo*>          pluginModelMap;
-    QMap<IViewPlugin*, MetaInfo*>           pluginViewMap;
-    QMap<IDataSourcePlugin*, MetaInfo*>     dataSourceMap;
-    QMap<IDataManagerPlugin*, MetaInfo*>    dataManagerMap;
+    QMap<IModelPlugin*, MetaInfo*>          modelMap;
+    QMap<IViewPlugin*, MetaInfo*>           viewMap;
+    QMap<IDataSourcePlugin*, MetaInfo*>     sourceMap;
+    QMap<IDataManagerPlugin*, MetaInfo*>    managerMap;
 
 private:
     QMap<QString, PluginTypes> pluginTypesNames;
@@ -49,6 +49,7 @@ private:
 
     MetaInfo *GetPluginMeta(QJsonObject* metaData);
     bool BindPluginToSystem(QObject* instance, MetaInfo *meta);
+    void CallOnAllSetup();
 
     void SetLinks(IDataSourcePlugin* plugin, QObject* instance, MetaInfo *meta);
     void SetLinks(IDataManagerPlugin* plugin, QObject* instance, MetaInfo *meta);

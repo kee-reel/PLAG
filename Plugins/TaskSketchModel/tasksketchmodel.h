@@ -38,7 +38,7 @@ private:
 
     // Unique part
     QString tableName;
-    IExtendableDataBaseManagerPlugin* dataManager;
+    IExtendableDataBaseManagerPlugin *dataManager;
 
     // IPlugin interface
 public:
@@ -54,6 +54,9 @@ public:
     bool CloseFromView(IViewPlugin *view) override;
     void ChildSelfClosed(IModelPlugin *child) override;
 
+    // ITaskSketchModel interface
+public:
+    virtual QAbstractItemModel *GetModel();
 };
 
 #endif // TASKLISTMODEL_H

@@ -57,6 +57,7 @@ public:
 
     // ITaskListModel interface
 public:
+    QString GetDataName() override;
     QAbstractItemModel *GetTreeModel() override;
 };
 
