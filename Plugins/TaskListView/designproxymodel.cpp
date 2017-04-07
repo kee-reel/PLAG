@@ -7,6 +7,7 @@ DesignProxyModel::DesignProxyModel(QAbstractItemModel *model)
 
 QVariant DesignProxyModel::data(const QModelIndex &index, int role) const
 {
+    QModelIndex proxyIndex = createIndex(index.row(), 1, index.internalPointer());
     switch (role) {
     case Qt::SizeHintRole:
         return QSize(0, 50);
@@ -21,7 +22,7 @@ QVariant DesignProxyModel::data(const QModelIndex &index, int role) const
         }
         break;
     default:
-        return QIdentityProxyModel::data(index, role);
+        return QIdentityProxyModel::data(proxyIndex, role);
         break;
     }
 }

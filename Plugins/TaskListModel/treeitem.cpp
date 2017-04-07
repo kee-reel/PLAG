@@ -67,7 +67,7 @@ QVector<QVariant> TreeItem::GetChunkData(QString chunkName)
 
 QVariant TreeItem::GetChunkDataElement(int column)
 {
-    return (*activeChunk)[column];
+    return (activeChunk->length() > column) ? (*activeChunk)[column] : QVariant();
 }
 
 void TreeItem::SetChunkData(QString chunkName, QVector<QVariant> data)
@@ -77,6 +77,7 @@ void TreeItem::SetChunkData(QString chunkName, QVector<QVariant> data)
 
 void TreeItem::SetChunkDataElement(int column, QVariant data)
 {
-    (*activeChunk)[column] = data;
+    if(activeChunk->length() > column)
+        (*activeChunk)[column] = data;
 }
 

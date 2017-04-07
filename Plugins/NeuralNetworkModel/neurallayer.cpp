@@ -2,7 +2,6 @@
 
 NeuralLayer::NeuralLayer(NeuralLayer *PrevLayer, INeuralNetworkModel::NetworkParams &NetworkParams, INeuralNetworkModel::LayerParams &Params)
 {
-    qDebug() << "NeuralLayer created";
     prevLayer = PrevLayer;
     nextLayer = NULL;
     params = Params;
