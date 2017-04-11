@@ -13,9 +13,9 @@ class NeuralNetwork : public QObject
 {
     Q_OBJECT
 public:
-    explicit NeuralNetwork(INeuralNetworkModel::NetworkParams params);
+    explicit NeuralNetwork(Perceptron::NetworkParams params);
     ~NeuralNetwork();
-    void AddLayer(INeuralNetworkModel::LayerType type, INeuralNetworkModel::LayerParams params);
+    void AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params);
     void ResetLayers();
     float RunTraining();
     float RunTest();
@@ -29,7 +29,7 @@ private:
     OutputNeuralLayer *outputLayer;
 
     float resultError;
-    INeuralNetworkModel::NetworkParams networkParams;
+    Perceptron::NetworkParams networkParams;
 
 private slots:
     float RunTrainSet(INeuralNetworkModel::TrainSample &trainSet);

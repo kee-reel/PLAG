@@ -63,7 +63,7 @@ private:
     INeuralNetworkModel *model;
     QModelIndex currentIndex;
     bool isStatsChanged;
-    QList<INeuralNetworkModel::LayerParams> layersList;
+    QList<Perceptron::LayerParams> layersList;
     QList<QImage> trainImages;
     QList<QImage> testImages;
     QVector<double> trainErrorVector;

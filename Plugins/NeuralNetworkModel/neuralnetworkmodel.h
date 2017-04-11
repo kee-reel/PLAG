@@ -58,8 +58,8 @@ public:
 
     // INeuralNetworkModel interface
 public:
-    void SetupNetwork(NetworkParams params) override;
-    void AddLayer(LayerType type, LayerParams params) override;
+    void SetupNetwork(Perceptron::NetworkParams params) override;
+    void AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params) override;
     void ResetLayers() override;
 
     float RunTraining() override;

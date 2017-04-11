@@ -81,13 +81,13 @@ void NeuralNetworkModel::ChildSelfClosed(IModelPlugin *child)
 
 }
 
-void NeuralNetworkModel::SetupNetwork(INeuralNetworkModel::NetworkParams params)
+void NeuralNetworkModel::SetupNetwork(Perceptron::NetworkParams params)
 {
     if(neuralNetwork) delete neuralNetwork;
     neuralNetwork = new NeuralNetwork(params);
 }
 
-void NeuralNetworkModel::AddLayer(INeuralNetworkModel::LayerType type, INeuralNetworkModel::LayerParams params)
+void NeuralNetworkModel::AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params)
 {
     neuralNetwork->AddLayer(type, params);
 }

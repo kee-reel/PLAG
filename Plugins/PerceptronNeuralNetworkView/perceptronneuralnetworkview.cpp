@@ -1,28 +1,28 @@
-#include "neuralnetworkview.h"
+#include "perceptronneuralnetworkview.h"
 
-NeuralNetworkView::NeuralNetworkView()
+PerceptronNetworkViewPlugin::PerceptronNetworkViewPlugin()
 {
     mainForm = new MainForm;
     mainForm->setVisible(false);
     myModel = NULL;
 }
 
-NeuralNetworkView::~NeuralNetworkView()
+PerceptronNetworkViewPlugin::~PerceptronNetworkViewPlugin()
 {
 
 }
 
-void NeuralNetworkView::OnAllSetup()
+void PerceptronNetworkViewPlugin::OnAllSetup()
 {
 
 }
 
-QString NeuralNetworkView::GetLastError()
+QString PerceptronNetworkViewPlugin::GetLastError()
 {
 
 }
 
-void NeuralNetworkView::SetModel(QObject *model)
+void PerceptronNetworkViewPlugin::SetModel(QObject *model)
 {
     myModel = qobject_cast<INeuralNetworkModel*>(model);
     if(!myModel)
@@ -33,7 +33,7 @@ void NeuralNetworkView::SetModel(QObject *model)
     qDebug() << "ITaskListModel succesfully set.";
 }
 
-bool NeuralNetworkView::Open(QWidget *parent)
+bool PerceptronNetworkViewPlugin::Open(QWidget *parent)
 {
     qDebug() << "View OPEN" << parent;
     if(!myModel)
@@ -50,7 +50,7 @@ bool NeuralNetworkView::Open(QWidget *parent)
     return true;
 }
 
-bool NeuralNetworkView::Close()
+bool PerceptronNetworkViewPlugin::Close()
 {
     disconnect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     mainForm->hide();

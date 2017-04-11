@@ -9,15 +9,15 @@
 #include "../MainMenuModelPlugin/interfaces.h"
 #include "mainform.h"
 
-class NeuralNetworkView : public QObject, IViewPlugin
+class ARNeuralNetworkView : public QObject, IViewPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(IViewPlugin)
 
 public:
-    NeuralNetworkView();
-    ~NeuralNetworkView();
+    ARNeuralNetworkView();
+    ~ARNeuralNetworkView();
 
 private:
     INeuralNetworkModel* myModel;

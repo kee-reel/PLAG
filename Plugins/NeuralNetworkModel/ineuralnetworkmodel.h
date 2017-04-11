@@ -6,11 +6,8 @@ template <class A, class B>
 class QPair;
 template <class A>
 class QVector;
-class INeuralNetworkModel : public IModelPlugin
-{
-public:
-    typedef QPair<QVector<float>, QVector<float>> TrainSample;
 
+namespace Perceptron{
     struct NetworkParams{
         int maxEpoch;
         float trainErrorThreshold;
@@ -32,9 +29,15 @@ public:
         Hidden,
         Output
     };
+}
 
-    virtual void SetupNetwork(NetworkParams params) = 0;
-    virtual void AddLayer(LayerType type, LayerParams params) = 0;
+class INeuralNetworkModel : public IModelPlugin
+{
+public:
+    typedef QPair<QVector<float>, QVector<float>> TrainSample;
+
+    virtual void SetupNetwork(Perceptron::NetworkParams params) = 0;
+    virtual void AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params) = 0;
     virtual void ResetLayers() = 0;
 
     virtual float RunTraining() = 0;

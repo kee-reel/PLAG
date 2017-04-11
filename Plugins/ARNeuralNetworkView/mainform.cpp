@@ -49,7 +49,7 @@ bool MainForm::UpdateNetworkStats()
     ui->checkTrain->setEnabled(false);
     ui->checkTest->setEnabled(false);
 
-    model->SetupNetwork(INeuralNetworkModel::NetworkParams() =
+    model->SetupNetwork(Perceptron::NetworkParams() =
     {
             ui->spinEpoch->value(),
             ui->spinErrorThreshold->value(),
@@ -57,10 +57,10 @@ bool MainForm::UpdateNetworkStats()
             ui->spinMinWeight->value(),
             ui->spinMaxWeight->value()
     });
-    model->AddLayer(INeuralNetworkModel::Input, layersList.first());
+    model->AddLayer(Perceptron::Input, layersList.first());
     for(int i = 1; i < layersList.count()-1; ++i)
-        model->AddLayer(INeuralNetworkModel::Hidden, layersList[i]);
-    model->AddLayer(INeuralNetworkModel::Output, layersList.last());
+        model->AddLayer(Perceptron::Hidden, layersList[i]);
+    model->AddLayer(Perceptron::Output, layersList.last());
 
     trainingSamples.clear();
     testSamples.clear();
@@ -106,7 +106,7 @@ void MainForm::UpdateLayerStatsGUI()
     }
 
     ui->tabWidget->setTabEnabled(0, true);
-    INeuralNetworkModel::LayerParams params = layersList[index.row()];
+    Perceptron::LayerParams params = layersList[index.row()];
     ui->spinSize->setValue(params.size);
     ui->spinLearnSpeed->setValue(params.LearnSpeed);
     ui->spinMoment->setValue(params.Moment);
@@ -190,7 +190,7 @@ void MainForm::on_buttonClose_clicked()
 
 void MainForm::on_buttonAdd_clicked()
 {
-    INeuralNetworkModel::LayerParams newLayer = {1, 0.7, 0.5, 2, 0};
+    Perceptron::LayerParams newLayer = {1, 0.7, 0.5, 2, 0};
     layersList.append(newLayer);
     QStandardItem *item = new QStandardItem(QString::number(layersList.count()));
     QBrush brush = QBrush(QColor(100+qrand()%20, 100+qrand()%50, 130+qrand()%120));

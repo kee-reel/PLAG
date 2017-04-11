@@ -1,6 +1,6 @@
 #include "neuralnetwork.h"
 
-NeuralNetwork::NeuralNetwork(INeuralNetworkModel::NetworkParams params) : QObject()
+NeuralNetwork::NeuralNetwork(Perceptron::NetworkParams params) : QObject()
 {
     inputLayer = NULL;
     outputLayer = NULL;
@@ -16,23 +16,23 @@ NeuralNetwork::~NeuralNetwork()
         delete layers[i];
 }
 
-void NeuralNetwork::AddLayer(INeuralNetworkModel::LayerType type, INeuralNetworkModel::LayerParams params)
+void NeuralNetwork::AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params)
 {
     switch (type) {
-    case INeuralNetworkModel::Input:{
+    case Perceptron::Input:{
         if(inputLayer) delete inputLayer;
         inputLayer = new InputNeuralLayer(networkParams, params);
         }
         break;
 
-    case INeuralNetworkModel::Hidden:{
+    case Perceptron::Hidden:{
         NeuralLayer *connectedLayer = layers.count() ? layers.last() : inputLayer;
         NeuralLayer *newLayer = new NeuralLayer(connectedLayer, networkParams, params);
         layers.append(newLayer);
         }
         break;
 
-    case INeuralNetworkModel::Output:{
+    case Perceptron::Output:{
         if(outputLayer) delete outputLayer;
         NeuralLayer *connectedLayer = layers.count() ? layers.last() : inputLayer;
         outputLayer = new OutputNeuralLayer(connectedLayer, networkParams, params);
