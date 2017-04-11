@@ -4,7 +4,8 @@ MainMenuPluginView::MainMenuPluginView()
 {
     myModel = NULL;
     mainForm = new MainForm;
-    connect(mainForm, SIGNAL(OnItemSelected(IMainMenuPluginModel::MenuItem*)), this, SLOT(OpenChildPlugin(IMainMenuPluginModel::MenuItem*)));
+    connect(mainForm, SIGNAL(OnItemSelected(IMainMenuPluginModel::MenuItem*,MetaInfo*)),
+            this, SLOT(OpenChildPlugin(IMainMenuPluginModel::MenuItem*,MetaInfo*)));
     connect(mainForm, SIGNAL(OnClose()), this, SLOT(CloseMainMenu()));
 }
 
@@ -57,11 +58,11 @@ bool MainMenuPluginView::Close()
     return true;
 }
 
-void MainMenuPluginView::OpenChildPlugin(IMainMenuPluginModel::MenuItem *menuItem)
+void MainMenuPluginView::OpenChildPlugin(IMainMenuPluginModel::MenuItem *menuItem, MetaInfo *viewMeta)
 {
     qDebug() << "Open plugin" << menuItem->meta->Name;
     Close();
-    myModel->RunItem(menuItem);
+    myModel->RunItem(menuItem, viewMeta);
 }
 
 void MainMenuPluginView::CloseMainMenu()

@@ -275,6 +275,7 @@ void PluginLinker::LinkModelToViews()
             qDebug() << "+" << pluginModelIter.key();
             QVector<IViewPlugin*> childPlugins = pluginModelIter.value();
             LinkInfo<IModelPlugin> parentModel = modelsLinkInfo.value(pluginModelIter.key());
+            MetaInfo *parentMeta = modelMap[parentModel.plugin];
             for(int i = 0; i < childPlugins.count(); i++)
             {
                 MetaInfo* meta = viewMap[childPlugins[i]];
@@ -282,6 +283,7 @@ void PluginLinker::LinkModelToViews()
 
                 parentModel.plugin->AddView(plugin, meta);
                 plugin->SetModel(parentModel.instance);
+                menuItems[parentMeta]->ViewItems.append(meta);
                 qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
             }
         }

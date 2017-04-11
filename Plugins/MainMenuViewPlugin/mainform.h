@@ -24,7 +24,7 @@ public:
     void WipeAllItems();
 
 signals:
-    void OnItemSelected(IMainMenuPluginModel::MenuItem *meta);
+    void OnItemSelected(IMainMenuPluginModel::MenuItem *meta, MetaInfo *viewMeta);
     void OnClose();
 
 private:

@@ -5,7 +5,7 @@
 #-------------------------------------------------
 TARGET = PerceptronNetworkViewPlugin
 TEMPLATE = lib
-QT += widgets printsupport
+QT += widgets
 
 SOURCES += \
     mainform.cpp \

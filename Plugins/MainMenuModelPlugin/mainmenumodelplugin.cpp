@@ -77,7 +77,7 @@ IMainMenuPluginModel::MenuItem *MainMenuModelPlugin::GetRootMenuItem()
     return rootMenuItem;
 }
 
-void MainMenuModelPlugin::RunItem(IMainMenuPluginModel::MenuItem *item)
+void MainMenuModelPlugin::RunItem(IMainMenuPluginModel::MenuItem *item, MetaInfo *viewMeta)
 {
     QMap<IModelPlugin*, MetaInfo*>::Iterator i = pluginLinker.modelMap.begin();
     while(i != pluginLinker.modelMap.end())

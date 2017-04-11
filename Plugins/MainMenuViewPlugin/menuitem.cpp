@@ -1,11 +1,52 @@
 #include "menuitem.h"
 
-MenuItemGraphicsObject::MenuItemGraphicsObject(MenuItemGraphicsObject *ParentMenuItem, IMainMenuPluginModel::MenuItem *MenuItem, QWidget *parent)
+MenuItemGraphicsObject::MenuItemGraphicsObject(
+        MenuItemGraphicsObject *ParentMenuItem,
+        IMainMenuPluginModel::MenuItem *MenuItem,
+        MetaInfo *ViewPluginMeta,
+        QWidget *parent)
     : QWidget(parent)
 {
     menuItem = MenuItem;
+    viewPluginMeta = ViewPluginMeta;
     pressed = false;
     setFlag(ItemIsMovable);
+    FormatMenuItemName(viewPluginMeta->Name);
+}
+
+MenuItemGraphicsObject::MenuItemGraphicsObject(QString name, QWidget *parent) : QWidget(parent)
+{
+    pressed = false;
+    setFlag(ItemIsMovable);
+    FormatMenuItemName(name);
+}
+
+void MenuItemGraphicsObject::FormatMenuItemName(QString name)
+{
+    QRegExp regExp = QRegExp("([A-Z]+[a-z]+)");
+    regExp.setCaseSensitivity(Qt::CaseSensitive);
+    int pos = 0;
+    QStringList list;
+    while(pos >= 0)
+    {
+        pos = regExp.indexIn(name, pos);
+        if(pos == -1) break;
+        list.append(regExp.cap(0));
+        pos += list.last().length();
+    }
+
+    for(int i = 0; i < list.count(); ++i)
+    {
+        if(i == 0)
+            itemMenuName += list[i];
+        else if(i == list.count()-1)
+        {
+            if(list[i].toLower() == "view") break;
+            itemMenuName += "\r\n" + list[i];
+        }
+        else
+            itemMenuName += "\r\n" + list[i];
+    }
 }
 
 QRectF MenuItemGraphicsObject::boundingRect() const
@@ -21,9 +62,10 @@ void MenuItemGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphics
     QPen blackPen(Qt::black);
     blackPen.setWidth(3);
     painter->setPen(blackPen);
+
     painter->setFont(QFont("Arial", 14));
     painter->setFont(QFont("Arial", rect.width()/10));
-    painter->drawText(rect, Qt::AlignCenter, menuItem->meta->Name);
+    painter->drawText(rect, Qt::AlignCenter, itemMenuName);
     painter->drawEllipse(rect);
 }
 
@@ -45,7 +87,7 @@ void MenuItemGraphicsObject::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::update();
     QGraphicsItem::mouseReleaseEvent(event);
     if((dx + dy) == 0)
-        emit OnClicked(menuItem);
+        emit OnClicked(menuItem, viewPluginMeta);
 }
 
 bool MenuItemGraphicsObject::event(QEvent *event)

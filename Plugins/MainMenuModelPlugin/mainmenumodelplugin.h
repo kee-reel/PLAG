@@ -34,7 +34,7 @@ public:
     void ChildSelfClosed(IModelPlugin *child) override;
 
     MenuItem *GetRootMenuItem() override;
-    void RunItem(MenuItem *item) override;
+    void RunItem(MenuItem *item, MetaInfo *viewMeta) override;
 
 private:
     QList<PluginInfo<IModelPlugin>> childModels;

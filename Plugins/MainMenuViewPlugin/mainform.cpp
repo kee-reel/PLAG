@@ -25,10 +25,11 @@ void MainForm::SetRootMenuItem(IMainMenuPluginModel::MenuItem *RootMenuItem)
         return;
 
     rootMenuItem = RootMenuItem;
-    MenuItemGraphicsObject *menuItem = new MenuItemGraphicsObject(NULL, rootMenuItem);
-    connect(menuItem, SIGNAL(OnClicked(IMainMenuPluginModel::MenuItem*)), this, SIGNAL(OnClose()));
-    scene->addItem(menuItem);
-    menuItems.append(menuItem);
+    MenuItemGraphicsObject *exitItem = new MenuItemGraphicsObject("Exit");
+    connect(exitItem, SIGNAL(OnClicked(IMainMenuPluginModel::MenuItem*, MetaInfo*)),
+            this, SIGNAL(OnClose()));
+    scene->addItem(exitItem);
+    menuItems.append(exitItem);
 
     AddSubitems(NULL, rootMenuItem);
 }
@@ -39,12 +40,18 @@ void MainForm::AddSubitems(MenuItemGraphicsObject *ParentMenuItem, IMainMenuPlug
         return;
 
     MenuItemGraphicsObject *menuItem;
+    IMainMenuPluginModel::MenuItem *parentMenuItem;
     for(int i = 0; i < ParentMenuItemStruct->SubItems.count(); ++i)
     {
-        menuItem = new MenuItemGraphicsObject(ParentMenuItem, ParentMenuItemStruct->SubItems[i]);
-        connect(menuItem, SIGNAL(OnClicked(IMainMenuPluginModel::MenuItem*)), this, SIGNAL(OnItemSelected(IMainMenuPluginModel::MenuItem*)));
-        scene->addItem(menuItem);
-        menuItems.append(menuItem);
+        parentMenuItem = ParentMenuItemStruct->SubItems[i];
+        for(int j = 0; j < parentMenuItem->ViewItems.count(); ++j)
+        {
+            menuItem = new MenuItemGraphicsObject(ParentMenuItem, parentMenuItem, parentMenuItem->ViewItems[j]);
+            connect(menuItem, SIGNAL(OnClicked(IMainMenuPluginModel::MenuItem*, MetaInfo*)),
+                    this, SIGNAL(OnItemSelected(IMainMenuPluginModel::MenuItem*, MetaInfo*)));
+            scene->addItem(menuItem);
+            menuItems.append(menuItem);
+        }
         AddSubitems(menuItem, ParentMenuItemStruct->SubItems[i]);
     }
 }

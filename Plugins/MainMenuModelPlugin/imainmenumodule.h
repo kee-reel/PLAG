@@ -10,11 +10,12 @@ class IMainMenuPluginModel : public IModelPlugin
 public:
     struct MenuItem{
         MetaInfo* meta;
+        QList<MetaInfo*> ViewItems;
         QList<MenuItem*> SubItems;
     };
 
     virtual MenuItem* GetRootMenuItem() = 0;
-    virtual void RunItem(MenuItem* item) = 0;
+    virtual void RunItem(MenuItem* item, MetaInfo *viewMeta) = 0;
 };
 Q_DECLARE_INTERFACE(IMainMenuPluginModel, "IMainMenuModule v0.1")
 #endif // IMAINMENUMODULE_H
