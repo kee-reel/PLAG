@@ -35,7 +35,6 @@ signals:
 private slots:
     void MarkNetworkStatsToUpdate();
     void on_buttonRunTrain_clicked();
-    void on_buttonRunTest_clicked();
     void on_buttonClose_clicked();
     void on_buttonAdd_clicked();
     void on_buttonRemove_clicked();
@@ -71,6 +70,7 @@ private:
     int epoch;
     QVector<double> xValues;
 
+    void RunTrainFromEpoch(int maxEpoch);
     bool UpdateNetworkStats();
     void UpdateLayerStatsGUI();
     void MakePlot(int graph, QVector<double> &x, QVector<double> &y);

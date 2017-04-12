@@ -128,59 +128,53 @@ void MainForm::ReplotPlot()
     ui->customPlot->replot();
     ui->customPlot->xAxis->setRange(0, epoch);
     ui->labelEpoch->        setText(QString::number(epoch));
-    ui->labelTrainError->   setText(QString::number(trainErrorVector.last()));
-    ui->labelTestError->    setText(QString::number(testErrorVector.last()));
+    ui->labelTrainError->   setText(QString::number(trainErrorVector.last(), 'g', 3));
+    ui->labelTestError->    setText(QString::number(testErrorVector.last(), 'g', 3));
 }
 
 void MainForm::on_buttonRunTrain_clicked()
 {
     if(!UpdateNetworkStats())
         return;
+    ui->checkTrain->setChecked(false);
+    ui->checkTest->setChecked(false);
     ui->buttonResumeTraining->setEnabled(true);
-    ui->checkTrain->setEnabled(false);
-    ui->checkTest->setEnabled(false);
-    int n = ui->spinEpoch->value();
-    float threshold = ui->spinErrorThreshold->value();
-    for(epoch = 0; epoch < n; ++epoch)
-    {
-        trainErrorVector.append(model->RunTraining());
-        testErrorVector.append(model->RunTest());
-        ReplotPlot();
-        if(trainErrorVector.last() < threshold)
-        {
-            ui->checkTrain->setChecked(true);
-            return;
-        }
-    }
-}
 
-void MainForm::on_buttonRunTest_clicked()
-{
-    if(isStatsChanged)
-        if(!UpdateNetworkStats())
-            return;
-
-    ui->checkTest->setChecked(model->RunTest() < ui->spinTestErrorThreshold->value());
+    epoch = 0;
+    int maxEpoch = ui->spinEpoch->value();
+    RunTrainFromEpoch(maxEpoch);
 }
 
 void MainForm::on_buttonResumeTraining_clicked()
 {
-    int n = epoch + ui->spinEpoch->value();
-    float threshold = ui->spinErrorThreshold->value();
     ui->checkTrain->setChecked(false);
     ui->checkTest->setChecked(false);
-    for(; epoch < n; ++epoch)
+
+    int maxEpoch = epoch + ui->spinEpoch->value();
+    RunTrainFromEpoch(maxEpoch);
+}
+
+void MainForm::RunTrainFromEpoch(int maxEpoch)
+{
+    float trainThreshold = ui->spinErrorThreshold->value();
+    float testThreshold = ui->spinTestErrorThreshold->value();
+    bool trainSuccess;
+    bool testSuccess;
+    for(; epoch < maxEpoch; ++epoch)
     {
         trainErrorVector.append(model->RunTraining());
         testErrorVector.append(model->RunTest());
         ReplotPlot();
-        if(trainErrorVector.last() < threshold)
-        {
-            ui->checkTrain->setChecked(true);
+        trainSuccess = trainErrorVector.last() < trainThreshold;
+        testSuccess = testErrorVector.last() < testThreshold;
+        ui->checkTrain->setChecked(trainSuccess);
+        ui->checkTest->setChecked(testSuccess);
+        if(trainSuccess && testSuccess)
             return;
-        }
+        QApplication::processEvents();
     }
 }
+
 
 
 void MainForm::on_buttonClose_clicked()
