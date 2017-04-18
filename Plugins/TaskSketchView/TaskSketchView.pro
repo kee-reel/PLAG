@@ -28,8 +28,7 @@ DISTFILES += \
 
 FORMS += \
     mainform.ui \
-    galleryform.ui \
-    galleryitem.ui
+    galleryform.ui
 
 RESOURCES += \
     res.qrc

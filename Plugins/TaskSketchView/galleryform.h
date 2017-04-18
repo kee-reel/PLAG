@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "galleryitem.h"
+
 namespace Ui {
 class GalleryForm;
 }
@@ -15,8 +17,11 @@ public:
     explicit GalleryForm(QWidget *parent = 0);
     ~GalleryForm();
 
+    void AddImage(QImage image);
+
 private:
     Ui::GalleryForm *ui;
+    QList<GalleryItem*> galleryItems;
 };
 
 #endif // GALLERYFORM_H

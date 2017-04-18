@@ -54,5 +54,14 @@ void MainForm::on_buttonSave_clicked()
 
 void MainForm::on_buttonOpenGallery_clicked()
 {
+    QModelIndex root = itemModel->index(0, 0);
+    QByteArray ba = root.data().toByteArray();
+    QImage image;
+    if(image.loadFromData(ba))
+    {
+        galleryForm->AddImage(image);
+        ui->widgetPaint->image = image;
+        repaint();
+    }
     galleryForm->setVisible(true);
 }

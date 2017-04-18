@@ -2,21 +2,23 @@
 #define GALLERYITEM_H
 
 #include <QWidget>
-
-namespace Ui {
-class GalleryItem;
-}
+#include <QImage>
+#include <QPaintEvent>
+#include <QPainter>
 
 class GalleryItem : public QWidget
 {
     Q_OBJECT
-
 public:
-    explicit GalleryItem(QWidget *parent = 0);
-    ~GalleryItem();
+    GalleryItem(QImage &image, QWidget *parent = 0);
 
 private:
-    Ui::GalleryItem *ui;
+    QImage imageHandler;
+    float imageAspect;
+
+    // QWidget interface
+protected:
+    void paintEvent(QPaintEvent *event) override;
 };
 
 #endif // GALLERYITEM_H

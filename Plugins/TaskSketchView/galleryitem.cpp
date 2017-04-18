@@ -1,14 +1,17 @@
 #include "galleryitem.h"
-#include "ui_galleryitem.h"
 
-GalleryItem::GalleryItem(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::GalleryItem)
+GalleryItem::GalleryItem(QImage &image, QWidget *parent) : QWidget(parent)
 {
-    ui->setupUi(this);
+    imageHandler = image;
+    imageAspect = image.width() / image.height();
+    resize(image.size());
 }
 
-GalleryItem::~GalleryItem()
+void GalleryItem::paintEvent(QPaintEvent *event)
 {
-    delete ui;
+    QPainter painter;
+    painter.begin(this);
+    // TODO: Insert Serg AspectWidget feature
+    painter.drawImage(rect(), imageHandler);
+    painter.end();
 }
