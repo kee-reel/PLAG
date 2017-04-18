@@ -4,7 +4,6 @@
 #include <QApplication>
 #include <QDebug>
 #include <QLayout>
-#include <QAbstractProxyModel>
 
 #include "../TaskSketchModel/itasksketchmodel.h"
 #include "mainform.h"

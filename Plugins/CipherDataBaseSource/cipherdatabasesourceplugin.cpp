@@ -22,11 +22,31 @@ QString CipherDataBaseSourcePlugin::GetLastError()
         return dbconn.lastError().text();
 }
 
-QSqlQuery CipherDataBaseSourcePlugin::ExecuteQuery(QString queryText)
+QSqlQuery CipherDataBaseSourcePlugin::ExecuteQuery(QString &queryText)
 {
     QSqlQuery query;
     qDebug() << "Executing" << queryText;
     query.exec(queryText);
+    if(query.lastError().text() != "")
+        qDebug() << query.lastError();
+    return query;
+}
+
+QSqlQuery CipherDataBaseSourcePlugin::ExecuteQuery(QString &queryText, QList<QString> *valuePlaceholders, QList<QVariant> *values)
+{
+    QSqlQuery query;
+    if(valuePlaceholders->count() != values->count()) {
+        qDebug() << "Values lists count not equal";
+        return query;
+    }
+    query.prepare(queryText);
+    for(int i = 0; i < valuePlaceholders->count(); ++i)
+    {
+        QFlags<QSql::ParamTypeFlag> flag = (values->at(i).type() == QVariant::ByteArray) ? QSql::In|QSql::Binary : QSql::In;
+        query.bindValue(valuePlaceholders->at(i), values->at(i), flag);
+    }
+    query.exec();
+    qDebug() << endl << ">Executing" << query.executedQuery();
     if(query.lastError().text() != "")
         qDebug() << query.lastError();
     return query;

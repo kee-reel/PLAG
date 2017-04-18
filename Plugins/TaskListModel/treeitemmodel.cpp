@@ -1,7 +1,7 @@
-#include "tasktreeitemmodel.h"
+#include "treeitemmodel.h"
 
 
-TaskTreeItemModel::TaskTreeItemModel(QString tableName,
+TreeItemModel::TreeItemModel(QString tableName,
                                      IExtendableDataBaseManagerPlugin* dataManager,
                                      QObject *parent)
 {
@@ -11,85 +11,94 @@ TaskTreeItemModel::TaskTreeItemModel(QString tableName,
     rootItem = NULL;
 }
 
-TaskTreeItemModel::~TaskTreeItemModel()
+TreeItemModel::~TreeItemModel()
 {
     delete rootItem;
 }
 
-void TaskTreeItemModel::LoadData()
+void TreeItemModel::LoadData()
 {
     qDebug() << "Load data";
     if(rootItem)
         return;
 
     QMap<QString, QVariant::Type> newRelationStruct = {
-        {"name",        QVariant::String},
         {"parent",      QVariant::Int},
         {"position",    QVariant::Int}
     };
     dataManager->SetRelation(tableName, coreRelationName, newRelationStruct);
 
     QStringList relationFields = newRelationStruct.keys();
-    nameIndex = relationFields.indexOf("name");
     parentIndex = relationFields.indexOf("parent");
     positionIndex = relationFields.indexOf("position");
 
-    QMap<int, TreeItem*> treeItemIdMap;
-    QMap<int, QMap<int, TreeItem*>> treeItemParentMap;
+    QList<ManagerItemInfo> managerList = dataManager->GetData(tableName);
+    // Item Id -> Item children.
+    QMap<int, QMap<int, TreeItem*>> internalTree;
 
-    TreeItem *treeItem;
-    QVector<QVariant> *dataChunk;
-    QList<ManagerItemInfo> data = dataManager->GetData(tableName);
-
-    ManagerItemInfo *managerTaskData;
-    for(int i = 0; i < data.count(); i++)
+    // Convert data manager list to internal list.
+    QList<QString> chunksNames;
+    if(managerList.count() > 0) chunksNames = managerList.first().dataChunks.keys();
+    for(int i = 0; i < managerList.count(); i++)
     {
-        treeItem = new TreeItem();
-        managerTaskData = &data[i];
-        dataChunk = &(data[i].dataChunks[coreRelationName]);
-        treeItemIdMap.insert(managerTaskData->id, treeItem);
+        TreeItem *treeItem = new TreeItem();
+        ManagerItemInfo *managerItemInfo = &managerList[i];
 
-        if(dataChunk->at(parentIndex).toInt() == -1)
-            rootItem = treeItem;
-        else
-            treeItemParentMap[dataChunk->at(parentIndex).toInt()].insertMulti(dataChunk->at(positionIndex).toInt(), treeItem);
-
-        treeItem->SetId(managerTaskData->id);
-        dataChunk->removeLast();
-        dataChunk->removeLast();
-        treeItem->SetChunkData(coreRelationName, *dataChunk);
-        treeItem->SetActiveChunkName(coreRelationName);
+        treeItem->SetId(managerItemInfo->id);
+        for(int chunksIter = 0; chunksIter < chunksNames.count(); ++chunksIter)
+        {
+            if(chunksNames[chunksIter] == coreRelationName)
+            {
+                QVector<QVariant> *dataChunk = &(managerItemInfo->dataChunks[coreRelationName]);
+                if(dataChunk->at(parentIndex).toInt() == -1)
+                    rootItem = treeItem;
+                else
+                    internalTree[dataChunk->at(parentIndex).toInt()].insertMulti(dataChunk->at(positionIndex).toInt(), treeItem);
+            }
+            else
+            {
+                treeItem->SetChunkData(chunksNames[chunksIter], managerItemInfo->dataChunks[chunksNames[chunksIter]]);
+            }
+        }
+        internalList.insert(managerItemInfo->id, treeItem);
     }
 
+    // Create root if not exists
     if(!rootItem)
     {
-        rootItem = new TreeItem();
-        QVector<QVariant> rootData;
-        rootData << QVariant("Name");
-        rootItem->SetChunkData(coreRelationName, rootData);
-        rootItem->SetActiveChunkName(coreRelationName);
-        AddTask(0, NULL, rootItem);
+        rootItem = AddItem(0, NULL, NULL);
+        internalList.insert(rootItem->GetId(), rootItem);
     }
 
-    QList<int> keys = treeItemParentMap.keys();
+    // Link list to tree
+    QList<int> keys = internalTree.keys();
     for(int i = 0; i < keys.count(); i++)
     {
-        TreeItem* parent = treeItemIdMap[keys[i]];
-        if(!parent)
-            parent = rootItem;
-        QList<TreeItem*> childItemsList = treeItemParentMap[keys[i]].values();
+        TreeItem* parent = internalList[keys[i]];
+        if(!parent) parent = rootItem;
+        QList<TreeItem*> childItemsList = internalTree[keys[i]].values();
         for(int j = 0; j < childItemsList.count(); j++)
            childItemsList[j]->parentItem = parent;
         parent->SetChilds(childItemsList);
     }
-
-    QVector<QVariant> defaultData;
-    defaultData << "New task";
-    defaultTask.SetChunkData(coreRelationName, defaultData);
-    defaultTask.SetActiveChunkName(coreRelationName);
 }
 
-QVariant TaskTreeItemModel::data(const QModelIndex &index, int role) const
+bool TreeItemModel::AttachRelation(QMap<QString, QVariant::Type> relationStruct, QString relationName, QVector<QVariant> defaultData)
+{
+    dataManager->SetRelation(tableName, relationName, relationStruct);
+    defaultTask.SetChunkData(relationName, defaultData);
+}
+
+void TreeItemModel::SetActiveRelation(QString relationName)
+{
+    qDebug() << "===SetActiveRelation===" << relationName;
+    QList<TreeItem*> keys = internalList.values();
+    for(int i = 0; i < keys.count(); ++i)
+        keys[i]->SetActiveChunkName(relationName);
+    currentActiveChunkName = relationName;
+}
+
+QVariant TreeItemModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
@@ -106,10 +115,9 @@ QVariant TaskTreeItemModel::data(const QModelIndex &index, int role) const
         return QVariant();
         break;
     }
-
 }
 
-Qt::ItemFlags TaskTreeItemModel::flags(const QModelIndex &index) const
+Qt::ItemFlags TreeItemModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return Qt::NoItemFlags | Qt::ItemIsDropEnabled;
@@ -117,7 +125,7 @@ Qt::ItemFlags TaskTreeItemModel::flags(const QModelIndex &index) const
     return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
 }
 
-QVariant TaskTreeItemModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant TreeItemModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     switch (role) {
     case Qt::DisplayRole:
@@ -137,7 +145,7 @@ QVariant TaskTreeItemModel::headerData(int section, Qt::Orientation orientation,
     return QVariant();
 }
 
-QModelIndex TaskTreeItemModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex TreeItemModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (!hasIndex(row, column, parent))
     {
@@ -159,7 +167,7 @@ QModelIndex TaskTreeItemModel::index(int row, int column, const QModelIndex &par
         return QModelIndex();
 }
 
-QModelIndex TaskTreeItemModel::parent(const QModelIndex &index) const
+QModelIndex TreeItemModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid())
         return QModelIndex();
@@ -173,20 +181,14 @@ QModelIndex TaskTreeItemModel::parent(const QModelIndex &index) const
     return createIndex(parentItem->GetRow(), 0, parentItem);
 }
 
-int TaskTreeItemModel::rowCount(const QModelIndex &parent) const
+int TreeItemModel::rowCount(const QModelIndex &parent) const
 {
     TreeItem *parentItem;
-
-    if (!parent.isValid())
-    {
-        parentItem = rootItem;
-    }
-    else
-        parentItem = static_cast<TreeItem*>(parent.internalPointer());
+    parentItem = (!parent.isValid()) ? rootItem : static_cast<TreeItem*>(parent.internalPointer());
     return parentItem->ChildCount();
 }
 
-int TaskTreeItemModel::columnCount(const QModelIndex &parent) const
+int TreeItemModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return static_cast<TreeItem*>(parent.internalPointer())->ColumnCount();
@@ -194,46 +196,35 @@ int TaskTreeItemModel::columnCount(const QModelIndex &parent) const
         return rootItem->ColumnCount();
 }
 
-bool TaskTreeItemModel::insertRows(int row, int count, const QModelIndex &parent)
+bool TreeItemModel::insertRows(int row, int count, const QModelIndex &parent)
 {
     TreeItem *parentItem;
-    qDebug() << "insertRow";
-    if (!parent.isValid())
-    {
-        qDebug() << "!!!!!";
-        parentItem = rootItem;
-    }
-    else
-        parentItem = static_cast<TreeItem*>(parent.internalPointer());
+    parentItem = (!parent.isValid()) ? rootItem : static_cast<TreeItem*>(parent.internalPointer());
 
-    if(row == -1) row = parentItem->ChildCount();
+    if(row == -1 || row >= parentItem->ChildCount()) row = parentItem->ChildCount();
     beginInsertRows(parent, row, row+count);
-    TreeItem *childItem = AddTask(row, parentItem);
+    TreeItem *childItem = AddItem(row, parentItem);
     endInsertRows();
 }
 
-bool TaskTreeItemModel::insertColumns(int column, int count, const QModelIndex &parent)
+bool TreeItemModel::insertColumns(int column, int count, const QModelIndex &parent)
 {
 
 }
 
-bool TaskTreeItemModel::removeRows(int row, int count, const QModelIndex &parent)
+bool TreeItemModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     beginRemoveRows(parent, row, row+count);
     TreeItem *parentItem;
-    qDebug() << "removeRow";
-    if (!parent.isValid())
-        parentItem = rootItem;
-    else
-        parentItem = static_cast<TreeItem*>(parent.internalPointer());
+    parentItem = (!parent.isValid()) ? rootItem : static_cast<TreeItem*>(parent.internalPointer());
 
     TreeItem *item = parentItem->GetChildAt(row);
     if(item)
-        DeleteTask(item);
+        DeleteItem(item);
     endRemoveRows();
 }
 
-bool TaskTreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild)
+bool TreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild)
 {
     qDebug() << "moveRows" << sourceParent << sourceRow << count << destinationParent << destinationChild;
     int sourceLast = sourceRow+count;
@@ -269,20 +260,14 @@ bool TaskTreeItemModel::moveRows(const QModelIndex &sourceParent, int sourceRow,
     endMoveRows();
 }
 
-bool TaskTreeItemModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool TreeItemModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    qDebug() << "setData";
-    if(!index.isValid())
-    {
-        qDebug() << index.row() << index.column() << index.data() << value.toString();
-        return false;
-    }
-
-    TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
+    qDebug() << "setData" << index.row() << index.column() << index.data() << value;
+    TreeItem *item = (!index.isValid()) ? rootItem : static_cast<TreeItem*>(index.internalPointer());
     switch (role) {
     case Qt::EditRole:
-        qDebug() << "!!!" << item->GetId() << index.column() << value.toString();
-        EditTask(item, index.column(), value);
+        qDebug() << "!!!" << item->GetId() << index.column() << value;
+        EditItem(item, index.column(), value);
         emit dataChanged(index, index);
         break;
     default:
@@ -292,14 +277,14 @@ bool TaskTreeItemModel::setData(const QModelIndex &index, const QVariant &value,
     return true;
 }
 
-QStringList TaskTreeItemModel::mimeTypes() const
+QStringList TreeItemModel::mimeTypes() const
 {
     QStringList types;
     types << "application/vnd.text.list";
     return types;
 }
 
-QMimeData *TaskTreeItemModel::mimeData(const QModelIndexList &indexes) const
+QMimeData *TreeItemModel::mimeData(const QModelIndexList &indexes) const
 {
     qDebug() << "mimeData" << indexes.count();
     QMimeData *mimeData = new QMimeData();
@@ -321,7 +306,7 @@ QMimeData *TaskTreeItemModel::mimeData(const QModelIndexList &indexes) const
     return mimeData;
 }
 
-bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
+bool TreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
 {
     qDebug() << "dropMimeData" << row << column << parent;
     if (action == Qt::IgnoreAction)
@@ -410,49 +395,49 @@ bool TaskTreeItemModel::dropMimeData(const QMimeData *data, Qt::DropAction actio
             ++itemsBlock;
             ++rowsI;
         }
-        UpdateTaskPositions((TreeItem*)parentI.key(), rows.begin().key());
+        UpdateItemsPosition((TreeItem*)parentI.key(), rows.begin().key());
         ++parentI;
     }
-    UpdateTaskPositions((TreeItem*)parent.internalPointer(), (row == -1) ? 0 : row);
+    UpdateItemsPosition((TreeItem*)parent.internalPointer(), (row == -1) ? 0 : row);
     return true;
 }
 
-TreeItem *TaskTreeItemModel::AddTask(int row, TreeItem *taskParent, TreeItem* taskData)
+TreeItem *TreeItemModel::AddItem(int row, TreeItem *taskParent, TreeItem* taskData)
 {
     if(!dataManager)
     {
         qDebug() << "Data manager not set!";
         return false;
     }
-    if(!taskData) taskData = &defaultTask;
     if(!taskParent) taskParent = rootItem;
+    if(!taskData) taskData = &defaultTask;
 
     qDebug() << "Add task";
     TreeItem *newTask = new TreeItem(taskParent, taskData);
-    qDebug() << taskParent;
+    if(taskParent) taskParent->AddChild(row, newTask);
 
-    taskParent->AddChild(row, newTask);
-
-    ManagerItemInfo managerTask = ConvertToManagerTaskInfo(newTask);
+    ManagerItemInfo managerTask = ConvertToManagerItem(newTask);
     int newTaskId = dataManager->AddItem(tableName, managerTask);
-    qDebug() << newTaskId;
     newTask->SetId(newTaskId);
+    newTask->SetActiveChunkName(currentActiveChunkName);
+    return newTask;
 }
 
-bool TaskTreeItemModel::EditTask(TreeItem *task, int column, QVariant dataField)
+bool TreeItemModel::EditItem(TreeItem *task, int column, QVariant dataField)
 {
     qDebug() << "EditTask";
-    task->SetChunkDataElement(column, dataField);
-    if(!dataManager)
-    {
+    if(!dataManager){
         qDebug() << "Data manager not set!";
         return false;
     }
-    ManagerItemInfo managerTask = ConvertToManagerTaskInfo(task);
+
+    task->SetActiveChunkName(currentActiveChunkName);
+    task->SetChunkDataElement(column, dataField);
+    ManagerItemInfo managerTask = ConvertToManagerItem(task);
     dataManager->EditItem(tableName, managerTask);
 }
 
-bool TaskTreeItemModel::UpdateTaskPositions(TreeItem *parent, int from)
+bool TreeItemModel::UpdateItemsPosition(TreeItem *parent, int from)
 {
     if(!dataManager)
     {
@@ -460,7 +445,7 @@ bool TaskTreeItemModel::UpdateTaskPositions(TreeItem *parent, int from)
         return false;
     }
 
-    parent = !parent ? rootItem : parent;
+    if(!parent) parent = rootItem;
     int to = parent->ChildCount();
     qDebug() << "UpdateTaskPositions" << parent << parent->GetChunkDataElement(0) << from;
 
@@ -468,11 +453,11 @@ bool TaskTreeItemModel::UpdateTaskPositions(TreeItem *parent, int from)
     {
         qDebug() << parent->ChildCount() << to;
         qDebug() << parent->ChildCount() << parent->GetChildAt(i);
-        dataManager->EditItem(tableName, ConvertToManagerTaskInfo(parent->GetChildAt(i)));
+        dataManager->EditItem(tableName, ConvertToManagerItem(parent->GetChildAt(i)));
     }
 }
 
-bool TaskTreeItemModel::DeleteTask(TreeItem *task)
+bool TreeItemModel::DeleteItem(TreeItem *task)
 {
     qDebug() << "DeleteTask";
     if(!dataManager)
@@ -485,16 +470,17 @@ bool TaskTreeItemModel::DeleteTask(TreeItem *task)
     if(task->parentItem)
         task->parentItem->RemoveChild(task);
     DeleteFromManagerRecursive(task);
-    qDebug() << "DeleteTask1";
 }
 
-IExtendableDataBaseManagerPlugin::ManagerItemInfo TaskTreeItemModel::ConvertToManagerTaskInfo(TreeItem* item)
+IExtendableDataBaseManagerPlugin::ManagerItemInfo TreeItemModel::ConvertToManagerItem(TreeItem* item)
 {
     ManagerItemInfo managerStruct;
     //Set id
     managerStruct.id = item->GetId();
-    // Set name
-    managerStruct.dataChunks[coreRelationName].append(item->GetChunkDataElement(0));
+    QStringList list = item->GetChunksNames();
+    for(int i = 0; i < list.count(); ++i)
+        managerStruct.dataChunks[list[i]] = item->GetChunkData(list[i]);
+
     // Set parent
     managerStruct.dataChunks[coreRelationName].append(item->parentItem ? item->parentItem->GetId() : -1);
     // Set position
@@ -502,11 +488,12 @@ IExtendableDataBaseManagerPlugin::ManagerItemInfo TaskTreeItemModel::ConvertToMa
     return managerStruct;
 }
 
-void TaskTreeItemModel::DeleteFromManagerRecursive(TreeItem *task)
+void TreeItemModel::DeleteFromManagerRecursive(TreeItem *task)
 {
     if(task->ChildCount() != 0)
         for(int i = 0; i < task->ChildCount(); i++)
             DeleteFromManagerRecursive(task->GetChildAt(i));
 
+    internalList.remove(task->GetId());
     dataManager->DeleteItem(tableName, task->GetId());
 }

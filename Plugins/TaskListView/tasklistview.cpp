@@ -26,7 +26,7 @@ QString TaskListView::GetLastError()
 
 void TaskListView::SetModel(QObject* model)
 {
-    myModel = qobject_cast<ITreeModel*>(model);
+    myModel = qobject_cast<ITaskTreeModel*>(model);
     if(!myModel)
     {
         qDebug() << model->objectName() << "is not ITaskListModel.";

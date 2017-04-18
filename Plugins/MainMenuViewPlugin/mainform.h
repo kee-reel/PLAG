@@ -1,7 +1,9 @@
 #ifndef MAINFORM_H
 #define MAINFORM_H
 
+#include <QTimer>
 #include <QWidget>
+#include <QDebug>
 #include <QGraphicsScene>
 #include <QGraphicsEllipseItem>
 
@@ -23,6 +25,10 @@ public:
     void AddSubitems(MenuItemGraphicsObject *ParentMenuItem, IMainMenuPluginModel::MenuItem *ParentMenuItemStruct);
     void WipeAllItems();
 
+private slots:
+    void OnItemSelected(MenuItemGraphicsObject *menuItem);
+    void ZoomAnimation();
+
 signals:
     void OnItemSelected(IMainMenuPluginModel::MenuItem *meta, MetaInfo *viewMeta);
     void OnClose();
@@ -32,6 +38,10 @@ private:
     IMainMenuPluginModel::MenuItem *rootMenuItem;
     QGraphicsScene *scene;
     QList<MenuItemGraphicsObject*> menuItems;
+    QTimer *zoomAnimTimer;
+    QPoint newCenter;
+    float sceneScale;
+    int scaleIter;
 };
 
 #endif // MAINFORM_H

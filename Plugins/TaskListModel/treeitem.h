@@ -16,8 +16,8 @@ public:
     ~TreeItem();
 
 // Columns
-    inline int ColumnCount() { return activeChunk->count(); }
-    inline int GetRow() { return parentItem->GetChildPosition(this); }
+    inline int ColumnCount() { return activeChunk ? activeChunk->count() : 0; }
+    inline int GetRow() { return parentItem ? parentItem->GetChildPosition(this) : 0; }
 
 // Childs
     void SetChilds(QList<TreeItem *> childs);
@@ -30,6 +30,7 @@ public:
 
 // Data
     void SetActiveChunkName(QString &activeChunk);
+    QList<QString> GetChunksNames();
     QVector<QVariant> GetChunkData(QString chunkName);
     QVariant GetChunkDataElement(int column);
     void SetChunkData(QString chunkName, QVector<QVariant> data);

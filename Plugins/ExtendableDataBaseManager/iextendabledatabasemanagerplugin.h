@@ -16,6 +16,7 @@ public:
     public:
         int id;
         QMap<QString, QVector<QVariant>> dataChunks;
+
     };
 
     virtual QList<ManagerItemInfo> GetData(QString treeName) = 0;

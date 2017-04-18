@@ -5,8 +5,10 @@
 
 class QWidget;
 class QString;
+class QVariant;
 class QSqlDatabase;
 class QSqlQuery;
+template <class A> class QList;
 
 enum PluginTypes{
     ROOTMODEL,
@@ -50,7 +52,8 @@ class IDataBaseSourcePlugin : public IDataSourcePlugin
 {
 public:
     virtual ~IDataBaseSourcePlugin() {}
-    virtual QSqlQuery ExecuteQuery(QString query) = 0;
+    virtual QSqlQuery ExecuteQuery(QString &query) = 0;
+    virtual QSqlQuery ExecuteQuery(QString &query, QList<QString> *valuePlaceholders, QList<QVariant> *values) = 0;
 };
 Q_DECLARE_INTERFACE(IDataBaseSourcePlugin, "IDataBaseSourcePlugin v0.1")
 
@@ -76,9 +79,10 @@ class IModelPlugin : public IPlugin
 {
 public:
     virtual ~IModelPlugin() {}
+    virtual void AddDataManager(QObject *dataManager) = 0;
+    virtual void AddParentModel(QObject *model, MetaInfo *meta) = 0;
     virtual void AddChildModel(IModelPlugin *model, MetaInfo *meta) = 0;
     virtual void AddView(IViewPlugin *view, MetaInfo *meta) = 0;
-    virtual void AddDataManager(QObject *dataManager) = 0;
 
     virtual bool Open(IModelPlugin* parent, QWidget* parentWidget) = 0;
     virtual bool CloseFromView(IViewPlugin *view) = 0;

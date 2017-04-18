@@ -13,7 +13,7 @@
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 #include "treeitem.h"
 
-class TaskTreeItemModel : public QAbstractItemModel
+class TreeItemModel : public QAbstractItemModel
 {
     typedef IExtendableDataBaseManagerPlugin::ManagerItemInfo ManagerItemInfo;
 
@@ -22,9 +22,11 @@ public:
     QString coreRelationName;
     IExtendableDataBaseManagerPlugin* dataManager;
 
-    TaskTreeItemModel(QString tableName, IExtendableDataBaseManagerPlugin* dataManager, QObject *parent = 0);
-    ~TaskTreeItemModel();
+    TreeItemModel(QString tableName, IExtendableDataBaseManagerPlugin* dataManager, QObject *parent = 0);
+    ~TreeItemModel();
     void LoadData();
+    bool AttachRelation(QMap<QString, QVariant::Type> relationStruct, QString relationName, QVector<QVariant> defaultData);
+    void SetActiveRelation(QString relationName);
 
     QVariant data(const QModelIndex &index, int role) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
@@ -47,15 +49,17 @@ private:
     int parentIndex;
     int positionIndex;
 
+    QHash<int, TreeItem*> internalList;
+    QString currentActiveChunkName;
     TreeItem defaultTask;
     TreeItem *rootItem;
 
-    TreeItem *AddTask(int row, TreeItem *taskParent, TreeItem *taskData = NULL);
-    bool EditTask(TreeItem *task, int column, QVariant dataField);
-    bool UpdateTaskPositions(TreeItem *parent, int from);
-    bool DeleteTask(TreeItem *task);
+    TreeItem *AddItem(int row, TreeItem *taskParent, TreeItem *taskData = NULL);
+    bool EditItem(TreeItem *task, int column, QVariant dataField);
+    bool UpdateItemsPosition(TreeItem *parent, int from);
+    bool DeleteItem(TreeItem *task);
     void DeleteFromManagerRecursive(TreeItem *task);
-    ManagerItemInfo ConvertToManagerTaskInfo(TreeItem* item);
+    ManagerItemInfo ConvertToManagerItem(TreeItem* item);
 };
 
 #endif // TASKTREEMODEL_H

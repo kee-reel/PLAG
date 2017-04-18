@@ -21,6 +21,7 @@ MainForm::~MainForm()
 void MainForm::SetModel(ITaskSketchModel *model)
 {
     this->myModel = model;
+    itemModel = model->GetModel();
 }
 
 void MainForm::resizeEvent(QResizeEvent *event)
@@ -45,6 +46,10 @@ void MainForm::on_buttonSave_clicked()
     buffer.open(QIODevice::WriteOnly);
     ui->widgetPaint->image.save(&buffer, "PNG");
     buffer.close();
+
+    itemModel->insertRow(itemModel->rowCount());
+    QModelIndex root = itemModel->index(0, 0);
+    itemModel->setData(root, QVariant(ba));
 }
 
 void MainForm::on_buttonOpenGallery_clicked()

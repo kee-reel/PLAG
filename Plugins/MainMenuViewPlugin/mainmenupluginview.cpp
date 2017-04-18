@@ -5,8 +5,8 @@ MainMenuPluginView::MainMenuPluginView()
     myModel = NULL;
     mainForm = new MainForm;
     connect(mainForm, SIGNAL(OnItemSelected(IMainMenuPluginModel::MenuItem*,MetaInfo*)),
-            this, SLOT(OpenChildPlugin(IMainMenuPluginModel::MenuItem*,MetaInfo*)));
-    connect(mainForm, SIGNAL(OnClose()), this, SLOT(CloseMainMenu()));
+            SLOT(OpenChildPlugin(IMainMenuPluginModel::MenuItem*,MetaInfo*)));
+    connect(mainForm, SIGNAL(OnClose()), SLOT(CloseMainMenu()));
 }
 
 MainMenuPluginView::~MainMenuPluginView()

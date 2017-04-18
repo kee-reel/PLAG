@@ -19,12 +19,13 @@ class CipherDataBaseSourcePlugin : public QObject, IDataBaseSourcePlugin
 public:
     CipherDataBaseSourcePlugin();
     ~CipherDataBaseSourcePlugin();
-    virtual void OnAllSetup();
-    virtual QString GetLastError();
+    void OnAllSetup() override;
+    QString GetLastError() override;
 
-    virtual void Setup();
+    void Setup() override;
 
-    virtual QSqlQuery ExecuteQuery(QString query);
+    QSqlQuery ExecuteQuery(QString &queryText) override;
+    QSqlQuery ExecuteQuery(QString &queryText, QList<QString> *valuePlaceholders, QList<QVariant> *values) override;
 
 private:
     QString lastError;

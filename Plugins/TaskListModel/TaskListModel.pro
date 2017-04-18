@@ -8,15 +8,15 @@ TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    tasktreeitemmodel.cpp \
     treeitem.cpp \
-    tasktreemodel.cpp
+    tasktreemodel.cpp \
+    treeitemmodel.cpp
 
 HEADERS +=\
-    tasktreeitemmodel.h \
     itasktreemodel.h \
     treeitem.h \
-    tasktreemodel.h
+    tasktreemodel.h \
+    treeitemmodel.h
 
 include(../../System/MASS/BuildInfo.pri)
 

@@ -1,5 +1,5 @@
-#ifndef ITASKLISTMODEL_H
-#define ITASKLISTMODEL_H
+#ifndef ITASKSKETCHMODEL_H
+#define ITASKSKETCHMODEL_H
 
 #include "../MainMenuModelPlugin/interfaces.h"
 

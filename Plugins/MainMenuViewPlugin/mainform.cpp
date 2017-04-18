@@ -9,10 +9,18 @@ MainForm::MainForm(QWidget *parent) :
     rootMenuItem = NULL;
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
+    sceneScale = 1;
+    ui->graphicsView->scale(sceneScale, sceneScale);
+
+    zoomAnimTimer = new QTimer(this);
+    zoomAnimTimer->setInterval(50);
+    connect(zoomAnimTimer, SIGNAL(timeout()),
+            SLOT(ZoomAnimation()));
 }
 
 MainForm::~MainForm()
 {
+    delete zoomAnimTimer;
     delete ui;
     for(int i = 0; i < menuItems.count(); ++i)
         delete menuItems[i];
@@ -26,8 +34,8 @@ void MainForm::SetRootMenuItem(IMainMenuPluginModel::MenuItem *RootMenuItem)
 
     rootMenuItem = RootMenuItem;
     MenuItemGraphicsObject *exitItem = new MenuItemGraphicsObject("Exit");
-    connect(exitItem, SIGNAL(OnClicked(IMainMenuPluginModel::MenuItem*, MetaInfo*)),
-            this, SIGNAL(OnClose()));
+    connect(exitItem, SIGNAL(OnClicked(MenuItemGraphicsObject*)),
+            SIGNAL(OnClose()));
     scene->addItem(exitItem);
     menuItems.append(exitItem);
 
@@ -47,8 +55,8 @@ void MainForm::AddSubitems(MenuItemGraphicsObject *ParentMenuItem, IMainMenuPlug
         for(int j = 0; j < parentMenuItem->ViewItems.count(); ++j)
         {
             menuItem = new MenuItemGraphicsObject(ParentMenuItem, parentMenuItem, parentMenuItem->ViewItems[j]);
-            connect(menuItem, SIGNAL(OnClicked(IMainMenuPluginModel::MenuItem*, MetaInfo*)),
-                    this, SIGNAL(OnItemSelected(IMainMenuPluginModel::MenuItem*, MetaInfo*)));
+            connect(menuItem, SIGNAL(OnClicked(MenuItemGraphicsObject*)),
+                    SLOT(OnItemSelected(MenuItemGraphicsObject*)));
             scene->addItem(menuItem);
             menuItems.append(menuItem);
         }
@@ -61,4 +69,21 @@ void MainForm::WipeAllItems()
     for(int i = 0; i < menuItems.count(); ++i)
         delete menuItems[i];
     menuItems.clear();
+}
+
+void MainForm::OnItemSelected(MenuItemGraphicsObject *menuItem)
+{
+//    sceneScale = 1.05;
+//    scaleIter = 0;
+//    zoomAnimTimer->start();
+
+    emit OnItemSelected(menuItem->menuItem, menuItem->viewPluginMeta);
+}
+
+void MainForm::ZoomAnimation()
+{
+    if(++scaleIter > 20)
+        zoomAnimTimer->stop();
+
+    ui->graphicsView->scale(sceneScale, sceneScale);
 }

@@ -41,10 +41,10 @@ bool TaskListView::Open(QWidget* parent)
         qDebug() << "Model isn't set!";
         return false;
     }
-
     parent->layout()->addWidget(mainForm);
     mainForm->setParent(parent);
     mainForm->show();
+    mainForm->SetModel(myModel);
     return true;
 }
 

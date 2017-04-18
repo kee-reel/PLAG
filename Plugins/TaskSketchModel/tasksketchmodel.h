@@ -1,12 +1,12 @@
-#ifndef TASKLISTMODEL_H
-#define TASKLISTMODEL_H
+#ifndef TASKSKETCHMODEL_H
+#define TASKSKETCHMODEL_H
 
 #include <QObject>
 #include <QDebug>
 #include <QString>\
 
 #include "itasksketchmodel.h"
-#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
+#include "../TaskListModel/itasktreemodel.h"
 
 class TaskSketchModel : public QObject, ITaskSketchModel
 {
@@ -20,7 +20,7 @@ public:
 
 private:
     // Native part
-    IModelPlugin *myParent;
+    ITaskTreeModel *taskTreeModel;
     QWidget *myParentWidget;
     int myModelId;
     int activeViewId;
@@ -38,7 +38,6 @@ private:
 
     // Unique part
     QString tableName;
-    IExtendableDataBaseManagerPlugin *dataManager;
 
     // IPlugin interface
 public:
@@ -47,8 +46,9 @@ public:
 
     // IPluginModel interface
 public:
-    void AddChildModel(IModelPlugin *, MetaInfo *) override;
     void AddDataManager(QObject *) override;
+    void AddParentModel(QObject *model, MetaInfo *meta) override;
+    void AddChildModel(IModelPlugin *, MetaInfo *) override; 
     void AddView(IViewPlugin *view, MetaInfo *meta) override;
     bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
     bool CloseFromView(IViewPlugin *view) override;

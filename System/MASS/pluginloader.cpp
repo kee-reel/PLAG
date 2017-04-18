@@ -17,6 +17,10 @@ void PluginLoader::LoadPluginsToHome()
 {
     qDebug() << QDir::homePath() << "===" << QDir::rootPath() << "===" << QDir::currentPath() << "===" << QDir::tempPath();
     internalPluginsPath = QDir(QDir::currentPath() + "/Modules/");
+    QApplication::addLibraryPath(internalPluginsPath.absolutePath());
+    QStringList list = QApplication::libraryPaths();
+    for(int i = 0; i < list.count(); ++i)
+        qDebug() << list[i] << endl;
     //TODO: DT entry
 #ifdef Q_OS_ANDROID
     QDir storageDirectoryPath("/storage/emulated/0/Android/data/" + packageName);
@@ -52,8 +56,6 @@ void PluginLoader::LoadPluginsToHome()
         qDebug() << internalPluginsPath.absolutePath() + file << fileToCopy.errorString();
         fileToCopy.close();
     }
-
-    QApplication::addLibraryPath(internalPluginsPath.absolutePath());
 
     QDir path(internalPluginsPath);
     qDebug() << "Path" << path.absolutePath();

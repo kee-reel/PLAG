@@ -8,13 +8,11 @@ TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    draggablebutton.cpp \
     mainmenupluginview.cpp \
     mainform.cpp \
     menuitem.cpp
 
 HEADERS +=\
-    draggablebutton.h \
     mainmenupluginview.h \
     mainform.h \
     menuitem.h

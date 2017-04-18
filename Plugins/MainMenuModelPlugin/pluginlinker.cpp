@@ -246,15 +246,16 @@ void PluginLinker::LinkModelToModels()
     {
         if(modelsLinkInfo.contains(pluginModelIter.key()))
         {
-            IModelPlugin *parentModel = modelsLinkInfo[pluginModelIter.key()].plugin;
-            MetaInfo *parentMeta = modelMap[parentModel];
+            LinkInfo<IModelPlugin> *parentModel = &modelsLinkInfo[pluginModelIter.key()];
+            MetaInfo *parentMeta = modelMap[parentModel->plugin];
             QVector<IModelPlugin*> childPlugins = pluginModelIter.value();
             for(int i = 0; i < childPlugins.count(); i++)
             {
                 MetaInfo* meta = modelMap[childPlugins[i]];
                 IModelPlugin* plugin = modelsLinkInfo[meta->Name].plugin;
 
-                parentModel->AddChildModel(plugin, meta);
+                parentModel->plugin->AddChildModel(plugin, meta);
+                plugin->AddParentModel(parentModel->instance, parentMeta);
                 menuItems[parentMeta]->SubItems.append(menuItems[meta]);
                 qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
             }

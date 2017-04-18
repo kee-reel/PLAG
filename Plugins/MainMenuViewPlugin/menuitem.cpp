@@ -7,11 +7,14 @@ MenuItemGraphicsObject::MenuItemGraphicsObject(
         QWidget *parent)
     : QWidget(parent)
 {
+    parentMenuItem = ParentMenuItem;
     menuItem = MenuItem;
     viewPluginMeta = ViewPluginMeta;
+
     pressed = false;
     setFlag(ItemIsMovable);
     FormatMenuItemName(viewPluginMeta->Name);
+    boundRect = QRectF(0, 0, 100, 100);
 }
 
 MenuItemGraphicsObject::MenuItemGraphicsObject(QString name, QWidget *parent) : QWidget(parent)
@@ -19,6 +22,7 @@ MenuItemGraphicsObject::MenuItemGraphicsObject(QString name, QWidget *parent) : 
     pressed = false;
     setFlag(ItemIsMovable);
     FormatMenuItemName(name);
+    boundRect = QRectF(0, 0, 100, 100);
 }
 
 void MenuItemGraphicsObject::FormatMenuItemName(QString name)
@@ -51,7 +55,7 @@ void MenuItemGraphicsObject::FormatMenuItemName(QString name)
 
 QRectF MenuItemGraphicsObject::boundingRect() const
 {
-    return QRectF(0, 0, 100, 100);
+    return boundRect;
 }
 
 void MenuItemGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -87,9 +91,5 @@ void MenuItemGraphicsObject::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::update();
     QGraphicsItem::mouseReleaseEvent(event);
     if((dx + dy) == 0)
-        emit OnClicked(menuItem, viewPluginMeta);
-}
-
-bool MenuItemGraphicsObject::event(QEvent *event)
-{
+        emit OnClicked(this);
 }

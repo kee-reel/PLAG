@@ -49,6 +49,11 @@ void MainMenuModelPlugin::AddDataManager(QObject *dataManager)
 
 }
 
+void MainMenuModelPlugin::AddParentModel(QObject *model, MetaInfo *meta)
+{
+
+}
+
 bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
     qDebug() << "MainMenuModel runs";

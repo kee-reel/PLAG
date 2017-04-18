@@ -21,7 +21,7 @@ public:
     ~TaskListView();
 
 private:
-    ITreeModel *myModel;
+    ITaskTreeModel *myModel;
 
     MainForm *mainForm;
     DesignProxyModel *proxyModel;

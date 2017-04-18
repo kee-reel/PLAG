@@ -26,9 +26,11 @@ public:
     void OnAllSetup() override;
     QString GetLastError() override;
 
+    void AddDataManager(QObject *dataManager) override;
+    void AddParentModel(QObject *model, MetaInfo *meta) override;
     void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
     void AddView(IViewPlugin *view, MetaInfo *meta) override;
-    void AddDataManager(QObject *dataManager) override;
+
     bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
     bool CloseFromView(IViewPlugin *view) override;
     void ChildSelfClosed(IModelPlugin *child) override;

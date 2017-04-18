@@ -4,12 +4,16 @@
 TreeItem::TreeItem()
 {
     parentItem = NULL;
+    activeChunk = NULL;
 }
 
 TreeItem::TreeItem(TreeItem *parent, TreeItem *copy)
 {
+    parentItem = NULL;
+    activeChunk = NULL;
     qDebug() << copy;
     parentItem = parent;
+    if(!copy) return;
     itemData.id = copy->itemData.id;
     itemData.dataChunks = copy->itemData.dataChunks;
     activeChunkName = copy->activeChunkName;
@@ -56,8 +60,14 @@ void TreeItem::RemoveChildAt(int row)
 
 void TreeItem::SetActiveChunkName(QString &chunkName)
 {
+    if(!itemData.dataChunks.contains(chunkName)) return;
     activeChunkName = chunkName;
     activeChunk = &(itemData.dataChunks[activeChunkName]);
+}
+
+QList<QString> TreeItem::GetChunksNames()
+{
+    return itemData.dataChunks.keys();
 }
 
 QVector<QVariant> TreeItem::GetChunkData(QString chunkName)
@@ -67,17 +77,24 @@ QVector<QVariant> TreeItem::GetChunkData(QString chunkName)
 
 QVariant TreeItem::GetChunkDataElement(int column)
 {
+    if(!activeChunk) return QVariant();
     return (activeChunk->length() > column) ? (*activeChunk)[column] : QVariant();
 }
 
 void TreeItem::SetChunkData(QString chunkName, QVector<QVariant> data)
 {
     itemData.dataChunks[chunkName] = data;
+    if(activeChunkName == "")
+        SetActiveChunkName(chunkName);
+
 }
 
 void TreeItem::SetChunkDataElement(int column, QVariant data)
 {
-    if(activeChunk->length() > column)
+    qDebug() << "SetChunkDataElement" << activeChunkName;
+    if( (activeChunk->length() > column) || (column < 0) )
         (*activeChunk)[column] = data;
+    else
+        qDebug() << "Can't set column" << column;
 }
 

@@ -7,6 +7,7 @@ TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, QString tableName)
 
     dataBaseTypesNames.insert(QVariant::Int,    "INTEGER");
     dataBaseTypesNames.insert(QVariant::String, "VARCHAR");
+    dataBaseTypesNames.insert(QVariant::ByteArray, "BLOB");
 
     coreTableStruct.insert("id", QVariant::Int);
 
@@ -98,13 +99,18 @@ bool TableHandler::DeleteRelation(QString relationName)
 
 QList<IExtendableDataBaseManagerPlugin::ManagerItemInfo> TableHandler::GetData()
 {
-    QString queryStr = "";
-    queryStr = QString("SELECT * FROM %1 ").arg(tableName);
-    //left outer join on
+    QString queryStr = QString("SELECT %1.id").arg(tableName);
     QStringList joinTables = relationTableStructs.keys();
+    QString tableRefPrefix = QString("r_%1_").arg(tableName);
+    for(int i = 0; i < joinTables.count(); ++i)
+    {
+        queryStr.append(",");
+        queryStr.append( GetFieldsNames(tableRefPrefix+joinTables[i], relationTableStructs[joinTables[i]]) );
+    }
+    queryStr.append( QString(" FROM %1 ").arg(tableName) );
     for(int i = 0; i < joinTables.count(); i++)
     {
-        queryStr.append(QString(" NATURAL JOIN r_%1_%2 ")
+        queryStr.append(QString(" LEFT OUTER JOIN r_%1_%2 ON %1.id = r_%1_%2.id")
                         .arg(tableName)
                         .arg(joinTables[i]));
     }
@@ -116,7 +122,7 @@ QList<IExtendableDataBaseManagerPlugin::ManagerItemInfo> TableHandler::GetData()
     int queryFieldNum;
 
     while (query.next()) {
-        qDebug() << "+++++++++++++++++Query result";
+        qDebug() << endl << ">> Query result";
         bufStr = "";
         queryFieldNum = 0;
 
@@ -126,7 +132,7 @@ QList<IExtendableDataBaseManagerPlugin::ManagerItemInfo> TableHandler::GetData()
 
         for(int i = 0; i < joinTables.count(); ++i)
         {
-            qDebug() << "======" << joinTables[i];
+            qDebug() << "> " << joinTables[i];
             for(int j = 0; j < relationTableStructs[joinTables[i]].count(); ++j)
             {
                 qDebug() << query.value(queryFieldNum);
@@ -183,16 +189,22 @@ bool TableHandler::EditItem(ManagerItemInfo item)
     qDebug() << joinTables.count();
     for(int i = 0; i < joinTables.count(); i++)
     {
-        QString valuesString = GetUpdateValuesString(relationTableStructs[joinTables[i]], item.id, item.dataChunks[joinTables[i]]);
+        TableStructMap *tableStruct = &relationTableStructs[joinTables[i]];
+        QString valuesString = GetUpdateValuesString(*tableStruct, item.id);
         if(valuesString != "")
         {
             queryStr = "";
             queryStr.append(QString("UPDATE r_%1_%2 SET %3")
                             .arg(tableName)
                             .arg(joinTables[i])
-                            .arg(valuesString)
-                            );
-            dataSource->ExecuteQuery(queryStr);
+                            .arg(valuesString) );
+            qDebug() << queryStr;
+
+            QList<QString> list = tableStruct->keys();
+            for(int i = 0; i < list.count(); ++i)
+                list[i] = ":" + list[i].toUpper();
+            QList<QVariant> values = item.dataChunks[joinTables[i]].toList();
+            dataSource->ExecuteQuery(queryStr, &list, &values);
         }
         else
         {
@@ -237,6 +249,21 @@ QString TableHandler::GetHeaderString(TableStructMap &tableStruct, bool createRe
     return structStr;
 }
 
+QString TableHandler::GetFieldsNames(QString tableName, TableHandler::TableStructMap &tableStruct, bool includeId)
+{
+    QString structStr = "";
+    TableStructMap::Iterator i = tableStruct.begin();
+    TableStructMap::Iterator lastElement = --tableStruct.end();
+    while(i != tableStruct.end())
+    {
+        if(i.key() != "id" || includeId)
+            structStr.append(QString("%1.%2").arg(tableName).arg(i.key()));
+        if(i != lastElement) structStr.append(",");
+        ++i;
+    }
+    return structStr;
+}
+
 QString TableHandler::GetInsertValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData)
 {
     if(tableStruct.count() != itemData.count())
@@ -254,7 +281,7 @@ QString TableHandler::GetInsertValuesString(TableStructMap &tableStruct, int id,
     {
         fieldNamesStr.append(structIter.key());
         QString buf;
-        if(dataIter->type() == QVariant::String)
+        if(dataIter->type() == QVariant::String || dataIter->type() == QVariant::ByteArray)
             buf = QString("'%1'").arg(dataIter->toString());
         else
             buf = dataIter->toString();
@@ -276,6 +303,29 @@ QString TableHandler::GetInsertValuesString(TableStructMap &tableStruct, int id,
     return QString("%1 VALUES %2").arg(fieldNamesStr).arg(valuesStr);
 }
 
+QString TableHandler::GetUpdateValuesString(TableHandler::TableStructMap &tableStruct, int id)
+{
+    QString resultStr = "";
+    TableStructMap::Iterator structIter = tableStruct.begin();
+    TableStructMap::Iterator lastElement = --tableStruct.end();
+    while(structIter != tableStruct.end())
+    {
+        resultStr.append(structIter.key()).append("=");
+
+        if(structIter.value() == QVariant::String || structIter.value() == QVariant::ByteArray)
+            resultStr.append(QString(":%1").arg(structIter.key().toUpper()));
+        else
+            resultStr.append(":").append(structIter.key().toUpper());
+
+        if(structIter != lastElement)
+            resultStr.append(",");
+
+        ++structIter;
+    }
+    resultStr.append(" where id=").append(QString::number(id));
+    return resultStr;
+}
+
 QString TableHandler::GetUpdateValuesString(TableHandler::TableStructMap &tableStruct, int id, QVector<QVariant> &itemData)
 {
     if(tableStruct.count() != itemData.count())
@@ -292,7 +342,7 @@ QString TableHandler::GetUpdateValuesString(TableHandler::TableStructMap &tableS
     {
         resultStr.append(structIter.key()).append("=");
 
-        if(dataIter->type() == QVariant::String)
+        if(dataIter->type() == QVariant::String || dataIter->type() == QVariant::ByteArray)
             resultStr.append(QString("'%1'").arg(dataIter->toString()));
         else
             resultStr.append(dataIter->toString());

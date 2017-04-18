@@ -6,20 +6,44 @@
 #include <QString>\
 
 #include "itasktreemodel.h"
-#include "tasktreeitemmodel.h"
+#include "treeitemmodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 
-class TaskTreeModel : public QObject, ITreeModel
+class TaskTreeModel : public QObject, ITaskTreeModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IModelPlugin ITreeModel)
+    Q_INTERFACES(IModelPlugin ITaskTreeModel)
 
 public:
     TaskTreeModel();
     ~TaskTreeModel();
 
+    // IPlugin interface
+public:
+    void OnAllSetup() override;
+    QString GetLastError() override;
+
+    // IPluginModel interface
+public:
+    void AddDataManager(QObject *) override;
+    void AddParentModel(QObject *model, MetaInfo *meta);
+    void AddChildModel(IModelPlugin *, MetaInfo *) override;
+    void AddView(IViewPlugin *view, MetaInfo *meta) override;
+    bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
+    bool CloseFromView(IViewPlugin *view) override;
+    void ChildSelfClosed(IModelPlugin *child) override;
+
+    // ITaskListModel interface
+public:
+    QString GetDataName() override;
+    void AttachRelation(QMap<QString, QVariant::Type> relationStruct, QString relationName, QVector<QVariant> defaultData) override;
+    void SetActiveRelation(QString relationName) override;
+    QAbstractItemModel *GetTreeModel() override;
+
 private:
+    void SetupModel();
+
     // Native part
     IModelPlugin *myParent;
     QWidget *myParentWidget;
@@ -38,27 +62,9 @@ private:
 
     // Unique part
     QString tableName;
+    QString relationName;
     IExtendableDataBaseManagerPlugin* dataManager;
-    TaskTreeItemModel* treeModel;
-
-    // IPlugin interface
-public:
-    void OnAllSetup() override;
-    QString GetLastError() override;
-
-    // IPluginModel interface
-public:
-    void AddChildModel(IModelPlugin *, MetaInfo *);
-    void AddDataManager(QObject *);
-    void AddView(IViewPlugin *view, MetaInfo *meta);
-    bool Open(IModelPlugin *parent, QWidget *parentWidget);
-    bool CloseFromView(IViewPlugin *view);
-    void ChildSelfClosed(IModelPlugin *child);
-
-    // ITaskListModel interface
-public:
-    QString GetDataName() override;
-    QAbstractItemModel *GetTreeModel() override;
+    TreeItemModel* treeModel;
 };
 
 #endif // TASKLISTMODEL_H

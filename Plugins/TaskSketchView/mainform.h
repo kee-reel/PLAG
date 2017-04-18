@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QPainter>
 #include <QAbstractItemModel>
+#include <QAbstractProxyModel>
 #include <QResizeEvent>
 #include <QBuffer>
 
@@ -27,6 +28,7 @@ public:
 private:
     Ui::MainForm *ui;
     ITaskSketchModel *myModel;
+    QAbstractItemModel *itemModel;
     GalleryForm *galleryForm;
 
     QString imageFormat;

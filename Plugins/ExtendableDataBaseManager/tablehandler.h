@@ -39,7 +39,9 @@ public:
 
     TableStructMap GetHeader();
     QString GetHeaderString(TableStructMap &tableStruct, bool createRelation = false);
+    QString GetFieldsNames(QString tableName, TableStructMap &tableStruct, bool includeId = false);
     QString GetInsertValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData);
+    QString GetUpdateValuesString(TableStructMap &tableStruct, int id);
     QString GetUpdateValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData);
 
     bool IsTableExists(QString tableName);

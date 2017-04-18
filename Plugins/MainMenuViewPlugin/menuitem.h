@@ -22,22 +22,21 @@ public:
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-signals:
-    void OnClicked(IMainMenuPluginModel::MenuItem *menuItem, MetaInfo *viewMeta);
+    MenuItemGraphicsObject *parentMenuItem;
+    IMainMenuPluginModel::MenuItem *menuItem;
+    MetaInfo *viewPluginMeta;
 
 protected:
     bool pressed;
     int dx, dy;
-    IMainMenuPluginModel::MenuItem *menuItem;
-    MetaInfo *viewPluginMeta;
     QString itemMenuName;
+    QRectF boundRect;
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
-    // QObject interface
-public:
-    bool event(QEvent *event) override;
+signals:
+    void OnClicked(MenuItemGraphicsObject *me);
 };
 
 #endif // MENUITEM_H

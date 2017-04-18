@@ -3,6 +3,7 @@
 TaskTreeModel::TaskTreeModel()
 {
     tableName = "TaskTree";
+    relationName = "task";
     activeView = NULL;
     activeModel = NULL;
     dataManager = NULL;
@@ -48,7 +49,12 @@ void TaskTreeModel::AddDataManager(QObject *DBTool)
     }
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
     if(!treeModel)
-        treeModel = new TaskTreeItemModel(tableName, dataManager);
+        treeModel = new TreeItemModel(tableName, dataManager);
+}
+
+void TaskTreeModel::AddParentModel(QObject *model, MetaInfo *meta)
+{
+
 }
 
 bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
@@ -62,9 +68,11 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     myParentWidget = parentWidget;
 
     if(treeModel)
-        treeModel->LoadData();
-    if(!activeView)
-        activeView = viewPlugins.first().plugin;
+    {
+        SetupModel();
+        treeModel->SetActiveRelation(relationName);
+    }
+    if(!activeView) activeView = viewPlugins.first().plugin;
     if(!activeView->Open(myParentWidget))
     {
         qDebug() << "Can't open first view!";
@@ -83,7 +91,7 @@ bool TaskTreeModel::CloseFromView(IViewPlugin *view)
 
 void TaskTreeModel::ChildSelfClosed(IModelPlugin *child)
 {
-
+    myParent->ChildSelfClosed(this);
 }
 
 QString TaskTreeModel::GetDataName()
@@ -91,7 +99,29 @@ QString TaskTreeModel::GetDataName()
     return tableName;
 }
 
+void TaskTreeModel::AttachRelation(QMap<QString, QVariant::Type> relationStruct, QString relationName, QVector<QVariant> defaultData)
+{
+    treeModel->AttachRelation(relationStruct, relationName, defaultData);
+}
+
+void TaskTreeModel::SetActiveRelation(QString relationName)
+{
+    treeModel->SetActiveRelation(relationName);
+}
+
 QAbstractItemModel* TaskTreeModel::GetTreeModel()
 {
+    SetupModel();
     return treeModel;
+}
+
+void TaskTreeModel::SetupModel()
+{
+    QMap<QString, QVariant::Type> newRelationStruct = {
+        {"name",        QVariant::String},
+    };
+    QVector<QVariant> defaultData;
+    defaultData << "New task";
+    treeModel->AttachRelation(newRelationStruct, relationName, defaultData);
+    treeModel->LoadData();
 }
