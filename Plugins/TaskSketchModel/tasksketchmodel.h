@@ -3,9 +3,11 @@
 
 #include <QObject>
 #include <QDebug>
-#include <QString>\
+#include <QString>
+#include <QAbstractItemModel>
 
 #include "itasksketchmodel.h"
+#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 #include "../TaskListModel/itasktreemodel.h"
 
 class TaskSketchModel : public QObject, ITaskSketchModel
@@ -20,7 +22,10 @@ public:
 
 private:
     // Native part
-    ITaskTreeModel *taskTreeModel;
+    IExtendableDataBaseManagerPlugin *dataManager;
+    ITaskTreeModel *myModel;
+    QAbstractItemModel *taskModel;
+    QAbstractItemModel *sketchItemModel;
     QWidget *myParentWidget;
     int myModelId;
     int activeViewId;
@@ -38,6 +43,7 @@ private:
 
     // Unique part
     QString tableName;
+    QString coreRelationName;
 
     // IPlugin interface
 public:
@@ -56,7 +62,13 @@ public:
 
     // ITaskSketchModel interface
 public:
-    virtual QAbstractItemModel *GetModel();
+    QAbstractItemModel *GetModel() override;
+    QAbstractItemModel *GetInternalModel() override;
+    void ConvertSketchToTask(int sketchId) override;
+
+private:
+    void SetupModel();
+
 };
 
 #endif // TASKLISTMODEL_H

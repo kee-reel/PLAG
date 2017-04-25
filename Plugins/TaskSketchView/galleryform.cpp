@@ -7,6 +7,7 @@ GalleryForm::GalleryForm(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->buttonClose, SIGNAL(clicked(bool)), this, SLOT(close()));
+    focusedItem = NULL;
 }
 
 GalleryForm::~GalleryForm()
@@ -16,10 +17,53 @@ GalleryForm::~GalleryForm()
     delete ui;
 }
 
-void GalleryForm::AddImage(QImage image)
+void GalleryForm::AddImage(int index, QByteArray &rawImage)
 {
-    GalleryItem *item = new GalleryItem(image, this);
-    galleryItems.append(item);
-    QLayout *scrollLayout = ui->scrollAreaWidgetContents->layout();
-    scrollLayout->addWidget(item);
+    QImage image;
+    if(!image.loadFromData(rawImage))
+    {
+        qDebug() << "Cant read image";
+        return;
+    }
+
+    GalleryItem *item = new GalleryItem(image);
+    galleryItems.insert(index, item);
+    connect(item, SIGNAL(OnClicked(GalleryItem*)), SLOT(OnItemSelected(GalleryItem*)));
+    QVBoxLayout *scrollLayout = (QVBoxLayout*)ui->scrollAreaWidgetContents->layout();
+    scrollLayout->insertWidget(index, item);
+}
+
+void GalleryForm::SetModel(QAbstractItemModel *model)
+{
+//    ui->listView->setModel(model);
+//    QImageItemDelegate *delegate = new QImageItemDelegate(this);
+    //    ui->listView->setItemDelegate(delegate);
+}
+
+void GalleryForm::OnItemSelected(GalleryItem *item)
+{
+    if(focusedItem)
+        focusedItem->isInFocus = false;
+
+    focusedItem = item;
+    focusedItem->isInFocus = true;
+}
+
+void GalleryForm::on_buttonDelete_clicked()
+{
+    if(!focusedItem) return;
+    int index = galleryItems.indexOf(focusedItem);
+    galleryItems.removeAt(index);
+    delete focusedItem;
+    focusedItem = NULL;
+
+    emit OnItemDelete(index);
+}
+
+void GalleryForm::on_buttonConvertToTask_clicked()
+{
+    if(!focusedItem) return;
+    int index = galleryItems.indexOf(focusedItem);
+
+    emit OnItemConvert(index);
 }

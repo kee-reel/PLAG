@@ -1,32 +1,32 @@
-#ifndef TREEITEM_H
-#define TREEITEM_H
+#ifndef ITEM_H
+#define ITEM_H
 
 #include <QVector>
 #include <QVariant>
 #include <QDebug>
 
-class TreeItem
+class Item
 {
 public:
-    TreeItem *parentItem;
+    Item *parentItem;
 
-    TreeItem();
-    TreeItem(TreeItem *parent, TreeItem *copy);
-    TreeItem(TreeItem *parent, int id, QString activeChunk, QMap<QString, QVector<QVariant>> dataChunks);
-    ~TreeItem();
+    Item();
+    Item(Item *parent, Item *copy);
+    Item(Item *parent, int id, QString activeChunk, QMap<QString, QVector<QVariant>> dataChunks);
+    ~Item();
 
 // Columns
     inline int ColumnCount() { return activeChunk ? activeChunk->count() : 0; }
     inline int GetRow() { return parentItem ? parentItem->GetChildPosition(this) : 0; }
 
 // Childs
-    void SetChilds(QList<TreeItem *> childs);
-    void AddChild(int row, TreeItem *child);
-    void RemoveChild(TreeItem *child);
+    void SetChilds(QList<Item *> childs);
+    void AddChild(int row, Item *child);
+    void RemoveChild(Item *child);
     void RemoveChildAt(int row);
-    inline TreeItem *GetChildAt(int row) { return childItems.count() > row ? childItems[row] : NULL;}
+    inline Item *GetChildAt(int row) { return childItems.count() > row ? childItems[row] : NULL; }
     inline int ChildCount() { return childItems.count(); }
-    inline int GetChildPosition(TreeItem *item) { return childItems.indexOf(item); }
+    inline int GetChildPosition(Item *item) { return childItems.indexOf(item); }
 
 // Data
     void SetActiveChunkName(QString &activeChunk);
@@ -48,7 +48,7 @@ private:
     ItemData itemData;
     QString activeChunkName;
     QVector<QVariant> *activeChunk;
-    QList<TreeItem*> childItems;
+    QList<Item*> childItems;
 };
 
 #endif // TREEITEM_H

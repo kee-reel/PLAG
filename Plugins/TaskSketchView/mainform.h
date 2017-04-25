@@ -28,7 +28,8 @@ public:
 private:
     Ui::MainForm *ui;
     ITaskSketchModel *myModel;
-    QAbstractItemModel *itemModel;
+    QAbstractItemModel *sketchModel;
+    QAbstractItemModel *taskModel;
     GalleryForm *galleryForm;
 
     QString imageFormat;
@@ -37,8 +38,12 @@ private:
 
 signals:
     void onClose();
+    void OnItemConvert(int index);
 
 private slots:
+    void OnItemDelete(int index);
+    void OnItemConvertSlot(int index);
+
     void on_buttonClose_clicked();
     void on_buttonCreate_clicked();
     void on_buttonSave_clicked();

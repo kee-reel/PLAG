@@ -2,7 +2,7 @@
 
 TaskTreeModel::TaskTreeModel()
 {
-    tableName = "TaskTree";
+    tableName = "tasktree";
     relationName = "task";
     activeView = NULL;
     activeModel = NULL;
@@ -48,13 +48,25 @@ void TaskTreeModel::AddDataManager(QObject *DBTool)
         return;
     }
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
-    if(!treeModel)
-        treeModel = new TreeItemModel(tableName, dataManager);
+
+    QMap<QString, QVariant::Type> newRelationStruct = {
+        {"name",        QVariant::String},
+    };
+    QVector<QVariant> defaultData;
+    defaultData << "New task";
+    dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
 }
 
 void TaskTreeModel::AddParentModel(QObject *model, MetaInfo *meta)
 {
-
+    qDebug() <<  "is not MainMenu.";
+    myParent = qobject_cast<IModelPlugin*>(model);
+    if(!this->dataManager)
+    {
+        qDebug() << model->objectName() << "is not MainMenu.";
+        return;
+    }
+    qDebug() << "MainMenu succesfully set.";
 }
 
 bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
@@ -67,11 +79,7 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     myParent = parent;
     myParentWidget = parentWidget;
 
-    if(treeModel)
-    {
-        SetupModel();
-        treeModel->SetActiveRelation(relationName);
-    }
+    SetupModel();
     if(!activeView) activeView = viewPlugins.first().plugin;
     if(!activeView->Open(myParentWidget))
     {
@@ -99,29 +107,14 @@ QString TaskTreeModel::GetDataName()
     return tableName;
 }
 
-void TaskTreeModel::AttachRelation(QMap<QString, QVariant::Type> relationStruct, QString relationName, QVector<QVariant> defaultData)
-{
-    treeModel->AttachRelation(relationStruct, relationName, defaultData);
-}
-
-void TaskTreeModel::SetActiveRelation(QString relationName)
-{
-    treeModel->SetActiveRelation(relationName);
-}
-
 QAbstractItemModel* TaskTreeModel::GetTreeModel()
 {
-    SetupModel();
+    if(treeModel) treeModel = dataManager->GetDataModel(tableName);
     return treeModel;
 }
 
 void TaskTreeModel::SetupModel()
 {
-    QMap<QString, QVariant::Type> newRelationStruct = {
-        {"name",        QVariant::String},
-    };
-    QVector<QVariant> defaultData;
-    defaultData << "New task";
-    treeModel->AttachRelation(newRelationStruct, relationName, defaultData);
-    treeModel->LoadData();
+    treeModel = dataManager->GetDataModel(tableName);
+    dataManager->SetActiveRelation(tableName, relationName);
 }

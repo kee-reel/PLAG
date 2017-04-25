@@ -33,6 +33,7 @@ void TaskListView::SetModel(QObject* model)
         return;
     }
     qDebug() << "ITaskListModel succesfully set.";
+    connect(model, SIGNAL(OpenTaskEdit(int)), SLOT(OpenTaskEditor(int)));
 }
 
 bool TaskListView::Open(QWidget* parent)
@@ -51,7 +52,7 @@ bool TaskListView::Open(QWidget* parent)
         mainForm->SetModel(proxyModel);
     }
 
-    parent->layout()->addWidget(mainForm);
+    if(parent) parent->layout()->addWidget(mainForm);
     connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     mainForm->setParent(parent);
     mainForm->show();
@@ -65,4 +66,10 @@ bool TaskListView::Close()
     mainForm->hide();
     myModel->CloseFromView(this);
     return true;
+}
+
+void TaskListView::OpenTaskEditor(int id)
+{
+    qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!!!" << id;
+    Open(NULL);
 }

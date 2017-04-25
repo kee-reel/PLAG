@@ -6,7 +6,6 @@
 #include <QString>\
 
 #include "itasktreemodel.h"
-#include "treeitemmodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 
 class TaskTreeModel : public QObject, ITaskTreeModel
@@ -37,8 +36,6 @@ public:
     // ITaskListModel interface
 public:
     QString GetDataName() override;
-    void AttachRelation(QMap<QString, QVariant::Type> relationStruct, QString relationName, QVector<QVariant> defaultData) override;
-    void SetActiveRelation(QString relationName) override;
     QAbstractItemModel *GetTreeModel() override;
 
 private:
@@ -64,7 +61,10 @@ private:
     QString tableName;
     QString relationName;
     IExtendableDataBaseManagerPlugin* dataManager;
-    TreeItemModel* treeModel;
+    QAbstractItemModel *treeModel;
+
+signals:
+    void OpenTaskEdit(int id);
 };
 
 #endif // TASKLISTMODEL_H

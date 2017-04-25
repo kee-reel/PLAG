@@ -12,14 +12,16 @@ SOURCES += \
     mainform.cpp \
     galleryform.cpp \
     paintwidget.cpp \
-    galleryitem.cpp
+    galleryitem.cpp \
+    qimageitemdelegate.cpp
 
 HEADERS +=\
     tasklistview.h \
     mainform.h \
     galleryform.h \
     paintwidget.h \
-    galleryitem.h
+    galleryitem.h \
+    qimageitemdelegate.h
 
 include(../../System/MASS/BuildInfo.pri)
 

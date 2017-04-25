@@ -3,6 +3,7 @@
 TaskSketchModel::TaskSketchModel()
 {
     tableName = "sketch";
+    coreRelationName = "image";
     activeViewId = -1;
 }
 
@@ -12,7 +13,13 @@ TaskSketchModel::~TaskSketchModel()
 
 void TaskSketchModel::OnAllSetup()
 {
-
+    QMap<QString, QVariant::Type> newRelationStruct = {
+        {coreRelationName,  QVariant::ByteArray},
+    };
+    QVector<QVariant> defaultData;
+    defaultData << QByteArray();
+    dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
+    dataManager->SetRelation(myModel->GetDataName(), coreRelationName, newRelationStruct, defaultData);
 }
 
 QString TaskSketchModel::GetLastError()
@@ -37,31 +44,24 @@ void TaskSketchModel::AddView(IViewPlugin *view, MetaInfo *meta)
 void TaskSketchModel::AddDataManager(QObject *DBTool)
 {
     qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
-//    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(DBTool);
-//    if(!this->dataManager)
-//    {
-//        qDebug() << DBTool->objectName() << "is not IExtendableDataBaseManagerPlugin.";
-//        return;
-//    }
-    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";\
+    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(DBTool);
+    if(!this->dataManager)
+    {
+        qDebug() << DBTool->objectName() << "is not IExtendableDataBaseManagerPlugin.";
+        return;
+    }
+    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
 }
 
 void TaskSketchModel::AddParentModel(QObject *model, MetaInfo *meta)
 {
-    taskTreeModel = qobject_cast<ITaskTreeModel*>(model);
-    if(!taskTreeModel)
-    {
+    myModel = qobject_cast<ITaskTreeModel*>(model);
+    if(!myModel){
         qDebug() << model->objectName() << "is not IExtendableDataBaseManagerPlugin.";
         return;
     }
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
-
-    QMap<QString, QVariant::Type> newRelationStruct = {
-        {"pixmap",        QVariant::ByteArray},
-    };
-    QVector<QVariant> defaultData;
-    defaultData << QByteArray();
-    taskTreeModel->AttachRelation(newRelationStruct, tableName, defaultData);
+    connect(this, SIGNAL(ConvertTaskToSketch(int)), model, SIGNAL(OpenTaskEdit(int)));
 }
 
 bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
@@ -73,10 +73,9 @@ bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     }
     myParentWidget = parentWidget;
     activeViewId = 0;
-    taskTreeModel->SetActiveRelation(tableName);
+    SetupModel();
     qDebug() << viewPlugins[activeViewId].meta->Name;
-    if(!viewPlugins[activeViewId].plugin->Open(myParentWidget))
-    {
+    if(!viewPlugins[activeViewId].plugin->Open(myParentWidget)){
         qDebug() << "Can't open first view!";
         return false;
     }
@@ -85,7 +84,7 @@ bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
 
 bool TaskSketchModel::CloseFromView(IViewPlugin *view)
 {
-    taskTreeModel->ChildSelfClosed(this);
+    myModel->ChildSelfClosed(this);
     activeViewId = -1;
     return true;
 }
@@ -97,5 +96,34 @@ void TaskSketchModel::ChildSelfClosed(IModelPlugin *child)
 
 QAbstractItemModel *TaskSketchModel::GetModel()
 {
-    return taskTreeModel->GetTreeModel();
+    return taskModel;
+}
+
+QAbstractItemModel *TaskSketchModel::GetInternalModel()
+{
+    return sketchItemModel;
+}
+
+void TaskSketchModel::ConvertSketchToTask(int sketchId)
+{
+    QModelIndex modelIndex;
+    QMap<int, QVariant> map;
+
+    modelIndex = sketchItemModel->index(sketchId, 0);
+    map = sketchItemModel->itemData(modelIndex);
+    qDebug() << map[0];
+
+    taskModel->insertRows(taskModel->rowCount(), 1);
+    modelIndex = taskModel->index(taskModel->rowCount()-1, 0);
+    dataManager->SetActiveRelation(myModel->GetDataName(), coreRelationName);
+    taskModel->setData(modelIndex, map[1]);
+    qDebug() << map[0];
+
+    //emit ConvertTaskToSketch(map[0].toInt());
+}
+
+void TaskSketchModel::SetupModel()
+{
+    taskModel = dataManager->GetDataModel(myModel->GetDataName());
+    sketchItemModel = dataManager->GetDataModel(tableName);
 }

@@ -13,9 +13,10 @@ class ITaskTreeModel : public IModelPlugin
 {
 public:
     virtual QString GetDataName() = 0;
-    virtual void AttachRelation(QMap<QString, QVariant::Type> relationStruct, QString relationName, QVector<QVariant> defaultData) = 0;
-    virtual void SetActiveRelation(QString relationName) = 0;
     virtual QAbstractItemModel* GetTreeModel() = 0;
+
+signals:
+    void OpenTaskEdit(int id);
 };
 Q_DECLARE_INTERFACE(ITaskTreeModel, "ITaskTreeModel v0.1")
 

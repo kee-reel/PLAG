@@ -7,7 +7,12 @@ ExtendableDataBaseManagerPlugin::ExtendableDataBaseManagerPlugin()
 
 ExtendableDataBaseManagerPlugin::~ExtendableDataBaseManagerPlugin()
 {
-
+    QHash<QString, TableHandler*>::Iterator tablesIter = tableHandlers.begin();
+    while(tablesIter != tableHandlers.end())
+    {
+        delete tablesIter.value();
+        ++tablesIter;
+    }
 }
 
 void ExtendableDataBaseManagerPlugin::OnAllSetup()
@@ -31,41 +36,62 @@ bool ExtendableDataBaseManagerPlugin::SetDataSource(QObject *dataSource)
     return true;
 }
 
-QList<ExtendableDataBaseManagerPlugin::ManagerItemInfo> ExtendableDataBaseManagerPlugin::GetData(QString tableName)
+QList<ExtendableDataBaseManagerPlugin::ManagerDataItem> ExtendableDataBaseManagerPlugin::GetDataList(QString tableName)
 {
     if(!tableHandlers.contains(tableName))
-        tableHandlers[tableName] = new TableHandler(dataSource, tableName);
-
-    return tableHandlers[tableName]->GetData();;
+        tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
+    return tableHandlers[tableName]->GetData();
 }
 
-QMap<QString, QVariant::Type> ExtendableDataBaseManagerPlugin::GetTreeHeader(QString tableName)
+IExtendableDataBaseManagerPlugin::ManagerDataItem ExtendableDataBaseManagerPlugin::GetDataItem(QString tableName, int id)
 {
     if(!tableHandlers.contains(tableName))
-        tableHandlers[tableName] = new TableHandler(dataSource, tableName);
+        tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
+    return tableHandlers[tableName]->GetItem(id);
+}
 
+QAbstractItemModel *ExtendableDataBaseManagerPlugin::GetDataModel(QString tableName)
+{
+    if(!tableHandlers.contains(tableName))
+        return false;
+    return tableHandlers[tableName]->GetModel();
+}
+
+QMap<QString, QVariant::Type> ExtendableDataBaseManagerPlugin::GetTableHeader(QString tableName)
+{
+    if(!tableHandlers.contains(tableName))
+        tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
     return tableHandlers[tableName]->GetHeader();
 }
 
-bool ExtendableDataBaseManagerPlugin::SetRelation(QString tableName, QString relationName, QMap<QString, QVariant::Type> fields)
+bool ExtendableDataBaseManagerPlugin::SetRelation(QString tableName, QString relationName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData)
 {
     if(!tableHandlers.contains(tableName))
-        tableHandlers[tableName] = new TableHandler(dataSource, tableName);
-
-    return tableHandlers[tableName]->SetRelation(relationName, fields);
+        tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
+    return tableHandlers[tableName]->SetRelation(relationName, fields, defaultData);
 }
 
 bool ExtendableDataBaseManagerPlugin::DeleteRelation(QString tableName, QString relationName)
 {
+    if(!tableHandlers.contains(tableName))
+        return false;
     return tableHandlers[tableName]->DeleteRelation(relationName);
 }
 
-int ExtendableDataBaseManagerPlugin::AddItem(QString tableName, ManagerItemInfo item)
+bool ExtendableDataBaseManagerPlugin::SetActiveRelation(QString tableName, QString relationName)
+{
+    if(!tableHandlers.contains(tableName))
+        return false;
+    tableHandlers[tableName]->SetActiveRelation(relationName);
+    return true;
+}
+
+int ExtendableDataBaseManagerPlugin::AddItem(QString tableName, ManagerDataItem item)
 {
     return tableHandlers[tableName]->AddItem(item);
 }
 
-bool ExtendableDataBaseManagerPlugin::EditItem(QString tableName, ManagerItemInfo item)
+bool ExtendableDataBaseManagerPlugin::EditItem(QString tableName, ManagerDataItem item)
 {
     return tableHandlers[tableName]->EditItem(item);
 }

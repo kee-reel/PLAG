@@ -31,6 +31,7 @@ void TaskListView::SetModel(QObject* model)
         return;
     }
     qDebug() << "ITaskListModel succesfully set.";
+    connect(mainForm, SIGNAL(OnItemConvert(int)), model, SIGNAL(OpenTaskEdit(int)));
 }
 
 bool TaskListView::Open(QWidget* parent)

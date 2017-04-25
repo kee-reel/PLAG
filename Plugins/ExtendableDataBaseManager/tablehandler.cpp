@@ -1,9 +1,11 @@
 #include "tablehandler.h"
 
-TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, QString tableName)
+TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataBaseManagerPlugin *dataManager, QString tableName)
 {
     this->dataSource = dataSource;
+    this->dataManager = dataManager;
     this->tableName = tableName;
+    itemModel = NULL;
 
     dataBaseTypesNames.insert(QVariant::Int,    "INTEGER");
     dataBaseTypesNames.insert(QVariant::String, "VARCHAR");
@@ -17,6 +19,11 @@ TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, QString tableName)
         isCreated = false;
     else
         CreateTable();
+}
+
+TableHandler::~TableHandler()
+{
+    if(itemModel) delete itemModel;
 }
 
 bool TableHandler::CreateTable()
@@ -55,19 +62,17 @@ bool TableHandler::CreateTable()
     return true;
 }
 
-bool TableHandler::SetRelation(QString relationName, TableStructMap fields)
+bool TableHandler::SetRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData)
 {
     qDebug() << "SetRelation";
-    if(relationName == "")
-    {
+    if(relationName == ""){
         qDebug() << "Relation name is empty!";
         return false;
     }
 
     fields.insert("id", QVariant::Int);
     QString dataFields = GetHeaderString(fields, true);
-    if(dataFields == "")
-    {
+    if(dataFields == ""){
         qDebug() << "Can't create relation!";
         return false;
     }
@@ -81,7 +86,15 @@ bool TableHandler::SetRelation(QString relationName, TableStructMap fields)
 
     fields.remove("id");
     relationTableStructs.insert(relationName, fields);
+    relationsDefaultData.insert(relationName, defaultData);
+    if(itemModel) itemModel->AttachRelation(relationName, defaultData);
     return true;
+}
+
+void TableHandler::SetActiveRelation(QString relationName)
+{
+    if(itemModel)
+        itemModel->SetActiveRelation(relationName);
 }
 
 bool TableHandler::DeleteRelation(QString relationName)
@@ -97,7 +110,53 @@ bool TableHandler::DeleteRelation(QString relationName)
     return true;
 }
 
-QList<IExtendableDataBaseManagerPlugin::ManagerItemInfo> TableHandler::GetData()
+TableHandler::ManagerItemInfo TableHandler::GetItem(int id)
+{
+    QString queryStr = QString("SELECT %1.id").arg(tableName);
+    QStringList joinTables = relationTableStructs.keys();
+    QString tableRefPrefix = QString("r_%1_").arg(tableName);
+    for(int i = 0; i < joinTables.count(); ++i)
+    {
+        queryStr.append(",");
+        queryStr.append( GetFieldsNames(tableRefPrefix+joinTables[i], relationTableStructs[joinTables[i]]) );
+    }
+    queryStr.append( QString(" FROM %1 ").arg(tableName) );
+    queryStr.append( QString(" ON %1.id = %2 ").arg(tableName).arg(id) );
+    for(int i = 0; i < joinTables.count(); i++)
+    {
+        queryStr.append(QString(" LEFT OUTER JOIN r_%1_%2 ON %1.id = r_%1_%2.id")
+                        .arg(tableName)
+                        .arg(joinTables[i]));
+    }
+    QSqlQuery query = dataSource->ExecuteQuery(queryStr);
+    ManagerItemInfo buf;
+
+    QString bufStr;
+    int queryFieldNum;
+
+    qDebug() << endl << ">> Query result";
+    bufStr = "";
+    queryFieldNum = 0;
+
+    qDebug() << query.value(queryFieldNum);
+    buf.id = query.value(queryFieldNum).toInt();
+    ++queryFieldNum;
+
+    for(int i = 0; i < joinTables.count(); ++i)
+    {
+        qDebug() << "> " << joinTables[i];
+        for(int j = 0; j < relationTableStructs[joinTables[i]].count(); ++j)
+        {
+            qDebug() << query.value(queryFieldNum);
+            buf.dataChunks[joinTables[i]].append( query.value(queryFieldNum) );
+            ++queryFieldNum;
+        }
+    }
+
+    return buf;
+}
+
+QList<IExtendableDataBaseManagerPlugin::ManagerDataItem> TableHandler::GetData()
 {
     QString queryStr = QString("SELECT %1.id").arg(tableName);
     QStringList joinTables = relationTableStructs.keys();
@@ -145,6 +204,21 @@ QList<IExtendableDataBaseManagerPlugin::ManagerItemInfo> TableHandler::GetData()
         buf.dataChunks.clear();
     }
     return itemInfoList;
+}
+
+QAbstractItemModel *TableHandler::GetModel()
+{
+    if(itemModel) return itemModel;
+
+    itemModel = new ExtendableItemModel(tableName, dataManager);
+    QMap<QString, QVector<QVariant>>::Iterator defaultDataIter = relationsDefaultData.begin();
+    while(defaultDataIter != relationsDefaultData.end())
+    {
+        itemModel->AttachRelation(defaultDataIter.key(), defaultDataIter.value());
+        ++defaultDataIter;
+    }
+    itemModel->LoadData();
+    return itemModel;
 }
 
 int TableHandler::AddItem(ManagerItemInfo item)
@@ -225,6 +299,13 @@ bool TableHandler::DeleteItem(int id)
 TableHandler::TableStructMap TableHandler::GetHeader()
 {
     return wholeTableStruct;
+}
+
+QVector<QVariant> TableHandler::GetRelationDefaultData(QString relationName)
+{
+    if(!relationsDefaultData.contains(relationName))
+        return QVector<QVariant>();
+    return relationsDefaultData[relationName];
 }
 
 QString TableHandler::GetHeaderString(TableStructMap &tableStruct, bool createRelation)

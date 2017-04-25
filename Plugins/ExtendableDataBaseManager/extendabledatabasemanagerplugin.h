@@ -6,9 +6,9 @@
 #include <QObject>
 #include <QVariant>
 
-
 #include "iextendabledatabasemanagerplugin.h"
 #include "tablehandler.h"
+#include "extendableitemmodel.h"
 
 class ExtendableDataBaseManagerPlugin : public QObject, IExtendableDataBaseManagerPlugin
 {
@@ -24,13 +24,17 @@ public:
 
     bool SetDataSource(QObject *dataSource) override;
 
-    QList<ManagerItemInfo> GetData(QString tableName) override;
-    QMap<QString, QVariant::Type> GetTreeHeader(QString tableName) override;
+    QList<ManagerDataItem> GetDataList(QString tableName) override;
+    ManagerDataItem GetDataItem(QString tableName, int id) override;
+    QAbstractItemModel *GetDataModel(QString tableName) override;
+    QMap<QString, QVariant::Type> GetTableHeader(QString tableName) override;
 
-    bool SetRelation(QString tableName, QString relationName, QMap<QString, QVariant::Type> fields) override;
+    bool SetRelation(QString tableName, QString relationName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData) override;
     bool DeleteRelation(QString tableName, QString relationName) override;
-    int AddItem(QString tableName, ManagerItemInfo item) override;
-    bool EditItem(QString tableName, ManagerItemInfo item) override;
+    bool SetActiveRelation(QString tableName, QString relationName) override;
+
+    int AddItem(QString tableName, ManagerDataItem item) override;
+    bool EditItem(QString tableName, ManagerDataItem item) override;
     bool DeleteItem(QString tableName, int id) override;
 
 private:
@@ -38,6 +42,7 @@ private:
     IDataBaseSourcePlugin* dataSource;
 
     QHash<QString, TableHandler*> tableHandlers;
+
 };
 
 #endif // TASKDBTOOLPLUGIN_H

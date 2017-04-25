@@ -38,6 +38,7 @@ public:
     bool Open(QWidget* parent) override;
 public slots:
     bool Close() override;
+    void OpenTaskEditor(int id);
 };
 
 #endif // TASKLISTVIEW_H

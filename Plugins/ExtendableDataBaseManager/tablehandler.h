@@ -7,39 +7,51 @@
 #include <QVariant>
 
 #include "iextendabledatabasemanagerplugin.h"
+#include "extendableitemmodel.h"
 
 class TableHandler
 {
-    typedef IExtendableDataBaseManagerPlugin::ManagerItemInfo ManagerItemInfo;
+    typedef IExtendableDataBaseManagerPlugin::ManagerDataItem ManagerItemInfo;
     typedef QMap<QString, QVariant::Type> TableStructMap;
 
 private:
     IDataBaseSourcePlugin *dataSource;
+    IExtendableDataBaseManagerPlugin *dataManager;
+    ExtendableItemModel *itemModel;
     QString tableName;
     bool isCreated;
 
 public:
     inline QString TableName() {return tableName;}
     QMap<QVariant::Type, QString> dataBaseTypesNames;
-    QStringList relations;
     TableStructMap coreTableStruct;
     TableStructMap wholeTableStruct;
     QMap<QString, TableStructMap> relationTableStructs;
+    QMap<QString, QVector<QVariant>> relationsDefaultData;
 
-    TableHandler(IDataBaseSourcePlugin *dataSource, QString tableName = "");
+    TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataBaseManagerPlugin *dataManager, QString tableName = "");
+    ~TableHandler();
 
     bool CreateTable();
-    bool SetRelation(QString relationName, TableStructMap fields);
+    bool SetRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData);
+    void SetActiveRelation(QString relationName);
     bool DeleteRelation(QString relationName);
 
     QList<ManagerItemInfo> GetData();
+    ManagerItemInfo GetItem(int id);
+    QAbstractItemModel *GetModel();
+
     int AddItem(ManagerItemInfo item);
     bool EditItem(ManagerItemInfo item);
     bool DeleteItem(int id);
 
     TableStructMap GetHeader();
+    QVector<QVariant> GetRelationDefaultData(QString relationName);
+
     QString GetHeaderString(TableStructMap &tableStruct, bool createRelation = false);
     QString GetFieldsNames(QString tableName, TableStructMap &tableStruct, bool includeId = false);
+
+private:
     QString GetInsertValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData);
     QString GetUpdateValuesString(TableStructMap &tableStruct, int id);
     QString GetUpdateValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData);

@@ -1,13 +1,12 @@
-#include "treeitem.h"
-#include <QDebug>
+#include "item.h"
 
-TreeItem::TreeItem()
+Item::Item()
 {
     parentItem = NULL;
     activeChunk = NULL;
 }
 
-TreeItem::TreeItem(TreeItem *parent, TreeItem *copy)
+Item::Item(Item *parent, Item *copy)
 {
     parentItem = NULL;
     activeChunk = NULL;
@@ -20,7 +19,7 @@ TreeItem::TreeItem(TreeItem *parent, TreeItem *copy)
     activeChunk = &itemData.dataChunks[activeChunkName];
 }
 
-TreeItem::TreeItem(TreeItem *parent, int id, QString chunkName, QMap<QString, QVector<QVariant>> dataChunks)
+Item::Item(Item *parent, int id, QString chunkName, QMap<QString, QVector<QVariant>> dataChunks)
 {
     parentItem = parent;
     itemData.id = id;
@@ -29,59 +28,59 @@ TreeItem::TreeItem(TreeItem *parent, int id, QString chunkName, QMap<QString, QV
     activeChunk = &itemData.dataChunks[activeChunkName];
 }
 
-TreeItem::~TreeItem()
+Item::~Item()
 {
     if(childItems.count())
         for(int i = 0; i < childItems.count(); i++)
             delete childItems[i];
 }
 
-void TreeItem::SetChilds(QList<TreeItem *> childs)
+void Item::SetChilds(QList<Item *> childs)
 {
     childItems = childs;
 }
 
-void TreeItem::AddChild(int row, TreeItem *child)
+void Item::AddChild(int row, Item *child)
 {
     childItems.insert(row, child);
     qDebug() << "Add ITEM" << row << child << childItems.count();
 }
 
-void TreeItem::RemoveChild(TreeItem *child)
+void Item::RemoveChild(Item *child)
 {
     childItems.removeOne(child);
 }
 
-void TreeItem::RemoveChildAt(int row)
+void Item::RemoveChildAt(int row)
 {
     if(childItems.count() > row)
         childItems.removeAt(row);
 }
 
-void TreeItem::SetActiveChunkName(QString &chunkName)
+void Item::SetActiveChunkName(QString &chunkName)
 {
     if(!itemData.dataChunks.contains(chunkName)) return;
     activeChunkName = chunkName;
     activeChunk = &(itemData.dataChunks[activeChunkName]);
 }
 
-QList<QString> TreeItem::GetChunksNames()
+QList<QString> Item::GetChunksNames()
 {
     return itemData.dataChunks.keys();
 }
 
-QVector<QVariant> TreeItem::GetChunkData(QString chunkName)
+QVector<QVariant> Item::GetChunkData(QString chunkName)
 {
     return itemData.dataChunks[chunkName];
 }
 
-QVariant TreeItem::GetChunkDataElement(int column)
+QVariant Item::GetChunkDataElement(int column)
 {
     if(!activeChunk) return QVariant();
     return (activeChunk->length() > column) ? (*activeChunk)[column] : QVariant();
 }
 
-void TreeItem::SetChunkData(QString chunkName, QVector<QVariant> data)
+void Item::SetChunkData(QString chunkName, QVector<QVariant> data)
 {
     itemData.dataChunks[chunkName] = data;
     if(activeChunkName == "")
@@ -89,7 +88,7 @@ void TreeItem::SetChunkData(QString chunkName, QVector<QVariant> data)
 
 }
 
-void TreeItem::SetChunkDataElement(int column, QVariant data)
+void Item::SetChunkDataElement(int column, QVariant data)
 {
     qDebug() << "SetChunkDataElement" << activeChunkName;
     if( (activeChunk->length() > column) || (column < 0) )

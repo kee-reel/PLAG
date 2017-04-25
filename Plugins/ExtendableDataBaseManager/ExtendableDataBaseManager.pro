@@ -15,8 +15,12 @@ DISTFILES += \
 HEADERS += \
     extendabledatabasemanagerplugin.h \
     iextendabledatabasemanagerplugin.h \
-    tablehandler.h
+    tablehandler.h \
+    extendableitemmodel.h \
+    item.h
 
 SOURCES += \
     extendabledatabasemanagerplugin.cpp \
-    tablehandler.cpp
+    tablehandler.cpp \
+    extendableitemmodel.cpp \
+    item.cpp

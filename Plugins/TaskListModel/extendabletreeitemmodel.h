@@ -1,5 +1,5 @@
-#ifndef TASKTREEMODEL_H
-#define TASKTREEMODEL_H
+#ifndef EXTENDABLETREEITEMMODEL_H
+#define EXTENDABLETREEITEMMODEL_H
 
 #include <QAbstractItemModel>
 #include <QVariant>
@@ -11,19 +11,18 @@
 #include <QApplication>
 
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
-#include "treeitem.h"
+#include "item.h"
 
-class TreeItemModel : public QAbstractItemModel
+class ExtendableTreeItemModel : public QAbstractItemModel
 {
     typedef IExtendableDataBaseManagerPlugin::ManagerItemInfo ManagerItemInfo;
-
 public:
     QString tableName;
     QString coreRelationName;
     IExtendableDataBaseManagerPlugin* dataManager;
 
-    TreeItemModel(QString tableName, IExtendableDataBaseManagerPlugin* dataManager, QObject *parent = 0);
-    ~TreeItemModel();
+    ExtendableTreeItemModel(QString tableName, IExtendableDataBaseManagerPlugin* dataManager, QObject *parent = 0);
+    ~ExtendableTreeItemModel();
     void LoadData();
     bool AttachRelation(QMap<QString, QVariant::Type> relationStruct, QString relationName, QVector<QVariant> defaultData);
     void SetActiveRelation(QString relationName);
@@ -45,21 +44,20 @@ public:
     bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) override;
 
 private:
-    int nameIndex;
     int parentIndex;
     int positionIndex;
 
-    QHash<int, TreeItem*> internalList;
+    QHash<int, Item*> internalList;
     QString currentActiveChunkName;
-    TreeItem defaultTask;
-    TreeItem *rootItem;
+    Item defaultTask;
+    Item *rootItem;
 
-    TreeItem *AddItem(int row, TreeItem *taskParent, TreeItem *taskData = NULL);
-    bool EditItem(TreeItem *task, int column, QVariant dataField);
-    bool UpdateItemsPosition(TreeItem *parent, int from);
-    bool DeleteItem(TreeItem *task);
-    void DeleteFromManagerRecursive(TreeItem *task);
-    ManagerItemInfo ConvertToManagerItem(TreeItem* item);
+    Item *AddItem(int row, Item *taskParent, Item *taskData = NULL);
+    bool EditItem(Item *task, int column, QVariant dataField);
+    bool UpdateItemsPosition(Item *parent, int from);
+    bool DeleteItem(Item *task);
+    void DeleteFromManagerRecursive(Item *task);
+    ManagerItemInfo ConvertToManagerItem(Item* item);
 };
 
 #endif // TASKTREEMODEL_H

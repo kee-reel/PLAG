@@ -10,6 +10,9 @@ MainForm::MainForm(QWidget *parent) :
     galleryForm->setVisible(false);
     imageFormat = "png";
     connect(ui->buttonClear, SIGNAL(clicked(bool)), ui->widgetPaint, SLOT(Clean()));
+    connect(galleryForm, SIGNAL(OnItemDelete(int)), SLOT(OnItemDelete(int)));
+    connect(galleryForm, SIGNAL(OnItemConvert(int)), SLOT(OnItemConvertSlot(int)));
+
 }
 
 MainForm::~MainForm()
@@ -20,13 +23,35 @@ MainForm::~MainForm()
 
 void MainForm::SetModel(ITaskSketchModel *model)
 {
-    this->myModel = model;
-    itemModel = model->GetModel();
+    myModel = model;
+    taskModel = model->GetModel();
+    sketchModel = model->GetInternalModel();
+
+    galleryForm->SetModel(sketchModel);
+
+    int n = sketchModel->rowCount();
+    for(int i = 0; i < n; ++i)
+    {
+        QModelIndex index = sketchModel->index(i, 0);
+        QByteArray ba = index.data().toByteArray();
+        galleryForm->AddImage(i, ba);
+    }
 }
 
 void MainForm::resizeEvent(QResizeEvent *event)
 {
     galleryForm->setGeometry(rect());
+}
+
+void MainForm::OnItemDelete(int index)
+{
+    sketchModel->removeRows(index, 1);
+}
+
+void MainForm::OnItemConvertSlot(int index)
+{
+    myModel->ConvertSketchToTask(index);
+    //myModel->OpenTaskEdit(taskModel->rowCount()-1);
 }
 
 void MainForm::on_buttonClose_clicked()
@@ -47,21 +72,13 @@ void MainForm::on_buttonSave_clicked()
     ui->widgetPaint->image.save(&buffer, "PNG");
     buffer.close();
 
-    itemModel->insertRow(itemModel->rowCount());
-    QModelIndex root = itemModel->index(0, 0);
-    itemModel->setData(root, QVariant(ba));
+    sketchModel->insertRows(0, 1);
+    QModelIndex root = sketchModel->index(0, 0);
+    sketchModel->setData(root, QVariant(ba));
+    galleryForm->AddImage(0, ba);
 }
 
 void MainForm::on_buttonOpenGallery_clicked()
 {
-    QModelIndex root = itemModel->index(0, 0);
-    QByteArray ba = root.data().toByteArray();
-    QImage image;
-    if(image.loadFromData(ba))
-    {
-        galleryForm->AddImage(image);
-        ui->widgetPaint->image = image;
-        repaint();
-    }
     galleryForm->setVisible(true);
 }

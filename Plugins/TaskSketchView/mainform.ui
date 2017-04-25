@@ -58,6 +58,7 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <zorder>treeView</zorder>
        </widget>
       </item>
      </layout>
