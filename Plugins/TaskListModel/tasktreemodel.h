@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QDebug>
-#include <QString>\
+#include <QString>
 
 #include "itasktreemodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
@@ -37,6 +37,8 @@ public:
 public:
     QString GetDataName() override;
     QAbstractItemModel *GetTreeModel() override;
+    void SetRelationDelegate(QString relation, ITaskRelationDelegate *delegate) override;
+    QMap<QString, ITaskRelationDelegate *> GetRelationDelegates() override;
 
 private:
     void SetupModel();
@@ -63,8 +65,13 @@ private:
     IExtendableDataBaseManagerPlugin* dataManager;
     QAbstractItemModel *treeModel;
 
+    QMap<QString, ITaskRelationDelegate*> taskRelationDelegates;
+
 signals:
     void OpenTaskEdit(int id);
+
+    // ITaskTreeModel interface
+public:
 };
 
 #endif // TASKLISTMODEL_H

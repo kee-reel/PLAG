@@ -434,6 +434,7 @@ Item *ExtendableItemModel::AddItem(int row, Item *taskParent, Item* taskData)
     int newTaskId = dataManager->AddItem(tableName, managerTask);
     newTask->SetId(newTaskId);
     newTask->SetActiveChunkName(currentActiveChunkName);
+    internalList.insert(newTaskId, newTask);
     return newTask;
 }
 
