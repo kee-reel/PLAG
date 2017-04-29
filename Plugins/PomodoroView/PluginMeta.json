@@ -1,0 +1,6 @@
+{
+    "Name":         "PomodoroView",
+    "PluginType":   "PluginView",
+    "ParentName":   "PomodoroModel",
+    "DataManager":  ""
+}

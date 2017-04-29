@@ -7,9 +7,10 @@ TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataBas
     this->tableName = tableName;
     itemModel = NULL;
 
-    dataBaseTypesNames.insert(QVariant::Int,    "INTEGER");
-    dataBaseTypesNames.insert(QVariant::String, "VARCHAR");
-    dataBaseTypesNames.insert(QVariant::ByteArray, "BLOB");
+    dataBaseTypesNames.insert(QVariant::Int,        "INTEGER");
+    dataBaseTypesNames.insert(QVariant::String,     "VARCHAR");
+    dataBaseTypesNames.insert(QVariant::DateTime,   "INTEGER");
+    dataBaseTypesNames.insert(QVariant::ByteArray,  "BLOB");
 
     coreTableStruct.insert("id", QVariant::Int);
 

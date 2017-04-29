@@ -1,0 +1,6 @@
+{
+    "Name":         "PomodoroModel",
+    "PluginType":   "PluginModel",
+    "ParentName":   "TaskListModel",
+    "DataManager":  "ExtendableDataBaseManager"
+}

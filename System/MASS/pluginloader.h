@@ -31,6 +31,7 @@ private:
     QDir internalPluginsPath;
 
     void LoadPluginsToHome();
+    void LoadFilesFromDirectory(QDir directory, QDir dstDirectory);
     bool SetupPlugin(QString pluginName);
     QPluginLoader* LoadPlugin(QString pluginName);
     QObject* GetPluginInstance(QPluginLoader* loader);   

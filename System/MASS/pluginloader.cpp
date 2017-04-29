@@ -18,52 +18,57 @@ void PluginLoader::LoadPluginsToHome()
     qDebug() << QDir::homePath() << "===" << QDir::rootPath() << "===" << QDir::currentPath() << "===" << QDir::tempPath();
     internalPluginsPath = QDir(QDir::currentPath() + "/Modules/");
     QApplication::addLibraryPath(internalPluginsPath.absolutePath());
-    QStringList list = QApplication::libraryPaths();
-    for(int i = 0; i < list.count(); ++i)
-        qDebug() << list[i] << endl;
+    qDebug() << "Library paths:" << QApplication::libraryPaths();
     //TODO: DT entry
 #ifdef Q_OS_ANDROID
     QDir storageDirectoryPath("/storage/emulated/0/Android/data/" + packageName);
     if(!internalPluginsPath.exists())
-    {
         internalPluginsPath.mkdir(internalPluginsPath.absolutePath());
-    }
-    qDebug() << "Paths" << storageDirectoryPath.absolutePath() << internalPluginsPath;
-    foreach (QString file, storageDirectoryPath.entryList(QDir::AllEntries))
-    {
-        qDebug() << file;
-    }
+    qDebug() << "Storage:" << storageDirectoryPath.absolutePath() << endl << storageDirectoryPath.entryList(QDir::AllEntries);
+    qDebug() << "Internal:" << internalPluginsPath.absolutePath() << endl << internalPluginsPath.entryList(QDir::AllEntries);
 
+    LoadFilesFromDirectory(storageDirectoryPath, internalPluginsPath);
+    foreach (QString dirPath, storageDirectoryPath.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+    {
+        QDir subDir(storageDirectoryPath.absolutePath() + "/" + dirPath);
+        QDir dstSubDir(internalPluginsPath.absolutePath() + "/" + dirPath);
+        if(!dstSubDir.exists())
+        {
+            qDebug() << "Needs to create" << subDir.absolutePath();
+            dstSubDir.mkdir(dstSubDir.absolutePath());
+        }
+        LoadFilesFromDirectory(subDir, dstSubDir);
+    }
+#endif
+}
+
+void PluginLoader::LoadFilesFromDirectory(QDir directory, QDir dstDirectory)
+{
+    qDebug() << "LoadFilesFromDirectory" << directory.absolutePath() << endl << directory.entryList(QDir::AllEntries);
     QFile fileToCopy;
     QFile existingFile;
-    foreach (QString file, storageDirectoryPath.entryList(QDir::Files))
+    foreach (QString file, directory.entryList(QDir::Files))
     {
+        qDebug() << "File" << file;
         // If internal file already exists - delete it
-        existingFile.setFileName(internalPluginsPath.absolutePath() + "/" + file);
+        existingFile.setFileName(dstDirectory.absolutePath() + "/" + file);
         if(existingFile.exists())
         {
+            qDebug() << "Already exists. Overriding.";
             existingFile.remove();
         }
 
         // Copy storage file to internal storage
-        QDir storagePluginPath(storageDirectoryPath.absolutePath() + "/" + file);
+        QDir storagePluginPath(directory.absolutePath() + "/" + file);
         fileToCopy.setFileName(storagePluginPath.absolutePath());
         fileToCopy.open(QIODevice::ReadOnly);
-        fileToCopy.copy(internalPluginsPath.absolutePath() + "/" + file);
+        fileToCopy.copy(dstDirectory.absolutePath() + "/" + file);
         fileToCopy.close();
-        qDebug() << fileToCopy.remove();
-        qDebug() << storagePluginPath.absolutePath() << fileToCopy.isOpen() << fileToCopy.errorString();
-        qDebug() << internalPluginsPath.absolutePath() + file << fileToCopy.errorString();
+//        qDebug() << fileToCopy.remove();
+//        qDebug() << storagePluginPath.absolutePath() << fileToCopy.isOpen() << fileToCopy.errorString();
+//        qDebug() << internalPluginsPath.absolutePath() + file << fileToCopy.errorString();
         fileToCopy.close();
     }
-
-    QDir path(internalPluginsPath);
-    qDebug() << "Path" << path.absolutePath();
-    foreach (QString file, path.entryList(QDir::Files))
-    {
-        qDebug() << file;
-    }
-#endif
 }
 
 void PluginLoader::SetupPlugins()
