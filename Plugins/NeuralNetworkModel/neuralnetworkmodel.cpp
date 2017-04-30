@@ -81,10 +81,19 @@ void NeuralNetworkModel::ChildSelfClosed(IModelPlugin *child)
 
 }
 
-void NeuralNetworkModel::SetupNetwork(Perceptron::NetworkParams params)
+INeuralNetworkModel::INeuralNetwork *NeuralNetworkModel::SetupNetwork(QJsonObject *networkParams)
 {
-    if(neuralNetwork) delete neuralNetwork;
-    neuralNetwork = new NeuralNetwork(params);
+    if(!networkParams->contains("Type"))
+        return NULL;
+
+    switch (networkParams["Type"]) {
+    case "Perceptron":
+        if(Perceptron::Make(networkParams))
+        break;
+    default:
+        break;
+    }
+
 }
 
 void NeuralNetworkModel::AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params)

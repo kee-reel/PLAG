@@ -7,6 +7,7 @@
 #include <QDateTime>
 #include <QTimer>
 #include <QDebug>
+#include <QAudioOutput>
 
 class PomodoroButton : public QWidget
 {
@@ -18,6 +19,9 @@ public:
     QTimer *timer;
     int secsPassed;
     int secsTarget;
+
+private:
+    void PlayAudio();
 
 protected:
     void mouseReleaseEvent(QMouseEvent *event) override;

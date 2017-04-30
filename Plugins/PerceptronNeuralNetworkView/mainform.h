@@ -20,8 +20,8 @@ class MainForm : public QWidget
     Q_OBJECT
 
 public:
-    QVector<INeuralNetworkModel::TrainSample> trainingSamples;
-    QVector<INeuralNetworkModel::TrainSample> testSamples;
+    QVector<TrainSample> trainingSamples;
+    QVector<TrainSample> testSamples;
     QStandardItemModel itemModel;
     QStandardItemModel trainImagesModel;
     QStandardItemModel testImagesModel;
@@ -62,7 +62,7 @@ private:
     INeuralNetworkModel *model;
     QModelIndex currentIndex;
     bool isStatsChanged;
-    QList<Perceptron::LayerParams> layersList;
+    QList<LayerParams> layersList;
     QList<QImage> trainImages;
     QList<QImage> testImages;
     QVector<double> trainErrorVector;

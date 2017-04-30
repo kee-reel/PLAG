@@ -5,7 +5,7 @@
 #-------------------------------------------------
 TARGET = PomodoroView
 TEMPLATE = lib
-QT += widgets
+QT += widgets multimedia
 
 SOURCES += \
     pomodoroview.cpp \

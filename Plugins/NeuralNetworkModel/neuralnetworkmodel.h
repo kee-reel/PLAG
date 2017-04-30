@@ -4,10 +4,12 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
+#include <QJsonObject>
 
 #include "ineuralnetworkmodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
-#include "neuralnetwork.h"
+#include "Perceptron/perceptron.h"
+#include "ART/artnetwork.h"
 
 class NeuralNetworkModel : public QObject, INeuralNetworkModel
 {
@@ -40,7 +42,7 @@ private:
     // Unique part
     QString tableName;
     IExtendableDataBaseManagerPlugin* dataManager;
-    NeuralNetwork *neuralNetwork;
+    Perceptron *neuralNetwork;
 
     // IPlugin interface
 public:
@@ -55,10 +57,11 @@ public:
     bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
     bool CloseFromView(IViewPlugin *view) override;
     void ChildSelfClosed(IModelPlugin *child) override;
+    void AddParentModel(QObject *model, MetaInfo *meta) override;
 
     // INeuralNetworkModel interface
 public:
-    void SetupNetwork(Perceptron::NetworkParams params) override;
+    INeuralNetwork *SetupNetwork(QJsonObject *networkParams) override;
     void AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params) override;
     void ResetLayers() override;
 
@@ -66,7 +69,6 @@ public:
     float RunTest() override;
     void SetupTrainingSamples(QVector<TrainSample> *samples) override;
     void SetupTestSamples(QVector<TrainSample> *samples) override;
-
 };
 
 #endif // EMPTYPLUGINMODEL_H

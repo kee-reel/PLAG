@@ -1,6 +1,6 @@
-#include "neuralnetwork.h"
+#include "perceptron.h"
 
-NeuralNetwork::NeuralNetwork(Perceptron::NetworkParams params) : QObject()
+Perceptron::Perceptron(Perceptron::NetworkParams params) : QObject()
 {
     inputLayer = NULL;
     outputLayer = NULL;
@@ -8,7 +8,20 @@ NeuralNetwork::NeuralNetwork(Perceptron::NetworkParams params) : QObject()
     resultError = 0;
 }
 
-NeuralNetwork::~NeuralNetwork()
+Perceptron *Perceptron::Make(QJsonObject *paramsObj) const
+{
+    Perceptron *network;
+    NetworkParams params;
+    params.trainErrorThreshold = paramsObj->value("trainErrorThreshold").toDouble();
+    params.testErrorThreshold = paramsObj->value("testErrorThreshold").toDouble();
+    params.minWeight = paramsObj->value("minWeight").toDouble();
+    params.maxWeight = paramsObj->value("maxWeight").toDouble();
+    params.maxEpoch = paramsObj->value("maxEpoch").toInt();
+    network = new Perceptron(params);
+    return network;
+}
+
+Perceptron::~Perceptron()
 {
     if(inputLayer) delete inputLayer;
     if(outputLayer) delete outputLayer;
@@ -16,7 +29,7 @@ NeuralNetwork::~NeuralNetwork()
         delete layers[i];
 }
 
-void NeuralNetwork::AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params)
+void Perceptron::AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params)
 {
     switch (type) {
     case Perceptron::Input:{
@@ -41,7 +54,7 @@ void NeuralNetwork::AddLayer(Perceptron::LayerType type, Perceptron::LayerParams
     }
 }
 
-void NeuralNetwork::ResetLayers()
+void Perceptron::ResetLayers()
 {
     if(inputLayer)
     {
@@ -59,7 +72,7 @@ void NeuralNetwork::ResetLayers()
     layers.clear();
 }
 
-float NeuralNetwork::RunTraining()
+float Perceptron::RunTraining()
 {   
     resultError = 0;
     for(int j = 0; j < trainingSamples->length(); ++j)
@@ -87,7 +100,7 @@ float NeuralNetwork::RunTraining()
     return resultError;
 }
 
-float NeuralNetwork::RunTest()
+float Perceptron::RunTest()
 {
     resultError = 0;
     for(int j = 0; j < testSamples->length(); ++j)
@@ -96,7 +109,7 @@ float NeuralNetwork::RunTest()
     return resultError;
 }
 
-float NeuralNetwork::RunTrainSet(INeuralNetworkModel::TrainSample &trainSet)
+float Perceptron::RunTrainSet(INeuralNetworkModel::TrainSample &trainSet)
 {
     inputLayer->Forward(trainSet.first);
     QString result = "";
@@ -110,7 +123,7 @@ float NeuralNetwork::RunTrainSet(INeuralNetworkModel::TrainSample &trainSet)
     return resultError;
 }
 
-float NeuralNetwork::RunTestSet(INeuralNetworkModel::TrainSample &testSet)
+float Perceptron::RunTestSet(INeuralNetworkModel::TrainSample &testSet)
 {
     inputLayer->Forward(testSet.first);
     QString result = "";
