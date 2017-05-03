@@ -5,6 +5,8 @@ MainForm::MainForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainForm)
 {
+    network = NULL;
+
     ui->setupUi(this);
     ui->listView->setModel(&itemModel);
     ui->listViewImages->setModel(&trainImagesModel);
@@ -30,6 +32,54 @@ void MainForm::SetModel(INeuralNetworkModel *Model)
 {
     model = Model;
     isStatsChanged = true;
+//    INeuralNetworkModel::INeuralNetwork *netw = model->SetupNetwork(QJsonObject{
+//                            {"Type", "ART"},
+//                            {"size", 10},
+//                            {"L", 2},
+//                            {"similarity", 0.9}
+//                        });
+
+//    QVector<InputSampleI> samples;
+//    InputSampleI buf;
+//    QVector<int> input1{1,1,0,1,1,
+//                         1,0,1,0,1};
+//    buf.first = input1;
+//    samples.append(buf);
+
+//    QVector<int> input2{0,0,1,0,0,
+//                         1,1,1,1,1};
+//    buf.first = input2;
+//    samples.append(buf);
+//    QVector<int> input3{1,1,1,1,1,
+//                         1,0,1,0,1};
+//    buf.first = input3;
+//    samples.append(buf);
+//    QVector<int> input4{0,0,1,0,0,
+//                         0,1,1,1,1};
+//    buf.first = input4;
+//    samples.append(buf);
+//    QVector<int> input5{1,0,1,0,0,
+//                         1,1,1,1,1};
+//    buf.first = input5;
+//    samples.append(buf);
+
+//    netw->SetupSamples(QJsonObject(), &samples);
+//    QVector<QVariant> result = netw->RunTrainingAndGetResult();
+//    for(int i = 0; i < result.length(); ++i)
+//        qDebug() << result[i].value<QList<int>>();
+
+    INeuralNetworkModel::INeuralNetwork *netw = model->SetupNetwork(QJsonObject{
+                                {"Type", "GeneticAlgorithm"},
+                                {"fitnessThreshold", 0.01},
+                                {"iterations", 50},
+                                {"populationSize", 5},
+                                {"geneCapacity", 30},
+                                {"targetResult", 30.},
+                            });
+    netw->SetupSamplesF(QJsonObject{
+                           {"Func", "a + 2*b + 3*c + 4*d"}
+                       }, NULL);
+    netw->RunTrainingAndGetResult();
 }
 
 void MainForm::MarkNetworkStatsToUpdate()
@@ -49,23 +99,23 @@ bool MainForm::UpdateNetworkStats()
     ui->checkTrain->setEnabled(false);
     ui->checkTest->setEnabled(false);
 
-    model->SetupNetwork(Perceptron::NetworkParams() =
+    if(!network)
+        network = model->SetupNetwork(ConvertNetworkParams());
+    else
     {
-            ui->spinEpoch->value(),
-            ui->spinErrorThreshold->value(),
-            ui->spinTestErrorThreshold->value(),
-            ui->spinMinWeight->value(),
-            ui->spinMaxWeight->value()
-    });
-    model->AddLayer(Perceptron::Input, layersList.first());
+        network->SetNetworkParams(ConvertNetworkParams());
+        network->ResetLayers();
+    }
+
+    network->AddLayer(ConvertLayerParams(Input, layersList.first()));
     for(int i = 1; i < layersList.count()-1; ++i)
-        model->AddLayer(Perceptron::Hidden, layersList[i]);
-    model->AddLayer(Perceptron::Output, layersList.last());
+        network->AddLayer(ConvertLayerParams(Hidden, layersList[i]));
+    network->AddLayer(ConvertLayerParams(Output, layersList.last()));
 
     trainingSamples.clear();
     testSamples.clear();
 
-    INeuralNetworkModel::TrainSample buf;
+    InputSampleF buf;
     buf.first.resize(layersList.first().size);
     buf.second.resize(trainImages.count());
     for(int i = 0; i < trainImages.count(); ++i)
@@ -78,7 +128,7 @@ bool MainForm::UpdateNetworkStats()
         buf.second[i] = 1;
         trainingSamples.append(buf);
     }
-    model->SetupTrainingSamples(&trainingSamples);
+    network->SetupSamplesF(QJsonObject{ {"Type", "Train"} }, &trainingSamples);
 
     for(int i = 0; i < testImages.count(); ++i)
     {
@@ -90,7 +140,7 @@ bool MainForm::UpdateNetworkStats()
         buf.second[i] = 1;
         testSamples.append(buf);
     }
-    model->SetupTestSamples(&testSamples);
+    network->SetupSamplesF(QJsonObject{ {"Type", "Test"} }, &testSamples);
 
     isStatsChanged = false;
     return true;
@@ -106,7 +156,7 @@ void MainForm::UpdateLayerStatsGUI()
     }
 
     ui->tabWidget->setTabEnabled(0, true);
-    Perceptron::LayerParams params = layersList[index.row()];
+    LayerParams params = layersList[index.row()];
     ui->spinSize->setValue(params.size);
     ui->spinLearnSpeed->setValue(params.LearnSpeed);
     ui->spinMoment->setValue(params.Moment);
@@ -130,6 +180,47 @@ void MainForm::ReplotPlot()
     ui->labelEpoch->        setText(QString::number(epoch));
     ui->labelTrainError->   setText(QString::number(trainErrorVector.last(), 'g', 3));
     ui->labelTestError->    setText(QString::number(testErrorVector.last(), 'g', 3));
+}
+
+QJsonObject MainForm::ConvertNetworkParams()
+{
+    QJsonObject networkStats{
+        {"Type",                "Perceptron"},
+        {"trainErrorThreshold", ui->spinErrorThreshold->value()},
+        {"testErrorThreshold",  ui->spinTestErrorThreshold->value()},
+        {"minWeight",           ui->spinMinWeight->value()},
+        {"maxWeight",           ui->spinMaxWeight->value()},
+        {"maxEpoch",            ui->spinEpoch->value()}
+    };
+    return networkStats;
+}
+
+QJsonObject MainForm::ConvertLayerParams(LayerType type, LayerParams &params)
+{
+    QString typeStr;
+    switch (type) {
+    case Input:
+        typeStr = "Input";
+        break;
+    case Hidden:
+        typeStr = "Hidden";
+        break;
+    case Output:
+        typeStr = "Output";
+        break;
+    default:
+        return QJsonObject();
+        break;
+    }
+    QJsonObject layerStats{
+        {"Type",                typeStr},
+        {"Bias",                params.Bias},
+        {"FuncIndent",          params.FuncIndent},
+        {"LearnSpeed",          params.LearnSpeed},
+        {"Moment",              params.Moment},
+        {"size",                params.size}
+    };
+    return layerStats;
 }
 
 void MainForm::on_buttonRunTrain_clicked()
@@ -162,8 +253,8 @@ void MainForm::RunTrainFromEpoch(int maxEpoch)
     bool testSuccess;
     for(; epoch < maxEpoch; ++epoch)
     {
-        trainErrorVector.append(model->RunTraining());
-        testErrorVector.append(model->RunTest());
+        trainErrorVector.append(network->RunTrainSet());
+        testErrorVector.append(network->RunTestSet());
         ReplotPlot();
         trainSuccess = trainErrorVector.last() < trainThreshold;
         testSuccess = testErrorVector.last() < testThreshold;
@@ -184,7 +275,7 @@ void MainForm::on_buttonClose_clicked()
 
 void MainForm::on_buttonAdd_clicked()
 {
-    Perceptron::LayerParams newLayer = {1, 0.7, 0.5, 2, 0};
+    LayerParams newLayer = {1, 0.7, 0.5, 2, 0};
     layersList.append(newLayer);
     QStandardItem *item = new QStandardItem(QString::number(layersList.count()));
     QBrush brush = QBrush(QColor(100+qrand()%20, 100+qrand()%50, 130+qrand()%120));

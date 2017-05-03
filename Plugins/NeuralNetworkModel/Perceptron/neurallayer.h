@@ -4,14 +4,19 @@
 #include <QObject>
 #include <QVector>
 #include <QDebug>
-#include "ineuralnetworkmodel.h"
+
+#include "parameters.h"
 
 class NeuralLayer
 {
+protected:
+    typedef Perceptron::NetworkParams NetworkParams;
+    typedef Perceptron::LayerParams LayerParams;
+    typedef Perceptron::LayerType LayerType;
 public:
     NeuralLayer(NeuralLayer *PrevLayer,
-                Perceptron::NetworkParams &NetworkParams,
-                Perceptron::LayerParams &Params);
+                NetworkParams &NetworkParams,
+                LayerParams &Params);
     inline int LayerSize() {return outputs.size();}
 
 public slots:
@@ -28,7 +33,7 @@ public:
     QVector<float> outputs;
     QVector<float> layerDelta;
 
-    Perceptron::LayerParams params;
+    LayerParams params;
     inline float ActivationFunc(float x) {return 1 / (1 + expf(params.FuncIndent * -x));}
     inline float ActivationFuncDerivative(float x) {return params.FuncIndent * (1 - x) * (x);}
 };
@@ -36,7 +41,7 @@ public:
 class InputNeuralLayer : public NeuralLayer
 {
 public:
-    InputNeuralLayer(Perceptron::NetworkParams &NetworkParams, Perceptron::LayerParams &Params);
+    InputNeuralLayer(NetworkParams &NetworkParams, LayerParams &Params);
 
 public slots:
     void Forward(QVector<float> &inputSignals) override;
@@ -47,8 +52,8 @@ class OutputNeuralLayer : public NeuralLayer
 {
 public:
     OutputNeuralLayer(NeuralLayer *PrevLayer,
-                      Perceptron::NetworkParams &networkParams,
-                      Perceptron::LayerParams &params);
+                      NetworkParams &networkParams,
+                      LayerParams &params);
     inline QVector<float> *GetOutputs() { return &outputs; }
 
 public slots:

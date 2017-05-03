@@ -5,31 +5,33 @@
 #-------------------------------------------------
 TARGET = NeuralNetworkModel
 TEMPLATE = lib
-QT += core
+QT += core script
 
 SOURCES += \
     neuralnetworkmodel.cpp \
-    neuralnetwork.cpp \
-    neurallayer.cpp \
-    artnetwork.cpp \
-    Perceptron/artnetwork.cpp \
     Perceptron/neurallayer.cpp \
-    Perceptron/neuron.cpp \
     ART/artnetwork.cpp \
-    Perceptron/perceptron.cpp
+    ART/recognitionlayer.cpp \
+    ART/comparinglayer.cpp \
+    ART/neuron.cpp \
+    Perceptron/perceptronnetwork.cpp \
+    GeneticAlgorithm/geneticalgorithm.cpp \
+    GeneticAlgorithm/chromosome.cpp
 
 HEADERS += \
     ../../System/MASS/interfaces.h \
     neuralnetworkmodel.h \
     ineuralnetworkmodel.h \
-    neuralnetwork.h \
-    neurallayer.h \
-    artnetwork.h \
-    Perceptron/artnetwork.h \
     Perceptron/neurallayer.h \
-    Perceptron/neuron.h \
+    Perceptron/parameters.h \
     ART/artnetwork.h \
-    Perceptron/perceptron.h
+    ART/recognitionlayer.h \
+    ART/comparinglayer.h \
+    ART/neuron.h \
+    parameters.h \
+    Perceptron/perceptronnetwork.h \
+    GeneticAlgorithm/geneticalgorithm.h \
+    GeneticAlgorithm/chromosome.h
 
 include(../../System/MASS/BuildInfo.pri)
 

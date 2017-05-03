@@ -1,15 +1,17 @@
-#ifndef EMPTYPLUGINMODEL_H
-#define EMPTYPLUGINMODEL_H
+#ifndef NEURALNETWORKMODEL_H
+#define NEURALNETWORKMODEL_H
 
 #include <QObject>
 #include <QDebug>
 #include <QString>
 #include <QJsonObject>
 
-#include "ineuralnetworkmodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
-#include "Perceptron/perceptron.h"
+#include "ineuralnetworkmodel.h"
+
+#include "Perceptron/perceptronnetwork.h"
 #include "ART/artnetwork.h"
+#include "GeneticAlgorithm/geneticalgorithm.h"
 
 class NeuralNetworkModel : public QObject, INeuralNetworkModel
 {
@@ -42,7 +44,6 @@ private:
     // Unique part
     QString tableName;
     IExtendableDataBaseManagerPlugin* dataManager;
-    Perceptron *neuralNetwork;
 
     // IPlugin interface
 public:
@@ -61,14 +62,7 @@ public:
 
     // INeuralNetworkModel interface
 public:
-    INeuralNetwork *SetupNetwork(QJsonObject *networkParams) override;
-    void AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params) override;
-    void ResetLayers() override;
-
-    float RunTraining() override;
-    float RunTest() override;
-    void SetupTrainingSamples(QVector<TrainSample> *samples) override;
-    void SetupTestSamples(QVector<TrainSample> *samples) override;
+    INeuralNetwork *SetupNetwork(QJsonObject networkParams) override;
 };
 
-#endif // EMPTYPLUGINMODEL_H
+#endif

@@ -4,8 +4,7 @@ NeuralNetworkModel::NeuralNetworkModel()
 {
     tableName = "TaskTree";
     activeViewId = -1;
-    dataManager = NULL;
-    neuralNetwork = NULL;
+    //dataManager = NULL;
 }
 
 NeuralNetworkModel::~NeuralNetworkModel()
@@ -38,14 +37,14 @@ void NeuralNetworkModel::AddView(IViewPlugin *view, MetaInfo *meta)
 
 void NeuralNetworkModel::AddDataManager(QObject *dataManager)
 {
-    qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
-    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(dataManager);
-    if(!this->dataManager)
-    {
-        qDebug() << dataManager->objectName() << "is not IExtendableDataBaseManagerPlugin.";
-        return;
-    }
-    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
+//    qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
+//    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(dataManager);
+//    if(!this->dataManager)
+//    {
+//        qDebug() << dataManager->objectName() << "is not IExtendableDataBaseManagerPlugin.";
+//        return;
+//    }
+//    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
 }
 
 bool NeuralNetworkModel::Open(IModelPlugin *parent, QWidget *parentWidget)
@@ -81,47 +80,24 @@ void NeuralNetworkModel::ChildSelfClosed(IModelPlugin *child)
 
 }
 
-INeuralNetworkModel::INeuralNetwork *NeuralNetworkModel::SetupNetwork(QJsonObject *networkParams)
+void NeuralNetworkModel::AddParentModel(QObject *model, MetaInfo *meta)
 {
-    if(!networkParams->contains("Type"))
+
+}
+
+INeuralNetworkModel::INeuralNetwork *NeuralNetworkModel::SetupNetwork(QJsonObject networkParams)
+{
+    if(!networkParams.contains("Type"))
         return NULL;
 
-    switch (networkParams["Type"]) {
-    case "Perceptron":
-        if(Perceptron::Make(networkParams))
-        break;
-    default:
-        break;
-    }
+    INeuralNetwork *result;
+    QString buf = networkParams.value("Type").toString();
+    if(!buf.compare("Perceptron"))
+        result = (INeuralNetwork *)PerceptronNetwork::Make(networkParams);
+    if(!buf.compare("ART"))
+        result = (INeuralNetwork *)ARTNetwork::Make(networkParams);
+    if(!buf.compare("GeneticAlgorithm"))
+        result = (INeuralNetwork *)GeneticAlgorithm::Make(networkParams);
 
-}
-
-void NeuralNetworkModel::AddLayer(Perceptron::LayerType type, Perceptron::LayerParams params)
-{
-    neuralNetwork->AddLayer(type, params);
-}
-
-void NeuralNetworkModel::ResetLayers()
-{
-    neuralNetwork->ResetLayers();
-}
-
-float NeuralNetworkModel::RunTraining()
-{
-    return neuralNetwork->RunTraining();
-}
-
-float NeuralNetworkModel::RunTest()
-{
-    return neuralNetwork->RunTest();
-}
-
-void NeuralNetworkModel::SetupTrainingSamples(QVector<INeuralNetworkModel::TrainSample> *samples)
-{
-    neuralNetwork->trainingSamples = samples;
-}
-
-void NeuralNetworkModel::SetupTestSamples(QVector<INeuralNetworkModel::TrainSample> *samples)
-{
-    neuralNetwork->testSamples = samples;
+    return result;
 }

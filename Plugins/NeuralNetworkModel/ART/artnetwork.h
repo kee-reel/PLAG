@@ -2,35 +2,40 @@
 #define ARTNETWORK_H
 
 #include <QVector>
+#include <QList>
+#include <QVariant>
+#include <QJsonObject>
 
-struct NetworkParams{
-    float similarity;
-};
+#include "../neuralnetworkmodel.h"
+#include "ART/comparinglayer.h"
+#include "ART/recognitionlayer.h"
+#include "parameters.h"
 
-class ARTNetwork
+class ARTNetwork : public INeuralNetworkModel::INeuralNetwork
 {
-    class RecognitionLayer
-    {
-
-    };
-
-    class ComparingLayer
-    {
-        // Input x
-        // Answer p
-        // Modulator g1
-    public:
-        void Input(QVector<int> input);
-
-    signals:
-        OutputSignal(QVector<int> output);
-    };
-
-
-
-public:
+protected:
+    typedef ART::NetworkParams NetworkParams;
     ARTNetwork();
 
+public:
+    static ARTNetwork *Make(QJsonObject &paramsObj);
+
+    // INeuralNetwork interface
+public:
+    bool SetNetworkParams(QJsonObject params) override;
+    void SetupSamplesF(QJsonObject parameters, QVector<InputSampleF> *samples) override;
+    void SetupSamplesI(QJsonObject parameters, QVector<InputSampleI> *samples) override;
+    bool AddLayer(QJsonObject layerParams) override;
+    void ResetLayers() override;
+    float RunTrainSet() override;
+    QVector<QVariant> RunTrainingAndGetResult() override;
+    float RunTestSet() override;
+
+private:
+    NetworkParams params;
+    ComparingLayer *comparingLayer;
+    RecognitionLayer *recognitionLayer;
+    QVector<InputSampleI> *inputData;
 };
 
 #endif // ARTNETWORK_H

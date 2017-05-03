@@ -7,7 +7,9 @@
 #include <QFileDialog>
 #include <QPixmap>
 #include <QIcon>
+#include <QJsonObject>
 #include <QRgb>
+#include <QVariant>
 
 #include "../NeuralNetworkModel/ineuralnetworkmodel.h"
 
@@ -15,13 +17,35 @@ namespace Ui {
 class MainForm;
 }
 
+struct NetworkParams{
+    int maxEpoch;
+    float trainErrorThreshold;
+    float testErrorThreshold;
+    float minWeight;
+    float maxWeight;
+};
+
+struct LayerParams{
+    int size;
+    float LearnSpeed;
+    float Moment;
+    float FuncIndent;
+    float Bias;
+};
+
+enum LayerType{
+    Input,
+    Hidden,
+    Output
+};
+
 class MainForm : public QWidget
 {
     Q_OBJECT
 
 public:
-    QVector<TrainSample> trainingSamples;
-    QVector<TrainSample> testSamples;
+    QVector<InputSampleF> trainingSamples;
+    QVector<InputSampleF> testSamples;
     QStandardItemModel itemModel;
     QStandardItemModel trainImagesModel;
     QStandardItemModel testImagesModel;
@@ -60,6 +84,7 @@ private slots:
 private:
     Ui::MainForm *ui;
     INeuralNetworkModel *model;
+    INeuralNetworkModel::INeuralNetwork *network;
     QModelIndex currentIndex;
     bool isStatsChanged;
     QList<LayerParams> layersList;
@@ -75,6 +100,8 @@ private:
     void UpdateLayerStatsGUI();
     void MakePlot(int graph, QVector<double> &x, QVector<double> &y);
     void ReplotPlot();
+    QJsonObject ConvertNetworkParams();
+    QJsonObject ConvertLayerParams(LayerType type, LayerParams &params);
 };
 
 #endif // MAINFORM_H

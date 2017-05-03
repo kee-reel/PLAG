@@ -15,6 +15,7 @@ class PerceptronNetworkViewPlugin : public QObject, IViewPlugin
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(IViewPlugin)
 
+
 public:
     PerceptronNetworkViewPlugin();
     ~PerceptronNetworkViewPlugin();

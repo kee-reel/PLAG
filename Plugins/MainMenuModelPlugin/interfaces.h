@@ -3,7 +3,6 @@
 
 #include "../../System/MASS/rootinterface.h"
 
-class QWidget;
 class QString;
 class QVariant;
 class QSqlDatabase;

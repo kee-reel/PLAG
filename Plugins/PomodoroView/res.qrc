@@ -10,5 +10,6 @@
         <file>Res/ic_file_restore_black_24dp.png</file>
         <file>Res/ic_content_save_black_24dp.png</file>
         <file>Res/ic_image_multiple_black_24dp.png</file>
+        <file>Res/alert.raw</file>
     </qresource>
 </RCC>

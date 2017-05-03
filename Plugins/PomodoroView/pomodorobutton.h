@@ -21,6 +21,9 @@ public:
     int secsTarget;
 
 private:
+    QFile sourceFile;
+    QAudioOutput* audio;
+
     void PlayAudio();
 
 protected:
@@ -29,6 +32,7 @@ protected:
 
 private slots:
     void TimerTick();
+    void handleStateChanged(QAudio::State newState);
 
 signals:
     void PomodoroFinished();

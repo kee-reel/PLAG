@@ -1,6 +1,6 @@
 #include "neurallayer.h"
 
-NeuralLayer::NeuralLayer(NeuralLayer *PrevLayer, Perceptron::NetworkParams &NetworkParams, Perceptron::LayerParams &Params)
+NeuralLayer::NeuralLayer(NeuralLayer *PrevLayer, NetworkParams &NetworkParams, LayerParams &Params)
 {
     prevLayer = PrevLayer;
     nextLayer = NULL;
@@ -61,7 +61,7 @@ void NeuralLayer::Back(QVector<float> &nextLayerDelta)
         prevLayer->Back(layerDelta);
 }
 
-InputNeuralLayer::InputNeuralLayer(Perceptron::NetworkParams &NetworkParams, Perceptron::LayerParams &Params)
+InputNeuralLayer::InputNeuralLayer(NetworkParams &NetworkParams, LayerParams &Params)
     : NeuralLayer(NULL, NetworkParams, Params)
 {
 
@@ -89,7 +89,7 @@ void InputNeuralLayer::Back(QVector<float> &nextLayerDelta)
     }
 }
 
-OutputNeuralLayer::OutputNeuralLayer(NeuralLayer *PrevLayer, Perceptron::NetworkParams &networkParams, Perceptron::LayerParams &params)
+OutputNeuralLayer::OutputNeuralLayer(NeuralLayer *PrevLayer, NetworkParams &networkParams, LayerParams &params)
     : NeuralLayer(PrevLayer, networkParams, params)
 {
 
