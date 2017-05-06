@@ -16,6 +16,7 @@ class ARTNetwork : public INeuralNetworkModel::INeuralNetwork
 protected:
     typedef ART::NetworkParams NetworkParams;
     ARTNetwork();
+    ~ARTNetwork() override;
 
 public:
     static ARTNetwork *Make(QJsonObject &paramsObj);

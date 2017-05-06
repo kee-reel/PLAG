@@ -2,7 +2,15 @@
 
 GeneticAlgorithm::GeneticAlgorithm()
 {
+    myEngine = NULL;
+}
 
+GeneticAlgorithm::~GeneticAlgorithm()
+{
+    for(int i = 0; i < chromosomes.size(); ++i)
+        delete chromosomes[i];
+    chromosomes.clear();
+    if(myEngine) delete myEngine;
 }
 
 GeneticAlgorithm *GeneticAlgorithm::Make(QJsonObject &paramsObj)
@@ -56,7 +64,8 @@ void GeneticAlgorithm::SetupSamplesF(QJsonObject parameters, QVector<InputSample
 
     params.genesCount = variables.size();
     funcStr = QString("(function(%1) { return %2; })").arg(variablesStr).arg(funcStr);
-    func = myEngine.evaluate(funcStr);
+    if(!myEngine) myEngine = new QScriptEngine();
+    func = myEngine->evaluate(funcStr);
     funcAgs.clear();
     for(int i = 0; i < params.genesCount; ++i)
         funcAgs.append(0);
@@ -86,6 +95,13 @@ QVector<QVariant> GeneticAlgorithm::RunTrainingAndGetResult()
 {
     if(!params.populationSize) return QVector<QVariant>();
 
+    if(chromosomes.size() != 0)
+    {
+        for(int i = 0; i < chromosomes.size(); ++i)
+            delete chromosomes[i];
+        chromosomes.clear();
+    }
+
     for(int i = 0; i < params.populationSize; ++i)
     {
         Chromosome *newChromosome = new Chromosome(params.genesCount, params.geneCapacity);
@@ -98,11 +114,8 @@ QVector<QVariant> GeneticAlgorithm::RunTrainingAndGetResult()
     int iteration = 0;
     int childsOverIteration = 5;
     int rouletteSpins = 2 * childsOverIteration;
-    QVector<Chromosome*> breedChromosomes;
-    QMap<float, Chromosome*> tournirTable;
-    QVector<Chromosome*>::Iterator chromosomesIter;
 
-    bool firstRun = true;
+    QVector<Chromosome*>::Iterator chromosomesIter;
     do
     {
         // Evaluate fitness
@@ -116,7 +129,6 @@ QVector<QVariant> GeneticAlgorithm::RunTrainingAndGetResult()
             if(maxFitness < bufFitness) maxFitness = bufFitness;
             ++chromosomesIter;
         }
-        firstRun = false;
         // Breed - Pairs
         breedChromosomes.clear();
         for(int i = 0; i < rouletteSpins; ++i)
@@ -174,6 +186,11 @@ QVector<QVariant> GeneticAlgorithm::RunTrainingAndGetResult()
         qDebug() << (*chromosomesIter)->genes;
         ++chromosomesIter;
     }
+
+    QVector<QVariant> result;
+    for(int i = 0; i < chromosomes.first()->genes.size(); ++i)
+        result.append(QVariant(chromosomes.first()->genes[i]));
+    return result;
 }
 
 float GeneticAlgorithm::RunTestSet()

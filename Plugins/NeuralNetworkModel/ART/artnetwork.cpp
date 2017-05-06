@@ -31,7 +31,13 @@ ARTNetwork::ARTNetwork()
 
 //    qDebug() << "Result neurons";
 //    for(int i = 0; i < recognitionLayer->neurons.length(); ++i)
-//        qDebug() << i << recognitionLayer->neurons[i]->outputWeights;
+    //        qDebug() << i << recognitionLayer->neurons[i]->outputWeights;
+}
+
+ARTNetwork::~ARTNetwork()
+{
+    if(comparingLayer) delete comparingLayer;
+    if(recognitionLayer) delete recognitionLayer;
 }
 
 ARTNetwork *ARTNetwork::Make(QJsonObject &paramsObj)

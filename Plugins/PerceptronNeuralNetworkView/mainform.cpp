@@ -32,54 +32,59 @@ void MainForm::SetModel(INeuralNetworkModel *Model)
 {
     model = Model;
     isStatsChanged = true;
-//    INeuralNetworkModel::INeuralNetwork *netw = model->SetupNetwork(QJsonObject{
-//                            {"Type", "ART"},
-//                            {"size", 10},
-//                            {"L", 2},
-//                            {"similarity", 0.9}
-//                        });
-
-//    QVector<InputSampleI> samples;
-//    InputSampleI buf;
-//    QVector<int> input1{1,1,0,1,1,
-//                         1,0,1,0,1};
-//    buf.first = input1;
-//    samples.append(buf);
-
-//    QVector<int> input2{0,0,1,0,0,
-//                         1,1,1,1,1};
-//    buf.first = input2;
-//    samples.append(buf);
-//    QVector<int> input3{1,1,1,1,1,
-//                         1,0,1,0,1};
-//    buf.first = input3;
-//    samples.append(buf);
-//    QVector<int> input4{0,0,1,0,0,
-//                         0,1,1,1,1};
-//    buf.first = input4;
-//    samples.append(buf);
-//    QVector<int> input5{1,0,1,0,0,
-//                         1,1,1,1,1};
-//    buf.first = input5;
-//    samples.append(buf);
-
-//    netw->SetupSamples(QJsonObject(), &samples);
-//    QVector<QVariant> result = netw->RunTrainingAndGetResult();
-//    for(int i = 0; i < result.length(); ++i)
-//        qDebug() << result[i].value<QList<int>>();
-
     INeuralNetworkModel::INeuralNetwork *netw = model->SetupNetwork(QJsonObject{
-                                {"Type", "GeneticAlgorithm"},
-                                {"fitnessThreshold", 0.01},
-                                {"iterations", 50},
-                                {"populationSize", 5},
-                                {"geneCapacity", 30},
-                                {"targetResult", 30.},
-                            });
-    netw->SetupSamplesF(QJsonObject{
-                           {"Func", "a + 2*b + 3*c + 4*d"}
-                       }, NULL);
-    netw->RunTrainingAndGetResult();
+                            {"Type", "ART"},
+                            {"size", 14},
+                            {"L", 2},
+                            {"similarity", 0.9}
+                        });
+
+    QVector<InputSampleI> samples;
+    InputSampleI buf;
+    QVector<int> input1{1,0,0,1,1,1,
+                        1,1,1,0,0,0,
+                            1,0};
+    buf.first = input1;
+    samples.append(buf);
+
+    QVector<int> input2{1,1,0,0,0,0,
+                        0,0,1,1,1,1,
+                            0,0};
+    buf.first = input2;
+    samples.append(buf);
+    QVector<int> input3{0,0,1,1,0,0,
+                        0,1,0,0,1,0,
+                            1,1};
+    buf.first = input3;
+    samples.append(buf);
+    QVector<int> input4{1,1,0,0,1,0,
+                        0,0,1,1,1,1,
+                            0,0};
+    buf.first = input4;
+    samples.append(buf);
+    QVector<int> input5{1,0,0,0,1,1,
+                        1,1,1,0,0,0,
+                            1,0};
+    buf.first = input5;
+    samples.append(buf);
+
+    netw->SetupSamplesI(QJsonObject(), &samples);
+    QVector<QVariant> result = netw->RunTrainingAndGetResult();
+    for(int i = 0; i < result.length(); ++i)
+        qDebug() << result[i].value<QList<int>>();
+
+//    INeuralNetworkModel::INeuralNetwork *netw = model->SetupNetwork(QJsonObject{
+//                                {"Type", "GeneticAlgorithm"},
+//                                {"fitnessThreshold", 0.01},
+//                                {"iterations", 50},
+//                                {"populationSize", 5},
+//                                {"geneCapacity", 30},
+//                                {"targetResult", 30.},
+//                            });
+//    netw->SetupSamplesF(QJsonObject{
+//                           {"Func", "a + 2*b + 3*c + 4*d"}
+//                       }, NULL);
+//    netw->RunTrainingAndGetResult();
 }
 
 void MainForm::MarkNetworkStatsToUpdate()

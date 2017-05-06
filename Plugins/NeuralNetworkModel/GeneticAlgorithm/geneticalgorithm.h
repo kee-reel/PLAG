@@ -18,12 +18,16 @@ class GeneticAlgorithm : public INeuralNetworkModel::INeuralNetwork
 public:
     QVector<Chromosome*> chromosomes;
     Parameters params;
+    QVector<Chromosome*> breedChromosomes;
+    QMap<float, Chromosome*> tournirTable;
+
     QStringList variables;
-    QScriptEngine myEngine;
+    QScriptEngine *myEngine;
     QScriptValue func;
     QScriptValueList funcAgs;
 
     GeneticAlgorithm();
+    ~GeneticAlgorithm() override;
     static GeneticAlgorithm *Make(QJsonObject &paramsObj);
     float EvaluateFitness(Chromosome *chromosome);
 
