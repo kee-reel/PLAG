@@ -177,8 +177,8 @@ QVector<QVariant> GeneticAlgorithm::RunTrainingAndGetResult()
         }
         ++iteration;
     }
-    while(maxFitness > params.fitnessThreshold && iteration < params.iterations);
-
+    while(maxFitness < params.fitnessThreshold && iteration < params.iterations);
+    qDebug() << "Done in" << iteration << "iteration.";
     chromosomesIter = chromosomes.begin();
     while(chromosomesIter != chromosomes.end())
     {

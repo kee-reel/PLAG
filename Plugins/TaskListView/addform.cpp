@@ -17,6 +17,7 @@ AddForm::~AddForm()
 
 void AddForm::SetModel(QAbstractItemModel *model)
 {
+    model->;
     mapper->setModel(model);
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
     ui->label_2->setText(model->headerData(0, Qt::Horizontal).toString());
