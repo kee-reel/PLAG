@@ -3,6 +3,8 @@
 GeneticAlgorithm::GeneticAlgorithm()
 {
     myEngine = NULL;
+    params.minRange = std::numeric_limits<float>::min();
+    params.maxRange = std::numeric_limits<float>::max();
 }
 
 GeneticAlgorithm::~GeneticAlgorithm()
@@ -22,11 +24,25 @@ GeneticAlgorithm *GeneticAlgorithm::Make(QJsonObject &paramsObj)
 
 float GeneticAlgorithm::EvaluateFitness(Chromosome *chromosome)
 {
+    //float sumValues = 0;
     for(int i = 0; i < chromosome->genes.size(); ++i)
+    {
         funcAgs[i] = chromosome->genes[i];
+        //sumValues += fabs(chromosome->genes[i]);
+    }
     QScriptValue result = func.call(QScriptValue(), funcAgs);
     float resultValue = result.toVariant().toDouble();
-    return 1 / (fabs(resultValue - params.targetResult) + 1);
+    if(params.extremumSearch != Parameters::None)
+    {
+        if(params.extremumSearch == Parameters::Min)
+            return 1 / (fabs(resultValue) + 1);
+        else
+            return fabs(resultValue);
+    }
+    else
+    {
+        return 1 / (fabs(resultValue - params.targetResult) + 1);
+    }
 }
 
 bool GeneticAlgorithm::SetNetworkParams(QJsonObject paramsObj)
@@ -34,15 +50,28 @@ bool GeneticAlgorithm::SetNetworkParams(QJsonObject paramsObj)
     params.fitnessThreshold = paramsObj.value("fitnessThreshold").toDouble();
     params.iterations = paramsObj.value("iterations").toInt();
     params.targetResult = paramsObj.value("targetResult").toDouble();
+    QString typeStr = paramsObj.value("extremumSearch").toString();
+    if(!typeStr.compare("min", Qt::CaseInsensitive))
+        params.extremumSearch = Parameters::Min;
+    else if(!typeStr.compare("max", Qt::CaseInsensitive))
+        params.extremumSearch = Parameters::Max;
+    else
+        params.extremumSearch = Parameters::None;
     params.populationSize = paramsObj.value("populationSize").toInt();
     params.geneCapacity = paramsObj.value("geneCapacity").toInt();
+
+    if(paramsObj.contains("minRange"))
+        params.minRange = paramsObj.value("minRange").toDouble();
+    if(paramsObj.contains("maxRange"))
+        params.maxRange = paramsObj.value("maxRange").toDouble();
 }
 
 void GeneticAlgorithm::SetupSamplesF(QJsonObject parameters, QVector<InputSampleF> *samples)
 {
     variables.clear();
     QString funcStr = parameters.value("Func").toString();
-    QRegExp variablesFinder("[a-z]");
+    QRegExp variablesFinder("[a-z]{1}\\s");
+    variablesFinder.setMinimal(true);
     int pos = 0;
     while (pos >= 0) {
         pos = variablesFinder.indexIn(funcStr, pos);
@@ -104,11 +133,10 @@ QVector<QVariant> GeneticAlgorithm::RunTrainingAndGetResult()
 
     for(int i = 0; i < params.populationSize; ++i)
     {
-        Chromosome *newChromosome = new Chromosome(params.genesCount, params.geneCapacity);
+        Chromosome *newChromosome = new Chromosome(&params);
         chromosomes.append(newChromosome);
     }
 
-    float maxFitness = 0;
     float sumFitness = 0;
     float bufFitness = 0;
     int iteration = 0;
@@ -129,6 +157,13 @@ QVector<QVariant> GeneticAlgorithm::RunTrainingAndGetResult()
             if(maxFitness < bufFitness) maxFitness = bufFitness;
             ++chromosomesIter;
         }
+        qDebug() << endl << "Iteration" << iteration;
+        chromosomesIter = chromosomes.begin();
+        while(chromosomesIter != chromosomes.end())
+        {
+            qDebug() << (*chromosomesIter)->fitness << "->" << (*chromosomesIter)->genes;
+            ++chromosomesIter;
+        }
         // Breed - Pairs
         breedChromosomes.clear();
         for(int i = 0; i < rouletteSpins; ++i)
@@ -147,12 +182,28 @@ QVector<QVariant> GeneticAlgorithm::RunTrainingAndGetResult()
                 ++chromosomesIter;
             }
         }
+//        qDebug() << "Breed pairs";
+//        chromosomesIter = breedChromosomes.begin();
+//        while(chromosomesIter != breedChromosomes.end())
+//        {
+//            qDebug() << (*chromosomesIter)->fitness;
+//            qDebug() << (*chromosomesIter)->genes;
+//            ++chromosomesIter;
+//        }
         // Breed - Childs
         for(int i = 0; i < childsOverIteration; ++i)
         {
             Chromosome *child = Chromosome::Breed(breedChromosomes[i], breedChromosomes[i+1]);
             chromosomes.append(child);
         }
+//        qDebug() << "With childs";
+//        chromosomesIter = chromosomes.begin();
+//        while(chromosomesIter != chromosomes.end())
+//        {
+//            qDebug() << (*chromosomesIter)->fitness;
+//            qDebug() << (*chromosomesIter)->genes;
+//            ++chromosomesIter;
+//        }
         // Evaluate fitness
         sumFitness = 0;
         chromosomesIter = chromosomes.begin();
@@ -177,13 +228,13 @@ QVector<QVariant> GeneticAlgorithm::RunTrainingAndGetResult()
         }
         ++iteration;
     }
-    while(maxFitness > params.fitnessThreshold && iteration < params.iterations);
+    while(iteration < params.iterations);
+    qDebug() << endl << "Done in" << iteration << "iterations";
 
     chromosomesIter = chromosomes.begin();
     while(chromosomesIter != chromosomes.end())
     {
-        qDebug() << (*chromosomesIter)->fitness;
-        qDebug() << (*chromosomesIter)->genes;
+        qDebug() << (*chromosomesIter)->fitness << "->" << (*chromosomesIter)->genes;
         ++chromosomesIter;
     }
 

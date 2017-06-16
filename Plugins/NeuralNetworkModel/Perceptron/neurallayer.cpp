@@ -37,7 +37,7 @@ void NeuralLayer::Forward(QVector<float> &prevOutputs)
             outputs[myLayerNeuron] += prevOutputs[prevLayerNeuron] * inputWeights[myLayerNeuron][prevLayerNeuron];
         outputs[myLayerNeuron] = ActivationFunc(outputs[myLayerNeuron]);
     }
-
+    qDebug() << "outputs" << outputs;
     if(nextLayer)
         nextLayer->Forward(outputs);
 }

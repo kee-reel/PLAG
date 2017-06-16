@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QScriptEngine>
 #include <QRegExp>
+#include <limits>
 
 #include "ineuralnetworkmodel.h"
 #include "parameters.h"
@@ -25,6 +26,7 @@ public:
     QScriptEngine *myEngine;
     QScriptValue func;
     QScriptValueList funcAgs;
+    float maxFitness = 0;
 
     GeneticAlgorithm();
     ~GeneticAlgorithm() override;
