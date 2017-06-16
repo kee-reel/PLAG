@@ -4,15 +4,16 @@
 #include <QVector>
 #include <QByteArray>
 
+#include "parameters.h"
+
 class Chromosome
 {
 public:
     float fitness;
     QVector<float> genes;
-    int genesCount;
-    int geneCapacity;
+    GeneticAlgorithmParams::Parameters *params;
 
-    Chromosome(int genesCount, int geneCapacity);
+    Chromosome(GeneticAlgorithmParams::Parameters *params);
     int GetValue();
 
     static Chromosome *Breed(Chromosome *mother, Chromosome *father, bool withMutation = true);

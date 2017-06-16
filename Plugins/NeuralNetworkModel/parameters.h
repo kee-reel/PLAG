@@ -37,10 +37,17 @@ namespace GeneticAlgorithmParams {
         float fitnessThreshold;
         int iterations;
         float targetResult;
+        enum ExtremumSearchType{
+            None,
+            Min,
+            Max,
+        } extremumSearch;
 
         int populationSize;
         int genesCount;
         int geneCapacity;
+        float minRange;
+        float maxRange;
     };
 }
 
