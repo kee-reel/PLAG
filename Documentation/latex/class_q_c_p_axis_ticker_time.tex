@@ -1,0 +1,217 @@
+\hypertarget{class_q_c_p_axis_ticker_time}{}\section{Q\+C\+P\+Axis\+Ticker\+Time Class Reference}
+\label{class_q_c_p_axis_ticker_time}\index{Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}}
+
+
+Specialized axis ticker for time spans in units of milliseconds to days.  
+
+
+Inheritance diagram for Q\+C\+P\+Axis\+Ticker\+Time\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_q_c_p_axis_ticker_time}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} \{ \newline
+{\bfseries tu\+Milliseconds}, 
+{\bfseries tu\+Seconds}, 
+{\bfseries tu\+Minutes}, 
+{\bfseries tu\+Hours}, 
+\newline
+{\bfseries tu\+Days}, 
+{\bfseries tu\+Milliseconds}, 
+{\bfseries tu\+Seconds}, 
+{\bfseries tu\+Minutes}, 
+\newline
+{\bfseries tu\+Hours}, 
+{\bfseries tu\+Days}
+ \}
+\item 
+enum \hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} \{ \newline
+{\bfseries tu\+Milliseconds}, 
+{\bfseries tu\+Seconds}, 
+{\bfseries tu\+Minutes}, 
+{\bfseries tu\+Hours}, 
+\newline
+{\bfseries tu\+Days}, 
+{\bfseries tu\+Milliseconds}, 
+{\bfseries tu\+Seconds}, 
+{\bfseries tu\+Minutes}, 
+\newline
+{\bfseries tu\+Hours}, 
+{\bfseries tu\+Days}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_q_c_p_axis_ticker_time_a5145aac1d2117fdac411d9e8552cc41b}{Q\+C\+P\+Axis\+Ticker\+Time} ()
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a99ad61dc7434a7fed1850e96bf748834}\label{class_q_c_p_axis_ticker_time_a99ad61dc7434a7fed1850e96bf748834}} 
+Q\+String {\bfseries time\+Format} () const
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a6b58a98e4d64c6764aa61a707e4a344d}\label{class_q_c_p_axis_ticker_time_a6b58a98e4d64c6764aa61a707e4a344d}} 
+int {\bfseries field\+Width} (\hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} unit) const
+\item 
+void \hyperlink{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}{set\+Time\+Format} (const Q\+String \&format)
+\item 
+void \hyperlink{class_q_c_p_axis_ticker_time_adc13e54fc969be98a5c0e3fa0dbaa293}{set\+Field\+Width} (\hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} unit, int width)
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a99ad61dc7434a7fed1850e96bf748834}\label{class_q_c_p_axis_ticker_time_a99ad61dc7434a7fed1850e96bf748834}} 
+Q\+String {\bfseries time\+Format} () const
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a6b58a98e4d64c6764aa61a707e4a344d}\label{class_q_c_p_axis_ticker_time_a6b58a98e4d64c6764aa61a707e4a344d}} 
+int {\bfseries field\+Width} (\hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} unit) const
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}\label{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}} 
+void {\bfseries set\+Time\+Format} (const Q\+String \&format)
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_adc13e54fc969be98a5c0e3fa0dbaa293}\label{class_q_c_p_axis_ticker_time_adc13e54fc969be98a5c0e3fa0dbaa293}} 
+void {\bfseries set\+Field\+Width} (\hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} unit, int width)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a5615064642090fe193797caea8b98cb4}\label{class_q_c_p_axis_ticker_time_a5615064642090fe193797caea8b98cb4}} 
+virtual double {\bfseries get\+Tick\+Step} (const \hyperlink{class_q_c_p_range}{Q\+C\+P\+Range} \&range) Q\+\_\+\+D\+E\+C\+L\+\_\+\+O\+V\+E\+R\+R\+I\+DE
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_acace84c46598176aa53837e147595471}\label{class_q_c_p_axis_ticker_time_acace84c46598176aa53837e147595471}} 
+virtual int {\bfseries get\+Sub\+Tick\+Count} (double tick\+Step) Q\+\_\+\+D\+E\+C\+L\+\_\+\+O\+V\+E\+R\+R\+I\+DE
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a046eb771bdf2a959f570db542b3a0be6}\label{class_q_c_p_axis_ticker_time_a046eb771bdf2a959f570db542b3a0be6}} 
+virtual Q\+String {\bfseries get\+Tick\+Label} (double tick, const Q\+Locale \&locale, Q\+Char format\+Char, int precision) Q\+\_\+\+D\+E\+C\+L\+\_\+\+O\+V\+E\+R\+R\+I\+DE
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a03b6c980be36f2672e3fc31d109a28a0}\label{class_q_c_p_axis_ticker_time_a03b6c980be36f2672e3fc31d109a28a0}} 
+void {\bfseries replace\+Unit} (Q\+String \&text, \hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} unit, int value) const
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a38462cd47fdca21bf6c1938eaad93c0c}\label{class_q_c_p_axis_ticker_time_a38462cd47fdca21bf6c1938eaad93c0c}} 
+virtual double {\bfseries get\+Tick\+Step} (const \hyperlink{class_q_c_p_range}{Q\+C\+P\+Range} \&range) Q\+\_\+\+D\+E\+C\+L\+\_\+\+O\+V\+E\+R\+R\+I\+DE
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a08b898076e82b8ee6adcc027e1db92a7}\label{class_q_c_p_axis_ticker_time_a08b898076e82b8ee6adcc027e1db92a7}} 
+virtual int {\bfseries get\+Sub\+Tick\+Count} (double tick\+Step) Q\+\_\+\+D\+E\+C\+L\+\_\+\+O\+V\+E\+R\+R\+I\+DE
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a684c762479ac38be7c3cf9b378883147}\label{class_q_c_p_axis_ticker_time_a684c762479ac38be7c3cf9b378883147}} 
+virtual Q\+String {\bfseries get\+Tick\+Label} (double tick, const Q\+Locale \&locale, Q\+Char format\+Char, int precision) Q\+\_\+\+D\+E\+C\+L\+\_\+\+O\+V\+E\+R\+R\+I\+DE
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a03b6c980be36f2672e3fc31d109a28a0}\label{class_q_c_p_axis_ticker_time_a03b6c980be36f2672e3fc31d109a28a0}} 
+void {\bfseries replace\+Unit} (Q\+String \&text, \hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} unit, int value) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a800af3fe0a7c1a8110c043b82169bc9d}\label{class_q_c_p_axis_ticker_time_a800af3fe0a7c1a8110c043b82169bc9d}} 
+Q\+String {\bfseries m\+Time\+Format}
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a85c3c25b92d5ff64a59b475f32d03154}\label{class_q_c_p_axis_ticker_time_a85c3c25b92d5ff64a59b475f32d03154}} 
+Q\+Hash$<$ \hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit}, int $>$ {\bfseries m\+Field\+Width}
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a61033c493cec76a69628d1aaa5b07abf}\label{class_q_c_p_axis_ticker_time_a61033c493cec76a69628d1aaa5b07abf}} 
+\hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} {\bfseries m\+Smallest\+Unit}
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a349b2debe07adc591996aa73dec9a757}\label{class_q_c_p_axis_ticker_time_a349b2debe07adc591996aa73dec9a757}} 
+\hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit} {\bfseries m\+Biggest\+Unit}
+\item 
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a84f4e4a2c6b7d3e4c1bf66a2432b541f}\label{class_q_c_p_axis_ticker_time_a84f4e4a2c6b7d3e4c1bf66a2432b541f}} 
+Q\+Hash$<$ \hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Time\+Unit}, Q\+String $>$ {\bfseries m\+Format\+Pattern}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Specialized axis ticker for time spans in units of milliseconds to days. 
+
+
+
+This \hyperlink{class_q_c_p_axis_ticker}{Q\+C\+P\+Axis\+Ticker} subclass generates ticks that corresponds to time intervals.
+
+The format of the time display in the tick labels is controlled with \hyperlink{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}{set\+Time\+Format} and \hyperlink{class_q_c_p_axis_ticker_time_adc13e54fc969be98a5c0e3fa0dbaa293}{set\+Field\+Width}. The time coordinate is in the unit of seconds with respect to the time coordinate zero. Unlike with \hyperlink{class_q_c_p_axis_ticker_date_time}{Q\+C\+P\+Axis\+Ticker\+Date\+Time}, the ticks don\textquotesingle{}t correspond to a specific calendar date and time.
+
+The time can be displayed in milliseconds, seconds, minutes, hours and days. Depending on the largest available unit in the format specified with \hyperlink{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}{set\+Time\+Format}, any time spans above will be carried in that largest unit. So for example if the format string is \char`\"{}\%m\+:\%s\char`\"{} and a tick at coordinate value 7815 (being 2 hours, 10 minutes and 15 seconds) is created, the resulting tick label will show \char`\"{}130\+:15\char`\"{} (130 minutes, 15 seconds). If the format string is \char`\"{}\%h\+:\%m\+:\%s\char`\"{}, the hour unit will be used and the label will thus be \char`\"{}02\+:10\+:15\char`\"{}. Negative times with respect to the axis zero will carry a leading minus sign.
+
+The ticker can be created and assigned to an axis like this\+: 
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ Here is an example of a time axis providing time information in days, hours and minutes. Due to the axis range spanning a few days and the wanted tick count (\hyperlink{class_q_c_p_axis_ticker_a47752abba8293e6dc18491501ae34008}{set\+Tick\+Count}), the ticker decided to use tick steps of 12 hours\+:
+
+
+
+The format string for this example is 
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \begin{DoxyNote}{Note}
+If you rather wish to display calendar dates and times, have a look at \hyperlink{class_q_c_p_axis_ticker_date_time}{Q\+C\+P\+Axis\+Ticker\+Date\+Time} instead. 
+\end{DoxyNote}
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}\label{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}} 
+\index{Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}!Time\+Unit@{Time\+Unit}}
+\index{Time\+Unit@{Time\+Unit}!Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}}
+\subsubsection{\texorpdfstring{Time\+Unit}{TimeUnit}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily enum \hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Q\+C\+P\+Axis\+Ticker\+Time\+::\+Time\+Unit}}
+
+Defines the logical units in which fractions of time spans can be expressed.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_axis_ticker_time_adc13e54fc969be98a5c0e3fa0dbaa293}{set\+Field\+Width}, \hyperlink{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}{set\+Time\+Format} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}\label{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}} 
+\index{Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}!Time\+Unit@{Time\+Unit}}
+\index{Time\+Unit@{Time\+Unit}!Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}}
+\subsubsection{\texorpdfstring{Time\+Unit}{TimeUnit}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily enum \hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Q\+C\+P\+Axis\+Ticker\+Time\+::\+Time\+Unit}}
+
+Defines the logical units in which fractions of time spans can be expressed.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_axis_ticker_time_adc13e54fc969be98a5c0e3fa0dbaa293}{set\+Field\+Width}, \hyperlink{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}{set\+Time\+Format} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a5145aac1d2117fdac411d9e8552cc41b}\label{class_q_c_p_axis_ticker_time_a5145aac1d2117fdac411d9e8552cc41b}} 
+\index{Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}!Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}}
+\index{Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}!Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}}
+\subsubsection{\texorpdfstring{Q\+C\+P\+Axis\+Ticker\+Time()}{QCPAxisTickerTime()}}
+{\footnotesize\ttfamily Q\+C\+P\+Axis\+Ticker\+Time\+::\+Q\+C\+P\+Axis\+Ticker\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Constructs the ticker and sets reasonable default values. Axis tickers are commonly created managed by a Q\+Shared\+Pointer, which then can be passed to \hyperlink{class_q_c_p_axis_a4ee03fcd2c74d05cd1a419b9af5cfbdc}{Q\+C\+P\+Axis\+::set\+Ticker}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_adc13e54fc969be98a5c0e3fa0dbaa293}\label{class_q_c_p_axis_ticker_time_adc13e54fc969be98a5c0e3fa0dbaa293}} 
+\index{Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}!set\+Field\+Width@{set\+Field\+Width}}
+\index{set\+Field\+Width@{set\+Field\+Width}!Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}}
+\subsubsection{\texorpdfstring{set\+Field\+Width()}{setFieldWidth()}}
+{\footnotesize\ttfamily void Q\+C\+P\+Axis\+Ticker\+Time\+::set\+Field\+Width (\begin{DoxyParamCaption}\item[{\hyperlink{class_q_c_p_axis_ticker_time_a5c48ded8c6d3a1aca9b68219469fea3e}{Q\+C\+P\+Axis\+Ticker\+Time\+::\+Time\+Unit}}]{unit,  }\item[{int}]{width }\end{DoxyParamCaption})}
+
+Sets the field widh of the specified {\itshape unit} to be {\itshape width} digits, when displayed in the tick label. If the number for the specific unit is shorter than {\itshape width}, it will be padded with an according number of zeros to the left in order to reach the field width.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}{set\+Time\+Format} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}\label{class_q_c_p_axis_ticker_time_a2f30b6e5125bce4256be9ce3177088ea}} 
+\index{Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}!set\+Time\+Format@{set\+Time\+Format}}
+\index{set\+Time\+Format@{set\+Time\+Format}!Q\+C\+P\+Axis\+Ticker\+Time@{Q\+C\+P\+Axis\+Ticker\+Time}}
+\subsubsection{\texorpdfstring{set\+Time\+Format()}{setTimeFormat()}}
+{\footnotesize\ttfamily void Q\+C\+P\+Axis\+Ticker\+Time\+::set\+Time\+Format (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{format }\end{DoxyParamCaption})}
+
+Sets the format that will be used to display time in the tick labels.
+
+The available patterns are\+:
+\begin{DoxyItemize}
+\item \%z for milliseconds
+\item \%s for seconds
+\item \%m for minutes
+\item \%h for hours
+\item \%d for days
+\end{DoxyItemize}
+
+The field width (zero padding) can be controlled for each unit with \hyperlink{class_q_c_p_axis_ticker_time_adc13e54fc969be98a5c0e3fa0dbaa293}{set\+Field\+Width}.
+
+The largest unit that appears in {\itshape format} will carry all the remaining time of a certain tick coordinate, even if it overflows the natural limit of the unit. For example, if \%m is the largest unit it might become larger than 59 in order to consume larger time values. If on the other hand \%h is available, the minutes will wrap around to zero after 59 and the time will carry to the hour digit. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+A\+R\+Neural\+Network\+View/qcustomplot.\+h\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+A\+R\+Neural\+Network\+View/qcustomplot.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\hypertarget{class_task_tree_model}{}\section{Task\+Tree\+Model Class Reference}
+\label{class_task_tree_model}\index{Task\+Tree\+Model@{Task\+Tree\+Model}}
+Inheritance diagram for Task\+Tree\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_task_tree_model}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_task_tree_model_a84903b8013728be8447018eaca9d5d40}\label{class_task_tree_model_a84903b8013728be8447018eaca9d5d40}} 
+void {\bfseries Open\+Task\+Edit} (int id)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_task_tree_model_aeef3183a88c527ffd51adf5c0753a5a2}\label{class_task_tree_model_aeef3183a88c527ffd51adf5c0753a5a2}} 
+void {\bfseries On\+All\+Setup} () override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_a0300da8b58d57891e2287bb9e1cb9d90}\label{class_task_tree_model_a0300da8b58d57891e2287bb9e1cb9d90}} 
+Q\+String {\bfseries Get\+Last\+Error} () override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_aa25870b721ec1b86b12e497ad8314e54}\label{class_task_tree_model_aa25870b721ec1b86b12e497ad8314e54}} 
+void {\bfseries Add\+Data\+Manager} (Q\+Object $\ast$) override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_ae5e240226aeee8ec516546cd7ec34071}\label{class_task_tree_model_ae5e240226aeee8ec516546cd7ec34071}} 
+void {\bfseries Add\+Parent\+Model} (Q\+Object $\ast$model, \hyperlink{struct_meta_info}{Meta\+Info} $\ast$meta)
+\item 
+\mbox{\Hypertarget{class_task_tree_model_a62708172afa70e35dd504ee4bb190c06}\label{class_task_tree_model_a62708172afa70e35dd504ee4bb190c06}} 
+void {\bfseries Add\+Child\+Model} (\hyperlink{class_i_model_plugin}{I\+Model\+Plugin} $\ast$, \hyperlink{struct_meta_info}{Meta\+Info} $\ast$) override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_af7e15dbbbca38a174c248e110f5c2ab0}\label{class_task_tree_model_af7e15dbbbca38a174c248e110f5c2ab0}} 
+void {\bfseries Add\+View} (\hyperlink{class_i_view_plugin}{I\+View\+Plugin} $\ast$view, \hyperlink{struct_meta_info}{Meta\+Info} $\ast$meta) override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_a7a2963fe56d9ef71711b7071dad49368}\label{class_task_tree_model_a7a2963fe56d9ef71711b7071dad49368}} 
+bool {\bfseries Open} (\hyperlink{class_i_model_plugin}{I\+Model\+Plugin} $\ast$parent, Q\+Widget $\ast$parent\+Widget) override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_adb18285fd4cef22570af2d45b6e67d61}\label{class_task_tree_model_adb18285fd4cef22570af2d45b6e67d61}} 
+bool {\bfseries Close\+From\+View} (\hyperlink{class_i_view_plugin}{I\+View\+Plugin} $\ast$view) override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_a2404b109ceb9543d52e1362556db8b94}\label{class_task_tree_model_a2404b109ceb9543d52e1362556db8b94}} 
+void {\bfseries Child\+Self\+Closed} (\hyperlink{class_i_model_plugin}{I\+Model\+Plugin} $\ast$child) override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_aebbc0558f83bc7f944cc6fc4ece03730}\label{class_task_tree_model_aebbc0558f83bc7f944cc6fc4ece03730}} 
+Q\+String {\bfseries Get\+Data\+Name} () override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_a294c3881af033139a5387e3131a1bfb5}\label{class_task_tree_model_a294c3881af033139a5387e3131a1bfb5}} 
+Q\+Abstract\+Item\+Model $\ast$ {\bfseries Get\+Tree\+Model} () override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_afe93ae7affde7bc8ec07766556cb1f76}\label{class_task_tree_model_afe93ae7affde7bc8ec07766556cb1f76}} 
+void {\bfseries Set\+Relation\+Delegate} (Q\+String relation, \hyperlink{class_i_task_tree_model_1_1_i_task_relation_delegate}{I\+Task\+Relation\+Delegate} $\ast$delegate) override
+\item 
+\mbox{\Hypertarget{class_task_tree_model_ab0438ecf0bc13627d229e63327f0e2bc}\label{class_task_tree_model_ab0438ecf0bc13627d229e63327f0e2bc}} 
+\hyperlink{class_q_map}{Q\+Map}$<$ Q\+String, \hyperlink{class_i_task_tree_model_1_1_i_task_relation_delegate}{I\+Task\+Relation\+Delegate} $\ast$ $>$ {\bfseries Get\+Relation\+Delegates} () override
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Task\+List\+Model/tasktreemodel.\+h\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/build-\/\+Android\+\_\+armeabi\+\_\+v7a\+\_\+\+G\+C\+C\+\_\+4\+\_\+9\+\_\+\+Qt\+\_\+5\+\_\+8\+\_\+0-\/\+Task\+List\+Model-\/\+Release/moc\+\_\+tasktreemodel.\+cpp\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Task\+List\+Model/tasktreemodel.\+cpp\end{DoxyCompactItemize}

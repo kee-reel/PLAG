@@ -1,0 +1,566 @@
+\hypertarget{class_q_c_p_abstract_plottable1_d}{}\section{Q\+C\+P\+Abstract\+Plottable1D$<$ Data\+Type $>$ Class Template Reference}
+\label{class_q_c_p_abstract_plottable1_d}\index{Q\+C\+P\+Abstract\+Plottable1\+D$<$ Data\+Type $>$@{Q\+C\+P\+Abstract\+Plottable1\+D$<$ Data\+Type $>$}}
+
+
+A template base class for plottables with one-\/dimensional data.  
+
+
+
+
+{\ttfamily \#include $<$qcustomplot.\+h$>$}
+
+Inheritance diagram for Q\+C\+P\+Abstract\+Plottable1D$<$ Data\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.483051cm]{class_q_c_p_abstract_plottable1_d}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_q_c_p_abstract_plottable1_d_a30b2e50ab0afce65f104ea7a95440315}{Q\+C\+P\+Abstract\+Plottable1D} (\hyperlink{class_q_c_p_axis}{Q\+C\+P\+Axis} $\ast$key\+Axis, \hyperlink{class_q_c_p_axis}{Q\+C\+P\+Axis} $\ast$value\+Axis)
+\item 
+virtual int \hyperlink{class_q_c_p_abstract_plottable1_d_a354545da303458283df3f7948a7a768b}{data\+Count} () const
+\item 
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d_ab14ab428595856bf76e04499017fa8dc}{data\+Main\+Key} (int index) const
+\item 
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d_a6fce4e684f33a31c45928899b5d9ab4b}{data\+Sort\+Key} (int index) const
+\item 
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d_a0f913bb0889ca7cb574657a078fc8cff}{data\+Main\+Value} (int index) const
+\item 
+virtual \hyperlink{class_q_c_p_range}{Q\+C\+P\+Range} \hyperlink{class_q_c_p_abstract_plottable1_d_ac6201b01aee550ef0a240183781d1f9a}{data\+Value\+Range} (int index) const
+\item 
+virtual Q\+PointF \hyperlink{class_q_c_p_abstract_plottable1_d_a14cf167457cda163575e6eec2a0b178d}{data\+Pixel\+Position} (int index) const
+\item 
+virtual bool \hyperlink{class_q_c_p_abstract_plottable1_d_a022e8905f5a667d8379493d6a037e79f}{sort\+Key\+Is\+Main\+Key} () const
+\item 
+virtual \hyperlink{class_q_c_p_data_selection}{Q\+C\+P\+Data\+Selection} \hyperlink{class_q_c_p_abstract_plottable1_d_ac385c38a79e419ed3600c2ee398fd216}{select\+Test\+Rect} (const Q\+RectF \&rect, bool only\+Selectable) const
+\item 
+virtual int \hyperlink{class_q_c_p_abstract_plottable1_d_ae6ead74a0d6a17954e1857f361b9ccf2}{find\+Begin} (double sort\+Key, bool expanded\+Range=true) const
+\item 
+virtual int \hyperlink{class_q_c_p_abstract_plottable1_d_ad913df7f02add35150779dce3913aeae}{find\+End} (double sort\+Key, bool expanded\+Range=true) const
+\item 
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d_a071e2df66ba1746067dfcb5e27947b43}{select\+Test} (const Q\+PointF \&pos, bool only\+Selectable, Q\+Variant $\ast$details=0) const
+\item 
+virtual \hyperlink{class_q_c_p_plottable_interface1_d}{Q\+C\+P\+Plottable\+Interface1D} $\ast$ \hyperlink{class_q_c_p_abstract_plottable1_d_a3ab7511c279af967955369606c584dd6}{interface1D} ()
+\item 
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a30b2e50ab0afce65f104ea7a95440315}\label{class_q_c_p_abstract_plottable1_d_a30b2e50ab0afce65f104ea7a95440315}} 
+{\bfseries Q\+C\+P\+Abstract\+Plottable1D} (\hyperlink{class_q_c_p_axis}{Q\+C\+P\+Axis} $\ast$key\+Axis, \hyperlink{class_q_c_p_axis}{Q\+C\+P\+Axis} $\ast$value\+Axis)
+\item 
+virtual int \hyperlink{class_q_c_p_abstract_plottable1_d_a75713bbfc9d4b6cacab51d76e870b497}{data\+Count} () const
+\item 
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d_aa996a79be21741bdea8284f0bb776ed1}{data\+Main\+Key} (int index) const
+\item 
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d_aa044a82f3400b52f49e247d30ffb162d}{data\+Sort\+Key} (int index) const
+\item 
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d_a104b2e36cf4d4ea29f7247887a193842}{data\+Main\+Value} (int index) const
+\item 
+virtual \hyperlink{class_q_c_p_range}{Q\+C\+P\+Range} \hyperlink{class_q_c_p_abstract_plottable1_d_a3070f8b8ce4729ea60837aac603aa0f9}{data\+Value\+Range} (int index) const
+\item 
+virtual Q\+PointF \hyperlink{class_q_c_p_abstract_plottable1_d_abc363be6268d4547aa5324cb88138f30}{data\+Pixel\+Position} (int index) const
+\item 
+virtual bool \hyperlink{class_q_c_p_abstract_plottable1_d_aa4a61e7fc79f1b71ff660db53c92efd2}{sort\+Key\+Is\+Main\+Key} () const
+\item 
+virtual \hyperlink{class_q_c_p_data_selection}{Q\+C\+P\+Data\+Selection} \hyperlink{class_q_c_p_abstract_plottable1_d_a51624b702b6f9e50d83e759986c2b39a}{select\+Test\+Rect} (const Q\+RectF \&rect, bool only\+Selectable) const
+\item 
+virtual int \hyperlink{class_q_c_p_abstract_plottable1_d_ae8206cf770f180e01d0a02e998d4e788}{find\+Begin} (double sort\+Key, bool expanded\+Range=true) const
+\item 
+virtual int \hyperlink{class_q_c_p_abstract_plottable1_d_a02434e0e5599cd072225692f3469750b}{find\+End} (double sort\+Key, bool expanded\+Range=true) const
+\item 
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d_ab69f71c97019e44699599e654d382a98}{select\+Test} (const Q\+PointF \&pos, bool only\+Selectable, Q\+Variant $\ast$details=0) const
+\item 
+virtual \hyperlink{class_q_c_p_plottable_interface1_d}{Q\+C\+P\+Plottable\+Interface1D} $\ast$ \hyperlink{class_q_c_p_abstract_plottable1_d_ab5f14406cf661087a8ed87baea37bc7e}{interface1D} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_q_c_p_abstract_plottable1_d_ae890e62ce403c54f575c73b9529f1af8}{get\+Data\+Segments} (\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_q_c_p_data_range}{Q\+C\+P\+Data\+Range} $>$ \&selected\+Segments, \hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_q_c_p_data_range}{Q\+C\+P\+Data\+Range} $>$ \&unselected\+Segments) const
+\item 
+void \hyperlink{class_q_c_p_abstract_plottable1_d_a7adc6c3cccebb5341f11e0c2b7d54206}{draw\+Polyline} (\hyperlink{class_q_c_p_painter}{Q\+C\+P\+Painter} $\ast$painter, const \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+PointF $>$ \&line\+Data) const
+\item 
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ae890e62ce403c54f575c73b9529f1af8}\label{class_q_c_p_abstract_plottable1_d_ae890e62ce403c54f575c73b9529f1af8}} 
+void {\bfseries get\+Data\+Segments} (\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_q_c_p_data_range}{Q\+C\+P\+Data\+Range} $>$ \&selected\+Segments, \hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_q_c_p_data_range}{Q\+C\+P\+Data\+Range} $>$ \&unselected\+Segments) const
+\item 
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a7adc6c3cccebb5341f11e0c2b7d54206}\label{class_q_c_p_abstract_plottable1_d_a7adc6c3cccebb5341f11e0c2b7d54206}} 
+void {\bfseries draw\+Polyline} (\hyperlink{class_q_c_p_painter}{Q\+C\+P\+Painter} $\ast$painter, const \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+PointF $>$ \&line\+Data) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a89a06f41fc3118e9986a6ec698e6dc95}\label{class_q_c_p_abstract_plottable1_d_a89a06f41fc3118e9986a6ec698e6dc95}} 
+Q\+Shared\+Pointer$<$ \hyperlink{class_q_c_p_data_container}{Q\+C\+P\+Data\+Container}$<$ Data\+Type $>$ $>$ {\bfseries m\+Data\+Container}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Data\+Type$>$\newline
+class Q\+C\+P\+Abstract\+Plottable1\+D$<$ Data\+Type $>$}
+
+A template base class for plottables with one-\/dimensional data. 
+
+This template class derives from \hyperlink{class_q_c_p_abstract_plottable}{Q\+C\+P\+Abstract\+Plottable} and from the abstract interface \hyperlink{class_q_c_p_plottable_interface1_d}{Q\+C\+P\+Plottable\+Interface1D}. It serves as a base class for all one-\/dimensional data (i.\+e. data with one key dimension), such as \hyperlink{class_q_c_p_graph}{Q\+C\+P\+Graph} and \hyperlink{class_q_c_p_curve}{Q\+C\+P\+Curve}.
+
+The template parameter {\itshape Data\+Type} is the type of the data points of this plottable (e.\+g. \hyperlink{class_q_c_p_graph_data}{Q\+C\+P\+Graph\+Data} or \hyperlink{class_q_c_p_curve_data}{Q\+C\+P\+Curve\+Data}). The main purpose of this base class is to provide the member {\itshape m\+Data\+Container} (a shared pointer to a \hyperlink{class_q_c_p_data_container}{Q\+C\+P\+Data\+Container$<$Data\+Type$>$}) and implement the according virtual methods of the \hyperlink{class_q_c_p_plottable_interface1_d}{Q\+C\+P\+Plottable\+Interface1D}, such that most subclassed plottables don\textquotesingle{}t need to worry about this anymore.
+
+Further, it provides a convenience method for retrieving selected/unselected data segments via \hyperlink{class_q_c_p_abstract_plottable1_d_ae890e62ce403c54f575c73b9529f1af8}{get\+Data\+Segments}. This is useful when subclasses implement their draw method and need to draw selected segments with a different pen/brush than unselected segments (also see \hyperlink{class_q_c_p_selection_decorator}{Q\+C\+P\+Selection\+Decorator}).
+
+This class implements basic functionality of \hyperlink{class_q_c_p_abstract_plottable_a38efe9641d972992a3d44204bc80ec1d}{Q\+C\+P\+Abstract\+Plottable\+::select\+Test} and \hyperlink{class_q_c_p_plottable_interface1_d_a67093e4ccf490ff5f7750640941ff34c}{Q\+C\+P\+Plottable\+Interface1\+D\+::select\+Test\+Rect}, assuming point-\/like data points, based on the 1D data interface. In spite of that, most plottable subclasses will want to reimplement those methods again, to provide a more accurate hit test based on their specific data visualization geometry. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a30b2e50ab0afce65f104ea7a95440315}\label{class_q_c_p_abstract_plottable1_d_a30b2e50ab0afce65f104ea7a95440315}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{Q\+C\+P\+Abstract\+Plottable1\+D()}{QCPAbstractPlottable1D()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+\hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::\hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D} (\begin{DoxyParamCaption}\item[{\hyperlink{class_q_c_p_axis}{Q\+C\+P\+Axis} $\ast$}]{key\+Axis,  }\item[{\hyperlink{class_q_c_p_axis}{Q\+C\+P\+Axis} $\ast$}]{value\+Axis }\end{DoxyParamCaption})}
+
+Forwards {\itshape key\+Axis} and {\itshape value\+Axis} to the \hyperlink{class_q_c_p_abstract_plottable_af78a036e40db6f53a31abadc5323715a}{Q\+C\+P\+Abstract\+Plottable} constructor and allocates the {\itshape m\+Data\+Container}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a354545da303458283df3f7948a7a768b}\label{class_q_c_p_abstract_plottable1_d_a354545da303458283df3f7948a7a768b}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Count@{data\+Count}}
+\index{data\+Count@{data\+Count}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Count()}{dataCount()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+int \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+Returns the number of data points of the plottable. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a058a22c770ef4d5a0e878a7f02183da9}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a75713bbfc9d4b6cacab51d76e870b497}\label{class_q_c_p_abstract_plottable1_d_a75713bbfc9d4b6cacab51d76e870b497}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Count@{data\+Count}}
+\index{data\+Count@{data\+Count}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Count()}{dataCount()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual int \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the number of data points of the plottable. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a058a22c770ef4d5a0e878a7f02183da9}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ab14ab428595856bf76e04499017fa8dc}\label{class_q_c_p_abstract_plottable1_d_ab14ab428595856bf76e04499017fa8dc}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Main\+Key@{data\+Main\+Key}}
+\index{data\+Main\+Key@{data\+Main\+Key}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Main\+Key()}{dataMainKey()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+double \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Main\+Key (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+Returns the main key of the data point at the given {\itshape index}.
+
+What the main key is, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a2bd60daaac046945fead558cbd83cf73}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_aa996a79be21741bdea8284f0bb776ed1}\label{class_q_c_p_abstract_plottable1_d_aa996a79be21741bdea8284f0bb776ed1}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Main\+Key@{data\+Main\+Key}}
+\index{data\+Main\+Key@{data\+Main\+Key}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Main\+Key()}{dataMainKey()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Main\+Key (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the main key of the data point at the given {\itshape index}.
+
+What the main key is, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a2bd60daaac046945fead558cbd83cf73}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a0f913bb0889ca7cb574657a078fc8cff}\label{class_q_c_p_abstract_plottable1_d_a0f913bb0889ca7cb574657a078fc8cff}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Main\+Value@{data\+Main\+Value}}
+\index{data\+Main\+Value@{data\+Main\+Value}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Main\+Value()}{dataMainValue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+double \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Main\+Value (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+Returns the main value of the data point at the given {\itshape index}.
+
+What the main value is, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_af6330919e8023277d08c958a6074fc76}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a104b2e36cf4d4ea29f7247887a193842}\label{class_q_c_p_abstract_plottable1_d_a104b2e36cf4d4ea29f7247887a193842}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Main\+Value@{data\+Main\+Value}}
+\index{data\+Main\+Value@{data\+Main\+Value}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Main\+Value()}{dataMainValue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Main\+Value (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the main value of the data point at the given {\itshape index}.
+
+What the main value is, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_af6330919e8023277d08c958a6074fc76}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_abc363be6268d4547aa5324cb88138f30}\label{class_q_c_p_abstract_plottable1_d_abc363be6268d4547aa5324cb88138f30}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Pixel\+Position@{data\+Pixel\+Position}}
+\index{data\+Pixel\+Position@{data\+Pixel\+Position}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Pixel\+Position()}{dataPixelPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual Q\+PointF \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Pixel\+Position (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the pixel position on the widget surface at which the data point at the given {\itshape index} appears.
+
+Usually this corresponds to the point of \hyperlink{class_q_c_p_abstract_plottable1_d_ab14ab428595856bf76e04499017fa8dc}{data\+Main\+Key}/\hyperlink{class_q_c_p_abstract_plottable1_d_a0f913bb0889ca7cb574657a078fc8cff}{data\+Main\+Value}, in pixel coordinates. However, depending on the plottable, this might be a different apparent position than just a coord-\/to-\/pixel transform of those values. For example, \hyperlink{class_q_c_p_bars}{Q\+C\+P\+Bars} apparent data values can be shifted depending on their stacking, bar grouping or configured base value. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a78911838cfbcfd2d8df9ad2fdbfb8e93}{Q\+C\+P\+Plottable\+Interface1D}.
+
+
+
+Reimplemented in \hyperlink{class_q_c_p_bars_a55cdaf565cd3384158d1f7f89533bc2d}{Q\+C\+P\+Bars}, and \hyperlink{class_q_c_p_bars_a71faeb70a3834f1f391c1a7e11c9fce7}{Q\+C\+P\+Bars}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a14cf167457cda163575e6eec2a0b178d}\label{class_q_c_p_abstract_plottable1_d_a14cf167457cda163575e6eec2a0b178d}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Pixel\+Position@{data\+Pixel\+Position}}
+\index{data\+Pixel\+Position@{data\+Pixel\+Position}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Pixel\+Position()}{dataPixelPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+Q\+PointF \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Pixel\+Position (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+Returns the pixel position on the widget surface at which the data point at the given {\itshape index} appears.
+
+Usually this corresponds to the point of \hyperlink{class_q_c_p_abstract_plottable1_d_ab14ab428595856bf76e04499017fa8dc}{data\+Main\+Key}/\hyperlink{class_q_c_p_abstract_plottable1_d_a0f913bb0889ca7cb574657a078fc8cff}{data\+Main\+Value}, in pixel coordinates. However, depending on the plottable, this might be a different apparent position than just a coord-\/to-\/pixel transform of those values. For example, \hyperlink{class_q_c_p_bars}{Q\+C\+P\+Bars} apparent data values can be shifted depending on their stacking, bar grouping or configured base value. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a78911838cfbcfd2d8df9ad2fdbfb8e93}{Q\+C\+P\+Plottable\+Interface1D}.
+
+
+
+Reimplemented in \hyperlink{class_q_c_p_bars_a55cdaf565cd3384158d1f7f89533bc2d}{Q\+C\+P\+Bars}, and \hyperlink{class_q_c_p_bars_a71faeb70a3834f1f391c1a7e11c9fce7}{Q\+C\+P\+Bars}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_aa044a82f3400b52f49e247d30ffb162d}\label{class_q_c_p_abstract_plottable1_d_aa044a82f3400b52f49e247d30ffb162d}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Sort\+Key@{data\+Sort\+Key}}
+\index{data\+Sort\+Key@{data\+Sort\+Key}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Sort\+Key()}{dataSortKey()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Sort\+Key (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the sort key of the data point at the given {\itshape index}.
+
+What the sort key is, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_afdc92f9f01e7e35f2e96b2ea9dc14ae7}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a6fce4e684f33a31c45928899b5d9ab4b}\label{class_q_c_p_abstract_plottable1_d_a6fce4e684f33a31c45928899b5d9ab4b}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Sort\+Key@{data\+Sort\+Key}}
+\index{data\+Sort\+Key@{data\+Sort\+Key}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Sort\+Key()}{dataSortKey()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+double \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Sort\+Key (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+Returns the sort key of the data point at the given {\itshape index}.
+
+What the sort key is, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_afdc92f9f01e7e35f2e96b2ea9dc14ae7}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a3070f8b8ce4729ea60837aac603aa0f9}\label{class_q_c_p_abstract_plottable1_d_a3070f8b8ce4729ea60837aac603aa0f9}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Value\+Range@{data\+Value\+Range}}
+\index{data\+Value\+Range@{data\+Value\+Range}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Value\+Range()}{dataValueRange()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual \hyperlink{class_q_c_p_range}{Q\+C\+P\+Range} \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Value\+Range (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the value range of the data point at the given {\itshape index}.
+
+What the value range is, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a9ca7fcf14d885a200879768679b19be9}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ac6201b01aee550ef0a240183781d1f9a}\label{class_q_c_p_abstract_plottable1_d_ac6201b01aee550ef0a240183781d1f9a}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!data\+Value\+Range@{data\+Value\+Range}}
+\index{data\+Value\+Range@{data\+Value\+Range}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{data\+Value\+Range()}{dataValueRange()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+\hyperlink{class_q_c_p_range}{Q\+C\+P\+Range} \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::data\+Value\+Range (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+Returns the value range of the data point at the given {\itshape index}.
+
+What the value range is, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a9ca7fcf14d885a200879768679b19be9}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a7adc6c3cccebb5341f11e0c2b7d54206}\label{class_q_c_p_abstract_plottable1_d_a7adc6c3cccebb5341f11e0c2b7d54206}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!draw\+Polyline@{draw\+Polyline}}
+\index{draw\+Polyline@{draw\+Polyline}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{draw\+Polyline()}{drawPolyline()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+void \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::draw\+Polyline (\begin{DoxyParamCaption}\item[{\hyperlink{class_q_c_p_painter}{Q\+C\+P\+Painter} $\ast$}]{painter,  }\item[{const \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+PointF $>$ \&}]{line\+Data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+A helper method which draws a line with the passed {\itshape painter}, according to the pixel data in {\itshape line\+Data}. NaN points create gaps in the line, as expected from \hyperlink{class_q_custom_plot}{Q\+Custom\+Plot}\textquotesingle{}s plottables (this is the main difference to Q\+Painter\textquotesingle{}s regular draw\+Polyline, which handles Na\+Ns by lagging or crashing).
+
+Further it uses a faster line drawing technique based on \hyperlink{class_q_c_p_painter_a0b4b1b9bd495e182c731774dc800e6e0}{Q\+C\+P\+Painter\+::draw\+Line} rather than {\ttfamily Q\+Painter\+::draw\+Polyline} if the configured \hyperlink{class_q_custom_plot_a94a33cbdadbbac5934843508bcfc210d}{Q\+Custom\+Plot\+::set\+Plotting\+Hints()} and {\itshape painter} style allows. \mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ae6ead74a0d6a17954e1857f361b9ccf2}\label{class_q_c_p_abstract_plottable1_d_ae6ead74a0d6a17954e1857f361b9ccf2}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!find\+Begin@{find\+Begin}}
+\index{find\+Begin@{find\+Begin}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{find\+Begin()}{findBegin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+int \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::find\+Begin (\begin{DoxyParamCaption}\item[{double}]{sort\+Key,  }\item[{bool}]{expanded\+Range = {\ttfamily true} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+Returns the index of the data point with a (sort-\/)key that is equal to, just below, or just above {\itshape sort\+Key}. If {\itshape expanded\+Range} is true, the data point just below {\itshape sort\+Key} will be considered, otherwise the one just above.
+
+This can be used in conjunction with \hyperlink{class_q_c_p_abstract_plottable1_d_ad913df7f02add35150779dce3913aeae}{find\+End} to iterate over data points within a given key range, including or excluding the bounding data points that are just beyond the specified range.
+
+If {\itshape expanded\+Range} is true but there are no data points below {\itshape sort\+Key}, 0 is returned.
+
+If the container is empty, returns 0 (in that case, \hyperlink{class_q_c_p_abstract_plottable1_d_ad913df7f02add35150779dce3913aeae}{find\+End} will also return 0, so a loop using these methods will not iterate over the index 0).
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_abstract_plottable1_d_ad913df7f02add35150779dce3913aeae}{find\+End}, \hyperlink{class_q_c_p_data_container_a2ad8a5399072d99a242d3a6d2d7e278a}{Q\+C\+P\+Data\+Container\+::find\+Begin} 
+\end{DoxySeeAlso}
+
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a5b95783271306a4de97be54eac1e7d13}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ae8206cf770f180e01d0a02e998d4e788}\label{class_q_c_p_abstract_plottable1_d_ae8206cf770f180e01d0a02e998d4e788}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!find\+Begin@{find\+Begin}}
+\index{find\+Begin@{find\+Begin}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{find\+Begin()}{findBegin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual int \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::find\+Begin (\begin{DoxyParamCaption}\item[{double}]{sort\+Key,  }\item[{bool}]{expanded\+Range = {\ttfamily true} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the index of the data point with a (sort-\/)key that is equal to, just below, or just above {\itshape sort\+Key}. If {\itshape expanded\+Range} is true, the data point just below {\itshape sort\+Key} will be considered, otherwise the one just above.
+
+This can be used in conjunction with \hyperlink{class_q_c_p_abstract_plottable1_d_ad913df7f02add35150779dce3913aeae}{find\+End} to iterate over data points within a given key range, including or excluding the bounding data points that are just beyond the specified range.
+
+If {\itshape expanded\+Range} is true but there are no data points below {\itshape sort\+Key}, 0 is returned.
+
+If the container is empty, returns 0 (in that case, \hyperlink{class_q_c_p_abstract_plottable1_d_ad913df7f02add35150779dce3913aeae}{find\+End} will also return 0, so a loop using these methods will not iterate over the index 0).
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_abstract_plottable1_d_ad913df7f02add35150779dce3913aeae}{find\+End}, \hyperlink{class_q_c_p_data_container_a2ad8a5399072d99a242d3a6d2d7e278a}{Q\+C\+P\+Data\+Container\+::find\+Begin} 
+\end{DoxySeeAlso}
+
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a5b95783271306a4de97be54eac1e7d13}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ad913df7f02add35150779dce3913aeae}\label{class_q_c_p_abstract_plottable1_d_ad913df7f02add35150779dce3913aeae}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!find\+End@{find\+End}}
+\index{find\+End@{find\+End}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{find\+End()}{findEnd()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+int \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::find\+End (\begin{DoxyParamCaption}\item[{double}]{sort\+Key,  }\item[{bool}]{expanded\+Range = {\ttfamily true} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+Returns the index one after the data point with a (sort-\/)key that is equal to, just above, or just below {\itshape sort\+Key}. If {\itshape expanded\+Range} is true, the data point just above {\itshape sort\+Key} will be considered, otherwise the one just below.
+
+This can be used in conjunction with \hyperlink{class_q_c_p_abstract_plottable1_d_ae6ead74a0d6a17954e1857f361b9ccf2}{find\+Begin} to iterate over data points within a given key range, including the bounding data points that are just below and above the specified range.
+
+If {\itshape expanded\+Range} is true but there are no data points above {\itshape sort\+Key}, the index just above the highest data point is returned.
+
+If the container is empty, returns 0.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_abstract_plottable1_d_ae6ead74a0d6a17954e1857f361b9ccf2}{find\+Begin}, \hyperlink{class_q_c_p_data_container_afb8b8f23cc2b7234a793a25ce79fe48f}{Q\+C\+P\+Data\+Container\+::find\+End} 
+\end{DoxySeeAlso}
+
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a5deced1016bc55a41a2339619045b295}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a02434e0e5599cd072225692f3469750b}\label{class_q_c_p_abstract_plottable1_d_a02434e0e5599cd072225692f3469750b}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!find\+End@{find\+End}}
+\index{find\+End@{find\+End}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{find\+End()}{findEnd()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual int \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::find\+End (\begin{DoxyParamCaption}\item[{double}]{sort\+Key,  }\item[{bool}]{expanded\+Range = {\ttfamily true} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the index one after the data point with a (sort-\/)key that is equal to, just above, or just below {\itshape sort\+Key}. If {\itshape expanded\+Range} is true, the data point just above {\itshape sort\+Key} will be considered, otherwise the one just below.
+
+This can be used in conjunction with \hyperlink{class_q_c_p_abstract_plottable1_d_ae6ead74a0d6a17954e1857f361b9ccf2}{find\+Begin} to iterate over data points within a given key range, including the bounding data points that are just below and above the specified range.
+
+If {\itshape expanded\+Range} is true but there are no data points above {\itshape sort\+Key}, the index just above the highest data point is returned.
+
+If the container is empty, returns 0.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_abstract_plottable1_d_ae6ead74a0d6a17954e1857f361b9ccf2}{find\+Begin}, \hyperlink{class_q_c_p_data_container_afb8b8f23cc2b7234a793a25ce79fe48f}{Q\+C\+P\+Data\+Container\+::find\+End} 
+\end{DoxySeeAlso}
+
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a5deced1016bc55a41a2339619045b295}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ae890e62ce403c54f575c73b9529f1af8}\label{class_q_c_p_abstract_plottable1_d_ae890e62ce403c54f575c73b9529f1af8}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!get\+Data\+Segments@{get\+Data\+Segments}}
+\index{get\+Data\+Segments@{get\+Data\+Segments}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{get\+Data\+Segments()}{getDataSegments()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+void \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::get\+Data\+Segments (\begin{DoxyParamCaption}\item[{\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_q_c_p_data_range}{Q\+C\+P\+Data\+Range} $>$ \&}]{selected\+Segments,  }\item[{\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_q_c_p_data_range}{Q\+C\+P\+Data\+Range} $>$ \&}]{unselected\+Segments }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Splits all data into selected and unselected segments and outputs them via {\itshape selected\+Segments} and {\itshape unselected\+Segments}, respectively.
+
+This is useful when subclasses implement their draw method and need to draw selected segments with a different pen/brush than unselected segments (also see \hyperlink{class_q_c_p_selection_decorator}{Q\+C\+P\+Selection\+Decorator}).
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_abstract_plottable_a219bc5403a9d85d3129165ec3f5ae436}{set\+Selection} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ab5f14406cf661087a8ed87baea37bc7e}\label{class_q_c_p_abstract_plottable1_d_ab5f14406cf661087a8ed87baea37bc7e}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!interface1D@{interface1D}}
+\index{interface1D@{interface1D}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{interface1\+D()}{interface1D()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual \hyperlink{class_q_c_p_plottable_interface1_d}{Q\+C\+P\+Plottable\+Interface1D}$\ast$ \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::interface1D (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+If this plottable is a one-\/dimensional plottable, i.\+e. it implements the \hyperlink{class_q_c_p_plottable_interface1_d}{Q\+C\+P\+Plottable\+Interface1D}, returns the {\itshape this} pointer with that type. Otherwise (e.\+g. in the case of a \hyperlink{class_q_c_p_color_map}{Q\+C\+P\+Color\+Map}) returns zero.
+
+You can use this method to gain read access to data coordinates while holding a pointer to the abstract base class only. 
+
+Reimplemented from \hyperlink{class_q_c_p_abstract_plottable_a81fd9fd5c4f429c074785e2eb238a8e7}{Q\+C\+P\+Abstract\+Plottable}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a3ab7511c279af967955369606c584dd6}\label{class_q_c_p_abstract_plottable1_d_a3ab7511c279af967955369606c584dd6}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!interface1D@{interface1D}}
+\index{interface1D@{interface1D}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{interface1\+D()}{interface1D()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+\hyperlink{class_q_c_p_plottable_interface1_d}{Q\+C\+P\+Plottable\+Interface1D} $\ast$ \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::interface1D (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Returns a \hyperlink{class_q_c_p_plottable_interface1_d}{Q\+C\+P\+Plottable\+Interface1D} pointer to this plottable, providing access to its 1D interface.
+
+Reimplemented from \hyperlink{class_q_c_p_abstract_plottable_a81fd9fd5c4f429c074785e2eb238a8e7}{Q\+C\+P\+Abstract\+Plottable}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a071e2df66ba1746067dfcb5e27947b43}\label{class_q_c_p_abstract_plottable1_d_a071e2df66ba1746067dfcb5e27947b43}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!select\+Test@{select\+Test}}
+\index{select\+Test@{select\+Test}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{select\+Test()}{selectTest()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+double \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::select\+Test (\begin{DoxyParamCaption}\item[{const Q\+PointF \&}]{pos,  }\item[{bool}]{only\+Selectable,  }\item[{Q\+Variant $\ast$}]{details = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Implements a point-\/selection algorithm assuming the data (accessed via the 1D data interface) is point-\/like. Most subclasses will want to reimplement this method again, to provide a more accurate hit test based on the true data visualization geometry.
+
+Implements \hyperlink{class_q_c_p_abstract_plottable_a38efe9641d972992a3d44204bc80ec1d}{Q\+C\+P\+Abstract\+Plottable}.
+
+
+
+Reimplemented in \hyperlink{class_q_c_p_financial_aac8e91622ac58330fa9ce81cc8fd40ee}{Q\+C\+P\+Financial}, \hyperlink{class_q_c_p_financial_a6067c625621b07a85a6989a0a4b8d309}{Q\+C\+P\+Financial}, \hyperlink{class_q_c_p_statistical_box_a1607fa92f829c631107c20ccb2d70a6d}{Q\+C\+P\+Statistical\+Box}, \hyperlink{class_q_c_p_statistical_box_ae78bfe096f463a8d08464c20cc25defe}{Q\+C\+P\+Statistical\+Box}, \hyperlink{class_q_c_p_bars_a121f899c27af3186fe93dcd0eb98f49b}{Q\+C\+P\+Bars}, \hyperlink{class_q_c_p_bars_a7b282a2932c7c0b4a45bd61e8c490153}{Q\+C\+P\+Bars}, \hyperlink{class_q_c_p_curve_a0ed9b7e6b4bc72010d6fcd974af46a8b}{Q\+C\+P\+Curve}, \hyperlink{class_q_c_p_curve_a0b3f4916f33b692508a6a1292b46880e}{Q\+C\+P\+Curve}, \hyperlink{class_q_c_p_graph_a6d669d04462d272c6aa0e5f85846d673}{Q\+C\+P\+Graph}, and \hyperlink{class_q_c_p_graph_ab70a737dabcedbd4da4a0bc5a9cff60e}{Q\+C\+P\+Graph}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ab69f71c97019e44699599e654d382a98}\label{class_q_c_p_abstract_plottable1_d_ab69f71c97019e44699599e654d382a98}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!select\+Test@{select\+Test}}
+\index{select\+Test@{select\+Test}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{select\+Test()}{selectTest()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual double \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::select\+Test (\begin{DoxyParamCaption}\item[{const Q\+PointF \&}]{pos,  }\item[{bool}]{only\+Selectable,  }\item[{Q\+Variant $\ast$}]{details = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This function is used to decide whether a click hits a layerable object or not.
+
+{\itshape pos} is a point in pixel coordinates on the \hyperlink{class_q_custom_plot}{Q\+Custom\+Plot} surface. This function returns the shortest pixel distance of this point to the object. If the object is either invisible or the distance couldn\textquotesingle{}t be determined, -\/1.\+0 is returned. Further, if {\itshape only\+Selectable} is true and the object is not selectable, -\/1.\+0 is returned, too.
+
+If the object is represented not by single lines but by an area like a \hyperlink{class_q_c_p_item_text}{Q\+C\+P\+Item\+Text} or the bars of a \hyperlink{class_q_c_p_bars}{Q\+C\+P\+Bars} plottable, a click inside the area should also be considered a hit. In these cases this function thus returns a constant value greater zero but still below the parent plot\textquotesingle{}s selection tolerance. (typically the selection\+Tolerance multiplied by 0.\+99).
+
+Providing a constant value for area objects allows selecting line objects even when they are obscured by such area objects, by clicking close to the lines (i.\+e. closer than 0.\+99$\ast$selection\+Tolerance).
+
+The actual setting of the selection state is not done by this function. This is handled by the parent \hyperlink{class_q_custom_plot}{Q\+Custom\+Plot} when the mouse\+Release\+Event occurs, and the finally selected object is notified via the select\+Event/deselect\+Event methods.
+
+{\itshape details} is an optional output parameter. Every layerable subclass may place any information in {\itshape details}. This information will be passed to select\+Event when the parent \hyperlink{class_q_custom_plot}{Q\+Custom\+Plot} decides on the basis of this select\+Test call, that the object was successfully selected. The subsequent call to select\+Event will carry the {\itshape details}. This is useful for multi-\/part objects (like \hyperlink{class_q_c_p_axis}{Q\+C\+P\+Axis}). This way, a possibly complex calculation to decide which part was clicked is only done once in \hyperlink{class_q_c_p_abstract_plottable1_d_a071e2df66ba1746067dfcb5e27947b43}{select\+Test}. The result (i.\+e. the actually clicked part) can then be placed in {\itshape details}. So in the subsequent select\+Event, the decision which part was selected doesn\textquotesingle{}t have to be done a second time for a single selection operation.
+
+You may pass 0 as {\itshape details} to indicate that you are not interested in those selection details.
+
+\begin{DoxySeeAlso}{See also}
+select\+Event, deselect\+Event, \hyperlink{class_q_c_p_layerable_af6567604818db90f4fd52822f8bc8376}{mouse\+Press\+Event}, \hyperlink{class_q_c_p_layerable_a47dfd7b8fd99c08ca54e09c362b6f022}{wheel\+Event}, \hyperlink{class_q_custom_plot_a5ee1e2f6ae27419deca53e75907c27e5}{Q\+Custom\+Plot\+::set\+Interactions} 
+\end{DoxySeeAlso}
+
+
+Implements \hyperlink{class_q_c_p_abstract_plottable_a38efe9641d972992a3d44204bc80ec1d}{Q\+C\+P\+Abstract\+Plottable}.
+
+
+
+Reimplemented in \hyperlink{class_q_c_p_financial_aac8e91622ac58330fa9ce81cc8fd40ee}{Q\+C\+P\+Financial}, \hyperlink{class_q_c_p_financial_a6067c625621b07a85a6989a0a4b8d309}{Q\+C\+P\+Financial}, \hyperlink{class_q_c_p_statistical_box_a1607fa92f829c631107c20ccb2d70a6d}{Q\+C\+P\+Statistical\+Box}, \hyperlink{class_q_c_p_statistical_box_ae78bfe096f463a8d08464c20cc25defe}{Q\+C\+P\+Statistical\+Box}, \hyperlink{class_q_c_p_bars_a121f899c27af3186fe93dcd0eb98f49b}{Q\+C\+P\+Bars}, \hyperlink{class_q_c_p_bars_a7b282a2932c7c0b4a45bd61e8c490153}{Q\+C\+P\+Bars}, \hyperlink{class_q_c_p_curve_a0ed9b7e6b4bc72010d6fcd974af46a8b}{Q\+C\+P\+Curve}, \hyperlink{class_q_c_p_curve_a0b3f4916f33b692508a6a1292b46880e}{Q\+C\+P\+Curve}, \hyperlink{class_q_c_p_graph_a6d669d04462d272c6aa0e5f85846d673}{Q\+C\+P\+Graph}, and \hyperlink{class_q_c_p_graph_ab70a737dabcedbd4da4a0bc5a9cff60e}{Q\+C\+P\+Graph}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_ac385c38a79e419ed3600c2ee398fd216}\label{class_q_c_p_abstract_plottable1_d_ac385c38a79e419ed3600c2ee398fd216}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!select\+Test\+Rect@{select\+Test\+Rect}}
+\index{select\+Test\+Rect@{select\+Test\+Rect}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{select\+Test\+Rect()}{selectTestRect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+\hyperlink{class_q_c_p_data_selection}{Q\+C\+P\+Data\+Selection} \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::select\+Test\+Rect (\begin{DoxyParamCaption}\item[{const Q\+RectF \&}]{rect,  }\item[{bool}]{only\+Selectable }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Implements a rect-\/selection algorithm assuming the data (accessed via the 1D data interface) is point-\/like. Most subclasses will want to reimplement this method again, to provide a more accurate hit test based on the true data visualization geometry.
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a67093e4ccf490ff5f7750640941ff34c}{Q\+C\+P\+Plottable\+Interface1D}.
+
+
+
+Reimplemented in \hyperlink{class_q_c_p_financial_a3c5beb1ab028a1dba845fc9dcffc7cf4}{Q\+C\+P\+Financial}, \hyperlink{class_q_c_p_financial_a2d7c9beec376fed78a6091a17f59eb1e}{Q\+C\+P\+Financial}, \hyperlink{class_q_c_p_statistical_box_a42febad6ad5e924a151434cc434b4ffc}{Q\+C\+P\+Statistical\+Box}, \hyperlink{class_q_c_p_statistical_box_a7047863d59673d8d049bf26cfdd9912c}{Q\+C\+P\+Statistical\+Box}, \hyperlink{class_q_c_p_bars_ab03bb6125c3e983b89d694f75ce6b3d5}{Q\+C\+P\+Bars}, and \hyperlink{class_q_c_p_bars_a429d8c3c39972bf6069329175bb85c34}{Q\+C\+P\+Bars}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a51624b702b6f9e50d83e759986c2b39a}\label{class_q_c_p_abstract_plottable1_d_a51624b702b6f9e50d83e759986c2b39a}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!select\+Test\+Rect@{select\+Test\+Rect}}
+\index{select\+Test\+Rect@{select\+Test\+Rect}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{select\+Test\+Rect()}{selectTestRect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual \hyperlink{class_q_c_p_data_selection}{Q\+C\+P\+Data\+Selection} \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::select\+Test\+Rect (\begin{DoxyParamCaption}\item[{const Q\+RectF \&}]{rect,  }\item[{bool}]{only\+Selectable }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns a data selection containing all the data points of this plottable which are contained (or hit by) {\itshape rect}. This is used mainly in the selection rect interaction for data selection (data selection mechanism).
+
+If {\itshape only\+Selectable} is true, an empty \hyperlink{class_q_c_p_data_selection}{Q\+C\+P\+Data\+Selection} is returned if this plottable is not selectable (i.\+e. if \hyperlink{class_q_c_p_abstract_plottable_ac238d6e910f976f1f30d41c2bca44ac3}{Q\+C\+P\+Abstract\+Plottable\+::set\+Selectable} is \hyperlink{namespace_q_c_p_ac6cb9db26a564b27feda362a438db038a2cb7996ccc6c39b9e6d20f2e46bf3f57}{Q\+C\+P\+::st\+None}).
+
+\begin{DoxyNote}{Note}
+{\itshape rect} must be a normalized rect (positive or zero width and height). This is especially important when using the rect of \hyperlink{class_q_c_p_selection_rect_a15a43542e1f7b953a44c260b419e6d2c}{Q\+C\+P\+Selection\+Rect\+::accepted}, which is not necessarily normalized. Use {\ttfamily Q\+Rect\+::normalized()} when passing a rect which might not be normalized. 
+\end{DoxyNote}
+
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a67093e4ccf490ff5f7750640941ff34c}{Q\+C\+P\+Plottable\+Interface1D}.
+
+
+
+Reimplemented in \hyperlink{class_q_c_p_financial_a3c5beb1ab028a1dba845fc9dcffc7cf4}{Q\+C\+P\+Financial}, \hyperlink{class_q_c_p_financial_a2d7c9beec376fed78a6091a17f59eb1e}{Q\+C\+P\+Financial}, \hyperlink{class_q_c_p_statistical_box_a42febad6ad5e924a151434cc434b4ffc}{Q\+C\+P\+Statistical\+Box}, \hyperlink{class_q_c_p_statistical_box_a7047863d59673d8d049bf26cfdd9912c}{Q\+C\+P\+Statistical\+Box}, \hyperlink{class_q_c_p_bars_ab03bb6125c3e983b89d694f75ce6b3d5}{Q\+C\+P\+Bars}, and \hyperlink{class_q_c_p_bars_a429d8c3c39972bf6069329175bb85c34}{Q\+C\+P\+Bars}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_aa4a61e7fc79f1b71ff660db53c92efd2}\label{class_q_c_p_abstract_plottable1_d_aa4a61e7fc79f1b71ff660db53c92efd2}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!sort\+Key\+Is\+Main\+Key@{sort\+Key\+Is\+Main\+Key}}
+\index{sort\+Key\+Is\+Main\+Key@{sort\+Key\+Is\+Main\+Key}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{sort\+Key\+Is\+Main\+Key()}{sortKeyIsMainKey()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type$>$ \\
+virtual bool \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::sort\+Key\+Is\+Main\+Key (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns whether the sort key (\hyperlink{class_q_c_p_abstract_plottable1_d_a6fce4e684f33a31c45928899b5d9ab4b}{data\+Sort\+Key}) is identical to the main key (\hyperlink{class_q_c_p_abstract_plottable1_d_ab14ab428595856bf76e04499017fa8dc}{data\+Main\+Key}).
+
+What the sort and main keys are, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a229e65e7ab968dd6cd0e259fa504b79d}{Q\+C\+P\+Plottable\+Interface1D}.
+
+\mbox{\Hypertarget{class_q_c_p_abstract_plottable1_d_a022e8905f5a667d8379493d6a037e79f}\label{class_q_c_p_abstract_plottable1_d_a022e8905f5a667d8379493d6a037e79f}} 
+\index{Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}!sort\+Key\+Is\+Main\+Key@{sort\+Key\+Is\+Main\+Key}}
+\index{sort\+Key\+Is\+Main\+Key@{sort\+Key\+Is\+Main\+Key}!Q\+C\+P\+Abstract\+Plottable1D@{Q\+C\+P\+Abstract\+Plottable1D}}
+\subsubsection{\texorpdfstring{sort\+Key\+Is\+Main\+Key()}{sortKeyIsMainKey()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+bool \hyperlink{class_q_c_p_abstract_plottable1_d}{Q\+C\+P\+Abstract\+Plottable1D}$<$ Data\+Type $>$\+::sort\+Key\+Is\+Main\+Key (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+Returns whether the sort key (\hyperlink{class_q_c_p_abstract_plottable1_d_a6fce4e684f33a31c45928899b5d9ab4b}{data\+Sort\+Key}) is identical to the main key (\hyperlink{class_q_c_p_abstract_plottable1_d_ab14ab428595856bf76e04499017fa8dc}{data\+Main\+Key}).
+
+What the sort and main keys are, is defined by the plottable\textquotesingle{}s data type. See the \hyperlink{class_q_c_p_data_container_qcpdatacontainer-datatype}{Q\+C\+P\+Data\+Container Data\+Type} documentation for details about this naming convention. 
+
+Implements \hyperlink{class_q_c_p_plottable_interface1_d_a229e65e7ab968dd6cd0e259fa504b79d}{Q\+C\+P\+Plottable\+Interface1D}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+A\+R\+Neural\+Network\+View/qcustomplot.\+h\end{DoxyCompactItemize}

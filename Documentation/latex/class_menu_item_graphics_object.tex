@@ -1,0 +1,75 @@
+\hypertarget{class_menu_item_graphics_object}{}\section{Menu\+Item\+Graphics\+Object Class Reference}
+\label{class_menu_item_graphics_object}\index{Menu\+Item\+Graphics\+Object@{Menu\+Item\+Graphics\+Object}}
+Inheritance diagram for Menu\+Item\+Graphics\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_menu_item_graphics_object}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a8cc186eece634847665b15f4ae58b426}\label{class_menu_item_graphics_object_a8cc186eece634847665b15f4ae58b426}} 
+void {\bfseries On\+Clicked} (\hyperlink{class_menu_item_graphics_object}{Menu\+Item\+Graphics\+Object} $\ast$me)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a4ebc6be4ca5c88adcf7931e62161d5f1}\label{class_menu_item_graphics_object_a4ebc6be4ca5c88adcf7931e62161d5f1}} 
+{\bfseries Menu\+Item\+Graphics\+Object} (\hyperlink{class_menu_item_graphics_object}{Menu\+Item\+Graphics\+Object} $\ast$Parent\+Menu\+Item, \hyperlink{struct_i_main_menu_plugin_model_1_1_menu_item}{I\+Main\+Menu\+Plugin\+Model\+::\+Menu\+Item} $\ast$\hyperlink{class_menu_item_graphics_object}{Menu\+Item\+Graphics\+Object}, \hyperlink{struct_meta_info}{Meta\+Info} $\ast$View\+Plugin, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a4fabd069df87e7d05c94cd9027aa345b}\label{class_menu_item_graphics_object_a4fabd069df87e7d05c94cd9027aa345b}} 
+{\bfseries Menu\+Item\+Graphics\+Object} (Q\+String name, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_ab17f3bcb176ffd6550df607a3e8eb3a9}\label{class_menu_item_graphics_object_ab17f3bcb176ffd6550df607a3e8eb3a9}} 
+virtual Q\+RectF {\bfseries bounding\+Rect} () const
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a00a392d4eeba783e2e8f73211adf8732}\label{class_menu_item_graphics_object_a00a392d4eeba783e2e8f73211adf8732}} 
+virtual void {\bfseries paint} (Q\+Painter $\ast$painter, const Q\+Style\+Option\+Graphics\+Item $\ast$option, Q\+Widget $\ast$widget)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a94290bfb4d0a10a7adb0516c84239b53}\label{class_menu_item_graphics_object_a94290bfb4d0a10a7adb0516c84239b53}} 
+\hyperlink{class_menu_item_graphics_object}{Menu\+Item\+Graphics\+Object} $\ast$ {\bfseries parent\+Menu\+Item}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a059d772c31b4c5113290a2198150f8d6}\label{class_menu_item_graphics_object_a059d772c31b4c5113290a2198150f8d6}} 
+\hyperlink{struct_i_main_menu_plugin_model_1_1_menu_item}{I\+Main\+Menu\+Plugin\+Model\+::\+Menu\+Item} $\ast$ {\bfseries menu\+Item}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a8d9594a1c25a956d3e34cab975dde29a}\label{class_menu_item_graphics_object_a8d9594a1c25a956d3e34cab975dde29a}} 
+\hyperlink{struct_meta_info}{Meta\+Info} $\ast$ {\bfseries view\+Plugin\+Meta}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a6f291090f45fc75a171ae55a09fd4f3d}\label{class_menu_item_graphics_object_a6f291090f45fc75a171ae55a09fd4f3d}} 
+void {\bfseries mouse\+Press\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event)
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_addbf1e6b7247679ccf8b31f6a885f6e6}\label{class_menu_item_graphics_object_addbf1e6b7247679ccf8b31f6a885f6e6}} 
+void {\bfseries mouse\+Release\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_ac8a4aab9ad0917b4f4270225a7ecbb58}\label{class_menu_item_graphics_object_ac8a4aab9ad0917b4f4270225a7ecbb58}} 
+bool {\bfseries pressed}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_aba38dc2a531e530d08f2aa92544f3104}\label{class_menu_item_graphics_object_aba38dc2a531e530d08f2aa92544f3104}} 
+int {\bfseries dx}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a9b7f14de2c2e5ff71aad8a6ab729ef1d}\label{class_menu_item_graphics_object_a9b7f14de2c2e5ff71aad8a6ab729ef1d}} 
+int {\bfseries dy}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_a6ed305de3a3718503a5e3dabdbc07786}\label{class_menu_item_graphics_object_a6ed305de3a3718503a5e3dabdbc07786}} 
+Q\+String {\bfseries item\+Menu\+Name}
+\item 
+\mbox{\Hypertarget{class_menu_item_graphics_object_ae78d7732b7108406484238c3814bb1e6}\label{class_menu_item_graphics_object_ae78d7732b7108406484238c3814bb1e6}} 
+Q\+RectF {\bfseries bound\+Rect}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Main\+Menu\+View\+Plugin/menuitem.\+h\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/build-\/\+Android\+\_\+armeabi\+\_\+v7a\+\_\+\+G\+C\+C\+\_\+4\+\_\+9\+\_\+\+Qt\+\_\+5\+\_\+8\+\_\+0-\/\+Main\+Menu\+View\+Plugin-\/\+Release/moc\+\_\+menuitem.\+cpp\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Main\+Menu\+View\+Plugin/menuitem.\+cpp\end{DoxyCompactItemize}

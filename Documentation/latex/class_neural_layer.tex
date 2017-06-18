@@ -1,0 +1,80 @@
+\hypertarget{class_neural_layer}{}\section{Neural\+Layer Class Reference}
+\label{class_neural_layer}\index{Neural\+Layer@{Neural\+Layer}}
+Inheritance diagram for Neural\+Layer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_neural_layer}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_neural_layer_ab314d73699d84855b5611ffd9b526da2}\label{class_neural_layer_ab314d73699d84855b5611ffd9b526da2}} 
+virtual void {\bfseries Forward} (\hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ \&prev\+Outputs)
+\item 
+\mbox{\Hypertarget{class_neural_layer_a05fc717e06e6f287d5b1e8ea69f56727}\label{class_neural_layer_a05fc717e06e6f287d5b1e8ea69f56727}} 
+virtual void {\bfseries Back} (\hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ \&next\+Layer\+Delta)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_neural_layer_a33736379abd178ba2ab394ad39a2e284}\label{class_neural_layer_a33736379abd178ba2ab394ad39a2e284}} 
+{\bfseries Neural\+Layer} (\hyperlink{class_neural_layer}{Neural\+Layer} $\ast$Prev\+Layer, \hyperlink{struct_perceptron_1_1_network_params}{Network\+Params} \&\hyperlink{struct_perceptron_1_1_network_params}{Network\+Params}, \hyperlink{struct_perceptron_1_1_layer_params}{Layer\+Params} \&Params)
+\item 
+\mbox{\Hypertarget{class_neural_layer_a4d000e0a192aa8f22f04762b7d208357}\label{class_neural_layer_a4d000e0a192aa8f22f04762b7d208357}} 
+int {\bfseries Layer\+Size} ()
+\item 
+\mbox{\Hypertarget{class_neural_layer_a3e565a98ae1d7353795575f575de1830}\label{class_neural_layer_a3e565a98ae1d7353795575f575de1830}} 
+float {\bfseries Activation\+Func} (float x)
+\item 
+\mbox{\Hypertarget{class_neural_layer_af2c164486c9757912f72ff06ab976d39}\label{class_neural_layer_af2c164486c9757912f72ff06ab976d39}} 
+float {\bfseries Activation\+Func\+Derivative} (float x)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_neural_layer_a0575450e10a3dfecccb9b567362524a2}\label{class_neural_layer_a0575450e10a3dfecccb9b567362524a2}} 
+\hyperlink{class_neural_layer}{Neural\+Layer} $\ast$ {\bfseries prev\+Layer}
+\item 
+\mbox{\Hypertarget{class_neural_layer_a071cf761219aecb1d9da97ee44fad3f9}\label{class_neural_layer_a071cf761219aecb1d9da97ee44fad3f9}} 
+\hyperlink{class_neural_layer}{Neural\+Layer} $\ast$ {\bfseries next\+Layer}
+\item 
+\mbox{\Hypertarget{class_neural_layer_a794bdd594ee597d8a99b215918b9432f}\label{class_neural_layer_a794bdd594ee597d8a99b215918b9432f}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ \hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ $>$ {\bfseries input\+Weights}
+\item 
+\mbox{\Hypertarget{class_neural_layer_ac0aaf690cb59e39d41a12f1539cd36c9}\label{class_neural_layer_ac0aaf690cb59e39d41a12f1539cd36c9}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ \hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ $>$ {\bfseries weights\+Delta}
+\item 
+\mbox{\Hypertarget{class_neural_layer_a763937d2bd27d69eca03dcc9e3be9a94}\label{class_neural_layer_a763937d2bd27d69eca03dcc9e3be9a94}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ \hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ $>$ $\ast$ {\bfseries output\+Weights}
+\item 
+\mbox{\Hypertarget{class_neural_layer_a117e02be83ba7a29e138db5d4d9cefdb}\label{class_neural_layer_a117e02be83ba7a29e138db5d4d9cefdb}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ {\bfseries inputs}
+\item 
+\mbox{\Hypertarget{class_neural_layer_aac577824274773371ffd9d2aff6a0d7e}\label{class_neural_layer_aac577824274773371ffd9d2aff6a0d7e}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ {\bfseries outputs}
+\item 
+\mbox{\Hypertarget{class_neural_layer_a7e9fb43f260d94c21ac7604ac0477367}\label{class_neural_layer_a7e9fb43f260d94c21ac7604ac0477367}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ {\bfseries layer\+Delta}
+\item 
+\mbox{\Hypertarget{class_neural_layer_af59922df5ffe0e8635e450c271a15ba4}\label{class_neural_layer_af59922df5ffe0e8635e450c271a15ba4}} 
+\hyperlink{struct_perceptron_1_1_layer_params}{Layer\+Params} {\bfseries params}
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_neural_layer_ac3d37a368a77b07386981ecd0e0e55bb}\label{class_neural_layer_ac3d37a368a77b07386981ecd0e0e55bb}} 
+typedef \hyperlink{struct_perceptron_1_1_network_params}{Perceptron\+::\+Network\+Params} {\bfseries Network\+Params}
+\item 
+\mbox{\Hypertarget{class_neural_layer_a9a46b30c0d9d329e3d2d943ae628683f}\label{class_neural_layer_a9a46b30c0d9d329e3d2d943ae628683f}} 
+typedef \hyperlink{struct_perceptron_1_1_layer_params}{Perceptron\+::\+Layer\+Params} {\bfseries Layer\+Params}
+\item 
+\mbox{\Hypertarget{class_neural_layer_a236cebae478f3f55e8256ce1b554bcb3}\label{class_neural_layer_a236cebae478f3f55e8256ce1b554bcb3}} 
+typedef Perceptron\+::\+Layer\+Type {\bfseries Layer\+Type}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Neural\+Network\+Model/\+Perceptron/neurallayer.\+h\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Neural\+Network\+Model/\+Perceptron/neurallayer.\+cpp\end{DoxyCompactItemize}

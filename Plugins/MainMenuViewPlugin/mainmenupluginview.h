@@ -14,7 +14,7 @@ class MainMenuPluginView : public QObject, IViewPlugin
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(IViewPlugin)
 
-private:
+private:    
     IMainMenuPluginModel *myModel;
     MainForm *mainForm;
     IMainMenuPluginModel::MenuItem *rootMenuItem;

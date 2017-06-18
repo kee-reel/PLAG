@@ -2,13 +2,14 @@
 #define INTERFACES_H
 
 #include "../../System/MASS/rootinterface.h"
-
 class QString;
 class QVariant;
 class QSqlDatabase;
 class QSqlQuery;
 template <class A> class QList;
 
+//! \addtogroup key_interfaces Key interfaces
+//! @{
 enum PluginTypes{
     ROOTMODEL,
     PLUGINMODEL,
@@ -89,4 +90,5 @@ public:
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
 
+//! @}
 #endif // INTERFACES_H

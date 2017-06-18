@@ -1,0 +1,80 @@
+\hypertarget{class_genetic_algorithm}{}\section{Genetic\+Algorithm Class Reference}
+\label{class_genetic_algorithm}\index{Genetic\+Algorithm@{Genetic\+Algorithm}}
+Inheritance diagram for Genetic\+Algorithm\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_genetic_algorithm}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_adc2ff9ec8816b0979a3b3ac61e364518}\label{class_genetic_algorithm_adc2ff9ec8816b0979a3b3ac61e364518}} 
+float {\bfseries Evaluate\+Fitness} (\hyperlink{class_chromosome}{Chromosome} $\ast$chromosome)
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a8013ce6b1043de624b679c2d109ed80d}\label{class_genetic_algorithm_a8013ce6b1043de624b679c2d109ed80d}} 
+bool {\bfseries Set\+Network\+Params} (Q\+Json\+Object params\+Obj) override
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_aa7e7cd7c3026f12e56f904106e90e8f0}\label{class_genetic_algorithm_aa7e7cd7c3026f12e56f904106e90e8f0}} 
+void {\bfseries Setup\+SamplesF} (Q\+Json\+Object parameters, \hyperlink{class_q_vector}{Q\+Vector}$<$ \hyperlink{class_q_pair}{Input\+SampleF} $>$ $\ast$samples) override
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a5d75f5d038e6a59dc45ac778d04b1979}\label{class_genetic_algorithm_a5d75f5d038e6a59dc45ac778d04b1979}} 
+void {\bfseries Setup\+SamplesI} (Q\+Json\+Object parameters, \hyperlink{class_q_vector}{Q\+Vector}$<$ \hyperlink{class_q_pair}{Input\+SampleI} $>$ $\ast$samples) override
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a164e48b38c6f9113bd436cce18a93b65}\label{class_genetic_algorithm_a164e48b38c6f9113bd436cce18a93b65}} 
+bool {\bfseries Add\+Layer} (Q\+Json\+Object layer\+Params) override
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_af2ce8f9def4f4eddc7b8aa471705d8a6}\label{class_genetic_algorithm_af2ce8f9def4f4eddc7b8aa471705d8a6}} 
+void {\bfseries Reset\+Layers} () override
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_ad0cad1893056640d411928eb5184f199}\label{class_genetic_algorithm_ad0cad1893056640d411928eb5184f199}} 
+float {\bfseries Run\+Train\+Set} () override
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_ac6b7a46cf3b71a79b4ae2612a2802607}\label{class_genetic_algorithm_ac6b7a46cf3b71a79b4ae2612a2802607}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ {\bfseries Run\+Training\+And\+Get\+Result} () override
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a6e56ca20f24e96e80007091f6a7d2acd}\label{class_genetic_algorithm_a6e56ca20f24e96e80007091f6a7d2acd}} 
+float {\bfseries Run\+Test\+Set} () override
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a58957ce0d547dc7c634a6048ce7a33bb}\label{class_genetic_algorithm_a58957ce0d547dc7c634a6048ce7a33bb}} 
+static \hyperlink{class_genetic_algorithm}{Genetic\+Algorithm} $\ast$ {\bfseries Make} (Q\+Json\+Object \&params\+Obj)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a51b416181ed5e839a55b245f02c430af}\label{class_genetic_algorithm_a51b416181ed5e839a55b245f02c430af}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ \hyperlink{class_chromosome}{Chromosome} $\ast$ $>$ {\bfseries chromosomes}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a08449fb8e9c0ca13f715efc46c7c3861}\label{class_genetic_algorithm_a08449fb8e9c0ca13f715efc46c7c3861}} 
+\hyperlink{struct_genetic_algorithm_params_1_1_parameters}{Parameters} {\bfseries params}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a413c9f0712074cc8dc4794b55cdadd97}\label{class_genetic_algorithm_a413c9f0712074cc8dc4794b55cdadd97}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ \hyperlink{class_chromosome}{Chromosome} $\ast$ $>$ {\bfseries breed\+Chromosomes}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_aeb4dc5fb05dab4240068c7bb6c29362d}\label{class_genetic_algorithm_aeb4dc5fb05dab4240068c7bb6c29362d}} 
+\hyperlink{class_q_map}{Q\+Map}$<$ float, \hyperlink{class_chromosome}{Chromosome} $\ast$ $>$ {\bfseries tournir\+Table}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_aa2f60ca6342c57ff7217f678d7a02819}\label{class_genetic_algorithm_aa2f60ca6342c57ff7217f678d7a02819}} 
+Q\+String\+List {\bfseries variables}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a732eb5d24e9f796b8f708debdf7172e1}\label{class_genetic_algorithm_a732eb5d24e9f796b8f708debdf7172e1}} 
+Q\+Script\+Engine $\ast$ {\bfseries my\+Engine}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a0c210545dc459ca999ee52783e688b53}\label{class_genetic_algorithm_a0c210545dc459ca999ee52783e688b53}} 
+Q\+Script\+Value {\bfseries func}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a744b4cccc0f9df8fdca9f573d0a5cd07}\label{class_genetic_algorithm_a744b4cccc0f9df8fdca9f573d0a5cd07}} 
+Q\+Script\+Value\+List {\bfseries func\+Ags}
+\item 
+\mbox{\Hypertarget{class_genetic_algorithm_a0af9a260dbff950b59184cde5cdc236f}\label{class_genetic_algorithm_a0af9a260dbff950b59184cde5cdc236f}} 
+float {\bfseries max\+Fitness} = 0
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Neural\+Network\+Model/\+Genetic\+Algorithm/geneticalgorithm.\+h\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Neural\+Network\+Model/\+Genetic\+Algorithm/geneticalgorithm.\+cpp\end{DoxyCompactItemize}

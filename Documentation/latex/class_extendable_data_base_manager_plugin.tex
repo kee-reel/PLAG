@@ -1,0 +1,56 @@
+\hypertarget{class_extendable_data_base_manager_plugin}{}\section{Extendable\+Data\+Base\+Manager\+Plugin Class Reference}
+\label{class_extendable_data_base_manager_plugin}\index{Extendable\+Data\+Base\+Manager\+Plugin@{Extendable\+Data\+Base\+Manager\+Plugin}}
+Inheritance diagram for Extendable\+Data\+Base\+Manager\+Plugin\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_extendable_data_base_manager_plugin}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a8331c3bd54725a10f79bcacde178774b}\label{class_extendable_data_base_manager_plugin_a8331c3bd54725a10f79bcacde178774b}} 
+virtual void {\bfseries On\+All\+Setup} ()
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a168d8e9dadf224d24c855fe376569857}\label{class_extendable_data_base_manager_plugin_a168d8e9dadf224d24c855fe376569857}} 
+virtual Q\+String {\bfseries Get\+Last\+Error} ()
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_aa28d8bd15f2547b70e82452bdd8d0c70}\label{class_extendable_data_base_manager_plugin_aa28d8bd15f2547b70e82452bdd8d0c70}} 
+bool {\bfseries Set\+Data\+Source} (Q\+Object $\ast$data\+Source) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a2c2450f08baccb26e3aade32a5879f27}\label{class_extendable_data_base_manager_plugin_a2c2450f08baccb26e3aade32a5879f27}} 
+\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_i_extendable_data_base_manager_plugin_1_1_manager_data_item}{Manager\+Data\+Item} $>$ {\bfseries Get\+Data\+List} (Q\+String table\+Name) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a1027e67334110767807dccd64cd4946d}\label{class_extendable_data_base_manager_plugin_a1027e67334110767807dccd64cd4946d}} 
+\hyperlink{class_i_extendable_data_base_manager_plugin_1_1_manager_data_item}{Manager\+Data\+Item} {\bfseries Get\+Data\+Item} (Q\+String table\+Name, int id) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a32a7f0127593a70e827b39a462cb6d02}\label{class_extendable_data_base_manager_plugin_a32a7f0127593a70e827b39a462cb6d02}} 
+Q\+Abstract\+Item\+Model $\ast$ {\bfseries Get\+Data\+Model} (Q\+String table\+Name) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a8ddef0ec955d01c3e59f5dec90eed26b}\label{class_extendable_data_base_manager_plugin_a8ddef0ec955d01c3e59f5dec90eed26b}} 
+\hyperlink{class_q_map}{Q\+Map}$<$ Q\+String, Q\+Variant\+::\+Type $>$ {\bfseries Get\+Table\+Header} (Q\+String table\+Name) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a572eff2f383b0be3e99178e6dcee78e9}\label{class_extendable_data_base_manager_plugin_a572eff2f383b0be3e99178e6dcee78e9}} 
+bool {\bfseries Set\+Relation} (Q\+String table\+Name, Q\+String relation\+Name, \hyperlink{class_q_map}{Q\+Map}$<$ Q\+String, Q\+Variant\+::\+Type $>$ fields, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ default\+Data) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a75fccf6c256cf6500ac1d7421c131bc2}\label{class_extendable_data_base_manager_plugin_a75fccf6c256cf6500ac1d7421c131bc2}} 
+bool {\bfseries Delete\+Relation} (Q\+String table\+Name, Q\+String relation\+Name) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a2a8f2e7f2fbeef891da297dadd0cd548}\label{class_extendable_data_base_manager_plugin_a2a8f2e7f2fbeef891da297dadd0cd548}} 
+bool {\bfseries Set\+Active\+Relation} (Q\+String table\+Name, Q\+String relation\+Name) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a1fe950472f4798d7278dca6b24055c9c}\label{class_extendable_data_base_manager_plugin_a1fe950472f4798d7278dca6b24055c9c}} 
+int {\bfseries Add\+Item} (Q\+String table\+Name, \hyperlink{class_i_extendable_data_base_manager_plugin_1_1_manager_data_item}{Manager\+Data\+Item} item) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a09ee5b2121ac6f5e3311701a59584fc6}\label{class_extendable_data_base_manager_plugin_a09ee5b2121ac6f5e3311701a59584fc6}} 
+bool {\bfseries Edit\+Item} (Q\+String table\+Name, \hyperlink{class_i_extendable_data_base_manager_plugin_1_1_manager_data_item}{Manager\+Data\+Item} item) override
+\item 
+\mbox{\Hypertarget{class_extendable_data_base_manager_plugin_a91081c54f128faf88cc4f25aaf9980f4}\label{class_extendable_data_base_manager_plugin_a91081c54f128faf88cc4f25aaf9980f4}} 
+bool {\bfseries Delete\+Item} (Q\+String table\+Name, int id) override
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Extendable\+Data\+Base\+Manager/extendabledatabasemanagerplugin.\+h\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Extendable\+Data\+Base\+Manager/extendabledatabasemanagerplugin.\+cpp\end{DoxyCompactItemize}

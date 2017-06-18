@@ -1,0 +1,137 @@
+\hypertarget{class_item}{}\section{Item Class Reference}
+\label{class_item}\index{Item@{Item}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_item_aef96722ef425ab3794691db85ba4abd6}\label{class_item_aef96722ef425ab3794691db85ba4abd6}} 
+{\bfseries Item} (\hyperlink{class_item}{Item} $\ast$parent, \hyperlink{class_item}{Item} $\ast$copy)
+\item 
+\mbox{\Hypertarget{class_item_a27fb96423d6e35b384b226bc3408b348}\label{class_item_a27fb96423d6e35b384b226bc3408b348}} 
+{\bfseries Item} (\hyperlink{class_item}{Item} $\ast$parent, int id, Q\+String active\+Chunk, \hyperlink{class_q_map}{Q\+Map}$<$ Q\+String, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$$>$ data\+Chunks)
+\item 
+\mbox{\Hypertarget{class_item_ae09610bc79b15b17cce0428661b14a88}\label{class_item_ae09610bc79b15b17cce0428661b14a88}} 
+int {\bfseries Column\+Count} ()
+\item 
+\mbox{\Hypertarget{class_item_adad3b372e59e9b033d3f8dc371fac651}\label{class_item_adad3b372e59e9b033d3f8dc371fac651}} 
+int {\bfseries Get\+Row} ()
+\item 
+\mbox{\Hypertarget{class_item_a279eb94495d56f33e8779f1de7110681}\label{class_item_a279eb94495d56f33e8779f1de7110681}} 
+void {\bfseries Set\+Childs} (\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_item}{Item} $\ast$$>$ childs)
+\item 
+\mbox{\Hypertarget{class_item_a6a98cb08e94548f37614132f663f5dfb}\label{class_item_a6a98cb08e94548f37614132f663f5dfb}} 
+void {\bfseries Add\+Child} (int row, \hyperlink{class_item}{Item} $\ast$child)
+\item 
+\mbox{\Hypertarget{class_item_ab77ee89c1d573571d46276904ddea022}\label{class_item_ab77ee89c1d573571d46276904ddea022}} 
+void {\bfseries Remove\+Child} (\hyperlink{class_item}{Item} $\ast$child)
+\item 
+\mbox{\Hypertarget{class_item_a88f43c96e836f5a1473763fd0e8846bb}\label{class_item_a88f43c96e836f5a1473763fd0e8846bb}} 
+void {\bfseries Remove\+Child\+At} (int row)
+\item 
+\mbox{\Hypertarget{class_item_a80ac5f26c6d125de147b2c5aae8631c7}\label{class_item_a80ac5f26c6d125de147b2c5aae8631c7}} 
+\hyperlink{class_item}{Item} $\ast$ {\bfseries Get\+Child\+At} (int row)
+\item 
+\mbox{\Hypertarget{class_item_a9324d6e789340e65394bea357954e6e1}\label{class_item_a9324d6e789340e65394bea357954e6e1}} 
+int {\bfseries Child\+Count} ()
+\item 
+\mbox{\Hypertarget{class_item_afccf539d108a9b083b67105ccb548f11}\label{class_item_afccf539d108a9b083b67105ccb548f11}} 
+int {\bfseries Get\+Child\+Position} (\hyperlink{class_item}{Item} $\ast$item)
+\item 
+\mbox{\Hypertarget{class_item_accef83c1103296fc80b30a809e7ae293}\label{class_item_accef83c1103296fc80b30a809e7ae293}} 
+void {\bfseries Set\+Active\+Chunk\+Name} (Q\+String \&active\+Chunk)
+\item 
+\mbox{\Hypertarget{class_item_ab50d988f2abaaa6a0803b1d35d239220}\label{class_item_ab50d988f2abaaa6a0803b1d35d239220}} 
+\hyperlink{class_q_list}{Q\+List}$<$ Q\+String $>$ {\bfseries Get\+Chunks\+Names} ()
+\item 
+\mbox{\Hypertarget{class_item_af0ee587a5f74c92bd4d9a902a6a7e0d3}\label{class_item_af0ee587a5f74c92bd4d9a902a6a7e0d3}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ {\bfseries Get\+Chunk\+Data} (Q\+String chunk\+Name=\char`\"{}\char`\"{})
+\item 
+\mbox{\Hypertarget{class_item_a6f25765ce2c56248e04d04ebec90d34d}\label{class_item_a6f25765ce2c56248e04d04ebec90d34d}} 
+Q\+Variant {\bfseries Get\+Chunk\+Data\+Element} (int column)
+\item 
+\mbox{\Hypertarget{class_item_a0617312073b3d751518cfd6269c25c0a}\label{class_item_a0617312073b3d751518cfd6269c25c0a}} 
+void {\bfseries Set\+Chunk\+Data} (Q\+String chunk\+Name, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ data)
+\item 
+\mbox{\Hypertarget{class_item_a2206a4c379b351c9cbbe2406399d2b30}\label{class_item_a2206a4c379b351c9cbbe2406399d2b30}} 
+void {\bfseries Set\+Chunk\+Data\+Element} (int column, Q\+Variant data)
+\item 
+\mbox{\Hypertarget{class_item_ab0fa052dc1e0dc785767d25a6010ea13}\label{class_item_ab0fa052dc1e0dc785767d25a6010ea13}} 
+void {\bfseries Set\+Decoration} (Q\+Variant pixmap)
+\item 
+\mbox{\Hypertarget{class_item_ad74957af2eb1996ebdcece4ccdb11c4d}\label{class_item_ad74957af2eb1996ebdcece4ccdb11c4d}} 
+Q\+Variant {\bfseries Get\+Decoration} ()
+\item 
+\mbox{\Hypertarget{class_item_a3466b4b51b244ccbcac853ee7240af47}\label{class_item_a3466b4b51b244ccbcac853ee7240af47}} 
+int {\bfseries Get\+Id} ()
+\item 
+\mbox{\Hypertarget{class_item_a46a50959228845fc8d4c1a1e3cdfc9a3}\label{class_item_a46a50959228845fc8d4c1a1e3cdfc9a3}} 
+void {\bfseries Set\+Id} (int id)
+\item 
+\mbox{\Hypertarget{class_item_aef96722ef425ab3794691db85ba4abd6}\label{class_item_aef96722ef425ab3794691db85ba4abd6}} 
+{\bfseries Item} (\hyperlink{class_item}{Item} $\ast$parent, \hyperlink{class_item}{Item} $\ast$copy)
+\item 
+\mbox{\Hypertarget{class_item_a27fb96423d6e35b384b226bc3408b348}\label{class_item_a27fb96423d6e35b384b226bc3408b348}} 
+{\bfseries Item} (\hyperlink{class_item}{Item} $\ast$parent, int id, Q\+String active\+Chunk, \hyperlink{class_q_map}{Q\+Map}$<$ Q\+String, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$$>$ data\+Chunks)
+\item 
+\mbox{\Hypertarget{class_item_ae09610bc79b15b17cce0428661b14a88}\label{class_item_ae09610bc79b15b17cce0428661b14a88}} 
+int {\bfseries Column\+Count} ()
+\item 
+\mbox{\Hypertarget{class_item_adad3b372e59e9b033d3f8dc371fac651}\label{class_item_adad3b372e59e9b033d3f8dc371fac651}} 
+int {\bfseries Get\+Row} ()
+\item 
+\mbox{\Hypertarget{class_item_a279eb94495d56f33e8779f1de7110681}\label{class_item_a279eb94495d56f33e8779f1de7110681}} 
+void {\bfseries Set\+Childs} (\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_item}{Item} $\ast$$>$ childs)
+\item 
+\mbox{\Hypertarget{class_item_a6a98cb08e94548f37614132f663f5dfb}\label{class_item_a6a98cb08e94548f37614132f663f5dfb}} 
+void {\bfseries Add\+Child} (int row, \hyperlink{class_item}{Item} $\ast$child)
+\item 
+\mbox{\Hypertarget{class_item_ab77ee89c1d573571d46276904ddea022}\label{class_item_ab77ee89c1d573571d46276904ddea022}} 
+void {\bfseries Remove\+Child} (\hyperlink{class_item}{Item} $\ast$child)
+\item 
+\mbox{\Hypertarget{class_item_a88f43c96e836f5a1473763fd0e8846bb}\label{class_item_a88f43c96e836f5a1473763fd0e8846bb}} 
+void {\bfseries Remove\+Child\+At} (int row)
+\item 
+\mbox{\Hypertarget{class_item_a80ac5f26c6d125de147b2c5aae8631c7}\label{class_item_a80ac5f26c6d125de147b2c5aae8631c7}} 
+\hyperlink{class_item}{Item} $\ast$ {\bfseries Get\+Child\+At} (int row)
+\item 
+\mbox{\Hypertarget{class_item_a9324d6e789340e65394bea357954e6e1}\label{class_item_a9324d6e789340e65394bea357954e6e1}} 
+int {\bfseries Child\+Count} ()
+\item 
+\mbox{\Hypertarget{class_item_afccf539d108a9b083b67105ccb548f11}\label{class_item_afccf539d108a9b083b67105ccb548f11}} 
+int {\bfseries Get\+Child\+Position} (\hyperlink{class_item}{Item} $\ast$item)
+\item 
+\mbox{\Hypertarget{class_item_accef83c1103296fc80b30a809e7ae293}\label{class_item_accef83c1103296fc80b30a809e7ae293}} 
+void {\bfseries Set\+Active\+Chunk\+Name} (Q\+String \&active\+Chunk)
+\item 
+\mbox{\Hypertarget{class_item_a68ce6aeeb3977fda454f680811de37a4}\label{class_item_a68ce6aeeb3977fda454f680811de37a4}} 
+\hyperlink{class_q_list}{Q\+List}$<$ Q\+String $>$ {\bfseries Get\+Chunks\+Names} ()
+\item 
+\mbox{\Hypertarget{class_item_adbc518bc597ca7a811dc4ec9dad3e51b}\label{class_item_adbc518bc597ca7a811dc4ec9dad3e51b}} 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ {\bfseries Get\+Chunk\+Data} (Q\+String chunk\+Name)
+\item 
+\mbox{\Hypertarget{class_item_a6f25765ce2c56248e04d04ebec90d34d}\label{class_item_a6f25765ce2c56248e04d04ebec90d34d}} 
+Q\+Variant {\bfseries Get\+Chunk\+Data\+Element} (int column)
+\item 
+\mbox{\Hypertarget{class_item_a0617312073b3d751518cfd6269c25c0a}\label{class_item_a0617312073b3d751518cfd6269c25c0a}} 
+void {\bfseries Set\+Chunk\+Data} (Q\+String chunk\+Name, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ data)
+\item 
+\mbox{\Hypertarget{class_item_a2206a4c379b351c9cbbe2406399d2b30}\label{class_item_a2206a4c379b351c9cbbe2406399d2b30}} 
+void {\bfseries Set\+Chunk\+Data\+Element} (int column, Q\+Variant data)
+\item 
+\mbox{\Hypertarget{class_item_a3466b4b51b244ccbcac853ee7240af47}\label{class_item_a3466b4b51b244ccbcac853ee7240af47}} 
+int {\bfseries Get\+Id} ()
+\item 
+\mbox{\Hypertarget{class_item_a46a50959228845fc8d4c1a1e3cdfc9a3}\label{class_item_a46a50959228845fc8d4c1a1e3cdfc9a3}} 
+void {\bfseries Set\+Id} (int id)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_item_ac5078a594ac17181e0ee2d90c63e9aa1}\label{class_item_ac5078a594ac17181e0ee2d90c63e9aa1}} 
+\hyperlink{class_item}{Item} $\ast$ {\bfseries parent\+Item}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Extendable\+Data\+Base\+Manager/item.\+h\item 
+C\+:/\+Users/\+Curunir/\+Desktop/\+M\+A\+S\+S/\+Plugins/\+Extendable\+Data\+Base\+Manager/item.\+cpp\end{DoxyCompactItemize}

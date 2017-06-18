@@ -8,7 +8,9 @@
 #include <QVBoxLayout>
 
 #include "pluginloader.h"
-
+//!
+//! \brief The ParentWindow class
+//!
 class ParentWindow : public QWidget
 {
     Q_OBJECT
