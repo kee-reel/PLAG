@@ -16,7 +16,7 @@ public:
     class ManagerDataItem{
     public:
         int id;
-        QMap<QString, QVector<QVariant>> dataChunks;
+        QMap<QString, QVector<QVariant> > dataChunks;
     };
 
     virtual QList<ManagerDataItem> GetDataList(QString treeName) = 0;

@@ -31,10 +31,10 @@ public:
 private:
     QMap<QString, PluginTypes> pluginTypesNames;
 
-    QHash<QString, QVector<IDataManagerPlugin*>> sourceToManagersLink;
-    QHash<QString, QVector<IModelPlugin*>>       managerToModelsLink;
-    QHash<QString, QVector<IModelPlugin*>>       modelToModelsLink;
-    QHash<QString, QVector<IViewPlugin*>>        modelToViewsLink;
+    QHash<QString, QVector<IDataManagerPlugin*> > sourceToManagersLink;
+    QHash<QString, QVector<IModelPlugin*> >       managerToModelsLink;
+    QHash<QString, QVector<IModelPlugin*> >       modelToModelsLink;
+    QHash<QString, QVector<IViewPlugin*> >        modelToViewsLink;
 
     template <class T>
     struct LinkInfo
@@ -42,10 +42,10 @@ private:
         T *plugin;
         QObject *instance;
     };
-    QHash<QString, LinkInfo<IDataSourcePlugin>>  dataSourcesLinkInfo;
-    QHash<QString, LinkInfo<IDataManagerPlugin>> dataManagersLinkInfo;
-    QHash<QString, LinkInfo<IModelPlugin>>       modelsLinkInfo;
-    QHash<QString, LinkInfo<IViewPlugin>>        viewsLinkInfo;
+    QHash<QString, LinkInfo<IDataSourcePlugin> >  dataSourcesLinkInfo;
+    QHash<QString, LinkInfo<IDataManagerPlugin> > dataManagersLinkInfo;
+    QHash<QString, LinkInfo<IModelPlugin> >       modelsLinkInfo;
+    QHash<QString, LinkInfo<IViewPlugin> >        viewsLinkInfo;
 
     MetaInfo *GetPluginMeta(QJsonObject* metaData);
     bool BindPluginToSystem(QObject* instance, MetaInfo *meta);

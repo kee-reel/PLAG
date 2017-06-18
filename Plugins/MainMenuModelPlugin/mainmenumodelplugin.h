@@ -39,8 +39,8 @@ public:
     void RunItem(MenuItem *item, MetaInfo *viewMeta) override;
 
 private:
-    QList<PluginInfo<IModelPlugin>> childModels;
-    QList<PluginInfo<IViewPlugin>> views;
+    QList< PluginInfo<IModelPlugin> > childModels;
+    QList< PluginInfo<IViewPlugin> > views;
 
     QWidget *parentWidget;
     int activeViewId;

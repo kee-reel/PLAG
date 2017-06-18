@@ -78,7 +78,7 @@ void PluginLoader::SetupPlugins()
     QDir libsDir(internalPluginsPath);
     qDebug() << "Path" << libsDir.absolutePath();
     QApplication::addLibraryPath(internalPluginsPath.absolutePath());
-    foreach (QString file, libsDir.entryList(QDir::Files))
+    foreach (QString file, libsDir.entryList(QDir::AllEntries))
     {
         SetupPlugin(libsDir.absolutePath() + "/" + file);
     }

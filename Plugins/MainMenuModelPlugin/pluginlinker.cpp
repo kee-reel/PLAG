@@ -208,7 +208,7 @@ void PluginLinker::LinkSourceToManagers()
 {
     // Search for related DataSources
     qDebug() << "=====Linking" << sourceToManagersLink.count() << " IDataSources";
-    QHash<QString, QVector<IDataManagerPlugin*>>::Iterator dataSourceIter = sourceToManagersLink.begin();
+    QHash<QString, QVector<IDataManagerPlugin*> >::Iterator dataSourceIter = sourceToManagersLink.begin();
     while(dataSourceIter != sourceToManagersLink.end())
     {
         qDebug() << "Linking DataSource " << dataSourceIter.key();
@@ -224,7 +224,7 @@ void PluginLinker::LinkManagerToModels()
 {
     qDebug() << "=====Linking" << managerToModelsLink.count() << "IDataManagers";
     // Search for related DataManagers
-    QHash<QString, QVector<IModelPlugin*>>::Iterator dataManagerIter = managerToModelsLink.begin();
+    QHash<QString, QVector<IModelPlugin*> >::Iterator dataManagerIter = managerToModelsLink.begin();
     while(dataManagerIter != managerToModelsLink.end())
     {
         if(dataManagersLinkInfo.contains(dataManagerIter.key()))
@@ -241,7 +241,7 @@ void PluginLinker::LinkManagerToModels()
 void PluginLinker::LinkModelToModels()
 {
     qDebug() << "=====Linking" << modelToModelsLink.count() << "IPluginModels";
-    QHash<QString, QVector<IModelPlugin*>>::Iterator pluginModelIter = modelToModelsLink.begin();
+    QHash<QString, QVector<IModelPlugin*> >::Iterator pluginModelIter = modelToModelsLink.begin();
     while(pluginModelIter != modelToModelsLink.end())
     {
         if(modelsLinkInfo.contains(pluginModelIter.key()))
@@ -267,7 +267,7 @@ void PluginLinker::LinkModelToModels()
 void PluginLinker::LinkModelToViews()
 {
     qDebug() << "=====Linking" << modelToViewsLink.count() << "IPluginViews" << modelsLinkInfo.count();
-    QHash<QString, QVector<IViewPlugin*>>::Iterator pluginModelIter = modelToViewsLink.begin();
+    QHash<QString, QVector<IViewPlugin*> >::Iterator pluginModelIter = modelToViewsLink.begin();
     while(pluginModelIter != modelToViewsLink.end())
     {
         qDebug() << "?" << pluginModelIter.key();
