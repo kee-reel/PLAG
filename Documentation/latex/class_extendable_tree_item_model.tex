@@ -1,0 +1,98 @@
+\hypertarget{class_extendable_tree_item_model}{}\section{Extendable\+Tree\+Item\+Model Class Reference}
+\label{class_extendable_tree_item_model}\index{Extendable\+Tree\+Item\+Model@{Extendable\+Tree\+Item\+Model}}
+
+
+Inheritance diagram for Extendable\+Tree\+Item\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{class_extendable_tree_item_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Extendable\+Tree\+Item\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_extendable_tree_item_model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Extendable\+Tree\+Item\+Model} (Q\+String table\+Name, \hyperlink{class_i_extendable_data_base_manager_plugin}{I\+Extendable\+Data\+Base\+Manager\+Plugin} $\ast$data\+Manager, Q\+Object $\ast$parent=0)\hypertarget{class_extendable_tree_item_model_a44c736cca0dde9d9ca5c295ebc85fdfe}{}\label{class_extendable_tree_item_model_a44c736cca0dde9d9ca5c295ebc85fdfe}
+
+\item 
+void {\bfseries Load\+Data} ()\hypertarget{class_extendable_tree_item_model_acb01ad7e561a6471b7361ea50fe84c01}{}\label{class_extendable_tree_item_model_acb01ad7e561a6471b7361ea50fe84c01}
+
+\item 
+bool {\bfseries Attach\+Relation} (\hyperlink{class_q_map}{Q\+Map}$<$ Q\+String, Q\+Variant\+::\+Type $>$ relation\+Struct, Q\+String relation\+Name, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ default\+Data)\hypertarget{class_extendable_tree_item_model_ac5899069b1919eaa044e729f8a19ef93}{}\label{class_extendable_tree_item_model_ac5899069b1919eaa044e729f8a19ef93}
+
+\item 
+void {\bfseries Set\+Active\+Relation} (Q\+String relation\+Name)\hypertarget{class_extendable_tree_item_model_afdfd8ef7a227883e0d6b8916690ab383}{}\label{class_extendable_tree_item_model_afdfd8ef7a227883e0d6b8916690ab383}
+
+\item 
+Q\+Variant {\bfseries data} (const Q\+Model\+Index \&index, int role) const \hypertarget{class_extendable_tree_item_model_ab43719bc7e2e260580d03a272166335a}{}\label{class_extendable_tree_item_model_ab43719bc7e2e260580d03a272166335a}
+
+\item 
+Qt\+::\+Item\+Flags {\bfseries flags} (const Q\+Model\+Index \&index) const \hypertarget{class_extendable_tree_item_model_a95a04407e8dfe9bb21abc500cb931b35}{}\label{class_extendable_tree_item_model_a95a04407e8dfe9bb21abc500cb931b35}
+
+\item 
+Q\+Variant {\bfseries header\+Data} (int section, Qt\+::\+Orientation orientation, int role=Qt\+::\+Display\+Role) const \hypertarget{class_extendable_tree_item_model_ac50aecb40d68743484d2b94af2335da4}{}\label{class_extendable_tree_item_model_ac50aecb40d68743484d2b94af2335da4}
+
+\item 
+Q\+Model\+Index {\bfseries index} (int row, int column, const Q\+Model\+Index \&parent=Q\+Model\+Index()) const \hypertarget{class_extendable_tree_item_model_aec310edeefe5367c14135f4912833148}{}\label{class_extendable_tree_item_model_aec310edeefe5367c14135f4912833148}
+
+\item 
+Q\+Model\+Index {\bfseries parent} (const Q\+Model\+Index \&index) const \hypertarget{class_extendable_tree_item_model_a20d33b970a4b657464e8a81a741b6260}{}\label{class_extendable_tree_item_model_a20d33b970a4b657464e8a81a741b6260}
+
+\item 
+int {\bfseries row\+Count} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const \hypertarget{class_extendable_tree_item_model_a0ae57bcc0927419e70dd6385d37731c9}{}\label{class_extendable_tree_item_model_a0ae57bcc0927419e70dd6385d37731c9}
+
+\item 
+int {\bfseries column\+Count} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const \hypertarget{class_extendable_tree_item_model_a8c21281b00c5c1553dc9c3d162333582}{}\label{class_extendable_tree_item_model_a8c21281b00c5c1553dc9c3d162333582}
+
+\item 
+bool {\bfseries insert\+Rows} (int row, int count, const Q\+Model\+Index \&parent) override\hypertarget{class_extendable_tree_item_model_a60423d77dbf3227fcf76e721c22ee591}{}\label{class_extendable_tree_item_model_a60423d77dbf3227fcf76e721c22ee591}
+
+\item 
+bool {\bfseries insert\+Columns} (int column, int count, const Q\+Model\+Index \&parent) override\hypertarget{class_extendable_tree_item_model_a0d3d16a109c3cac703ca20de6c50a45e}{}\label{class_extendable_tree_item_model_a0d3d16a109c3cac703ca20de6c50a45e}
+
+\item 
+bool {\bfseries remove\+Rows} (int row, int count, const Q\+Model\+Index \&parent) override\hypertarget{class_extendable_tree_item_model_a6657cfabdb3f8f696223b04a64661562}{}\label{class_extendable_tree_item_model_a6657cfabdb3f8f696223b04a64661562}
+
+\item 
+bool {\bfseries move\+Rows} (const Q\+Model\+Index \&source\+Parent, int source\+Row, int count, const Q\+Model\+Index \&destination\+Parent, int destination\+Child) override\hypertarget{class_extendable_tree_item_model_ac23f589bb25aaa93534b37e2d08f1cbd}{}\label{class_extendable_tree_item_model_ac23f589bb25aaa93534b37e2d08f1cbd}
+
+\item 
+bool {\bfseries set\+Data} (const Q\+Model\+Index \&index, const Q\+Variant \&value, int role) override\hypertarget{class_extendable_tree_item_model_ade1332b1bb879ba4a621898b72037c8d}{}\label{class_extendable_tree_item_model_ade1332b1bb879ba4a621898b72037c8d}
+
+\item 
+Q\+String\+List {\bfseries mime\+Types} () const override\hypertarget{class_extendable_tree_item_model_ab3fd3745761bab08ed049cf84386241d}{}\label{class_extendable_tree_item_model_ab3fd3745761bab08ed049cf84386241d}
+
+\item 
+Q\+Mime\+Data $\ast$ {\bfseries mime\+Data} (const Q\+Model\+Index\+List \&indexes) const override\hypertarget{class_extendable_tree_item_model_a417f3c9c45819e586b97d3784c016e79}{}\label{class_extendable_tree_item_model_a417f3c9c45819e586b97d3784c016e79}
+
+\item 
+bool {\bfseries drop\+Mime\+Data} (const Q\+Mime\+Data $\ast$data, Qt\+::\+Drop\+Action action, int row, int column, const Q\+Model\+Index \&parent) override\hypertarget{class_extendable_tree_item_model_a0ba7b75a8cd3406e52237f85e97017b2}{}\label{class_extendable_tree_item_model_a0ba7b75a8cd3406e52237f85e97017b2}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+String {\bfseries table\+Name}\hypertarget{class_extendable_tree_item_model_a66679a4354b3e64b53b73fbe54ce0dfc}{}\label{class_extendable_tree_item_model_a66679a4354b3e64b53b73fbe54ce0dfc}
+
+\item 
+Q\+String {\bfseries core\+Relation\+Name}\hypertarget{class_extendable_tree_item_model_a641619506ce41dd28183b461ea8c5fda}{}\label{class_extendable_tree_item_model_a641619506ce41dd28183b461ea8c5fda}
+
+\item 
+\hyperlink{class_i_extendable_data_base_manager_plugin}{I\+Extendable\+Data\+Base\+Manager\+Plugin} $\ast$ {\bfseries data\+Manager}\hypertarget{class_extendable_tree_item_model_a4811726ebb543469630ff4b5eb4d6c35}{}\label{class_extendable_tree_item_model_a4811726ebb543469630ff4b5eb4d6c35}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+Task\+List\+Model/extendabletreeitemmodel.\+h\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+Task\+List\+Model/extendabletreeitemmodel.\+cpp\end{DoxyCompactItemize}

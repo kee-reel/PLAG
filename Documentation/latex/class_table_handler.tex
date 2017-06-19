@@ -1,0 +1,86 @@
+\hypertarget{class_table_handler}{}\section{Table\+Handler Class Reference}
+\label{class_table_handler}\index{Table\+Handler@{Table\+Handler}}
+
+
+Collaboration diagram for Table\+Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_table_handler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Q\+String {\bfseries Table\+Name} ()\hypertarget{class_table_handler_a20dc6faa1425f198209d56bb535b1a72}{}\label{class_table_handler_a20dc6faa1425f198209d56bb535b1a72}
+
+\item 
+{\bfseries Table\+Handler} (\hyperlink{class_i_data_base_source_plugin}{I\+Data\+Base\+Source\+Plugin} $\ast$data\+Source, \hyperlink{class_i_extendable_data_base_manager_plugin}{I\+Extendable\+Data\+Base\+Manager\+Plugin} $\ast$data\+Manager, Q\+String table\+Name=\char`\"{}\char`\"{})\hypertarget{class_table_handler_a74f015a8365c93a78de54748b9ad38d3}{}\label{class_table_handler_a74f015a8365c93a78de54748b9ad38d3}
+
+\item 
+bool {\bfseries Create\+Table} ()\hypertarget{class_table_handler_abea316ba4ae1d601fd2b36684c5de86d}{}\label{class_table_handler_abea316ba4ae1d601fd2b36684c5de86d}
+
+\item 
+bool {\bfseries Set\+Relation} (Q\+String relation\+Name, \hyperlink{class_q_map}{Table\+Struct\+Map} fields, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ default\+Data)\hypertarget{class_table_handler_a420f94195257d620752b2099679f7c24}{}\label{class_table_handler_a420f94195257d620752b2099679f7c24}
+
+\item 
+void {\bfseries Set\+Active\+Relation} (Q\+String relation\+Name)\hypertarget{class_table_handler_a46215bc7cc52ed769968c6bd0ce38f10}{}\label{class_table_handler_a46215bc7cc52ed769968c6bd0ce38f10}
+
+\item 
+bool {\bfseries Delete\+Relation} (Q\+String relation\+Name)\hypertarget{class_table_handler_a656e0c98391e7fe201c523542adc50a2}{}\label{class_table_handler_a656e0c98391e7fe201c523542adc50a2}
+
+\item 
+\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_i_extendable_data_base_manager_plugin_1_1_manager_data_item}{Manager\+Item\+Info} $>$ {\bfseries Get\+Data} ()\hypertarget{class_table_handler_af0b4da1a3d599f33d0ad6fadc150e664}{}\label{class_table_handler_af0b4da1a3d599f33d0ad6fadc150e664}
+
+\item 
+\hyperlink{class_i_extendable_data_base_manager_plugin_1_1_manager_data_item}{Manager\+Item\+Info} {\bfseries Get\+Item} (int id)\hypertarget{class_table_handler_a8777b1d56a8c440112cd5a8508142819}{}\label{class_table_handler_a8777b1d56a8c440112cd5a8508142819}
+
+\item 
+Q\+Abstract\+Item\+Model $\ast$ {\bfseries Get\+Model} ()\hypertarget{class_table_handler_ac2a1680219752ae5d66b69b3269aee82}{}\label{class_table_handler_ac2a1680219752ae5d66b69b3269aee82}
+
+\item 
+int {\bfseries Add\+Item} (\hyperlink{class_i_extendable_data_base_manager_plugin_1_1_manager_data_item}{Manager\+Item\+Info} item)\hypertarget{class_table_handler_a3723c124eddfb0931caa7c3300320226}{}\label{class_table_handler_a3723c124eddfb0931caa7c3300320226}
+
+\item 
+bool {\bfseries Edit\+Item} (\hyperlink{class_i_extendable_data_base_manager_plugin_1_1_manager_data_item}{Manager\+Item\+Info} item)\hypertarget{class_table_handler_aee4aa90513382109de7c1bc685de5e8a}{}\label{class_table_handler_aee4aa90513382109de7c1bc685de5e8a}
+
+\item 
+bool {\bfseries Delete\+Item} (int id)\hypertarget{class_table_handler_af923ed419b08329aff43715a4cf8e5fa}{}\label{class_table_handler_af923ed419b08329aff43715a4cf8e5fa}
+
+\item 
+\hyperlink{class_q_map}{Table\+Struct\+Map} {\bfseries Get\+Header} ()\hypertarget{class_table_handler_aa95f95bc82d4e627c6394bb41b4305a6}{}\label{class_table_handler_aa95f95bc82d4e627c6394bb41b4305a6}
+
+\item 
+\hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ {\bfseries Get\+Relation\+Default\+Data} (Q\+String relation\+Name)\hypertarget{class_table_handler_a69bf32558769e5d52cc2596b8883f258}{}\label{class_table_handler_a69bf32558769e5d52cc2596b8883f258}
+
+\item 
+Q\+String {\bfseries Get\+Header\+String} (\hyperlink{class_q_map}{Table\+Struct\+Map} \&table\+Struct, bool create\+Relation=false)\hypertarget{class_table_handler_a33f05e63998bdf3e1e99982bd9dc272c}{}\label{class_table_handler_a33f05e63998bdf3e1e99982bd9dc272c}
+
+\item 
+Q\+String {\bfseries Get\+Fields\+Names} (Q\+String table\+Name, \hyperlink{class_q_map}{Table\+Struct\+Map} \&table\+Struct, bool include\+Id=false)\hypertarget{class_table_handler_a9b8e9eb6a4c98d82237ab1e31effcc8a}{}\label{class_table_handler_a9b8e9eb6a4c98d82237ab1e31effcc8a}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_q_map}{Q\+Map}$<$ Q\+Variant\+::\+Type, Q\+String $>$ {\bfseries data\+Base\+Types\+Names}\hypertarget{class_table_handler_aebe2c16bead28b9a11ad25e964fbde6a}{}\label{class_table_handler_aebe2c16bead28b9a11ad25e964fbde6a}
+
+\item 
+\hyperlink{class_q_map}{Table\+Struct\+Map} {\bfseries core\+Table\+Struct}\hypertarget{class_table_handler_a811ecf820ead8c05091abe036f7684f2}{}\label{class_table_handler_a811ecf820ead8c05091abe036f7684f2}
+
+\item 
+\hyperlink{class_q_map}{Table\+Struct\+Map} {\bfseries whole\+Table\+Struct}\hypertarget{class_table_handler_aef50aa5b136d7eb5b7cdb790a05aa54e}{}\label{class_table_handler_aef50aa5b136d7eb5b7cdb790a05aa54e}
+
+\item 
+\hyperlink{class_q_map}{Q\+Map}$<$ Q\+String, \hyperlink{class_q_map}{Table\+Struct\+Map} $>$ {\bfseries relation\+Table\+Structs}\hypertarget{class_table_handler_a1dbdb8acc499ed77a36af132fd9f66dd}{}\label{class_table_handler_a1dbdb8acc499ed77a36af132fd9f66dd}
+
+\item 
+\hyperlink{class_q_map}{Q\+Map}$<$ Q\+String, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ $>$ {\bfseries relations\+Default\+Data}\hypertarget{class_table_handler_a66165fb2776d61b546db6a5e0a63e604}{}\label{class_table_handler_a66165fb2776d61b546db6a5e0a63e604}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+Extendable\+Data\+Base\+Manager/tablehandler.\+h\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+Extendable\+Data\+Base\+Manager/tablehandler.\+cpp\end{DoxyCompactItemize}

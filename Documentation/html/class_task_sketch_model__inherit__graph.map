@@ -1,0 +1,5 @@
+<map id="TaskSketchModel" name="TaskSketchModel">
+<area shape="rect" id="node3" href="$class_i_task_sketch_model.html" title="ITaskSketchModel" alt="" coords="99,155,230,181"/>
+<area shape="rect" id="node4" href="$class_i_model_plugin.html" title="IModelPlugin" alt="" coords="116,80,213,107"/>
+<area shape="rect" id="node5" href="$class_i_plugin.html" title="IPlugin" alt="" coords="133,5,196,32"/>
+</map>

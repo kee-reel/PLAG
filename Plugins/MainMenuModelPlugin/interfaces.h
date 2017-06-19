@@ -2,19 +2,23 @@
 #define INTERFACES_H
 
 #include "../../System/MASS/rootinterface.h"
-
 class QString;
 class QVariant;
 class QSqlDatabase;
 class QSqlQuery;
 template <class A> class QList;
 
-enum PluginTypes{
-    ROOTMODEL,
-    PLUGINMODEL,
-    PLUGINVIEW,
-    DATASOURCE,
-    DATAMANAGER,
+//! \addtogroup MainMenuModule MainMenuModule
+//! @{
+
+//! Enumeration of MASS system modules types.
+enum PluginTypes
+{
+    ROOTMODEL,      //! Module type that implements IRootModelPlugin
+    PLUGINMODEL,    //! Module type that implements IModelPlugin
+    PLUGINVIEW,     //! Module type that implements IViewPlugin
+    DATASOURCE,     //! Module type that implements IDataSourcePlugin
+    DATAMANAGER,    //! Module type that implements IDataManagerPlugin
 };
 
 struct MetaInfo{
@@ -89,4 +93,5 @@ public:
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
 
+//! @}
 #endif // INTERFACES_H

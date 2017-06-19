@@ -1,0 +1,800 @@
+\hypertarget{class_q_c_p_scatter_style}{}\section{Q\+C\+P\+Scatter\+Style Class Reference}
+\label{class_q_c_p_scatter_style}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+
+
+Represents the visual appearance of scatter points.  
+
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46}{Scatter\+Property} \{ \\*
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}{sp\+None} = 0x00, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}{sp\+Pen} = 0x01, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}{sp\+Brush} = 0x02, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}{sp\+Size} = 0x04, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}{sp\+Shape} = 0x08, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}{sp\+All} = 0x\+FF, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}{sp\+None} = 0x00, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}{sp\+Pen} = 0x01, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}{sp\+Brush} = 0x02, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}{sp\+Size} = 0x04, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}{sp\+Shape} = 0x08, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}{sp\+All} = 0x\+FF
+ \}
+\item 
+enum \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} \{ \\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}{ss\+None}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{ss\+Dot}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}{ss\+Cross}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}{ss\+Plus}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{ss\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{ss\+Disc}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}{ss\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}{ss\+Diamond}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}{ss\+Star}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}{ss\+Triangle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}{ss\+Triangle\+Inverted}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}{ss\+Cross\+Square}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}{ss\+Plus\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}{ss\+Cross\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}{ss\+Plus\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}{ss\+Peace}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{ss\+Custom}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}{ss\+None}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{ss\+Dot}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}{ss\+Cross}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}{ss\+Plus}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{ss\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{ss\+Disc}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}{ss\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}{ss\+Diamond}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}{ss\+Star}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}{ss\+Triangle}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}{ss\+Triangle\+Inverted}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}{ss\+Cross\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}{ss\+Plus\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}{ss\+Cross\+Circle}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}{ss\+Plus\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}{ss\+Peace}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{ss\+Custom}
+ \}
+\item 
+enum \hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46}{Scatter\+Property} \{ \\*
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}{sp\+None} = 0x00, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}{sp\+Pen} = 0x01, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}{sp\+Brush} = 0x02, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}{sp\+Size} = 0x04, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}{sp\+Shape} = 0x08, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}{sp\+All} = 0x\+FF, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}{sp\+None} = 0x00, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}{sp\+Pen} = 0x01, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}{sp\+Brush} = 0x02, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}{sp\+Size} = 0x04, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}{sp\+Shape} = 0x08, 
+\hyperlink{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}{sp\+All} = 0x\+FF
+ \}
+\item 
+enum \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} \{ \\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}{ss\+None}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{ss\+Dot}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}{ss\+Cross}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}{ss\+Plus}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{ss\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{ss\+Disc}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}{ss\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}{ss\+Diamond}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}{ss\+Star}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}{ss\+Triangle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}{ss\+Triangle\+Inverted}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}{ss\+Cross\+Square}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}{ss\+Plus\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}{ss\+Cross\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}{ss\+Plus\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}{ss\+Peace}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{ss\+Custom}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}{ss\+None}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{ss\+Dot}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}{ss\+Cross}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}{ss\+Plus}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{ss\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{ss\+Disc}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}{ss\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}{ss\+Diamond}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}{ss\+Star}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}{ss\+Triangle}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}{ss\+Triangle\+Inverted}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}{ss\+Cross\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}{ss\+Plus\+Square}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}{ss\+Cross\+Circle}, 
+\\*
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}{ss\+Plus\+Circle}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}{ss\+Peace}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap}, 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{ss\+Custom}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_q_c_p_scatter_style_a8836018d9ad83ccd8870de8315c1be73}{Q\+C\+P\+Scatter\+Style} ()
+\item 
+\hyperlink{class_q_c_p_scatter_style_a003d92f74f4561eda111862eadd62f28}{Q\+C\+P\+Scatter\+Style} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape, double size=6)
+\item 
+\hyperlink{class_q_c_p_scatter_style_afa059da858c864c7e05871dc602d7eab}{Q\+C\+P\+Scatter\+Style} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape, const Q\+Color \&color, double size)
+\item 
+\hyperlink{class_q_c_p_scatter_style_a6e1b64f12cac7f07af180ae4316fd38d}{Q\+C\+P\+Scatter\+Style} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape, const Q\+Color \&color, const Q\+Color \&fill, double size)
+\item 
+\hyperlink{class_q_c_p_scatter_style_a85acc4941d7e5c9bca5fa51377a77f49}{Q\+C\+P\+Scatter\+Style} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape, const Q\+Pen \&pen, const Q\+Brush \&brush, double size)
+\item 
+\hyperlink{class_q_c_p_scatter_style_a63962094587a4c2258435aa7933996cc}{Q\+C\+P\+Scatter\+Style} (const Q\+Pixmap \&pixmap)
+\item 
+\hyperlink{class_q_c_p_scatter_style_a879c30647683b3cfbde2afecea815e6f}{Q\+C\+P\+Scatter\+Style} (const Q\+Painter\+Path \&custom\+Path, const Q\+Pen \&pen, const Q\+Brush \&brush=Qt\+::\+No\+Brush, double size=6)
+\item 
+double {\bfseries size} () const \hypertarget{class_q_c_p_scatter_style_a1973ee650368f1c5f55507b78473f634}{}\label{class_q_c_p_scatter_style_a1973ee650368f1c5f55507b78473f634}
+
+\item 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} {\bfseries shape} () const \hypertarget{class_q_c_p_scatter_style_a4462a25ef17769631f4e0aa81dadca4b}{}\label{class_q_c_p_scatter_style_a4462a25ef17769631f4e0aa81dadca4b}
+
+\item 
+Q\+Pen {\bfseries pen} () const \hypertarget{class_q_c_p_scatter_style_a3c24c3bf37b561b4807aed9f1418ab58}{}\label{class_q_c_p_scatter_style_a3c24c3bf37b561b4807aed9f1418ab58}
+
+\item 
+Q\+Brush {\bfseries brush} () const \hypertarget{class_q_c_p_scatter_style_a46bf481d84bfa31b287dd43a3bf86d37}{}\label{class_q_c_p_scatter_style_a46bf481d84bfa31b287dd43a3bf86d37}
+
+\item 
+Q\+Pixmap {\bfseries pixmap} () const \hypertarget{class_q_c_p_scatter_style_a9bab44cc41fcd585621a4b3e0e48231b}{}\label{class_q_c_p_scatter_style_a9bab44cc41fcd585621a4b3e0e48231b}
+
+\item 
+Q\+Painter\+Path {\bfseries custom\+Path} () const \hypertarget{class_q_c_p_scatter_style_a4dd4998dfb0d6889205668a06c790328}{}\label{class_q_c_p_scatter_style_a4dd4998dfb0d6889205668a06c790328}
+
+\item 
+void \hyperlink{class_q_c_p_scatter_style_a7d59ba8864914f765817841089e436f1}{set\+From\+Other} (const \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} \&other, Scatter\+Properties properties)
+\item 
+void \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} (double size)
+\item 
+void \hyperlink{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{set\+Shape} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape)
+\item 
+void \hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} (const Q\+Pen \&pen)
+\item 
+void \hyperlink{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{set\+Brush} (const Q\+Brush \&brush)
+\item 
+void \hyperlink{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}{set\+Pixmap} (const Q\+Pixmap \&pixmap)
+\item 
+void \hyperlink{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}{set\+Custom\+Path} (const Q\+Painter\+Path \&custom\+Path)
+\item 
+bool \hyperlink{class_q_c_p_scatter_style_aa3861281108d0adbeb291c820ea3925c}{is\+None} () const 
+\item 
+bool \hyperlink{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}{is\+Pen\+Defined} () const 
+\item 
+void \hyperlink{class_q_c_p_scatter_style_acabc2a8c83d650b946f50c3166b6c35e}{undefine\+Pen} ()
+\item 
+void \hyperlink{class_q_c_p_scatter_style_a81817dfd404635f211e6ff2a04657d36}{apply\+To} (\hyperlink{class_q_c_p_painter}{Q\+C\+P\+Painter} $\ast$painter, const Q\+Pen \&default\+Pen) const 
+\item 
+void \hyperlink{class_q_c_p_scatter_style_aeaf6dbadb0b0e6d890a6e3bbe5aebece}{draw\+Shape} (\hyperlink{class_q_c_p_painter}{Q\+C\+P\+Painter} $\ast$painter, const Q\+PointF \&pos) const 
+\item 
+void \hyperlink{class_q_c_p_scatter_style_ae76811ac9f70ebf7a2b4c759853e6ed8}{draw\+Shape} (\hyperlink{class_q_c_p_painter}{Q\+C\+P\+Painter} $\ast$painter, double x, double y) const 
+\item 
+{\bfseries Q\+C\+P\+Scatter\+Style} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape, double size=6)\hypertarget{class_q_c_p_scatter_style_a003d92f74f4561eda111862eadd62f28}{}\label{class_q_c_p_scatter_style_a003d92f74f4561eda111862eadd62f28}
+
+\item 
+{\bfseries Q\+C\+P\+Scatter\+Style} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape, const Q\+Color \&color, double size)\hypertarget{class_q_c_p_scatter_style_afa059da858c864c7e05871dc602d7eab}{}\label{class_q_c_p_scatter_style_afa059da858c864c7e05871dc602d7eab}
+
+\item 
+{\bfseries Q\+C\+P\+Scatter\+Style} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape, const Q\+Color \&color, const Q\+Color \&fill, double size)\hypertarget{class_q_c_p_scatter_style_a6e1b64f12cac7f07af180ae4316fd38d}{}\label{class_q_c_p_scatter_style_a6e1b64f12cac7f07af180ae4316fd38d}
+
+\item 
+{\bfseries Q\+C\+P\+Scatter\+Style} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape, const Q\+Pen \&pen, const Q\+Brush \&brush, double size)\hypertarget{class_q_c_p_scatter_style_a85acc4941d7e5c9bca5fa51377a77f49}{}\label{class_q_c_p_scatter_style_a85acc4941d7e5c9bca5fa51377a77f49}
+
+\item 
+{\bfseries Q\+C\+P\+Scatter\+Style} (const Q\+Pixmap \&pixmap)\hypertarget{class_q_c_p_scatter_style_a63962094587a4c2258435aa7933996cc}{}\label{class_q_c_p_scatter_style_a63962094587a4c2258435aa7933996cc}
+
+\item 
+{\bfseries Q\+C\+P\+Scatter\+Style} (const Q\+Painter\+Path \&custom\+Path, const Q\+Pen \&pen, const Q\+Brush \&brush=Qt\+::\+No\+Brush, double size=6)\hypertarget{class_q_c_p_scatter_style_a879c30647683b3cfbde2afecea815e6f}{}\label{class_q_c_p_scatter_style_a879c30647683b3cfbde2afecea815e6f}
+
+\item 
+double {\bfseries size} () const \hypertarget{class_q_c_p_scatter_style_a1973ee650368f1c5f55507b78473f634}{}\label{class_q_c_p_scatter_style_a1973ee650368f1c5f55507b78473f634}
+
+\item 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} {\bfseries shape} () const \hypertarget{class_q_c_p_scatter_style_a4462a25ef17769631f4e0aa81dadca4b}{}\label{class_q_c_p_scatter_style_a4462a25ef17769631f4e0aa81dadca4b}
+
+\item 
+Q\+Pen {\bfseries pen} () const \hypertarget{class_q_c_p_scatter_style_a3c24c3bf37b561b4807aed9f1418ab58}{}\label{class_q_c_p_scatter_style_a3c24c3bf37b561b4807aed9f1418ab58}
+
+\item 
+Q\+Brush {\bfseries brush} () const \hypertarget{class_q_c_p_scatter_style_a46bf481d84bfa31b287dd43a3bf86d37}{}\label{class_q_c_p_scatter_style_a46bf481d84bfa31b287dd43a3bf86d37}
+
+\item 
+Q\+Pixmap {\bfseries pixmap} () const \hypertarget{class_q_c_p_scatter_style_a9bab44cc41fcd585621a4b3e0e48231b}{}\label{class_q_c_p_scatter_style_a9bab44cc41fcd585621a4b3e0e48231b}
+
+\item 
+Q\+Painter\+Path {\bfseries custom\+Path} () const \hypertarget{class_q_c_p_scatter_style_a4dd4998dfb0d6889205668a06c790328}{}\label{class_q_c_p_scatter_style_a4dd4998dfb0d6889205668a06c790328}
+
+\item 
+void {\bfseries set\+From\+Other} (const \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} \&other, Scatter\+Properties properties)\hypertarget{class_q_c_p_scatter_style_a7d59ba8864914f765817841089e436f1}{}\label{class_q_c_p_scatter_style_a7d59ba8864914f765817841089e436f1}
+
+\item 
+void {\bfseries set\+Size} (double size)\hypertarget{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{}\label{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}
+
+\item 
+void {\bfseries set\+Shape} (\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} shape)\hypertarget{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{}\label{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}
+
+\item 
+void {\bfseries set\+Pen} (const Q\+Pen \&pen)\hypertarget{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{}\label{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}
+
+\item 
+void {\bfseries set\+Brush} (const Q\+Brush \&brush)\hypertarget{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{}\label{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}
+
+\item 
+void {\bfseries set\+Pixmap} (const Q\+Pixmap \&pixmap)\hypertarget{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}{}\label{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}
+
+\item 
+void {\bfseries set\+Custom\+Path} (const Q\+Painter\+Path \&custom\+Path)\hypertarget{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}{}\label{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}
+
+\item 
+bool {\bfseries is\+None} () const \hypertarget{class_q_c_p_scatter_style_aa3861281108d0adbeb291c820ea3925c}{}\label{class_q_c_p_scatter_style_aa3861281108d0adbeb291c820ea3925c}
+
+\item 
+bool {\bfseries is\+Pen\+Defined} () const \hypertarget{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}{}\label{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}
+
+\item 
+void {\bfseries undefine\+Pen} ()\hypertarget{class_q_c_p_scatter_style_acabc2a8c83d650b946f50c3166b6c35e}{}\label{class_q_c_p_scatter_style_acabc2a8c83d650b946f50c3166b6c35e}
+
+\item 
+void {\bfseries apply\+To} (\hyperlink{class_q_c_p_painter}{Q\+C\+P\+Painter} $\ast$painter, const Q\+Pen \&default\+Pen) const \hypertarget{class_q_c_p_scatter_style_a81817dfd404635f211e6ff2a04657d36}{}\label{class_q_c_p_scatter_style_a81817dfd404635f211e6ff2a04657d36}
+
+\item 
+void {\bfseries draw\+Shape} (\hyperlink{class_q_c_p_painter}{Q\+C\+P\+Painter} $\ast$painter, const Q\+PointF \&pos) const \hypertarget{class_q_c_p_scatter_style_aeaf6dbadb0b0e6d890a6e3bbe5aebece}{}\label{class_q_c_p_scatter_style_aeaf6dbadb0b0e6d890a6e3bbe5aebece}
+
+\item 
+void {\bfseries draw\+Shape} (\hyperlink{class_q_c_p_painter}{Q\+C\+P\+Painter} $\ast$painter, double x, double y) const \hypertarget{class_q_c_p_scatter_style_ae76811ac9f70ebf7a2b4c759853e6ed8}{}\label{class_q_c_p_scatter_style_ae76811ac9f70ebf7a2b4c759853e6ed8}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double {\bfseries m\+Size}\hypertarget{class_q_c_p_scatter_style_a757da98671eb06b221979373ac2cec91}{}\label{class_q_c_p_scatter_style_a757da98671eb06b221979373ac2cec91}
+
+\item 
+\hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} {\bfseries m\+Shape}\hypertarget{class_q_c_p_scatter_style_af1b327f35f107ed108290187bbc8c7c6}{}\label{class_q_c_p_scatter_style_af1b327f35f107ed108290187bbc8c7c6}
+
+\item 
+Q\+Pen {\bfseries m\+Pen}\hypertarget{class_q_c_p_scatter_style_a0f6a85e6d1e3ae1ca1b6efb4d4cdfe17}{}\label{class_q_c_p_scatter_style_a0f6a85e6d1e3ae1ca1b6efb4d4cdfe17}
+
+\item 
+Q\+Brush {\bfseries m\+Brush}\hypertarget{class_q_c_p_scatter_style_a1b9c6ab10aebcaf236f1f45d1d6d64d1}{}\label{class_q_c_p_scatter_style_a1b9c6ab10aebcaf236f1f45d1d6d64d1}
+
+\item 
+Q\+Pixmap {\bfseries m\+Pixmap}\hypertarget{class_q_c_p_scatter_style_a7697346c89b19d4cd1d8dd33319ec9e3}{}\label{class_q_c_p_scatter_style_a7697346c89b19d4cd1d8dd33319ec9e3}
+
+\item 
+Q\+Painter\+Path {\bfseries m\+Custom\+Path}\hypertarget{class_q_c_p_scatter_style_a813cb074744dc5a2f59cc99d6a10c6f0}{}\label{class_q_c_p_scatter_style_a813cb074744dc5a2f59cc99d6a10c6f0}
+
+\item 
+bool {\bfseries m\+Pen\+Defined}\hypertarget{class_q_c_p_scatter_style_a84ef5aa591ddba07b440f597e1669e78}{}\label{class_q_c_p_scatter_style_a84ef5aa591ddba07b440f597e1669e78}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents the visual appearance of scatter points. 
+
+This class holds information about shape, color and size of scatter points. In plottables like \hyperlink{class_q_c_p_graph}{Q\+C\+P\+Graph} it is used to store how scatter points shall be drawn. For example, \hyperlink{class_q_c_p_graph_a12bd17a8ba21983163ec5d8f42a9fea5}{Q\+C\+P\+Graph\+::set\+Scatter\+Style} takes a \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instance.
+
+A scatter style consists of a shape (\hyperlink{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{set\+Shape}), a line color (\hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen}) and possibly a fill (\hyperlink{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{set\+Brush}), if the shape provides a fillable area. Further, the size of the shape can be controlled with \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size}.\hypertarget{class_q_c_p_scatter_style_QCPScatterStyle-defining}{}\subsection{Specifying a scatter style}\label{class_q_c_p_scatter_style_QCPScatterStyle-defining}
+You can set all these configurations either by calling the respective functions on an instance\+: 
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ Or you can use one of the various constructors that take different parameter combinations, making it easy to specify a scatter style in a single call, like so\+: 
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ \hypertarget{class_q_c_p_scatter_style_QCPScatterStyle-undefinedpen}{}\subsection{Leaving the color/pen up to the plottable}\label{class_q_c_p_scatter_style_QCPScatterStyle-undefinedpen}
+There are two constructors which leave the pen undefined\+: \hyperlink{class_q_c_p_scatter_style_a8836018d9ad83ccd8870de8315c1be73}{Q\+C\+P\+Scatter\+Style()} and \hyperlink{class_q_c_p_scatter_style_a003d92f74f4561eda111862eadd62f28}{Q\+C\+P\+Scatter\+Style(\+Scatter\+Shape shape, double size)}. If those constructors are used, a call to \hyperlink{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}{is\+Pen\+Defined} will return false. It leads to scatter points that inherit the pen from the plottable that uses the scatter style. Thus, if such a scatter style is passed to \hyperlink{class_q_c_p_graph}{Q\+C\+P\+Graph}, the line color of the graph (\hyperlink{class_q_c_p_abstract_plottable_ab74b09ae4c0e7e13142fe4b5bf46cac7}{Q\+C\+P\+Graph\+::set\+Pen}) will be used by the scatter points. This makes it very convenient to set up typical scatter settings\+:
+
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ Notice that it wasn\textquotesingle{}t even necessary to explicitly call a \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} constructor. This works because \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} provides a constructor that can transform a \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape} directly into a \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instance (that\textquotesingle{}s the \hyperlink{class_q_c_p_scatter_style_a003d92f74f4561eda111862eadd62f28}{Q\+C\+P\+Scatter\+Style(\+Scatter\+Shape shape, double size)} constructor with a default for {\itshape size}). In those cases, C++ allows directly supplying a \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{Scatter\+Shape}, where actually a \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} is expected.\hypertarget{class_q_c_p_scatter_style_QCPScatterStyle-custompath-and-pixmap}{}\subsection{Custom shapes and pixmaps}\label{class_q_c_p_scatter_style_QCPScatterStyle-custompath-and-pixmap}
+\hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} supports drawing custom shapes and arbitrary pixmaps as scatter points.
+
+For custom shapes, you can provide a Q\+Painter\+Path with the desired shape to the \hyperlink{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}{set\+Custom\+Path} function or call the constructor that takes a painter path. The scatter shape will automatically be set to \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{ss\+Custom}.
+
+For pixmaps, you call \hyperlink{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}{set\+Pixmap} with the desired Q\+Pixmap. Alternatively you can use the constructor that takes a Q\+Pixmap. The scatter shape will automatically be set to \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap}. Note that \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} does not influence the appearance of the pixmap. 
+
+\subsection{Member Enumeration Documentation}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Scatter\+Property@{Scatter\+Property}}
+\index{Scatter\+Property@{Scatter\+Property}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Scatter\+Property}{ScatterProperty}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Q\+C\+P\+Scatter\+Style\+::\+Scatter\+Property}}\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46}
+Represents the various properties of a scatter style instance. For example, this enum is used to specify which properties of \hyperlink{class_q_c_p_selection_decorator_ab403a613289714ff4fd4a0c0371ab116}{Q\+C\+P\+Selection\+Decorator\+::set\+Scatter\+Style} will be used when highlighting selected data points.
+
+Specific scatter properties can be transferred between \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instances via \hyperlink{class_q_c_p_scatter_style_a7d59ba8864914f765817841089e436f1}{set\+From\+Other}. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{sp\+None@{sp\+None}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+None@{sp\+None}}\item[{\em 
+sp\+None\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}
+}]{\ttfamily 0x00} None \index{sp\+Pen@{sp\+Pen}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Pen@{sp\+Pen}}\item[{\em 
+sp\+Pen\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}
+}]{\ttfamily 0x01} The pen property, see \hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} \index{sp\+Brush@{sp\+Brush}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Brush@{sp\+Brush}}\item[{\em 
+sp\+Brush\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}
+}]{\ttfamily 0x02} The brush property, see \hyperlink{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{set\+Brush} \index{sp\+Size@{sp\+Size}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Size@{sp\+Size}}\item[{\em 
+sp\+Size\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}
+}]{\ttfamily 0x04} The size property, see \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} \index{sp\+Shape@{sp\+Shape}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Shape@{sp\+Shape}}\item[{\em 
+sp\+Shape\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}
+}]{\ttfamily 0x08} The shape property, see \hyperlink{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{set\+Shape} \index{sp\+All@{sp\+All}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+All@{sp\+All}}\item[{\em 
+sp\+All\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}
+}]{\ttfamily 0x\+FF} All properties \index{sp\+None@{sp\+None}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+None@{sp\+None}}\item[{\em 
+sp\+None\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}
+}]{\ttfamily 0x00} None \index{sp\+Pen@{sp\+Pen}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Pen@{sp\+Pen}}\item[{\em 
+sp\+Pen\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}
+}]{\ttfamily 0x01} The pen property, see \hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} \index{sp\+Brush@{sp\+Brush}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Brush@{sp\+Brush}}\item[{\em 
+sp\+Brush\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}
+}]{\ttfamily 0x02} The brush property, see \hyperlink{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{set\+Brush} \index{sp\+Size@{sp\+Size}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Size@{sp\+Size}}\item[{\em 
+sp\+Size\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}
+}]{\ttfamily 0x04} The size property, see \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} \index{sp\+Shape@{sp\+Shape}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Shape@{sp\+Shape}}\item[{\em 
+sp\+Shape\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}
+}]{\ttfamily 0x08} The shape property, see \hyperlink{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{set\+Shape} \index{sp\+All@{sp\+All}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+All@{sp\+All}}\item[{\em 
+sp\+All\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}
+}]{\ttfamily 0x\+FF} All properties \end{description}
+\end{Desc}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Scatter\+Property@{Scatter\+Property}}
+\index{Scatter\+Property@{Scatter\+Property}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Scatter\+Property}{ScatterProperty}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Q\+C\+P\+Scatter\+Style\+::\+Scatter\+Property}}\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46}
+Represents the various properties of a scatter style instance. For example, this enum is used to specify which properties of \hyperlink{class_q_c_p_selection_decorator_ab403a613289714ff4fd4a0c0371ab116}{Q\+C\+P\+Selection\+Decorator\+::set\+Scatter\+Style} will be used when highlighting selected data points.
+
+Specific scatter properties can be transferred between \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instances via \hyperlink{class_q_c_p_scatter_style_a7d59ba8864914f765817841089e436f1}{set\+From\+Other}. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{sp\+None@{sp\+None}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+None@{sp\+None}}\item[{\em 
+sp\+None\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}
+}]{\ttfamily 0x00} None \index{sp\+Pen@{sp\+Pen}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Pen@{sp\+Pen}}\item[{\em 
+sp\+Pen\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}
+}]{\ttfamily 0x01} The pen property, see \hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} \index{sp\+Brush@{sp\+Brush}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Brush@{sp\+Brush}}\item[{\em 
+sp\+Brush\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}
+}]{\ttfamily 0x02} The brush property, see \hyperlink{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{set\+Brush} \index{sp\+Size@{sp\+Size}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Size@{sp\+Size}}\item[{\em 
+sp\+Size\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}
+}]{\ttfamily 0x04} The size property, see \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} \index{sp\+Shape@{sp\+Shape}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Shape@{sp\+Shape}}\item[{\em 
+sp\+Shape\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}
+}]{\ttfamily 0x08} The shape property, see \hyperlink{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{set\+Shape} \index{sp\+All@{sp\+All}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+All@{sp\+All}}\item[{\em 
+sp\+All\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}
+}]{\ttfamily 0x\+FF} All properties \index{sp\+None@{sp\+None}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+None@{sp\+None}}\item[{\em 
+sp\+None\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a17a52f70663e0d2f4e1593d1e777a35d}
+}]{\ttfamily 0x00} None \index{sp\+Pen@{sp\+Pen}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Pen@{sp\+Pen}}\item[{\em 
+sp\+Pen\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79}
+}]{\ttfamily 0x01} The pen property, see \hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} \index{sp\+Brush@{sp\+Brush}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Brush@{sp\+Brush}}\item[{\em 
+sp\+Brush\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46afad8a949ce16cff5c03b83ba31345722}
+}]{\ttfamily 0x02} The brush property, see \hyperlink{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{set\+Brush} \index{sp\+Size@{sp\+Size}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Size@{sp\+Size}}\item[{\em 
+sp\+Size\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46abb1c95b5c063a6208703b5f956f8944d}
+}]{\ttfamily 0x04} The size property, see \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} \index{sp\+Shape@{sp\+Shape}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+Shape@{sp\+Shape}}\item[{\em 
+sp\+Shape\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46acfd6bcce3cc09ebc10723b2408412087}
+}]{\ttfamily 0x08} The shape property, see \hyperlink{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{set\+Shape} \index{sp\+All@{sp\+All}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!sp\+All@{sp\+All}}\item[{\em 
+sp\+All\hypertarget{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}{}\label{class_q_c_p_scatter_style_a8974f6a20f8f6eea7781f0e6af9deb46a69453dd56c0b1b0f51c877820caceeaa}
+}]{\ttfamily 0x\+FF} All properties \end{description}
+\end{Desc}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Scatter\+Shape@{Scatter\+Shape}}
+\index{Scatter\+Shape@{Scatter\+Shape}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Scatter\+Shape}{ScatterShape}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Q\+C\+P\+Scatter\+Style\+::\+Scatter\+Shape}}\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}
+Defines the shape used for scatter points.
+
+On plottables/items that draw scatters, the sizes of these visualizations (with exception of \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{ss\+Dot} and \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap}) can be controlled with the \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} function. Scatters are drawn with the pen and brush specified with \hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} and \hyperlink{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{set\+Brush}. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{ss\+None@{ss\+None}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+None@{ss\+None}}\item[{\em 
+ss\+None\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}
+}]no scatter symbols are drawn (e.\+g. in \hyperlink{class_q_c_p_graph}{Q\+C\+P\+Graph}, data only represented with lines) \index{ss\+Dot@{ss\+Dot}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Dot@{ss\+Dot}}\item[{\em 
+ss\+Dot\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}
+}]\{ss\+Dot.\+png\} a single pixel (use \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{ss\+Disc} or \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{ss\+Circle} if you want a round shape with a certain radius) \index{ss\+Cross@{ss\+Cross}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross@{ss\+Cross}}\item[{\em 
+ss\+Cross\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}
+}]\{ss\+Cross.\+png\} a cross \index{ss\+Plus@{ss\+Plus}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus@{ss\+Plus}}\item[{\em 
+ss\+Plus\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}
+}]\{ss\+Plus.\+png\} a plus \index{ss\+Circle@{ss\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Circle@{ss\+Circle}}\item[{\em 
+ss\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}
+}]\{ss\+Circle.\+png\} a circle \index{ss\+Disc@{ss\+Disc}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Disc@{ss\+Disc}}\item[{\em 
+ss\+Disc\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}
+}]\{ss\+Disc.\+png\} a circle which is filled with the pen\textquotesingle{}s color (not the brush as with ss\+Circle) \index{ss\+Square@{ss\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Square@{ss\+Square}}\item[{\em 
+ss\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}
+}]\{ss\+Square.\+png\} a square \index{ss\+Diamond@{ss\+Diamond}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Diamond@{ss\+Diamond}}\item[{\em 
+ss\+Diamond\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}
+}]\{ss\+Diamond.\+png\} a diamond \index{ss\+Star@{ss\+Star}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Star@{ss\+Star}}\item[{\em 
+ss\+Star\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}
+}]\{ss\+Star.\+png\} a star with eight arms, i.\+e. a combination of cross and plus \index{ss\+Triangle@{ss\+Triangle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Triangle@{ss\+Triangle}}\item[{\em 
+ss\+Triangle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}
+}]\{ss\+Triangle.\+png\} an equilateral triangle, standing on baseline \index{ss\+Triangle\+Inverted@{ss\+Triangle\+Inverted}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Triangle\+Inverted@{ss\+Triangle\+Inverted}}\item[{\em 
+ss\+Triangle\+Inverted\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}
+}]\{ss\+Triangle\+Inverted.\+png\} an equilateral triangle, standing on corner \index{ss\+Cross\+Square@{ss\+Cross\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross\+Square@{ss\+Cross\+Square}}\item[{\em 
+ss\+Cross\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}
+}]\{ss\+Cross\+Square.\+png\} a square with a cross inside \index{ss\+Plus\+Square@{ss\+Plus\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus\+Square@{ss\+Plus\+Square}}\item[{\em 
+ss\+Plus\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}
+}]\{ss\+Plus\+Square.\+png\} a square with a plus inside \index{ss\+Cross\+Circle@{ss\+Cross\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross\+Circle@{ss\+Cross\+Circle}}\item[{\em 
+ss\+Cross\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}
+}]\{ss\+Cross\+Circle.\+png\} a circle with a cross inside \index{ss\+Plus\+Circle@{ss\+Plus\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus\+Circle@{ss\+Plus\+Circle}}\item[{\em 
+ss\+Plus\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}
+}]\{ss\+Plus\+Circle.\+png\} a circle with a plus inside \index{ss\+Peace@{ss\+Peace}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Peace@{ss\+Peace}}\item[{\em 
+ss\+Peace\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}
+}]\{ss\+Peace.\+png\} a circle, with one vertical and two downward diagonal lines \index{ss\+Pixmap@{ss\+Pixmap}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Pixmap@{ss\+Pixmap}}\item[{\em 
+ss\+Pixmap\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}
+}]a custom pixmap specified by \hyperlink{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}{set\+Pixmap}, centered on the data point coordinates \index{ss\+Custom@{ss\+Custom}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Custom@{ss\+Custom}}\item[{\em 
+ss\+Custom\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}
+}]custom painter operations are performed per scatter (As Q\+Painter\+Path, see \hyperlink{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}{set\+Custom\+Path}) \index{ss\+None@{ss\+None}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+None@{ss\+None}}\item[{\em 
+ss\+None\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}
+}]no scatter symbols are drawn (e.\+g. in \hyperlink{class_q_c_p_graph}{Q\+C\+P\+Graph}, data only represented with lines) \index{ss\+Dot@{ss\+Dot}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Dot@{ss\+Dot}}\item[{\em 
+ss\+Dot\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}
+}]\{ss\+Dot.\+png\} a single pixel (use \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{ss\+Disc} or \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{ss\+Circle} if you want a round shape with a certain radius) \index{ss\+Cross@{ss\+Cross}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross@{ss\+Cross}}\item[{\em 
+ss\+Cross\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}
+}]\{ss\+Cross.\+png\} a cross \index{ss\+Plus@{ss\+Plus}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus@{ss\+Plus}}\item[{\em 
+ss\+Plus\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}
+}]\{ss\+Plus.\+png\} a plus \index{ss\+Circle@{ss\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Circle@{ss\+Circle}}\item[{\em 
+ss\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}
+}]\{ss\+Circle.\+png\} a circle \index{ss\+Disc@{ss\+Disc}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Disc@{ss\+Disc}}\item[{\em 
+ss\+Disc\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}
+}]\{ss\+Disc.\+png\} a circle which is filled with the pen\textquotesingle{}s color (not the brush as with ss\+Circle) \index{ss\+Square@{ss\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Square@{ss\+Square}}\item[{\em 
+ss\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}
+}]\{ss\+Square.\+png\} a square \index{ss\+Diamond@{ss\+Diamond}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Diamond@{ss\+Diamond}}\item[{\em 
+ss\+Diamond\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}
+}]\{ss\+Diamond.\+png\} a diamond \index{ss\+Star@{ss\+Star}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Star@{ss\+Star}}\item[{\em 
+ss\+Star\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}
+}]\{ss\+Star.\+png\} a star with eight arms, i.\+e. a combination of cross and plus \index{ss\+Triangle@{ss\+Triangle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Triangle@{ss\+Triangle}}\item[{\em 
+ss\+Triangle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}
+}]\{ss\+Triangle.\+png\} an equilateral triangle, standing on baseline \index{ss\+Triangle\+Inverted@{ss\+Triangle\+Inverted}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Triangle\+Inverted@{ss\+Triangle\+Inverted}}\item[{\em 
+ss\+Triangle\+Inverted\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}
+}]\{ss\+Triangle\+Inverted.\+png\} an equilateral triangle, standing on corner \index{ss\+Cross\+Square@{ss\+Cross\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross\+Square@{ss\+Cross\+Square}}\item[{\em 
+ss\+Cross\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}
+}]\{ss\+Cross\+Square.\+png\} a square with a cross inside \index{ss\+Plus\+Square@{ss\+Plus\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus\+Square@{ss\+Plus\+Square}}\item[{\em 
+ss\+Plus\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}
+}]\{ss\+Plus\+Square.\+png\} a square with a plus inside \index{ss\+Cross\+Circle@{ss\+Cross\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross\+Circle@{ss\+Cross\+Circle}}\item[{\em 
+ss\+Cross\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}
+}]\{ss\+Cross\+Circle.\+png\} a circle with a cross inside \index{ss\+Plus\+Circle@{ss\+Plus\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus\+Circle@{ss\+Plus\+Circle}}\item[{\em 
+ss\+Plus\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}
+}]\{ss\+Plus\+Circle.\+png\} a circle with a plus inside \index{ss\+Peace@{ss\+Peace}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Peace@{ss\+Peace}}\item[{\em 
+ss\+Peace\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}
+}]\{ss\+Peace.\+png\} a circle, with one vertical and two downward diagonal lines \index{ss\+Pixmap@{ss\+Pixmap}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Pixmap@{ss\+Pixmap}}\item[{\em 
+ss\+Pixmap\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}
+}]a custom pixmap specified by \hyperlink{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}{set\+Pixmap}, centered on the data point coordinates \index{ss\+Custom@{ss\+Custom}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Custom@{ss\+Custom}}\item[{\em 
+ss\+Custom\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}
+}]custom painter operations are performed per scatter (As Q\+Painter\+Path, see \hyperlink{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}{set\+Custom\+Path}) \end{description}
+\end{Desc}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Scatter\+Shape@{Scatter\+Shape}}
+\index{Scatter\+Shape@{Scatter\+Shape}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Scatter\+Shape}{ScatterShape}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Q\+C\+P\+Scatter\+Style\+::\+Scatter\+Shape}}\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349}
+Defines the shape used for scatter points.
+
+On plottables/items that draw scatters, the sizes of these visualizations (with exception of \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{ss\+Dot} and \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap}) can be controlled with the \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} function. Scatters are drawn with the pen and brush specified with \hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} and \hyperlink{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{set\+Brush}. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{ss\+None@{ss\+None}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+None@{ss\+None}}\item[{\em 
+ss\+None\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}
+}]no scatter symbols are drawn (e.\+g. in \hyperlink{class_q_c_p_graph}{Q\+C\+P\+Graph}, data only represented with lines) \index{ss\+Dot@{ss\+Dot}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Dot@{ss\+Dot}}\item[{\em 
+ss\+Dot\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}
+}]\{ss\+Dot.\+png\} a single pixel (use \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{ss\+Disc} or \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{ss\+Circle} if you want a round shape with a certain radius) \index{ss\+Cross@{ss\+Cross}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross@{ss\+Cross}}\item[{\em 
+ss\+Cross\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}
+}]\{ss\+Cross.\+png\} a cross \index{ss\+Plus@{ss\+Plus}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus@{ss\+Plus}}\item[{\em 
+ss\+Plus\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}
+}]\{ss\+Plus.\+png\} a plus \index{ss\+Circle@{ss\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Circle@{ss\+Circle}}\item[{\em 
+ss\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}
+}]\{ss\+Circle.\+png\} a circle \index{ss\+Disc@{ss\+Disc}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Disc@{ss\+Disc}}\item[{\em 
+ss\+Disc\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}
+}]\{ss\+Disc.\+png\} a circle which is filled with the pen\textquotesingle{}s color (not the brush as with ss\+Circle) \index{ss\+Square@{ss\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Square@{ss\+Square}}\item[{\em 
+ss\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}
+}]\{ss\+Square.\+png\} a square \index{ss\+Diamond@{ss\+Diamond}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Diamond@{ss\+Diamond}}\item[{\em 
+ss\+Diamond\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}
+}]\{ss\+Diamond.\+png\} a diamond \index{ss\+Star@{ss\+Star}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Star@{ss\+Star}}\item[{\em 
+ss\+Star\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}
+}]\{ss\+Star.\+png\} a star with eight arms, i.\+e. a combination of cross and plus \index{ss\+Triangle@{ss\+Triangle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Triangle@{ss\+Triangle}}\item[{\em 
+ss\+Triangle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}
+}]\{ss\+Triangle.\+png\} an equilateral triangle, standing on baseline \index{ss\+Triangle\+Inverted@{ss\+Triangle\+Inverted}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Triangle\+Inverted@{ss\+Triangle\+Inverted}}\item[{\em 
+ss\+Triangle\+Inverted\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}
+}]\{ss\+Triangle\+Inverted.\+png\} an equilateral triangle, standing on corner \index{ss\+Cross\+Square@{ss\+Cross\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross\+Square@{ss\+Cross\+Square}}\item[{\em 
+ss\+Cross\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}
+}]\{ss\+Cross\+Square.\+png\} a square with a cross inside \index{ss\+Plus\+Square@{ss\+Plus\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus\+Square@{ss\+Plus\+Square}}\item[{\em 
+ss\+Plus\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}
+}]\{ss\+Plus\+Square.\+png\} a square with a plus inside \index{ss\+Cross\+Circle@{ss\+Cross\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross\+Circle@{ss\+Cross\+Circle}}\item[{\em 
+ss\+Cross\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}
+}]\{ss\+Cross\+Circle.\+png\} a circle with a cross inside \index{ss\+Plus\+Circle@{ss\+Plus\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus\+Circle@{ss\+Plus\+Circle}}\item[{\em 
+ss\+Plus\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}
+}]\{ss\+Plus\+Circle.\+png\} a circle with a plus inside \index{ss\+Peace@{ss\+Peace}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Peace@{ss\+Peace}}\item[{\em 
+ss\+Peace\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}
+}]\{ss\+Peace.\+png\} a circle, with one vertical and two downward diagonal lines \index{ss\+Pixmap@{ss\+Pixmap}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Pixmap@{ss\+Pixmap}}\item[{\em 
+ss\+Pixmap\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}
+}]a custom pixmap specified by \hyperlink{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}{set\+Pixmap}, centered on the data point coordinates \index{ss\+Custom@{ss\+Custom}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Custom@{ss\+Custom}}\item[{\em 
+ss\+Custom\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}
+}]custom painter operations are performed per scatter (As Q\+Painter\+Path, see \hyperlink{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}{set\+Custom\+Path}) \index{ss\+None@{ss\+None}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+None@{ss\+None}}\item[{\em 
+ss\+None\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}
+}]no scatter symbols are drawn (e.\+g. in \hyperlink{class_q_c_p_graph}{Q\+C\+P\+Graph}, data only represented with lines) \index{ss\+Dot@{ss\+Dot}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Dot@{ss\+Dot}}\item[{\em 
+ss\+Dot\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a456cf4e531ea7efd2affcf19c434f6ec}
+}]\{ss\+Dot.\+png\} a single pixel (use \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{ss\+Disc} or \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{ss\+Circle} if you want a round shape with a certain radius) \index{ss\+Cross@{ss\+Cross}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross@{ss\+Cross}}\item[{\em 
+ss\+Cross\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a730b9884c708459e8f175c93a50d3dfb}
+}]\{ss\+Cross.\+png\} a cross \index{ss\+Plus@{ss\+Plus}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus@{ss\+Plus}}\item[{\em 
+ss\+Plus\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}
+}]\{ss\+Plus.\+png\} a plus \index{ss\+Circle@{ss\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Circle@{ss\+Circle}}\item[{\em 
+ss\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}
+}]\{ss\+Circle.\+png\} a circle \index{ss\+Disc@{ss\+Disc}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Disc@{ss\+Disc}}\item[{\em 
+ss\+Disc\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349afc3b57bea21b577758a587f1c50f53ef}
+}]\{ss\+Disc.\+png\} a circle which is filled with the pen\textquotesingle{}s color (not the brush as with ss\+Circle) \index{ss\+Square@{ss\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Square@{ss\+Square}}\item[{\em 
+ss\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a6ea690a08777a4303f524353bf9e69da}
+}]\{ss\+Square.\+png\} a square \index{ss\+Diamond@{ss\+Diamond}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Diamond@{ss\+Diamond}}\item[{\em 
+ss\+Diamond\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a82b202c0de840968b8f220c9f4b1bd17}
+}]\{ss\+Diamond.\+png\} a diamond \index{ss\+Star@{ss\+Star}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Star@{ss\+Star}}\item[{\em 
+ss\+Star\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a7777e996b8316f4da4186da741882ecd}
+}]\{ss\+Star.\+png\} a star with eight arms, i.\+e. a combination of cross and plus \index{ss\+Triangle@{ss\+Triangle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Triangle@{ss\+Triangle}}\item[{\em 
+ss\+Triangle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a05353499a9a42d52d2969a25df4dfc3e}
+}]\{ss\+Triangle.\+png\} an equilateral triangle, standing on baseline \index{ss\+Triangle\+Inverted@{ss\+Triangle\+Inverted}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Triangle\+Inverted@{ss\+Triangle\+Inverted}}\item[{\em 
+ss\+Triangle\+Inverted\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ab1020d99860cf73c635fb7326f0c03b3}
+}]\{ss\+Triangle\+Inverted.\+png\} an equilateral triangle, standing on corner \index{ss\+Cross\+Square@{ss\+Cross\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross\+Square@{ss\+Cross\+Square}}\item[{\em 
+ss\+Cross\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a8c41c73b0214bce47f6598684991e2b9}
+}]\{ss\+Cross\+Square.\+png\} a square with a cross inside \index{ss\+Plus\+Square@{ss\+Plus\+Square}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus\+Square@{ss\+Plus\+Square}}\item[{\em 
+ss\+Plus\+Square\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a2bedfabd41a7ca16994d71a38da800b2}
+}]\{ss\+Plus\+Square.\+png\} a square with a plus inside \index{ss\+Cross\+Circle@{ss\+Cross\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Cross\+Circle@{ss\+Cross\+Circle}}\item[{\em 
+ss\+Cross\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349ad4d898e5ae95a93f80d1d8e180f027d5}
+}]\{ss\+Cross\+Circle.\+png\} a circle with a cross inside \index{ss\+Plus\+Circle@{ss\+Plus\+Circle}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Plus\+Circle@{ss\+Plus\+Circle}}\item[{\em 
+ss\+Plus\+Circle\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a97034c82c96b04b9efd12e5ed5584cfd}
+}]\{ss\+Plus\+Circle.\+png\} a circle with a plus inside \index{ss\+Peace@{ss\+Peace}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Peace@{ss\+Peace}}\item[{\em 
+ss\+Peace\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a691c040dc910335576bcc1b2a26f9787}
+}]\{ss\+Peace.\+png\} a circle, with one vertical and two downward diagonal lines \index{ss\+Pixmap@{ss\+Pixmap}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Pixmap@{ss\+Pixmap}}\item[{\em 
+ss\+Pixmap\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}
+}]a custom pixmap specified by \hyperlink{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}{set\+Pixmap}, centered on the data point coordinates \index{ss\+Custom@{ss\+Custom}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!ss\+Custom@{ss\+Custom}}\item[{\em 
+ss\+Custom\hypertarget{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{}\label{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}
+}]custom painter operations are performed per scatter (As Q\+Painter\+Path, see \hyperlink{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}{set\+Custom\+Path}) \end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Q\+C\+P\+Scatter\+Style()}{QCPScatterStyle()}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+C\+P\+Scatter\+Style\+::\+Q\+C\+P\+Scatter\+Style (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a8836018d9ad83ccd8870de8315c1be73}{}\label{class_q_c_p_scatter_style_a8836018d9ad83ccd8870de8315c1be73}
+Creates a new \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instance with size set to 6. No shape, pen or brush is defined.
+
+Since the pen is undefined (\hyperlink{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}{is\+Pen\+Defined} returns false), the scatter color will be inherited from the plottable that uses this scatter style. \index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Q\+C\+P\+Scatter\+Style(\+Scatter\+Shape shape, double size=6)}{QCPScatterStyle(ScatterShape shape, double size=6)}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+C\+P\+Scatter\+Style\+::\+Q\+C\+P\+Scatter\+Style (
+\begin{DoxyParamCaption}
+\item[{{\bf Scatter\+Shape}}]{shape, }
+\item[{double}]{size = {\ttfamily 6}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a003d92f74f4561eda111862eadd62f28}{}\label{class_q_c_p_scatter_style_a003d92f74f4561eda111862eadd62f28}
+Creates a new \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instance with shape set to {\itshape shape} and size to {\itshape size}. No pen or brush is defined.
+
+Since the pen is undefined (\hyperlink{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}{is\+Pen\+Defined} returns false), the scatter color will be inherited from the plottable that uses this scatter style. \index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Q\+C\+P\+Scatter\+Style(\+Scatter\+Shape shape, const Q\+Color \&color, double size)}{QCPScatterStyle(ScatterShape shape, const QColor &color, double size)}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+C\+P\+Scatter\+Style\+::\+Q\+C\+P\+Scatter\+Style (
+\begin{DoxyParamCaption}
+\item[{{\bf Scatter\+Shape}}]{shape, }
+\item[{const Q\+Color \&}]{color, }
+\item[{double}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_afa059da858c864c7e05871dc602d7eab}{}\label{class_q_c_p_scatter_style_afa059da858c864c7e05871dc602d7eab}
+Creates a new \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instance with shape set to {\itshape shape}, the pen color set to {\itshape color}, and size to {\itshape size}. No brush is defined, i.\+e. the scatter point will not be filled. \index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Q\+C\+P\+Scatter\+Style(\+Scatter\+Shape shape, const Q\+Color \&color, const Q\+Color \&fill, double size)}{QCPScatterStyle(ScatterShape shape, const QColor &color, const QColor &fill, double size)}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+C\+P\+Scatter\+Style\+::\+Q\+C\+P\+Scatter\+Style (
+\begin{DoxyParamCaption}
+\item[{{\bf Scatter\+Shape}}]{shape, }
+\item[{const Q\+Color \&}]{color, }
+\item[{const Q\+Color \&}]{fill, }
+\item[{double}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a6e1b64f12cac7f07af180ae4316fd38d}{}\label{class_q_c_p_scatter_style_a6e1b64f12cac7f07af180ae4316fd38d}
+Creates a new \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instance with shape set to {\itshape shape}, the pen color set to {\itshape color}, the brush color to {\itshape fill} (with a solid pattern), and size to {\itshape size}. \index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Q\+C\+P\+Scatter\+Style(\+Scatter\+Shape shape, const Q\+Pen \&pen, const Q\+Brush \&brush, double size)}{QCPScatterStyle(ScatterShape shape, const QPen &pen, const QBrush &brush, double size)}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+C\+P\+Scatter\+Style\+::\+Q\+C\+P\+Scatter\+Style (
+\begin{DoxyParamCaption}
+\item[{{\bf Scatter\+Shape}}]{shape, }
+\item[{const Q\+Pen \&}]{pen, }
+\item[{const Q\+Brush \&}]{brush, }
+\item[{double}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a85acc4941d7e5c9bca5fa51377a77f49}{}\label{class_q_c_p_scatter_style_a85acc4941d7e5c9bca5fa51377a77f49}
+Creates a new \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instance with shape set to {\itshape shape}, the pen set to {\itshape pen}, the brush to {\itshape brush}, and size to {\itshape size}.
+
+\begin{DoxyWarning}{Warning}
+In some cases it might be tempting to directly use a pen style like {\ttfamily Qt\+::\+No\+Pen} as {\itshape pen} and a color like {\ttfamily Qt\+::blue} as {\itshape brush}. Notice however, that the corresponding call~\newline
+{\ttfamily \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style(\+Q\+C\+P\+Scatter\+Shape\+::ss\+Circle, Qt\+::\+No\+Pen, Qt\+::blue, 5)}}~\newline
+doesn\textquotesingle{}t necessarily lead C++ to use this constructor in some cases, but might mistake {\ttfamily Qt\+::\+No\+Pen} for a Q\+Color and use the \hyperlink{class_q_c_p_scatter_style_a6e1b64f12cac7f07af180ae4316fd38d}{Q\+C\+P\+Scatter\+Style(\+Scatter\+Shape shape, const Q\+Color \&color, const Q\+Color \&fill, double size)} constructor instead (which will lead to an unexpected look of the scatter points). To prevent this, be more explicit with the parameter types. For example, use {\ttfamily Q\+Brush(\+Qt\+::blue)} instead of just {\ttfamily Qt\+::blue}, to clearly point out to the compiler that this constructor is wanted. 
+\end{DoxyWarning}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Q\+C\+P\+Scatter\+Style(const Q\+Pixmap \&pixmap)}{QCPScatterStyle(const QPixmap &pixmap)}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+C\+P\+Scatter\+Style\+::\+Q\+C\+P\+Scatter\+Style (
+\begin{DoxyParamCaption}
+\item[{const Q\+Pixmap \&}]{pixmap}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a63962094587a4c2258435aa7933996cc}{}\label{class_q_c_p_scatter_style_a63962094587a4c2258435aa7933996cc}
+Creates a new \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instance which will show the specified {\itshape pixmap}. The scatter shape is set to \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap}. \index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{Q\+C\+P\+Scatter\+Style(const Q\+Painter\+Path \&custom\+Path, const Q\+Pen \&pen, const Q\+Brush \&brush=\+Qt\+::\+No\+Brush, double size=6)}{QCPScatterStyle(const QPainterPath &customPath, const QPen &pen, const QBrush &brush=Qt::NoBrush, double size=6)}}]{\setlength{\rightskip}{0pt plus 5cm}Q\+C\+P\+Scatter\+Style\+::\+Q\+C\+P\+Scatter\+Style (
+\begin{DoxyParamCaption}
+\item[{const Q\+Painter\+Path \&}]{custom\+Path, }
+\item[{const Q\+Pen \&}]{pen, }
+\item[{const Q\+Brush \&}]{brush = {\ttfamily Qt\+:\+:NoBrush}, }
+\item[{double}]{size = {\ttfamily 6}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a879c30647683b3cfbde2afecea815e6f}{}\label{class_q_c_p_scatter_style_a879c30647683b3cfbde2afecea815e6f}
+Creates a new \hyperlink{class_q_c_p_scatter_style}{Q\+C\+P\+Scatter\+Style} instance with a custom shape that is defined via {\itshape custom\+Path}. The scatter shape is set to \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{ss\+Custom}.
+
+The custom shape line will be drawn with {\itshape pen} and filled with {\itshape brush}. The size has a slightly different meaning than for built-\/in scatter points\+: The custom path will be drawn scaled by a factor of {\itshape size/6.\+0}. Since the default {\itshape size} is 6, the custom path will appear at a its natural size by default. To double the size of the path for example, set {\itshape size} to 12. 
+
+\subsection{Member Function Documentation}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!apply\+To@{apply\+To}}
+\index{apply\+To@{apply\+To}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{apply\+To(\+Q\+C\+P\+Painter $\ast$painter, const Q\+Pen \&default\+Pen) const }{applyTo(QCPPainter *painter, const QPen &defaultPen) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::apply\+To (
+\begin{DoxyParamCaption}
+\item[{{\bf Q\+C\+P\+Painter} $\ast$}]{painter, }
+\item[{const Q\+Pen \&}]{default\+Pen}
+\end{DoxyParamCaption}
+) const}\hypertarget{class_q_c_p_scatter_style_a81817dfd404635f211e6ff2a04657d36}{}\label{class_q_c_p_scatter_style_a81817dfd404635f211e6ff2a04657d36}
+Applies the pen and the brush of this scatter style to {\itshape painter}. If this scatter style has an undefined pen (\hyperlink{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}{is\+Pen\+Defined}), sets the pen of {\itshape painter} to {\itshape default\+Pen} instead.
+
+This function is used by plottables (or any class that wants to draw scatters) just before a number of scatters with this style shall be drawn with the {\itshape painter}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_scatter_style_aeaf6dbadb0b0e6d890a6e3bbe5aebece}{draw\+Shape} 
+\end{DoxySeeAlso}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!draw\+Shape@{draw\+Shape}}
+\index{draw\+Shape@{draw\+Shape}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{draw\+Shape(\+Q\+C\+P\+Painter $\ast$painter, const Q\+Point\+F \&pos) const }{drawShape(QCPPainter *painter, const QPointF &pos) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::draw\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Q\+C\+P\+Painter} $\ast$}]{painter, }
+\item[{const Q\+PointF \&}]{pos}
+\end{DoxyParamCaption}
+) const}\hypertarget{class_q_c_p_scatter_style_aeaf6dbadb0b0e6d890a6e3bbe5aebece}{}\label{class_q_c_p_scatter_style_aeaf6dbadb0b0e6d890a6e3bbe5aebece}
+Draws the scatter shape with {\itshape painter} at position {\itshape pos}.
+
+This function does not modify the pen or the brush on the painter, as \hyperlink{class_q_c_p_scatter_style_a81817dfd404635f211e6ff2a04657d36}{apply\+To} is meant to be called before scatter points are drawn with \hyperlink{class_q_c_p_scatter_style_aeaf6dbadb0b0e6d890a6e3bbe5aebece}{draw\+Shape}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_scatter_style_a81817dfd404635f211e6ff2a04657d36}{apply\+To} 
+\end{DoxySeeAlso}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!draw\+Shape@{draw\+Shape}}
+\index{draw\+Shape@{draw\+Shape}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{draw\+Shape(\+Q\+C\+P\+Painter $\ast$painter, double x, double y) const }{drawShape(QCPPainter *painter, double x, double y) const }}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::draw\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Q\+C\+P\+Painter} $\ast$}]{painter, }
+\item[{double}]{x, }
+\item[{double}]{y}
+\end{DoxyParamCaption}
+) const}\hypertarget{class_q_c_p_scatter_style_ae76811ac9f70ebf7a2b4c759853e6ed8}{}\label{class_q_c_p_scatter_style_ae76811ac9f70ebf7a2b4c759853e6ed8}
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. Draws the scatter shape with {\itshape painter} at position {\itshape x} and {\itshape y}. \index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!is\+None@{is\+None}}
+\index{is\+None@{is\+None}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{is\+None() const }{isNone() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Q\+C\+P\+Scatter\+Style\+::is\+None (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_q_c_p_scatter_style_aa3861281108d0adbeb291c820ea3925c}{}\label{class_q_c_p_scatter_style_aa3861281108d0adbeb291c820ea3925c}
+Returns whether the scatter shape is \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a4a706d6879ec5c34643446db00469b33}{ss\+None}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{set\+Shape} 
+\end{DoxySeeAlso}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!is\+Pen\+Defined@{is\+Pen\+Defined}}
+\index{is\+Pen\+Defined@{is\+Pen\+Defined}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{is\+Pen\+Defined() const }{isPenDefined() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Q\+C\+P\+Scatter\+Style\+::is\+Pen\+Defined (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}{}\label{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}
+Returns whether a pen has been defined for this scatter style.
+
+The pen is undefined if a constructor is called that does not carry {\itshape pen} as parameter. Those are \hyperlink{class_q_c_p_scatter_style_a8836018d9ad83ccd8870de8315c1be73}{Q\+C\+P\+Scatter\+Style()} and \hyperlink{class_q_c_p_scatter_style_a003d92f74f4561eda111862eadd62f28}{Q\+C\+P\+Scatter\+Style(\+Scatter\+Shape shape, double size)}. If the pen is undefined, the pen of the respective plottable will be used for drawing scatters.
+
+If a pen was defined for this scatter style instance, and you now wish to undefine the pen, call \hyperlink{class_q_c_p_scatter_style_acabc2a8c83d650b946f50c3166b6c35e}{undefine\+Pen}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} 
+\end{DoxySeeAlso}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!set\+Brush@{set\+Brush}}
+\index{set\+Brush@{set\+Brush}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{set\+Brush(const Q\+Brush \&brush)}{setBrush(const QBrush &brush)}}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::set\+Brush (
+\begin{DoxyParamCaption}
+\item[{const Q\+Brush \&}]{brush}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{}\label{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}
+Sets the brush that will be used to fill scatter points to {\itshape brush}. Note that not all scatter shapes have fillable areas. For example, \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a5aea133f71a621372ec35fd7e4a3867b}{ss\+Plus} does not while \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a684701e478e9815965c9a92e97dec04a}{ss\+Circle} does.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} 
+\end{DoxySeeAlso}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!set\+Custom\+Path@{set\+Custom\+Path}}
+\index{set\+Custom\+Path@{set\+Custom\+Path}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{set\+Custom\+Path(const Q\+Painter\+Path \&custom\+Path)}{setCustomPath(const QPainterPath &customPath)}}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::set\+Custom\+Path (
+\begin{DoxyParamCaption}
+\item[{const Q\+Painter\+Path \&}]{custom\+Path}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}{}\label{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}
+Sets the custom shape that will be drawn as scatter point to {\itshape custom\+Path}.
+
+The scatter shape is automatically set to \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{ss\+Custom}. \index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!set\+From\+Other@{set\+From\+Other}}
+\index{set\+From\+Other@{set\+From\+Other}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{set\+From\+Other(const Q\+C\+P\+Scatter\+Style \&other, Scatter\+Properties properties)}{setFromOther(const QCPScatterStyle &other, ScatterProperties properties)}}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::set\+From\+Other (
+\begin{DoxyParamCaption}
+\item[{const {\bf Q\+C\+P\+Scatter\+Style} \&}]{other, }
+\item[{Scatter\+Properties}]{properties}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a7d59ba8864914f765817841089e436f1}{}\label{class_q_c_p_scatter_style_a7d59ba8864914f765817841089e436f1}
+Copies the specified {\itshape properties} from the {\itshape other} scatter style to this scatter style. \index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!set\+Pen@{set\+Pen}}
+\index{set\+Pen@{set\+Pen}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{set\+Pen(const Q\+Pen \&pen)}{setPen(const QPen &pen)}}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::set\+Pen (
+\begin{DoxyParamCaption}
+\item[{const Q\+Pen \&}]{pen}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{}\label{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}
+Sets the pen that will be used to draw scatter points to {\itshape pen}.
+
+If the pen was previously undefined (see \hyperlink{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}{is\+Pen\+Defined}), the pen is considered defined after a call to this function, even if {\itshape pen} is {\ttfamily Qt\+::\+No\+Pen}. If you have defined a pen previously by calling this function and now wish to undefine the pen, call \hyperlink{class_q_c_p_scatter_style_acabc2a8c83d650b946f50c3166b6c35e}{undefine\+Pen}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_scatter_style_a74d692aaeb8d4b36d6f7d510e44264b1}{set\+Brush} 
+\end{DoxySeeAlso}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!set\+Pixmap@{set\+Pixmap}}
+\index{set\+Pixmap@{set\+Pixmap}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{set\+Pixmap(const Q\+Pixmap \&pixmap)}{setPixmap(const QPixmap &pixmap)}}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::set\+Pixmap (
+\begin{DoxyParamCaption}
+\item[{const Q\+Pixmap \&}]{pixmap}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}{}\label{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}
+Sets the pixmap that will be drawn as scatter point to {\itshape pixmap}.
+
+Note that \hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} does not influence the appearance of the pixmap.
+
+The scatter shape is automatically set to \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap}. \index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!set\+Shape@{set\+Shape}}
+\index{set\+Shape@{set\+Shape}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{set\+Shape(\+Scatter\+Shape shape)}{setShape(ScatterShape shape)}}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::set\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Q\+C\+P\+Scatter\+Style\+::\+Scatter\+Shape}}]{shape}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{}\label{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}
+Sets the shape to {\itshape shape}.
+
+Note that the calls \hyperlink{class_q_c_p_scatter_style_a5fb611d46acfac520d7b89a1c71d9246}{set\+Pixmap} and \hyperlink{class_q_c_p_scatter_style_a96a3e949f90b2afe5677ca9412a12a1e}{set\+Custom\+Path} automatically set the shape to \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a0e709ca8b00ac857a65459d63cc94521}{ss\+Pixmap} and \hyperlink{class_q_c_p_scatter_style_adb31525af6b680e6f1b7472e43859349a1c9c14e274bd8b10a9e0bb2a4c73f597}{ss\+Custom}, respectively.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{set\+Size} 
+\end{DoxySeeAlso}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!set\+Size@{set\+Size}}
+\index{set\+Size@{set\+Size}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{set\+Size(double size)}{setSize(double size)}}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::set\+Size (
+\begin{DoxyParamCaption}
+\item[{double}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}{}\label{class_q_c_p_scatter_style_aaefdd031052892c4136129db68596e0f}
+Sets the size (pixel diameter) of the drawn scatter points to {\itshape size}.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_q_c_p_scatter_style_a7c641c4d4c6d29cb705d3887cfce91c1}{set\+Shape} 
+\end{DoxySeeAlso}
+\index{Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}!undefine\+Pen@{undefine\+Pen}}
+\index{undefine\+Pen@{undefine\+Pen}!Q\+C\+P\+Scatter\+Style@{Q\+C\+P\+Scatter\+Style}}
+\subsubsection[{\texorpdfstring{undefine\+Pen()}{undefinePen()}}]{\setlength{\rightskip}{0pt plus 5cm}void Q\+C\+P\+Scatter\+Style\+::undefine\+Pen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_q_c_p_scatter_style_acabc2a8c83d650b946f50c3166b6c35e}{}\label{class_q_c_p_scatter_style_acabc2a8c83d650b946f50c3166b6c35e}
+Sets this scatter style to have an undefined pen (see \hyperlink{class_q_c_p_scatter_style_a7f1385a8d5e4f349a6b8030723fbd0f7}{is\+Pen\+Defined} for what an undefined pen implies).
+
+A call to \hyperlink{class_q_c_p_scatter_style_a761f1f229cc0ca4703e1e2b89f6dd1ba}{set\+Pen} will define a pen. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+A\+R\+Neural\+Network\+View/qcustomplot.\+h\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+A\+R\+Neural\+Network\+View/qcustomplot.\+cpp\end{DoxyCompactItemize}

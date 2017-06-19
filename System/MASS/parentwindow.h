@@ -8,7 +8,10 @@
 #include <QVBoxLayout>
 
 #include "pluginloader.h"
+//! \addtogroup mass MASS
+//! @{
 
+//! \brief Main application widget class.
 class ParentWindow : public QWidget
 {
     Q_OBJECT
@@ -24,4 +27,5 @@ private:
     void resizeEvent(QResizeEvent* event);
 };
 
+//! @}
 #endif // PARENTWINDOW_H

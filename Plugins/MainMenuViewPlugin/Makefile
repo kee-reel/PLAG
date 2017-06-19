@@ -398,7 +398,7 @@ qmake_all: FORCE
 make_first: release-make_first debug-make_first  FORCE
 all: release-all debug-all  FORCE
 clean: release-clean debug-clean  FORCE
-	-$(DEL_FILE) ..\..\System\build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Debug\Modules\libMainMenuViewPlugin.a
+	-$(DEL_FILE) ..\..\System\build-Desktop_Qt_5_8_0_MinGW_32bit-MASS-Release\Modules\libMainMenuViewPlugin.a
 distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile
 	-$(DEL_FILE) .qmake.stash

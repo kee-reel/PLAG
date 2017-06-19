@@ -1,0 +1,6 @@
+<map id="TableHandler" name="TableHandler">
+<area shape="rect" id="node2" href="$class_q_map.html" title="QMap\&lt; QString, QMap \&gt;" alt="" coords="7,5,175,32"/>
+<area shape="rect" id="node3" href="$class_q_map.html" title="QMap\&lt; QString, QVariant\l::Type \&gt;" alt="" coords="5,57,177,98"/>
+<area shape="rect" id="node4" href="$class_q_map.html" title="QMap\&lt; QString, QVector\l\&lt; QVariant \&gt; \&gt;" alt="" coords="7,122,176,163"/>
+<area shape="rect" id="node5" href="$class_q_map.html" title="QMap\&lt; QVariant::Type,\l QString \&gt;" alt="" coords="11,187,172,229"/>
+</map>

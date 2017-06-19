@@ -1,0 +1,158 @@
+\hypertarget{class_extendable_item_model}{}\section{Extendable\+Item\+Model Class Reference}
+\label{class_extendable_item_model}\index{Extendable\+Item\+Model@{Extendable\+Item\+Model}}
+
+
+Inheritance diagram for Extendable\+Item\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{class_extendable_item_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Extendable\+Item\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_extendable_item_model__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Extendable\+Item\+Model} (Q\+String table\+Name, \hyperlink{class_i_extendable_data_base_manager_plugin}{I\+Extendable\+Data\+Base\+Manager\+Plugin} $\ast$data\+Manager, Q\+Object $\ast$parent=0)\hypertarget{class_extendable_item_model_a896f75df752535510036e0c5d42fac8a}{}\label{class_extendable_item_model_a896f75df752535510036e0c5d42fac8a}
+
+\item 
+void {\bfseries Load\+Data} ()\hypertarget{class_extendable_item_model_ae5887f5d5086a094d712e2f7a1f6b84b}{}\label{class_extendable_item_model_ae5887f5d5086a094d712e2f7a1f6b84b}
+
+\item 
+bool {\bfseries Attach\+Relation} (Q\+String relation\+Name, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ default\+Data)\hypertarget{class_extendable_item_model_a49139d270880dc35b44b51bd95a36e89}{}\label{class_extendable_item_model_a49139d270880dc35b44b51bd95a36e89}
+
+\item 
+void {\bfseries Set\+Active\+Relation} (Q\+String relation\+Name)\hypertarget{class_extendable_item_model_ad5ce2033c7ba133259dc5c46a98e4694}{}\label{class_extendable_item_model_ad5ce2033c7ba133259dc5c46a98e4694}
+
+\item 
+virtual Q\+Variant {\bfseries data} (const Q\+Model\+Index \&index, int role) const \hypertarget{class_extendable_item_model_a61277cd164010ece244ba9658f7e10a1}{}\label{class_extendable_item_model_a61277cd164010ece244ba9658f7e10a1}
+
+\item 
+\hyperlink{class_q_map}{Q\+Map}$<$ int, Q\+Variant $>$ {\bfseries item\+Data} (const Q\+Model\+Index \&index) const override\hypertarget{class_extendable_item_model_ae75da3ede02d0f81e3a3523a99d9306f}{}\label{class_extendable_item_model_ae75da3ede02d0f81e3a3523a99d9306f}
+
+\item 
+virtual Qt\+::\+Item\+Flags {\bfseries flags} (const Q\+Model\+Index \&index) const \hypertarget{class_extendable_item_model_a8625ec204f0d6b9632f6eb099ec27290}{}\label{class_extendable_item_model_a8625ec204f0d6b9632f6eb099ec27290}
+
+\item 
+virtual Q\+Variant {\bfseries header\+Data} (int section, Qt\+::\+Orientation orientation, int role=Qt\+::\+Display\+Role) const \hypertarget{class_extendable_item_model_a663343775e61999ae5244b52eeb011da}{}\label{class_extendable_item_model_a663343775e61999ae5244b52eeb011da}
+
+\item 
+virtual Q\+Model\+Index {\bfseries index} (int row, int column, const Q\+Model\+Index \&parent=Q\+Model\+Index()) const \hypertarget{class_extendable_item_model_a5a0a910835bc709db90f7438a481379a}{}\label{class_extendable_item_model_a5a0a910835bc709db90f7438a481379a}
+
+\item 
+virtual Q\+Model\+Index {\bfseries parent} (const Q\+Model\+Index \&index) const \hypertarget{class_extendable_item_model_a5dd0dfdea4d6fb193456d6ba27a51dd0}{}\label{class_extendable_item_model_a5dd0dfdea4d6fb193456d6ba27a51dd0}
+
+\item 
+virtual int {\bfseries row\+Count} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const \hypertarget{class_extendable_item_model_af3228a4c11e5b849e482c906ec2e1e8f}{}\label{class_extendable_item_model_af3228a4c11e5b849e482c906ec2e1e8f}
+
+\item 
+virtual int {\bfseries column\+Count} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const \hypertarget{class_extendable_item_model_a544d94fdce7ea5a08095ffef3b3271d8}{}\label{class_extendable_item_model_a544d94fdce7ea5a08095ffef3b3271d8}
+
+\item 
+virtual bool {\bfseries insert\+Rows} (int row, int count, const Q\+Model\+Index \&parent)\hypertarget{class_extendable_item_model_a1ce2fcafb7dea41b0d922b7172d23e0d}{}\label{class_extendable_item_model_a1ce2fcafb7dea41b0d922b7172d23e0d}
+
+\item 
+virtual bool {\bfseries insert\+Columns} (int column, int count, const Q\+Model\+Index \&parent)\hypertarget{class_extendable_item_model_abd1e1a5e8d942216dd9cfeaab5564eda}{}\label{class_extendable_item_model_abd1e1a5e8d942216dd9cfeaab5564eda}
+
+\item 
+virtual bool {\bfseries remove\+Rows} (int row, int count, const Q\+Model\+Index \&parent)\hypertarget{class_extendable_item_model_a0845398488e6f714ca6eda0670a7aa8e}{}\label{class_extendable_item_model_a0845398488e6f714ca6eda0670a7aa8e}
+
+\item 
+virtual bool {\bfseries move\+Rows} (const Q\+Model\+Index \&source\+Parent, int source\+Row, int count, const Q\+Model\+Index \&destination\+Parent, int destination\+Child)\hypertarget{class_extendable_item_model_a7d00afeac188e21c0d165b14a3c421cd}{}\label{class_extendable_item_model_a7d00afeac188e21c0d165b14a3c421cd}
+
+\item 
+virtual bool {\bfseries set\+Data} (const Q\+Model\+Index \&index, const Q\+Variant \&value, int role)\hypertarget{class_extendable_item_model_a72c65abf36fbe31778e73c983da260cc}{}\label{class_extendable_item_model_a72c65abf36fbe31778e73c983da260cc}
+
+\item 
+virtual Q\+String\+List {\bfseries mime\+Types} () const \hypertarget{class_extendable_item_model_a886feb9533a3fb923d957d86db04c73a}{}\label{class_extendable_item_model_a886feb9533a3fb923d957d86db04c73a}
+
+\item 
+virtual Q\+Mime\+Data $\ast$ {\bfseries mime\+Data} (const Q\+Model\+Index\+List \&indexes) const \hypertarget{class_extendable_item_model_a98c7fabbfb3296b6fa60531dded4a33c}{}\label{class_extendable_item_model_a98c7fabbfb3296b6fa60531dded4a33c}
+
+\item 
+virtual bool {\bfseries drop\+Mime\+Data} (const Q\+Mime\+Data $\ast$data, Qt\+::\+Drop\+Action action, int row, int column, const Q\+Model\+Index \&parent)\hypertarget{class_extendable_item_model_ae6dc27740bcfff8ecd88e3af76f7d3ac}{}\label{class_extendable_item_model_ae6dc27740bcfff8ecd88e3af76f7d3ac}
+
+\item 
+{\bfseries Extendable\+Item\+Model} (Q\+String table\+Name, \hyperlink{class_i_extendable_data_base_manager_plugin}{I\+Extendable\+Data\+Base\+Manager\+Plugin} $\ast$data\+Manager, Q\+Object $\ast$parent=0)\hypertarget{class_extendable_item_model_a896f75df752535510036e0c5d42fac8a}{}\label{class_extendable_item_model_a896f75df752535510036e0c5d42fac8a}
+
+\item 
+void {\bfseries Load\+Data} ()\hypertarget{class_extendable_item_model_ae5887f5d5086a094d712e2f7a1f6b84b}{}\label{class_extendable_item_model_ae5887f5d5086a094d712e2f7a1f6b84b}
+
+\item 
+bool {\bfseries Attach\+Relation} (Q\+String relation\+Name, \hyperlink{class_q_vector}{Q\+Vector}$<$ Q\+Variant $>$ default\+Data)\hypertarget{class_extendable_item_model_a49139d270880dc35b44b51bd95a36e89}{}\label{class_extendable_item_model_a49139d270880dc35b44b51bd95a36e89}
+
+\item 
+void {\bfseries Set\+Active\+Relation} (Q\+String relation\+Name)\hypertarget{class_extendable_item_model_ad5ce2033c7ba133259dc5c46a98e4694}{}\label{class_extendable_item_model_ad5ce2033c7ba133259dc5c46a98e4694}
+
+\item 
+virtual Q\+Variant {\bfseries data} (const Q\+Model\+Index \&index, int role) const \hypertarget{class_extendable_item_model_afaa39ab49a27f730d27e836ef6663985}{}\label{class_extendable_item_model_afaa39ab49a27f730d27e836ef6663985}
+
+\item 
+virtual Qt\+::\+Item\+Flags {\bfseries flags} (const Q\+Model\+Index \&index) const \hypertarget{class_extendable_item_model_a56a99de5b70a47e1c9295ad3e4577a67}{}\label{class_extendable_item_model_a56a99de5b70a47e1c9295ad3e4577a67}
+
+\item 
+virtual Q\+Variant {\bfseries header\+Data} (int section, Qt\+::\+Orientation orientation, int role=Qt\+::\+Display\+Role) const \hypertarget{class_extendable_item_model_acaa3db5a890e6b3d50a8e89d2e777927}{}\label{class_extendable_item_model_acaa3db5a890e6b3d50a8e89d2e777927}
+
+\item 
+virtual Q\+Model\+Index {\bfseries index} (int row, int column, const Q\+Model\+Index \&parent=Q\+Model\+Index()) const \hypertarget{class_extendable_item_model_a4c1dd928c66c449d1c9555e0c18f40f1}{}\label{class_extendable_item_model_a4c1dd928c66c449d1c9555e0c18f40f1}
+
+\item 
+virtual Q\+Model\+Index {\bfseries parent} (const Q\+Model\+Index \&index) const \hypertarget{class_extendable_item_model_a1c5f0abfa728c36a12c18c95e85c559a}{}\label{class_extendable_item_model_a1c5f0abfa728c36a12c18c95e85c559a}
+
+\item 
+virtual int {\bfseries row\+Count} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const \hypertarget{class_extendable_item_model_a781c8bb7d7f153bff87aedcd4243985e}{}\label{class_extendable_item_model_a781c8bb7d7f153bff87aedcd4243985e}
+
+\item 
+virtual int {\bfseries column\+Count} (const Q\+Model\+Index \&parent=Q\+Model\+Index()) const \hypertarget{class_extendable_item_model_af65d74e580793af236908951af95dfee}{}\label{class_extendable_item_model_af65d74e580793af236908951af95dfee}
+
+\item 
+virtual bool {\bfseries insert\+Rows} (int row, int count, const Q\+Model\+Index \&parent)\hypertarget{class_extendable_item_model_adff898fac861b1cc06783b1b5f810d36}{}\label{class_extendable_item_model_adff898fac861b1cc06783b1b5f810d36}
+
+\item 
+virtual bool {\bfseries insert\+Columns} (int column, int count, const Q\+Model\+Index \&parent)\hypertarget{class_extendable_item_model_aa00ea86bd42efb9e82e08da187b6c7ec}{}\label{class_extendable_item_model_aa00ea86bd42efb9e82e08da187b6c7ec}
+
+\item 
+virtual bool {\bfseries remove\+Rows} (int row, int count, const Q\+Model\+Index \&parent)\hypertarget{class_extendable_item_model_a066c457590916ebd1fb9e9694415c988}{}\label{class_extendable_item_model_a066c457590916ebd1fb9e9694415c988}
+
+\item 
+virtual bool {\bfseries move\+Rows} (const Q\+Model\+Index \&source\+Parent, int source\+Row, int count, const Q\+Model\+Index \&destination\+Parent, int destination\+Child)\hypertarget{class_extendable_item_model_a2adfee96dc6e2c8f050c1bba9a4cf170}{}\label{class_extendable_item_model_a2adfee96dc6e2c8f050c1bba9a4cf170}
+
+\item 
+virtual bool {\bfseries set\+Data} (const Q\+Model\+Index \&index, const Q\+Variant \&value, int role)\hypertarget{class_extendable_item_model_a8dd835fbda7d078df7b57253fe05712a}{}\label{class_extendable_item_model_a8dd835fbda7d078df7b57253fe05712a}
+
+\item 
+virtual Q\+String\+List {\bfseries mime\+Types} () const \hypertarget{class_extendable_item_model_a281321f07945d8340cc9a76dd906d89f}{}\label{class_extendable_item_model_a281321f07945d8340cc9a76dd906d89f}
+
+\item 
+virtual Q\+Mime\+Data $\ast$ {\bfseries mime\+Data} (const Q\+Model\+Index\+List \&indexes) const \hypertarget{class_extendable_item_model_af1f0fe8a09306876edb03619f532e459}{}\label{class_extendable_item_model_af1f0fe8a09306876edb03619f532e459}
+
+\item 
+virtual bool {\bfseries drop\+Mime\+Data} (const Q\+Mime\+Data $\ast$data, Qt\+::\+Drop\+Action action, int row, int column, const Q\+Model\+Index \&parent)\hypertarget{class_extendable_item_model_a7fae485a9730a567ab5071a788a47581}{}\label{class_extendable_item_model_a7fae485a9730a567ab5071a788a47581}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+String {\bfseries table\+Name}\hypertarget{class_extendable_item_model_a41d1ee82e5e9d049fc59a672a5a1bcac}{}\label{class_extendable_item_model_a41d1ee82e5e9d049fc59a672a5a1bcac}
+
+\item 
+Q\+String {\bfseries core\+Relation\+Name}\hypertarget{class_extendable_item_model_a05024d7077bdcd12ce918a8e01ec11e9}{}\label{class_extendable_item_model_a05024d7077bdcd12ce918a8e01ec11e9}
+
+\item 
+\hyperlink{class_i_extendable_data_base_manager_plugin}{I\+Extendable\+Data\+Base\+Manager\+Plugin} $\ast$ {\bfseries data\+Manager}\hypertarget{class_extendable_item_model_a124bbba7be0bd4fd344f8db064c734e6}{}\label{class_extendable_item_model_a124bbba7be0bd4fd344f8db064c734e6}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+Extendable\+Data\+Base\+Manager/extendableitemmodel.\+h\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+Extendable\+Data\+Base\+Manager/extendableitemmodel.\+cpp\end{DoxyCompactItemize}

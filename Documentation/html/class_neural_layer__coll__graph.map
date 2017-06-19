@@ -1,0 +1,5 @@
+<map id="NeuralLayer" name="NeuralLayer">
+<area shape="rect" id="node2" href="$class_q_vector.html" title="QVector\&lt; QVector\&lt; float \&gt; \&gt;" alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node3" href="$struct_perceptron_1_1_layer_params.html" title="Perceptron::LayerParams" alt="" coords="221,5,391,32"/>
+<area shape="rect" id="node4" href="$class_q_vector.html" title="QVector\&lt; float \&gt;" alt="" coords="416,5,535,32"/>
+</map>

@@ -1,0 +1,37 @@
+<map id="QCPColorScaleAxisRectPrivate" name="QCPColorScaleAxisRectPrivate">
+<area shape="rect" id="node2" href="$class_q_c_p_axis_rect.html" title="Holds multiple axes and arranges them in a rectangular shape. " alt="" coords="414,899,519,925"/>
+<area shape="rect" id="node17" href="$class_q_c_p_axis.html" title="Manages a single axis inside a QCustomPlot. " alt="" coords="770,288,847,315"/>
+<area shape="rect" id="node3" href="$class_q_c_p_layout_element.html" title="The abstract base class for all objects that form the layout system. " alt="" coords="1976,637,2115,664"/>
+<area shape="rect" id="node10" href="$class_q_c_p_layout.html" title="The abstract base class for layouts. " alt="" coords="2323,644,2413,671"/>
+<area shape="rect" id="node35" href="$class_q_c_p_color_scale.html" title="A color scale for use with color coding data such as QCPColorMap. " alt="" coords="2311,973,2425,1000"/>
+<area shape="rect" id="node4" href="$class_q_c_p_layerable.html" title="Base class for all drawable objects. " alt="" coords="1709,393,1816,420"/>
+<area shape="rect" id="node13" href="$class_q_c_p_selection_rect.html" title="Provides rect/rubber&#45;band data selection and range zoom interaction. " alt="" coords="1979,393,2112,420"/>
+<area shape="rect" id="node23" href="$class_q_c_p_grid.html" title="Responsible for drawing the grid of a QCPAxis. " alt="" coords="2008,280,2083,307"/>
+<area shape="rect" id="node6" href="$class_q_c_p_layer.html" title="A layer that may contain objects, to control the rendering order. " alt="" coords="1413,468,1495,495"/>
+<area shape="rect" id="node7" href="$class_q_custom_plot.html" title="The central class of the library. This is the QWidget which displays the plot and interacts with the ..." alt="" coords="1100,580,1201,607"/>
+<area shape="rect" id="node20" href="$class_q_c_p_axis_painter_private.html" title="QCPAxisPainterPrivate" alt="" coords="1375,133,1533,160"/>
+<area shape="rect" id="node9" href="$class_q_c_p_layout_grid.html" title="A layout that arranges child elements in a grid. " alt="" coords="2719,589,2833,616"/>
+<area shape="rect" id="node26" href="$class_q_c_p_legend.html" title="Manages a legend inside a QCustomPlot. " alt="" coords="2931,589,3024,616"/>
+<area shape="rect" id="node28" href="$class_q_c_p_layout_inset.html" title="A layout that places child elements aligned to the border or arbitrarily positioned. " alt="" coords="2717,821,2835,848"/>
+<area shape="rect" id="node11" href="$class_q_list.html" title="QList\&lt; QList\&lt; QCPLayoutElement\l * \&gt; \&gt;" alt="" coords="2256,578,2480,619"/>
+<area shape="rect" id="node12" href="$class_q_list.html" title="QList\&lt; double \&gt;" alt="" coords="2311,476,2425,503"/>
+<area shape="rect" id="node14" href="$class_q_list.html" title="QList\&lt; QCPGraph * \&gt;" alt="" coords="733,529,884,556"/>
+<area shape="rect" id="node15" href="$class_q_list.html" title="QList\&lt; QCPAbstractItem * \&gt;" alt="" coords="713,580,904,607"/>
+<area shape="rect" id="node16" href="$class_q_list.html" title="QList\&lt; QSharedPointer\l\&lt; QCPAbstractPaintBuffer \&gt; \&gt;" alt="" coords="708,631,909,673"/>
+<area shape="rect" id="node18" href="$class_q_vector.html" title="QVector\&lt; QString \&gt;" alt="" coords="397,5,536,32"/>
+<area shape="rect" id="node19" href="$class_q_c_p_range.html" title="Represents the range an axis is encompassing. " alt="" coords="422,556,511,583"/>
+<area shape="rect" id="node21" href="$class_q_c_p_line_ending.html" title="Handles the different ending decorations for line&#45;like items. " alt="" coords="1093,143,1208,169"/>
+<area shape="rect" id="node22" href="$class_q_vector.html" title="QVector\&lt; double \&gt;" alt="" coords="401,171,533,197"/>
+<area shape="rect" id="node24" href="$class_q_list.html" title="QList\&lt; QCPLayer * \&gt;" alt="" coords="735,697,882,724"/>
+<area shape="rect" id="node25" href="$class_q_list.html" title="QList\&lt; QCPAbstractPlottable * \&gt;" alt="" coords="701,748,916,775"/>
+<area shape="rect" id="node27" href="$class_q_list.html" title="QList\&lt; QCPLayerable * \&gt;" alt="" coords="1065,480,1236,507"/>
+<area shape="rect" id="node29" href="$class_q_list.html" title="QList\&lt; QRectF \&gt;" alt="" coords="2307,821,2429,848"/>
+<area shape="rect" id="node30" href="$class_q_list.html" title="QList\&lt; Qt::Alignment \&gt;" alt="" coords="2289,872,2447,899"/>
+<area shape="rect" id="node31" href="$class_q_list.html" title="QList\&lt; QCPLayoutElement * \&gt;" alt="" coords="2267,923,2469,949"/>
+<area shape="rect" id="node32" href="$class_q_list.html" title="QList\&lt; InsetPlacement \&gt;" alt="" coords="2284,771,2452,797"/>
+<area shape="rect" id="node33" href="$class_q_list.html" title="QList\&lt; QPointer\&lt; QCPAxis \&gt; \&gt;" alt="" coords="5,868,212,895"/>
+<area shape="rect" id="node34" href="$class_q_list.html" title="QList\&lt; QCPRange \&gt;" alt="" coords="37,928,181,955"/>
+<area shape="rect" id="node36" href="$class_q_c_p_color_gradient.html" title="Defines a color gradient for use with e.g. QCPColorMap. " alt="" coords="1980,979,2111,1005"/>
+<area shape="rect" id="node37" href="$class_q_vector.html" title="QVector\&lt; QRgb \&gt;" alt="" coords="1699,1029,1827,1056"/>
+<area shape="rect" id="node38" href="$class_q_map.html" title="QMap\&lt; double, QColor \&gt;" alt="" coords="1679,979,1847,1005"/>
+</map>

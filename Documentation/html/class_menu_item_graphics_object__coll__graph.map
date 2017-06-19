@@ -1,0 +1,6 @@
+<map id="MenuItemGraphicsObject" name="MenuItemGraphicsObject">
+<area shape="rect" id="node4" href="$struct_meta_info.html" title="MetaInfo" alt="" coords="245,13,319,39"/>
+<area shape="rect" id="node5" href="$struct_i_main_menu_plugin_model_1_1_menu_item.html" title="IMainMenuPluginModel\l::MenuItem" alt="" coords="383,109,541,151"/>
+<area shape="rect" id="node6" href="$class_q_list.html" title="QList\&lt; IMainMenuPluginModel\l::MenuItem * \&gt;" alt="" coords="351,5,551,47"/>
+<area shape="rect" id="node7" href="$class_q_list.html" title="QList\&lt; MetaInfo * \&gt;" alt="" coords="576,13,713,39"/>
+</map>

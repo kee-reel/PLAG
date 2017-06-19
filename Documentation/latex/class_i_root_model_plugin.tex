@@ -1,0 +1,83 @@
+\hypertarget{class_i_root_model_plugin}{}\section{I\+Root\+Model\+Plugin Class Reference}
+\label{class_i_root_model_plugin}\index{I\+Root\+Model\+Plugin@{I\+Root\+Model\+Plugin}}
+
+
+Interface for plugin Root\+Model.  
+
+
+
+
+{\ttfamily \#include $<$rootinterface.\+h$>$}
+
+
+
+Inheritance diagram for I\+Root\+Model\+Plugin\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{class_i_root_model_plugin__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_i_root_model_plugin_a6c5a6562b3fc16264d36aa6e39b84a7f}{Add\+Plugin} (Q\+Object $\ast$instance, Q\+Json\+Object $\ast$meta)=0
+\begin{DoxyCompactList}\small\item\em Recieve loaded plugin with it\textquotesingle{}s meta data. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_i_root_model_plugin_a9ee55034608480fda71b7700d3495984}{Open} (Q\+Widget $\ast$parent\+Widget)=0
+\begin{DoxyCompactList}\small\item\em Starts plugin work. Some kind of \textquotesingle{}start\textquotesingle{} signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for plugin Root\+Model. 
+
+This interface represents most significant plugin in whole system. If plugin implements this interface it should take care of whole system plugins interactions. When \hyperlink{class_plugin_loader}{Plugin\+Loader} class loads plugins from directory it searchs the plugin which inherits from \hyperlink{class_i_root_model_plugin}{I\+Root\+Model\+Plugin}. If it find one -\/ it will send all loaded plugins to it by using \hyperlink{class_i_root_model_plugin_a6c5a6562b3fc16264d36aa6e39b84a7f}{Add\+Plugin()} method. 
+
+\subsection{Member Function Documentation}
+\index{I\+Root\+Model\+Plugin@{I\+Root\+Model\+Plugin}!Add\+Plugin@{Add\+Plugin}}
+\index{Add\+Plugin@{Add\+Plugin}!I\+Root\+Model\+Plugin@{I\+Root\+Model\+Plugin}}
+\subsubsection[{\texorpdfstring{Add\+Plugin(\+Q\+Object $\ast$instance, Q\+Json\+Object $\ast$meta)=0}{AddPlugin(QObject *instance, QJsonObject *meta)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void I\+Root\+Model\+Plugin\+::\+Add\+Plugin (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{instance, }
+\item[{Q\+Json\+Object $\ast$}]{meta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_i_root_model_plugin_a6c5a6562b3fc16264d36aa6e39b84a7f}{}\label{class_i_root_model_plugin_a6c5a6562b3fc16264d36aa6e39b84a7f}
+
+
+Recieve loaded plugin with it\textquotesingle{}s meta data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance} & Plugin instance. \\
+\hline
+{\em meta} & Plugin meta data. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_main_menu_model_plugin_aedb87208e81b8ee847fc694805364288}{Main\+Menu\+Model\+Plugin}.
+
+\index{I\+Root\+Model\+Plugin@{I\+Root\+Model\+Plugin}!Open@{Open}}
+\index{Open@{Open}!I\+Root\+Model\+Plugin@{I\+Root\+Model\+Plugin}}
+\subsubsection[{\texorpdfstring{Open(\+Q\+Widget $\ast$parent\+Widget)=0}{Open(QWidget *parentWidget)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void I\+Root\+Model\+Plugin\+::\+Open (
+\begin{DoxyParamCaption}
+\item[{Q\+Widget $\ast$}]{parent\+Widget}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_i_root_model_plugin_a9ee55034608480fda71b7700d3495984}{}\label{class_i_root_model_plugin_a9ee55034608480fda71b7700d3495984}
+
+
+Starts plugin work. Some kind of \textquotesingle{}start\textquotesingle{} signal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent\+Widget} & This will be parent widget for all widgets in app. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_main_menu_model_plugin_a2eb04afbe1c9a301a7031816f37018ab}{Main\+Menu\+Model\+Plugin}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+System/\+M\+A\+S\+S/rootinterface.\+h\end{DoxyCompactItemize}

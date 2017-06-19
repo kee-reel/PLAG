@@ -1,0 +1,112 @@
+\hypertarget{class_main_menu_model_plugin}{}\section{Main\+Menu\+Model\+Plugin Class Reference}
+\label{class_main_menu_model_plugin}\index{Main\+Menu\+Model\+Plugin@{Main\+Menu\+Model\+Plugin}}
+
+
+Inheritance diagram for Main\+Menu\+Model\+Plugin\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_main_menu_model_plugin__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Main\+Menu\+Model\+Plugin\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_main_menu_model_plugin__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_main_menu_model_plugin_aedb87208e81b8ee847fc694805364288}{Add\+Plugin} (Q\+Object $\ast$instance, Q\+Json\+Object $\ast$meta) override
+\begin{DoxyCompactList}\small\item\em Recieve loaded plugin with it\textquotesingle{}s meta data. \end{DoxyCompactList}\item 
+void \hyperlink{class_main_menu_model_plugin_a2eb04afbe1c9a301a7031816f37018ab}{Open} (Q\+Widget $\ast$parent\+Widget) override
+\begin{DoxyCompactList}\small\item\em Starts plugin work. Some kind of \textquotesingle{}start\textquotesingle{} signal. \end{DoxyCompactList}\item 
+void {\bfseries On\+All\+Setup} () override\hypertarget{class_main_menu_model_plugin_a560982062f2b3a5227dd5a9e921bad84}{}\label{class_main_menu_model_plugin_a560982062f2b3a5227dd5a9e921bad84}
+
+\item 
+Q\+String {\bfseries Get\+Last\+Error} () override\hypertarget{class_main_menu_model_plugin_aec44d8d7a4a40b1d7a008e2612549419}{}\label{class_main_menu_model_plugin_aec44d8d7a4a40b1d7a008e2612549419}
+
+\item 
+void {\bfseries Add\+Data\+Manager} (Q\+Object $\ast$data\+Manager) override\hypertarget{class_main_menu_model_plugin_adfd74879db8365c33705e6ff3b8c1606}{}\label{class_main_menu_model_plugin_adfd74879db8365c33705e6ff3b8c1606}
+
+\item 
+void {\bfseries Add\+Parent\+Model} (Q\+Object $\ast$model, \hyperlink{struct_meta_info}{Meta\+Info} $\ast$meta) override\hypertarget{class_main_menu_model_plugin_ac441401b496ad4412a94e0e3c17a2d78}{}\label{class_main_menu_model_plugin_ac441401b496ad4412a94e0e3c17a2d78}
+
+\item 
+void {\bfseries Add\+Child\+Model} (\hyperlink{class_i_model_plugin}{I\+Model\+Plugin} $\ast$model, \hyperlink{struct_meta_info}{Meta\+Info} $\ast$meta) override\hypertarget{class_main_menu_model_plugin_af4f21091cb24559de4485230ace97bd3}{}\label{class_main_menu_model_plugin_af4f21091cb24559de4485230ace97bd3}
+
+\item 
+void {\bfseries Add\+View} (\hyperlink{class_i_view_plugin}{I\+View\+Plugin} $\ast$view, \hyperlink{struct_meta_info}{Meta\+Info} $\ast$meta) override\hypertarget{class_main_menu_model_plugin_a20caa43ea363917184f39482847b213b}{}\label{class_main_menu_model_plugin_a20caa43ea363917184f39482847b213b}
+
+\item 
+bool {\bfseries Open} (\hyperlink{class_i_model_plugin}{I\+Model\+Plugin} $\ast$parent, Q\+Widget $\ast$parent\+Widget) override\hypertarget{class_main_menu_model_plugin_aee58baef527acb659083fa349b96484f}{}\label{class_main_menu_model_plugin_aee58baef527acb659083fa349b96484f}
+
+\item 
+bool {\bfseries Close\+From\+View} (\hyperlink{class_i_view_plugin}{I\+View\+Plugin} $\ast$view) override\hypertarget{class_main_menu_model_plugin_a100f1154fc462268747294da601c377a}{}\label{class_main_menu_model_plugin_a100f1154fc462268747294da601c377a}
+
+\item 
+void {\bfseries Child\+Self\+Closed} (\hyperlink{class_i_model_plugin}{I\+Model\+Plugin} $\ast$child) override\hypertarget{class_main_menu_model_plugin_ac35d70a13e7e8b369fb974b6da5d666c}{}\label{class_main_menu_model_plugin_ac35d70a13e7e8b369fb974b6da5d666c}
+
+\item 
+\hyperlink{struct_i_main_menu_plugin_model_1_1_menu_item}{Menu\+Item} $\ast$ {\bfseries Get\+Root\+Menu\+Item} () override\hypertarget{class_main_menu_model_plugin_ab46eb80afb80657bd136bcb52a5e978d}{}\label{class_main_menu_model_plugin_ab46eb80afb80657bd136bcb52a5e978d}
+
+\item 
+void {\bfseries Run\+Item} (\hyperlink{struct_i_main_menu_plugin_model_1_1_menu_item}{Menu\+Item} $\ast$item, \hyperlink{struct_meta_info}{Meta\+Info} $\ast$view\+Meta) override\hypertarget{class_main_menu_model_plugin_a837efbbcf266a09a49f4b4987a485b10}{}\label{class_main_menu_model_plugin_a837efbbcf266a09a49f4b4987a485b10}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Main\+Menu\+Model\+Plugin@{Main\+Menu\+Model\+Plugin}!Add\+Plugin@{Add\+Plugin}}
+\index{Add\+Plugin@{Add\+Plugin}!Main\+Menu\+Model\+Plugin@{Main\+Menu\+Model\+Plugin}}
+\subsubsection[{\texorpdfstring{Add\+Plugin(\+Q\+Object $\ast$instance, Q\+Json\+Object $\ast$meta) override}{AddPlugin(QObject *instance, QJsonObject *meta) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Menu\+Model\+Plugin\+::\+Add\+Plugin (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{instance, }
+\item[{Q\+Json\+Object $\ast$}]{meta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{class_main_menu_model_plugin_aedb87208e81b8ee847fc694805364288}{}\label{class_main_menu_model_plugin_aedb87208e81b8ee847fc694805364288}
+
+
+Recieve loaded plugin with it\textquotesingle{}s meta data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instance} & Plugin instance. \\
+\hline
+{\em meta} & Plugin meta data. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_i_root_model_plugin_a6c5a6562b3fc16264d36aa6e39b84a7f}{I\+Root\+Model\+Plugin}.
+
+\index{Main\+Menu\+Model\+Plugin@{Main\+Menu\+Model\+Plugin}!Open@{Open}}
+\index{Open@{Open}!Main\+Menu\+Model\+Plugin@{Main\+Menu\+Model\+Plugin}}
+\subsubsection[{\texorpdfstring{Open(\+Q\+Widget $\ast$parent\+Widget) override}{Open(QWidget *parentWidget) override}}]{\setlength{\rightskip}{0pt plus 5cm}void Main\+Menu\+Model\+Plugin\+::\+Open (
+\begin{DoxyParamCaption}
+\item[{Q\+Widget $\ast$}]{parent\+Widget}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{class_main_menu_model_plugin_a2eb04afbe1c9a301a7031816f37018ab}{}\label{class_main_menu_model_plugin_a2eb04afbe1c9a301a7031816f37018ab}
+
+
+Starts plugin work. Some kind of \textquotesingle{}start\textquotesingle{} signal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent\+Widget} & This will be parent widget for all widgets in app. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_i_root_model_plugin_a9ee55034608480fda71b7700d3495984}{I\+Root\+Model\+Plugin}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+Main\+Menu\+Model\+Plugin/mainmenumodelplugin.\+h\item 
+/home/curunir/\+Documents/\+M\+A\+S\+S/\+Plugins/\+Main\+Menu\+Model\+Plugin/mainmenumodelplugin.\+cpp\end{DoxyCompactItemize}

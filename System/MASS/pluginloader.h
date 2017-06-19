@@ -13,11 +13,19 @@
 
 #include "rootinterface.h"
 
+//! \addtogroup mass MASS
+//! @{
+
+//! \brief Loads all files from directory and tries to specify
+//! between them plugin with interface RootModel and initialize it.
 class PluginLoader : QObject
 {
     Q_OBJECT
     QString packageName = "com.MASS";
 public:
+    //!
+    //! \param parent QWidget which will be parent for all application windows.
+    //!
     explicit PluginLoader(QWidget *parent = 0);
     ~PluginLoader();
 
@@ -43,7 +51,11 @@ private:
     void SetupPluginsConnections();
 
 public slots:
+    //!
+    //! \brief Load plugins from specified folder. In loaded files tries to specify RootModel plugin.
+    //! If it exists - set this plugin as rootModel and send to it all unspecified plugins.
+    //!
     void SetupPlugins();
 };
-
+//! @}
 #endif // PLUGINMANAGER_H

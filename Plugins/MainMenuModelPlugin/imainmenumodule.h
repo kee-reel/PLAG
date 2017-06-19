@@ -2,9 +2,16 @@
 #define IMAINMENUMODULE_H
 
 #include "interfaces.h"
-
 template<class Type>
 class QList;
+
+//! \defgroup MainMenuModule MainMenuModule
+//! \brief MainMenuModulez application module.
+//! @{
+
+//!
+//! \brief The IMainMenuPluginModel class
+//!
 class IMainMenuPluginModel : public IModelPlugin
 { 
 public:
