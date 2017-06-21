@@ -10,5 +10,6 @@ var searchData=
   ['pluginloader',['PluginLoader',['../class_plugin_loader.html',1,'']]],
   ['pomodorobutton',['PomodoroButton',['../class_pomodoro_button.html',1,'']]],
   ['pomodoromodel',['PomodoroModel',['../class_pomodoro_model.html',1,'']]],
-  ['pomodoroview',['PomodoroView',['../class_pomodoro_view.html',1,'']]]
+  ['pomodoroview',['PomodoroView',['../class_pomodoro_view.html',1,'']]],
+  ['pomodoroview',['PomodoroView',['../class_ui_1_1_pomodoro_view.html',1,'Ui']]]
 ];

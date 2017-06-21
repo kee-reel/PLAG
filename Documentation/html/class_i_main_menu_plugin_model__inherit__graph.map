@@ -1,5 +1,5 @@
 <map id="IMainMenuPluginModel" name="IMainMenuPluginModel">
 <area shape="rect" id="node4" href="$class_main_menu_model_plugin.html" title="MainMenuModelPlugin" alt="" coords="7,229,161,256"/>
-<area shape="rect" id="node2" href="$class_i_model_plugin.html" title="IModelPlugin" alt="" coords="35,80,133,107"/>
-<area shape="rect" id="node3" href="$class_i_plugin.html" title="IPlugin" alt="" coords="53,5,115,32"/>
+<area shape="rect" id="node2" href="$class_i_model_plugin.html" title="The IModelPlugin class. " alt="" coords="35,80,133,107"/>
+<area shape="rect" id="node3" href="$class_i_plugin.html" title="The IPlugin class. " alt="" coords="53,5,115,32"/>
 </map>

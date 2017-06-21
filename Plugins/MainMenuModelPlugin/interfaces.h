@@ -14,13 +14,16 @@ template <class A> class QList;
 //! Enumeration of MASS system modules types.
 enum PluginTypes
 {
-    ROOTMODEL,      //! Module type that implements IRootModelPlugin
-    PLUGINMODEL,    //! Module type that implements IModelPlugin
-    PLUGINVIEW,     //! Module type that implements IViewPlugin
-    DATASOURCE,     //! Module type that implements IDataSourcePlugin
-    DATAMANAGER,    //! Module type that implements IDataManagerPlugin
+    ROOTMODEL,      //!< Module type that implements IRootModelPlugin
+    PLUGINMODEL,    //!< Module type that implements IModelPlugin
+    PLUGINVIEW,     //!< Module type that implements IViewPlugin
+    DATASOURCE,     //!< Module type that implements IDataSourcePlugin
+    DATAMANAGER,    //!< Module type that implements IDataManagerPlugin
 };
 
+//!
+//! \brief The MetaInfo struct
+//!
 struct MetaInfo{
     QString Name;
     PluginTypes Type;
@@ -29,12 +32,18 @@ struct MetaInfo{
 };
 
 template <class T>
+//!
+//! \brief The PluginInfo struct
+//!
 struct PluginInfo
 {
     T *plugin;
     MetaInfo *meta;
 };
 
+//!
+//! \brief The IPlugin class
+//!
 class IPlugin
 {
 public:
@@ -43,6 +52,9 @@ public:
     virtual QString GetLastError() = 0;
 };
 
+//!
+//! \brief The IDataSourcePlugin class
+//!
 class IDataSourcePlugin : public IPlugin
 {
 public:
@@ -51,6 +63,9 @@ public:
 };
 Q_DECLARE_INTERFACE(IDataSourcePlugin, "IDataSourcePlugin v0.1")
 
+//!
+//! \brief The IDataBaseSourcePlugin class
+//!
 class IDataBaseSourcePlugin : public IDataSourcePlugin
 {
 public:
@@ -60,6 +75,9 @@ public:
 };
 Q_DECLARE_INTERFACE(IDataBaseSourcePlugin, "IDataBaseSourcePlugin v0.1")
 
+//!
+//! \brief The IDataManagerPlugin class
+//!
 class IDataManagerPlugin : public IPlugin
 {
 public:
@@ -68,6 +86,9 @@ public:
 };
 Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
 
+//!
+//! \brief The IViewPlugin class
+//!
 class IViewPlugin : public IPlugin
 {
 public:
@@ -78,6 +99,9 @@ public:
 };
 Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
 
+//!
+//! \brief The IModelPlugin class
+//!
 class IModelPlugin : public IPlugin
 {
 public:

@@ -127,7 +127,7 @@ bool MainForm::UpdateNetworkStats()
     {
         for(int h = 0; h < height; ++h)
             for(int w = 0; w < width; ++w)
-                buf.first[h*width + w] = trainImages[i].pixelColor(w, h).red()/255.;
+                buf.first[h*width + w] = qRed(trainImages[i].pixel(w, h))/255.;
         for(int j = 0; j < trainImages.count(); ++j)
             buf.second[j] = 0;
         buf.second[i] = 1;
@@ -139,7 +139,7 @@ bool MainForm::UpdateNetworkStats()
     {
         for(int h = 0; h < height; ++h)
             for(int w = 0; w < width; ++w)
-                buf.first[h*width + w] = testImages[i].pixelColor(w, h).red()/255.;
+                buf.first[h*width + w] = qRed(testImages[i].pixel(w, h))/255.;
         for(int j = 0; j < testImages.count(); ++j)
             buf.second[j] = 0;
         buf.second[i] = 1;

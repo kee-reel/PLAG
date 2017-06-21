@@ -1,5 +1,5 @@
 <map id="CipherDataBaseSourcePlugin" name="CipherDataBaseSourcePlugin">
-<area shape="rect" id="node3" href="$class_i_data_base_source_plugin.html" title="IDataBaseSourcePlugin" alt="" coords="100,155,261,181"/>
-<area shape="rect" id="node4" href="$class_i_data_source_plugin.html" title="IDataSourcePlugin" alt="" coords="115,80,246,107"/>
-<area shape="rect" id="node5" href="$class_i_plugin.html" title="IPlugin" alt="" coords="149,5,212,32"/>
+<area shape="rect" id="node3" href="$class_i_data_base_source_plugin.html" title="The IDataBaseSourcePlugin class. " alt="" coords="100,155,261,181"/>
+<area shape="rect" id="node4" href="$class_i_data_source_plugin.html" title="The IDataSourcePlugin class. " alt="" coords="115,80,246,107"/>
+<area shape="rect" id="node5" href="$class_i_plugin.html" title="The IPlugin class. " alt="" coords="149,5,212,32"/>
 </map>

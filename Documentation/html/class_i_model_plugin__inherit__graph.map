@@ -1,11 +1,11 @@
 <map id="IModelPlugin" name="IModelPlugin">
 <area shape="rect" id="node3" href="$class_i_day_plan_model.html" title="IDayPlanModel" alt="" coords="285,5,395,32"/>
-<area shape="rect" id="node4" href="$class_i_main_menu_plugin_model.html" title="IMainMenuPluginModel" alt="" coords="261,56,419,83"/>
+<area shape="rect" id="node4" href="$class_i_main_menu_plugin_model.html" title="The IMainMenuPluginModel class. " alt="" coords="261,56,419,83"/>
 <area shape="rect" id="node6" href="$class_i_neural_network_model.html" title="INeuralNetworkModel" alt="" coords="266,107,414,133"/>
 <area shape="rect" id="node8" href="$class_i_pomodoro_model.html" title="IPomodoroModel" alt="" coords="280,157,400,184"/>
 <area shape="rect" id="node10" href="$class_i_task_sketch_model.html" title="ITaskSketchModel" alt="" coords="275,208,405,235"/>
 <area shape="rect" id="node12" href="$class_i_task_tree_model.html" title="ITaskTreeModel" alt="" coords="282,259,398,285"/>
-<area shape="rect" id="node2" href="$class_i_plugin.html" title="IPlugin" alt="" coords="5,107,68,133"/>
+<area shape="rect" id="node2" href="$class_i_plugin.html" title="The IPlugin class. " alt="" coords="5,107,68,133"/>
 <area shape="rect" id="node5" href="$class_main_menu_model_plugin.html" title="MainMenuModelPlugin" alt="" coords="467,56,620,83"/>
 <area shape="rect" id="node7" href="$class_neural_network_model.html" title="NeuralNetworkModel" alt="" coords="471,107,615,133"/>
 <area shape="rect" id="node9" href="$class_pomodoro_model.html" title="PomodoroModel" alt="" coords="485,157,601,184"/>

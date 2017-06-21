@@ -3,17 +3,17 @@
 <area shape="rect" id="node2" href="$class_a_r_t_network.html" title="ARTNetwork" alt="" coords="601,56,699,83"/>
 <area shape="rect" id="node3" href="$class_genetic_algorithm.html" title="GeneticAlgorithm" alt="" coords="589,5,711,32"/>
 <area shape="rect" id="node4" href="$class_perceptron_network.html" title="PerceptronNetwork" alt="" coords="583,107,717,133"/>
-<area shape="rect" id="node5" href="$class_i_plugin.html" title="IPlugin" alt="" coords="5,477,68,504"/>
-<area shape="rect" id="node6" href="$class_i_data_manager_plugin.html" title="IDataManagerPlugin" alt="" coords="116,245,256,272"/>
-<area shape="rect" id="node9" href="$class_i_data_source_plugin.html" title="IDataSourcePlugin" alt="" coords="121,376,251,403"/>
-<area shape="rect" id="node12" href="$class_i_model_plugin.html" title="IModelPlugin" alt="" coords="137,579,235,605"/>
-<area shape="rect" id="node24" href="$class_i_view_plugin.html" title="IViewPlugin" alt="" coords="358,857,449,884"/>
+<area shape="rect" id="node5" href="$class_i_plugin.html" title="The IPlugin class. " alt="" coords="5,477,68,504"/>
+<area shape="rect" id="node6" href="$class_i_data_manager_plugin.html" title="The IDataManagerPlugin class. " alt="" coords="116,245,256,272"/>
+<area shape="rect" id="node9" href="$class_i_data_source_plugin.html" title="The IDataSourcePlugin class. " alt="" coords="121,376,251,403"/>
+<area shape="rect" id="node12" href="$class_i_model_plugin.html" title="The IModelPlugin class. " alt="" coords="137,579,235,605"/>
+<area shape="rect" id="node24" href="$class_i_view_plugin.html" title="The IViewPlugin class. " alt="" coords="358,857,449,884"/>
 <area shape="rect" id="node7" href="$class_i_extendable_data_base_manager_plugin.html" title="IExtendableDataBaseManager\lPlugin" alt="" coords="304,158,503,199"/>
 <area shape="rect" id="node8" href="$class_extendable_data_base_manager_plugin.html" title="ExtendableDataBaseManager\lPlugin" alt="" coords="553,158,747,199"/>
-<area shape="rect" id="node10" href="$class_i_data_base_source_plugin.html" title="IDataBaseSourcePlugin" alt="" coords="323,224,484,251"/>
+<area shape="rect" id="node10" href="$class_i_data_base_source_plugin.html" title="The IDataBaseSourcePlugin class. " alt="" coords="323,224,484,251"/>
 <area shape="rect" id="node11" href="$class_cipher_data_base_source_plugin.html" title="CipherDataBaseSourcePlugin" alt="" coords="553,224,747,251"/>
 <area shape="rect" id="node13" href="$class_i_day_plan_model.html" title="IDayPlanModel" alt="" coords="348,629,459,656"/>
-<area shape="rect" id="node14" href="$class_i_main_menu_plugin_model.html" title="IMainMenuPluginModel" alt="" coords="325,325,482,352"/>
+<area shape="rect" id="node14" href="$class_i_main_menu_plugin_model.html" title="The IMainMenuPluginModel class. " alt="" coords="325,325,482,352"/>
 <area shape="rect" id="node16" href="$class_i_neural_network_model.html" title="INeuralNetworkModel" alt="" coords="329,680,477,707"/>
 <area shape="rect" id="node18" href="$class_i_pomodoro_model.html" title="IPomodoroModel" alt="" coords="343,731,463,757"/>
 <area shape="rect" id="node20" href="$class_i_task_sketch_model.html" title="ITaskSketchModel" alt="" coords="338,275,469,301"/>

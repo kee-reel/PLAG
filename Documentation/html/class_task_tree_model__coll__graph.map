@@ -1,5 +1,5 @@
 <map id="TaskTreeModel" name="TaskTreeModel">
 <area shape="rect" id="node3" href="$class_i_task_tree_model.html" title="ITaskTreeModel" alt="" coords="100,155,216,181"/>
-<area shape="rect" id="node4" href="$class_i_model_plugin.html" title="IModelPlugin" alt="" coords="109,80,207,107"/>
-<area shape="rect" id="node5" href="$class_i_plugin.html" title="IPlugin" alt="" coords="127,5,189,32"/>
+<area shape="rect" id="node4" href="$class_i_model_plugin.html" title="The IModelPlugin class. " alt="" coords="109,80,207,107"/>
+<area shape="rect" id="node5" href="$class_i_plugin.html" title="The IPlugin class. " alt="" coords="127,5,189,32"/>
 </map>

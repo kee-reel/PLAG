@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['galleryform',['GalleryForm',['../class_ui_1_1_gallery_form.html',1,'Ui']]],
   ['galleryform',['GalleryForm',['../class_gallery_form.html',1,'']]],
   ['galleryitem',['GalleryItem',['../class_gallery_item.html',1,'']]],
   ['generate',['generate',['../class_q_c_p_axis_ticker.html#aefbd11725678ca824add8cf926cbc856',1,'QCPAxisTicker']]],

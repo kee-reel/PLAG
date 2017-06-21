@@ -33,6 +33,7 @@ var searchData=
   ['resolutionunit',['ResolutionUnit',['../namespace_q_c_p.html#a715d46153da230990aa887d0f0602452',1,'QCP::ResolutionUnit()'],['../namespace_q_c_p.html#a715d46153da230990aa887d0f0602452',1,'QCP::ResolutionUnit()']]],
   ['restore',['restore',['../class_q_c_p_painter.html#a64908e6298d5bbd83457dc987cc3a022',1,'QCPPainter']]],
   ['right',['right',['../class_q_c_p_axis_rect.html#a6d0f989fc552aa2b563cf82f8fc81e61',1,'QCPAxisRect']]],
+  ['rootmodel',['ROOTMODEL',['../group___main_menu_module.html#gga9b3bee49ce70df90694056c2f48c2e77ad3a5df5ff6ff933ec275f1e5bfc12dd7',1,'interfaces.h']]],
   ['rowcoltoindex',['rowColToIndex',['../class_q_c_p_layout_grid.html#a3cefc5fe391722b653958ab6e984c706',1,'QCPLayoutGrid']]],
   ['rowcount',['rowCount',['../class_q_c_p_layout_grid.html#af8e6c7a05864ebe610c87756c7b9079c',1,'QCPLayoutGrid']]],
   ['rpimmediaterefresh',['rpImmediateRefresh',['../class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39ae0655eb7caba1996004d27939970af2c',1,'QCustomPlot']]],

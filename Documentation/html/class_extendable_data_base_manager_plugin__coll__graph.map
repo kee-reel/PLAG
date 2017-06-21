@@ -1,5 +1,5 @@
 <map id="ExtendableDataBaseManagerPlugin" name="ExtendableDataBaseManagerPlugin">
 <area shape="rect" id="node3" href="$class_i_extendable_data_base_manager_plugin.html" title="IExtendableDataBaseManager\lPlugin" alt="" coords="100,155,299,196"/>
-<area shape="rect" id="node4" href="$class_i_data_manager_plugin.html" title="IDataManagerPlugin" alt="" coords="129,80,269,107"/>
-<area shape="rect" id="node5" href="$class_i_plugin.html" title="IPlugin" alt="" coords="168,5,231,32"/>
+<area shape="rect" id="node4" href="$class_i_data_manager_plugin.html" title="The IDataManagerPlugin class. " alt="" coords="129,80,269,107"/>
+<area shape="rect" id="node5" href="$class_i_plugin.html" title="The IPlugin class. " alt="" coords="168,5,231,32"/>
 </map>

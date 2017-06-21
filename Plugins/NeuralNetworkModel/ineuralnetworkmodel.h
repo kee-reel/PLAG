@@ -10,7 +10,8 @@ class QVector;
 typedef QPair<QVector<float>, QVector<float>> InputSampleF;
 typedef QPair<QVector<int>, QVector<int>> InputSampleI;
 
-class INeuralNetworkModel : public IModelPlugin
+class
+        INeuralNetworkModel : public IModelPlugin
 {
 public:
     class INeuralNetwork{

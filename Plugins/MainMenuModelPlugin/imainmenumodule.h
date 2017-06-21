@@ -4,9 +4,9 @@
 #include "interfaces.h"
 template<class Type>
 class QList;
-
 //! \defgroup MainMenuModule MainMenuModule
-//! \brief MainMenuModulez application module.
+//! \ingroup MASS
+//! \brief MainMenuModules application module.
 //! @{
 
 //!
@@ -15,6 +15,7 @@ class QList;
 class IMainMenuPluginModel : public IModelPlugin
 { 
 public:
+    //! \brief Structure that contains some info about menu item.
     struct MenuItem{
         MetaInfo* meta;
         QList<MetaInfo*> ViewItems;
