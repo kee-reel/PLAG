@@ -13,7 +13,7 @@
 
 #include "rootinterface.h"
 
-//! \addtogroup mass MASS
+//! \addtogroup MASS MASS
 //! @{
 
 //! \brief Loads all files from directory and tries to specify
@@ -54,7 +54,6 @@ public slots:
     //!
     //! \brief Load plugins from specified folder. In loaded files tries to specify RootModel plugin.
     //! If it exists - set this plugin as rootModel and send to it all unspecified plugins.
-    //!
     void SetupPlugins();
 };
 //! @}

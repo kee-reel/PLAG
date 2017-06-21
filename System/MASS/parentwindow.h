@@ -8,7 +8,8 @@
 #include <QVBoxLayout>
 
 #include "pluginloader.h"
-//! \addtogroup mass MASS
+//! \defgroup MASS MASS
+//! \brief MASS application.
 //! @{
 
 //! \brief Main application widget class.

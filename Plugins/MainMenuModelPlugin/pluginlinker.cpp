@@ -63,8 +63,8 @@ MetaInfo *PluginLinker::GetPluginMeta(QJsonObject *metaData)
     qDebug() << "Type:" << moduleTypeStr;
 
     // Set DBTool name
-    newMetaInfo->DataManagerlName = metaInfo.value(FieldDataManagerName).toString();
-    qDebug() << "DataManager:" << newMetaInfo->DataManagerlName;
+    newMetaInfo->DataManagerName = metaInfo.value(FieldDataManagerName).toString();
+    qDebug() << "DataManager:" << newMetaInfo->DataManagerName;
 
     // Set module parent name
     newMetaInfo->ParentPluginName = metaInfo.value(FieldParentModuleName).toString();
@@ -182,8 +182,8 @@ void PluginLinker::SetLinks(IModelPlugin *plugin, QObject* instance, MetaInfo *m
         modelToModelsLink[meta->ParentPluginName].append(plugin);
     modelsLinkInfo[meta->Name] = info;
 
-    if(meta->DataManagerlName != "")
-        managerToModelsLink[meta->DataManagerlName].append(plugin);
+    if(meta->DataManagerName != "")
+        managerToModelsLink[meta->DataManagerName].append(plugin);
 }
 
 void PluginLinker::SetLinks(IViewPlugin *plugin, QObject* instance, MetaInfo *meta)

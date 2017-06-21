@@ -4,8 +4,7 @@
 class QObject;
 class QWidget;
 class QJsonObject;
-//! \defgroup mass MASS
-//! \brief MASS application.
+//! \addtogroup MASS MASS
 //! @{
 
 //! \brief Interface for plugin RootModel.

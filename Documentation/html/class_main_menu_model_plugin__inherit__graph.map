@@ -1,6 +1,0 @@
-<map id="MainMenuModelPlugin" name="MainMenuModelPlugin">
-<area shape="rect" id="node3" href="$class_i_main_menu_plugin_model.html" title="The IMainMenuPluginModel class. " alt="" coords="101,155,258,181"/>
-<area shape="rect" id="node4" href="$class_i_model_plugin.html" title="The IModelPlugin class. " alt="" coords="131,80,228,107"/>
-<area shape="rect" id="node5" href="$class_i_plugin.html" title="The IPlugin class. " alt="" coords="148,5,211,32"/>
-<area shape="rect" id="node6" href="$class_i_root_model_plugin.html" title="Interface for plugin RootModel. " alt="" coords="282,155,407,181"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="RecognitionLayer" name="RecognitionLayer">
-<area shape="rect" id="node2" href="$class_comparing_layer.html" title="ComparingLayer" alt="" coords="58,288,175,315"/>
-<area shape="rect" id="node3" href="$class_q_vector.html" title="QVector\&lt; int \&gt;" alt="" coords="44,5,152,32"/>
-<area shape="rect" id="node5" href="$class_neuron.html" title="Neuron" alt="" coords="366,95,430,121"/>
-<area shape="rect" id="node4" href="$struct_a_r_t_1_1_network_params.html" title="ART::NetworkParams" alt="" coords="21,95,172,121"/>
-<area shape="rect" id="node6" href="$class_q_vector.html" title="QVector\&lt; Neuron * \&gt;" alt="" coords="196,95,341,121"/>
-</map>

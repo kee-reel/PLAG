@@ -21,73 +21,92 @@ enum PluginTypes
     DATAMANAGER,    //!< Module type that implements IDataManagerPlugin
 };
 
-//!
-//! \brief The MetaInfo struct
-//!
+//! \brief Holds information about plugin.
 struct MetaInfo{
+    //! \brief Plugin name.
     QString Name;
+    //! \brief Type of plugin.
     PluginTypes Type;
+    //! \brief Name of parent plugin (in tree structure).
     QString ParentPluginName;
-    QString DataManagerlName;
+    //! \brief Name of data manager that plugin will be using
+    QString DataManagerName;
 };
 
 template <class T>
-//!
-//! \brief The PluginInfo struct
-//!
+//! \brief Structure for internal needs. Pair of type of plugin and it's meta information.
 struct PluginInfo
 {
+    //! \brief Type of plugin.
     T *plugin;
+    //! \brief Meta information of plugin.
     MetaInfo *meta;
 };
 
-//!
-//! \brief The IPlugin class
-//!
+//! \brief This interface provides basic methods for all plugins.
 class IPlugin
 {
 public:
     virtual ~IPlugin() {}
+    //! \brief Method which calls when system setup all connections between plugins.
     virtual void OnAllSetup() = 0;
+    //! \brief Gets last error message from plugin.
     virtual QString GetLastError() = 0;
 };
 
+//! \brief This interface describes DataSource plugin.
 //!
-//! \brief The IDataSourcePlugin class
-//!
+//! DataSource plugin implements interaction with data source. In place of
+//! data source could be data base, network connection, some device and etc.
 class IDataSourcePlugin : public IPlugin
 {
 public:
     virtual ~IDataSourcePlugin() {}
+    //! \brief Install connection with source.
     virtual void Setup() = 0;
 };
 Q_DECLARE_INTERFACE(IDataSourcePlugin, "IDataSourcePlugin v0.1")
 
+//! \brief This interface determine data source as data base.
 //!
-//! \brief The IDataBaseSourcePlugin class
-//!
+//! Provides methods for interaction with data base with usage of SQL queries.
 class IDataBaseSourcePlugin : public IDataSourcePlugin
 {
 public:
     virtual ~IDataBaseSourcePlugin() {}
+    //! \brief Execute query whithin connected data base using given string.
+    //! \param Query string.
+    //! \return Query result.
+    //!
     virtual QSqlQuery ExecuteQuery(QString &query) = 0;
+    //! \brief Execute query whithin connected data base using given string and parameters.
+    //! \param Query string.
+    //! \param Placeholders contained in string.
+    //! \param Values that will be inserted in given placeholders.
+    //! \return Query result.
+    //!
     virtual QSqlQuery ExecuteQuery(QString &query, QList<QString> *valuePlaceholders, QList<QVariant> *values) = 0;
 };
 Q_DECLARE_INTERFACE(IDataBaseSourcePlugin, "IDataBaseSourcePlugin v0.1")
 
+//! \brief This interface describes DataManager plugn.
 //!
-//! \brief The IDataManagerPlugin class
-//!
+//! DataManager plugin implements interaction with DataSource plugin.
 class IDataManagerPlugin : public IPlugin
 {
 public:
     virtual ~IDataManagerPlugin() {}
+    //!
+    //! \brief SetDataSource
+    //! \param dataSource
+    //! \return
+    //!
     virtual bool SetDataSource(QObject* dataSource) = 0;
 };
 Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
 
+//! \brief This interface describes DataManager plugn.
 //!
-//! \brief The IViewPlugin class
 //!
 class IViewPlugin : public IPlugin
 {
