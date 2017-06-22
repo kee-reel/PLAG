@@ -12,6 +12,8 @@
 #include "iextendabledatabasemanagerplugin.h"
 #include "item.h"
 
+//! \addtogroup ExtendableDataBaseManagerPlugin_imp
+//! \{
 class ExtendableItemModel : public QAbstractItemModel
 {
     typedef IExtendableDataBaseManagerPlugin::ManagerDataItem ManagerItemInfo;
@@ -60,5 +62,5 @@ private:
     void DeleteFromManagerRecursive(Item *task);
     ManagerItemInfo ConvertToManagerItem(Item* item);
 };
-
+//! \}
 #endif // EXTENDABLEITEMMODEL_H

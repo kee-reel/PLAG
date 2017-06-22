@@ -6,6 +6,16 @@
 template <class A>
 class QVector;
 class QAbstractItemModel;
+
+//! \defgroup TaskSketchModel
+//!     \ingroup MainMenuPlugin_rel_m
+//! \defgroup TaskSketchModel_int Interface
+//!     \ingroup TaskSketchModel
+//! \defgroup TaskSketchModel_imp Implementation
+//!     \ingroup TaskSketchModel
+
+//! \addtogroup TaskSketchModel_int
+//! \{
 class ITaskSketchModel: public IModelPlugin
 {
 public:
@@ -15,6 +25,6 @@ public:
 signals:
     void ConvertTaskToSketch(int);
 };
+//! \}
 Q_DECLARE_INTERFACE(ITaskSketchModel, "ITaskSketchModel v0.1")
-
 #endif // ITASKLISTMODEL_H

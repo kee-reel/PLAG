@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QPixmap>
 
+//! \addtogroup ExtendableDataBaseManagerPlugin_imp
+//! \{
 class Item
 {
 public:
@@ -54,5 +56,5 @@ private:
     QVector<QVariant> *activeChunk;
     QList<Item*> childItems;
 };
-
+//! \}
 #endif // TREEITEM_H

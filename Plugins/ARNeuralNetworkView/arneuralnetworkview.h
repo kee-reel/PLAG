@@ -9,6 +9,13 @@
 #include "../MainMenuModelPlugin/interfaces.h"
 #include "mainform.h"
 
+//! \defgroup ARNeuralNetworkView
+//!     \ingroup MainMenuPlugin_rel_v
+//! \defgroup ARNeuralNetworkView_imp Implementation
+//!     \ingroup ARNeuralNetworkView
+
+//! \addtogroup ARNeuralNetworkView_imp
+//! \{
 class ARNeuralNetworkView : public QObject, IViewPlugin
 {
     Q_OBJECT
@@ -35,5 +42,5 @@ public:
 public slots:
     bool Close() override;
 };
-
+//! \}
 #endif // EMPTYMODULE_H

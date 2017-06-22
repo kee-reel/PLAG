@@ -8,6 +8,8 @@
 #include "itasktreemodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 
+//! \addtogroup TaskTreeModel_imp
+//! \{
 class TaskTreeModel : public QObject, ITaskTreeModel
 {
     Q_OBJECT
@@ -69,9 +71,6 @@ private:
 
 signals:
     void OpenTaskEdit(int id);
-
-    // ITaskTreeModel interface
-public:
 };
-
+//! \}
 #endif // TASKLISTMODEL_H

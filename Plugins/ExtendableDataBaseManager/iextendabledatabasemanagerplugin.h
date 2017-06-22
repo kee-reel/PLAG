@@ -10,6 +10,15 @@ class QVariant;
 enum QVariant::Type;
 class QAbstractItemModel;
 
+//! \defgroup ExtendableDataBaseManagerPlugin ExtendableDataBaseManagerPlugin
+//!     \ingroup MainMenuPlugin_rel_dm
+//! \defgroup ExtendableDataBaseManagerPlugin_int Interfaces
+//!     \ingroup ExtendableDataBaseManagerPlugin
+//! \defgroup ExtendableDataBaseManagerPlugin_imp Implementation
+//!     \ingroup ExtendableDataBaseManagerPlugin
+
+//! \addtogroup ExtendableDataBaseManagerPlugin_int
+//! \{
 class IExtendableDataBaseManagerPlugin : public IDataManagerPlugin
 {
 public:
@@ -33,5 +42,5 @@ public:
     virtual bool DeleteItem(QString treeName, int id) = 0;
 };
 Q_DECLARE_INTERFACE(IExtendableDataBaseManagerPlugin, "IExtendableDataBaseManagerPlugin v0.1")
-
+//! @}
 #endif // ITASKDBTOOLPLUGIN_H

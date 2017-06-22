@@ -9,6 +9,8 @@
 #include "iextendabledatabasemanagerplugin.h"
 #include "extendableitemmodel.h"
 
+//! \addtogroup ExtendableDataBaseManagerPlugin_imp
+//! \{
 class TableHandler
 {
     typedef IExtendableDataBaseManagerPlugin::ManagerDataItem ManagerItemInfo;
@@ -60,5 +62,5 @@ private:
     //bool IsTableRightStructure(QString tableName);
     void CombineWholeTableStruct();
 };
-
+//! \}
 #endif // TABLEHANDLER_H

@@ -16,7 +16,8 @@
 namespace Ui {
 class MainForm;
 }
-
+//! \addtogroup PerceptronNetworkViewPlugin_imp
+//! \{
 struct NetworkParams{
     int maxEpoch;
     float trainErrorThreshold;
@@ -103,5 +104,5 @@ private:
     QJsonObject ConvertNetworkParams();
     QJsonObject ConvertLayerParams(LayerType type, LayerParams &params);
 };
-
+//! \}
 #endif // MAINFORM_H

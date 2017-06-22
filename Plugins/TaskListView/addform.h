@@ -10,7 +10,8 @@
 namespace Ui {
 class AddForm;
 }
-
+//! \addtogroup TaskListView_imp
+//! \{
 class AddForm : public QWidget
 {
     Q_OBJECT
@@ -37,5 +38,5 @@ private slots:
 public:
     bool event(QEvent *event) override;
 };
-
+//! \}
 #endif // ADDFORM_H

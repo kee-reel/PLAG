@@ -9,6 +9,13 @@
 #include "../MainMenuModelPlugin/interfaces.h"
 #include "mainform.h"
 
+//! \defgroup PerceptronNetworkViewPlugin
+//!     \ingroup MainMenuPlugin_rel_v
+//! \defgroup PerceptronNetworkViewPlugin_imp Implementation
+//!     \ingroup PerceptronNetworkViewPlugin
+
+//! \addtogroup PerceptronNetworkViewPlugin_imp
+//! \{
 class PerceptronNetworkViewPlugin : public QObject, IViewPlugin
 {
     Q_OBJECT

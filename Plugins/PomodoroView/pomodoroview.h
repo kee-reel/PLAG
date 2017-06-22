@@ -13,6 +13,13 @@ namespace Ui {
 class PomodoroView;
 }
 
+//! \defgroup PomodoroView
+//!     \ingroup MainMenuPlugin_rel_v
+//! \defgroup PomodoroView_imp Implementation
+//!     \ingroup PomodoroView
+
+//! \addtogroup PomodoroView_imp
+//! \{
 class PomodoroView : public QWidget, IViewPlugin
 {
     Q_OBJECT
@@ -45,5 +52,5 @@ public slots:
 private slots:
     void OnPomodoroFinished();
 };
-
+//! \}
 #endif // TASKLISTVIEW_H

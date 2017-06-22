@@ -11,6 +11,8 @@
 #include "interfaces.h"
 #include "imainmenumodule.h"
 
+//! \ingroup MainMenuPlugin_imp
+//! @{
 class PluginLinker
 {
 public:
@@ -64,5 +66,5 @@ private:
     template<class Type>
     Type *CastToPlugin(QObject* possiblePlugin);
 };
-
+//! @}
 #endif // PLUGINLINKER_H

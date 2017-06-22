@@ -8,7 +8,8 @@
 #include <QMouseEvent>
 #include <QDragMoveEvent>
 #include <QTapAndHoldGesture>
-
+//! \addtogroup TaskListView_imp
+//! \{
 class MyTreeView : public QTreeView
 {
 public:
@@ -20,5 +21,5 @@ protected:
     void dropEvent(QDropEvent *event) override;
 
 };
-
+//! \}
 #endif // MYTREEVIEW_H

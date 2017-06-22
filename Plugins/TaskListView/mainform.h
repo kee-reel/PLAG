@@ -14,7 +14,8 @@
 namespace Ui {
 class MainForm;
 }
-
+//! \addtogroup TaskListView_imp
+//! \{
 class MainForm : public QWidget
 {
     Q_OBJECT
@@ -47,5 +48,5 @@ private slots:
     void on_treeView_pressed(const QModelIndex &index);
     void on_buttonEdit_clicked();
 };
-
+//! \}
 #endif // MAINFORM_H

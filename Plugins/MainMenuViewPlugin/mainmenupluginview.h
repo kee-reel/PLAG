@@ -8,6 +8,13 @@
 #include "../MainMenuModelPlugin/imainmenumodule.h"
 #include "mainform.h"
 
+//! \defgroup MainMenuPluginView
+//!     \ingroup MainMenuPlugin_rel_v
+//! \defgroup MainMenuPluginView_imp Implementation
+//!     \ingroup MainMenuPluginView
+
+//! \addtogroup MainMenuPluginView_imp
+//! \{
 class MainMenuPluginView : public QObject, IViewPlugin
 {
     Q_OBJECT
@@ -35,5 +42,5 @@ private slots:
     void CloseMainMenu();
 
 };
-
+//! \}
 #endif // MAINMENUPLUGINVIEW_H

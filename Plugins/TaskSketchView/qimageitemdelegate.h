@@ -7,7 +7,8 @@
 #include <QHash>
 
 #include "galleryitem.h"
-
+//! \addtogroup TaskSketchView_imp
+//! \{
 class QImageItemDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
@@ -22,5 +23,5 @@ public:
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 };
-
+//! \}
 #endif // QIMAGEITEMDELEGATE_H

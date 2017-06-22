@@ -15,6 +15,8 @@ namespace Ui {
 class MainForm;
 }
 
+//! \addtogroup ARNeuralNetworkView_imp
+//! \{
 class MainForm : public QWidget
 {
     Q_OBJECT
@@ -76,5 +78,5 @@ private:
     void MakePlot(int graph, QVector<double> &x, QVector<double> &y);
     void ReplotPlot();
 };
-
+//! \}
 #endif // MAINFORM_H

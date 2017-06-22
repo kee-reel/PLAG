@@ -8,20 +8,20 @@ TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    tasklistview.cpp \
     mainform.cpp \
     galleryform.cpp \
     paintwidget.cpp \
     galleryitem.cpp \
-    qimageitemdelegate.cpp
+    qimageitemdelegate.cpp \
+    tasksketchview.cpp
 
 HEADERS +=\
-    tasklistview.h \
     mainform.h \
     galleryform.h \
     paintwidget.h \
     galleryitem.h \
-    qimageitemdelegate.h
+    qimageitemdelegate.h \
+    tasksketchview.h
 
 include(../../System/MASS/BuildInfo.pri)
 

@@ -1,5 +1,5 @@
-#ifndef TASKLISTVIEW_H
-#define TASKLISTVIEW_H
+#ifndef TASKSKETCHVIEW_H
+#define TASKSKETCHVIEW_H
 
 #include <QApplication>
 #include <QDebug>
@@ -8,15 +8,22 @@
 #include "../TaskSketchModel/itasksketchmodel.h"
 #include "mainform.h"
 
-class TaskListView : public QObject, IViewPlugin
+//! \defgroup TaskSketchView
+//!     \ingroup MainMenuPlugin_rel_v
+//! \defgroup TaskSketchView_imp Implementation
+//!     \ingroup TaskSketchView
+
+//! \addtogroup TaskSketchView_imp
+//! \{
+class TaskSketchView : public QObject, IViewPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(IViewPlugin)
 
 public:
-    TaskListView();
-    ~TaskListView();
+    TaskSketchView();
+    ~TaskSketchView();
 
 private:
     ITaskSketchModel *myModel;
@@ -35,5 +42,5 @@ public:
 public slots:
     bool Close() override;
 };
-
-#endif // TASKLISTVIEW_H
+//! \}
+#endif // TASKSKETCHVIEW_H

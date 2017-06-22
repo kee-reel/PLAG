@@ -10,6 +10,8 @@
 #include "tablehandler.h"
 #include "extendableitemmodel.h"
 
+//! \addtogroup ExtendableDataBaseManagerPlugin_imp
+//! \{
 class ExtendableDataBaseManagerPlugin : public QObject, IExtendableDataBaseManagerPlugin
 {
     Q_OBJECT
@@ -44,5 +46,5 @@ private:
     QHash<QString, TableHandler*> tableHandlers;
 
 };
-
+//! \}
 #endif // TASKDBTOOLPLUGIN_H

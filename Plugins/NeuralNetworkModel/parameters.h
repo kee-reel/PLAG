@@ -1,5 +1,7 @@
 #ifndef PARAMETERS_H
 #define PARAMETERS_H
+//! \addtogroup NeuralNetworkModel_imp
+//! \{
 namespace Perceptron {
     struct NetworkParams{
         int maxEpoch;
@@ -50,5 +52,5 @@ namespace GeneticAlgorithmParams {
         float maxRange;
     };
 }
-
+//! \}
 #endif // PARAMETERS_H

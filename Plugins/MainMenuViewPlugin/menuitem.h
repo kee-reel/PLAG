@@ -11,6 +11,8 @@
 
 #include "../MainMenuModelPlugin/imainmenumodule.h"
 
+//! \addtogroup MainMenuPluginView_imp
+//! \{
 class MenuItemGraphicsObject : public QWidget, public QGraphicsItem
 {
     Q_OBJECT
@@ -38,5 +40,5 @@ protected:
 signals:
     void OnClicked(MenuItemGraphicsObject *me);
 };
-
+//! \}
 #endif // MENUITEM_H

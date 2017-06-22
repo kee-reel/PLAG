@@ -10,8 +10,16 @@ class QVector;
 typedef QPair<QVector<float>, QVector<float>> InputSampleF;
 typedef QPair<QVector<int>, QVector<int>> InputSampleI;
 
-class
-        INeuralNetworkModel : public IModelPlugin
+//! \defgroup NeuralNetworkModel
+//!     \ingroup MainMenuPlugin_rel_m
+//! \defgroup NeuralNetworkModel_int Interfaces
+//!     \ingroup NeuralNetworkModel
+//! \defgroup NeuralNetworkModel_imp Implementation
+//!     \ingroup NeuralNetworkModel
+
+//! \addtogroup NeuralNetworkModel_int
+//! \{
+class INeuralNetworkModel : public IModelPlugin
 {
 public:
     class INeuralNetwork{
@@ -35,5 +43,5 @@ public:
 
 };
 Q_DECLARE_INTERFACE(INeuralNetworkModel, "INeuralNetworkModel v0.1")
-
+//! \}
 #endif // IEMPTYPLUGINMODEL_H

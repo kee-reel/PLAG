@@ -9,6 +9,13 @@
 
 #define CONNECTION_FAILED -1
 
+//! \defgroup CipherDataBaseSourcePlugin CipherDataBaseSourcePlugin
+//!     \ingroup MainMenuPlugin_rel_ds
+//! \defgroup CipherDataBaseSourcePlugin_imp Implementation
+//!     \ingroup CipherDataBaseSourcePlugin
+
+//! \addtogroup CipherDataBaseSourcePlugin_imp
+//! \{
 class CipherDataBaseSourcePlugin : public QObject, IDataBaseSourcePlugin
 {
     Q_OBJECT
@@ -32,5 +39,5 @@ private:
 
     QSqlDatabase dbconn;
 };
-
+//! \}
 #endif // DATABASEMANAGERMODULE_H

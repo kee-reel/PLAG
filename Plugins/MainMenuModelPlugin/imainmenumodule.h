@@ -4,9 +4,25 @@
 #include "interfaces.h"
 template<class Type>
 class QList;
-//! \defgroup MainMenuModule MainMenuModule
-//! \ingroup MASS
-//! \brief MainMenuModules application module.
+//! \defgroup MainMenuPlugin MainMenuPlugin
+//!     \ingroup MASS
+//! \defgroup MainMenuPlugin_imp Implementation
+//!     \ingroup MainMenuPlugin
+//! \defgroup MainMenuPlugin_int Interfaces
+//!     \ingroup MainMenuPlugin
+//! \defgroup MainMenuPlugin_rel Related plugins
+//!     \ingroup MainMenuPlugin
+//!
+//!     \defgroup MainMenuPlugin_rel_ds DataSource plugins
+//!         \ingroup MainMenuPlugin_rel
+//!     \defgroup MainMenuPlugin_rel_dm DataManager plugins
+//!         \ingroup MainMenuPlugin_rel
+//!     \defgroup MainMenuPlugin_rel_m Model plugins
+//!         \ingroup MainMenuPlugin_rel
+//!     \defgroup MainMenuPlugin_rel_v View plugins
+//!         \ingroup MainMenuPlugin_rel
+
+//! \addtogroup MainMenuPlugin_int
 //! @{
 
 //! \brief Interface that describes MainMenu plugin class.

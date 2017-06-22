@@ -10,6 +10,8 @@
 #include "imainmenumodule.h"
 #include "pluginlinker.h"
 
+//! \ingroup MainMenuPlugin_imp
+//! @{
 class MainMenuModelPlugin : public QObject, IMainMenuPluginModel, IRootModelPlugin
 {
     Q_OBJECT
@@ -49,5 +51,5 @@ private:
     PluginLinker pluginLinker;
     MenuItem *rootMenuItem;
 };
-
+//! @}
 #endif // MAINMENUMODULE_H

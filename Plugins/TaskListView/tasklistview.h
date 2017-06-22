@@ -10,6 +10,13 @@
 #include "designproxymodel.h"
 #include "mainform.h"
 
+//! \defgroup TaskListView
+//!     \ingroup MainMenuPlugin_rel_v
+//! \defgroup TaskListView_imp Implementation
+//!     \ingroup TaskListView
+
+//! \addtogroup TaskListView_imp
+//! \{
 class TaskListView : public QObject, IViewPlugin
 {
     Q_OBJECT
@@ -40,5 +47,5 @@ public slots:
     bool Close() override;
     void OpenTaskEditor(int id);
 };
-
+//! \}
 #endif // TASKLISTVIEW_H

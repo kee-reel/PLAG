@@ -15,7 +15,8 @@
 namespace Ui {
 class MainForm;
 }
-
+//! \addtogroup TaskSketchView_imp
+//! \{
 class MainForm : public QWidget
 {
     Q_OBJECT
@@ -49,5 +50,5 @@ private slots:
     void on_buttonSave_clicked();
     void on_buttonOpenGallery_clicked();
 };
-
+//! \}
 #endif // MAINFORM_H

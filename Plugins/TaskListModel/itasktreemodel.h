@@ -9,6 +9,15 @@ template <class A> class QVector;
 template <class A, class B> class QMap;
 enum QVariant::Type;
 
+//! \defgroup TaskTreeModel
+//!     \ingroup MainMenuPlugin_rel_m
+//! \defgroup TaskTreeModel_int Interface
+//!     \ingroup TaskTreeModel
+//! \defgroup TaskTreeModel_imp Implementation
+//!     \ingroup TaskTreeModel
+
+//! \addtogroup TaskTreeModel_int
+//! \{
 class ITaskTreeModel : public IModelPlugin
 {
 public:
@@ -26,6 +35,6 @@ public:
 signals:
     void OpenTaskEdit(int id);
 };
+//! \}
 Q_DECLARE_INTERFACE(ITaskTreeModel, "ITaskTreeModel v0.1")
-
 #endif // ITASKLISTMODEL_H

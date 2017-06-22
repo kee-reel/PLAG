@@ -7,7 +7,8 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <QWidget>
-
+//! \addtogroup TaskSketchView_imp
+//! \{
 class GalleryItem : public QWidget
 {
     Q_OBJECT
@@ -38,5 +39,5 @@ protected:
 signals:
     void OnClicked(GalleryItem*);
 };
-
+//! \}
 #endif // GALLERYITEM_H

@@ -10,6 +10,8 @@
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 #include "../TaskListModel/itasktreemodel.h"
 
+//! \addtogroup TaskSketchModel_imp
+//! \{
 class TaskSketchModel : public QObject, ITaskSketchModel
 {
     Q_OBJECT
@@ -70,5 +72,5 @@ private:
     void SetupModel();
 
 };
-
+//! \}
 #endif // TASKLISTMODEL_H

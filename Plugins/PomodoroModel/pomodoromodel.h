@@ -11,6 +11,8 @@
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 #include "../TaskListModel/itasktreemodel.h"
 
+//! \addtogroup PomodoroModel_imp
+//! \{
 class PomodoroModel : public QObject, IPomodoroModel
 {
     Q_OBJECT
@@ -69,5 +71,5 @@ public:
 private:
     void SetupModel();
 };
-
+//! \}
 #endif // TASKLISTMODEL_H

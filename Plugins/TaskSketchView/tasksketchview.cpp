@@ -1,28 +1,28 @@
-#include "tasklistview.h"
+#include "tasksketchview.h"
 
-TaskListView::TaskListView()
+TaskSketchView::TaskSketchView()
 {
     mainForm = new MainForm;
     connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     myModel = NULL;
 }
 
-TaskListView::~TaskListView()
+TaskSketchView::~TaskSketchView()
 {
     delete mainForm;
 }
 
-void TaskListView::OnAllSetup()
+void TaskSketchView::OnAllSetup()
 {
 
 }
 
-QString TaskListView::GetLastError()
+QString TaskSketchView::GetLastError()
 {
 
 }
 
-void TaskListView::SetModel(QObject* model)
+void TaskSketchView::SetModel(QObject* model)
 {
     myModel = qobject_cast<ITaskSketchModel*>(model);
     if(!myModel)
@@ -34,7 +34,7 @@ void TaskListView::SetModel(QObject* model)
     connect(mainForm, SIGNAL(OnItemConvert(int)), model, SIGNAL(OpenTaskEdit(int)));
 }
 
-bool TaskListView::Open(QWidget* parent)
+bool TaskSketchView::Open(QWidget* parent)
 {
     qDebug() << "View OPEN" << parent;
     if(!myModel)
@@ -49,7 +49,7 @@ bool TaskListView::Open(QWidget* parent)
     return true;
 }
 
-bool TaskListView::Close()
+bool TaskSketchView::Close()
 {
     qDebug() << "CLOSE";
     mainForm->hide();

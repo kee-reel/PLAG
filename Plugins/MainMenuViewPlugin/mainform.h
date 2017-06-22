@@ -14,6 +14,8 @@ namespace Ui {
 class MainForm;
 }
 
+//! \addtogroup MainMenuPluginView_imp
+//! \{
 class MainForm : public QWidget
 {
     Q_OBJECT
@@ -43,5 +45,5 @@ private:
     float sceneScale;
     int scaleIter;
 };
-
+//! \}
 #endif // MAINFORM_H

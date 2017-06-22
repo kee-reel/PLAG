@@ -13,6 +13,8 @@
 #include "ART/artnetwork.h"
 #include "GeneticAlgorithm/geneticalgorithm.h"
 
+//! \addtogroup NeuralNetworkModel_imp
+//! \{
 class NeuralNetworkModel : public QObject, INeuralNetworkModel
 {
     Q_OBJECT
@@ -64,5 +66,5 @@ public:
 public:
     INeuralNetwork *SetupNetwork(QJsonObject networkParams) override;
 };
-
+//! \}
 #endif

@@ -8,7 +8,7 @@ class QSqlDatabase;
 class QSqlQuery;
 template <class A> class QList;
 
-//! \addtogroup MainMenuModule MainMenuModule
+//! \addtogroup MainMenuPlugin_int
 //! @{
 
 //! Enumeration of MASS system modules types.
