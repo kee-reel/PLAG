@@ -201,6 +201,7 @@ IMainMenuPluginModel::MenuItem* PluginLinker::SetupLinks()
     LinkModelToModels();
     LinkModelToViews();
     CallOnAllSetup();
+    qDebug() << "DONE";
     return rootMenuItem;
 }
 

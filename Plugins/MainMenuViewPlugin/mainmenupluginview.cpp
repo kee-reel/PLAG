@@ -22,7 +22,7 @@ void MainMenuPluginView::OnAllSetup()
 
 QString MainMenuPluginView::GetLastError()
 {
-
+    return "";
 }
 
 void MainMenuPluginView::SetModel(QObject *model)

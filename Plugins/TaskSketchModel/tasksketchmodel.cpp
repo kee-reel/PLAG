@@ -5,6 +5,8 @@ TaskSketchModel::TaskSketchModel()
     tableName = "sketch";
     coreRelationName = "image";
     activeViewId = -1;
+    myModel = NULL;
+    dataManager = NULL;
 }
 
 TaskSketchModel::~TaskSketchModel()
@@ -13,18 +15,20 @@ TaskSketchModel::~TaskSketchModel()
 
 void TaskSketchModel::OnAllSetup()
 {
+    if(dataManager == NULL) return;
     QMap<QString, QVariant::Type> newRelationStruct = {
         {coreRelationName,  QVariant::ByteArray},
     };
     QVector<QVariant> defaultData;
     defaultData << QByteArray();
     dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
-    dataManager->SetRelation(myModel->GetDataName(), coreRelationName, newRelationStruct, defaultData);
+    if(myModel != NULL)
+        dataManager->SetRelation(myModel->GetDataName(), coreRelationName, newRelationStruct, defaultData);
 }
 
 QString TaskSketchModel::GetLastError()
 {
-
+    return "";
 }
 
 void TaskSketchModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
