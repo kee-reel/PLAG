@@ -115,6 +115,8 @@ public:
     virtual void SetModel(QObject *) = 0;
     virtual bool Open(QWidget* parent) = 0;
     virtual bool Close() = 0;
+signals:
+    void OnClose();
 };
 Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
 
@@ -133,6 +135,8 @@ public:
     virtual bool Open(IModelPlugin* parent, QWidget* parentWidget) = 0;
     virtual bool CloseFromView(IViewPlugin *view) = 0;
     virtual void ChildSelfClosed(IModelPlugin *child) = 0;
+signals:
+    void OnClose();
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
 

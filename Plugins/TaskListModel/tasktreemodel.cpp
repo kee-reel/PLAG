@@ -21,7 +21,7 @@ void TaskTreeModel::OnAllSetup()
 
 QString TaskTreeModel::GetLastError()
 {
-
+    return "";
 }
 
 void TaskTreeModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)

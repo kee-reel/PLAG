@@ -19,7 +19,7 @@ void TaskSketchView::OnAllSetup()
 
 QString TaskSketchView::GetLastError()
 {
-
+    return "";
 }
 
 void TaskSketchView::SetModel(QObject* model)

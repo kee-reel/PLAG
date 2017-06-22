@@ -2,21 +2,21 @@ CONFIG += c++11 plugin
 
 windows{
     debug{
-        DESTDIR = ../../System/build-MASS-Desktop_Qt_5_5_1_GCC_32bit-Release/Modules
+        DESTDIR = ../../System/MASS/Modules
     }
     else
     {
-        DESTDIR = ../../System/build-MASS-Desktop_Qt_5_5_1_GCC_32bit-Release/Modules
+        DESTDIR = ../../System/MASS/Modules
     }
 }
 
 linux{
     debug{
-        DESTDIR = ../../System/build-MASS-Desktop_Qt_5_5_1_GCC_32bit-Release/Modules
+        DESTDIR = ../../System/MASS/Modules
     }
     else
     {
-        DESTDIR = ../../System/build-MASS-Desktop_Qt_5_5_1_GCC_32bit-Release/Modules
+        DESTDIR = ../../System/MASS/Modules
     }
 }
 

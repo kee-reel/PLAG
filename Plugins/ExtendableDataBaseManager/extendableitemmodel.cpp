@@ -76,6 +76,7 @@ void ExtendableItemModel::LoadData()
 bool ExtendableItemModel::AttachRelation(QString relationName, QVector<QVariant> defaultData)
 {
     defaultTask.SetChunkData(relationName, defaultData);
+    return true;
 }
 
 void ExtendableItemModel::SetActiveRelation(QString relationName)
@@ -217,7 +218,7 @@ bool ExtendableItemModel::insertRows(int row, int count, const QModelIndex &pare
 
 bool ExtendableItemModel::insertColumns(int column, int count, const QModelIndex &parent)
 {
-
+    return true;
 }
 
 bool ExtendableItemModel::removeRows(int row, int count, const QModelIndex &parent)

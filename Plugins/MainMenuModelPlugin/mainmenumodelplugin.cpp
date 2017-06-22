@@ -70,6 +70,7 @@ bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidget)
 bool MainMenuModelPlugin::CloseFromView(IViewPlugin *view)
 {
     QApplication::exit();
+    return true;
 }
 
 void MainMenuModelPlugin::ChildSelfClosed(IModelPlugin *child)

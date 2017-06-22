@@ -21,7 +21,7 @@ void TaskListView::OnAllSetup()
 
 QString TaskListView::GetLastError()
 {
-
+    return "";
 }
 
 void TaskListView::SetModel(QObject* model)
