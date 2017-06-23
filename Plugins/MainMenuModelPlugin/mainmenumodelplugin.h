@@ -18,29 +18,39 @@ class MainMenuModelPlugin : public QObject, IMainMenuPluginModel, IRootModelPlug
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(IModelPlugin IRootModelPlugin IMainMenuPluginModel)
 
+// IPlugin interface
+public:
+    void OnAllSetup() override;
+    QString GetLastError() override;
+
+// IModelPlugin interface
+public:
+    void AddDataManager(QObject *dataManager) override;
+    void AddModel(QObject *model, MetaInfo *meta) override;
+    void AddView(QObject *instance, MetaInfo *meta) override;
+public slots:
+    bool Open(IModelPlugin *model, QWidget *modelWidget) override;
+    void Close() override;
+signals:
+    void OnClose(IModelPlugin *pointer);
+
+// IRootModelPlugin interface
+public:
+    void AddPlugin(QObject *instance, QJsonObject *meta) override;
+    void Open(QWidget *parentWidget) override;
+
+// IMainMenuPluginModel interface
+public:
+    MenuItem *GetRootMenuItem() override;
+    void RunItem(MenuItem *item, MetaInfo *viewMeta) override;
+
 public:
     MainMenuModelPlugin();
     ~MainMenuModelPlugin();
 
-    void AddPlugin(QObject *instance, QJsonObject *meta) override;
-    void Open(QWidget *parentWidget) override;
-
-    void OnAllSetup() override;
-    QString GetLastError() override;
-
-    void AddDataManager(QObject *dataManager) override;
-    void AddParentModel(QObject *model, MetaInfo *meta) override;
-    void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
-    void AddView(IViewPlugin *view, MetaInfo *meta) override;
-
-    bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
-    bool CloseFromView(IViewPlugin *view) override;
-    void ChildSelfClosed(IModelPlugin *child) override;
-
-    MenuItem *GetRootMenuItem() override;
-    void RunItem(MenuItem *item, MetaInfo *viewMeta) override;
-
 private:
+    void OpenChildView();
+
     QList< PluginInfo<IModelPlugin> > childModels;
     QList< PluginInfo<IViewPlugin> > views;
 

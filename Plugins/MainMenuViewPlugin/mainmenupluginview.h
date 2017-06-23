@@ -33,8 +33,8 @@ public:
     void OnAllSetup() override;
     QString GetLastError() override;
 
-    void SetModel(QObject *model) override;
-    bool Open(QWidget* parent) override;
+    void AddModel(QObject *model) override;
+    bool Open(IModelPlugin* model, QWidget* parent) override;
     bool Close() override;
 
 private slots:

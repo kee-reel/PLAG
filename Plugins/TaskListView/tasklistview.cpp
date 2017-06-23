@@ -24,7 +24,7 @@ QString TaskListView::GetLastError()
     return "";
 }
 
-void TaskListView::SetModel(QObject* model)
+void TaskListView::AddModel(QObject* model)
 {
     myModel = qobject_cast<ITaskTreeModel*>(model);
     if(!myModel)

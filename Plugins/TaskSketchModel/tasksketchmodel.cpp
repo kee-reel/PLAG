@@ -57,7 +57,7 @@ void TaskSketchModel::AddDataManager(QObject *DBTool)
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
 }
 
-void TaskSketchModel::AddParentModel(QObject *model, MetaInfo *meta)
+void TaskSketchModel::AddModel(QObject *model, MetaInfo *meta)
 {
     myModel = qobject_cast<ITaskTreeModel*>(model);
     if(!myModel){

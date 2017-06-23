@@ -22,7 +22,7 @@ QString ARNeuralNetworkView::GetLastError()
 
 }
 
-void ARNeuralNetworkView::SetModel(QObject *model)
+void ARNeuralNetworkView::AddModel(QObject *model)
 {
     myModel = qobject_cast<INeuralNetworkModel*>(model);
     if(!myModel)

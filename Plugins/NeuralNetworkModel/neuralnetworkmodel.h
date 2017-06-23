@@ -60,7 +60,7 @@ public:
     bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
     bool CloseFromView(IViewPlugin *view) override;
     void ChildSelfClosed(IModelPlugin *child) override;
-    void AddParentModel(QObject *model, MetaInfo *meta) override;
+    void AddModel(QObject *model, MetaInfo *meta) override;
 
     // INeuralNetworkModel interface
 public:

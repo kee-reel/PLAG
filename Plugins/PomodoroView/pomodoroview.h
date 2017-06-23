@@ -43,7 +43,7 @@ public:
 
     // IPluginView interface
 public:
-    void SetModel(QObject* model) override;
+    void AddModel(QObject* model) override;
     bool Open(QWidget* parent) override;
 
 public slots:

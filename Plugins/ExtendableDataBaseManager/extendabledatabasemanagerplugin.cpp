@@ -25,7 +25,7 @@ QString ExtendableDataBaseManagerPlugin::GetLastError()
     return lastError;
 }
 
-bool ExtendableDataBaseManagerPlugin::SetDataSource(QObject *dataSource)
+bool ExtendableDataBaseManagerPlugin::AddDataSource(QObject *dataSource)
 {
     this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(dataSource);
     if(!this->dataSource)

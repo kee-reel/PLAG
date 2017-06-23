@@ -80,7 +80,7 @@ void NeuralNetworkModel::ChildSelfClosed(IModelPlugin *child)
 
 }
 
-void NeuralNetworkModel::AddParentModel(QObject *model, MetaInfo *meta)
+void NeuralNetworkModel::AddModel(QObject *model, MetaInfo *meta)
 {
 
 }

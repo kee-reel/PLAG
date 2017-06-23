@@ -53,7 +53,7 @@ void PomodoroModel::AddDataManager(QObject *DBTool)
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
 }
 
-void PomodoroModel::AddParentModel(QObject *model, MetaInfo *meta)
+void PomodoroModel::AddModel(QObject *model, MetaInfo *meta)
 {
     myModel = qobject_cast<ITaskTreeModel*>(model);
     if(!myModel){

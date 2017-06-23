@@ -37,8 +37,10 @@ template <class T>
 //! \brief Structure for internal needs. Pair of type of plugin and it's meta information.
 struct PluginInfo
 {
-    //! \brief Type of plugin.
+    //! \brief Class instance of plugin.
     T *plugin;
+    //! \brief QObject instance of plugin.
+    QObject *instance;
     //! \brief Meta information of plugin.
     MetaInfo *meta;
 };
@@ -101,10 +103,11 @@ public:
     //! \param dataSource
     //! \return
     //!
-    virtual bool SetDataSource(QObject* dataSource) = 0;
+    virtual bool AddDataSource(QObject* dataSource) = 0;
 };
 Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
 
+class IModelPlugin;
 //! \brief This interface describes DataManager plugn.
 //!
 //!
@@ -112,11 +115,12 @@ class IViewPlugin : public IPlugin
 {
 public:
     virtual ~IViewPlugin() {}
-    virtual void SetModel(QObject *) = 0;
-    virtual bool Open(QWidget* parent) = 0;
+    virtual void AddModel(QObject *model) = 0;
+public slots:
+    virtual bool Open(IModelPlugin* model, QWidget* parent) = 0;
     virtual bool Close() = 0;
 signals:
-    void OnClose();
+    void OnClose(IViewPlugin *pointer);
 };
 Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
 
@@ -128,15 +132,13 @@ class IModelPlugin : public IPlugin
 public:
     virtual ~IModelPlugin() {}
     virtual void AddDataManager(QObject *dataManager) = 0;
-    virtual void AddParentModel(QObject *model, MetaInfo *meta) = 0;
-    virtual void AddChildModel(IModelPlugin *model, MetaInfo *meta) = 0;
-    virtual void AddView(IViewPlugin *view, MetaInfo *meta) = 0;
-
-    virtual bool Open(IModelPlugin* parent, QWidget* parentWidget) = 0;
-    virtual bool CloseFromView(IViewPlugin *view) = 0;
-    virtual void ChildSelfClosed(IModelPlugin *child) = 0;
+    virtual void AddModel(QObject *model, MetaInfo *meta) = 0;
+    virtual void AddView(QObject *model, MetaInfo *meta) = 0;
+public slots:
+    virtual bool Open(IModelPlugin* model, QWidget* modelWidget) = 0;
+    virtual void Close() = 0;
 signals:
-    void OnClose();
+    void OnClose(IModelPlugin *pointer);
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
 

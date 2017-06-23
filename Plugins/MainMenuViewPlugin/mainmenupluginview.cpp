@@ -25,7 +25,7 @@ QString MainMenuPluginView::GetLastError()
     return "";
 }
 
-void MainMenuPluginView::SetModel(QObject *model)
+void MainMenuPluginView::AddModel(QObject *model)
 {
     myModel = qobject_cast<IMainMenuPluginModel*>(model);
     if(!myModel)
@@ -36,7 +36,7 @@ void MainMenuPluginView::SetModel(QObject *model)
     qDebug() << "IMainMenuPluginModel succesfully set.";
 }
 
-bool MainMenuPluginView::Open(QWidget* parent)
+bool MainMenuPluginView::Open(IModelPlugin *model, QWidget* parent)
 {
     if(!myModel)
     {
@@ -68,5 +68,5 @@ void MainMenuPluginView::OpenChildPlugin(IMainMenuPluginModel::MenuItem *menuIte
 void MainMenuPluginView::CloseMainMenu()
 {
     Close();
-    myModel->CloseFromView(this);
+    emit OnClose(this);
 }

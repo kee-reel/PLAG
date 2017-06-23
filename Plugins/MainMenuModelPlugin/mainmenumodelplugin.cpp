@@ -32,15 +32,10 @@ QString MainMenuModelPlugin::GetLastError()
     return QString();
 }
 
-void MainMenuModelPlugin::AddChildModel(IModelPlugin *model, MetaInfo *meta)
+void MainMenuModelPlugin::AddView(QObject *instance, MetaInfo *meta)
 {
-    PluginInfo<IModelPlugin> info = {model, meta};
-    childModels.append(info);
-}
-
-void MainMenuModelPlugin::AddView(IViewPlugin *view, MetaInfo *meta)
-{
-    PluginInfo<IViewPlugin> info = {view, meta};
+    IViewPlugin* view = qobject_cast<IViewPlugin*>(instance);
+    PluginInfo<IViewPlugin> info = {view, instance, meta};
     views.append(info);
 }
 
@@ -49,33 +44,27 @@ void MainMenuModelPlugin::AddDataManager(QObject *dataManager)
 
 }
 
-void MainMenuModelPlugin::AddParentModel(QObject *model, MetaInfo *meta)
+void MainMenuModelPlugin::AddModel(QObject *model, MetaInfo *meta)
 {
 
 }
 
-bool MainMenuModelPlugin::Open(IModelPlugin *parent, QWidget *parentWidget)
+bool MainMenuModelPlugin::Open(IModelPlugin *model, QWidget *parentWidget)
 {
     qDebug() << "MainMenuModel runs";
 
     if(views.count())
     {
         qDebug() << "OPEN" << views.first().meta->Name;
-        views.first().plugin->Open(parentWidget);
+        views.first().plugin->Open(this, parentWidget);
     }
 
     return true;
 }
 
-bool MainMenuModelPlugin::CloseFromView(IViewPlugin *view)
+void MainMenuModelPlugin::Close()
 {
     QApplication::exit();
-    return true;
-}
-
-void MainMenuModelPlugin::ChildSelfClosed(IModelPlugin *child)
-{
-    Open(NULL, parentWidget);
 }
 
 IMainMenuPluginModel::MenuItem *MainMenuModelPlugin::GetRootMenuItem()
@@ -102,5 +91,10 @@ void MainMenuModelPlugin::RunItem(IMainMenuPluginModel::MenuItem *item, MetaInfo
     }
 
     qDebug() << "Model wasn't opened";
+    Open(NULL, parentWidget);
+}
+
+void MainMenuModelPlugin::OpenChildView()
+{
     Open(NULL, parentWidget);
 }

@@ -14,7 +14,6 @@ SOURCES += \
 HEADERS +=\
     imainmenumodule.h \
     mainmenumodelplugin.h \
-    ../../System/MASS/rootinterfaces.h \
     pluginlinker.h \
     interfaces.h
 

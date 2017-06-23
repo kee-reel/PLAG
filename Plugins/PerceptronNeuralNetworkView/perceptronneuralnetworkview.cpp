@@ -22,7 +22,7 @@ QString PerceptronNetworkViewPlugin::GetLastError()
 
 }
 
-void PerceptronNetworkViewPlugin::SetModel(QObject *model)
+void PerceptronNetworkViewPlugin::AddModel(QObject *model)
 {
     myModel = qobject_cast<INeuralNetworkModel*>(model);
     if(!myModel)

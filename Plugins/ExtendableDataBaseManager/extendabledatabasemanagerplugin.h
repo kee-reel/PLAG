@@ -24,7 +24,7 @@ public:
     virtual void OnAllSetup();
     virtual QString GetLastError();
 
-    bool SetDataSource(QObject *dataSource) override;
+    bool AddDataSource(QObject *dataSource) override;
 
     QList<ManagerDataItem> GetDataList(QString tableName) override;
     ManagerDataItem GetDataItem(QString tableName, int id) override;

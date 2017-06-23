@@ -54,6 +54,9 @@ public:
     //! \param Model plugin that contains view plugin to run.
     //! \param View plugin that needs to open.
     virtual void RunItem(MenuItem* item, MetaInfo *viewMeta) = 0;
+
+signals:
+    void OpenTaskEdit(int id);
 };
 Q_DECLARE_INTERFACE(IMainMenuPluginModel, "IMainMenuModule v0.1")
 //! }@

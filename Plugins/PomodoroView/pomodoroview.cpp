@@ -29,7 +29,7 @@ QString PomodoroView::GetLastError()
 
 }
 
-void PomodoroView::SetModel(QObject* model)
+void PomodoroView::AddModel(QObject* model)
 {
     myModel = qobject_cast<IPomodoroModel*>(model);
     if(!myModel)

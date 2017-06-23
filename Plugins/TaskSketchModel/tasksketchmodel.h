@@ -55,7 +55,7 @@ public:
     // IPluginModel interface
 public:
     void AddDataManager(QObject *) override;
-    void AddParentModel(QObject *model, MetaInfo *meta) override;
+    void AddModel(QObject *model, MetaInfo *meta) override;
     void AddChildModel(IModelPlugin *, MetaInfo *) override; 
     void AddView(IViewPlugin *view, MetaInfo *meta) override;
     bool Open(IModelPlugin *parent, QWidget *parentWidget) override;

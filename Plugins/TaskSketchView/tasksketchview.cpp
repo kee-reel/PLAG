@@ -22,7 +22,7 @@ QString TaskSketchView::GetLastError()
     return "";
 }
 
-void TaskSketchView::SetModel(QObject* model)
+void TaskSketchView::AddModel(QObject* model)
 {
     myModel = qobject_cast<ITaskSketchModel*>(model);
     if(!myModel)

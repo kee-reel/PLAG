@@ -216,7 +216,7 @@ void PluginLinker::LinkSourceToManagers()
         QObject* dataSource = dataSourcesLinkInfo[dataSourceIter.key()].instance;
         QVector<IDataManagerPlugin*> childDataManagers = dataSourceIter.value();
         for(int i = 0; i < childDataManagers.count(); i++)
-            childDataManagers[i]->SetDataSource(dataSource);
+            childDataManagers[i]->AddDataSource(dataSource);
         ++dataSourceIter;
     }
 }
@@ -255,8 +255,8 @@ void PluginLinker::LinkModelToModels()
                 MetaInfo* meta = modelMap[childPlugins[i]];
                 IModelPlugin* plugin = modelsLinkInfo[meta->Name].plugin;
 
-                parentModel->plugin->AddChildModel(plugin, meta);
-                plugin->AddParentModel(parentModel->instance, parentMeta);
+                //parentModel->plugin->AddModel(plugin, meta);
+                plugin->AddModel(parentModel->instance, parentMeta);
                 menuItems[parentMeta]->SubItems.append(menuItems[meta]);
                 qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
             }
@@ -281,10 +281,10 @@ void PluginLinker::LinkModelToViews()
             for(int i = 0; i < childPlugins.count(); i++)
             {
                 MetaInfo* meta = viewMap[childPlugins[i]];
-                IViewPlugin* plugin = viewsLinkInfo[meta->Name].plugin;
+                LinkInfo<IViewPlugin> linkInfo = viewsLinkInfo[meta->Name];
 
-                parentModel.plugin->AddView(plugin, meta);
-                plugin->SetModel(parentModel.instance);
+                parentModel.plugin->AddView(linkInfo.instance, meta);
+                linkInfo.plugin->AddModel(parentModel.instance);
                 menuItems[parentMeta]->ViewItems.append(meta);
                 qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
             }
