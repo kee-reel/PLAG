@@ -29,6 +29,9 @@ public:
 public slots:
     bool Open(IModelPlugin *model, QWidget *modelWidget) override;
     void Close() override;
+signals:
+    void OnClose(IModelPlugin *model);
+    void OnClose();
 
     // ITaskTreeModel interface
 public:

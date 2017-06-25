@@ -41,6 +41,9 @@ private slots:
     void OpenChildPlugin(IMainMenuPluginModel::MenuItem *menuItem, MetaInfo *viewMeta);
     void CloseMainMenu();
 
+signals:
+    void OnClose(IViewPlugin *pointer);
+    void OnClose();
 };
 //! \}
 #endif // MAINMENUPLUGINVIEW_H

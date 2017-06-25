@@ -69,4 +69,5 @@ void MainMenuPluginView::CloseMainMenu()
 {
     Close();
     emit OnClose(this);
+    emit OnClose();
 }

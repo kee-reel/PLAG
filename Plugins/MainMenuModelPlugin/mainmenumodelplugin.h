@@ -33,6 +33,7 @@ public slots:
     void Close() override;
 signals:
     void OnClose(IModelPlugin *pointer);
+    void OnClose();
 
 // IRootModelPlugin interface
 public:
@@ -47,7 +48,6 @@ public:
 public:
     MainMenuModelPlugin();
     ~MainMenuModelPlugin();
-
 private:
     void OpenChildView();
 

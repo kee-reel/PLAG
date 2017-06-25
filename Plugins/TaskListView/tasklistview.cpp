@@ -36,7 +36,7 @@ void TaskListView::AddModel(QObject* model)
     connect(model, SIGNAL(OpenTaskEdit(int)), SLOT(OpenTaskEditor(int)));
 }
 
-bool TaskListView::Open(QWidget* parent)
+bool TaskListView::Open(IModelPlugin *model, QWidget* parent)
 {
     qDebug() << "View OPEN" << parent;
     if(!myModel)

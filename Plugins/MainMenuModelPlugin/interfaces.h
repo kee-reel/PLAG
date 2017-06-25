@@ -121,6 +121,7 @@ public slots:
     virtual bool Close() = 0;
 signals:
     void OnClose(IViewPlugin *pointer);
+    void OnClose();
 };
 Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
 
@@ -139,6 +140,7 @@ public slots:
     virtual void Close() = 0;
 signals:
     void OnClose(IModelPlugin *pointer);
+    void OnClose();
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
 

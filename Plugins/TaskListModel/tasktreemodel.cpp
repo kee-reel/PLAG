@@ -30,7 +30,7 @@ void TaskTreeModel::AddView(QObject *instance, MetaInfo *meta)
     PluginInfo<IViewPlugin> newPlugin = {view, meta};
     viewPlugins.append(newPlugin);
     qDebug() << "IPluginView succesfully set.";
-    connect(instance, SIGNAL(OnClose()), this, SLOT(Close()));
+    connect(instance, SIGNAL(OnClose()), SLOT(Close()));
 }
 
 void TaskTreeModel::AddDataManager(QObject *DBTool)
@@ -87,7 +87,8 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
 
 void TaskTreeModel::Close()
 {
-
+    emit OnClose(this);
+    emit OnClose();
 }
 
 QString TaskTreeModel::GetDataName()

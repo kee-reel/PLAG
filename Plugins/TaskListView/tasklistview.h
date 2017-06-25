@@ -42,9 +42,13 @@ public:
     // IPluginView interface
 public:
     void AddModel(QObject* model) override;
-    bool Open(QWidget* parent) override;
+    bool Open(IModelPlugin *model, QWidget *parent) override;
 public slots:
     bool Close() override;
+signals:
+    void OnClose(IViewPlugin *pointer);
+    void OnClose();
+
     void OpenTaskEditor(int id);
 };
 //! \}
