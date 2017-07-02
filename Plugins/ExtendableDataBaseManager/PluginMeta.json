@@ -1,6 +1,8 @@
 {
-    "Name":         "ExtendableDataBaseManager",
-    "PluginType":   "DataManager",
-    "ParentName":   "CipherDatabaseSource",
-    "DataManager":  ""
+    "Type": "DataManager",
+    "Interface": "IExtendableDataBaseManagerPlugin",
+    "Name": "ExtendableDataBaseManager",
+    "RelatedPluginInterfaces": [
+        "IDataBaseSourcePlugin"
+    ],
 }

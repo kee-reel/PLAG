@@ -1,6 +1,8 @@
 {
-    "Name":         "MainMenuModel",
-    "PluginType":   "RootModel",
-    "ParentName":   "",
-    "DataManager":  ""
+    "Type": "RootModel",
+    "Interface": "IMainMenuPluginModel",
+    "Name": "MainMenuModel",
+    "RelatedPluginInterfaces": [
+        ""
+    ],
 }

@@ -1,6 +1,9 @@
 {
-    "Name":         "PomodoroModel",
-    "PluginType":   "PluginModel",
-    "ParentName":   "TaskListModel",
-    "DataManager":  "ExtendableDataBaseManager"
+    "Type":   "PluginModel",
+    "Interface": "IPomodoroModel",
+    "Name": "PomodoroModel",
+    "RelatedPluginInterfaces": [
+        "ITaskListModel",
+        "IExtendableDataBaseManager"
+    ],
 }

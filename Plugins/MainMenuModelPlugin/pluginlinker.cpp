@@ -21,15 +21,15 @@ void PluginLinker::AddNewPlugin(QObject *instance, QJsonObject *meta)
 MetaInfo *PluginLinker::GetPluginMeta(QJsonObject *metaData)
 {
     qDebug() << "Get meta";
-    QString FieldName             = "Name";
-    QString FieldModuleType       = "PluginType";
-    QString FieldParentModuleName = "ParentName";
-    QString FieldDataManagerName  = "DataManager";
+    QString FieldName               = "Name";
+    QString FieldModuleType         = "PluginType";
+    QString FieldRelatedPluginNames = "RelatedPluginInterfaces";
+    QString FieldDataManagerName    = "DataManager";
 
     QJsonObject metaInfo = metaData->value("MetaData").toObject();
     // Check if all meta fields exists
     QStringList metaFieldsNames;
-    metaFieldsNames << FieldName << FieldModuleType << FieldParentModuleName;
+    metaFieldsNames << FieldName << FieldModuleType << FieldRelatedPluginNames;
     foreach (QString metaFieldName, metaFieldsNames) {
         if(!metaInfo.contains(metaFieldName))
         {
@@ -67,8 +67,9 @@ MetaInfo *PluginLinker::GetPluginMeta(QJsonObject *metaData)
     qDebug() << "DataManager:" << newMetaInfo->DataManagerName;
 
     // Set module parent name
-    newMetaInfo->ParentPluginName = metaInfo.value(FieldParentModuleName).toString();
-    qDebug() << "Parent:" << newMetaInfo->ParentPluginName;
+    QString str = metaInfo.value(FieldRelatedPluginNames).toString();
+    //newMetaInfo->RelatedPluginNames = array.toVariantList();
+    qDebug() << "Parent:" << newMetaInfo->RelatedPluginNames;
     return newMetaInfo;
 }
 
@@ -159,8 +160,8 @@ void PluginLinker::SetLinks(IDataManagerPlugin *plugin, QObject* instance, MetaI
     LinkInfo<IDataManagerPlugin> info = {plugin, instance};
     dataManagersLinkInfo[meta->Name] = info;
 
-    if(meta->ParentPluginName != "")
-        sourceToManagersLink[meta->ParentPluginName].append(plugin);
+    if(meta->RelatedPluginNames != "")
+        sourceToManagersLink[meta->RelatedPluginNames].append(plugin);
 }
 
 void PluginLinker::SetLinks(IModelPlugin *plugin, QObject* instance, MetaInfo *meta)
@@ -179,7 +180,7 @@ void PluginLinker::SetLinks(IModelPlugin *plugin, QObject* instance, MetaInfo *m
         rootMenuItem = menuItems[meta];
     }
     else
-        modelToModelsLink[meta->ParentPluginName].append(plugin);
+        modelToModelsLink[meta->RelatedPluginNames].append(plugin);
     modelsLinkInfo[meta->Name] = info;
 
     if(meta->DataManagerName != "")
@@ -191,7 +192,7 @@ void PluginLinker::SetLinks(IViewPlugin *plugin, QObject* instance, MetaInfo *me
     qDebug() << "View";
     LinkInfo<IViewPlugin> info = {plugin, instance};
     viewsLinkInfo[meta->Name] = info;
-    modelToViewsLink[meta->ParentPluginName].append(plugin);
+    modelToViewsLink[meta->RelatedPluginNames].append(plugin);
 }
 
 IMainMenuPluginModel::MenuItem* PluginLinker::SetupLinks()
@@ -258,7 +259,7 @@ void PluginLinker::LinkModelToModels()
                 //parentModel->plugin->AddModel(plugin, meta);
                 plugin->AddModel(parentModel->instance, parentMeta);
                 menuItems[parentMeta]->SubItems.append(menuItems[meta]);
-                qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
+                qDebug() << "Child plugin" << meta->Name << "binds with" << meta->RelatedPluginNames;
             }
         }
         ++pluginModelIter;
@@ -286,7 +287,7 @@ void PluginLinker::LinkModelToViews()
                 parentModel.plugin->AddView(linkInfo.instance, meta);
                 linkInfo.plugin->AddModel(parentModel.instance);
                 menuItems[parentMeta]->ViewItems.append(meta);
-                qDebug() << "Child plugin" << meta->Name << "binds with" << meta->ParentPluginName;
+                qDebug() << "Child plugin" << meta->Name << "binds with" << meta->RelatedPluginNames;
             }
         }
         ++pluginModelIter;

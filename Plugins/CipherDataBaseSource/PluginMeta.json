@@ -1,6 +1,8 @@
 {
-    "Name":         "CipherDatabaseSource",
-    "PluginType":   "DataSource",
-    "ParentName":   "",
-    "DataManager":  ""
+    "Type": "DataSource",
+    "Interface": "IDataBaseSourcePlugin",
+    "Name": "CipherDatabaseSource",
+    "RelatedPluginInterfaces": [
+        ""
+    ],
 }

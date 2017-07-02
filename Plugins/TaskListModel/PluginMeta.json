@@ -1,6 +1,9 @@
 {
-    "Name":         "TaskListModel",
-    "PluginType":   "PluginModel",
-    "ParentName":   "",
-    "DataManager":  "ExtendableDataBaseManager"
+    "Type": "PluginModel",
+    "Interface": "ITaskTreeModel",
+    "Name": "TaskListModel",
+    "RelatedPluginInterfaces": [
+        "IExtendableDataBaseManager",
+        "IMainMenuPluginModel",
+    ],
 }

@@ -28,7 +28,7 @@ struct MetaInfo{
     //! \brief Type of plugin.
     PluginTypes Type;
     //! \brief Name of parent plugin (in tree structure).
-    QString ParentPluginName;
+    QList<QString> RelatedPluginNames;
     //! \brief Name of data manager that plugin will be using
     QString DataManagerName;
 };

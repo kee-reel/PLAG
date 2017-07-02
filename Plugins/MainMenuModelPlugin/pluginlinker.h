@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QDebug>
 #include <QJsonObject>
+#include <QJsonArray>
 
 #include <QMap>
 #include <QHash>

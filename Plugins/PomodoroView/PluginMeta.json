@@ -1,6 +1,8 @@
 {
-    "Name":         "PomodoroView",
-    "PluginType":   "PluginView",
-    "ParentName":   "PomodoroModel",
-    "DataManager":  ""
+    "Type": "PluginView",
+    "Interface": "",
+    "Name": "PomodoroView",
+    "RelatedPluginInterfaces": [
+        "IPomodoroModel"
+    ],
 }
