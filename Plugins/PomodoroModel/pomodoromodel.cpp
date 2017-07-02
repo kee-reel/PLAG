@@ -27,20 +27,6 @@ QString PomodoroModel::GetLastError()
 
 }
 
-void PomodoroModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
-{
-    qDebug() << "New child" << meta->Name;
-    PluginInfo<IModelPlugin> newPlugin = {plugin, meta};
-    childModelPlugins.append(newPlugin);
-}
-
-void PomodoroModel::AddView(IViewPlugin *view, MetaInfo *meta)
-{
-    PluginInfo<IViewPlugin> newPlugin = {view, meta};
-    viewPlugins.append(newPlugin);
-    qDebug() << "IPluginView succesfully set.";
-}
-
 void PomodoroModel::AddDataManager(QObject *DBTool)
 {
     qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
@@ -53,14 +39,24 @@ void PomodoroModel::AddDataManager(QObject *DBTool)
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
 }
 
-void PomodoroModel::AddModel(QObject *model, MetaInfo *meta)
+void PomodoroModel::AddModel(QObject *instance, MetaInfo *meta)
 {
-    myModel = qobject_cast<ITaskTreeModel*>(model);
+    myModel = qobject_cast<ITaskTreeModel*>(instance);
     if(!myModel){
-        qDebug() << model->objectName() << "is not IExtendableDataBaseManagerPlugin.";
+        qDebug() << instance->objectName() << "is not IExtendableDataBaseManagerPlugin.";
         return;
     }
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
+    connect(this, SIGNAL(OnClose(IModelPlugin*)), instance, SLOT(RelatedModelClosed(IModelPlugin*)));
+}
+
+void PomodoroModel::AddView(QObject *instance, MetaInfo *meta)
+{
+    IViewPlugin *view = qobject_cast<IViewPlugin*>(instance);
+    PluginInfo<IViewPlugin> newPlugin = {view, meta};
+    viewPlugins.append(newPlugin);
+    qDebug() << "IPluginView succesfully set.";
+    connect(instance, SIGNAL(OnClose(IViewPlugin*)), SLOT(RelatedViewClosed(IViewPlugin*)));
 }
 
 bool PomodoroModel::Open(IModelPlugin *parent, QWidget *parentWidget)
@@ -74,23 +70,28 @@ bool PomodoroModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     activeViewId = 0;
     SetupModel();
     qDebug() << viewPlugins[activeViewId].meta->Name;
-    if(!viewPlugins[activeViewId].plugin->Open(myParentWidget)){
+    if(!viewPlugins[activeViewId].plugin->Open(this, myParentWidget)){
         qDebug() << "Can't open first view!";
         return false;
     }
     return true;
 }
 
-bool PomodoroModel::CloseFromView(IViewPlugin *view)
+void PomodoroModel::RelatedModelClosed(IModelPlugin *model)
 {
-    myModel->ChildSelfClosed(this);
-    activeViewId = -1;
-    return true;
+    Close();
 }
 
-void PomodoroModel::ChildSelfClosed(IModelPlugin *child)
+void PomodoroModel::RelatedViewClosed(IViewPlugin *view)
 {
+    Close();
+}
 
+void PomodoroModel::Close()
+{
+    activeViewId = -1;
+    emit OnClose(this);
+    emit OnClose();
 }
 
 QAbstractItemModel *PomodoroModel::GetModel()

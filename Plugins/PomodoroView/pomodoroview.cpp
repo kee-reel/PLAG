@@ -40,7 +40,7 @@ void PomodoroView::AddModel(QObject* model)
     qDebug() << "ITaskListModel succesfully set.";
 }
 
-bool PomodoroView::Open(QWidget* parent)
+bool PomodoroView::Open(IModelPlugin *model, QWidget *parent)
 {
     qDebug() << "View OPEN" << parent;
     if(!myModel)
@@ -58,12 +58,13 @@ bool PomodoroView::Close()
 {
     qDebug() << "CLOSE";
     hide();
-    myModel->CloseFromView(this);
+    emit OnClose(this);
+    emit OnClose();
     return true;
 }
 
 void PomodoroView::OnPomodoroFinished()
 {
-    finishedPomodoros++;
+    ++finishedPomodoros;
     ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros));
 }

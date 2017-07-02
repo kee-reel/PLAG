@@ -53,15 +53,19 @@ public:
     void OnAllSetup() override;
     QString GetLastError() override;
 
-    // IPluginModel interface
+    // IModelPlugin interface
 public:
-    void AddDataManager(QObject *) override;
-    void AddModel(QObject *model, MetaInfo *meta) override;
-    void AddChildModel(IModelPlugin *, MetaInfo *) override; 
-    void AddView(IViewPlugin *view, MetaInfo *meta) override;
-    bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
-    bool CloseFromView(IViewPlugin *view) override;
-    void ChildSelfClosed(IModelPlugin *child) override;
+    void AddDataManager(QObject *dataManager) override;
+    void AddModel(QObject *instance, MetaInfo *meta) override;
+    void AddView(QObject *instance, MetaInfo *meta) override;
+public slots:
+    bool Open(IModelPlugin *model, QWidget *modelWidget) override;
+    void RelatedModelClosed(IModelPlugin *model) override;
+    void RelatedViewClosed(IViewPlugin *view) override;
+    void Close() override;
+signals:
+    void OnClose(IModelPlugin *pointer);
+    void OnClose();
 
     // IPomodoroModel interface
 public:
@@ -70,6 +74,7 @@ public:
 
 private:
     void SetupModel();
+
 };
 //! \}
 #endif // TASKLISTMODEL_H

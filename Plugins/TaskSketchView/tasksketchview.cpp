@@ -34,7 +34,7 @@ void TaskSketchView::AddModel(QObject* model)
     connect(mainForm, SIGNAL(OnItemConvert(int)), model, SIGNAL(OpenTaskEdit(int)));
 }
 
-bool TaskSketchView::Open(QWidget* parent)
+bool TaskSketchView::Open(IModelPlugin *model, QWidget *parent)
 {
     qDebug() << "View OPEN" << parent;
     if(!myModel)
@@ -53,6 +53,7 @@ bool TaskSketchView::Close()
 {
     qDebug() << "CLOSE";
     mainForm->hide();
-    myModel->CloseFromView(this);
+    emit OnClose(this);
+    emit OnClose();
     return true;
 }

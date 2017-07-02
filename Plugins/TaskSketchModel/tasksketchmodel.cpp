@@ -31,20 +31,6 @@ QString TaskSketchModel::GetLastError()
     return "";
 }
 
-void TaskSketchModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
-{
-    qDebug() << "New child" << meta->Name;
-    PluginInfo<IModelPlugin> newPlugin = {plugin, meta};
-    childModelPlugins.append(newPlugin);
-}
-
-void TaskSketchModel::AddView(IViewPlugin *view, MetaInfo *meta)
-{
-    PluginInfo<IViewPlugin> newPlugin = {view, meta};
-    viewPlugins.append(newPlugin);
-    qDebug() << "IPluginView succesfully set.";
-}
-
 void TaskSketchModel::AddDataManager(QObject *DBTool)
 {
     qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
@@ -57,15 +43,24 @@ void TaskSketchModel::AddDataManager(QObject *DBTool)
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
 }
 
-void TaskSketchModel::AddModel(QObject *model, MetaInfo *meta)
+void TaskSketchModel::AddModel(QObject *instance, MetaInfo *meta)
 {
-    myModel = qobject_cast<ITaskTreeModel*>(model);
+    myModel = qobject_cast<ITaskTreeModel*>(instance);
     if(!myModel){
-        qDebug() << model->objectName() << "is not IExtendableDataBaseManagerPlugin.";
+        qDebug() << instance->objectName() << "is not IExtendableDataBaseManagerPlugin.";
         return;
     }
     qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
-    connect(this, SIGNAL(ConvertTaskToSketch(int)), model, SIGNAL(OpenTaskEdit(int)));
+    connect(this, SIGNAL(OnClose(IModelPlugin*)), instance, SLOT(RelatedModelClosed(IModelPlugin*)));
+}
+
+void TaskSketchModel::AddView(QObject *instance, MetaInfo *meta)
+{
+    IViewPlugin *view = qobject_cast<IViewPlugin*>(instance);
+    PluginInfo<IViewPlugin> newPlugin = {view, meta};
+    viewPlugins.append(newPlugin);
+    qDebug() << "IPluginView succesfully set.";
+    connect(instance, SIGNAL(OnClose(IViewPlugin*)), SLOT(RelatedViewClosed(IViewPlugin*)));
 }
 
 bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
@@ -79,23 +74,28 @@ bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     activeViewId = 0;
     SetupModel();
     qDebug() << viewPlugins[activeViewId].meta->Name;
-    if(!viewPlugins[activeViewId].plugin->Open(myParentWidget)){
+    if(!viewPlugins[activeViewId].plugin->Open(this, myParentWidget)){
         qDebug() << "Can't open first view!";
         return false;
     }
     return true;
 }
 
-bool TaskSketchModel::CloseFromView(IViewPlugin *view)
+void TaskSketchModel::RelatedModelClosed(IModelPlugin *model)
 {
-    myModel->ChildSelfClosed(this);
-    activeViewId = -1;
-    return true;
+    Close();
 }
 
-void TaskSketchModel::ChildSelfClosed(IModelPlugin *child)
+void TaskSketchModel::RelatedViewClosed(IViewPlugin *view)
 {
+    Close();
+}
 
+void TaskSketchModel::Close()
+{
+    activeViewId = -1;
+    emit OnClose(this);
+    emit OnClose();
 }
 
 QAbstractItemModel *TaskSketchModel::GetModel()

@@ -64,12 +64,14 @@ bool TaskListView::Close()
     qDebug() << "CLOSE";
     disconnect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     mainForm->hide();
-    myModel->CloseFromView(this);
+    emit OnClose();
+    emit OnClose(this);
+    //myModel->CloseFromView(this);
     return true;
 }
 
 void TaskListView::OpenTaskEditor(int id)
 {
     qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!!!" << id;
-    Open(NULL);
+    //Open(NULL, );
 }

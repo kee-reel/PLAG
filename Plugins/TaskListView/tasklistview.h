@@ -45,11 +45,12 @@ public:
     bool Open(IModelPlugin *model, QWidget *parent) override;
 public slots:
     bool Close() override;
+
+public slots:
+    void OpenTaskEditor(int id);
 signals:
     void OnClose(IViewPlugin *pointer);
     void OnClose();
-
-    void OpenTaskEditor(int id);
 };
 //! \}
 #endif // TASKLISTVIEW_H

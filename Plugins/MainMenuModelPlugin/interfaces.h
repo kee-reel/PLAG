@@ -98,19 +98,15 @@ class IDataManagerPlugin : public IPlugin
 {
 public:
     virtual ~IDataManagerPlugin() {}
-    //!
     //! \brief SetDataSource
     //! \param dataSource
     //! \return
-    //!
     virtual bool AddDataSource(QObject* dataSource) = 0;
 };
 Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
 
 class IModelPlugin;
 //! \brief This interface describes DataManager plugn.
-//!
-//!
 class IViewPlugin : public IPlugin
 {
 public:
@@ -125,18 +121,18 @@ signals:
 };
 Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
 
-//!
 //! \brief The IModelPlugin class
-//!
 class IModelPlugin : public IPlugin
 {
 public:
     virtual ~IModelPlugin() {}
     virtual void AddDataManager(QObject *dataManager) = 0;
-    virtual void AddModel(QObject *model, MetaInfo *meta) = 0;
-    virtual void AddView(QObject *model, MetaInfo *meta) = 0;
+    virtual void AddModel(QObject *instance, MetaInfo *meta) = 0;
+    virtual void AddView(QObject *instance, MetaInfo *meta) = 0;
 public slots:
     virtual bool Open(IModelPlugin* model, QWidget* modelWidget) = 0;
+    virtual void RelatedModelClosed(IModelPlugin* model) = 0;
+    virtual void RelatedViewClosed(IViewPlugin* view) = 0;
     virtual void Close() = 0;
 signals:
     void OnClose(IModelPlugin *pointer);

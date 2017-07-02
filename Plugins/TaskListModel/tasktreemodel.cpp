@@ -30,7 +30,7 @@ void TaskTreeModel::AddView(QObject *instance, MetaInfo *meta)
     PluginInfo<IViewPlugin> newPlugin = {view, meta};
     viewPlugins.append(newPlugin);
     qDebug() << "IPluginView succesfully set.";
-    connect(instance, SIGNAL(OnClose()), SLOT(Close()));
+    connect(instance, SIGNAL(OnClose(IViewPlugin*)), SLOT(RelatedViewClosed(IViewPlugin*)));
 }
 
 void TaskTreeModel::AddDataManager(QObject *DBTool)
@@ -52,16 +52,17 @@ void TaskTreeModel::AddDataManager(QObject *DBTool)
     dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
 }
 
-void TaskTreeModel::AddModel(QObject *model, MetaInfo *meta)
+void TaskTreeModel::AddModel(QObject *instance, MetaInfo *meta)
 {
     qDebug() <<  "is not MainMenu.";
-    myParent = qobject_cast<IModelPlugin*>(model);
+    myParent = qobject_cast<IModelPlugin*>(instance);
     if(!this->dataManager)
     {
-        qDebug() << model->objectName() << "is not MainMenu.";
+        qDebug() << instance->objectName() << "is not MainMenu.";
         return;
     }
     qDebug() << "MainMenu succesfully set.";
+    connect(this, SIGNAL(OnClose(IModelPlugin*)), instance, SLOT(RelatedModelClosed(IModelPlugin*)));
 }
 
 bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
@@ -83,6 +84,16 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     }
 
     return true;
+}
+
+void TaskTreeModel::RelatedModelClosed(IModelPlugin *model)
+{
+
+}
+
+void TaskTreeModel::RelatedViewClosed(IViewPlugin *view)
+{
+    Close();
 }
 
 void TaskTreeModel::Close()
@@ -114,6 +125,8 @@ QMap<QString, ITaskTreeModel::ITaskRelationDelegate*> TaskTreeModel::GetRelation
 
 void TaskTreeModel::SetupModel()
 {
+    if(dataManager == NULL)
+        return;
     treeModel = dataManager->GetDataModel(tableName);
     dataManager->SetActiveRelation(tableName, relationName);
 }

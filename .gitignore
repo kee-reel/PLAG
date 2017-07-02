@@ -3,3 +3,6 @@ build-*
 BuildInfo.pri
 */html/*
 */latex/*
+*.o
+*/Makefile
+*moc_*

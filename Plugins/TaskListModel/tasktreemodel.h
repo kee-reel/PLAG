@@ -24,10 +24,12 @@ public:
     // IModelPlugin interface
 public:
     void AddDataManager(QObject *dataManager) override;
-    void AddModel(QObject *model, MetaInfo *meta) override;
-    void AddView(QObject *view, MetaInfo *meta) override;
+    void AddModel(QObject *instance, MetaInfo *meta) override;
+    void AddView(QObject *instance, MetaInfo *meta) override;
 public slots:
     bool Open(IModelPlugin *model, QWidget *modelWidget) override;
+    void RelatedModelClosed(IModelPlugin *model) override;
+    void RelatedViewClosed(IViewPlugin *view) override;
     void Close() override;
 signals:
     void OnClose(IModelPlugin *model);

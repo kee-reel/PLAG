@@ -30,6 +30,8 @@ public:
     void AddView(QObject *instance, MetaInfo *meta) override;
 public slots:
     bool Open(IModelPlugin *model, QWidget *modelWidget) override;
+    void RelatedModelClosed(IModelPlugin *model) override;
+    void RelatedViewClosed(IViewPlugin *view) override;
     void Close() override;
 signals:
     void OnClose(IModelPlugin *pointer);

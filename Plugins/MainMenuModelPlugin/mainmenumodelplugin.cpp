@@ -37,7 +37,7 @@ void MainMenuModelPlugin::AddView(QObject *instance, MetaInfo *meta)
     IViewPlugin* view = qobject_cast<IViewPlugin*>(instance);
     PluginInfo<IViewPlugin> info = {view, instance, meta};
     views.append(info);
-    connect(instance, SIGNAL(OnClose()), SLOT(Close()));
+    connect(instance, SIGNAL(OnClose(IViewPlugin*)), SLOT(RelatedViewClosed(IViewPlugin*)));
 }
 
 void MainMenuModelPlugin::AddDataManager(QObject *dataManager)
@@ -59,8 +59,17 @@ bool MainMenuModelPlugin::Open(IModelPlugin *model, QWidget *parentWidget)
         qDebug() << "OPEN" << views.first().meta->Name;
         views.first().plugin->Open(this, parentWidget);
     }
-
     return true;
+}
+
+void MainMenuModelPlugin::RelatedModelClosed(IModelPlugin *model)
+{
+    Open(NULL, parentWidget);
+}
+
+void MainMenuModelPlugin::RelatedViewClosed(IViewPlugin *view)
+{
+    Close();
 }
 
 void MainMenuModelPlugin::Close()
