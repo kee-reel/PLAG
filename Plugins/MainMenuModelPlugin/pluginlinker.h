@@ -32,6 +32,14 @@ public:
     QMap<IDataManagerPlugin*, MetaInfo*>    managerMap;
 
 private:
+    template <class T>
+    struct PluginInfoHandler : public PluginInfo<T>
+    {
+        void SetupLinks();
+    };
+
+    //TODO: QHash<QString, PluginInfoHandler<>>
+
     QMap<QString, PluginTypes> pluginTypesNames;
 
     QHash<QString, QVector<IDataManagerPlugin*> > sourceToManagersLink;
