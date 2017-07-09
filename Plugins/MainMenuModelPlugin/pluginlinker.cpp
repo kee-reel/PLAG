@@ -160,8 +160,8 @@ void PluginLinker::SetLinks(IDataManagerPlugin *plugin, QObject* instance, MetaI
     LinkInfo<IDataManagerPlugin> info = {plugin, instance};
     dataManagersLinkInfo[meta->Name] = info;
 
-    if(meta->RelatedPluginNames != "")
-        sourceToManagersLink[meta->RelatedPluginNames].append(plugin);
+//    if(meta->RelatedPluginNames != "")
+//        sourceToManagersLink[meta->RelatedPluginNames].append(plugin);
 }
 
 void PluginLinker::SetLinks(IModelPlugin *plugin, QObject* instance, MetaInfo *meta)
@@ -173,14 +173,14 @@ void PluginLinker::SetLinks(IModelPlugin *plugin, QObject* instance, MetaInfo *m
     item->meta = meta;
     menuItems.insert(meta, item);
 
-    if(meta->Type == ROOTMODEL)
-    {
-        modelsLinkInfo[""] = info;
-        rootModel = plugin;
-        rootMenuItem = menuItems[meta];
-    }
-    else
-        modelToModelsLink[meta->RelatedPluginNames].append(plugin);
+//    if(meta->Type == ROOTMODEL)
+//    {
+//        modelsLinkInfo[""] = info;
+//        rootModel = plugin;
+//        rootMenuItem = menuItems[meta];
+//    }
+//    else
+//        modelToModelsLink[meta->RelatedPluginNames].append(plugin);
     modelsLinkInfo[meta->Name] = info;
 
     if(meta->DataManagerName != "")
@@ -192,7 +192,7 @@ void PluginLinker::SetLinks(IViewPlugin *plugin, QObject* instance, MetaInfo *me
     qDebug() << "View";
     LinkInfo<IViewPlugin> info = {plugin, instance};
     viewsLinkInfo[meta->Name] = info;
-    modelToViewsLink[meta->RelatedPluginNames].append(plugin);
+//    modelToViewsLink[meta->RelatedPluginNames].append(plugin);
 }
 
 IMainMenuPluginModel::MenuItem* PluginLinker::SetupLinks()

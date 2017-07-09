@@ -11,6 +11,7 @@
 
 #include "interfaces.h"
 #include "imainmenumodule.h"
+#include "pluginhandler.h"
 
 //! \ingroup MainMenuPlugin_imp
 //! @{
@@ -32,13 +33,8 @@ public:
     QMap<IDataManagerPlugin*, MetaInfo*>    managerMap;
 
 private:
-    template <class T>
-    struct PluginInfoHandler : public PluginInfo<T>
-    {
-        void SetupLinks();
-    };
-
-    //TODO: QHash<QString, PluginInfoHandler<>>
+    QHash<QString, PluginHandler> handlersWithParentNames;
+    QHash<QString, PluginHandler> handlersWithSelfNames;
 
     QMap<QString, PluginTypes> pluginTypesNames;
 

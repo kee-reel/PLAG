@@ -54,6 +54,7 @@ public:
     virtual void OnAllSetup() = 0;
     //! \brief Gets last error message from plugin.
     virtual QString GetLastError() = 0;
+    virtual void AddReferencePlugin(QObject *instance, MetaInfo *meta) = 0;
 };
 
 //! \brief This interface describes DataSource plugin.
