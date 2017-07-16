@@ -25,16 +25,39 @@ QString ExtendableDataBaseManagerPlugin::GetLastError()
     return lastError;
 }
 
-bool ExtendableDataBaseManagerPlugin::AddDataSource(QObject *dataSource)
+void ExtendableDataBaseManagerPlugin::SetPluginInfo(PluginInfo *pluginInfo)
 {
-    this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(dataSource);
-    if(!this->dataSource)
-    {
-        qDebug() << dataSource->objectName() << "is not ExtendableDataBaseManagerPlugin.";
-    }
-    qDebug() << "ExtendableDataBaseManagerPlugin succesfully set.";
-    return true;
+
 }
+
+void ExtendableDataBaseManagerPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
+{
+    if(pluginInfo->Meta->InterfaceName == "IDATABASESOURCEPLUGIN")
+    {
+        this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(pluginInfo->Instance);
+        if(!this->dataSource)
+        {
+            qDebug() << pluginInfo->Meta->Name << "is not ExtendableDataBaseManagerPlugin.";
+        }
+        qDebug() << "ExtendableDataBaseManagerPlugin succesfully set.";
+    }
+}
+
+void ExtendableDataBaseManagerPlugin::ReferencePluginClosed(PluginInfo *pluginInfo)
+{
+
+}
+
+//bool ExtendableDataBaseManagerPlugin::AddDataSource(QObject *dataSource)
+//{
+//    this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(dataSource);
+//    if(!this->dataSource)
+//    {
+//        qDebug() << dataSource->objectName() << "is not ExtendableDataBaseManagerPlugin.";
+//    }
+//    qDebug() << "ExtendableDataBaseManagerPlugin succesfully set.";
+//    return true;
+//}
 
 QList<ExtendableDataBaseManagerPlugin::ManagerDataItem> ExtendableDataBaseManagerPlugin::GetDataList(QString tableName)
 {

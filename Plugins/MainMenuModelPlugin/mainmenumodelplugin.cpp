@@ -3,6 +3,7 @@
 MainMenuModelPlugin::MainMenuModelPlugin()
 {
     activeViewId = -1;
+    rootMenuItem = new MenuItem();
 }
 
 MainMenuModelPlugin::~MainMenuModelPlugin()
@@ -18,13 +19,19 @@ void MainMenuModelPlugin::AddPlugin(QObject *instance, QJsonObject *meta)
 void MainMenuModelPlugin::Open(QWidget *parentWidget)
 {
     this->parentWidget = parentWidget;
-    rootMenuItem = pluginLinker.SetupLinks();
+    pluginLinker.SetupLinks();
     Open(NULL, parentWidget);
+}
+
+void MainMenuModelPlugin::SetPluginInfo(PluginInfo *pluginInfo)
+{
+    this->pluginInfo = pluginInfo;
+    rootMenuItem->meta = this->pluginInfo->Meta;
 }
 
 void MainMenuModelPlugin::OnAllSetup()
 {
-
+    qDebug() << "OnAllSetup";
 }
 
 QString MainMenuModelPlugin::GetLastError()
@@ -32,23 +39,58 @@ QString MainMenuModelPlugin::GetLastError()
     return QString();
 }
 
-void MainMenuModelPlugin::AddView(QObject *instance, MetaInfo *meta)
+void MainMenuModelPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    IViewPlugin* view = qobject_cast<IViewPlugin*>(instance);
-    PluginInfo<IViewPlugin> info = {view, instance, meta};
-    views.append(info);
-    connect(instance, SIGNAL(OnClose(IViewPlugin*)), SLOT(RelatedViewClosed(IViewPlugin*)));
+    switch(pluginInfo->Meta->Type)
+    {
+    case ROOTMODEL:
+        break;
+    case PLUGINMODEL:
+        childModels.append(pluginInfo);
+        rootMenuItem->Items.append(pluginInfo->Meta);
+        break;
+    case PLUGINVIEW:
+        qDebug() << "AddReference" << pluginInfo->Meta->Name;
+        views.append(pluginInfo);
+        connect(pluginInfo->Instance, SIGNAL(OnClose(PluginInfo*)), SLOT(ReferencePluginClosed(PluginInfo*)));
+        break;
+    case DATASOURCE:
+        break;
+    case DATAMANAGER:
+        break;
+    }
 }
 
-void MainMenuModelPlugin::AddDataManager(QObject *dataManager)
+void MainMenuModelPlugin::ReferencePluginClosed(PluginInfo *pluginInfo)
 {
-
+    switch(pluginInfo->Meta->Type)
+    {
+    case PLUGINMODEL:
+        Open(NULL, parentWidget);
+        break;
+    case PLUGINVIEW:
+        Close();
+        break;
+    }
 }
 
-void MainMenuModelPlugin::AddModel(QObject *model, MetaInfo *meta)
-{
+//void MainMenuModelPlugin::AddView(QObject *instance, MetaInfo *meta)
+//{
+//    //IViewPlugin* view = qobject_cast<IViewPlugin*>(instance);
+//    //PluginInfo<IViewPlugin> info = {view, instance, meta};
+//    //views.append(info);
+//    //connect(instance, SIGNAL(OnClose(IViewPlugin*)), SLOT(RelatedViewClosed(IViewPlugin*)));
+//}
 
-}
+//void MainMenuModelPlugin::AddDataManager(QObject *dataManager)
+//{
+
+//}
+
+//void MainMenuModelPlugin::AddModel(QObject *model, MetaInfo *meta)
+//{
+
+//}
 
 bool MainMenuModelPlugin::Open(IModelPlugin *model, QWidget *parentWidget)
 {
@@ -56,54 +98,60 @@ bool MainMenuModelPlugin::Open(IModelPlugin *model, QWidget *parentWidget)
 
     if(views.count())
     {
-        qDebug() << "OPEN" << views.first().meta->Name;
-        views.first().plugin->Open(this, parentWidget);
+        qDebug() << "OPEN" << views.first()->Meta->Name;
+        views.first()->Plugin.view->Open(this, parentWidget);
     }
     return true;
 }
 
-void MainMenuModelPlugin::RelatedModelClosed(IModelPlugin *model)
-{
-    Open(NULL, parentWidget);
-}
+//void MainMenuModelPlugin::RelatedModelClosed(IModelPlugin *model)
+//{
+//    Open(NULL, parentWidget);
+//}
 
-void MainMenuModelPlugin::RelatedViewClosed(IViewPlugin *view)
-{
-    Close();
-}
+//void MainMenuModelPlugin::RelatedViewClosed(IViewPlugin *view)
+//{
+//    Close();
+//}
 
 void MainMenuModelPlugin::Close()
 {
-    emit OnClose(this);
-    emit OnClose();
+    //emit OnClose(pluginInfo);
+    //emit OnClose();
     QApplication::exit();
 }
 
-IMainMenuPluginModel::MenuItem *MainMenuModelPlugin::GetRootMenuItem()
+IMainMenuModel::MenuItem *MainMenuModelPlugin::GetRootMenuItem()
 {
     return rootMenuItem;
 }
 
-void MainMenuModelPlugin::RunItem(IMainMenuPluginModel::MenuItem *item, MetaInfo *viewMeta)
+void MainMenuModelPlugin::RunItem(IMainMenuModel::MenuItem *item, MetaInfo *itemMeta)
 {
-    QMap<IModelPlugin*, MetaInfo*>::Iterator i = pluginLinker.modelMap.begin();
-    while(i != pluginLinker.modelMap.end())
-    {
-        if(i.value() == item->meta)
-        {
-            qDebug() << "Open plugin" << item->meta->Name;
-            if(!i.key()->Open(this, parentWidget))
-            {
+    foreach (auto iter, childModels){
+        if(iter->Meta == itemMeta){
+            qDebug() << "Open plugin" << iter->Meta->Name;
+            if(!iter->Plugin.model->Open(this, parentWidget)){
                 qDebug() << "Model wasn't opened";
                 Open(NULL, parentWidget);
             }
-            return;
         }
-        ++i;
     }
-
-    qDebug() << "Model wasn't opened";
-    Open(NULL, parentWidget);
+//    QMap<MetaInfo*, PluginInfo*>::Iterator i = pluginLinker.menuItems.begin();
+//    while(i != pluginLinker.menuItems.end())
+//    {
+//        if(viewMeta == i.key())
+//        {
+//            qDebug() << "Open plugin" << viewMeta->Name;
+//            if(!i.value()->Plugin.view->Open(this, parentWidget))
+//            {
+//                qDebug() << "Model wasn't opened";
+//                Open(NULL, parentWidget);
+//            }
+//            return;
+//        }
+//        ++i;
+//    }
 }
 
 void MainMenuModelPlugin::OpenChildView()

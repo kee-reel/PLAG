@@ -58,6 +58,7 @@ private:
     QString GetUpdateValuesString(TableStructMap &tableStruct, int id);
     QString GetUpdateValuesString(TableStructMap &tableStruct, int id, QVector<QVariant> &itemData);
 
+    bool IsDataSourceExists();
     bool IsTableExists(QString tableName);
     //bool IsTableRightStructure(QString tableName);
     void CombineWholeTableStruct();

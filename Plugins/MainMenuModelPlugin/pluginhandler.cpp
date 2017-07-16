@@ -3,61 +3,48 @@
 QHash<QString, QList<PluginHandler*>> *PluginHandler::handlersWithReferencesNames = NULL;
 QHash<QString, QList<PluginHandler*>> *PluginHandler::handlersWithSelfNames = NULL;
 
-PluginHandler::PluginHandler(PluginInfo<IDataSourcePlugin> *dataSource)
+PluginHandler::PluginHandler(PluginInfo *pluginInfo)
 {
-    unionType = DATASOURCE;
-    pluginInfo.dataSource = dataSource;
+    PluginHandler::pluginInfo = pluginInfo;
+    pluginInfo->Plugin.any->SetPluginInfo(pluginInfo);
     InsertIntoHashes();
 }
 
-PluginHandler::PluginHandler(PluginInfo<IDataManagerPlugin> *dataManager)
+void PluginHandler::Init(QHash<QString, QList<PluginHandler *> > &handlersWithParentNames,
+                         QHash<QString, QList<PluginHandler *> > &handlersWithSelfNames)
 {
-    unionType = DATAMANAGER;
-    pluginInfo.dataManager = dataManager;
-    InsertIntoHashes();
-}
-
-PluginHandler::PluginHandler(PluginInfo<IModelPlugin> *model)
-{
-    unionType = PLUGINMODEL;
-    pluginInfo.model = model;
-    InsertIntoHashes();
-}
-
-PluginHandler::PluginHandler(PluginInfo<IViewPlugin> *view)
-{
-    unionType = PLUGINVIEW;
-    pluginInfo.view = view;
-    InsertIntoHashes();
-}
-
-void PluginHandler::Init(QHash<QString, QList<PluginHandler *> > *handlersWithParentNames,
-                         QHash<QString, QList<PluginHandler *> > *handlersWithSelfNames)
-{
-    PluginHandler::handlersWithReferencesNames = handlersWithParentNames;
-    PluginHandler::handlersWithSelfNames = handlersWithSelfNames;
+    PluginHandler::handlersWithReferencesNames = &handlersWithParentNames;
+    PluginHandler::handlersWithSelfNames = &handlersWithSelfNames;
 }
 
 void PluginHandler::SetupRelations()
 {
-    auto name = pluginInfo.dataManager->meta->Name;
-    if(handlersWithReferencesNames->contains(name))
+    auto interfaceName = pluginInfo->Meta->InterfaceName;
+    if(interfaceName == "") return;
+    qDebug() << "Setup references for" << interfaceName;
+    if(handlersWithReferencesNames->contains(interfaceName))
     {
-        auto referenceNamesList = handlersWithReferencesNames->value(name);
-        for(int i = 0, size = referenceNamesList.size(); i < size; ++i)
-            referenceNamesList.at(i)->pluginInfo.model->plugin->
-                    AddReferencePlugin(pluginInfo.model->instance, pluginInfo.model->meta);
+        auto referenceNamesList = &(*handlersWithReferencesNames)[interfaceName];
+        for(int i = 0, size = referenceNamesList->size(); i < size; ++i)
+        {
+            qDebug() << "Set reference" << referenceNamesList->at(i)->pluginInfo->Meta->Name;
+            referenceNamesList->at(i)->pluginInfo->Plugin.any->AddReferencePlugin(pluginInfo);
+        }
     }
 }
 
 void PluginHandler::InsertIntoHashes()
 {
-    auto name = pluginInfo.dataManager->meta->Name;
-    auto relatedPluginNamesList = &(pluginInfo.dataSource->meta->RelatedPluginNames);
-    auto selfNamesList = handlersWithSelfNames->value(name);
-    auto referenceNamesList = handlersWithReferencesNames->value(name);
+    auto interfaceName = pluginInfo->Meta->InterfaceName;
+    auto relatedPluginsInterfacesList = &(pluginInfo->Meta->RelatedPluginNames);
+    for(int i = 0, size = relatedPluginsInterfacesList->size(); i < size; ++i)
+    {
+        auto list = &(*handlersWithReferencesNames)[relatedPluginsInterfacesList->at(i)];
+        list->append(this);
+    }
 
-    selfNamesList.append(this);
-    for(int i = 0, size = relatedPluginNamesList->size(); i < size; ++i)
-        referenceNamesList.append(this);
+    if(interfaceName == "") return;
+    auto selfNamesList = &(*handlersWithSelfNames)[interfaceName];
+    selfNamesList->append(this);
+
 }

@@ -30,7 +30,7 @@ class QList;
 //! Main Menu is plugin that should implement interaction with menu.
 //! Menu contains items that describes plugins that now included in
 //! programm.
-class IMainMenuPluginModel : public IModelPlugin
+class IMainMenuModel : public IModelPlugin
 { 
 public:
     //! \brief Structure that contains some info about menu item.
@@ -42,7 +42,7 @@ public:
         //! \brief Meta information about plugin.
         MetaInfo* meta;
         //! \brief View plugins that relate to plugin.
-        QList<MetaInfo*> ViewItems;
+        QList<MetaInfo *> Items;
         //! \brief Model plugins that relate to plugin.
         QList<MenuItem*> SubItems;
     };
@@ -58,6 +58,6 @@ public:
 signals:
     void OpenTaskEdit(int id);
 };
-Q_DECLARE_INTERFACE(IMainMenuPluginModel, "IMainMenuModule v0.1")
+Q_DECLARE_INTERFACE(IMainMenuModel, "IMainMenuModule v0.1")
 //! }@
 #endif // IMAINMENUMODULE_H

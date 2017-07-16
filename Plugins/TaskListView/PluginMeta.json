@@ -3,6 +3,6 @@
     "Interface": "",
     "Name": "TaskListView",
     "RelatedPluginInterfaces": [
-        "ITaskListModel"
-    ],
+        "ITaskTreeModel"
+    ]
 }

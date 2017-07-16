@@ -1231,47 +1231,7 @@ mainform.o: mainform.cpp mainform.h \
 		../../../../Qt/5.5/gcc/include/QtCore/QRegExp \
 		../../../../Qt/5.5/gcc/include/QtCore/QEvent \
 		../../../../Qt/5.5/gcc/include/QtCore/QStringList \
-		ui_mainform.h \
-		../../../../Qt/5.5/gcc/include/QtCore/QVariant \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QAction \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qaction.h \
-		../../../../Qt/5.5/gcc/include/QtGui/qicon.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qactiongroup.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QApplication \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qapplication.h \
-		../../../../Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
-		../../../../Qt/5.5/gcc/include/QtCore/qeventloop.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt/5.5/gcc/include/QtGui/qguiapplication.h \
-		../../../../Qt/5.5/gcc/include/QtGui/qinputmethod.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QButtonGroup \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QGraphicsView \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qgraphicsview.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qscrollarea.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qframe.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QHeaderView \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qheaderview.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt/5.5/gcc/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt/5.5/gcc/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qstyleoption.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt/5.5/gcc/include/QtGui/qvalidator.h \
-		../../../../Qt/5.5/gcc/include/QtCore/qregularexpression.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qslider.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractslider.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qstyle.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qtabbar.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qtabwidget.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qrubberband.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QVBoxLayout \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qlayout.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qgridlayout.h
+		ui_mainform.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainform.o mainform.cpp
 
 menuitem.o: menuitem.cpp menuitem.h \

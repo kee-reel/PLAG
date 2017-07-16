@@ -1,5 +1,5 @@
-#ifndef DATABASEMANAGERMODULE_H
-#define DATABASEMANAGERMODULE_H
+#ifndef DATABASESOURCEPLUGIN_H
+#define DATABASESOURCEPLUGIN_H
 
 #include <QString>
 #include <QtSql>
@@ -26,17 +26,31 @@ class CipherDataBaseSourcePlugin : public QObject, IDataBaseSourcePlugin
 public:
     CipherDataBaseSourcePlugin();
     ~CipherDataBaseSourcePlugin();
+
+    // IPlugin interface
+public:
+    void SetPluginInfo(PluginInfo *pluginInfo) override;
     void OnAllSetup() override;
     QString GetLastError() override;
+    void AddReferencePlugin(PluginInfo *pluginInfo) override;
+signals:
+    void OnClose(PluginInfo *pointer);
+    void OnClose();
 
+public slots:
+    void ReferencePluginClosed(PluginInfo *pluginInfo) override;
+
+    // IDataSourcePlugin interface
+public:
     void Setup() override;
 
-    QSqlQuery ExecuteQuery(QString &queryText) override;
-    QSqlQuery ExecuteQuery(QString &queryText, QList<QString> *valuePlaceholders, QList<QVariant> *values) override;
+    // IDataBaseSourcePlugin interface
+public:
+    QSqlQuery ExecuteQuery(QString &query) override;
+    QSqlQuery ExecuteQuery(QString &query, QList<QString> *valuePlaceholders, QList<QVariant> *values) override;
 
 private:
     QString lastError;
-
     QSqlDatabase dbconn;
 };
 //! \}

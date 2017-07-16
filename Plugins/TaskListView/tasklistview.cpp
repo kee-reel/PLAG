@@ -14,6 +14,11 @@ TaskListView::~TaskListView()
     delete mainForm;
 }
 
+void TaskListView::SetPluginInfo(PluginInfo *pluginInfo)
+{
+    this->pluginInfo = pluginInfo;
+}
+
 void TaskListView::OnAllSetup()
 {
 
@@ -24,17 +29,40 @@ QString TaskListView::GetLastError()
     return "";
 }
 
-void TaskListView::AddModel(QObject* model)
+void TaskListView::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    myModel = qobject_cast<ITaskTreeModel*>(model);
-    if(!myModel)
-    {
-        qDebug() << model->objectName() << "is not ITaskListModel.";
-        return;
+    switch(pluginInfo->Meta->Type){
+        case PLUGINMODEL:{
+            myModel = qobject_cast<ITaskTreeModel*>(pluginInfo->Instance);
+            if(!myModel)
+            {
+                qDebug() << pluginInfo->Meta->Name << "is not ITaskListModel.";
+                return;
+            }
+            qDebug() << "ITaskListModel succesfully set.";
+            connect(pluginInfo->Instance, SIGNAL(OpenTaskEdit(int)), SLOT(OpenTaskEditor(int)));
+            connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+            pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
+        }
     }
-    qDebug() << "ITaskListModel succesfully set.";
-    connect(model, SIGNAL(OpenTaskEdit(int)), SLOT(OpenTaskEditor(int)));
 }
+
+void TaskListView::ReferencePluginClosed(PluginInfo *pluginInfo)
+{
+
+}
+
+//void TaskListView::AddModel(QObject* model)
+//{
+//    myModel = qobject_cast<ITaskTreeModel*>(model);
+//    if(!myModel)
+//    {
+//        qDebug() << model->objectName() << "is not ITaskListModel.";
+//        return;
+//    }
+//    qDebug() << "ITaskListModel succesfully set.";
+//    connect(model, SIGNAL(OpenTaskEdit(int)), SLOT(OpenTaskEditor(int)));
+//}
 
 bool TaskListView::Open(IModelPlugin *model, QWidget* parent)
 {
@@ -65,7 +93,7 @@ bool TaskListView::Close()
     disconnect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     mainForm->hide();
     emit OnClose();
-    emit OnClose(this);
+    emit OnClose(pluginInfo);
     //myModel->CloseFromView(this);
     return true;
 }

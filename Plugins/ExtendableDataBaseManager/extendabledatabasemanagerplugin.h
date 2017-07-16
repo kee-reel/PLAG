@@ -21,30 +21,38 @@ class ExtendableDataBaseManagerPlugin : public QObject, IExtendableDataBaseManag
 public:
     ExtendableDataBaseManagerPlugin();
     ~ExtendableDataBaseManagerPlugin();
-    virtual void OnAllSetup();
-    virtual QString GetLastError();
 
-    bool AddDataSource(QObject *dataSource) override;
+    // IPlugin interface
+public:
+    void OnAllSetup() override;
+    QString GetLastError() override;
+    void SetPluginInfo(PluginInfo *pluginInfo) override;
+    void AddReferencePlugin(PluginInfo *pluginInfo) override;
+public slots:
+    void ReferencePluginClosed(PluginInfo *pluginInfo) override;
+signals:
+    void OnClose(PluginInfo *pointer);
+    void OnClose();
 
-    QList<ManagerDataItem> GetDataList(QString tableName) override;
-    ManagerDataItem GetDataItem(QString tableName, int id) override;
-    QAbstractItemModel *GetDataModel(QString tableName) override;
-    QMap<QString, QVariant::Type> GetTableHeader(QString tableName) override;
-
-    bool SetRelation(QString tableName, QString relationName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData) override;
-    bool DeleteRelation(QString tableName, QString relationName) override;
-    bool SetActiveRelation(QString tableName, QString relationName) override;
-
-    int AddItem(QString tableName, ManagerDataItem item) override;
-    bool EditItem(QString tableName, ManagerDataItem item) override;
-    bool DeleteItem(QString tableName, int id) override;
+    // IExtendableDataBaseManagerPlugin interface
+public:
+    QList<ManagerDataItem> GetDataList(QString treeName) override;
+    ManagerDataItem GetDataItem(QString treeName, int id) override;
+    QAbstractItemModel *GetDataModel(QString treeName) override;
+    QMap<QString, QVariant::Type> GetTableHeader(QString treeName) override;
+    bool SetRelation(QString mainName, QString relationName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData) override;
+    bool DeleteRelation(QString mainName, QString relationName) override;
+    bool SetActiveRelation(QString mainName, QString relationName) override;
+    int AddItem(QString treeName, ManagerDataItem task) override;
+    bool EditItem(QString treeName, ManagerDataItem task) override;
+    bool DeleteItem(QString treeName, int id) override;
+    //bool AddDataSource(QObject *dataSource) override;
 
 private:
     QString lastError;
     IDataBaseSourcePlugin* dataSource;
 
     QHash<QString, TableHandler*> tableHandlers;
-
 };
 //! \}
 #endif // TASKDBTOOLPLUGIN_H

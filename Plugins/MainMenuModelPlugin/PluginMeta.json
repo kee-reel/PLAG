@@ -1,8 +1,7 @@
 {
     "Type": "RootModel",
-    "Interface": "IMainMenuPluginModel",
+    "Interface": "IMainMenuModel",
     "Name": "MainMenuModel",
     "RelatedPluginInterfaces": [
-        ""
-    ],
+    ]
 }

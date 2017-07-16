@@ -11,7 +11,7 @@ CipherDataBaseSourcePlugin::~CipherDataBaseSourcePlugin()
 
 void CipherDataBaseSourcePlugin::OnAllSetup()
 {
-
+    Setup();
 }
 
 QString CipherDataBaseSourcePlugin::GetLastError()
@@ -20,6 +20,21 @@ QString CipherDataBaseSourcePlugin::GetLastError()
         return lastError;
     else
         return dbconn.lastError().text();
+}
+
+void CipherDataBaseSourcePlugin::SetPluginInfo(PluginInfo *pluginInfo)
+{
+
+}
+
+void CipherDataBaseSourcePlugin::AddReferencePlugin(PluginInfo *pluginInfo)
+{
+
+}
+
+void CipherDataBaseSourcePlugin::ReferencePluginClosed(PluginInfo *pluginInfo)
+{
+
 }
 
 QSqlQuery CipherDataBaseSourcePlugin::ExecuteQuery(QString &queryText)

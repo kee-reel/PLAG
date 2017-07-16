@@ -3,7 +3,7 @@
     "Interface": "ITaskTreeModel",
     "Name": "TaskListModel",
     "RelatedPluginInterfaces": [
-        "IExtendableDataBaseManager",
-        "IMainMenuPluginModel",
-    ],
+        "IExtendableDataBaseManagerPlugin",
+        "IMainMenuModel"
+    ]
 }

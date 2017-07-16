@@ -21,52 +21,55 @@ public:
     PluginLinker();
 
     void AddNewPlugin(QObject* instance, QJsonObject* meta);
-    IMainMenuPluginModel::MenuItem *SetupLinks();
+    IMainMenuModel::MenuItem *SetupLinks();
 
     IModelPlugin *rootModel;
-    IMainMenuPluginModel::MenuItem *rootMenuItem;
-    QMap<MetaInfo*, IMainMenuPluginModel::MenuItem*> menuItems;
+    IMainMenuModel::MenuItem *rootMenuItem;
+    QMap<MetaInfo*, PluginInfo*> menuItems;
 
-    QMap<IModelPlugin*, MetaInfo*>          modelMap;
-    QMap<IViewPlugin*, MetaInfo*>           viewMap;
-    QMap<IDataSourcePlugin*, MetaInfo*>     sourceMap;
-    QMap<IDataManagerPlugin*, MetaInfo*>    managerMap;
+    QList<PluginHandler*> pluginsHandlers;
+    QList<PluginInfo*> pluginsInfo;
+
+//    QMap<IModelPlugin*, MetaInfo*>          modelMap;
+//    QMap<IViewPlugin*, MetaInfo*>           viewMap;
+//    QMap<IDataSourcePlugin*, MetaInfo*>     sourceMap;
+//    QMap<IDataManagerPlugin*, MetaInfo*>    managerMap;
 
 private:
-    QHash<QString, PluginHandler> handlersWithParentNames;
-    QHash<QString, PluginHandler> handlersWithSelfNames;
+    QHash<QString, QList<PluginHandler*> > handlersWithReferencesNames;
+    QHash<QString, QList<PluginHandler*> > handlersWithSelfNames;
 
     QMap<QString, PluginTypes> pluginTypesNames;
 
-    QHash<QString, QVector<IDataManagerPlugin*> > sourceToManagersLink;
-    QHash<QString, QVector<IModelPlugin*> >       managerToModelsLink;
-    QHash<QString, QVector<IModelPlugin*> >       modelToModelsLink;
-    QHash<QString, QVector<IViewPlugin*> >        modelToViewsLink;
+//    QHash<QString, QVector<IDataManagerPlugin*> > sourceToManagersLink;
+//    QHash<QString, QVector<IModelPlugin*> >       managerToModelsLink;
+//    QHash<QString, QVector<IModelPlugin*> >       modelToModelsLink;
+//    QHash<QString, QVector<IViewPlugin*> >        modelToViewsLink;
 
-    template <class T>
-    struct LinkInfo
-    {
-        T *plugin;
-        QObject *instance;
-    };
-    QHash<QString, LinkInfo<IDataSourcePlugin> >  dataSourcesLinkInfo;
-    QHash<QString, LinkInfo<IDataManagerPlugin> > dataManagersLinkInfo;
-    QHash<QString, LinkInfo<IModelPlugin> >       modelsLinkInfo;
-    QHash<QString, LinkInfo<IViewPlugin> >        viewsLinkInfo;
+//    template <class T>
+//    struct LinkInfo
+//    {
+//        T *plugin;
+//        QObject *instance;
+//    };
+//    QHash<QString, LinkInfo<IDataSourcePlugin> >  dataSourcesLinkInfo;
+//    QHash<QString, LinkInfo<IDataManagerPlugin> > dataManagersLinkInfo;
+//    QHash<QString, LinkInfo<IModelPlugin> >       modelsLinkInfo;
+//    QHash<QString, LinkInfo<IViewPlugin> >        viewsLinkInfo;
 
     MetaInfo *GetPluginMeta(QJsonObject* metaData);
     bool BindPluginToSystem(QObject* instance, MetaInfo *meta);
     void CallOnAllSetup();
 
-    void SetLinks(IDataSourcePlugin* plugin, QObject* instance, MetaInfo *meta);
-    void SetLinks(IDataManagerPlugin* plugin, QObject* instance, MetaInfo *meta);
-    void SetLinks(IModelPlugin* plugin, QObject* instance, MetaInfo *meta);
-    void SetLinks(IViewPlugin* plugin, QObject* instance, MetaInfo *meta);
+//    void SetLinks(IDataSourcePlugin* plugin, QObject* instance, MetaInfo *meta);
+//    void SetLinks(IDataManagerPlugin* plugin, QObject* instance, MetaInfo *meta);
+//    void SetLinks(IModelPlugin* plugin, QObject* instance, MetaInfo *meta);
+//    void SetLinks(IViewPlugin* plugin, QObject* instance, MetaInfo *meta);
 
-    void LinkSourceToManagers();
-    void LinkManagerToModels();
-    void LinkModelToModels();
-    void LinkModelToViews();
+//    void LinkSourceToManagers();
+//    void LinkManagerToModels();
+//    void LinkModelToModels();
+//    void LinkModelToViews();
 
     template<class Type>
     Type *CastToPlugin(QObject* possiblePlugin);

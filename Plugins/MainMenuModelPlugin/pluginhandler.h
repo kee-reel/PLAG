@@ -6,6 +6,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
+#include <QList>
 #include <QMap>
 #include <QHash>
 
@@ -14,27 +15,18 @@
 class PluginHandler
 {
 public:
-    PluginHandler(PluginInfo<IDataSourcePlugin> *dataSource);
-    PluginHandler(PluginInfo<IDataManagerPlugin> *dataManager);
-    PluginHandler(PluginInfo<IModelPlugin> *model);
-    PluginHandler(PluginInfo<IViewPlugin> *view);
+    PluginHandler(PluginInfo *pluginInfo);
 
-    static void Init(QHash<QString, QList<PluginHandler *>> *handlersWithReferencesNames,
-            QHash<QString, QList<PluginHandler *>> *handlersWithSelfNames);
+    static void Init(QHash<QString, QList<PluginHandler *>> &handlersWithReferencesNames,
+            QHash<QString, QList<PluginHandler *>> &handlersWithSelfNames);
     void SetupRelations();
     static QHash<QString, QList<PluginHandler*>> *handlersWithReferencesNames;
     static QHash<QString, QList<PluginHandler*>> *handlersWithSelfNames;
 
 private:
-    PluginTypes unionType;
-    union PluginInfoUnion{
-        PluginInfo<IDataSourcePlugin> *dataSource;
-        PluginInfo<IDataManagerPlugin> *dataManager;
-        PluginInfo<IModelPlugin> *model;
-        PluginInfo<IViewPlugin> *view;
-    } pluginInfo;
-
     void InsertIntoHashes();
+
+    PluginInfo *pluginInfo;
 };
 
 #endif // PLUGINHANDLER_H
