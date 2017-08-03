@@ -6,3 +6,4 @@ BuildInfo.pri
 *.o
 */Makefile
 *moc_*
+*.so

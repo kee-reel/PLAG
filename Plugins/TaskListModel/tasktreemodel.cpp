@@ -154,7 +154,7 @@ QString TaskTreeModel::GetDataName()
 
 QAbstractItemModel* TaskTreeModel::GetTreeModel()
 {
-    if(treeModel) treeModel = dataManager->GetDataModel(tableName);
+    if(!treeModel) treeModel = dataManager->GetDataModel(tableName);
     return treeModel;
 }
 

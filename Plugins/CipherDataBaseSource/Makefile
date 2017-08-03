@@ -188,8 +188,7 @@ DIST          = PluginMeta.json \
 		../../../../Qt/5.5/gcc/mkspecs/features/exceptions.prf \
 		../../../../Qt/5.5/gcc/mkspecs/features/yacc.prf \
 		../../../../Qt/5.5/gcc/mkspecs/features/lex.prf \
-		CipherDataBaseSource.pro cipherdatabasesourceplugin.h \
-		../../Plugins/MainMenuModelPlugin/interfaces.h cipherdatabasesourceplugin.cpp
+		CipherDataBaseSource.pro cipherdatabasesourceplugin.h cipherdatabasesourceplugin.cpp
 QMAKE_TARGET  = CipherDataBaseSource
 DESTDIR       = ../../System/MASS/Modules/#avoid trailing-slash linebreak
 TARGET        = libCipherDataBaseSource.so
@@ -521,7 +520,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents cipherdatabasesourceplugin.h ../../Plugins/MainMenuModelPlugin/interfaces.h $(DISTDIR)/
+	$(COPY_FILE) --parents cipherdatabasesourceplugin.h $(DISTDIR)/
 	$(COPY_FILE) --parents cipherdatabasesourceplugin.cpp $(DISTDIR)/
 
 

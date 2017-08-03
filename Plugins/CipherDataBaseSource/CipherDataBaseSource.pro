@@ -10,12 +10,10 @@ QT += core sql
 SOURCES += \
     cipherdatabasesourceplugin.cpp
 
-include(../../System/MASS/BuildInfo.pri)
-
 HEADERS += \
-    cipherdatabasesourceplugin.h \
-    ../../Plugins/MainMenuModelPlugin/interfaces.h
+    cipherdatabasesourceplugin.h
 
+include(../../System/MASS/BuildInfo.pri)
 
 DISTFILES += \
     PluginMeta.json

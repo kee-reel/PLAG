@@ -2,6 +2,7 @@
 
 CipherDataBaseSourcePlugin::CipherDataBaseSourcePlugin()
 {
+    Setup();
 }
 
 CipherDataBaseSourcePlugin::~CipherDataBaseSourcePlugin()
@@ -11,7 +12,7 @@ CipherDataBaseSourcePlugin::~CipherDataBaseSourcePlugin()
 
 void CipherDataBaseSourcePlugin::OnAllSetup()
 {
-    Setup();
+
 }
 
 QString CipherDataBaseSourcePlugin::GetLastError()

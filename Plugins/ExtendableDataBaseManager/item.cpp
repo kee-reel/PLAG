@@ -88,7 +88,6 @@ void Item::SetChunkData(QString chunkName, QVector<QVariant> data)
     itemData.dataChunks[chunkName] = data;
     if(activeChunkName == "")
         SetActiveChunkName(chunkName);
-
 }
 
 void Item::SetChunkDataElement(int column, QVariant data)

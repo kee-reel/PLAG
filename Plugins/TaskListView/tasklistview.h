@@ -31,7 +31,7 @@ private:
     ITaskTreeModel *myModel;
 
     MainForm *mainForm;
-    DesignProxyModel *proxyModel;
+    QIdentityProxyModel *proxyModel;
     QAbstractItemModel *taskTree;
     PluginInfo *pluginInfo;
 
