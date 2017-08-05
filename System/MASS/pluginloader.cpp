@@ -91,7 +91,6 @@ bool PluginLoader::SetupPlugin(QString pluginName)
     qDebug() << endl << "=====" << pluginName << "=====";
     QPluginLoader* loader = LoadPlugin(pluginName);
     if(!loader) return false;
-
     QObject* possiblePlugin = GetPluginInstance(loader);
     if(!possiblePlugin) return false;
 

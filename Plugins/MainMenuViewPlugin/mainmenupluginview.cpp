@@ -18,7 +18,6 @@ MainMenuPluginView::MainMenuPluginView(QWidget *parent) :
             SLOT(ZoomAnimation()));
     connect(this, SIGNAL(OnItemSelected(IMainMenuModel::MenuItem*,MetaInfo*)),
             SLOT(OpenChildPlugin(IMainMenuModel::MenuItem*,MetaInfo*)));
-    connect(this, SIGNAL(OnClose()), SLOT(CloseMainMenu()));
 }
 
 MainMenuPluginView::~MainMenuPluginView()
@@ -121,7 +120,7 @@ void MainMenuPluginView::SetRootMenuItem(IMainMenuModel::MenuItem *RootMenuItem)
     rootMenuItem = RootMenuItem;
     MenuItemGraphicsObject *exitItem = new MenuItemGraphicsObject("Exit");
     connect(exitItem, SIGNAL(OnClicked(MenuItemGraphicsObject*)),
-            SIGNAL(OnClose()));
+            SLOT(CloseMainMenu()));
     scene->addItem(exitItem);
     menuItems.append(exitItem);
 

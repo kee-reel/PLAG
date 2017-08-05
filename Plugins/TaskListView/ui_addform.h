@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addform.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -178,9 +178,9 @@ public:
 
     void retranslateUi(QWidget *AddForm)
     {
-        AddForm->setWindowTitle(QApplication::translate("AddForm", "Form", 0));
-        label_2->setText(QApplication::translate("AddForm", "TextLabel", 0));
-        lineEdit_2->setText(QApplication::translate("AddForm", "132", 0));
+        AddForm->setWindowTitle(QApplication::translate("AddForm", "Form", Q_NULLPTR));
+        label_2->setText(QApplication::translate("AddForm", "TextLabel", Q_NULLPTR));
+        lineEdit_2->setText(QApplication::translate("AddForm", "132", Q_NULLPTR));
         buttonOk->setText(QString());
         buttonClose->setText(QString());
     } // retranslateUi

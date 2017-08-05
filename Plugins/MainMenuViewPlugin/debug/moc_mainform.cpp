@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainform.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.6.2)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.8.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,15 +12,17 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainform.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.6.2. It"
+#error "This file was generated using the moc from 5.8.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainForm_t {
     QByteArrayData data[11];
-    char stringdata0[136];
+    char stringdata0[130];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,21 +34,20 @@ static const qt_meta_stringdata_MainForm_t qt_meta_stringdata_MainForm = {
 QT_MOC_LITERAL(0, 0, 8), // "MainForm"
 QT_MOC_LITERAL(1, 9, 14), // "OnItemSelected"
 QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 31), // "IMainMenuPluginModel::MenuItem*"
-QT_MOC_LITERAL(4, 57, 4), // "meta"
-QT_MOC_LITERAL(5, 62, 9), // "MetaInfo*"
-QT_MOC_LITERAL(6, 72, 8), // "viewMeta"
-QT_MOC_LITERAL(7, 81, 7), // "OnClose"
-QT_MOC_LITERAL(8, 89, 23), // "MenuItemGraphicsObject*"
-QT_MOC_LITERAL(9, 113, 8), // "menuItem"
-QT_MOC_LITERAL(10, 122, 13) // "ZoomAnimation"
+QT_MOC_LITERAL(3, 25, 25), // "IMainMenuModel::MenuItem*"
+QT_MOC_LITERAL(4, 51, 4), // "meta"
+QT_MOC_LITERAL(5, 56, 9), // "MetaInfo*"
+QT_MOC_LITERAL(6, 66, 8), // "viewMeta"
+QT_MOC_LITERAL(7, 75, 7), // "OnClose"
+QT_MOC_LITERAL(8, 83, 23), // "MenuItemGraphicsObject*"
+QT_MOC_LITERAL(9, 107, 8), // "menuItem"
+QT_MOC_LITERAL(10, 116, 13) // "ZoomAnimation"
 
     },
     "MainForm\0OnItemSelected\0\0"
-    "IMainMenuPluginModel::MenuItem*\0meta\0"
-    "MetaInfo*\0viewMeta\0OnClose\0"
-    "MenuItemGraphicsObject*\0menuItem\0"
-    "ZoomAnimation"
+    "IMainMenuModel::MenuItem*\0meta\0MetaInfo*\0"
+    "viewMeta\0OnClose\0MenuItemGraphicsObject*\0"
+    "menuItem\0ZoomAnimation"
 };
 #undef QT_MOC_LITERAL
 
@@ -88,7 +89,7 @@ void MainForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         MainForm *_t = static_cast<MainForm *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->OnItemSelected((*reinterpret_cast< IMainMenuPluginModel::MenuItem*(*)>(_a[1])),(*reinterpret_cast< MetaInfo*(*)>(_a[2]))); break;
+        case 0: _t->OnItemSelected((*reinterpret_cast< IMainMenuModel::MenuItem*(*)>(_a[1])),(*reinterpret_cast< MetaInfo*(*)>(_a[2]))); break;
         case 1: _t->OnClose(); break;
         case 2: _t->OnItemSelected((*reinterpret_cast< MenuItemGraphicsObject*(*)>(_a[1]))); break;
         case 3: _t->ZoomAnimation(); break;
@@ -109,7 +110,7 @@ void MainForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (MainForm::*_t)(IMainMenuPluginModel::MenuItem * , MetaInfo * );
+            typedef void (MainForm::*_t)(IMainMenuModel::MenuItem * , MetaInfo * );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainForm::OnItemSelected)) {
                 *result = 0;
                 return;
@@ -162,7 +163,7 @@ int MainForm::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MainForm::OnItemSelected(IMainMenuPluginModel::MenuItem * _t1, MetaInfo * _t2)
+void MainForm::OnItemSelected(IMainMenuModel::MenuItem * _t1, MetaInfo * _t2)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
@@ -173,4 +174,5 @@ void MainForm::OnClose()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, Q_NULLPTR);
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

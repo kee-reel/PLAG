@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainform.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -100,21 +100,21 @@ public:
 
     void retranslateUi(QWidget *MainForm)
     {
-        MainForm->setWindowTitle(QApplication::translate("MainForm", "Form", 0));
+        MainForm->setWindowTitle(QApplication::translate("MainForm", "Form", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        buttonAdd->setToolTip(QApplication::translate("MainForm", "Add", 0));
+        buttonAdd->setToolTip(QApplication::translate("MainForm", "Add", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         buttonAdd->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        buttonEdit->setToolTip(QApplication::translate("MainForm", "Edit", 0));
+        buttonEdit->setToolTip(QApplication::translate("MainForm", "Edit", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         buttonEdit->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        buttonDelete->setToolTip(QApplication::translate("MainForm", "Delete", 0));
+        buttonDelete->setToolTip(QApplication::translate("MainForm", "Delete", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         buttonDelete->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        buttonExit->setToolTip(QApplication::translate("MainForm", "Exit", 0));
+        buttonExit->setToolTip(QApplication::translate("MainForm", "Exit", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         buttonExit->setText(QString());
     } // retranslateUi
