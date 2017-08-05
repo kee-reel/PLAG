@@ -19,7 +19,7 @@ class QAbstractItemModel;
 
 //! \addtogroup ExtendableDataBaseManagerPlugin_int
 //! \{
-class IExtendableDataBaseManagerPlugin : public IDataManagerPlugin
+class IExtendableDataBaseManager : public IDataManagerPlugin
 {
 public:
     class ManagerDataItem{
@@ -41,6 +41,6 @@ public:
     virtual bool EditItem(QString treeName, ManagerDataItem task) = 0;
     virtual bool DeleteItem(QString treeName, int id) = 0;
 };
-Q_DECLARE_INTERFACE(IExtendableDataBaseManagerPlugin, "IExtendableDataBaseManagerPlugin v0.1")
+Q_DECLARE_INTERFACE(IExtendableDataBaseManager, "IExtendableDataBaseManager v0.1")
 //! @}
 #endif // ITASKDBTOOLPLUGIN_H

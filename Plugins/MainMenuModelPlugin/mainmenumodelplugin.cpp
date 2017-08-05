@@ -48,6 +48,7 @@ void MainMenuModelPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
     case PLUGINMODEL:
         childModels.append(pluginInfo);
         rootMenuItem->Items.append(pluginInfo->Meta);
+        connect(pluginInfo->Instance, SIGNAL(OnClose(PluginInfo*)), SLOT(ReferencePluginClosed(PluginInfo*)));
         break;
     case PLUGINVIEW:
         qDebug() << "AddReference" << pluginInfo->Meta->Name;

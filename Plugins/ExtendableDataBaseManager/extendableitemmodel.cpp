@@ -1,7 +1,7 @@
 #include "extendableitemmodel.h"
 
 ExtendableItemModel::ExtendableItemModel(QString tableName,
-                                     IExtendableDataBaseManagerPlugin* dataManager,
+                                     IExtendableDataBaseManager* dataManager,
                                      QObject *parent)
 {
     this->tableName = tableName;
@@ -488,7 +488,7 @@ bool ExtendableItemModel::DeleteItem(Item *task)
     DeleteFromManagerRecursive(task);
 }
 
-IExtendableDataBaseManagerPlugin::ManagerDataItem ExtendableItemModel::ConvertToManagerItem(Item* item)
+IExtendableDataBaseManager::ManagerDataItem ExtendableItemModel::ConvertToManagerItem(Item* item)
 {
     ManagerItemInfo managerStruct;
     // Set id

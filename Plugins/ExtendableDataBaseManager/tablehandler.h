@@ -13,12 +13,12 @@
 //! \{
 class TableHandler
 {
-    typedef IExtendableDataBaseManagerPlugin::ManagerDataItem ManagerItemInfo;
+    typedef IExtendableDataBaseManager::ManagerDataItem ManagerItemInfo;
     typedef QMap<QString, QVariant::Type> TableStructMap;
 
 private:
     IDataBaseSourcePlugin *dataSource;
-    IExtendableDataBaseManagerPlugin *dataManager;
+    IExtendableDataBaseManager *dataManager;
     ExtendableItemModel *itemModel;
     QString tableName;
     bool isCreated;
@@ -31,7 +31,7 @@ public:
     QMap<QString, TableStructMap> relationTableStructs;
     QMap<QString, QVector<QVariant>> relationsDefaultData;
 
-    TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataBaseManagerPlugin *dataManager, QString tableName = "");
+    TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataBaseManager *dataManager, QString tableName = "");
     ~TableHandler();
 
     bool CreateTable();

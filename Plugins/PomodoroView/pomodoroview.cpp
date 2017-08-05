@@ -19,6 +19,11 @@ PomodoroView::~PomodoroView()
     delete ui;
 }
 
+void PomodoroView::SetPluginInfo(PluginInfo *pluginInfo)
+{
+    this->pluginInfo = pluginInfo;
+}
+
 void PomodoroView::OnAllSetup()
 {
 
@@ -29,15 +34,25 @@ QString PomodoroView::GetLastError()
 
 }
 
-void PomodoroView::AddModel(QObject* model)
+void PomodoroView::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    myModel = qobject_cast<IPomodoroModel*>(model);
-    if(!myModel)
+    if(pluginInfo->Meta->Type == PLUGINMODEL)
     {
-        qDebug() << model->objectName() << "is not ITaskListModel.";
-        return;
+        myModel = qobject_cast<IPomodoroModel*>(pluginInfo->Instance);
+        if(!myModel)
+        {
+            qDebug() << pluginInfo->Meta->Name << "is not ITaskListModel.";
+            return;
+        }
+        qDebug() << "ITaskListModel succesfully set.";
+        connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+        pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
     }
-    qDebug() << "ITaskListModel succesfully set.";
+}
+
+void PomodoroView::ReferencePluginClosed(PluginInfo *pluginInfo)
+{
+
 }
 
 bool PomodoroView::Open(IModelPlugin *model, QWidget *parent)
@@ -58,7 +73,7 @@ bool PomodoroView::Close()
 {
     qDebug() << "CLOSE";
     hide();
-    emit OnClose(this);
+    emit OnClose(pluginInfo);
     emit OnClose();
     return true;
 }

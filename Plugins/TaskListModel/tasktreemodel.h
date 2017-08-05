@@ -67,7 +67,7 @@ private:
     // Unique part
     QString tableName;
     QString relationName;
-    IExtendableDataBaseManagerPlugin* dataManager;
+    IExtendableDataBaseManager* dataManager;
     QAbstractItemModel *treeModel;
 
     QMap<QString, ITaskRelationDelegate*> taskRelationDelegates;

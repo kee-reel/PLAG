@@ -4,7 +4,7 @@
     "Name": "TaskSketchModel",
     "RelatedPluginInterfaces": [
         "IExtendableDataBaseManager",
-        "ITaskListModel",
+        "ITaskTreeModel",
         "IMainMenuModel"
-    ],
+    ]
 }

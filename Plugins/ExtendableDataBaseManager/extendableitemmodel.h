@@ -16,13 +16,13 @@
 //! \{
 class ExtendableItemModel : public QAbstractItemModel
 {
-    typedef IExtendableDataBaseManagerPlugin::ManagerDataItem ManagerItemInfo;
+    typedef IExtendableDataBaseManager::ManagerDataItem ManagerItemInfo;
 public:
     QString tableName;
     QString coreRelationName;
-    IExtendableDataBaseManagerPlugin* dataManager;
+    IExtendableDataBaseManager* dataManager;
 
-    ExtendableItemModel(QString tableName, IExtendableDataBaseManagerPlugin* dataManager, QObject *parent = 0);
+    ExtendableItemModel(QString tableName, IExtendableDataBaseManager* dataManager, QObject *parent = 0);
     ~ExtendableItemModel();
     void LoadData();
     bool AttachRelation(QString relationName, QVector<QVariant> defaultData);

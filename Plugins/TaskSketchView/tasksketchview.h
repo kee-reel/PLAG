@@ -27,23 +27,27 @@ public:
 
 private:
     ITaskSketchModel *myModel;
-
     MainForm *mainForm;
+    PluginInfo *pluginInfo;
+
+signals:
+    void OnClose(PluginInfo*);
+    void OnClose();
 
     // IPlugin interface
 public:
+    void SetPluginInfo(PluginInfo *pluginInfo) override;
     void OnAllSetup() override;
     QString GetLastError() override;
+    void AddReferencePlugin(PluginInfo *pluginInfo) override;
 
-    // IPluginView interface
-public:
-    void AddModel(QObject* model) override;
-    bool Open(IModelPlugin *model, QWidget *parent) override;
 public slots:
+    void ReferencePluginClosed(PluginInfo *pluginInfo) override;
+
+    // IViewPlugin interface
+public slots:
+    bool Open(IModelPlugin *model, QWidget *parent) override;
     bool Close() override;
-signals:
-    void OnClose(IViewPlugin *pointer);
-    void OnClose();
 };
 //! \}
 #endif // TASKSKETCHVIEW_H

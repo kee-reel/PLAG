@@ -12,6 +12,11 @@ TaskSketchView::~TaskSketchView()
     delete mainForm;
 }
 
+void TaskSketchView::SetPluginInfo(PluginInfo *pluginInfo)
+{
+    this->pluginInfo = pluginInfo;
+}
+
 void TaskSketchView::OnAllSetup()
 {
 
@@ -22,16 +27,35 @@ QString TaskSketchView::GetLastError()
     return "";
 }
 
-void TaskSketchView::AddModel(QObject* model)
+void TaskSketchView::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    myModel = qobject_cast<ITaskSketchModel*>(model);
-    if(!myModel)
+    switch(pluginInfo->Meta->Type)
     {
-        qDebug() << model->objectName() << "is not ITaskListModel.";
-        return;
+    case ROOTMODEL:
+        break;
+    case PLUGINMODEL:
+        myModel = qobject_cast<ITaskSketchModel*>(pluginInfo->Instance);
+        if(!myModel)
+        {
+            qDebug() << pluginInfo->Meta->Name << "is not ITaskListModel.";
+            return;
+        }
+        qDebug() << "ITaskListModel succesfully set.";
+        //connect(mainForm, SIGNAL(OnItemConvert(int)), pluginInfo->Instance, SIGNAL(OpenTaskEdit(int)));
+        pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
+        break;
+    case PLUGINVIEW:
+        break;
+    case DATASOURCE:
+        break;
+    case DATAMANAGER:
+        break;
     }
-    qDebug() << "ITaskListModel succesfully set.";
-    connect(mainForm, SIGNAL(OnItemConvert(int)), model, SIGNAL(OpenTaskEdit(int)));
+}
+
+void TaskSketchView::ReferencePluginClosed(PluginInfo *pluginInfo)
+{
+
 }
 
 bool TaskSketchView::Open(IModelPlugin *model, QWidget *parent)
@@ -53,7 +77,7 @@ bool TaskSketchView::Close()
 {
     qDebug() << "CLOSE";
     mainForm->hide();
-    emit OnClose(this);
+    emit OnClose(pluginInfo);
     emit OnClose();
     return true;
 }

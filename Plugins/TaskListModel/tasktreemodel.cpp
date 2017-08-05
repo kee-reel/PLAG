@@ -38,15 +38,16 @@ void TaskTreeModel::AddReferencePlugin(PluginInfo *pluginInfo)
         }break;
 
         case DATAMANAGER:{
-            this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(pluginInfo->Instance);
+            this->dataManager = qobject_cast<IExtendableDataBaseManager*>(pluginInfo->Instance);
             if(!this->dataManager){
-                qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataBaseManagerPlugin.";
+                qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataBaseManager.";
                 return;
             }
             QMap<QString, QVariant::Type> newRelationStruct = {
                 {"name",        QVariant::String},
             };
             QVector<QVariant> defaultData;
+            defaultData << "New task";
             dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
         }break;
 
@@ -56,7 +57,6 @@ void TaskTreeModel::AddReferencePlugin(PluginInfo *pluginInfo)
                 qDebug() << pluginInfo->Meta->Name << "is not MainMenu.";
                 return;
             }
-            connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
             myParent->AddReferencePlugin(this->pluginInfo);
         }break;
     }

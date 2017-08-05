@@ -1692,32 +1692,7 @@ mainform.o: mainform.cpp mainform.h \
 		galleryitem.h \
 		../../../../Qt/5.5/gcc/include/QtCore/QByteArray \
 		../../../../Qt/5.5/gcc/include/QtGui/QPaintEvent \
-		ui_mainform.h \
-		../../../../Qt/5.5/gcc/include/QtCore/QVariant \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QAction \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qaction.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qactiongroup.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QButtonGroup \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QFrame \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QHBoxLayout \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qlayout.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QHeaderView \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qheaderview.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt/5.5/gcc/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QPushButton \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QSpacerItem \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QVBoxLayout \
-		paintwidget.h \
-		../../../../Qt/5.5/gcc/include/QtGui/QPicture \
-		../../../../Qt/5.5/gcc/include/QtGui/qpicture.h
+		ui_mainform.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainform.o mainform.cpp
 
 galleryform.o: galleryform.cpp galleryform.h \
@@ -1858,30 +1833,7 @@ galleryform.o: galleryform.cpp galleryform.h \
 		../../../../Qt/5.5/gcc/include/QtGui/qtextoption.h \
 		../../../../Qt/5.5/gcc/include/QtGui/qpen.h \
 		../../../../Qt/5.5/gcc/include/QtGui/QPaintEvent \
-		ui_galleryform.h \
-		../../../../Qt/5.5/gcc/include/QtCore/QVariant \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QAction \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qaction.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qactiongroup.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QButtonGroup \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QHBoxLayout \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qlayout.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qgridlayout.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QHeaderView \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qheaderview.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt/5.5/gcc/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QPushButton \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QScrollArea \
-		../../../../Qt/5.5/gcc/include/QtWidgets/qscrollarea.h \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QSpacerItem \
-		../../../../Qt/5.5/gcc/include/QtWidgets/QVBoxLayout
+		ui_galleryform.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o galleryform.o galleryform.cpp
 
 paintwidget.o: paintwidget.cpp paintwidget.h \

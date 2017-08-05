@@ -1,9 +1,10 @@
 {
-    "Type":   "PluginModel",
+    "Type": "PluginModel",
     "Interface": "IPomodoroModel",
     "Name": "PomodoroModel",
     "RelatedPluginInterfaces": [
-        "ITaskListModel",
-        "IExtendableDataBaseManager"
-    ],
+        "ITaskTreeModel",
+        "IExtendableDataBaseManager",
+        "IMainMenuModel"
+    ]
 }

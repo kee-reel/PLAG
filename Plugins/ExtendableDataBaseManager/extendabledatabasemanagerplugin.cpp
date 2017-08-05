@@ -66,7 +66,7 @@ QList<ExtendableDataBaseManagerPlugin::ManagerDataItem> ExtendableDataBaseManage
     return tableHandlers[tableName]->GetData();
 }
 
-IExtendableDataBaseManagerPlugin::ManagerDataItem ExtendableDataBaseManagerPlugin::GetDataItem(QString tableName, int id)
+IExtendableDataBaseManager::ManagerDataItem ExtendableDataBaseManagerPlugin::GetDataItem(QString tableName, int id)
 {
     if(!tableHandlers.contains(tableName))
         tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);

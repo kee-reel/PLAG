@@ -1,6 +1,6 @@
 #include "tablehandler.h"
 
-TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataBaseManagerPlugin *dataManager, QString tableName)
+TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataBaseManager *dataManager, QString tableName)
 {
     this->dataSource = dataSource;
     this->dataManager = dataManager;
@@ -157,9 +157,9 @@ TableHandler::ManagerItemInfo TableHandler::GetItem(int id)
     return buf;
 }
 
-QList<IExtendableDataBaseManagerPlugin::ManagerDataItem> TableHandler::GetData()
+QList<IExtendableDataBaseManager::ManagerDataItem> TableHandler::GetData()
 {
-    if(!IsDataSourceExists()) return QList<IExtendableDataBaseManagerPlugin::ManagerDataItem>();
+    if(!IsDataSourceExists()) return QList<IExtendableDataBaseManager::ManagerDataItem>();
     QString queryStr = QString("SELECT %1.id").arg(tableName);
     QStringList joinTables = relationTableStructs.keys();
     QString tableRefPrefix = QString("r_%1_").arg(tableName);

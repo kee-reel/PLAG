@@ -12,11 +12,11 @@
 
 //! \addtogroup ExtendableDataBaseManagerPlugin_imp
 //! \{
-class ExtendableDataBaseManagerPlugin : public QObject, IExtendableDataBaseManagerPlugin
+class ExtendableDataBaseManagerPlugin : public QObject, IExtendableDataBaseManager
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TreeDataManagerPlugin" FILE "PluginMeta.json")
-    Q_INTERFACES(IDataManagerPlugin IExtendableDataBaseManagerPlugin)
+    Q_INTERFACES(IDataManagerPlugin IExtendableDataBaseManager)
 
 public:
     ExtendableDataBaseManagerPlugin();
