@@ -28,7 +28,7 @@ private:
     IExtendableDataBaseManager *dataManager;
     ITaskTreeModel *myModel;
     QAbstractItemModel *taskModel;
-    QAbstractItemModel *sketchItemModel;
+    QAbstractItemModel *pomodoroItemModel;
     QWidget *myParentWidget;
     int myModelId;
     int activeViewId;
@@ -41,6 +41,7 @@ private:
     // Unique part
     QString tableName;
     QString coreRelationName;
+    int finishedPomodoros;
 
     // IPlugin interface
 public:

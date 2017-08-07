@@ -1,7 +1,11 @@
 /********************************************************************************
 ** Form generated from reading UI file 'pomodoroview.ui'
 **
+<<<<<<< HEAD
 ** Created by: Qt User Interface Compiler version 5.9.1
+=======
+** Created by: Qt User Interface Compiler version 5.2.1
+>>>>>>> a2445897c806490964d364d39f2b23b415a47371
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -18,6 +22,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTreeView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "pomodorobutton.h"
@@ -30,7 +35,16 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QLabel *pomodoroCountLabel;
+<<<<<<< HEAD
     PomodoroButton *pomodoroButton;
+=======
+    QSpacerItem *verticalSpacer_2;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer;
+    QTreeView *treeView;
+>>>>>>> a2445897c806490964d364d39f2b23b415a47371
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *buttonExit;
@@ -83,6 +97,13 @@ public:
         pomodoroButton->setSizePolicy(sizePolicy1);
 
         verticalLayout->addWidget(pomodoroButton);
+
+        treeView = new QTreeView(PomodoroView);
+        treeView->setObjectName(QStringLiteral("treeView"));
+        treeView->setRootIsDecorated(false);
+        treeView->setHeaderHidden(true);
+
+        verticalLayout->addWidget(treeView);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));

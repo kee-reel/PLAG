@@ -1,7 +1,11 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainform.ui'
 **
+<<<<<<< HEAD
 ** Created by: Qt User Interface Compiler version 5.9.1
+=======
+** Created by: Qt User Interface Compiler version 5.2.1
+>>>>>>> a2445897c806490964d364d39f2b23b415a47371
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -56,7 +60,7 @@ public:
 
     void retranslateUi(QWidget *MainForm)
     {
-        MainForm->setWindowTitle(QApplication::translate("MainForm", "Form", Q_NULLPTR));
+        MainForm->setWindowTitle(QApplication::translate("MainForm", "Form", 0));
     } // retranslateUi
 
 };

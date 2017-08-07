@@ -9,7 +9,11 @@ PomodoroButton::PomodoroButton(QWidget *parent) :
     timer->setSingleShot(false);
     timer->setTimerType(Qt::VeryCoarseTimer);
     connect(timer, SIGNAL(timeout()), SLOT(TimerTick()));
+<<<<<<< HEAD
     secsTarget = secsPassed = 25 * 60;
+=======
+    secsTarget = 35 * 60;
+>>>>>>> a2445897c806490964d364d39f2b23b415a47371
 }
 
 PomodoroButton::~PomodoroButton()

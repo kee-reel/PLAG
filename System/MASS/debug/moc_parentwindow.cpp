@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'parentwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.8.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.2.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,29 +12,26 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'parentwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.8.0. It"
+#error "This file was generated using the moc from 5.2.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-QT_WARNING_PUSH
-QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ParentWindow_t {
     QByteArrayData data[1];
-    char stringdata0[13];
+    char stringdata[14];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ParentWindow_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
+    offsetof(qt_meta_stringdata_ParentWindow_t, stringdata) + ofs \
+        - idx * sizeof(QByteArrayData) \
     )
 static const qt_meta_stringdata_ParentWindow_t qt_meta_stringdata_ParentWindow = {
     {
-QT_MOC_LITERAL(0, 0, 12) // "ParentWindow"
-
+QT_MOC_LITERAL(0, 0, 12)
     },
-    "ParentWindow"
+    "ParentWindow\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -64,7 +61,7 @@ void ParentWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
 
 const QMetaObject ParentWindow::staticMetaObject = {
     { &QWidget::staticMetaObject, qt_meta_stringdata_ParentWindow.data,
-      qt_meta_data_ParentWindow,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+      qt_meta_data_ParentWindow,  qt_static_metacall, 0, 0}
 };
 
 
@@ -75,8 +72,8 @@ const QMetaObject *ParentWindow::metaObject() const
 
 void *ParentWindow::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_ParentWindow.stringdata0))
+    if (!_clname) return 0;
+    if (!strcmp(_clname, qt_meta_stringdata_ParentWindow.stringdata))
         return static_cast<void*>(const_cast< ParentWindow*>(this));
     return QWidget::qt_metacast(_clname);
 }
@@ -88,5 +85,4 @@ int ParentWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     return _id;
 }
-QT_WARNING_POP
 QT_END_MOC_NAMESPACE

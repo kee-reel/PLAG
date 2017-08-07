@@ -52,7 +52,7 @@ void TaskTreeModel::AddReferencePlugin(PluginInfo *pluginInfo)
         }break;
 
         case ROOTMODEL:{
-            myParent = qobject_cast<IModelPlugin*>(pluginInfo->Instance);
+            myParent = pluginInfo->Plugin.model;
             if(!myParent){
                 qDebug() << pluginInfo->Meta->Name << "is not MainMenu.";
                 return;
@@ -154,6 +154,7 @@ QString TaskTreeModel::GetDataName()
 
 QAbstractItemModel* TaskTreeModel::GetTreeModel()
 {
+    if(!dataManager) return NULL;
     if(!treeModel) treeModel = dataManager->GetDataModel(tableName);
     return treeModel;
 }
@@ -170,8 +171,7 @@ QMap<QString, ITaskTreeModel::ITaskRelationDelegate*> TaskTreeModel::GetRelation
 
 void TaskTreeModel::SetupModel()
 {
-    if(dataManager == NULL)
-        return;
+    if(!dataManager) return;
     treeModel = dataManager->GetDataModel(tableName);
     dataManager->SetActiveRelation(tableName, relationName);
 }

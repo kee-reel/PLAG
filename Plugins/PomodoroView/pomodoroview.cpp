@@ -10,8 +10,12 @@ PomodoroView::PomodoroView(QWidget *parent) :
     myModel = NULL;
     button = ui->pomodoroButton;
     connect(button, SIGNAL(PomodoroFinished()), SLOT(OnPomodoroFinished()));
+<<<<<<< HEAD
     ui->verticalLayout->insertWidget(2, button);
     finishedPomodoros = 0;
+=======
+    ui->horizontalLayout->insertWidget(1, button);
+>>>>>>> a2445897c806490964d364d39f2b23b415a47371
 }
 
 PomodoroView::~PomodoroView()
@@ -65,6 +69,7 @@ bool PomodoroView::Open(IModelPlugin *model, QWidget *parent)
     }
     parent->layout()->addWidget(this);
     setParent(parent);
+    ui->treeView->setModel(myModel->GetInternalModel());
     show();
     return true;
 }

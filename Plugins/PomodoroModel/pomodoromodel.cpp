@@ -5,8 +5,9 @@ PomodoroModel::PomodoroModel()
     myModel = NULL;
     dataManager = NULL;
     tableName = "pomodoro";
-    coreRelationName = "datetime";
+    coreRelationName = "project";
     activeViewId = -1;
+    finishedPomodoros = 0;
 }
 
 PomodoroModel::~PomodoroModel()
@@ -22,13 +23,14 @@ void PomodoroModel::OnAllSetup()
 {
     if(!dataManager) return;
     QMap<QString, QVariant::Type> newRelationStruct = {
-        {coreRelationName,  QVariant::ByteArray},
+        {coreRelationName,  QVariant::String},
+        {"pomodoros",       QVariant::Int},
     };
     QVector<QVariant> defaultData;
-    defaultData << QDateTime();
+    defaultData << "Sample project" << 0;
     dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
-    if(!myModel) return;
-    dataManager->SetRelation(myModel->GetDataName(), coreRelationName, newRelationStruct, defaultData);
+//    if(!myModel) return;
+//    dataManager->SetRelation(myModel->GetDataName(), coreRelationName, newRelationStruct, defaultData);
 }
 
 QString PomodoroModel::GetLastError()
@@ -113,11 +115,14 @@ QAbstractItemModel *PomodoroModel::GetModel()
 
 QAbstractItemModel *PomodoroModel::GetInternalModel()
 {
-    return sketchItemModel;
+    return pomodoroItemModel;
 }
 
 void PomodoroModel::SetupModel()
 {
-    taskModel = dataManager->GetDataModel(myModel->GetDataName());
-    sketchItemModel = dataManager->GetDataModel(tableName);
+    if(!dataManager) return;
+    pomodoroItemModel = dataManager->GetDataModel(tableName);
+    pomodoroItemModel->insertRow(0);
+//    if(!myModel) return;
+//    taskModel = dataManager->GetDataModel(myModel->GetDataName());
 }
