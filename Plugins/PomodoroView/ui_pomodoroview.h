@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'pomodoroview.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.2.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -18,6 +18,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTreeView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -34,6 +35,7 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QSpacerItem *horizontalSpacer;
     QSpacerItem *verticalSpacer;
+    QTreeView *treeView;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *buttonExit;
@@ -97,6 +99,13 @@ public:
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
         verticalLayout->addItem(verticalSpacer);
+
+        treeView = new QTreeView(PomodoroView);
+        treeView->setObjectName(QStringLiteral("treeView"));
+        treeView->setRootIsDecorated(false);
+        treeView->setHeaderHidden(true);
+
+        verticalLayout->addWidget(treeView);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
