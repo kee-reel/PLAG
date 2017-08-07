@@ -8,9 +8,9 @@ PomodoroView::PomodoroView(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->buttonExit, SIGNAL(clicked(bool)), SLOT(Close()));
     myModel = NULL;
-    button = new PomodoroButton(this);
+    button = ui->pomodoroButton;
     connect(button, SIGNAL(PomodoroFinished()), SLOT(OnPomodoroFinished()));
-    ui->horizontalLayout->insertWidget(1, button);
+    ui->verticalLayout->insertWidget(2, button);
     finishedPomodoros = 0;
 }
 

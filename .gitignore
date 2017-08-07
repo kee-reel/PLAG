@@ -1,9 +1,13 @@
 build-*
-*.pro.user*
 BuildInfo.pri
 */html/*
 */latex/*
-*.o
 */Makefile
 *moc_*
+*.pro.user*
+*.o
 *.so
+*.a
+*.dll
+*.so
+*Makefile

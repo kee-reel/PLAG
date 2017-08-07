@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'pomodoroview.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -20,6 +20,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "pomodorobutton.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -29,11 +30,7 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QLabel *pomodoroCountLabel;
-    QSpacerItem *verticalSpacer_2;
-    QHBoxLayout *horizontalLayout;
-    QSpacerItem *horizontalSpacer_2;
-    QSpacerItem *horizontalSpacer;
-    QSpacerItem *verticalSpacer;
+    PomodoroButton *pomodoroButton;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *buttonExit;
@@ -77,26 +74,15 @@ public:
 
         verticalLayout->addWidget(pomodoroCountLabel);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
+        pomodoroButton = new PomodoroButton(PomodoroView);
+        pomodoroButton->setObjectName(QStringLiteral("pomodoroButton"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(pomodoroButton->sizePolicy().hasHeightForWidth());
+        pomodoroButton->setSizePolicy(sizePolicy1);
 
-        verticalLayout->addItem(verticalSpacer_2);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer_2);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
-
-        verticalLayout->addLayout(horizontalLayout);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
-
-        verticalLayout->addItem(verticalSpacer);
+        verticalLayout->addWidget(pomodoroButton);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
@@ -125,9 +111,9 @@ public:
 
     void retranslateUi(QWidget *PomodoroView)
     {
-        PomodoroView->setWindowTitle(QApplication::translate("PomodoroView", "Form", 0));
-        label->setText(QApplication::translate("PomodoroView", "Today completed", 0));
-        pomodoroCountLabel->setText(QApplication::translate("PomodoroView", "0 pomodoros", 0));
+        PomodoroView->setWindowTitle(QApplication::translate("PomodoroView", "Form", Q_NULLPTR));
+        label->setText(QApplication::translate("PomodoroView", "Today completed", Q_NULLPTR));
+        pomodoroCountLabel->setText(QApplication::translate("PomodoroView", "0 pomodoros", Q_NULLPTR));
         buttonExit->setText(QString());
     } // retranslateUi
 
