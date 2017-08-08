@@ -122,7 +122,6 @@ void PomodoroModel::SetupModel()
 {
     if(!dataManager) return;
     pomodoroItemModel = dataManager->GetDataModel(tableName);
-    pomodoroItemModel->insertRow(0);
 //    if(!myModel) return;
 //    taskModel = dataManager->GetDataModel(myModel->GetDataName());
 }

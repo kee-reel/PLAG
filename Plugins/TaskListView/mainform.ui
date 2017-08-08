@@ -18,6 +18,9 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="MyTreeView" name="treeView"/>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="buttonAdd">
@@ -34,7 +37,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../TaskListView/res.qrc">
+        <iconset resource="res.qrc">
          <normaloff>:/Res/ic_add_black_24dp.png</normaloff>:/Res/ic_add_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
@@ -63,7 +66,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../TaskListView/res.qrc">
+        <iconset resource="res.qrc">
          <normaloff>:/Res/ic_mode_edit_black_24dp.png</normaloff>:/Res/ic_mode_edit_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
@@ -89,7 +92,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../TaskListView/res.qrc">
+        <iconset resource="res.qrc">
          <normaloff>:/Res/ic_delete_black_24dp.png</normaloff>:/Res/ic_delete_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
@@ -115,7 +118,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="../TaskListView/res.qrc">
+        <iconset resource="res.qrc">
          <normaloff>:/Res/ic_exit_to_app_black_24dp.png</normaloff>:/Res/ic_exit_to_app_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
@@ -133,6 +136,15 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <customwidgets>
+  <customwidget>
+   <class>MyTreeView</class>
+   <extends>QTreeView</extends>
+   <header>mytreeview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>

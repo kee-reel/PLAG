@@ -8,6 +8,9 @@
 
 #include "../PomodoroModel/ipomodoromodel.h"
 #include "pomodorobutton.h"
+#include "mytreeview.h"
+#include "designproxymodel.h"
+#include "addform.h"
 
 namespace Ui {
 class PomodoroView;
@@ -34,8 +37,11 @@ private:
     Ui::PomodoroView *ui;
     IPomodoroModel *myModel;
     PomodoroButton *button;
+    DesignProxyModel *proxyModel;
+    AddForm *addForm;
     int finishedPomodoros;
     PluginInfo *pluginInfo;
+    bool isTimerWindow;
 
     // IPlugin interface
 public:
@@ -58,6 +64,12 @@ signals:
 
 private slots:
     void OnPomodoroFinished();
+    void on_buttonProjects_clicked();
+    void on_buttonEdit_clicked();
+
+    // QWidget interface
+protected:
+    void resizeEvent(QResizeEvent *event);
 };
 //! \}
 #endif // TASKLISTVIEW_H

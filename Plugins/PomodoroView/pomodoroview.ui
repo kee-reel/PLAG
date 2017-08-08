@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>465</width>
-    <height>497</height>
+    <width>482</width>
+    <height>549</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -74,7 +74,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeView" name="treeView">
+    <widget class="MyTreeView" name="treeView">
      <property name="rootIsDecorated">
       <bool>false</bool>
      </property>
@@ -85,6 +85,46 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="buttonProjects">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/Res/ic_assignment_black_36dp.png</normaloff>:/Res/ic_assignment_black_36dp.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonEdit">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/Res/ic_mode_edit_black_24dp.png</normaloff>:/Res/ic_mode_edit_black_24dp.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
@@ -128,6 +168,11 @@
    <extends>QWidget</extends>
    <header>pomodorobutton.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MyTreeView</class>
+   <extends>QTreeView</extends>
+   <header>mytreeview.h</header>
   </customwidget>
  </customwidgets>
  <resources>

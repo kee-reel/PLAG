@@ -70,47 +70,6 @@ void TaskTreeModel::ReferencePluginClosed(PluginInfo *pluginInfo)
     }
 }
 
-//void TaskTreeModel::AddView(QObject *instance, MetaInfo *meta)
-//{
-//    IViewPlugin *view = qobject_cast<IViewPlugin*>(instance);
-//    //PluginInfo<IViewPlugin> newPlugin = {view, meta};
-//    //viewPlugins.append(newPlugin);
-//    qDebug() << "IPluginView succesfully set.";
-//    connect(instance, SIGNAL(OnClose(IViewPlugin*)), SLOT(RelatedViewClosed(IViewPlugin*)));
-//}
-
-//void TaskTreeModel::AddDataManager(QObject *DBTool)
-//{
-//    qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
-//    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(DBTool);
-//    if(!this->dataManager)
-//    {
-//        qDebug() << DBTool->objectName() << "is not IExtendableDataBaseManagerPlugin.";
-//        return;
-//    }
-//    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
-
-//    QMap<QString, QVariant::Type> newRelationStruct = {
-//        {"name",        QVariant::String},
-//    };
-//    QVector<QVariant> defaultData;
-//    defaultData << "New task";
-//    dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
-//}
-
-//void TaskTreeModel::AddModel(QObject *instance, MetaInfo *meta)
-//{
-//    qDebug() <<  "is not MainMenu.";
-//    myParent = qobject_cast<IModelPlugin*>(instance);
-//    if(!this->dataManager)
-//    {
-//        qDebug() << instance->objectName() << "is not MainMenu.";
-//        return;
-//    }
-//    qDebug() << "MainMenu succesfully set.";
-//    connect(this, SIGNAL(OnClose(IModelPlugin*)), instance, SLOT(RelatedModelClosed(IModelPlugin*)));
-//}
-
 bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
     qDebug() << "TaskListModel runs";
@@ -130,16 +89,6 @@ bool TaskTreeModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     }
     return true;
 }
-
-//void TaskTreeModel::RelatedModelClosed(IModelPlugin *model)
-//{
-
-//}
-
-//void TaskTreeModel::RelatedViewClosed(IViewPlugin *view)
-//{
-//    Close();
-//}
 
 void TaskTreeModel::Close()
 {

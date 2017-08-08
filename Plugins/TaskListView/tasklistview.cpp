@@ -52,18 +52,6 @@ void TaskListView::ReferencePluginClosed(PluginInfo *pluginInfo)
 
 }
 
-//void TaskListView::AddModel(QObject* model)
-//{
-//    myModel = qobject_cast<ITaskTreeModel*>(model);
-//    if(!myModel)
-//    {
-//        qDebug() << model->objectName() << "is not ITaskListModel.";
-//        return;
-//    }
-//    qDebug() << "ITaskListModel succesfully set.";
-//    connect(model, SIGNAL(OpenTaskEdit(int)), SLOT(OpenTaskEditor(int)));
-//}
-
 bool TaskListView::Open(IModelPlugin *model, QWidget* parent)
 {
     qDebug() << "View OPEN" << parent;

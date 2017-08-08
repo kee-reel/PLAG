@@ -1,11 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'pomodoroview.ui'
 **
-<<<<<<< HEAD
 ** Created by: Qt User Interface Compiler version 5.9.1
-=======
-** Created by: Qt User Interface Compiler version 5.2.1
->>>>>>> a2445897c806490964d364d39f2b23b415a47371
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -22,9 +18,9 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QTreeView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "mytreeview.h"
 #include "pomodorobutton.h"
 
 QT_BEGIN_NAMESPACE
@@ -35,17 +31,11 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QLabel *pomodoroCountLabel;
-<<<<<<< HEAD
     PomodoroButton *pomodoroButton;
-=======
-    QSpacerItem *verticalSpacer_2;
-    QHBoxLayout *horizontalLayout;
-    QSpacerItem *horizontalSpacer_2;
-    QSpacerItem *horizontalSpacer;
-    QSpacerItem *verticalSpacer;
-    QTreeView *treeView;
->>>>>>> a2445897c806490964d364d39f2b23b415a47371
+    MyTreeView *treeView;
     QHBoxLayout *horizontalLayout_2;
+    QPushButton *buttonProjects;
+    QPushButton *buttonEdit;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *buttonExit;
 
@@ -53,7 +43,7 @@ public:
     {
         if (PomodoroView->objectName().isEmpty())
             PomodoroView->setObjectName(QStringLiteral("PomodoroView"));
-        PomodoroView->resize(465, 497);
+        PomodoroView->resize(482, 549);
         verticalLayout = new QVBoxLayout(PomodoroView);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label = new QLabel(PomodoroView);
@@ -98,7 +88,7 @@ public:
 
         verticalLayout->addWidget(pomodoroButton);
 
-        treeView = new QTreeView(PomodoroView);
+        treeView = new MyTreeView(PomodoroView);
         treeView->setObjectName(QStringLiteral("treeView"));
         treeView->setRootIsDecorated(false);
         treeView->setHeaderHidden(true);
@@ -107,15 +97,35 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        buttonProjects = new QPushButton(PomodoroView);
+        buttonProjects->setObjectName(QStringLiteral("buttonProjects"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/Res/ic_assignment_black_36dp.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonProjects->setIcon(icon);
+        buttonProjects->setIconSize(QSize(48, 48));
+        buttonProjects->setFlat(true);
+
+        horizontalLayout_2->addWidget(buttonProjects);
+
+        buttonEdit = new QPushButton(PomodoroView);
+        buttonEdit->setObjectName(QStringLiteral("buttonEdit"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/Res/ic_mode_edit_black_24dp.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonEdit->setIcon(icon1);
+        buttonEdit->setIconSize(QSize(48, 48));
+        buttonEdit->setFlat(true);
+
+        horizontalLayout_2->addWidget(buttonEdit);
+
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_3);
 
         buttonExit = new QPushButton(PomodoroView);
         buttonExit->setObjectName(QStringLiteral("buttonExit"));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/Res/ic_exit_to_app_black_24dp.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonExit->setIcon(icon);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Res/ic_exit_to_app_black_24dp.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonExit->setIcon(icon2);
         buttonExit->setIconSize(QSize(48, 48));
         buttonExit->setFlat(true);
 
@@ -135,6 +145,8 @@ public:
         PomodoroView->setWindowTitle(QApplication::translate("PomodoroView", "Form", Q_NULLPTR));
         label->setText(QApplication::translate("PomodoroView", "Today completed", Q_NULLPTR));
         pomodoroCountLabel->setText(QApplication::translate("PomodoroView", "0 pomodoros", Q_NULLPTR));
+        buttonProjects->setText(QString());
+        buttonEdit->setText(QString());
         buttonExit->setText(QString());
     } // retranslateUi
 
