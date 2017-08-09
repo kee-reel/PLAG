@@ -7,7 +7,6 @@ PomodoroModel::PomodoroModel()
     tableName = "pomodoro";
     coreRelationName = "project";
     activeViewId = -1;
-    finishedPomodoros = 0;
 }
 
 PomodoroModel::~PomodoroModel()
@@ -118,10 +117,34 @@ QAbstractItemModel *PomodoroModel::GetInternalModel()
     return pomodoroItemModel;
 }
 
+void PomodoroModel::SetActiveProject(QModelIndex index)
+{
+    currentProject = index;
+    finishedPomodoros = currentProject.model()->index(1, currentProject.row());
+}
+
+QModelIndex PomodoroModel::GetActiveProject()
+{
+    return currentProject;
+}
+
+QModelIndex PomodoroModel::GetCompletedPomodoros()
+{
+    return finishedPomodoros;
+}
+
+void PomodoroModel::IncrementPomodoro()
+{
+    auto item = finishedPomodoros.data().toInt()+1;
+    pomodoroItemModel->setData(finishedPomodoros, QVariant(item));
+}
+
 void PomodoroModel::SetupModel()
 {
     if(!dataManager) return;
     pomodoroItemModel = dataManager->GetDataModel(tableName);
+    currentProject = pomodoroItemModel->index(0,0);
+    finishedPomodoros = pomodoroItemModel->index(0,1);
 //    if(!myModel) return;
 //    taskModel = dataManager->GetDataModel(myModel->GetDataName());
 }

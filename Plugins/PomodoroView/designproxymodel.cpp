@@ -1,14 +1,18 @@
 #include "designproxymodel.h"
 
-DesignProxyModel::DesignProxyModel(QAbstractItemModel *model)
+DesignProxyModel::DesignProxyModel(QAbstractItemModel *model, QVector<int> modelIndexesShown)
 {
     setSourceModel(model);
+    this->modelIndexesShown = modelIndexesShown;
+    columnsCount = modelIndexesShown.length();
+    columnsCount = columnsCount ? columnsCount : model->columnCount();
 }
 
 QVariant DesignProxyModel::data(const QModelIndex &index, int role) const
 {
     // TODO: Proxy index
-    QModelIndex proxyIndex = index;//createIndex(index.row(), 1, index.internalPointer());
+    int column = (modelIndexesShown.length() < index.column()) ? modelIndexesShown[index.column()] : 0;
+    QModelIndex proxyIndex = createIndex(index.row(), column, index.internalPointer());
     switch (role) {
     case Qt::SizeHintRole:
         return QSize(0, 50);
@@ -44,4 +48,9 @@ QVariant DesignProxyModel::headerData(int section, Qt::Orientation orientation, 
         return QIdentityProxyModel::headerData(section, orientation, role);
         break;
     }
+}
+
+int DesignProxyModel::columnCount(const QModelIndex &parent) const
+{
+    return columnsCount;
 }

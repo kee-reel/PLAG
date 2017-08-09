@@ -41,7 +41,9 @@ private:
     // Unique part
     QString tableName;
     QString coreRelationName;
-    int finishedPomodoros;
+
+    QModelIndex currentProject;
+    QModelIndex finishedPomodoros;
 
     // IPlugin interface
 public:
@@ -62,6 +64,10 @@ public slots:
 public:
     QAbstractItemModel *GetModel() override;
     QAbstractItemModel *GetInternalModel() override;
+    void SetActiveProject(QModelIndex index) override;
+    QModelIndex GetActiveProject() override;
+    QModelIndex GetCompletedPomodoros() override;
+    void IncrementPomodoro() override;
 signals:
     void OnClose(PluginInfo *pointer);
     void OnClose();

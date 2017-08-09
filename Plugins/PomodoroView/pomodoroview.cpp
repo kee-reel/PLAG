@@ -12,10 +12,11 @@ PomodoroView::PomodoroView(QWidget *parent) :
     ui->treeView->setVisible(false);
     connect(button, SIGNAL(PomodoroFinished()), SLOT(OnPomodoroFinished()));
     ui->verticalLayout->insertWidget(2, button);
-    finishedPomodoros = 0;
     isTimerWindow = true;
     addForm = new AddForm(this);
     ui->buttonEdit->setVisible(false);
+    ui->buttonDelete->setVisible(false);
+    ui->buttonAdd->setVisible(false);
 }
 
 PomodoroView::~PomodoroView()
@@ -62,16 +63,20 @@ void PomodoroView::ReferencePluginClosed(PluginInfo *pluginInfo)
 bool PomodoroView::Open(IModelPlugin *model, QWidget *parent)
 {
     qDebug() << "View OPEN" << parent;
-    if(!myModel)
-    {
+    if(!myModel){
         qDebug() << "Model isn't set!";
         return false;
     }
     parent->layout()->addWidget(this);
     setParent(parent);
-    proxyModel = new DesignProxyModel(myModel->GetInternalModel());
+    auto columns = QVector<int> {0};
+    proxyModel = new DesignProxyModel(myModel->GetInternalModel(), columns);
+    currentProject = myModel->GetActiveProject();
+    finishedPomodoros = myModel->GetCompletedPomodoros();
     ui->treeView->setModel(proxyModel);
     addForm->SetModel(proxyModel);
+    ui->labelProject->setText(currentProject.data().toString());
+    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros.data().toString()));
     show();
     return true;
 }
@@ -87,8 +92,8 @@ bool PomodoroView::Close()
 
 void PomodoroView::OnPomodoroFinished()
 {
-    ++finishedPomodoros;
-    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros));
+    myModel->IncrementPomodoro();
+    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros.data().toString()));
 }
 
 void PomodoroView::on_buttonProjects_clicked()
@@ -102,6 +107,8 @@ void PomodoroView::on_buttonProjects_clicked()
     ui->treeView->setVisible(!isTimerWindow);
     ui->pomodoroButton->setVisible(isTimerWindow);
     ui->buttonEdit->setVisible(!isTimerWindow);
+    ui->buttonDelete->setVisible(!isTimerWindow);
+    ui->buttonAdd->setVisible(!isTimerWindow);
 }
 
 void PomodoroView::on_buttonEdit_clicked()
@@ -114,4 +121,24 @@ void PomodoroView::on_buttonEdit_clicked()
 void PomodoroView::resizeEvent(QResizeEvent *event)
 {
     addForm->resize(event->size());
+}
+
+void PomodoroView::on_buttonDelete_clicked()
+{
+    auto list = ui->treeView->selectionModel()->selectedIndexes();
+    for(int i = list.count()-1; i >= 0; --i)
+        proxyModel->removeRows(list[i].row(), 1, list[i].parent());
+}
+
+void PomodoroView::on_buttonAdd_clicked()
+{
+    proxyModel->insertRow(0);
+}
+
+void PomodoroView::on_treeView_clicked(const QModelIndex &index)
+{
+    if(!index.isValid()) return;
+    myModel->SetActiveProject(index);
+    ui->labelProject->setText(currentProject.data().toString());
+    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros.data().toString()));
 }

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'pomodoroview.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.1
+** Created by: Qt User Interface Compiler version 5.2.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -30,13 +30,17 @@ class Ui_PomodoroView
 public:
     QVBoxLayout *verticalLayout;
     QLabel *label;
+    QHBoxLayout *horizontalLayout;
+    QLabel *labelProject;
     QLabel *pomodoroCountLabel;
     PomodoroButton *pomodoroButton;
     MyTreeView *treeView;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *buttonProjects;
+    QPushButton *buttonDelete;
     QPushButton *buttonEdit;
+    QPushButton *buttonAdd;
     QSpacerItem *horizontalSpacer_3;
+    QPushButton *buttonProjects;
     QPushButton *buttonExit;
 
     void setupUi(QWidget *PomodoroView)
@@ -61,10 +65,12 @@ public:
 
         verticalLayout->addWidget(label);
 
-        pomodoroCountLabel = new QLabel(PomodoroView);
-        pomodoroCountLabel->setObjectName(QStringLiteral("pomodoroCountLabel"));
-        sizePolicy.setHeightForWidth(pomodoroCountLabel->sizePolicy().hasHeightForWidth());
-        pomodoroCountLabel->setSizePolicy(sizePolicy);
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        labelProject = new QLabel(PomodoroView);
+        labelProject->setObjectName(QStringLiteral("labelProject"));
+        sizePolicy.setHeightForWidth(labelProject->sizePolicy().hasHeightForWidth());
+        labelProject->setSizePolicy(sizePolicy);
         QFont font1;
         font1.setFamily(QStringLiteral("Khmer UI"));
         font1.setPointSize(18);
@@ -73,10 +79,22 @@ public:
         font1.setUnderline(false);
         font1.setWeight(50);
         font1.setStrikeOut(false);
+        labelProject->setFont(font1);
+        labelProject->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout->addWidget(labelProject);
+
+        pomodoroCountLabel = new QLabel(PomodoroView);
+        pomodoroCountLabel->setObjectName(QStringLiteral("pomodoroCountLabel"));
+        sizePolicy.setHeightForWidth(pomodoroCountLabel->sizePolicy().hasHeightForWidth());
+        pomodoroCountLabel->setSizePolicy(sizePolicy);
         pomodoroCountLabel->setFont(font1);
         pomodoroCountLabel->setAlignment(Qt::AlignCenter);
 
-        verticalLayout->addWidget(pomodoroCountLabel);
+        horizontalLayout->addWidget(pomodoroCountLabel);
+
+
+        verticalLayout->addLayout(horizontalLayout);
 
         pomodoroButton = new PomodoroButton(PomodoroView);
         pomodoroButton->setObjectName(QStringLiteral("pomodoroButton"));
@@ -91,21 +109,22 @@ public:
         treeView = new MyTreeView(PomodoroView);
         treeView->setObjectName(QStringLiteral("treeView"));
         treeView->setRootIsDecorated(false);
+        treeView->setAnimated(false);
         treeView->setHeaderHidden(true);
 
         verticalLayout->addWidget(treeView);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        buttonProjects = new QPushButton(PomodoroView);
-        buttonProjects->setObjectName(QStringLiteral("buttonProjects"));
+        buttonDelete = new QPushButton(PomodoroView);
+        buttonDelete->setObjectName(QStringLiteral("buttonDelete"));
         QIcon icon;
-        icon.addFile(QStringLiteral(":/Res/ic_assignment_black_36dp.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonProjects->setIcon(icon);
-        buttonProjects->setIconSize(QSize(48, 48));
-        buttonProjects->setFlat(true);
+        icon.addFile(QStringLiteral(":/Res/ic_delete_black_24dp.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonDelete->setIcon(icon);
+        buttonDelete->setIconSize(QSize(48, 48));
+        buttonDelete->setFlat(true);
 
-        horizontalLayout_2->addWidget(buttonProjects);
+        horizontalLayout_2->addWidget(buttonDelete);
 
         buttonEdit = new QPushButton(PomodoroView);
         buttonEdit->setObjectName(QStringLiteral("buttonEdit"));
@@ -117,15 +136,35 @@ public:
 
         horizontalLayout_2->addWidget(buttonEdit);
 
+        buttonAdd = new QPushButton(PomodoroView);
+        buttonAdd->setObjectName(QStringLiteral("buttonAdd"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/Res/ic_add_black_24dp.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonAdd->setIcon(icon2);
+        buttonAdd->setIconSize(QSize(48, 48));
+        buttonAdd->setFlat(true);
+
+        horizontalLayout_2->addWidget(buttonAdd);
+
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_3);
 
+        buttonProjects = new QPushButton(PomodoroView);
+        buttonProjects->setObjectName(QStringLiteral("buttonProjects"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/Res/ic_assignment_black_36dp.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonProjects->setIcon(icon3);
+        buttonProjects->setIconSize(QSize(48, 48));
+        buttonProjects->setFlat(true);
+
+        horizontalLayout_2->addWidget(buttonProjects);
+
         buttonExit = new QPushButton(PomodoroView);
         buttonExit->setObjectName(QStringLiteral("buttonExit"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/Res/ic_exit_to_app_black_24dp.png"), QSize(), QIcon::Normal, QIcon::Off);
-        buttonExit->setIcon(icon2);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/Res/ic_exit_to_app_black_24dp.png"), QSize(), QIcon::Normal, QIcon::Off);
+        buttonExit->setIcon(icon4);
         buttonExit->setIconSize(QSize(48, 48));
         buttonExit->setFlat(true);
 
@@ -142,11 +181,14 @@ public:
 
     void retranslateUi(QWidget *PomodoroView)
     {
-        PomodoroView->setWindowTitle(QApplication::translate("PomodoroView", "Form", Q_NULLPTR));
-        label->setText(QApplication::translate("PomodoroView", "Today completed", Q_NULLPTR));
-        pomodoroCountLabel->setText(QApplication::translate("PomodoroView", "0 pomodoros", Q_NULLPTR));
-        buttonProjects->setText(QString());
+        PomodoroView->setWindowTitle(QApplication::translate("PomodoroView", "Form", 0));
+        label->setText(QApplication::translate("PomodoroView", "Today completed", 0));
+        labelProject->setText(QApplication::translate("PomodoroView", "Project", 0));
+        pomodoroCountLabel->setText(QApplication::translate("PomodoroView", "0 pomodoros", 0));
+        buttonDelete->setText(QString());
         buttonEdit->setText(QString());
+        buttonAdd->setText(QString());
+        buttonProjects->setText(QString());
         buttonExit->setText(QString());
     } // retranslateUi
 
