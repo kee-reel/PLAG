@@ -1,6 +1,9 @@
 {
-    "Name":         "ARNeuralNetworkView",
-    "PluginType":   "PluginView",
-    "ParentName":   "NeuralNetworkModel",
-    "DataManager":  ""
+    "Type": "PluginView",
+    "Interface": "",
+    "Name": "ARNeuralNetworkView",
+    "RelatedPluginInterfaces": [
+        "NeuralNetworkModel",
+        "DataManager",
+    ],
 }

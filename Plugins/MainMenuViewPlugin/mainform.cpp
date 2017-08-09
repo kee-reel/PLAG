@@ -27,7 +27,7 @@ MainForm::~MainForm()
     menuItems.clear();
 }
 
-void MainForm::SetRootMenuItem(IMainMenuPluginModel::MenuItem *RootMenuItem)
+void MainForm::SetRootMenuItem(IMainMenuModel::MenuItem *RootMenuItem)
 {
     if(rootMenuItem)
         return;
@@ -39,22 +39,33 @@ void MainForm::SetRootMenuItem(IMainMenuPluginModel::MenuItem *RootMenuItem)
     scene->addItem(exitItem);
     menuItems.append(exitItem);
 
+    MenuItemGraphicsObject *menuItem;
+    for(int j = 0; j < rootMenuItem->Items.count(); ++j)
+    {
+        // TODO: Bind MainForm with MainMenuPluginView if(rootMenuItem->ViewItems[j] == )
+        menuItem = new MenuItemGraphicsObject(NULL, rootMenuItem, rootMenuItem->Items[j]);
+        connect(menuItem, SIGNAL(OnClicked(MenuItemGraphicsObject*)),
+                SLOT(OnItemSelected(MenuItemGraphicsObject*)));
+        scene->addItem(menuItem);
+        menuItems.append(menuItem);
+    }
+
     AddSubitems(NULL, rootMenuItem);
 }
 
-void MainForm::AddSubitems(MenuItemGraphicsObject *ParentMenuItem, IMainMenuPluginModel::MenuItem *ParentMenuItemStruct)
+void MainForm::AddSubitems(MenuItemGraphicsObject *ParentMenuItem, IMainMenuModel::MenuItem *ParentMenuItemStruct)
 {
     if(!ParentMenuItemStruct->SubItems.count())
         return;
 
     MenuItemGraphicsObject *menuItem;
-    IMainMenuPluginModel::MenuItem *parentMenuItem;
+    IMainMenuModel::MenuItem *parentMenuItem;
     for(int i = 0; i < ParentMenuItemStruct->SubItems.count(); ++i)
     {
         parentMenuItem = ParentMenuItemStruct->SubItems[i];
-        for(int j = 0; j < parentMenuItem->ViewItems.count(); ++j)
+        for(int j = 0; j < parentMenuItem->Items.count(); ++j)
         {
-            menuItem = new MenuItemGraphicsObject(ParentMenuItem, parentMenuItem, parentMenuItem->ViewItems[j]);
+            menuItem = new MenuItemGraphicsObject(ParentMenuItem, parentMenuItem, parentMenuItem->Items[j]);
             connect(menuItem, SIGNAL(OnClicked(MenuItemGraphicsObject*)),
                     SLOT(OnItemSelected(MenuItemGraphicsObject*)));
             scene->addItem(menuItem);

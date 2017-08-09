@@ -31,17 +31,22 @@ private:
     ITaskTreeModel *myModel;
 
     MainForm *mainForm;
-    DesignProxyModel *proxyModel;
+    QIdentityProxyModel *proxyModel;
     QAbstractItemModel *taskTree;
+    PluginInfo *pluginInfo;
 
     // IPlugin interface
 public:
+    void SetPluginInfo(PluginInfo *pluginInfo) override;
     void OnAllSetup() override;
     QString GetLastError() override;
+    void AddReferencePlugin(PluginInfo *pluginInfo) override;
+public slots:
+    void ReferencePluginClosed(PluginInfo *pluginInfo) override;
 
     // IPluginView interface
 public:
-    void AddModel(QObject* model) override;
+//    void AddModel(QObject* model) override;
     bool Open(IModelPlugin *model, QWidget *parent) override;
 public slots:
     bool Close() override;
@@ -49,8 +54,9 @@ public slots:
 public slots:
     void OpenTaskEditor(int id);
 signals:
-    void OnClose(IViewPlugin *pointer);
+    void OnClose(PluginInfo *pointer);
     void OnClose();
+
 };
 //! \}
 #endif // TASKLISTVIEW_H

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainform.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.9.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -127,7 +127,7 @@ public:
 
     void retranslateUi(QWidget *MainForm)
     {
-        MainForm->setWindowTitle(QApplication::translate("MainForm", "Form", 0));
+        MainForm->setWindowTitle(QApplication::translate("MainForm", "Form", Q_NULLPTR));
         buttonClear->setText(QString());
         buttonSave->setText(QString());
         buttonOpenGallery->setText(QString());

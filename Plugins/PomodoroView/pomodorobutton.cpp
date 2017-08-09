@@ -9,7 +9,7 @@ PomodoroButton::PomodoroButton(QWidget *parent) :
     timer->setSingleShot(false);
     timer->setTimerType(Qt::VeryCoarseTimer);
     connect(timer, SIGNAL(timeout()), SLOT(TimerTick()));
-    secsTarget = 25 * 60;
+    secsTarget = secsPassed = 3;
 }
 
 PomodoroButton::~PomodoroButton()
@@ -67,28 +67,20 @@ void PomodoroButton::paintEvent(QPaintEvent *event)
     p.setBrush(brush);
     p.setPen(pen);
 
-    QRect aspectRect;
-    int padding = 3;
-    aspectRect.setX(padding);
-    aspectRect.setY(padding);
-    float newAspect = width() / (float)height();
-    if(newAspect < 1)
-    {
-        aspectRect.setWidth(height());
-        aspectRect.setHeight(height());
-    }
-    else
-    {
-        aspectRect.setWidth(width());
-        aspectRect.setHeight(width());
-    }
-    aspectRect.setWidth(width()-2*padding);
-    aspectRect.setHeight(width()-2*padding);
+    QRect circleRect;
+    bool isVertiacal = width() < height();
+    float circleScale = 0.75;
+    float size = (isVertiacal ? width() : height()) * circleScale;
+
+    circleRect.setX(width()/2 - size/2);
+    circleRect.setY(height()/2 - size/2);
+    circleRect.setWidth(size);
+    circleRect.setHeight(size);
 
     int angle = 360 * (secsPassed / (float)secsTarget) * 16;
 
     int startAngle = 90 * 16;
-    p.drawPie(aspectRect, startAngle, -angle);
+    p.drawPie(circleRect, startAngle, -angle);
 
     p.end();
 }

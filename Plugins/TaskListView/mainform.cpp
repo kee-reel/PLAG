@@ -6,7 +6,7 @@ MainForm::MainForm(QWidget *parent) :
     ui(new Ui::MainForm)
 {
     ui->setupUi(this);
-    myTreeView = new MyTreeView(this);
+    myTreeView = ui->treeView;// new MyTreeView(this);
     myTreeView->installEventFilter(this);
     ui->verticalLayout->setDirection(QBoxLayout::BottomToTop);
     ui->verticalLayout->addWidget(myTreeView);

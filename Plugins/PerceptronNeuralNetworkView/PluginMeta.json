@@ -1,6 +1,8 @@
 {
-    "Name":         "PerceptronNetworkView",
-    "PluginType":   "PluginView",
-    "ParentName":   "NeuralNetworkModel",
-    "DataManager":  ""
+    "Type":   "PluginView",
+    "Interface": "",
+    "Name": "PerceptronNetworkView",
+    "RelatedPluginInterfaces": [
+        "INeuralNetworkModel"
+    ],
 }

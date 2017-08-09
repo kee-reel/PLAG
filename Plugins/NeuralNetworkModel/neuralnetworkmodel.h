@@ -45,7 +45,7 @@ private:
 
     // Unique part
     QString tableName;
-    IExtendableDataBaseManagerPlugin* dataManager;
+    IExtendableDataBaseManager* dataManager;
 
     // IPlugin interface
 public:

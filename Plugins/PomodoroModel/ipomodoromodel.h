@@ -6,6 +6,7 @@
 template <class A>
 class QVector;
 class QAbstractItemModel;
+class QModelIndex;
 
 //! \defgroup PomodoroModel
 //!     \ingroup MainMenuPlugin_rel_m
@@ -21,6 +22,10 @@ class IPomodoroModel: public IModelPlugin
 public:
     virtual QAbstractItemModel* GetModel() = 0;
     virtual QAbstractItemModel* GetInternalModel() = 0;
+    virtual void SetActiveProject(QModelIndex) = 0;
+    virtual QModelIndex GetActiveProject() = 0;
+    virtual QModelIndex GetCompletedPomodoros() = 0;
+    virtual void IncrementPomodoro() = 0;
 };
 //! \}
 Q_DECLARE_INTERFACE(IPomodoroModel, "IPomodoroModel v0.1")

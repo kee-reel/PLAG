@@ -1,6 +1,8 @@
 {
-    "Name":         "TaskSketchView",
-    "PluginType":   "PluginView",
-    "ParentName":   "TaskSketchModel",
-    "DataManager":  ""
+    "Type": "PluginView",
+    "Interface": "",
+    "Name": "TaskSketchView",
+    "RelatedPluginInterfaces": [
+        "ITaskSketchModel"
+    ]
 }

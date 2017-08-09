@@ -2,8 +2,10 @@
 
 PomodoroModel::PomodoroModel()
 {
+    myModel = NULL;
+    dataManager = NULL;
     tableName = "pomodoro";
-    coreRelationName = "datetime";
+    coreRelationName = "project";
     activeViewId = -1;
 }
 
@@ -11,15 +13,23 @@ PomodoroModel::~PomodoroModel()
 {
 }
 
+void PomodoroModel::SetPluginInfo(PluginInfo *pluginInfo)
+{
+    this->pluginInfo = pluginInfo;
+}
+
 void PomodoroModel::OnAllSetup()
 {
+    if(!dataManager) return;
     QMap<QString, QVariant::Type> newRelationStruct = {
-        {coreRelationName,  QVariant::ByteArray},
+        {coreRelationName,  QVariant::String},
+        {"pomodoros",       QVariant::Int},
     };
     QVector<QVariant> defaultData;
-    defaultData << QDateTime();
+    defaultData << "Sample project" << 0;
     dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
-    dataManager->SetRelation(myModel->GetDataName(), coreRelationName, newRelationStruct, defaultData);
+//    if(!myModel) return;
+//    dataManager->SetRelation(myModel->GetDataName(), coreRelationName, newRelationStruct, defaultData);
 }
 
 QString PomodoroModel::GetLastError()
@@ -27,41 +37,54 @@ QString PomodoroModel::GetLastError()
 
 }
 
-void PomodoroModel::AddDataManager(QObject *DBTool)
+void PomodoroModel::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
-    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(DBTool);
-    if(!this->dataManager)
-    {
-        qDebug() << DBTool->objectName() << "is not IExtendableDataBaseManagerPlugin.";
-        return;
+    switch(pluginInfo->Meta->Type){
+        case PLUGINVIEW:{
+            viewPlugins.append(pluginInfo);
+            qDebug() << "IPluginView succesfully set.";
+            connect(pluginInfo->Instance, SIGNAL( OnClose(PluginInfo*) ), SLOT( ReferencePluginClosed(PluginInfo*) ));
+        } break;
+
+        case PLUGINMODEL:{
+            if(!pluginInfo->Meta->InterfaceName.compare("ITaskTreeModel", Qt::CaseInsensitive)){
+                myModel = qobject_cast<ITaskTreeModel*>(pluginInfo->Instance);
+                if(!myModel){
+                    qDebug() << pluginInfo->Instance->objectName() << "is not ITaskTreeModel.";
+                    return;
+                }
+                qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
+                connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+            }
+        } break;
+
+        case ROOTMODEL:{
+            if(!pluginInfo->Meta->InterfaceName.compare("IMainMenuModel", Qt::CaseInsensitive)){
+                pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
+            }
+        } break;
+
+        case DATAMANAGER:{
+            qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
+            this->dataManager = qobject_cast<IExtendableDataBaseManager*>(pluginInfo->Instance);
+            if(!this->dataManager)
+            {
+                qDebug() << pluginInfo->Instance->objectName() << "is not IExtendableDataBaseManagerPlugin.";
+                return;
+            }
+            qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
+        }break;
     }
-    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
 }
 
-void PomodoroModel::AddModel(QObject *instance, MetaInfo *meta)
+void PomodoroModel::ReferencePluginClosed(PluginInfo *pluginInfo)
 {
-    myModel = qobject_cast<ITaskTreeModel*>(instance);
-    if(!myModel){
-        qDebug() << instance->objectName() << "is not IExtendableDataBaseManagerPlugin.";
-        return;
-    }
-    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
-    connect(this, SIGNAL(OnClose(IModelPlugin*)), instance, SLOT(RelatedModelClosed(IModelPlugin*)));
-}
-
-void PomodoroModel::AddView(QObject *instance, MetaInfo *meta)
-{
-    IViewPlugin *view = qobject_cast<IViewPlugin*>(instance);
-    PluginInfo<IViewPlugin> newPlugin = {view, meta};
-    viewPlugins.append(newPlugin);
-    qDebug() << "IPluginView succesfully set.";
-    connect(instance, SIGNAL(OnClose(IViewPlugin*)), SLOT(RelatedViewClosed(IViewPlugin*)));
+    Close();
 }
 
 bool PomodoroModel::Open(IModelPlugin *parent, QWidget *parentWidget)
 {
-    qDebug() << "TaskListModel runs";
+    qDebug() << "PomodoroModel runs";
     if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
@@ -69,28 +92,18 @@ bool PomodoroModel::Open(IModelPlugin *parent, QWidget *parentWidget)
     myParentWidget = parentWidget;
     activeViewId = 0;
     SetupModel();
-    qDebug() << viewPlugins[activeViewId].meta->Name;
-    if(!viewPlugins[activeViewId].plugin->Open(this, myParentWidget)){
+    qDebug() << viewPlugins[activeViewId]->Meta->Name;
+    if(!viewPlugins[activeViewId]->Plugin.view->Open(this, myParentWidget)){
         qDebug() << "Can't open first view!";
         return false;
     }
     return true;
 }
 
-void PomodoroModel::RelatedModelClosed(IModelPlugin *model)
-{
-    Close();
-}
-
-void PomodoroModel::RelatedViewClosed(IViewPlugin *view)
-{
-    Close();
-}
-
 void PomodoroModel::Close()
 {
     activeViewId = -1;
-    emit OnClose(this);
+    emit OnClose(pluginInfo);
     emit OnClose();
 }
 
@@ -101,11 +114,37 @@ QAbstractItemModel *PomodoroModel::GetModel()
 
 QAbstractItemModel *PomodoroModel::GetInternalModel()
 {
-    return sketchItemModel;
+    return pomodoroItemModel;
+}
+
+void PomodoroModel::SetActiveProject(QModelIndex index)
+{
+    currentProject = index;
+    finishedPomodoros = currentProject.model()->index(1, currentProject.row());
+}
+
+QModelIndex PomodoroModel::GetActiveProject()
+{
+    return currentProject;
+}
+
+QModelIndex PomodoroModel::GetCompletedPomodoros()
+{
+    return finishedPomodoros;
+}
+
+void PomodoroModel::IncrementPomodoro()
+{
+    auto item = finishedPomodoros.data().toInt()+1;
+    pomodoroItemModel->setData(finishedPomodoros, QVariant(item));
 }
 
 void PomodoroModel::SetupModel()
 {
-    taskModel = dataManager->GetDataModel(myModel->GetDataName());
-    sketchItemModel = dataManager->GetDataModel(tableName);
+    if(!dataManager) return;
+    pomodoroItemModel = dataManager->GetDataModel(tableName);
+    currentProject = pomodoroItemModel->index(0,0);
+    finishedPomodoros = pomodoroItemModel->index(0,1);
+//    if(!myModel) return;
+//    taskModel = dataManager->GetDataModel(myModel->GetDataName());
 }

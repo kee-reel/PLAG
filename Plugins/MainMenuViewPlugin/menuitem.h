@@ -19,13 +19,13 @@ class MenuItemGraphicsObject : public QWidget, public QGraphicsItem
     void FormatMenuItemName(QString name);
 
 public:
-    MenuItemGraphicsObject(MenuItemGraphicsObject *ParentMenuItem, IMainMenuPluginModel::MenuItem *MenuItemGraphicsObject, MetaInfo *ViewPlugin, QWidget *parent = 0);
+    MenuItemGraphicsObject(MenuItemGraphicsObject *ParentMenuItem, IMainMenuModel::MenuItem *MenuItemGraphicsObject, MetaInfo *ViewPlugin, QWidget *parent = 0);
     MenuItemGraphicsObject(QString name, QWidget *parent = 0);
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     MenuItemGraphicsObject *parentMenuItem;
-    IMainMenuPluginModel::MenuItem *menuItem;
+    IMainMenuModel::MenuItem *menuItem;
     MetaInfo *viewPluginMeta;
 
 protected:

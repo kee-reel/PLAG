@@ -44,11 +44,10 @@ signals:
 private slots:
     void OnItemDelete(int index);
     void OnItemConvertSlot(int index);
-
-    void on_buttonClose_clicked();
-    void on_buttonCreate_clicked();
+    void on_buttonClear_clicked();
     void on_buttonSave_clicked();
     void on_buttonOpenGallery_clicked();
+    void on_buttonClose_clicked();
 };
 //! \}
 #endif // MAINFORM_H

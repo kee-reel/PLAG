@@ -11,5 +11,7 @@
         <file>Res/ic_content_save_black_24dp.png</file>
         <file>Res/ic_image_multiple_black_24dp.png</file>
         <file>Res/alert.raw</file>
+        <file>Res/ic_assignment_black_36dp.png</file>
+        <file>Res/ic_timelapse_black_24dp.png</file>
     </qresource>
 </RCC>

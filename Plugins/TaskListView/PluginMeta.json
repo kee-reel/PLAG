@@ -1,6 +1,8 @@
 {
-    "Name":         "TaskListView",
-    "PluginType":   "PluginView",
-    "ParentName":   "TaskListModel",
-    "DataManager":  ""
+    "Type": "PluginView",
+    "Interface": "",
+    "Name": "TaskListView",
+    "RelatedPluginInterfaces": [
+        "ITaskTreeModel"
+    ]
 }

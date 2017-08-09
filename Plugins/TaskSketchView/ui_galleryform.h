@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'galleryform.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.9.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -111,7 +111,7 @@ public:
 
     void retranslateUi(QWidget *GalleryForm)
     {
-        GalleryForm->setWindowTitle(QApplication::translate("GalleryForm", "Form", 0));
+        GalleryForm->setWindowTitle(QApplication::translate("GalleryForm", "Form", Q_NULLPTR));
         buttonDelete->setText(QString());
         buttonConvertToTask->setText(QString());
         buttonClose->setText(QString());

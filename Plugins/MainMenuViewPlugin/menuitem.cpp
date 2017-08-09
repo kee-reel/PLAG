@@ -2,7 +2,7 @@
 
 MenuItemGraphicsObject::MenuItemGraphicsObject(
         MenuItemGraphicsObject *ParentMenuItem,
-        IMainMenuPluginModel::MenuItem *MenuItem,
+        IMainMenuModel::MenuItem *MenuItem,
         MetaInfo *ViewPluginMeta,
         QWidget *parent)
     : QWidget(parent)

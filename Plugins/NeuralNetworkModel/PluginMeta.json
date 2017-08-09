@@ -1,6 +1,8 @@
 {
-    "Name":         "NeuralNetworkModel",
-    "PluginType":   "PluginModel",
-    "ParentName":   "",
-    "DataManager":  ""
+    "Type": "PluginModel",
+    "Interface": "INeuralNetworkModel",
+    "Name": "NeuralNetworkModel",
+    "RelatedPluginInterfaces": [
+        "IMainMenuModel"
+    ],
 }

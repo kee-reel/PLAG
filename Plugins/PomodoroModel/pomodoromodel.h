@@ -25,56 +25,55 @@ public:
 
 private:
     // Native part
-    IExtendableDataBaseManagerPlugin *dataManager;
+    IExtendableDataBaseManager *dataManager;
     ITaskTreeModel *myModel;
     QAbstractItemModel *taskModel;
-    QAbstractItemModel *sketchItemModel;
+    QAbstractItemModel *pomodoroItemModel;
     QWidget *myParentWidget;
     int myModelId;
     int activeViewId;
     int activeModelId;
+    PluginInfo *pluginInfo;
 
-    template <class T>
-    struct PluginInfo
-    {
-        T *plugin;
-        MetaInfo *meta;
-    };
-
-    QList< PluginInfo<IModelPlugin> > childModelPlugins;
-    QList< PluginInfo<IViewPlugin> > viewPlugins;
+    QList< PluginInfo* > childModelPlugins;
+    QList< PluginInfo* > viewPlugins;
 
     // Unique part
     QString tableName;
     QString coreRelationName;
 
+    QModelIndex currentProject;
+    QModelIndex finishedPomodoros;
+
     // IPlugin interface
 public:
+    void SetPluginInfo(PluginInfo *pluginInfo) override;
     void OnAllSetup() override;
     QString GetLastError() override;
+    void AddReferencePlugin(PluginInfo *pluginInfo) override;
+
+public slots:
+    void ReferencePluginClosed(PluginInfo *pluginInfo) override;
 
     // IModelPlugin interface
-public:
-    void AddDataManager(QObject *dataManager) override;
-    void AddModel(QObject *instance, MetaInfo *meta) override;
-    void AddView(QObject *instance, MetaInfo *meta) override;
 public slots:
     bool Open(IModelPlugin *model, QWidget *modelWidget) override;
-    void RelatedModelClosed(IModelPlugin *model) override;
-    void RelatedViewClosed(IViewPlugin *view) override;
     void Close() override;
-signals:
-    void OnClose(IModelPlugin *pointer);
-    void OnClose();
 
     // IPomodoroModel interface
 public:
     QAbstractItemModel *GetModel() override;
     QAbstractItemModel *GetInternalModel() override;
+    void SetActiveProject(QModelIndex index) override;
+    QModelIndex GetActiveProject() override;
+    QModelIndex GetCompletedPomodoros() override;
+    void IncrementPomodoro() override;
+signals:
+    void OnClose(PluginInfo *pointer);
+    void OnClose();
 
 private:
     void SetupModel();
-
 };
 //! \}
 #endif // TASKLISTMODEL_H

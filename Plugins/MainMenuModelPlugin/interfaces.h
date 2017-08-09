@@ -23,37 +23,34 @@ enum PluginTypes
 
 //! \brief Holds information about plugin.
 struct MetaInfo{
-    //! \brief Plugin name.
-    QString Name;
     //! \brief Type of plugin.
     PluginTypes Type;
+    //! \brief Name of plugin interface.
+    QString InterfaceName;
+    //! \brief Plugin name.
+    QString Name;
     //! \brief Name of parent plugin (in tree structure).
-    QString ParentPluginName;
-    //! \brief Name of data manager that plugin will be using
-    QString DataManagerName;
+    QList<QString> RelatedPluginNames;
 };
 
-template <class T>
-//! \brief Structure for internal needs. Pair of type of plugin and it's meta information.
-struct PluginInfo
-{
-    //! \brief Class instance of plugin.
-    T *plugin;
-    //! \brief QObject instance of plugin.
-    QObject *instance;
-    //! \brief Meta information of plugin.
-    MetaInfo *meta;
-};
-
+class PluginInfo;
 //! \brief This interface provides basic methods for all plugins.
 class IPlugin
 {
 public:
     virtual ~IPlugin() {}
+    //! \brief Method
+    virtual void SetPluginInfo(PluginInfo *pluginInfo) = 0;
     //! \brief Method which calls when system setup all connections between plugins.
     virtual void OnAllSetup() = 0;
     //! \brief Gets last error message from plugin.
     virtual QString GetLastError() = 0;
+    virtual void AddReferencePlugin(PluginInfo *pluginInfo) = 0;
+public slots:
+    virtual void ReferencePluginClosed(PluginInfo *pluginInfo) = 0;
+signals:
+    void OnClose(PluginInfo *pointer);
+    void OnClose();
 };
 
 //! \brief This interface describes DataSource plugin.
@@ -101,7 +98,7 @@ public:
     //! \brief SetDataSource
     //! \param dataSource
     //! \return
-    virtual bool AddDataSource(QObject* dataSource) = 0;
+//    virtual bool AddDataSource(QObject* dataSource) = 0;
 };
 Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
 
@@ -111,13 +108,10 @@ class IViewPlugin : public IPlugin
 {
 public:
     virtual ~IViewPlugin() {}
-    virtual void AddModel(QObject *model) = 0;
+//    virtual void AddModel(QObject *model) = 0;
 public slots:
     virtual bool Open(IModelPlugin* model, QWidget* parent) = 0;
     virtual bool Close() = 0;
-signals:
-    void OnClose(IViewPlugin *pointer);
-    void OnClose();
 };
 Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
 
@@ -126,19 +120,42 @@ class IModelPlugin : public IPlugin
 {
 public:
     virtual ~IModelPlugin() {}
-    virtual void AddDataManager(QObject *dataManager) = 0;
-    virtual void AddModel(QObject *instance, MetaInfo *meta) = 0;
-    virtual void AddView(QObject *instance, MetaInfo *meta) = 0;
+//    virtual void AddDataManager(QObject *dataManager) = 0;
+//    virtual void AddModel(QObject *instance, MetaInfo *meta) = 0;
+//    virtual void AddView(QObject *instance, MetaInfo *meta) = 0;
 public slots:
     virtual bool Open(IModelPlugin* model, QWidget* modelWidget) = 0;
-    virtual void RelatedModelClosed(IModelPlugin* model) = 0;
-    virtual void RelatedViewClosed(IViewPlugin* view) = 0;
+//    virtual void RelatedModelClosed(IModelPlugin* model) = 0;
+//    virtual void RelatedViewClosed(IViewPlugin* view) = 0;
     virtual void Close() = 0;
-signals:
-    void OnClose(IModelPlugin *pointer);
-    void OnClose();
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
+
+//! \brief Structure for internal needs.
+struct PluginInfo
+{
+    PluginInfo(IDataSourcePlugin *plugin, QObject *instance, MetaInfo *meta) :
+        Instance(instance), Meta(meta) { Plugin.dataSource = plugin; }
+    PluginInfo(IDataManagerPlugin *plugin, QObject *instance, MetaInfo *meta) :
+        Instance(instance), Meta(meta) { Plugin.dataManager = plugin; }
+    PluginInfo(IModelPlugin *plugin, QObject *instance, MetaInfo *meta) :
+        Instance(instance), Meta(meta) { Plugin.model = plugin; }
+    PluginInfo(IViewPlugin *plugin, QObject *instance, MetaInfo *meta) :
+        Instance(instance), Meta(meta) { Plugin.view = plugin; }
+
+    //! \brief Class instance of plugin.
+    union PluginsUnion{
+        IDataSourcePlugin *dataSource;
+        IDataManagerPlugin *dataManager;
+        IModelPlugin *model;
+        IViewPlugin *view;
+        IPlugin *any;
+    } Plugin;
+    //! \brief QObject instance of plugin.
+    QObject *Instance;
+    //! \brief Meta information of plugin.
+    MetaInfo *Meta;
+};
 
 //! @}
 #endif // INTERFACES_H

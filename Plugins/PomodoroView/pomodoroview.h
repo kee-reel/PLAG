@@ -8,6 +8,9 @@
 
 #include "../PomodoroModel/ipomodoromodel.h"
 #include "pomodorobutton.h"
+#include "mytreeview.h"
+#include "designproxymodel.h"
+#include "addform.h"
 
 namespace Ui {
 class PomodoroView;
@@ -34,25 +37,46 @@ private:
     Ui::PomodoroView *ui;
     IPomodoroModel *myModel;
     PomodoroButton *button;
-    int finishedPomodoros;
+    DesignProxyModel *proxyModel;
+    AddForm *addForm;
+    QModelIndex currentProject;
+    QModelIndex finishedPomodoros;
+    PluginInfo *pluginInfo;
+    bool isTimerWindow;
 
     // IPlugin interface
 public:
+    void SetPluginInfo(PluginInfo *pluginInfo) override;
     void OnAllSetup() override;
     QString GetLastError() override;
+    void AddReferencePlugin(PluginInfo *pluginInfo) override;
 
-    // IPluginView interface
-public:
-    void AddModel(QObject* model) override;
-    bool Open(IModelPlugin *model, QWidget *parent) override;
-signals:
-    void OnClose(IViewPlugin *pointer);
-    void OnClose();
 public slots:
+    void ReferencePluginClosed(PluginInfo *pluginInfo) override;
+
+    // IViewPlugin interface
+public slots:
+    bool Open(IModelPlugin *model, QWidget *parent) override;
     bool Close() override;
+
+signals:
+    void OnClose(PluginInfo*);
+    void OnClose();
 
 private slots:
     void OnPomodoroFinished();
+    void on_buttonProjects_clicked();
+    void on_buttonEdit_clicked();
+
+    // QWidget interface
+    void on_buttonDelete_clicked();
+
+    void on_buttonAdd_clicked();
+
+    void on_treeView_clicked(const QModelIndex &index);
+
+protected:
+    void resizeEvent(QResizeEvent *event);
 };
 //! \}
 #endif // TASKLISTVIEW_H
