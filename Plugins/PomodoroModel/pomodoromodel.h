@@ -65,8 +65,8 @@ public:
     QAbstractItemModel *GetModel() override;
     QAbstractItemModel *GetInternalModel() override;
     void SetActiveProject(QModelIndex index) override;
-    QModelIndex GetActiveProject() override;
-    QModelIndex GetCompletedPomodoros() override;
+    QModelIndex* GetActiveProject() override;
+    QModelIndex* GetCompletedPomodoros() override;
     void IncrementPomodoro() override;
 signals:
     void OnClose(PluginInfo *pointer);

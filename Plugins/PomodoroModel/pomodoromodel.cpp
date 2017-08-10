@@ -119,18 +119,18 @@ QAbstractItemModel *PomodoroModel::GetInternalModel()
 
 void PomodoroModel::SetActiveProject(QModelIndex index)
 {
-    currentProject = index;
-    finishedPomodoros = currentProject.model()->index(1, currentProject.row());
+    currentProject = pomodoroItemModel->index(index.row(), 0);
+    finishedPomodoros = pomodoroItemModel->index(index.row(), 1);
 }
 
-QModelIndex PomodoroModel::GetActiveProject()
+QModelIndex* PomodoroModel::GetActiveProject()
 {
-    return currentProject;
+    return &currentProject;
 }
 
-QModelIndex PomodoroModel::GetCompletedPomodoros()
+QModelIndex* PomodoroModel::GetCompletedPomodoros()
 {
-    return finishedPomodoros;
+    return &finishedPomodoros;
 }
 
 void PomodoroModel::IncrementPomodoro()
