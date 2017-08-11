@@ -49,11 +49,14 @@ void PomodoroButton::mouseReleaseEvent(QMouseEvent *event)
     {
         secsPassed = 0;
         repaint();
+        time.restart();
         timer->start();
     }
     else
     {
         timer->stop();
+        secsPassed = secsTarget;
+        repaint();
     }
 }
 
@@ -110,7 +113,7 @@ void PomodoroButton::handleStateChanged(QAudio::State newState)
 
 void PomodoroButton::TimerTick()
 {
-    secsPassed++;
+    secsPassed = time.elapsed()/1000;
     repaint();
     if(secsPassed >= secsTarget)
     {

@@ -19,6 +19,7 @@ public:
     virtual ~PomodoroButton();
 
     QTimer *timer;
+    QTime time;
     int secsPassed;
     int secsTarget;
 
