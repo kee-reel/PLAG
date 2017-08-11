@@ -22,11 +22,11 @@ linux{
 
 android{
     debug{
-        DESTDIR = ../../System/build-Android_armeabi_v7a_GCC_4_9_Qt_5_8_0-MASS-Debug/Modules
+        DESTDIR = ../../System/MASS/Modules
     }
     else
     {
-        DESTDIR = C:\Users\Curunir\Desktop\MASS\System\build-Android_armeabi_v7a_GCC_4_9_Qt_5_8_0-MASS-Release\Modules
+        DESTDIR = ../../System/MASS/Modules
     }
 }
 
