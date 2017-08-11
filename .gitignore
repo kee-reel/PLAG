@@ -10,4 +10,4 @@ BuildInfo.pri
 *.a
 *.dll
 *.so
-*/Makefile*
+*Makefile*
