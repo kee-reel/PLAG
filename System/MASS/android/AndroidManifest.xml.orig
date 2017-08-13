@@ -63,7 +63,11 @@
 
     </application>
 
-    <uses-sdk android:targetSdkVersion="18" android:minSdkVersion="16"/>
+<<<<<<< HEAD
+    <uses-sdk android:targetSdkVersion="18" android:minSdkVersion="18"/>
+=======
+    <uses-sdk android:targetSdkVersion="22" android:minSdkVersion="16"/>
+>>>>>>> c229fcfa2f809ae3ef0d7c876a6028ac0558a9c2
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
     <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
