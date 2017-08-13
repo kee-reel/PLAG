@@ -95,10 +95,6 @@ class IDataManagerPlugin : public IPlugin
 {
 public:
     virtual ~IDataManagerPlugin() {}
-    //! \brief SetDataSource
-    //! \param dataSource
-    //! \return
-//    virtual bool AddDataSource(QObject* dataSource) = 0;
 };
 Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
 
