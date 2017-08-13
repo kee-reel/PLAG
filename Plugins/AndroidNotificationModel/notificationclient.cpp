@@ -75,8 +75,10 @@ QString NotificationClient::notification() const
 void NotificationClient::updateAndroidNotification()
 {
     QAndroidJniObject javaNotification = QAndroidJniObject::fromString(m_notification);
+    QAndroidJniObject javaNotification = QAndroidJniObject::fromString(m_notification);
     QAndroidJniObject::callStaticMethod<void>("com/MASS/NotificationClient",
                                        "notify",
-                                       "(Ljava/lang/String;)V",
-                                       javaNotification.object<jstring>());
+                                       "(Ljava/lang/String;Ljava/lang/String;)V",
+                                              javaNotification.object<jstring>(),
+                                              javaNotification.object<jstring>());
 }

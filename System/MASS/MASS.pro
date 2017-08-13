@@ -63,4 +63,6 @@ android {
 }
 
 DISTFILES += \
-    BuildInfo.pri
+    BuildInfo.pri \
+    android/NotificationClient.java \
+    android/src/NotificationClient.java
