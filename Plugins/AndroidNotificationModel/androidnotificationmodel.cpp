@@ -59,7 +59,7 @@ void AndroidNotificationModel::ReferencePluginClosed(PluginInfo *pluginInfo)
 bool AndroidNotificationModel::Open(IModelPlugin *parent, QWidget *referenceWidget)
 {
     qDebug() << "AndroidNotificationModel open.";
-    PushNotification("Hi there");
+    PushNotification("AndroidNotificationModel says:", "Hi there!");
     if(relatedViewPlugins.count() == 0){
         qDebug() << "!AndroidNotificationModel hasn't any views!";
         return false;
@@ -92,7 +92,7 @@ void AndroidNotificationModel::Close()
     emit OnClose();
 }
 
-void AndroidNotificationModel::PushNotification(QString message)
+void AndroidNotificationModel::PushNotification(QString title, QString message)
 {
-    notificationClient->setNotification(message);
+    notificationClient->setNotification(title, message);
 }

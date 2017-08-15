@@ -17,7 +17,7 @@ class IAndroidNotificationModel :
 {
 public:
     // Write your interface methods here
-    virtual void PushNotification(QString message) = 0;
+    virtual void PushNotification(QString title, QString message) = 0;
 };
 //! }
 Q_DECLARE_INTERFACE(IAndroidNotificationModel, "IAndroidNotificationModel")

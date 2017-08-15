@@ -56,12 +56,12 @@
 class NotificationClient : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString notification READ notification WRITE setNotification NOTIFY notificationChanged)
 public:
     explicit NotificationClient(QObject *parent = 0);
 
-    void setNotification(const QString &notification);
-    QString notification() const;
+    void setNotification(const QString &title, const QString &message);
+    QString GetTitle() const;
+    QString GetMessage() const;
 
 signals:
     void notificationChanged();
@@ -70,7 +70,8 @@ private slots:
     void updateAndroidNotification();
 
 private:
-    QString m_notification;
+    QString title;
+    QString message;
 };
 
 #endif // NOTIFICATIONCLIENT_H

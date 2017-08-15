@@ -58,27 +58,30 @@ NotificationClient::NotificationClient(QObject *parent)
     connect(this, SIGNAL(notificationChanged()), this, SLOT(updateAndroidNotification()));
 }
 
-void NotificationClient::setNotification(const QString &notification)
+void NotificationClient::setNotification(const QString &title, const QString &message)
 {
-    if (m_notification == notification)
-        return;
-
-    m_notification = notification;
+    this->title = title;
+    this->message = message;
     emit notificationChanged();
 }
 
-QString NotificationClient::notification() const
+QString NotificationClient::GetTitle() const
 {
-    return m_notification;
+    return title;
+}
+
+QString NotificationClient::GetMessage() const
+{
+    return message;
 }
 
 void NotificationClient::updateAndroidNotification()
 {
-    QAndroidJniObject javaNotification = QAndroidJniObject::fromString(m_notification);
-    QAndroidJniObject javaNotification = QAndroidJniObject::fromString(m_notification);
+    QAndroidJniObject javaTitle = QAndroidJniObject::fromString(title);
+    QAndroidJniObject javaMessage = QAndroidJniObject::fromString(message);
     QAndroidJniObject::callStaticMethod<void>("com/MASS/NotificationClient",
                                        "notify",
                                        "(Ljava/lang/String;Ljava/lang/String;)V",
-                                              javaNotification.object<jstring>(),
-                                              javaNotification.object<jstring>());
+                                              javaTitle.object<jstring>(),
+                                              javaMessage.object<jstring>());
 }

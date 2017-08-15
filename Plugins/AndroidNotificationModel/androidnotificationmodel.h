@@ -44,7 +44,7 @@ public slots:
 
     // IAndroidNotificationModel interface
 public:
-    void PushNotification(QString message) override;
+    void PushNotification(QString title, QString message) override;
 
 private:
     QWidget *referenceWidget;
