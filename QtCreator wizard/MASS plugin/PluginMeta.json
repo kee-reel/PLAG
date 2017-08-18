@@ -1,0 +1,17 @@
+{ 
+@if '%{PluginType}' === 'RootModel'
+	"Type": "RootModel",
+@elsif '%{PluginType}' === 'Model'
+	"Type": "PluginModel",
+@elsif '%{PluginType}' === 'View'
+	"Type": "PluginView",
+@elsif '%{PluginType}' === 'DataManager'
+	"Type": "DataManager",
+@elsif '%{PluginType}' === 'DataSource'
+	"Type": "DataSource",
+@endif 
+    "Interface": "%{InterfaceName}",
+    "Name": "%{CN}",
+    "RelatedPluginInterfaces": [
+    ]
+}
