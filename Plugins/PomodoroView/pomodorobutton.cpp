@@ -9,7 +9,7 @@ PomodoroButton::PomodoroButton(QWidget *parent) :
     timer->setSingleShot(false);
     timer->setTimerType(Qt::VeryCoarseTimer);
     connect(timer, SIGNAL(timeout()), SLOT(TimerTick()));
-    secsTarget = secsPassed = 3;
+    secsTarget = secsPassed = 45 * 60;
 }
 
 PomodoroButton::~PomodoroButton()
@@ -49,11 +49,14 @@ void PomodoroButton::mouseReleaseEvent(QMouseEvent *event)
     {
         secsPassed = 0;
         repaint();
+        time.restart();
         timer->start();
     }
     else
     {
         timer->stop();
+        secsPassed = secsTarget;
+        repaint();
     }
 }
 
@@ -110,7 +113,7 @@ void PomodoroButton::handleStateChanged(QAudio::State newState)
 
 void PomodoroButton::TimerTick()
 {
-    secsPassed++;
+    secsPassed = time.elapsed()/1000;
     repaint();
     if(secsPassed >= secsTarget)
     {

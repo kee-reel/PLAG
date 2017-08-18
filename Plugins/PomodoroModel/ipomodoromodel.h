@@ -23,8 +23,8 @@ public:
     virtual QAbstractItemModel* GetModel() = 0;
     virtual QAbstractItemModel* GetInternalModel() = 0;
     virtual void SetActiveProject(QModelIndex) = 0;
-    virtual QModelIndex GetActiveProject() = 0;
-    virtual QModelIndex GetCompletedPomodoros() = 0;
+    virtual QModelIndex* GetActiveProject() = 0;
+    virtual QModelIndex* GetCompletedPomodoros() = 0;
     virtual void IncrementPomodoro() = 0;
 };
 //! \}

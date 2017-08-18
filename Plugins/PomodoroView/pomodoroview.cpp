@@ -75,8 +75,8 @@ bool PomodoroView::Open(IModelPlugin *model, QWidget *parent)
     finishedPomodoros = myModel->GetCompletedPomodoros();
     ui->treeView->setModel(proxyModel);
     addForm->SetModel(proxyModel);
-    ui->labelProject->setText(currentProject.data().toString());
-    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros.data().toString()));
+    ui->labelProject->setText(currentProject->data().toString());
+    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
     show();
     return true;
 }
@@ -93,7 +93,7 @@ bool PomodoroView::Close()
 void PomodoroView::OnPomodoroFinished()
 {
     myModel->IncrementPomodoro();
-    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros.data().toString()));
+    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
 }
 
 void PomodoroView::on_buttonProjects_clicked()
@@ -123,6 +123,14 @@ void PomodoroView::resizeEvent(QResizeEvent *event)
     addForm->resize(event->size());
 }
 
+void PomodoroView::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Back) {
+        Close();
+    }
+    event->accept();
+}
+
 void PomodoroView::on_buttonDelete_clicked()
 {
     auto list = ui->treeView->selectionModel()->selectedIndexes();
@@ -135,10 +143,18 @@ void PomodoroView::on_buttonAdd_clicked()
     proxyModel->insertRow(0);
 }
 
+void PomodoroView::on_treeView_pressed(const QModelIndex &index)
+{
+    auto list = ui->treeView->selectionModel()->selectedIndexes();
+    if(list.length() == 0) return;
+    auto selected = list.first();
+    myModel->SetActiveProject(selected);
+    ui->labelProject->setText(currentProject->data().toString());
+    qDebug() << currentProject->data().toString();
+    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
+}
+
 void PomodoroView::on_treeView_clicked(const QModelIndex &index)
 {
-    if(!index.isValid()) return;
-    myModel->SetActiveProject(index);
-    ui->labelProject->setText(currentProject.data().toString());
-    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros.data().toString()));
+
 }

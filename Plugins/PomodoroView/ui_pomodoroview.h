@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'pomodoroview.ui'
 **
-** Created by: Qt User Interface Compiler version 5.2.1
+** Created by: Qt User Interface Compiler version 5.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -181,10 +181,10 @@ public:
 
     void retranslateUi(QWidget *PomodoroView)
     {
-        PomodoroView->setWindowTitle(QApplication::translate("PomodoroView", "Form", 0));
-        label->setText(QApplication::translate("PomodoroView", "Today completed", 0));
-        labelProject->setText(QApplication::translate("PomodoroView", "Project", 0));
-        pomodoroCountLabel->setText(QApplication::translate("PomodoroView", "0 pomodoros", 0));
+        PomodoroView->setWindowTitle(QApplication::translate("PomodoroView", "Form", Q_NULLPTR));
+        label->setText(QApplication::translate("PomodoroView", "Today completed", Q_NULLPTR));
+        labelProject->setText(QApplication::translate("PomodoroView", "Project", Q_NULLPTR));
+        pomodoroCountLabel->setText(QApplication::translate("PomodoroView", "0 pomodoros", Q_NULLPTR));
         buttonDelete->setText(QString());
         buttonEdit->setText(QString());
         buttonAdd->setText(QString());

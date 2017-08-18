@@ -39,8 +39,8 @@ private:
     PomodoroButton *button;
     DesignProxyModel *proxyModel;
     AddForm *addForm;
-    QModelIndex currentProject;
-    QModelIndex finishedPomodoros;
+    QModelIndex *currentProject;
+    QModelIndex *finishedPomodoros;
     PluginInfo *pluginInfo;
     bool isTimerWindow;
 
@@ -75,8 +75,14 @@ private slots:
 
     void on_treeView_clicked(const QModelIndex &index);
 
+    void on_treeView_pressed(const QModelIndex &index);
+
 protected:
     void resizeEvent(QResizeEvent *event);
+
+    // QWidget interface
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 };
 //! \}
 #endif // TASKLISTVIEW_H
