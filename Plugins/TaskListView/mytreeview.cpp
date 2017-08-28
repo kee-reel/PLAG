@@ -8,7 +8,6 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
     setHeaderHidden(true);
     setDropIndicatorShown(true);
     setAlternatingRowColors(true);
-    setExpandsOnDoubleClick(true);
     setDragDropOverwriteMode(false);
 
     setIndentation(40);
@@ -24,6 +23,7 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
     "    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #D9E5E6, stop: 1 #C4D0D0);     "
     "}                                                                                                  "
     );
+    setExpandsOnDoubleClick(false);
 
 #ifdef Q_OS_ANDROID
     setDragEnabled(false);

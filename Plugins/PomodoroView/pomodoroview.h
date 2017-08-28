@@ -56,10 +56,11 @@ public slots:
 
     // IViewPlugin interface
 public slots:
-    bool Open(IModelPlugin *model, QWidget *parent) override;
+    bool Open(IModelPlugin *model) override;
     bool Close() override;
 
 signals:
+    void OnOpen(QWidget*);
     void OnClose(PluginInfo*);
     void OnClose();
 

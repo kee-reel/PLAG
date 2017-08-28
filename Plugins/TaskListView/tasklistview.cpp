@@ -3,7 +3,7 @@
 TaskListView::TaskListView()
 {
     mainForm = new MainForm;
-
+    connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
     myModel = NULL;
     taskTree = NULL;
     proxyModel = NULL;
@@ -21,7 +21,17 @@ void TaskListView::SetPluginInfo(PluginInfo *pluginInfo)
 
 void TaskListView::OnAllSetup()
 {
-
+//    QFile f(":Res/qdarkstyle/style.qss");
+//    if (!f.exists())
+//    {
+//        printf("Unable to set stylesheet, file not found\n");
+//    }
+//    else
+//    {
+//        f.open(QFile::ReadOnly | QFile::Text);
+//        QTextStream ts(&f);
+//        qApp->setStyleSheet(ts.readAll());
+//    }
 }
 
 QString TaskListView::GetLastError()
@@ -52,9 +62,8 @@ void TaskListView::ReferencePluginClosed(PluginInfo *pluginInfo)
 
 }
 
-bool TaskListView::Open(IModelPlugin *model, QWidget* parent)
+bool TaskListView::Open(IModelPlugin *model)
 {
-    qDebug() << "View OPEN" << parent;
     if(!myModel)
     {
         qDebug() << "Model isn't set!";
@@ -67,27 +76,20 @@ bool TaskListView::Open(IModelPlugin *model, QWidget* parent)
         proxyModel = new DesignProxyModel(taskTree);
         mainForm->SetModel(proxyModel);
     }
+    emit OnOpen(mainForm);
 
-    if(parent) parent->layout()->addWidget(mainForm);
-    connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
-    mainForm->setParent(parent);
-    mainForm->show();
     return true;
 }
 
 bool TaskListView::Close()
 {
     qDebug() << "CLOSE";
-    disconnect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
-    mainForm->hide();
     emit OnClose();
     emit OnClose(pluginInfo);
-    //myModel->CloseFromView(this);
     return true;
 }
 
 void TaskListView::OpenTaskEditor(int id)
 {
     qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!!!" << id;
-    //Open(NULL, );
 }

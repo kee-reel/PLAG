@@ -1,0 +1,8 @@
+{
+    "Type": "PluginView",
+    "Interface": "IGridMainMenuView",
+    "Name": "GridMainMenuView",
+    "RelatedPluginInterfaces": [
+        "IMainMenuModel"
+    ]
+}

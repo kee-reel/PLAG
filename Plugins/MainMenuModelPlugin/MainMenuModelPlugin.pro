@@ -10,14 +10,16 @@ QT += widgets sql
 SOURCES += \
     mainmenumodelplugin.cpp \
     pluginlinker.cpp \
-    pluginhandler.cpp
+    pluginhandler.cpp \
+    widgetstack.cpp
 
 HEADERS +=\
     imainmenumodule.h \
     mainmenumodelplugin.h \
     pluginlinker.h \
     interfaces.h \
-    pluginhandler.h
+    pluginhandler.h \
+    widgetstack.h
 
 include(../../System/MASS/BuildInfo.pri)
 

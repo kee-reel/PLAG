@@ -31,6 +31,7 @@ private:
     PluginInfo *pluginInfo;
 
 signals:
+    void OnOpen(QWidget *);
     void OnClose(PluginInfo*);
     void OnClose();
 
@@ -46,7 +47,7 @@ public slots:
 
     // IViewPlugin interface
 public slots:
-    bool Open(IModelPlugin *model, QWidget *parent) override;
+    bool Open(IModelPlugin *model) override;
     bool Close() override;
 };
 //! \}

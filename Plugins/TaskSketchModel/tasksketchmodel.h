@@ -28,7 +28,6 @@ private:
     ITaskTreeModel *myModel;
     QAbstractItemModel *taskModel;
     QAbstractItemModel *sketchItemModel;
-    QWidget *myParentWidget;
     int myModelId;
     int activeViewId;
     int activeModelId;
@@ -53,7 +52,7 @@ public slots:
 
     // IModelPlugin interface
 public slots:
-    bool Open(IModelPlugin *model, QWidget *modelWidget) override;
+    bool Open(IModelPlugin *model) override;
     void Close() override;
 
     // ITaskSketchModel interface

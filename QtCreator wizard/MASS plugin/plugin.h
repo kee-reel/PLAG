@@ -5,6 +5,9 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
+@if '%{PluginType}' === 'View'
+#include <QLayout>
+@endif
 
 #include "%{IFileName}"
 
@@ -57,13 +60,13 @@ public:
 @elsif '%{PluginType}' === 'Model'
     // IModelPlugin interface
 public slots:
-    bool Open(IModelPlugin *model, QWidget *modelWidget) override;
+    bool Open(IModelPlugin *model, QWidget *referenceWidget) override;
     void Close() override;
 
 @elsif '%{PluginType}' === 'View'
     // IViewPlugin interface
 public slots:
-    bool Open(IModelPlugin *model, QWidget *parent) override;
+    bool Open(IModelPlugin *model, QWidget *referenceWidget) override;
     bool Close() override;
 
 @elsif '%{PluginType}' === 'DataManager'

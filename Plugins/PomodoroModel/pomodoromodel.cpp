@@ -82,18 +82,17 @@ void PomodoroModel::ReferencePluginClosed(PluginInfo *pluginInfo)
     Close();
 }
 
-bool PomodoroModel::Open(IModelPlugin *parent, QWidget *parentWidget)
+bool PomodoroModel::Open(IModelPlugin *parent)
 {
     qDebug() << "PomodoroModel runs";
     if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
     }
-    myParentWidget = parentWidget;
     activeViewId = 0;
     SetupModel();
     qDebug() << viewPlugins[activeViewId]->Meta->Name;
-    if(!viewPlugins[activeViewId]->Plugin.view->Open(this, myParentWidget)){
+    if(!viewPlugins[activeViewId]->Plugin.view->Open(this)){
         qDebug() << "Can't open first view!";
         return false;
     }

@@ -60,15 +60,12 @@ void PomodoroView::ReferencePluginClosed(PluginInfo *pluginInfo)
 
 }
 
-bool PomodoroView::Open(IModelPlugin *model, QWidget *parent)
+bool PomodoroView::Open(IModelPlugin *model)
 {
-    qDebug() << "View OPEN" << parent;
     if(!myModel){
         qDebug() << "Model isn't set!";
         return false;
     }
-    parent->layout()->addWidget(this);
-    setParent(parent);
     auto columns = QVector<int> {0};
     proxyModel = new DesignProxyModel(myModel->GetInternalModel(), columns);
     currentProject = myModel->GetActiveProject();
@@ -77,14 +74,12 @@ bool PomodoroView::Open(IModelPlugin *model, QWidget *parent)
     addForm->SetModel(proxyModel);
     ui->labelProject->setText(currentProject->data().toString());
     ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
-    show();
+    emit OnOpen(this);
     return true;
 }
 
 bool PomodoroView::Close()
 {
-    qDebug() << "CLOSE";
-    hide();
     emit OnClose(pluginInfo);
     emit OnClose();
     return true;

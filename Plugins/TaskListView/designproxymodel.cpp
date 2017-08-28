@@ -11,10 +11,18 @@ QVariant DesignProxyModel::data(const QModelIndex &index, int role) const
     QModelIndex proxyIndex = index;//createIndex(index.row(), 1, index.internalPointer());
     switch (role) {
     case Qt::SizeHintRole:
-        return QSize(0, 50);
+#ifdef Q_OS_ANDROID
+    return QSize(0, 80);
+#else
+    return QSize(0, 30);
+#endif
         break;
     case Qt::FontRole:
-        return QFont("Segoe UI", 20, QFont::Bold);
+#ifdef Q_OS_ANDROID
+    return QFont("Segoe UI", 26, QFont::Bold);
+#else
+    return QFont("Segoe UI", 14, QFont::Bold);
+#endif
         break;
     case Qt::BackgroundRole: {
         int color = 100 + index.row()*10;

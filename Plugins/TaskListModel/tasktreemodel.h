@@ -25,14 +25,8 @@ public:
 public slots:
     void ReferencePluginClosed(PluginInfo *pluginInfo) override;
     // IModelPlugin interface
-public:
-//    void AddDataManager(QObject *dataManager) override;
-//    void AddModel(QObject *instance, MetaInfo *meta) override;
-//    void AddView(QObject *instance, MetaInfo *meta) override;
 public slots:
-    bool Open(IModelPlugin *model, QWidget *modelWidget) override;
-//    void RelatedModelClosed(IModelPlugin *model) override;
-//    void RelatedViewClosed(IViewPlugin *view) override;
+    bool Open(IModelPlugin *model) override;
     void Close() override;
 signals:
     void OnClose(PluginInfo *pluginInfo);
@@ -56,7 +50,6 @@ private:
 
     // Native part
     IModelPlugin *myParent;
-    QWidget *myParentWidget;
     IViewPlugin *activeView;
     IModelPlugin *activeModel;
     PluginInfo *pluginInfo;

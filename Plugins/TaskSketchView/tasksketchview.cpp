@@ -58,25 +58,21 @@ void TaskSketchView::ReferencePluginClosed(PluginInfo *pluginInfo)
 
 }
 
-bool TaskSketchView::Open(IModelPlugin *model, QWidget *parent)
+bool TaskSketchView::Open(IModelPlugin *model)
 {
-    qDebug() << "View OPEN" << parent;
     if(!myModel)
     {
         qDebug() << "Model isn't set!";
         return false;
     }
-    parent->layout()->addWidget(mainForm);
-    mainForm->setParent(parent);
-    mainForm->show();
     mainForm->SetModel(myModel);
+    emit OnOpen(mainForm);
     return true;
 }
 
 bool TaskSketchView::Close()
 {
-    qDebug() << "CLOSE";
-    mainForm->hide();
+    qDebug() << "ClOsE";
     emit OnClose(pluginInfo);
     emit OnClose();
     return true;

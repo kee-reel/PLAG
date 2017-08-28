@@ -24,7 +24,7 @@ public:
 
     //! \brief Starts plugin work. Some kind of 'start' signal.
     //! \param parentWidget This will be parent widget for all widgets in app.
-    virtual void Open(QWidget* parentWidget) = 0;
+    virtual void Run(QWidget* parentWidget) = 0;
 };
 Q_DECLARE_INTERFACE(IRootModelPlugin, "IRootModelPlugin v0.1")
 //! @}

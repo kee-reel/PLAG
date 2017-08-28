@@ -23,13 +23,14 @@ void AddForm::SetModel(QAbstractItemModel *model)
     mapper->addMapping(ui->lineEdit_2, 0);
 }
 
-void AddForm::ShowModelData(const QModelIndex &index)
+void AddForm::ShowModelData(const QModelIndex &index, bool isNew)
 {
     show();
     ui->lineEdit_2->setFocus();
     mapper->setRootIndex(index.parent());
     mapper->setCurrentModelIndex(index);
-    qDebug() << "=========================" << index.data() << index.row() << mapper->currentIndex();
+    if(isNew)
+        ui->lineEdit_2->setText("");
 }
 
 void AddForm::on_buttonOk_clicked()
@@ -46,24 +47,29 @@ void AddForm::on_buttonClose_clicked()
 
 bool AddForm::event(QEvent *event)
 {
-    qDebug() << event->type();
+    qDebug() << "!Event!" << event->type();
     switch (event->type()) {
     case QEvent::KeyRelease:{
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-        qDebug() << keyEvent->key();
         switch (keyEvent->key()) {
+#ifdef Q_OS_ANDROID
+        case Qt::Key_Return:
+            on_buttonOk_clicked();
+            break;
+#else
         case Qt::Key_Enter:
-            qDebug() << event->type();
             on_buttonOk_clicked();
             break;
         case Qt::Key_Escape:
             on_buttonClose_clicked();
             break;
+#endif
         default:
+            qDebug() << "!Keycode!" << keyEvent->key();
             break;
         }
-    }break;
 
+    }break;
     default:
         return false;
         break;

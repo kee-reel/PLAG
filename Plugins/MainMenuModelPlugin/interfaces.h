@@ -104,10 +104,11 @@ class IViewPlugin : public IPlugin
 {
 public:
     virtual ~IViewPlugin() {}
-//    virtual void AddModel(QObject *model) = 0;
 public slots:
-    virtual bool Open(IModelPlugin* model, QWidget* parent) = 0;
+    virtual bool Open(IModelPlugin* model) = 0;
     virtual bool Close() = 0;
+signals:
+    void OnOpen(QWidget*);
 };
 Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
 
@@ -116,13 +117,8 @@ class IModelPlugin : public IPlugin
 {
 public:
     virtual ~IModelPlugin() {}
-//    virtual void AddDataManager(QObject *dataManager) = 0;
-//    virtual void AddModel(QObject *instance, MetaInfo *meta) = 0;
-//    virtual void AddView(QObject *instance, MetaInfo *meta) = 0;
 public slots:
-    virtual bool Open(IModelPlugin* model, QWidget* modelWidget) = 0;
-//    virtual void RelatedModelClosed(IModelPlugin* model) = 0;
-//    virtual void RelatedViewClosed(IViewPlugin* view) = 0;
+    virtual bool Open(IModelPlugin* model) = 0;
     virtual void Close() = 0;
 };
 Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")

@@ -85,8 +85,8 @@ bool %{CN}::Open(IModelPlugin *model, QWidget *referenceWidget)
         return false;
     }
 
-    setParent(parent);
-    parent->layout()->addWidget(this);
+    setParent(referenceWidget);
+    referenceWidget->layout()->addWidget(this);
     return true;
 }
 @endif
