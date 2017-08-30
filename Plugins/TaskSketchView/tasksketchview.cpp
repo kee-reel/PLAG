@@ -72,7 +72,6 @@ bool TaskSketchView::Open(IModelPlugin *model)
 
 bool TaskSketchView::Close()
 {
-    qDebug() << "ClOsE";
     emit OnClose(pluginInfo);
     emit OnClose();
     return true;

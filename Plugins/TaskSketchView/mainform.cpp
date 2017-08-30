@@ -5,6 +5,7 @@ MainForm::MainForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainForm)
 {
+    myModel = NULL;
     ui->setupUi(this);
     galleryForm = new GalleryForm(this);
     galleryForm->setVisible(false);
@@ -23,10 +24,12 @@ MainForm::~MainForm()
 
 void MainForm::SetModel(ITaskSketchModel *model)
 {
+    if(myModel != NULL)
+        return;
+
     myModel = model;
     taskModel = model->GetModel();
     sketchModel = model->GetInternalModel();
-
     galleryForm->SetModel(sketchModel);
 
     int n = sketchModel->rowCount();
