@@ -58,11 +58,17 @@ NotificationClient::NotificationClient(QObject *parent)
     connect(this, SIGNAL(notificationChanged()), this, SLOT(updateAndroidNotification()));
 }
 
-void NotificationClient::setNotification(const QString &title, const QString &message)
+void NotificationClient::SetNotification(const QString &title, const QString &message)
 {
     this->title = title;
     this->message = message;
-    emit notificationChanged();
+    QAndroidJniObject javaTitle = QAndroidJniObject::fromString(title);
+    QAndroidJniObject javaMessage = QAndroidJniObject::fromString(message);
+    QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/NotificationClient",
+                                       "notify",
+                                       "(Ljava/lang/String;Ljava/lang/String;)V",
+                                              javaTitle.object<jstring>(),
+                                              javaMessage.object<jstring>());
 }
 
 QString NotificationClient::GetTitle() const
@@ -75,13 +81,45 @@ QString NotificationClient::GetMessage() const
     return message;
 }
 
-void NotificationClient::updateAndroidNotification()
+void NotificationClient::ShowToast(const QString &message, Duration duration)
 {
-    QAndroidJniObject javaTitle = QAndroidJniObject::fromString(title);
-    QAndroidJniObject javaMessage = QAndroidJniObject::fromString(message);
-    QAndroidJniObject::callStaticMethod<void>("com/MASS/NotificationClient",
-                                       "notify",
-                                       "(Ljava/lang/String;Ljava/lang/String;)V",
-                                              javaTitle.object<jstring>(),
-                                              javaMessage.object<jstring>());
+    // all the magic must happen on Android UI thread
+    QtAndroid::runOnAndroidThread([message, duration] {
+        QAndroidJniObject javaString = QAndroidJniObject::fromString(message);
+        QAndroidJniObject toast = QAndroidJniObject::callStaticObjectMethod("android/widget/Toast", "makeText",
+                                                                            "(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;",
+                                                                            QtAndroid::androidActivity().object(),
+                                                                            javaString.object(),
+                                                                            jint(duration));
+        toast.callMethod<void>("show");
+    });
+}
+
+void NotificationClient::PlanApplicationRun(TimePlanning timePlan, int secs)
+{
+    auto activity = QtAndroid::androidActivity();
+    auto packageManager = activity.callObjectMethod("getPackageManager",
+                                                    "()Landroid/content/pm/PackageManager;");
+
+    auto activityIntent = packageManager.callObjectMethod("getLaunchIntentForPackage",
+                                                          "(Ljava/lang/String;)Landroid/content/Intent;",
+                                                          activity.callObjectMethod("getPackageName",
+                                                          "()Ljava/lang/String;").object());
+
+    auto pendingIntent = QAndroidJniObject::callStaticObjectMethod("android/app/PendingIntent", "getActivity",
+                                                                   "(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;",
+                                                                   activity.object(), jint(0), activityIntent.object(),
+                                                                   QAndroidJniObject::getStaticField<jint>("android/content/Intent",
+                                                                                                           "FLAG_ACTIVITY_CLEAR_TOP"));
+
+    auto alarmManager = activity.callObjectMethod("getSystemService",
+                                                  "(Ljava/lang/String;)Ljava/lang/Object;",
+                                                  QAndroidJniObject::getStaticObjectField("android/content/Context",
+                                                                                          "ALARM_SERVICE",
+                                                                                          "Ljava/lang/String;").object());
+
+    alarmManager.callMethod<void>("set",
+                                  "(IJLandroid/app/PendingIntent;)V",
+                                  QAndroidJniObject::getStaticField<jint>("android/app/AlarmManager", "RTC_WAKEUP"),
+                                  jlong(QDateTime::currentMSecsSinceEpoch() + secs * 1000), pendingIntent.object());
 }

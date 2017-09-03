@@ -65,4 +65,7 @@ android {
 DISTFILES += \
     BuildInfo.pri \
     android/NotificationClient.java \
-    android/src/NotificationClient.java
+    android/src/NotificationClient.java \
+    android/src/AlarmManagerBroadcastReceiver.java \
+    android/src/com/mass/mainapp/NotificationClient.java \
+    android/src/com/mass/mainapp/AlarmReceiver.java

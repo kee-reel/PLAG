@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.qtproject.example"
+    package="com.MASS"
     android:installLocation="auto"
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="16" />
+    <uses-sdk android:minSdkVersion="16" />
 
     <supports-screens
         android:anyDensity="true"
@@ -34,11 +32,12 @@
     <application
         android:name="org.qtproject.qt5.android.bindings.QtApplication"
         android:hardwareAccelerated="true"
-        android:label="-- %%INSERT_APP_NAME%% --" >
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
         <activity
-            android:name="org.qtproject.qt5.android.bindings.QtActivity"
+            android:name="com.MASS.NotificationClient"
             android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation"
-            android:label="-- %%INSERT_APP_NAME%% --"
+            android:label="MASS"
             android:launchMode="singleTop"
             android:screenOrientation="unspecified" >
             <intent-filter>
@@ -120,7 +119,7 @@
             -->
             <meta-data
                 android:name="android.app.background_running"
-                android:value="false" />
+                android:value="true" />
             <!-- Background running -->
 
 

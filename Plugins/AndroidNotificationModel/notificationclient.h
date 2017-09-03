@@ -52,22 +52,31 @@
 #define NOTIFICATIONCLIENT_H
 
 #include <QObject>
+#include <QtAndroid>
+#include <QDateTime>
+#include <QApplication>
 
 class NotificationClient : public QObject
 {
     Q_OBJECT
 public:
+    enum Duration {
+        SHORT = 0,
+        LONG = 1
+    };
+
+    enum TimePlanning {
+        UTC,
+        FROM_DEVICE_START,
+    };
+
     explicit NotificationClient(QObject *parent = 0);
 
-    void setNotification(const QString &title, const QString &message);
+    void SetNotification(const QString &title, const QString &message);
     QString GetTitle() const;
     QString GetMessage() const;
-
-signals:
-    void notificationChanged();
-
-private slots:
-    void updateAndroidNotification();
+    void ShowToast(const QString &message, Duration duration = LONG);
+    void PlanApplicationRun(TimePlanning timePlan, int secs);
 
 private:
     QString title;

@@ -39,7 +39,7 @@ signals:
 
     // IModelPlugin interface
 public slots:
-    bool Open(IModelPlugin *model, QWidget *modelWidget) override;
+    bool Open(IModelPlugin *model) override;
     void Close() override;
 
     // IAndroidNotificationModel interface
