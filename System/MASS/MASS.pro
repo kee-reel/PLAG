@@ -67,5 +67,5 @@ DISTFILES += \
     android/NotificationClient.java \
     android/src/NotificationClient.java \
     android/src/AlarmManagerBroadcastReceiver.java \
-    android/src/com/mass/mainapp/NotificationClient.java \
-    android/src/com/mass/mainapp/AlarmReceiver.java
+    android/src/com/mass/mainapp/AlarmReceiver.java \
+    android/src/com/mass/mainapp/QtActivityExtention.java

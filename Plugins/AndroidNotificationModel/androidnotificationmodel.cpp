@@ -4,7 +4,6 @@ AndroidNotificationModel::AndroidNotificationModel()
 {
     openedView = NULL;
     openedModel = NULL;
-    notificationClient = new NotificationClient();
 }
 
 AndroidNotificationModel::~AndroidNotificationModel()
@@ -91,7 +90,59 @@ void AndroidNotificationModel::Close()
     emit OnClose();
 }
 
-void AndroidNotificationModel::PushNotification(QString title, QString message)
+void AndroidNotificationModel::ShowNotification(int id, QString title, QString message)
 {
-    notificationClient->SetNotification(title, message);
+    QAndroidJniObject javaTitle = QAndroidJniObject::fromString(title);
+    QAndroidJniObject javaMessage = QAndroidJniObject::fromString(message);
+
+    QAndroidJniObject::callStaticMethod<void>(CLASS_NAME, "showNotification",
+                "(I;Ljava/lang/String;Ljava/lang/String;)V",
+                    jint(id),
+                    javaTitle.object<jstring>(),
+                    javaMessage.object<jstring>());
+}
+
+void AndroidNotificationModel::CancelNotification(int id)
+{
+    QAndroidJniObject::callStaticMethod<void>(CLASS_NAME, "closeNotification",
+                "(I;)V",
+                    jint(id));
+}
+
+void AndroidNotificationModel::ShowToast(const QString &message, Duration duration)
+{
+    QAndroidJniObject javaMessage = QAndroidJniObject::fromString(message);
+    QAndroidJniObject::callStaticMethod<void>(CLASS_NAME, "showToast",
+                "(Ljava/lang/String;I)V",
+                    javaMessage.object<jstring>(),
+                    jint(duration));
+}
+
+void AndroidNotificationModel::PlanApplicationWakeup(TimePlanning timePlan, int secs)
+{
+    auto activity = QtAndroid::androidActivity();
+    auto packageManager = activity.callObjectMethod("getPackageManager",
+                                                    "()Landroid/content/pm/PackageManager;");
+
+    auto activityIntent = packageManager.callObjectMethod("getLaunchIntentForPackage",
+                                                          "(Ljava/lang/String;)Landroid/content/Intent;",
+                                                          activity.callObjectMethod("getPackageName",
+                                                          "()Ljava/lang/String;").object());
+
+    auto pendingIntent = QAndroidJniObject::callStaticObjectMethod("android/app/PendingIntent", "getActivity",
+                                                                   "(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;",
+                                                                   activity.object(), jint(0), activityIntent.object(),
+                                                                   QAndroidJniObject::getStaticField<jint>("android/content/Intent",
+                                                                                                           "FLAG_ACTIVITY_CLEAR_TOP"));
+
+    auto alarmManager = activity.callObjectMethod("getSystemService",
+                                                  "(Ljava/lang/String;)Ljava/lang/Object;",
+                                                  QAndroidJniObject::getStaticObjectField("android/content/Context",
+                                                                                          "ALARM_SERVICE",
+                                                                                          "Ljava/lang/String;").object());
+
+    alarmManager.callMethod<void>("set",
+                                  "(IJLandroid/app/PendingIntent;)V",
+                                  QAndroidJniObject::getStaticField<jint>("android/app/AlarmManager", "RTC_WAKEUP"),
+                                  jlong(QDateTime::currentMSecsSinceEpoch() + secs * 1000), pendingIntent.object());
 }

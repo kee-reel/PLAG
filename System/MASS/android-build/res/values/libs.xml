@@ -41,7 +41,9 @@
 <item>libplugins_qmltooling_libqmldbg_debugger.so:plugins/qmltooling/libqmldbg_debugger.so</item>
 <item>libplugins_qmltooling_libqmldbg_inspector.so:plugins/qmltooling/libqmldbg_inspector.so</item>
 <item>libplugins_qmltooling_libqmldbg_local.so:plugins/qmltooling/libqmldbg_local.so</item>
+<item>libplugins_qmltooling_libqmldbg_messages.so:plugins/qmltooling/libqmldbg_messages.so</item>
 <item>libplugins_qmltooling_libqmldbg_native.so:plugins/qmltooling/libqmldbg_native.so</item>
+<item>libplugins_qmltooling_libqmldbg_nativedebugger.so:plugins/qmltooling/libqmldbg_nativedebugger.so</item>
 <item>libplugins_qmltooling_libqmldbg_profiler.so:plugins/qmltooling/libqmldbg_profiler.so</item>
 <item>libplugins_qmltooling_libqmldbg_quickprofiler.so:plugins/qmltooling/libqmldbg_quickprofiler.so</item>
 <item>libplugins_qmltooling_libqmldbg_server.so:plugins/qmltooling/libqmldbg_server.so</item>
@@ -50,9 +52,7 @@
 <item>libplugins_audio_libqtaudio_opensles.so:plugins/audio/libqtaudio_opensles.so</item>
 <item>libplugins_video_videonode_libqtsgvideonode_android.so:plugins/video/videonode/libqtsgvideonode_android.so</item>
 <item>libplugins_playlistformats_libqtmultimedia_m3u.so:plugins/playlistformats/libqtmultimedia_m3u.so</item>
-<item>libplugins_sqldrivers_libc.so:plugins/sqldrivers/libc.so</item>
 <item>libplugins_sqldrivers_libqsqlite.so:plugins/sqldrivers/libqsqlite.so</item>
-<item>libplugins_sqldrivers_libsqlitecipher.so:plugins/sqldrivers/libsqlitecipher.so</item>
 
     </array>
     <array name="bundled_in_assets">

@@ -4,9 +4,10 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
+#include <QtAndroid>
+#include <QDateTime>
 
 #include "iandroidnotificationmodel.h"
-#include "notificationclient.h"
 
 //! addtogroup AndroidNotificationModel_imp
 //! {
@@ -44,7 +45,10 @@ public slots:
 
     // IAndroidNotificationModel interface
 public:
-    void PushNotification(QString title, QString message) override;
+    void ShowNotification(int id, QString title, QString message) override;
+    void CancelNotification(int id) override;
+    void ShowToast(const QString &message, IAndroidNotificationModel::Duration duration = LONG) override;
+    void PlanApplicationWakeup(TimePlanning timePlan, int secs) override;
 
 private:
     QWidget *referenceWidget;
@@ -55,10 +59,8 @@ private:
     PluginInfo *openedView;
     QList< PluginInfo* > relatedViewPlugins;
 
-    NotificationClient *notificationClient;
 
-private:
-    // Write your internal methods here
+    const QString CLASS_NAME = "com/mass/mainapp/QtActivityExtention";
 };
 //! }
 #endif // ANDROIDNOTIFICATIONMODEL_H
