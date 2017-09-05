@@ -1,6 +1,10 @@
 {
-    "Name":         "TaskSketchModel",
-    "PluginType":   "PluginModel",
-    "ParentName":   "TaskListModel",
-    "DataManager":  "ExtendableDataBaseManager"
+    "Type": "PluginModel",
+    "Interface": "IDayPlanModel",
+    "Name": "DayPlanModel",
+    "RelatedPluginInterfaces": [
+        "ITaskTreeModel",
+        "IExtendableDataBaseManager",
+        "IMainMenuModel"
+    ]
 }

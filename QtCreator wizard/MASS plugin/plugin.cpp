@@ -1,9 +1,19 @@
 #include "%{HdrFileName}"
 
-%{CN}::%{CN}()
+
+@if '%{PluginType}' === 'View'
+%{CN}::%{CN}() :
+    QWidget(parent)/*,
+    ui(new Ui::Form)*/
+@elds
+    %{CN}::%{CN}() 
+@endif
 {
     openedView = NULL;
     openedModel = NULL;
+    /*
+    ui->setupUi(this);
+    */
 }
 
 %{CN}::~%{CN}()
@@ -56,7 +66,7 @@ void %{CN}::ReferencePluginClosed(PluginInfo *pluginInfo)
 }
 
 @if '%{PluginType}' === 'Model'
-bool %{CN}::Open(IModelPlugin *parent, QWidget *referenceWidget)
+bool %{CN}::Open(IModelPlugin *parent)
 {
     qDebug() << "%{CN} open.";
     if(relatedViewPlugins.count() == 0){
@@ -64,10 +74,9 @@ bool %{CN}::Open(IModelPlugin *parent, QWidget *referenceWidget)
         return false;
     }
 
-    this->referenceWidget = referenceWidget;
     openedView = relatedViewPlugins.first();
     qDebug() << "%{CN} opens related view " << openedView->Meta->Name;
-    if(!openedView->Plugin.view->Open(this, this->referenceWidget)){
+    if(!openedView->Plugin.view->Open(this)){
         qDebug() << "!Can't open first view!";
         openedView = NULL;
         return false;
@@ -75,7 +84,7 @@ bool %{CN}::Open(IModelPlugin *parent, QWidget *referenceWidget)
     return true;
 }
 @elsif '%{PluginType}' === 'View'
-bool %{CN}::Open(IModelPlugin *model, QWidget *referenceWidget)
+bool %{CN}::Open(IModelPlugin *model)
 {
     qDebug() << "%{CN} open.";
 
@@ -85,8 +94,7 @@ bool %{CN}::Open(IModelPlugin *model, QWidget *referenceWidget)
         return false;
     }
 
-    setParent(referenceWidget);
-    referenceWidget->layout()->addWidget(this);
+    emit OnOpen(this);
     return true;
 }
 @endif
