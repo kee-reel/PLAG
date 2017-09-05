@@ -3,7 +3,7 @@ package com.mass.mainapp;
 import org.qtproject.qt5.android.bindings.QtActivity;
 import android.app.Activity;
 import android.app.AlarmManager;
-import android.support.v4.app;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -20,25 +20,25 @@ public class QtActivityExtention extends QtActivity
     private static final String TAG = "QtActivityExtention";
     private static QtActivityExtention instance;
 
-    private static NotificationManagerCompat notificationManager;
-    private static NotificationCompat.Builder notificationBuilder;
+    private static NotificationManager notificationManager;
+    private static Notification.Builder notificationBuilder;
 
+    private static PendingIntent contentIntent;
     private static PendingIntent pendingIntent;
 
-    public NotificationClient()
-    {
-        instance = this;
-    }
+    public QtActivityExtention() { instance = this; }
 
 @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-        notificationManager = NotificationManagerCompat.from(instance);
-        notificationBuilder = new NotificationCompat.Builder(instance);
+//        Intent intent = new Intent(instance, QtActivityExtention.class);
+//        contentIntent = PendingIntent.getActivity(instance, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationBuilder = new Notification.Builder(instance);
         notificationBuilder
-            .setContentIntent(contentIntent)
+//            .setContentIntent(contentIntent)
             .setSmallIcon(R.drawable.icon);
 
         /* Retrieve a PendingIntent that will perform a broadcast */
@@ -58,8 +58,9 @@ public class QtActivityExtention extends QtActivity
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public static void showNotification(int notifyId, String title, String message)
+    public static void showNotification(String title, String message, int notifyId)
     {
+        Log.i(TAG, "showNotification");
         notificationBuilder
             .setContentTitle(title)
             .setContentText(message)
@@ -72,33 +73,36 @@ public class QtActivityExtention extends QtActivity
 
     public static void cancelNotification(int notifyId)
     {
+        Log.i(TAG, "cancelNotification");
         notificationManager.cancel(notifyId);
     }
 
     public static void showToast(String msg, int delay)
     {
+        Log.i(TAG, "showToast");
         final String tmpStr = msg;
-        runOnUiThread(new Runnable()
+        final int tmpDelay = delay;
+        instance.runOnUiThread(new Runnable()
         {
             @Override
             public void run()
             {
-                Toast.makeText(NotificationClient.this, tmpStr, delay).show();
+                Toast.makeText(instance, tmpStr, tmpDelay).show();
             }
         });
     }
 
-    public static void start() {
+    public static void startAlarm() {
         AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
         int interval = 8000;
 
-        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-        MakeToast("Alarm set!");
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
+        showToast("Alarm set!", 1000);
     }
 
-    public static void cancel() {
+    public static void cancelAlarm() {
         AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
         manager.cancel(pendingIntent);
-        MakeToast("Alarm Canceled");
+        showToast("Alarm Canceled", 1000);
     }
 }

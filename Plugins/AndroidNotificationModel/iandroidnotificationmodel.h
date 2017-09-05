@@ -27,10 +27,12 @@ public:
     };
 
     // Write your interface methods here
-    virtual void ShowNotification(int id, QString title, QString message) = 0;
+    virtual void ShowNotification(QString title, QString message, int id = 0) = 0;
     virtual void CancelNotification(int id = 0) = 0;
     virtual void ShowToast(const QString &message, IAndroidNotificationModel::Duration duration = LONG) = 0;
     virtual void PlanApplicationWakeup(TimePlanning timePlan, int secs) = 0;
+    virtual void StartAlarm() = 0;
+    virtual void CancelAlarm() = 0;
 };
 //! }
 Q_DECLARE_INTERFACE(IAndroidNotificationModel, "IAndroidNotificationModel")

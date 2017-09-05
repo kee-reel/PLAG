@@ -45,10 +45,12 @@ public slots:
 
     // IAndroidNotificationModel interface
 public:
-    void ShowNotification(int id, QString title, QString message) override;
+    void ShowNotification(QString title, QString message, int id = 0) override;
     void CancelNotification(int id) override;
     void ShowToast(const QString &message, IAndroidNotificationModel::Duration duration = LONG) override;
     void PlanApplicationWakeup(TimePlanning timePlan, int secs) override;
+    void StartAlarm() override;
+    void CancelAlarm() override;
 
 private:
     QWidget *referenceWidget;
@@ -58,9 +60,6 @@ private:
     QList< PluginInfo* > relatedModelPlugins;
     PluginInfo *openedView;
     QList< PluginInfo* > relatedViewPlugins;
-
-
-    const QString CLASS_NAME = "com/mass/mainapp/QtActivityExtention";
 };
 //! }
 #endif // ANDROIDNOTIFICATIONMODEL_H
