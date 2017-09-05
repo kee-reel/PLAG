@@ -53,7 +53,7 @@ public slots:
     void ReferencePluginClosed(PluginInfo *pluginInfo) override;
 
 //    void AddModel(QObject *model) override;
-    bool Open(IModelPlugin* model, QWidget* parent) override;
+    bool Open(IModelPlugin* model) override;
     bool Close() override;
 
     void SetRootMenuItem(IMainMenuModel::MenuItem *RootMenuItem);
@@ -68,6 +68,7 @@ private slots:
     void ZoomAnimation();
 
 signals:
+    void OnOpen(QWidget *);
     void OnClose(PluginInfo *pointer);
     void OnClose();
     void OnItemSelected(IMainMenuModel::MenuItem *meta, MetaInfo *viewMeta);

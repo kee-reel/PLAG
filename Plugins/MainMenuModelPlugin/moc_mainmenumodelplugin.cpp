@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainmenumodelplugin.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.8.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,7 +13,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainmenumodelplugin.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.8.0. It"
+#error "This file was generated using the moc from 5.9.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainMenuModelPlugin_t {
-    QByteArrayData data[13];
-    char stringdata0[134];
+    QByteArrayData data[11];
+    char stringdata0[113];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,15 +42,12 @@ QT_MOC_LITERAL(6, 71, 10), // "pluginInfo"
 QT_MOC_LITERAL(7, 82, 4), // "Open"
 QT_MOC_LITERAL(8, 87, 13), // "IModelPlugin*"
 QT_MOC_LITERAL(9, 101, 5), // "model"
-QT_MOC_LITERAL(10, 107, 8), // "QWidget*"
-QT_MOC_LITERAL(11, 116, 11), // "modelWidget"
-QT_MOC_LITERAL(12, 128, 5) // "Close"
+QT_MOC_LITERAL(10, 107, 5) // "Close"
 
     },
     "MainMenuModelPlugin\0OnClose\0\0PluginInfo*\0"
     "pointer\0ReferencePluginClosed\0pluginInfo\0"
-    "Open\0IModelPlugin*\0model\0QWidget*\0"
-    "modelWidget\0Close"
+    "Open\0IModelPlugin*\0model\0Close"
 };
 #undef QT_MOC_LITERAL
 
@@ -73,8 +70,8 @@ static const uint qt_meta_data_MainMenuModelPlugin[] = {
 
  // slots: name, argc, parameters, tag, flags
        5,    1,   43,    2, 0x0a /* Public */,
-       7,    2,   46,    2, 0x0a /* Public */,
-      12,    0,   51,    2, 0x0a /* Public */,
+       7,    1,   46,    2, 0x0a /* Public */,
+      10,    0,   49,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -82,7 +79,7 @@ static const uint qt_meta_data_MainMenuModelPlugin[] = {
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    6,
-    QMetaType::Bool, 0x80000000 | 8, 0x80000000 | 10,    9,   11,
+    QMetaType::Bool, 0x80000000 | 8,    9,
     QMetaType::Void,
 
        0        // eod
@@ -97,21 +94,10 @@ void MainMenuModelPlugin::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         case 0: _t->OnClose((*reinterpret_cast< PluginInfo*(*)>(_a[1]))); break;
         case 1: _t->OnClose(); break;
         case 2: _t->ReferencePluginClosed((*reinterpret_cast< PluginInfo*(*)>(_a[1]))); break;
-        case 3: { bool _r = _t->Open((*reinterpret_cast< IModelPlugin*(*)>(_a[1])),(*reinterpret_cast< QWidget*(*)>(_a[2])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+        case 3: { bool _r = _t->Open((*reinterpret_cast< IModelPlugin*(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 4: _t->Close(); break;
         default: ;
-        }
-    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        switch (_id) {
-        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 3:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-            case 1:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QWidget* >(); break;
-            }
-            break;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
@@ -135,7 +121,7 @@ void MainMenuModelPlugin::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
 
 const QMetaObject MainMenuModelPlugin::staticMetaObject = {
     { &QObject::staticMetaObject, qt_meta_stringdata_MainMenuModelPlugin.data,
-      qt_meta_data_MainMenuModelPlugin,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+      qt_meta_data_MainMenuModelPlugin,  qt_static_metacall, nullptr, nullptr}
 };
 
 
@@ -146,7 +132,7 @@ const QMetaObject *MainMenuModelPlugin::metaObject() const
 
 void *MainMenuModelPlugin::qt_metacast(const char *_clname)
 {
-    if (!_clname) return Q_NULLPTR;
+    if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_MainMenuModelPlugin.stringdata0))
         return static_cast<void*>(const_cast< MainMenuModelPlugin*>(this));
     if (!strcmp(_clname, "IMainMenuModel"))
@@ -173,7 +159,7 @@ int MainMenuModelPlugin::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 5)
-            qt_static_metacall(this, _c, _id, _a);
+            *reinterpret_cast<int*>(_a[0]) = -1;
         _id -= 5;
     }
     return _id;
@@ -182,14 +168,14 @@ int MainMenuModelPlugin::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void MainMenuModelPlugin::OnClose(PluginInfo * _t1)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void MainMenuModelPlugin::OnClose()
 {
-    QMetaObject::activate(this, &staticMetaObject, 1, Q_NULLPTR);
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 QT_PLUGIN_METADATA_SECTION const uint qt_section_alignment_dummy = 42;
@@ -211,7 +197,7 @@ static const unsigned char qt_pluginMetaData[] = {
     0x13, 0x00, 'M',  'a',  'i',  'n',  'M',  'e', 
     'n',  'u',  'M',  'o',  'd',  'e',  'l',  'P', 
     'l',  'u',  'g',  'i',  'n',  0x00, 0x00, 0x00,
-    0x1a, 0x00, 0xa1, 0x00, 0x07, 0x00, 'v',  'e', 
+    ':',  ' ',  0xa1, 0x00, 0x07, 0x00, 'v',  'e', 
     'r',  's',  'i',  'o',  'n',  0x00, 0x00, 0x00,
     0x11, 0x00, 0x00, 0x00, 0x05, 0x00, 'd',  'e', 
     'b',  'u',  'g',  0x00, 0x95, 0x10, 0x00, 0x00,
@@ -281,7 +267,7 @@ static const unsigned char qt_pluginMetaData[] = {
     'd',  'e',  'l',  'P',  'l',  'u',  'g',  'i', 
     'n',  0x00, 0x00, 0x00, '1',  0x00, 0x00, 0x00,
     0x05, 0x00, 'd',  'e',  'b',  'u',  'g',  0x00,
-    0x1a, 0x00, 0xa1, 0x00, 0x07, 0x00, 'v',  'e', 
+    ':',  ' ',  0xa1, 0x00, 0x07, 0x00, 'v',  'e', 
     'r',  's',  'i',  'o',  'n',  0x00, 0x00, 0x00,
     0x0c, 0x00, 0x00, 0x00, '0',  0x00, 0x00, 0x00,
     0xdc, 0x00, 0x00, 0x00, 0x04, 0x01, 0x00, 0x00,

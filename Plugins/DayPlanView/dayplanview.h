@@ -1,30 +1,31 @@
-#ifndef DAYPLANMODEL_H
-#define DAYPLANMODEL_H
+#ifndef DAYPLANVIEW_H
+#define DAYPLANVIEW_H
 
-#include <QObject>
+#include <QWidget>
 #include <QDebug>
 #include <QString>
-#include <QAbstractItemModel>
-#include <QDateTime>
 
-#include "idayplanmodel.h"
-#include "../TaskListModel/itasktreemodel.h"
-#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
+#include "idayplanview.h"
+#include "../DayPlanModel/idayplanmodel.h"
 
-//! addtogroup DayPlanModel_imp
+namespace Ui {
+class Form;
+}
+
+//! addtogroup DayPlanView_imp
 //! {
-class DayPlanModel : public QObject, IDayPlanModel
+class DayPlanView : public QWidget, IDayPlanView
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(
-            IModelPlugin
-            IDayPlanModel
+            IViewPlugin
+            IDayPlanView
             )
 
 public:
-    DayPlanModel();
-    ~DayPlanModel();
+    explicit DayPlanView(QWidget *parent = 0);
+    ~DayPlanView();
 
     // IPlugin interface
 public:
@@ -40,13 +41,16 @@ signals:
     void OnClose(PluginInfo*);
     void OnClose();
 
-    // IModelPlugin interface
+    // IViewPlugin interface
 public slots:
     bool Open(IModelPlugin *model) override;
-    void Close() override;
+    bool Close() override;
 
+signals:
+    void OnOpen(QWidget *);
 
 private:
+    QWidget *referenceWidget;
     PluginInfo *pluginInfo;
 
     PluginInfo *openedModel;
@@ -55,14 +59,8 @@ private:
     QList< PluginInfo* > relatedViewPlugins;
 
 private:
-    ITaskTreeModel *taskTreeModel;
-    IExtendableDataBaseManager *dataManager;
-    QString tableName, relationName;
-    QAbstractItemModel *dataModel;
-
-    // IDayPlanModel interface
-public:
-    QAbstractItemModel *GetModel() override;
+    Ui::Form *ui;
+    IDayPlanModel *dayPlanModel;
 };
 //! }
-#endif // DAYPLANMODEL_H
+#endif // DAYPLANVIEW_H

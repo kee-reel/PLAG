@@ -1,13 +1,25 @@
-#ifndef ITASKLISTMODEL_H
-#define ITASKLISTMODEL_H
+#ifndef IDAYPLANMODEL_H
+#define IDAYPLANMODEL_H
 
 #include "../MainMenuModelPlugin/interfaces.h"
 
-class IDayPlanModel: public IModelPlugin
+class QAbstractItemModel;
+
+//! defgroup DayPlanModel
+//!     ingroup MainMenuPlugin_rel_m
+//! defgroup DayPlanModel_int Interface
+//!     ingroup DayPlanModel
+//! defgroup DayPlanModel_imp Implementation
+//!     ingroup DayPlanModel
+
+//! addtogroup DayPlanModel_int
+//! {
+class IDayPlanModel :
+        public IModelPlugin
 {
 public:
-    /// Get all data
+    virtual QAbstractItemModel* GetModel() = 0;
 };
-Q_DECLARE_INTERFACE(IDayPlanModel, "IDayPlanModel v0.1")
-
-#endif // ITASKLISTMODEL_H
+//! }
+Q_DECLARE_INTERFACE(IDayPlanModel, "IDayPlanModel")
+#endif // IDAYPLANMODEL_H

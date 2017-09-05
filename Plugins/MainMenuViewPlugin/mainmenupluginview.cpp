@@ -72,7 +72,7 @@ void MainMenuPluginView::ReferencePluginClosed(PluginInfo *pluginInfo)
 //    qDebug() << "IMainMenuPluginModel succesfully set.";
 //}
 
-bool MainMenuPluginView::Open(IModelPlugin *model, QWidget* parent)
+bool MainMenuPluginView::Open(IModelPlugin *model)
 {
     if(!myModel)
     {
@@ -80,14 +80,13 @@ bool MainMenuPluginView::Open(IModelPlugin *model, QWidget* parent)
         return false;
     }
 
-    setParent(parent);
-    show();
     if(!rootMenuItem)
     {
         rootMenuItem = myModel->GetRootMenuItem();
-        parent->layout()->addWidget(this);
         SetRootMenuItem(rootMenuItem);
     }
+
+    emit OnOpen(this);
     return true;
 }
 
