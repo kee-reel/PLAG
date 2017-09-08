@@ -7,15 +7,13 @@
 #include <QLayout>
 #include <QPushButton>
 #include <QSpacerItem>
+#include <QScroller>
+#include <QQuickView>
 
 #include "igridmainmenuview.h"
 #include "../MainMenuModelPlugin/imainmenumodule.h"
 #include "menuitem.h"
 #include "aspectawaregridlayout.h"
-
-namespace Ui {
-class Form;
-}
 
 //! addtogroup GridMainMenuView_imp
 //! {
@@ -61,11 +59,13 @@ private:
     QList< PluginInfo* > relatedViewPlugins;
 
 private:
-    Ui::Form *ui;
-    AspectAwareGridLayout *layout;
+    QQuickView *quickView;
+    QLayout *layout;
     IMainMenuModel *mainMenu;
     IMainMenuModel::MenuItem *rootMenuItem;
     QList<MenuItem*> items;
+    MenuItem* exitItem;
+    QWidget *container;
 
 private slots:
     void RunMenuItem(int id);
@@ -73,6 +73,10 @@ private slots:
 
 signals:
     void OnOpen(QWidget *);
+
+    // QWidget interface
+protected:
+    void resizeEvent(QResizeEvent *event) override;
 };
 //! }
 #endif // GRIDMAINMENUVIEW_H

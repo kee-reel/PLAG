@@ -15,12 +15,14 @@ MainForm::MainForm(QWidget *parent) :
     connect(myTreeView, SIGNAL(pressed(QModelIndex)), SLOT(on_treeView_pressed(QModelIndex)));
     myTreeView->setExpandsOnDoubleClick(false);
 
-
 #ifdef Q_OS_ANDROID
     ui->buttonAdd->setFocusPolicy(Qt::NoFocus);
+    ui->buttonAdd->setToolTip("");
     ui->buttonDelete->setFocusPolicy(Qt::NoFocus);
+    ui->buttonDelete->setToolTip("");
     ui->buttonEdit->setFocusPolicy(Qt::NoFocus);
-    ui->buttonExit->setFocusPolicy(Qt::NoFocus);
+    ui->buttonEdit->setToolTip("");
+    ui->buttonExit->setVisible(false);
 #endif
 
     addForm = new AddForm(this);

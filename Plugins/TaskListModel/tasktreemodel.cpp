@@ -2,8 +2,8 @@
 
 TaskTreeModel::TaskTreeModel()
 {
-    tableName = "tasktree";
-    relationName = "task";
+    tableName = "ITaskTreeModel";
+    relationName = "ITaskTreeModel";
     activeView = NULL;
     activeModel = NULL;
     dataManager = NULL;

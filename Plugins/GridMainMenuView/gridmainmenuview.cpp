@@ -2,20 +2,33 @@
 #include "ui_gridmainmenuview.h"
 
 GridMainMenuView::GridMainMenuView(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Form)
+    QWidget(parent)
 {
     openedView = NULL;
     openedModel = NULL;
     mainMenu = NULL;
     rootMenuItem = NULL;
-    ui->setupUi(this);
-    layout = new AspectAwareGridLayout(this);
-    ui->verticalLayout->insertLayout(0, layout);
+    exitItem = NULL;
+
+    quickView = new QQuickView();
+    container = QWidget::createWindowContainer(quickView, this);
+    quickView->setSource(QUrl(QStringLiteral("qrc:///Menu.qml")));
+
+//    ui->verticalLayout->addWidget(container);
+
+//    ui->setupUi(this);
+//    layout = new AspectAwareGridLayout(this);
+//    ui->scrollAreaWidgetContents->setLayout(layout);
+#ifdef Q_OS_ANDROID
+    ui->scrollArea->grabGesture(Qt::TapAndHoldGesture);
+    QScroller::grabGesture(ui->scrollArea, QScroller::LeftMouseButtonGesture);
+#endif
 }
 
 GridMainMenuView::~GridMainMenuView()
 {
+    for(int i = 0; i < items.length(); ++i)
+        delete items[i];
 }
 
 void GridMainMenuView::SetPluginInfo(PluginInfo *pluginInfo)
@@ -78,23 +91,33 @@ bool GridMainMenuView::Open(IModelPlugin *model)
         return false;
     }
 
-    if(rootMenuItem == NULL)
-    {
-        rootMenuItem = mainMenu->GetRootMenuItem();
+//    if(rootMenuItem == NULL)
+//    {
+//        rootMenuItem = mainMenu->GetRootMenuItem();
+//        int itemMinHeight = (height() / rootMenuItem->Items.count()) * 1.2;
+//        layout->setSpacing(itemMinHeight * 0.3);
+//        int rowCapacity = 1;
+//        QSpacerItem *topSpacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+//        layout->addItem(topSpacer);
 
-        int rowCapacity = 2;
-        for(int j = 0; j < rootMenuItem->Items.count(); ++j)
-        {
-            MenuItem* item = new MenuItem(j, FormatMenuItemName(rootMenuItem->Items[j]->Name), this);
-            connect(item, SIGNAL(OnMenuItemSelected(int)), SLOT(RunMenuItem(int)));
-            items.append(item);
-            layout->addWidget(item, j/rowCapacity, j%rowCapacity);
-        }
-        MenuItem* exitItem = new MenuItem(items.length(), "Exit", this);
-        connect(exitItem, SIGNAL(OnMenuItemSelected(int)), SLOT(RunMenuItem(int)));
-        items.append(exitItem);
-        layout->addWidget(exitItem);
-    }
+//        for(int j = 0; j < rootMenuItem->Items.count(); ++j)
+//        {
+//            MenuItem* item = new MenuItem(j, FormatMenuItemName(rootMenuItem->Items[j]->Name), this);
+//            item->setMinimumHeight(itemMinHeight);
+//            connect(item, SIGNAL(OnMenuItemSelected(int)), SLOT(RunMenuItem(int)));
+//            items.append(item);
+//            layout->addWidget(item);// j/rowCapacity, j%rowCapacity);
+//        }
+//        QSpacerItem *bottomSpacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+//        layout->addItem(bottomSpacer);
+
+//#ifndef Q_OS_ANDROID
+//        MenuItem* exitItem = new MenuItem(items.length(), "Exit", this);
+//        connect(exitItem, SIGNAL(OnMenuItemSelected(int)), SLOT(RunMenuItem(int)));
+//        items.append(exitItem);
+//        layout->addWidget(exitItem);
+//#endif
+//    }
     emit OnOpen(this);
 }
 
@@ -115,12 +138,10 @@ bool GridMainMenuView::Close()
 
 void GridMainMenuView::RunMenuItem(int id)
 {
-    if(id == items.length()-1)
+    if(items[id]->text() == "Exit")
         Close();
     else
-    {
         mainMenu->RunItem(rootMenuItem, rootMenuItem->Items[id]);
-    }
 }
 
 QString GridMainMenuView::FormatMenuItemName(QString name)
@@ -145,10 +166,16 @@ QString GridMainMenuView::FormatMenuItemName(QString name)
         else if(i == list.count()-1)
         {
             if(list[i].toLower() == "model") break;
-            itemMenuName += "\r\n" + list[i];
+            itemMenuName += list[i];
         }
         else
-            itemMenuName += "\r\n" + list[i];
+            itemMenuName += list[i];
     }
     return itemMenuName;
+}
+
+void GridMainMenuView::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+    container->resize(size());
 }

@@ -8,6 +8,7 @@ DayPlanView::DayPlanView(QWidget *parent) :
     openedView = NULL;
     openedModel = NULL;
     dayPlanModel = NULL;
+    itemModel = NULL;
     ui->setupUi(this);
 }
 
@@ -22,7 +23,9 @@ void DayPlanView::SetPluginInfo(PluginInfo *pluginInfo)
 
 void DayPlanView::OnAllSetup()
 {
-
+    if(itemModel == NULL) return;
+    itemModel = dayPlanModel->GetModel();
+    ui->treeView->setModel(itemModel);
 }
 
 QString DayPlanView::GetLastError()

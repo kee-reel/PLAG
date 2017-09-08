@@ -48,8 +48,9 @@ public:
     void ShowNotification(QString title, QString message, int id = 0) override;
     void CancelNotification(int id) override;
     void ShowToast(const QString &message, IAndroidNotificationModel::Duration duration = LONG) override;
-    void PlanApplicationWakeup(TimePlanning timePlan, int secs) override;
-    void StartAlarm() override;
+    void PlanApplicationWakeup(TimeType timePlan, QDateTime secs) override;
+    void SetAlarm(TimeType type, QDateTime time) override;
+    void SetRepeatingAlarm(TimeType type, QDateTime triggerTime, QDateTime interval) override;
     void CancelAlarm() override;
 
 private:

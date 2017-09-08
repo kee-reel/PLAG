@@ -92,17 +92,21 @@ public class QtActivityExtention extends QtActivity
         });
     }
 
-    public static void startAlarm() {
+    public static void setAlarm(int type, int time) {
+        Log.i(TAG, "setAlarm");
         AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
-        int interval = 8000;
+        manager.set(type, time, pendingIntent);
+    }
 
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-        showToast("Alarm set!", 1000);
+    public static void setRepeatingAlarm(int type, int triggerTime, int interval) {
+        Log.i(TAG, "setRepeatingAlarm");
+        AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
+        manager.setRepeating(type, triggerTime, interval, pendingIntent);
     }
 
     public static void cancelAlarm() {
+        Log.i(TAG, "cancelAlarm");
         AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
         manager.cancel(pendingIntent);
-        showToast("Alarm Canceled", 1000);
     }
 }

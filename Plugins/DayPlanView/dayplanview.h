@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QDebug>
 #include <QString>
+#include <QAbstractItemModel>
 
 #include "idayplanview.h"
 #include "../DayPlanModel/idayplanmodel.h"
@@ -61,6 +62,7 @@ private:
 private:
     Ui::Form *ui;
     IDayPlanModel *dayPlanModel;
+    QAbstractItemModel * itemModel;
 };
 //! }
 #endif // DAYPLANVIEW_H

@@ -2,8 +2,8 @@
 
 TaskSketchModel::TaskSketchModel()
 {
-    tableName = "sketch";
-    coreRelationName = "image";
+    tableName = "ITaskSketchModel";
+    coreRelationName = "ITaskSketchModel";
     activeViewId = -1;
     myModel = NULL;
     dataManager = NULL;
@@ -120,7 +120,7 @@ void TaskSketchModel::ConvertSketchToTask(int sketchId)
 
     taskModel->insertRows(taskModel->rowCount(), 1);
     modelIndex = taskModel->index(taskModel->rowCount()-1, 0);
-    dataManager->SetActiveRelation(myModel->GetDataName(), coreRelationName);
+    dataManager->SetActiveRelation(tableName, coreRelationName);
     taskModel->setData(modelIndex, map[1]);
     qDebug() << map[0];
 
