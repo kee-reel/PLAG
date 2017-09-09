@@ -14,6 +14,16 @@ MainForm::MainForm(QWidget *parent) :
     //connect(ui->buttonClear, SIGNAL(clicked(bool)), ui->widgetPaint, SLOT(Clean()));
     connect(galleryForm, SIGNAL(OnItemDelete(int)), SLOT(OnItemDelete(int)));
     connect(galleryForm, SIGNAL(OnItemConvert(int)), SLOT(OnItemConvertSlot(int)));
+
+#ifdef Q_OS_ANDROID
+    ui->buttonClear->setFocusPolicy(Qt::NoFocus);
+    ui->buttonClear->setToolTip("");
+    ui->buttonOpenGallery->setFocusPolicy(Qt::NoFocus);
+    ui->buttonOpenGallery->setToolTip("");
+    ui->buttonSave->setFocusPolicy(Qt::NoFocus);
+    ui->buttonSave->setToolTip("");
+    ui->buttonClose->setVisible(false);
+#endif
 }
 
 MainForm::~MainForm()

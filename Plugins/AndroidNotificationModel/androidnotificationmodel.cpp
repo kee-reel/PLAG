@@ -58,7 +58,8 @@ void AndroidNotificationModel::ReferencePluginClosed(PluginInfo *pluginInfo)
 bool AndroidNotificationModel::Open(IModelPlugin *parent)
 {
     qDebug() << "AndroidNotificationModel open.";
-    PushNotification("AndroidNotificationModel says:", "Hi there!");
+    ShowNotification("AndroidNotificationModel says:", "Hi there!");
+    ShowToast("Toast test");
     if(relatedViewPlugins.count() == 0){
         qDebug() << "!AndroidNotificationModel hasn't any views!";
         return false;
@@ -90,35 +91,38 @@ void AndroidNotificationModel::Close()
     emit OnClose();
 }
 
-void AndroidNotificationModel::ShowNotification(int id, QString title, QString message)
+void AndroidNotificationModel::ShowNotification(QString title, QString message, int id)
 {
     QAndroidJniObject javaTitle = QAndroidJniObject::fromString(title);
     QAndroidJniObject javaMessage = QAndroidJniObject::fromString(message);
 
-    QAndroidJniObject::callStaticMethod<void>(CLASS_NAME, "showNotification",
-                "(I;Ljava/lang/String;Ljava/lang/String;)V",
-                    jint(id),
+//    public static void showNotification(String title, String message, int notifyId)
+    QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/QtActivityExtention", "showNotification",
+                "(Ljava/lang/String;Ljava/lang/String;I)V",
                     javaTitle.object<jstring>(),
-                    javaMessage.object<jstring>());
+                    javaMessage.object<jstring>(),
+                    jint(id));
 }
 
 void AndroidNotificationModel::CancelNotification(int id)
 {
-    QAndroidJniObject::callStaticMethod<void>(CLASS_NAME, "closeNotification",
-                "(I;)V",
+//    public static void cancelNotification(int notifyId)
+    QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/QtActivityExtention", "cancelNotification",
+                "(I)V",
                     jint(id));
 }
 
 void AndroidNotificationModel::ShowToast(const QString &message, Duration duration)
 {
+//    public static void showToast(String msg, int delay)
     QAndroidJniObject javaMessage = QAndroidJniObject::fromString(message);
-    QAndroidJniObject::callStaticMethod<void>(CLASS_NAME, "showToast",
+    QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/QtActivityExtention", "showToast",
                 "(Ljava/lang/String;I)V",
                     javaMessage.object<jstring>(),
                     jint(duration));
 }
 
-void AndroidNotificationModel::PlanApplicationWakeup(TimePlanning timePlan, int secs)
+void AndroidNotificationModel::PlanApplicationWakeup(TimeType type, QDateTime time)
 {
     auto activity = QtAndroid::androidActivity();
     auto packageManager = activity.callObjectMethod("getPackageManager",
@@ -141,8 +145,33 @@ void AndroidNotificationModel::PlanApplicationWakeup(TimePlanning timePlan, int 
                                                                                           "ALARM_SERVICE",
                                                                                           "Ljava/lang/String;").object());
 
-    alarmManager.callMethod<void>("set",
-                                  "(IJLandroid/app/PendingIntent;)V",
-                                  QAndroidJniObject::getStaticField<jint>("android/app/AlarmManager", "RTC_WAKEUP"),
-                                  jlong(QDateTime::currentMSecsSinceEpoch() + secs * 1000), pendingIntent.object());
+    alarmManager.callMethod<void>("set", "(IJLandroid/app/PendingIntent;)V",
+                                    jint(type),
+                                    jlong(time.toMSecsSinceEpoch()),
+                                    pendingIntent.object());
+}
+
+void AndroidNotificationModel::SetAlarm(IAndroidNotificationModel::TimeType type, QDateTime time)
+{
+//    public static void setAlarm(int type, int time)
+    QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/QtActivityExtention", "setAlarm",
+                "(I;I)V",
+                    jint(type),
+                    jlong(time.toSecsSinceEpoch()));
+}
+
+void AndroidNotificationModel::SetRepeatingAlarm(IAndroidNotificationModel::TimeType type, QDateTime triggerTime, QDateTime interval)
+{
+//    public static void setRepeatingAlarm(int type, int triggerTime, int interval)
+    QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/QtActivityExtention", "setRepeatingAlarm",
+                "(I;I;I)V",
+                    jint(type),
+                    jlong(triggerTime.toSecsSinceEpoch()),
+                    jlong(interval.toSecsSinceEpoch()));
+}
+
+void AndroidNotificationModel::CancelAlarm()
+{
+//    public static void cancelAlarm()
+    QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/QtActivityExtention", "cancelAlarm");
 }

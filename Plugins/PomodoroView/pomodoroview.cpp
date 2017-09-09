@@ -17,6 +17,18 @@ PomodoroView::PomodoroView(QWidget *parent) :
     ui->buttonEdit->setVisible(false);
     ui->buttonDelete->setVisible(false);
     ui->buttonAdd->setVisible(false);
+
+#ifdef Q_OS_ANDROID
+    ui->buttonAdd->setFocusPolicy(Qt::NoFocus);
+    ui->buttonAdd->setToolTip("");
+    ui->buttonDelete->setFocusPolicy(Qt::NoFocus);
+    ui->buttonDelete->setToolTip("");
+    ui->buttonEdit->setFocusPolicy(Qt::NoFocus);
+    ui->buttonEdit->setToolTip("");
+    ui->buttonProjects->setFocusPolicy(Qt::NoFocus);
+    ui->buttonProjects->setToolTip("");
+    ui->buttonExit->setVisible(false);
+#endif
 }
 
 PomodoroView::~PomodoroView()

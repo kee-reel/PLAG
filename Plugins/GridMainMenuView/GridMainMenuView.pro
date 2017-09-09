@@ -1,7 +1,7 @@
 
 TARGET = GridMainMenuView
 TEMPLATE = lib
-QT += widgets
+QT += widgets quick
 
 SOURCES += \
     gridmainmenuview.cpp \
@@ -15,9 +15,13 @@ HEADERS +=\
     aspectawaregridlayout.h
 
 DISTFILES += \
-    PluginMeta.json
+    PluginMeta.json \
+    MenuGrid.qml
 
 include(../../System/MASS/BuildInfo.pri)
 
 FORMS += \
     gridmainmenuview.ui
+
+RESOURCES += \
+    res.qrc

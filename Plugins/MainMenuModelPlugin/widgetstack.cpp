@@ -3,6 +3,7 @@
 WidgetStack::WidgetStack(QWidget *parent) : QObject(parent)
 {
     parent->installEventFilter(this);
+    parent->layout()->setMargin(0);
 }
 
 void WidgetStack::Pop()

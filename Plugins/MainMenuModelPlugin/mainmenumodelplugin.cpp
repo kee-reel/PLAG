@@ -115,7 +115,6 @@ void MainMenuModelPlugin::RunItem(IMainMenuModel::MenuItem *item, MetaInfo *item
             qDebug() << "Open plugin" << iter->Meta->Name;
             if(!iter->Plugin.model->Open(this)){
                 qDebug() << "Model wasn't opened";
-                Open(NULL);
             }
         }
     }

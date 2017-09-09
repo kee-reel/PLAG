@@ -88,6 +88,12 @@ bool DayPlanModel::Open(IModelPlugin *parent)
         openedView = NULL;
         return false;
     }
+
+    if(dataManager != NULL)
+    {
+        dataManager->SetActiveRelation(tableName, relationName);
+    }
+
     return true;
 }
 

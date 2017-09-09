@@ -2,7 +2,6 @@
 
 AspectAwareGridLayout::AspectAwareGridLayout(QWidget *parent) : QGridLayout(parent)
 {
-    setSpacing(5);
 }
 
 int AspectAwareGridLayout::heightForWidth(int w) const
