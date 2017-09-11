@@ -7,8 +7,11 @@
 #include <QStandardItemModel>
 #include <QDebug>
 #include <QTimer>
+<<<<<<< HEAD
+=======
 #include <QRadioButton>
 #include <QGridLayout>
+>>>>>>> develop
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +29,15 @@ public:
 
 private slots:
     void ProcessPortInput();
+<<<<<<< HEAD
+    void Setup();
+    void SendMessage(QString message);
+    void on_horizontalSlider_sliderMoved(int position);
+    void on_horizontalSlider_2_sliderMoved(int position);
+
+private:
+    Ui::MainWindow *ui;
+=======
     bool Setup();
     void SendMessage(QString message);
     void InputPinChanged();
@@ -42,6 +54,7 @@ private:
     QList<QRadioButton*> outputPins;
     const int pinRowsCount = 7;
 
+>>>>>>> develop
     QSerialPort *arduinoPort;
     QString activePortName;
     bool isPortSet;
@@ -49,6 +62,13 @@ private:
     QTimer *readTimer;
     QString serialBuffer;
     QRegExp inputParser;
+<<<<<<< HEAD
+
+    QIODevice::OpenModeFlag openModeFlag;
+    struct DeviceInfo{
+        quint16 vendorId;
+        quint16 productId;
+=======
     QVector<double> inputData;
     QVector<double> timeScale;
     double startTime;
@@ -61,6 +81,7 @@ private:
         quint16 productId;
         int inputPins;
         int outputPins;
+>>>>>>> develop
         bool Compare(quint16 vendorId, quint16 productId)
         {
             return this->vendorId == vendorId &&
@@ -70,11 +91,15 @@ private:
 
     DeviceInfo ArduinoUno;
 
+<<<<<<< HEAD
+    void UpdateLED(char pinId, int value);
+=======
     void SetPinOutput(int value);
     void MakePlot(int graph, QVector<double> &x, QVector<double> &y);
     void ReplotPlot();
     void SetupPins();
     void InsertNewPin(QString name, QLayout *lay);
+>>>>>>> develop
 };
 
 #endif // MAINWINDOW_H

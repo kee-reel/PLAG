@@ -25,6 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
+<<<<<<< HEAD
+        mainwindow.cpp
+
+HEADERS += \
+        mainwindow.h
+
+FORMS += \
+        mainwindow.ui
+=======
         mainwindow.cpp \
     qcustomplot.cpp
 
@@ -37,3 +46,4 @@ FORMS += \
 
 RESOURCES += \
     rsc.qrc
+>>>>>>> develop
