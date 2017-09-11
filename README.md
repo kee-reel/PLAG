@@ -17,9 +17,9 @@ It allows you to build whole your system from plugins. Each plugin holds respons
 - **PomodoroView** - allows user to run pomodoros for selected projects
 - **TaskSketchModel** - holds user sketches
 - **TaskSketchView** - allows user to draw sketches, save them and observe gallery of drawed sketches
-- **AndroidNotificationsModel** - provides API for using specific Android features (notifications and toasts) and set alarm
+- **AndroidNotificationsModel** - provides API for using specific Android features (notifications and toasts) and set alarm on Adroid devices
 - **ExtendableDataBaseManager** - provides access to information in data base in abstract item models
 - **CipherDataBaseSource** - provide access to [SQLite plugin](https://github.com/devbean/QtCipherSqlitePlugin)
 
-If you interested in idea of crossplatform application which unlimitedly extendable and have some ideas or suggestions, please send me a message: *curunir@yandex.ru*. I've really need your help in bringing this project to life.
+If you interested in idea of crossplatform application which unlimitedly extendable and have some ideas or suggestions, please send me a message: *curunir@yandex.ru*. I really need your help in bringing this project to life.
 **Thank you.**
