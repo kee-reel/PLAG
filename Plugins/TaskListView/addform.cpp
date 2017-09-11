@@ -18,18 +18,19 @@ AddForm::~AddForm()
 void AddForm::SetModel(QAbstractItemModel *model)
 {
     mapper->setModel(model);
-    mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
-    ui->label_2->setText(model->headerData(0, Qt::Horizontal).toString());
+    mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);   
     mapper->addMapping(ui->lineEdit_2, 0);
 }
 
-void AddForm::ShowModelData(const QModelIndex &index)
+void AddForm::ShowModelData(const QModelIndex &index, bool isNew)
 {
     show();
+    ui->label_2->setText(mapper->model()->headerData(0, Qt::Horizontal).toString());
     ui->lineEdit_2->setFocus();
     mapper->setRootIndex(index.parent());
     mapper->setCurrentModelIndex(index);
-    qDebug() << "=========================" << index.data() << index.row() << mapper->currentIndex();
+    if(isNew)
+        ui->lineEdit_2->setText("");
 }
 
 void AddForm::on_buttonOk_clicked()
@@ -40,32 +41,30 @@ void AddForm::on_buttonOk_clicked()
 
 void AddForm::on_buttonClose_clicked()
 {
-    emit OnClose();
     hide();
+    emit OnClose();
 }
 
 bool AddForm::event(QEvent *event)
 {
-    qDebug() << event->type();
     switch (event->type()) {
-    case QEvent::KeyRelease:{
-        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-        qDebug() << keyEvent->key();
-        switch (keyEvent->key()) {
-        case Qt::Key_Enter:
-            qDebug() << event->type();
-            on_buttonOk_clicked();
-            break;
-        case Qt::Key_Escape:
-            on_buttonClose_clicked();
-            break;
-        default:
-            break;
-        }
-    }break;
+        case QEvent::KeyRelease:{
+            QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+            switch (keyEvent->key()) {
+            case Qt::Key_Enter:
+                on_buttonOk_clicked();
+                break;
+            case Qt::Key_Escape:
+                on_buttonClose_clicked();
+                break;
+            default:
+                return QWidget::event(event);
+                break;
+            }
 
-    default:
-        return false;
-        break;
+        } break;
+        default:
+            return QWidget::event(event);
+            break;
     }
 }

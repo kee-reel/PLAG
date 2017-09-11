@@ -46,17 +46,16 @@ public slots:
 
     // IPluginView interface
 public:
-//    void AddModel(QObject* model) override;
-    bool Open(IModelPlugin *model, QWidget *parent) override;
+    bool Open(IModelPlugin *model) override;
 public slots:
     bool Close() override;
 
 public slots:
     void OpenTaskEditor(int id);
 signals:
+    void OnOpen(QWidget *);
     void OnClose(PluginInfo *pointer);
     void OnClose();
-
 };
 //! \}
 #endif // TASKLISTVIEW_H

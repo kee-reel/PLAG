@@ -85,7 +85,7 @@ bool TableHandler::SetRelation(QString relationName, TableStructMap fields, QVec
     fields.remove("id");
     relationTableStructs.insert(relationName, fields);
     relationsDefaultData.insert(relationName, defaultData);
-    if(itemModel) itemModel->AttachRelation(relationName, defaultData);
+    if(itemModel) itemModel->AttachRelation(relationName, fields, defaultData);
     return true;
 }
 
@@ -214,11 +214,13 @@ QAbstractItemModel *TableHandler::GetModel()
     if(itemModel) return itemModel;
 
     itemModel = new ExtendableItemModel(tableName, dataManager);
-    QMap<QString, QVector<QVariant>>::Iterator defaultDataIter = relationsDefaultData.begin();
+    auto defaultDataIter = relationsDefaultData.begin();
+    auto relationStructIter = relationTableStructs.begin();
     while(defaultDataIter != relationsDefaultData.end())
     {
-        itemModel->AttachRelation(defaultDataIter.key(), defaultDataIter.value());
+        itemModel->AttachRelation(defaultDataIter.key(), relationStructIter.value(), defaultDataIter.value());
         ++defaultDataIter;
+        ++relationStructIter;
     }
     itemModel->LoadData();
     return itemModel;

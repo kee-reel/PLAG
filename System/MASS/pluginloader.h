@@ -21,7 +21,7 @@
 class PluginLoader : QObject
 {
     Q_OBJECT
-    QString packageName = "com.MASS";
+    QString packageName = "com.mass";
 public:
     //!
     //! \param parent QWidget which will be parent for all application windows.

@@ -21,7 +21,7 @@ public:
     ~AddForm();
 
     void SetModel(QAbstractItemModel *model);
-    void ShowModelData(const QModelIndex &index);
+    void ShowModelData(const QModelIndex &index, bool isNew = false);
 
 signals:
     void OnClose();

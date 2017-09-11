@@ -33,7 +33,8 @@ public:
 
 // Data
     void SetActiveChunkName(QString &activeChunk);
-    QList<QString> GetChunksNames();
+    QList<QString> GetChunksNames() const;
+    QVariant GetChunkName(int column) const;
     QVector<QVariant> GetChunkData(QString chunkName = "");
     QVariant GetChunkDataElement(int column);
     void SetChunkData(QString chunkName, QVector<QVariant> data);

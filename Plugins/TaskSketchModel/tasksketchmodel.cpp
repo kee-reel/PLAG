@@ -2,8 +2,8 @@
 
 TaskSketchModel::TaskSketchModel()
 {
-    tableName = "sketch";
-    coreRelationName = "image";
+    tableName = "itasksketchmodel";
+    coreRelationName = "itasksketchmodel";
     activeViewId = -1;
     myModel = NULL;
     dataManager = NULL;
@@ -22,7 +22,7 @@ void TaskSketchModel::OnAllSetup()
 {
     if(dataManager == NULL) return;
     QMap<QString, QVariant::Type> newRelationStruct = {
-        {coreRelationName,  QVariant::ByteArray},
+        {"sketch",  QVariant::ByteArray},
     };
     QVector<QVariant> defaultData;
     defaultData << QByteArray();
@@ -75,18 +75,17 @@ void TaskSketchModel::ReferencePluginClosed(PluginInfo *pluginInfo)
     Close();
 }
 
-bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
+bool TaskSketchModel::Open(IModelPlugin *parent)
 {
     qDebug() << "TaskListModel runs";
     if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
     }
-    myParentWidget = parentWidget;
     activeViewId = 0;
     SetupModel();
     qDebug() << viewPlugins[activeViewId]->Meta->Name;
-    if(!viewPlugins[activeViewId]->Plugin.view->Open(this, myParentWidget)){
+    if(!viewPlugins[activeViewId]->Plugin.view->Open(this)){
         qDebug() << "Can't open first view!";
         return false;
     }
@@ -121,7 +120,7 @@ void TaskSketchModel::ConvertSketchToTask(int sketchId)
 
     taskModel->insertRows(taskModel->rowCount(), 1);
     modelIndex = taskModel->index(taskModel->rowCount()-1, 0);
-    dataManager->SetActiveRelation(myModel->GetDataName(), coreRelationName);
+    dataManager->SetActiveRelation(tableName, coreRelationName);
     taskModel->setData(modelIndex, map[1]);
     qDebug() << map[0];
 

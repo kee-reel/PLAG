@@ -5,6 +5,7 @@ MainForm::MainForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainForm)
 {
+    myModel = NULL;
     ui->setupUi(this);
     galleryForm = new GalleryForm(this);
     galleryForm->setVisible(false);
@@ -13,6 +14,16 @@ MainForm::MainForm(QWidget *parent) :
     //connect(ui->buttonClear, SIGNAL(clicked(bool)), ui->widgetPaint, SLOT(Clean()));
     connect(galleryForm, SIGNAL(OnItemDelete(int)), SLOT(OnItemDelete(int)));
     connect(galleryForm, SIGNAL(OnItemConvert(int)), SLOT(OnItemConvertSlot(int)));
+
+#ifdef Q_OS_ANDROID
+    ui->buttonClear->setFocusPolicy(Qt::NoFocus);
+    ui->buttonClear->setToolTip("");
+    ui->buttonOpenGallery->setFocusPolicy(Qt::NoFocus);
+    ui->buttonOpenGallery->setToolTip("");
+    ui->buttonSave->setFocusPolicy(Qt::NoFocus);
+    ui->buttonSave->setToolTip("");
+    ui->buttonClose->setVisible(false);
+#endif
 }
 
 MainForm::~MainForm()
@@ -23,10 +34,12 @@ MainForm::~MainForm()
 
 void MainForm::SetModel(ITaskSketchModel *model)
 {
+    if(myModel != NULL)
+        return;
+
     myModel = model;
     taskModel = model->GetModel();
     sketchModel = model->GetInternalModel();
-
     galleryForm->SetModel(sketchModel);
 
     int n = sketchModel->rowCount();

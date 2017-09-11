@@ -1,0 +1,112 @@
+[
+    {
+        "outputFile": "C:\\Users\\Curunir\\Desktop\\MASS\\System\\MASS\\android\\.build\\intermediates\\res\\merged\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 146
+                },
+                "from": {
+                    "file": "C:\\Users\\Curunir\\Desktop\\MASS\\System\\MASS\\android\\res\\values\\libs.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 566,
+                        "endLine": 22,
+                        "endColumn": 12,
+                        "endOffset": 659
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 151,
+                    "endLine": 7,
+                    "endColumn": 12,
+                    "endOffset": 236
+                },
+                "from": {
+                    "file": "C:\\Users\\Curunir\\Desktop\\MASS\\System\\MASS\\android\\res\\values\\libs.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 473,
+                        "endLine": 19,
+                        "endColumn": 12,
+                        "endOffset": 560
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 241,
+                    "endLine": 10,
+                    "endColumn": 12,
+                    "endOffset": 320
+                },
+                "from": {
+                    "file": "C:\\Users\\Curunir\\Desktop\\MASS\\System\\MASS\\android\\res\\values\\libs.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 300,
+                        "endLine": 11,
+                        "endColumn": 12,
+                        "endOffset": 381
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 325,
+                    "endLine": 13,
+                    "endColumn": 13,
+                    "endOffset": 398
+                },
+                "from": {
+                    "file": "C:\\Users\\Curunir\\Desktop\\MASS\\System\\MASS\\android\\res\\values\\libs.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 5,
+                        "startOffset": 390,
+                        "endLine": 15,
+                        "endColumn": 13,
+                        "endOffset": 465
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 403,
+                    "endLine": 16,
+                    "endColumn": 12,
+                    "endOffset": 513
+                },
+                "from": {
+                    "file": "C:\\Users\\Curunir\\Desktop\\MASS\\System\\MASS\\android\\res\\values\\libs.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 169
+                    }
+                }
+            }
+        ]
+    }
+]

@@ -5,12 +5,25 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
+@if '%{PluginType}' === 'View'
+/*
+namespace Ui {
+    class Form;
+}
+*/
+@endif
 
 #include "%{IFileName}"
 
 //! \addtogroup %{CN}_imp
 //! \{
-class %{CN} : public QObject, %{InterfaceName}
+class %{CN} : public 
+@if '%{PluginType}' === 'View'
+    QWidget,
+@else
+    QObject,
+@endif
+    %{InterfaceName}
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
@@ -31,7 +44,11 @@ class %{CN} : public QObject, %{InterfaceName}
     )
 
 public:
+@if '%{PluginType}' === 'View'
+    explicit %{CN}(QWidget *parent = 0);
+@else
     %{CN}();
+@endif
     ~%{CN}();
 
     // IPlugin interface
@@ -57,14 +74,17 @@ public:
 @elsif '%{PluginType}' === 'Model'
     // IModelPlugin interface
 public slots:
-    bool Open(IModelPlugin *model, QWidget *modelWidget) override;
+    bool Open(IModelPlugin *model) override;
     void Close() override;
 
 @elsif '%{PluginType}' === 'View'
     // IViewPlugin interface
 public slots:
-    bool Open(IModelPlugin *model, QWidget *parent) override;
+    bool Open(IModelPlugin *model) override;
     bool Close() override;
+
+signals:
+    void OnOpen(QWidget *);
 
 @elsif '%{PluginType}' === 'DataManager'
 
@@ -76,9 +96,6 @@ public:
 @endif
 
 private:
-@if '%{PluginType}' === 'RootModel' || '%{PluginType}' === 'Model' || '%{PluginType}' === 'View'
-    QWidget *referenceWidget;
-@endif
     PluginInfo *pluginInfo;
 
     PluginInfo *openedModel;
@@ -88,6 +105,9 @@ private:
 
 private:
     // Write your internal methods here
+@if '%{PluginType}' === 'View'
+//    Ui::Form *ui;
+@endif
 };
 //! \}
 #endif // %{GUARD}

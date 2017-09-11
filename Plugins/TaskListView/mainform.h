@@ -33,6 +33,7 @@ private:
     AddForm *addForm;
     QAbstractItemModel *model;
     QTreeView *myTreeView;
+    bool expandFlag;
     const QModelIndex *currentModelIndex;
 
 signals:
@@ -47,6 +48,7 @@ private slots:
     void on_buttonDelete_clicked();
     void on_treeView_pressed(const QModelIndex &index);
     void on_buttonEdit_clicked();
+    void on_treeView_clicked(const QModelIndex &index);
 };
 //! \}
 #endif // MAINFORM_H

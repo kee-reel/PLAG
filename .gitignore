@@ -1,4 +1,6 @@
 build-*
+*/debug/*
+*/build/*
 BuildInfo.pri
 */html/*
 */latex/*
@@ -13,3 +15,4 @@ BuildInfo.pri
 *Makefile*
 *.obj
 *moc_*
+*.db

@@ -1,81 +1,121 @@
 #include "dayplanmodel.h"
 
-TaskSketchModel::TaskSketchModel()
+DayPlanModel::DayPlanModel()
 {
-    tableName = "TaskTree";
-    activeViewId = -1;
-    dataManager = NULL;
+    openedView = NULL;
+    openedModel = NULL;
+    taskTreeModel = NULL;
+    tableName = "ITaskTreeModel";
+    relationName = "IDayPlanModel";
 }
 
-TaskSketchModel::~TaskSketchModel()
+DayPlanModel::~DayPlanModel()
 {
 }
 
-void TaskSketchModel::OnAllSetup()
+void DayPlanModel::SetPluginInfo(PluginInfo *pluginInfo)
+{
+    this->pluginInfo = pluginInfo;
+}
+
+void DayPlanModel::OnAllSetup()
 {
 
 }
 
-QString TaskSketchModel::GetLastError()
+QString DayPlanModel::GetLastError()
 {
 
 }
 
-void TaskSketchModel::AddChildModel(IModelPlugin *plugin, MetaInfo *meta)
+void DayPlanModel::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    qDebug() << "New child" << meta->Name;
-    PluginInfo<IModelPlugin> newPlugin = {plugin, meta};
-    childModelPlugins.append(newPlugin);
-}
+    switch(pluginInfo->Meta->Type){
+    case PLUGINVIEW:{
+        relatedViewPlugins.append(pluginInfo);
+        qDebug() << "New IViewPlugin added (" << pluginInfo->Meta->Name << ").";
+        connect(pluginInfo->Instance, SIGNAL( OnClose(PluginInfo*) ), SLOT( ReferencePluginClosed(PluginInfo*) ));
+    } break;
 
-void TaskSketchModel::AddView(IViewPlugin *view, MetaInfo *meta)
-{
-    PluginInfo<IViewPlugin> newPlugin = {view, meta};
-    viewPlugins.append(newPlugin);
-    qDebug() << "IPluginView succesfully set.";
-}
+    case PLUGINMODEL:{
+        relatedModelPlugins.append(pluginInfo);
+        qDebug() << "New IModelPlugin added (" << pluginInfo->Meta->Name << ").";
+        connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
 
-void TaskSketchModel::AddDataManager(QObject *DBTool)
-{
-    qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
-    this->dataManager = qobject_cast<IExtendableDataBaseManagerPlugin*>(DBTool);
-    if(!this->dataManager)
-    {
-        qDebug() << DBTool->objectName() << "is not IExtendableDataBaseManagerPlugin.";
-        return;
+        if(taskTreeModel = qobject_cast<ITaskTreeModel*>(pluginInfo->Instance))
+        {
+            qDebug() << "ITaskTreeModel Binded";
+        }
+    } break;
+
+    case ROOTMODEL:{
+        pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
+    } break;
+
+    case DATAMANAGER:{
+        dataManager = qobject_cast<IExtendableDataBaseManager*>(pluginInfo->Instance);
+        if(!this->dataManager){
+            qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataBaseManager.";
+            return;
+        }
+        QMap<QString, QVariant::Type> newRelationStruct = {
+            {"datetime",        QVariant::DateTime},
+        };
+        QVector<QVariant> defaultData;
+        defaultData << QDateTime::currentDateTime();
+        dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
+    }break;
     }
-    qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";\
 }
 
-bool TaskSketchModel::Open(IModelPlugin *parent, QWidget *parentWidget)
+void DayPlanModel::ReferencePluginClosed(PluginInfo *pluginInfo)
 {
-    qDebug() << "TaskListModel runs";
-    if(viewPlugins.count() == 0){
-        qDebug() << "I dont have any views!";
+
+}
+
+bool DayPlanModel::Open(IModelPlugin *parent)
+{
+    qDebug() << "DayPlanModel open.";
+    if(relatedViewPlugins.count() == 0){
+        qDebug() << "!DayPlanModel hasn't any views!";
         return false;
     }
-    myParent = parent;
-    myParentWidget = parentWidget;
-    activeViewId = 0;
 
-    qDebug() << viewPlugins[activeViewId].meta->Name;
-    if(!viewPlugins[activeViewId].plugin->Open(myParentWidget))
-    {
-        qDebug() << "Can't open first view!";
+    openedView = relatedViewPlugins.first();
+    qDebug() << "DayPlanModel opens related view " << openedView->Meta->Name;
+    if(!openedView->Plugin.view->Open(this)){
+        qDebug() << "!Can't open first view!";
+        openedView = NULL;
         return false;
+    }
+
+    if(dataManager != NULL)
+    {
+        dataManager->SetActiveRelation(tableName, relationName);
     }
 
     return true;
 }
 
-bool TaskSketchModel::CloseFromView(IViewPlugin *view)
+void DayPlanModel::Close()
 {
-    myParent->ChildSelfClosed(this);
-    activeViewId = -1;
-    return true;
+    qDebug() << "DayPlanModel close.";
+    if(openedView != NULL && !openedView->Plugin.view->Close()){
+        qDebug() << "View plugin" << openedView->Meta->Name
+                 << "not closed, but model closing anyway.";
+    }
+    if(openedModel != NULL)
+        openedView->Plugin.view->Close();
+
+    openedView = NULL;
+    openedModel = NULL;
+    emit OnClose(pluginInfo);
+    emit OnClose();
 }
 
-void TaskSketchModel::ChildSelfClosed(IModelPlugin *child)
+QAbstractItemModel *DayPlanModel::GetModel()
 {
-
+    if(!dataManager) return NULL;
+    if(!dataModel) dataModel = dataManager->GetDataModel(tableName);
+    return dataModel;
 }

@@ -4,8 +4,8 @@ PomodoroModel::PomodoroModel()
 {
     myModel = NULL;
     dataManager = NULL;
-    tableName = "pomodoro";
-    coreRelationName = "project";
+    tableName = "ipomodoromodel";
+    coreRelationName = "ipomodoromodel";
     activeViewId = -1;
 }
 
@@ -22,7 +22,7 @@ void PomodoroModel::OnAllSetup()
 {
     if(!dataManager) return;
     QMap<QString, QVariant::Type> newRelationStruct = {
-        {coreRelationName,  QVariant::String},
+        {"project",  QVariant::String},
         {"pomodoros",       QVariant::Int},
     };
     QVector<QVariant> defaultData;
@@ -82,18 +82,17 @@ void PomodoroModel::ReferencePluginClosed(PluginInfo *pluginInfo)
     Close();
 }
 
-bool PomodoroModel::Open(IModelPlugin *parent, QWidget *parentWidget)
+bool PomodoroModel::Open(IModelPlugin *parent)
 {
     qDebug() << "PomodoroModel runs";
     if(viewPlugins.count() == 0){
         qDebug() << "I dont have any views!";
         return false;
     }
-    myParentWidget = parentWidget;
     activeViewId = 0;
     SetupModel();
     qDebug() << viewPlugins[activeViewId]->Meta->Name;
-    if(!viewPlugins[activeViewId]->Plugin.view->Open(this, myParentWidget)){
+    if(!viewPlugins[activeViewId]->Plugin.view->Open(this)){
         qDebug() << "Can't open first view!";
         return false;
     }

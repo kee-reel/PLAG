@@ -17,6 +17,7 @@
 class ExtendableItemModel : public QAbstractItemModel
 {
     typedef IExtendableDataBaseManager::ManagerDataItem ManagerItemInfo;
+    typedef QMap<QString, QVariant::Type> TableStructMap;
 public:
     QString tableName;
     QString coreRelationName;
@@ -25,7 +26,7 @@ public:
     ExtendableItemModel(QString tableName, IExtendableDataBaseManager* dataManager, QObject *parent = 0);
     ~ExtendableItemModel();
     void LoadData();
-    bool AttachRelation(QString relationName, QVector<QVariant> defaultData);
+    bool AttachRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData);
     void SetActiveRelation(QString relationName);
 
     virtual QVariant data(const QModelIndex &index, int role) const;
@@ -53,7 +54,9 @@ private:
     QHash<int, Item*> internalList;
     QString currentActiveChunkName;
     Item defaultTask;
+    Item header;
     Item *rootItem;
+
 
     Item *AddItem(int row, Item *taskParent, Item *taskData = NULL);
     bool EditItem(Item *task, int column, QVariant dataField);

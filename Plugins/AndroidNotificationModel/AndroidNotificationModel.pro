@@ -4,17 +4,13 @@ TEMPLATE = lib
 QT += widgets androidextras
 
 SOURCES += \
-    androidnotificationmodel.cpp \
-    notificationclient.cpp
+    androidnotificationmodel.cpp
 
 HEADERS +=\
     iandroidnotificationmodel.h \
-    androidnotificationmodel.h \
-    notificationclient.h
+    androidnotificationmodel.h
 
 DISTFILES += \
-    PluginMeta.json \
-    AndroidManifest.xml \
-    NotificationClient.java
+    PluginMeta.json
 
 include(../../System/MASS/BuildInfo.pri)

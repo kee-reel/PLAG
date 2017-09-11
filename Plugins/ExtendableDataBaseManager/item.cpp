@@ -66,9 +66,17 @@ void Item::SetActiveChunkName(QString &chunkName)
     activeChunk = &(itemData.dataChunks[activeChunkName]);
 }
 
-QList<QString> Item::GetChunksNames()
+QList<QString> Item::GetChunksNames() const
 {
     return itemData.dataChunks.keys();
+}
+
+QVariant Item::GetChunkName(int column) const
+{
+    if(column < itemData.dataChunks.count())
+        return QVariant(itemData.dataChunks[activeChunkName].at(column));
+    else
+        return QVariant();
 }
 
 QVector<QVariant> Item::GetChunkData(QString chunkName)

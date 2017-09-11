@@ -73,9 +73,15 @@ void ExtendableItemModel::LoadData()
     }
 }
 
-bool ExtendableItemModel::AttachRelation(QString relationName, QVector<QVariant> defaultData)
+bool ExtendableItemModel::AttachRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData)
 {
     defaultTask.SetChunkData(relationName, defaultData);
+
+    auto list = fields.keys();
+    QVector<QVariant> varList;
+    foreach (auto elem, list)
+        varList.append(QVariant(elem));
+    header.SetChunkData(relationName, varList);
     return true;
 }
 
@@ -86,6 +92,8 @@ void ExtendableItemModel::SetActiveRelation(QString relationName)
     for(int i = 0; i < keys.count(); ++i)
         keys[i]->SetActiveChunkName(relationName);
     currentActiveChunkName = relationName;
+    defaultTask.SetActiveChunkName(relationName);
+    header.SetActiveChunkName(relationName);
 }
 
 QVariant ExtendableItemModel::data(const QModelIndex &index, int role) const
@@ -137,7 +145,7 @@ QVariant ExtendableItemModel::headerData(int section, Qt::Orientation orientatio
 {
     switch (role) {
     case Qt::DisplayRole:
-        return rootItem->GetChunkDataElement(section);
+        return header.GetChunkName(section);
         break;
     case Qt::ToolTipRole:
         return rootItem->GetId();

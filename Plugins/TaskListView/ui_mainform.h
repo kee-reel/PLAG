@@ -18,7 +18,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include "mytreeview.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -26,7 +25,6 @@ class Ui_MainForm
 {
 public:
     QVBoxLayout *verticalLayout;
-    MyTreeView *treeView;
     QHBoxLayout *horizontalLayout;
     QPushButton *buttonAdd;
     QPushButton *buttonEdit;
@@ -41,11 +39,6 @@ public:
         MainForm->resize(368, 633);
         verticalLayout = new QVBoxLayout(MainForm);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        treeView = new MyTreeView(MainForm);
-        treeView->setObjectName(QStringLiteral("treeView"));
-
-        verticalLayout->addWidget(treeView);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         buttonAdd = new QPushButton(MainForm);

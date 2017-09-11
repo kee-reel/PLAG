@@ -149,7 +149,7 @@ void PluginLoader::SetupPluginsConnections()
         ++instancesIter;
     }
 
-    rootModel->Open(parent);
+    rootModel->Run(parent);
 
     qDebug() << "-----Linking finished-----" << endl;
 }

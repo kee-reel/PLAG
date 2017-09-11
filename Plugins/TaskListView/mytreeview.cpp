@@ -8,7 +8,6 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
     setHeaderHidden(true);
     setDropIndicatorShown(true);
     setAlternatingRowColors(true);
-    setExpandsOnDoubleClick(true);
     setDragDropOverwriteMode(false);
 
     setIndentation(40);
@@ -17,15 +16,16 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
     setDragDropMode(DragDrop);
     setVerticalScrollMode(ScrollPerPixel);
     setSelectionBehavior(QAbstractItemView::SelectRows);
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     setStyleSheet(
     "QTreeView::item:selected{                                                                          "
     "    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #D9E5E6, stop: 1 #C4D0D0);     "
     "}                                                                                                  "
     );
+    setExpandsOnDoubleClick(false);
 
 #ifdef Q_OS_ANDROID
+    setSelectionMode(QAbstractItemView::SingleSelection);
     setDragEnabled(false);
     setAcceptDrops(false);
     setFocusPolicy(Qt::NoFocus);
@@ -33,6 +33,7 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
     viewport()->grabGesture(Qt::TapAndHoldGesture);
     QScroller::grabGesture(viewport(), QScroller::LeftMouseButtonGesture);
 #else
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
     setFocusPolicy(Qt::StrongFocus);
     setDragEnabled(true);
     setAcceptDrops(true);

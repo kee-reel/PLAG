@@ -1,59 +1,68 @@
-#ifndef TASKLISTMODEL_H
-#define TASKLISTMODEL_H
+#ifndef DAYPLANMODEL_H
+#define DAYPLANMODEL_H
 
 #include <QObject>
 #include <QDebug>
-#include <QString>\
+#include <QString>
+#include <QAbstractItemModel>
+#include <QDateTime>
 
 #include "idayplanmodel.h"
+#include "../TaskListModel/itasktreemodel.h"
 #include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
 
-class TaskSketchModel : public QObject, ITaskSketchModel
+//! addtogroup DayPlanModel_imp
+//! {
+class DayPlanModel : public QObject, IDayPlanModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IModelPlugin ITaskSketchModel)
+    Q_INTERFACES(
+            IModelPlugin
+            IDayPlanModel
+            )
 
 public:
-    TaskSketchModel();
-    ~TaskSketchModel();
-
-private:
-    // Native part
-    IModelPlugin *myParent;
-    QWidget *myParentWidget;
-    int myModelId;
-    int activeViewId;
-    int activeModelId;
-
-    template <class T>
-    struct PluginInfo
-    {
-        T *plugin;
-        MetaInfo *meta;
-    };
-
-    QList< PluginInfo<IModelPlugin> > childModelPlugins;
-    QList< PluginInfo<IViewPlugin> > viewPlugins;
-
-    // Unique part
-    QString tableName;
-    IExtendableDataBaseManagerPlugin* dataManager;
+    DayPlanModel();
+    ~DayPlanModel();
 
     // IPlugin interface
 public:
+    void SetPluginInfo(PluginInfo *pluginInfo) override;
     void OnAllSetup() override;
     QString GetLastError() override;
+    void AddReferencePlugin(PluginInfo *pluginInfo) override;
 
-    // IPluginModel interface
+public slots:
+    void ReferencePluginClosed(PluginInfo *pluginInfo) override;
+
+signals:
+    void OnClose(PluginInfo*);
+    void OnClose();
+
+    // IModelPlugin interface
+public slots:
+    bool Open(IModelPlugin *model) override;
+    void Close() override;
+
+
+private:
+    PluginInfo *pluginInfo;
+
+    PluginInfo *openedModel;
+    QList< PluginInfo* > relatedModelPlugins;
+    PluginInfo *openedView;
+    QList< PluginInfo* > relatedViewPlugins;
+
+private:
+    ITaskTreeModel *taskTreeModel;
+    IExtendableDataBaseManager *dataManager;
+    QString tableName, relationName;
+    QAbstractItemModel *dataModel;
+
+    // IDayPlanModel interface
 public:
-    void AddChildModel(IModelPlugin *, MetaInfo *) override;
-    void AddDataManager(QObject *) override;
-    void AddView(IViewPlugin *view, MetaInfo *meta) override;
-    bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
-    bool CloseFromView(IViewPlugin *view) override;
-    void ChildSelfClosed(IModelPlugin *child) override;
-
+    QAbstractItemModel *GetModel() override;
 };
-
-#endif // TASKLISTMODEL_H
+//! }
+#endif // DAYPLANMODEL_H
