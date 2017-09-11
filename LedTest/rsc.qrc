@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ArduinoUNO_bb.png</file>
+    </qresource>
+</RCC>

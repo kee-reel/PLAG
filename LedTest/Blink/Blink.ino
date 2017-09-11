@@ -3,14 +3,15 @@
 int fade;
 #endif
 
-#define PIN_OUT_1 9
-#define PIN_OUT_2 10
-#define PIN_OUT_3 11
-#define PIN_IN_1 A0
-#define PIN_IN_2 A1
-#define PIN_IN_3 A2
+#define PIN_IN_1 9
+#define PIN_IN_2 10
+#define PIN_IN_3 11
+#define PIN_OUT_1 A0
+#define PIN_OUT_2 A1
+#define PIN_OUT_3 A2
 
-int activePinId;
+int activeInPinId;
+int activeOutPinId;
 bool readMode;
 int delayTime;
 
@@ -18,11 +19,13 @@ void setup()
 {
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
-  activePinId = PIN_IN_1;
+  pinMode(11, OUTPUT);
+  activeInPinId = PIN_IN_1;
+  activeOutPinId = PIN_OUT_1;
   readMode = false;
   delayTime = 1000;
   Serial.begin(9600);
-  
+  Serial.flush();
 #ifdef DEBUG
   Serial.print("Init");
   fade = 0;
@@ -42,9 +45,12 @@ void loop()
   {
       ReadPin();
   }
-
+  
   if(!Serial.available())
     return;
+#ifdef DEBUG
+  Serial.print(Serial.available());
+#endif
   ResolveMessage();
   return;
 }
@@ -55,12 +61,13 @@ void ResolveMessage()
   switch(mode)
   {
     // Sets active pin.
-    case 'i': GetPinsInfo(); break;
-    case 's': SetActivePin(); break;
+    case 's': GetPinsInfo(); break;
+    case 'i': SetActiveInPin(); break;
+    case 'o': SetActiveOutPin(); break;
     case 'd': SetDelay(); break;
     case 'w': WritePin(); break;
     case 'r': ReadPin();
-    default: Serial.print("Cant resolve mode"); return;
+    default:  return;
   }
 }
 
@@ -77,9 +84,21 @@ void GetPinsInfo()
   EndSerial();
 }
 
-void SetActivePin()
+void SetActiveInPin()
 {
-  activePinId = Serial.parseInt();
+  activeInPinId = Serial.parseInt();
+  return;
+}
+
+void SetActiveOutPin()
+{
+  int newActivePin = Serial.parseInt();
+  if(activeOutPinId == newActivePin) 
+    readMode = !readMode;
+  else 
+    readMode = true;
+  activeOutPinId = newActivePin;
+  return;
 }
 
 void SetDelay()
@@ -90,29 +109,16 @@ void SetDelay()
 void WritePin()
 {
   int writeValue = Serial.parseInt();
-  
-#ifdef DEBUG
-  Serial.print("WritePin ");
-  Serial.print(activePinId);
-  Serial.print(' ');
-  Serial.println(writeValue);
-#endif
-  analogWrite(activePinId, writeValue);
+  analogWrite(activeInPinId, writeValue);
 }
 
 void ReadPin()
 {
-  readMode = true;
-  int readValue = analogRead(A0);
-#ifdef DEBUG
-  Serial.print("ReadPin ");
-  Serial.print(activePinId);
-  Serial.print(' ');
-  Serial.println(readValue);
-#endif
+  int readValue = analogRead(activeOutPinId);
   StartSerial('r');
   PrintSerial(readValue);
   EndSerial();
+  delay(delayTime);
 }
 
 void StartSerial(char letter)
@@ -137,7 +143,13 @@ void EndSerial()
 {
   Serial.print('}');
   Serial.flush();
-  delay(delayTime);
+}
+
+void ErrorSerial(char str[])
+{
+  Serial.print("Error-");
+  Serial.print(str);
+  Serial.flush();
 }
 
 
