@@ -4,8 +4,8 @@ PomodoroModel::PomodoroModel()
 {
     myModel = NULL;
     dataManager = NULL;
-    tableName = "pomodoro";
-    coreRelationName = "project";
+    tableName = "ipomodoromodel";
+    coreRelationName = "ipomodoromodel";
     activeViewId = -1;
 }
 
@@ -22,7 +22,7 @@ void PomodoroModel::OnAllSetup()
 {
     if(!dataManager) return;
     QMap<QString, QVariant::Type> newRelationStruct = {
-        {coreRelationName,  QVariant::String},
+        {"project",  QVariant::String},
         {"pomodoros",       QVariant::Int},
     };
     QVector<QVariant> defaultData;

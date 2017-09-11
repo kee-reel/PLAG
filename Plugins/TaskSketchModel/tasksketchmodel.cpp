@@ -2,8 +2,8 @@
 
 TaskSketchModel::TaskSketchModel()
 {
-    tableName = "ITaskSketchModel";
-    coreRelationName = "ITaskSketchModel";
+    tableName = "itasksketchmodel";
+    coreRelationName = "itasksketchmodel";
     activeViewId = -1;
     myModel = NULL;
     dataManager = NULL;
@@ -22,7 +22,7 @@ void TaskSketchModel::OnAllSetup()
 {
     if(dataManager == NULL) return;
     QMap<QString, QVariant::Type> newRelationStruct = {
-        {coreRelationName,  QVariant::ByteArray},
+        {"sketch",  QVariant::ByteArray},
     };
     QVector<QVariant> defaultData;
     defaultData << QByteArray();

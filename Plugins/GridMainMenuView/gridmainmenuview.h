@@ -8,12 +8,15 @@
 #include <QPushButton>
 #include <QSpacerItem>
 #include <QScroller>
-#include <QQuickView>
 
 #include "igridmainmenuview.h"
 #include "../MainMenuModelPlugin/imainmenumodule.h"
 #include "menuitem.h"
 #include "aspectawaregridlayout.h"
+
+namespace Ui {
+ class Form;
+}
 
 //! addtogroup GridMainMenuView_imp
 //! {
@@ -52,20 +55,20 @@ public slots:
 
 private:
     PluginInfo *pluginInfo;
-
+    Ui::Form *ui;
     PluginInfo *openedModel;
     QList< PluginInfo* > relatedModelPlugins;
     PluginInfo *openedView;
     QList< PluginInfo* > relatedViewPlugins;
 
 private:
-    QQuickView *quickView;
+//    QQuickView *quickView;
     QLayout *layout;
     IMainMenuModel *mainMenu;
     IMainMenuModel::MenuItem *rootMenuItem;
     QList<MenuItem*> items;
     MenuItem* exitItem;
-    QWidget *container;
+//    QWidget *container;
 
 private slots:
     void RunMenuItem(int id);

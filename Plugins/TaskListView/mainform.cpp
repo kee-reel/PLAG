@@ -7,12 +7,13 @@ MainForm::MainForm(QWidget *parent) :
 {
     ui->setupUi(this);
     myTreeView = new MyTreeView(this);
-    myTreeView->installEventFilter(this);
+    //myTreeView->installEventFilter(this);
     ui->verticalLayout->setDirection(QBoxLayout::BottomToTop);
     ui->verticalLayout->addWidget(myTreeView);
     connect(myTreeView, SIGNAL(clicked(QModelIndex)), SLOT(on_treeView_clicked(QModelIndex)));
     connect(myTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(on_treeView_doubleClicked(QModelIndex)));
     connect(myTreeView, SIGNAL(pressed(QModelIndex)), SLOT(on_treeView_pressed(QModelIndex)));
+    connect(addForm, SIGNAL(OnClose()), SLOT(setFocus()));
     myTreeView->setExpandsOnDoubleClick(false);
 
 #ifdef Q_OS_ANDROID
@@ -140,7 +141,6 @@ void MainForm::on_treeView_clicked(const QModelIndex &index)
 
 void MainForm::on_treeView_doubleClicked(const QModelIndex &index)
 {
-    ui->verticalLayout->setEnabled(false);
     addForm->ShowModelData(index);
     model->insertColumn(1);
 }

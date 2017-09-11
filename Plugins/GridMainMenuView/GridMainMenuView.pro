@@ -1,7 +1,7 @@
 
 TARGET = GridMainMenuView
 TEMPLATE = lib
-QT += widgets quick
+QT += widgets
 
 SOURCES += \
     gridmainmenuview.cpp \

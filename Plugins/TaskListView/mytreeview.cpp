@@ -16,7 +16,6 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
     setDragDropMode(DragDrop);
     setVerticalScrollMode(ScrollPerPixel);
     setSelectionBehavior(QAbstractItemView::SelectRows);
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     setStyleSheet(
     "QTreeView::item:selected{                                                                          "
@@ -26,6 +25,7 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
     setExpandsOnDoubleClick(false);
 
 #ifdef Q_OS_ANDROID
+    setSelectionMode(QAbstractItemView::SingleSelection);
     setDragEnabled(false);
     setAcceptDrops(false);
     setFocusPolicy(Qt::NoFocus);
@@ -33,6 +33,7 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
     viewport()->grabGesture(Qt::TapAndHoldGesture);
     QScroller::grabGesture(viewport(), QScroller::LeftMouseButtonGesture);
 #else
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
     setFocusPolicy(Qt::StrongFocus);
     setDragEnabled(true);
     setAcceptDrops(true);

@@ -103,6 +103,7 @@ bool ExtendableDataBaseManagerPlugin::DeleteRelation(QString tableName, QString 
 
 bool ExtendableDataBaseManagerPlugin::SetActiveRelation(QString tableName, QString relationName)
 {
+    qDebug() << "SetActiveRelation";
     if(!tableHandlers.contains(tableName))
         return false;
     tableHandlers[tableName]->SetActiveRelation(relationName);

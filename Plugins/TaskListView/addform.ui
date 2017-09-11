@@ -474,6 +474,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lineEdit_2">
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
            <property name="text">
             <string>132</string>
            </property>
@@ -502,6 +505,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QPushButton" name="buttonOk">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -522,6 +528,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="buttonClose">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string/>
        </property>
