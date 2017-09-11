@@ -21,5 +21,5 @@ It allows you to build whole your system from plugins. Each plugin holds respons
 - **ExtendableDataBaseManager** - provides access to information in data base in abstract item models
 - **CipherDataBaseSource** - provide access to [SQLite plugin](https://github.com/devbean/QtCipherSqlitePlugin)
 
-If you interested in idea of crossplatform application which unlimitedly extendable and have some ideas or suggestions, please send me a message: [curunir@yandex.ru](curunir@yandex.ru). I've really need your help in bringing this project to life.
+If you interested in idea of crossplatform application which unlimitedly extendable and have some ideas or suggestions, please send me a message: *curunir@yandex.ru*. I've really need your help in bringing this project to life.
 **Thank you.**
