@@ -1,8 +1,8 @@
-# MASS - Multiple Application Support System.
+# MASS - Multiple Application Support System
 Written with Qt framework.
 
 ## Main idea
-It allows you to build whole your system from plugins which hold responsibility only for determined set of functionality. There only 4 main types of plugins:
+It allows you to build whole your system from plugins. Each plugin holds responsibility only for determined set of functionality. There only 4 main types of plugins:
 - **Model** - buisness logic and communication with other plugins
 - **View** - user interface
 - **DataManager** - provides data structures which not relate from source (database, network, COM-port and etc.)
