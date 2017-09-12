@@ -36,4 +36,5 @@ FORMS += \
         mainwindow.ui
 
 RESOURCES += \
+    rsc.qrc \
     rsc.qrc

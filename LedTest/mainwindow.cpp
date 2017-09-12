@@ -41,6 +41,12 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     }
 
+//    connect(ui->horizontalPlotScroll, SIGNAL(valueChanged(int)), this, SLOT(horzScrollBarChanged(int)));
+////    connect(ui->verticalPlotScroll, SIGNAL(valueChanged(int)), this, SLOT(vertScrollBarChanged(int)));
+//    connect(ui->customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), this, SLOT(xAxisChanged(QCPRange)));
+//    connect(ui->customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), this, SLOT(yAxisChanged(QCPRange)));
+    ui->horizontalPlotScroll->setRange(0, 99);
+    ui->customPlot->yAxis->setRange(0, 1024);
 }
 
 MainWindow::~MainWindow()
@@ -77,20 +83,17 @@ void MainWindow::ProcessPortInput()
 {
     auto byteArray = arduinoPort->readAll();
     auto message = QString::fromStdString(byteArray.toStdString());
-    qDebug() << "Read:" << message;
-    qDebug() << "serialBuffer:" << serialBuffer;
     serialBuffer.append(message);
     if(inputParser.indexIn(serialBuffer) != -1)
     {
         QString res = inputParser.capturedTexts().at(1);
         QStringList stringList = res.split(',');
-        qDebug() << "Result" << stringList;
         ui->textPortLog->append(res);
         serialBuffer = "";
 
-        if(startTime == 0)
-            startTime = QDateTime::currentMSecsSinceEpoch();
-        timeScale.append(QDateTime::currentMSecsSinceEpoch() - startTime);
+        if(startTime == 0) startTime = QDateTime::currentMSecsSinceEpoch();
+        double time = (QDateTime::currentMSecsSinceEpoch() - startTime) / 1000.0;
+        timeScale.append(time);
         inputData.append((stringList[1]).toDouble());
         ReplotPlot();
     }
@@ -160,9 +163,8 @@ void MainWindow::on_buttonSetup_clicked()
 void MainWindow::ReplotPlot()
 {
     MakePlot(0, timeScale, inputData);
-    MakePlot(1, timeScale, inputData);
+    ui->customPlot->xAxis->setRange(timeScale.last()*(windowXScale), timeScale.last());
     ui->customPlot->replot();
-    ui->customPlot->xAxis->setRange(0, timeScale.last());
 }
 
 void MainWindow::SetupPins()
@@ -252,4 +254,40 @@ void MainWindow::on_horizontalSliderHorizontal_sliderMoved(int position)
 void MainWindow::on_horizontalSlider_sliderReleased()
 {
     SendMessage(QString("d%1").arg(ui->horizontalSlider->value()));
+}
+
+//void MainWindow::horzScrollBarChanged(int value)
+//{
+//  if (qAbs(ui->customPlot->xAxis->range().center()-value/100.0) > 0.01) // if user is dragging plot, we don't want to replot twice
+//  {
+//    ui->customPlot->xAxis->setRange(value/100.0, ui->customPlot->xAxis->range().size(), Qt::AlignCenter);
+//    ui->customPlot->replot();
+//  }
+//}
+
+//void MainWindow::vertScrollBarChanged(int value)
+//{
+//  if (qAbs(ui->customPlot->yAxis->range().center()+value/100.0) > 0.01) // if user is dragging plot, we don't want to replot twice
+//  {
+//    ui->customPlot->yAxis->setRange(-value/100.0, ui->customPlot->yAxis->range().size(), Qt::AlignCenter);
+//    ui->customPlot->replot();
+//  }
+//}
+
+//void MainWindow::xAxisChanged(QCPRange range)
+//{
+//  ui->horizontalPlotScroll->setValue(qRound(range.center()*100.0)); // adjust position of scroll bar slider
+//  ui->horizontalPlotScroll->setPageStep(qRound(range.size()*100.0)); // adjust size of scroll bar slider
+//  ui->verticalPlotScroll->setRange(0, range.upper);
+//}
+
+//void MainWindow::yAxisChanged(QCPRange range)
+//{
+//  ui->verticalPlotScroll->setValue(qRound(-range.center()*100.0)); // adjust position of scroll bar slider
+//  ui->verticalPlotScroll->setPageStep(qRound(range.size()*100.0)); // adjust size of scroll bar slider
+//}
+
+void MainWindow::on_horizontalPlotScroll_sliderMoved(int position)
+{
+    windowXScale = position / 100.;
 }

@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QRadioButton>
 #include <QGridLayout>
+#include "qcustomplot.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +37,12 @@ private slots:
     void on_horizontalSliderHorizontal_sliderMoved(int position);
     void on_horizontalSlider_sliderReleased();
 
+//    void vertScrollBarChanged(int value);
+//    void horzScrollBarChanged(int value);
+//    void xAxisChanged(QCPRange range);
+//    void yAxisChanged(QCPRange range);
+    void on_horizontalPlotScroll_sliderMoved(int position);
+
 private:
     Ui::MainWindow *ui;
     QList<QRadioButton*> inputPins;
@@ -52,6 +59,8 @@ private:
     QVector<double> inputData;
     QVector<double> timeScale;
     double startTime;
+    double windowXScale;
+    double windowYScale;
     QString activeOutPin;
 
     QIODevice::OpenModeFlag openModeFlag;

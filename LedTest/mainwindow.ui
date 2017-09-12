@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>876</width>
+    <width>974</width>
     <height>484</height>
    </rect>
   </property>
@@ -199,7 +199,7 @@
     <item>
      <widget class="QGroupBox" name="groupBox_4">
       <property name="title">
-       <string>Graph</string>
+       <string>Plot</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
@@ -212,6 +212,49 @@
          </property>
         </widget>
        </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="minimumSize">
+            <size>
+             <width>110</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Plot scale</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="horizontalPlotScroll">
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="minimumSize">
+            <size>
+             <width>45</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
      </widget>
     </item>
@@ -222,7 +265,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>876</width>
+     <width>974</width>
      <height>22</height>
     </rect>
    </property>
@@ -284,6 +327,22 @@
     <hint type="destinationlabel">
      <x>439</x>
      <y>465</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalPlotScroll</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>label_6</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>881</x>
+     <y>458</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>929</x>
+     <y>457</y>
     </hint>
    </hints>
   </connection>
