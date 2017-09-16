@@ -8,6 +8,7 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QDebug>
+
 //! \addtogroup TaskSketchView_imp
 //! \{
 class PaintWidget : public QWidget
@@ -15,9 +16,10 @@ class PaintWidget : public QWidget
     Q_OBJECT
 public:
     explicit PaintWidget(QWidget *parent = 0);
-    QImage image;
+    QByteArray GetRawData();
 
 private:
+    QImage image;
     bool isPressed;
     QPoint mousePos, prevMousePos;
     QPen pen;
@@ -32,6 +34,12 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void paintEvent(QPaintEvent *event);
     virtual void resizeEvent(QResizeEvent *event);
+
+    // ITaskRelationDelegate interface
+public:
+    void SetValue(QVariant value) override;
+    QVariant GetValue() override;
+    QWidget *GetWidget() override;
 };
 //! \}
 #endif // PAINTWIDGET_H

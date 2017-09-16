@@ -57,7 +57,6 @@ private:
     Item header;
     Item *rootItem;
 
-
     Item *AddItem(int row, Item *taskParent, Item *taskData = NULL);
     bool EditItem(Item *task, int column, QVariant dataField);
     bool UpdateItemsPosition(Item *parent, int from);

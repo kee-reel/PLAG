@@ -28,7 +28,7 @@ void TaskSketchModel::OnAllSetup()
     defaultData << QByteArray();
     dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
     if(myModel != NULL)
-        dataManager->SetRelation(myModel->GetDataName(), coreRelationName, newRelationStruct, defaultData);
+        dataManager->SetRelation("ITaskTreeModel", coreRelationName, newRelationStruct, defaultData);
 }
 
 QString TaskSketchModel::GetLastError()
@@ -132,5 +132,5 @@ void TaskSketchModel::SetupModel()
     if(!dataManager) return;
     sketchItemModel = dataManager->GetDataModel(tableName);
     if(!myModel) return;
-    taskModel = dataManager->GetDataModel(myModel->GetDataName());
+    taskModel = dataManager->GetDataModel("ITaskTreeModel");
 }

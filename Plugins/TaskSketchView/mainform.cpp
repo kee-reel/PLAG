@@ -74,16 +74,12 @@ void MainForm::on_buttonClear_clicked()
 
 void MainForm::on_buttonSave_clicked()
 {
-    QByteArray ba;
-    QBuffer buffer(&ba);
-    buffer.open(QIODevice::WriteOnly);
-    ui->widgetPaint->image.save(&buffer, "PNG");
-    buffer.close();
+    QByteArray array = ui->widgetPaint->GetRawData();
 
     sketchModel->insertRows(0, 1);
     QModelIndex root = sketchModel->index(0, 0);
-    sketchModel->setData(root, QVariant(ba));
-    galleryForm->AddImage(0, ba);
+    sketchModel->setData(root, QVariant(array));
+    galleryForm->AddImage(0, array);
 }
 
 void MainForm::on_buttonOpenGallery_clicked()

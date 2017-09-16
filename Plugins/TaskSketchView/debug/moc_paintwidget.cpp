@@ -91,6 +91,8 @@ void *PaintWidget::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_PaintWidget.stringdata0))
         return static_cast<void*>(const_cast< PaintWidget*>(this));
+    if (!strcmp(_clname, "ITaskTreeModel::ITaskRelationDelegate"))
+        return static_cast< ITaskTreeModel::ITaskRelationDelegate*>(const_cast< PaintWidget*>(this));
     return QWidget::qt_metacast(_clname);
 }
 

@@ -8,11 +8,13 @@ TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    tasksketchmodel.cpp
+    tasksketchmodel.cpp \
+    rawimagedelegate.cpp
 
 HEADERS +=\
     itasksketchmodel.h \
-    tasksketchmodel.h
+    tasksketchmodel.h \
+    rawimagedelegate.h
 
 include(../../System/MASS/BuildInfo.pri)
 

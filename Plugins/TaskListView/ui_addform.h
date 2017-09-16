@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addform.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.1
+** Created by: Qt User Interface Compiler version 5.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -128,6 +128,7 @@ public:
 
         lineEdit_2 = new QLineEdit(scrollAreaWidgetContents);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        lineEdit_2->setFocusPolicy(Qt::NoFocus);
 
         horizontalLayout->addWidget(lineEdit_2);
 
@@ -146,6 +147,7 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         buttonOk = new QPushButton(AddForm);
         buttonOk->setObjectName(QStringLiteral("buttonOk"));
+        buttonOk->setFocusPolicy(Qt::NoFocus);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Res/ic_done_black_24dp.png"), QSize(), QIcon::Normal, QIcon::Off);
         buttonOk->setIcon(icon);
@@ -156,6 +158,7 @@ public:
 
         buttonClose = new QPushButton(AddForm);
         buttonClose->setObjectName(QStringLiteral("buttonClose"));
+        buttonClose->setFocusPolicy(Qt::NoFocus);
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/Res/ic_cancel_black_24dp.png"), QSize(), QIcon::Normal, QIcon::Off);
         buttonClose->setIcon(icon1);

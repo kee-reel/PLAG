@@ -95,11 +95,6 @@ void TaskTreeModel::Close()
     emit OnClose();
 }
 
-QString TaskTreeModel::GetDataName()
-{
-    return tableName;
-}
-
 QAbstractItemModel* TaskTreeModel::GetTreeModel()
 {
     if(!dataManager) return NULL;

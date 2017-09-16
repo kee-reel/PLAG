@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.MASS"
+    package="com.mass.mainapp"
     android:installLocation="auto"
     android:versionCode="1"
     android:versionName="1.0" >
@@ -28,6 +28,8 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name="org.qtproject.qt5.android.bindings.QtApplication"
@@ -35,7 +37,7 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
         <activity
-            android:name="com.MASS.NotificationClient"
+            android:name="com.mass.mainapp.QtActivityExtention"
             android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation"
             android:label="MASS"
             android:launchMode="singleTop"
@@ -145,6 +147,10 @@
 
         <!-- For adding service(s) please check: https://wiki.qt.io/AndroidServices -->
 
+        <receiver
+            android:name="com.mass.mainapp.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

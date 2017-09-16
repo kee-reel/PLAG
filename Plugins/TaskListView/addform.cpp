@@ -20,6 +20,7 @@ void AddForm::SetModel(QAbstractItemModel *model)
     mapper->setModel(model);
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);   
     mapper->addMapping(ui->lineEdit_2, 0);
+    model->buddy
 }
 
 void AddForm::ShowModelData(const QModelIndex &index, bool isNew)

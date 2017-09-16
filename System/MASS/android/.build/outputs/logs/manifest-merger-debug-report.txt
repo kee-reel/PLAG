@@ -1,185 +1,201 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:1-79:12
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:1-100:12
 	package
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:11-29
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:70-96
 	android:versionName
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:89-114
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:152-177
 		INJECTED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml
 		INJECTED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml
 	android:versionCode
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:115-138
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:128-151
 		INJECTED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml
 		INJECTED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:30-88
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:11-69
 	android:installLocation
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:139-169
-application
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:3:5-64:19
-	android:label
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:3:117-149
-	android:hardwareAccelerated
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:3:18-52
-	android:icon
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:3:150-179
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:3:53-116
-activity#com.MASS.NotificationClient
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:4:9-60:16
-	android:screenOrientation
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:4:237-276
-	android:label
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:4:216-236
-	android:launchMode
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:4:277-307
-	android:configChanges
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:4:19-172
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:4:173-215
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:5:13-8:29
-action#android.intent.action.MAIN
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:6:17-68
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:6:25-66
-category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:7:17-76
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:7:27-74
-meta-data#android.app.lib_name
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:14:13-107
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:14:60-105
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:14:24-59
-meta-data#android.app.qt_sources_resource_id
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:15:13-112
-	android:resource
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:15:74-110
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:15:24-73
-meta-data#android.app.repository
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:16:13-87
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:16:62-85
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:16:24-61
-meta-data#android.app.qt_libs_resource_id
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:17:13-106
-	android:resource
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:17:71-104
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:17:24-70
-meta-data#android.app.bundled_libs_resource_id
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:18:13-116
-	android:resource
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:18:76-114
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:18:24-75
-meta-data#android.app.bundle_local_qt_libs
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:20:13-120
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:20:72-118
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:20:24-71
-meta-data#android.app.bundled_in_lib_resource_id
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:21:13-120
-	android:resource
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:21:78-118
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:21:24-77
-meta-data#android.app.bundled_in_assets_resource_id
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:22:13-126
-	android:resource
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:22:81-124
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:22:24-80
-meta-data#android.app.use_local_qt_libs
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:24:13-114
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:24:69-112
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:24:24-68
-meta-data#android.app.libs_prefix
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:25:13-100
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:25:63-98
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:25:24-62
-meta-data#android.app.load_local_libs
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:26:13-112
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:26:67-110
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:26:24-66
-meta-data#android.app.load_local_jars
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:27:13-112
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:27:67-110
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:27:24-66
-meta-data#android.app.static_init_classes
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:28:13-118
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:28:71-116
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:28:24-70
-meta-data#android.app.ministro_not_found_msg
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:30:13-122
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:30:24-70
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:30:71-120
-meta-data#android.app.ministro_needed_msg
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:31:13-116
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:31:24-67
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:31:68-114
-meta-data#android.app.fatal_error_msg
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:32:13-108
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:32:24-63
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:32:64-106
-meta-data#android.app.background_running
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:45:13-92
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:45:70-90
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:45:24-69
-meta-data#android.app.auto_screen_scale_factor
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:49:13-99
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:49:76-97
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:49:24-75
-meta-data#android.app.extract_android_style
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:58:13-95
-	android:value
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:58:73-93
-	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:58:24-72
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:2:97-127
 uses-sdk
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:66:5-43
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:4:5-43
 	android:minSdkVersion
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:66:15-41
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:4:15-41
 supports-screens
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:67:5-135
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:6:5-135
 	android:largeScreens
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:67:23-50
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:6:49-76
 	android:smallScreens
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:67:106-133
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:6:106-133
 	android:normalScreens
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:67:51-79
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:6:77-105
 	android:anyDensity
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:67:80-105
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:6:23-48
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:77:1-75
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:21:5-79
 	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:77:18-73
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:21:22-77
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:78:5-80
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:22:5-80
 	android:name
-		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:78:22-78
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:22:22-78
+application
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:26:5-96:19
+	android:label
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:26:147-179
+	android:hardwareAccelerated
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:26:82-116
+	android:icon
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:26:117-146
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:26:18-81
+activity#com.mass.mainapp.QtActivityExtention
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:27:9-91:20
+	android:screenOrientation
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:27:261-300
+	android:label
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:27:209-229
+	android:launchMode
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:27:230-260
+	android:configChanges
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:27:55-208
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:27:19-54
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:28:13-32:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:29:17-68
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:29:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:31:17-76
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:31:27-74
+meta-data#android.app.lib_name
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:38:13-107
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:38:60-105
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:38:24-59
+meta-data#android.app.qt_sources_resource_id
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:39:13-112
+	android:resource
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:39:74-110
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:39:24-73
+meta-data#android.app.repository
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:40:13-87
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:40:62-85
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:40:24-61
+meta-data#android.app.qt_libs_resource_id
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:41:13-106
+	android:resource
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:41:71-104
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:41:24-70
+meta-data#android.app.bundled_libs_resource_id
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:42:13-116
+	android:resource
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:42:76-114
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:42:24-75
+meta-data#android.app.bundle_local_qt_libs
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:44:13-120
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:44:72-118
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:44:24-71
+meta-data#android.app.bundled_in_lib_resource_id
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:45:13-120
+	android:resource
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:45:78-118
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:45:24-77
+meta-data#android.app.bundled_in_assets_resource_id
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:46:13-126
+	android:resource
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:46:81-124
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:46:24-80
+meta-data#android.app.use_local_qt_libs
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:48:13-114
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:48:69-112
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:48:24-68
+meta-data#android.app.libs_prefix
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:49:13-100
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:49:63-98
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:49:24-62
+meta-data#android.app.load_local_libs
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:50:13-112
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:50:67-110
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:50:24-66
+meta-data#android.app.load_local_jars
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:51:13-112
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:51:67-110
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:51:24-66
+meta-data#android.app.static_init_classes
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:52:13-118
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:52:71-116
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:52:24-70
+meta-data#android.app.ministro_not_found_msg
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:54:13-122
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:54:74-120
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:54:24-73
+meta-data#android.app.ministro_needed_msg
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:55:13-116
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:55:71-114
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:55:24-70
+meta-data#android.app.fatal_error_msg
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:56:13-108
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:56:67-106
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:56:24-66
+meta-data#android.app.background_running
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:73:13-92
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:73:70-90
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:73:24-69
+meta-data#android.app.auto_screen_scale_factor
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:78:13-99
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:78:76-97
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:78:24-75
+meta-data#android.app.extract_android_style
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:89:13-95
+	android:value
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:89:73-93
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:89:24-72
+receiver#com.mass.mainapp.AlarmReceiver
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:95:9-97
+	android:enabled
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:95:49-71
+	android:exported
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:95:72-95
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:95:19-48
+uses-permission#android.permission.VIBRATE
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:98:1-61
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:98:18-59
+uses-permission#android.permission.WAKE_LOCK
+ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:99:1-63
+	android:name
+		ADDED from C:\Users\Curunir\Desktop\MASS\System\MASS\android\AndroidManifest.xml:99:18-61

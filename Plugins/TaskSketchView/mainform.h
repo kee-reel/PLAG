@@ -7,7 +7,6 @@
 #include <QAbstractItemModel>
 #include <QAbstractProxyModel>
 #include <QResizeEvent>
-#include <QBuffer>
 
 #include "../TaskSketchModel/itasksketchmodel.h"
 #include "galleryform.h"

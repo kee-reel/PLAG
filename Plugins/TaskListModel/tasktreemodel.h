@@ -34,7 +34,6 @@ signals:
 
     // ITaskTreeModel interface
 public:
-    QString GetDataName() override;
     QAbstractItemModel *GetTreeModel() override;
     void SetRelationDelegate(QString relation, ITaskRelationDelegate *delegate) override;
     QMap<QString, ITaskRelationDelegate *> GetRelationDelegates() override;

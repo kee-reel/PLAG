@@ -32,15 +32,12 @@ void ExtendableDataBaseManagerPlugin::SetPluginInfo(PluginInfo *pluginInfo)
 
 void ExtendableDataBaseManagerPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    if(pluginInfo->Meta->InterfaceName == "IDATABASESOURCEPLUGIN")
+    this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(pluginInfo->Instance);
+    if(!this->dataSource)
     {
-        this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(pluginInfo->Instance);
-        if(!this->dataSource)
-        {
-            qDebug() << pluginInfo->Meta->Name << "is not ExtendableDataBaseManagerPlugin.";
-        }
-        qDebug() << "ExtendableDataBaseManagerPlugin succesfully set.";
+        qDebug() << pluginInfo->Meta->Name << "is not ExtendableDataBaseManagerPlugin.";
     }
+    qDebug() << "ExtendableDataBaseManagerPlugin succesfully set.";
 }
 
 void ExtendableDataBaseManagerPlugin::ReferencePluginClosed(PluginInfo *pluginInfo)
@@ -48,64 +45,52 @@ void ExtendableDataBaseManagerPlugin::ReferencePluginClosed(PluginInfo *pluginIn
 
 }
 
-//bool ExtendableDataBaseManagerPlugin::AddDataSource(QObject *dataSource)
-//{
-//    this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(dataSource);
-//    if(!this->dataSource)
-//    {
-//        qDebug() << dataSource->objectName() << "is not ExtendableDataBaseManagerPlugin.";
-//    }
-//    qDebug() << "ExtendableDataBaseManagerPlugin succesfully set.";
-//    return true;
-//}
+void ExtendableDataBaseManagerPlugin::SetupTable(QString &tableName)
+{
+    tableName = tableName.toLower();
+    if(!tableHandlers.contains(tableName))
+        tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
+}
 
 QList<ExtendableDataBaseManagerPlugin::ManagerDataItem> ExtendableDataBaseManagerPlugin::GetDataList(QString tableName)
 {
-    if(!tableHandlers.contains(tableName))
-        tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
+    SetupTable(tableName);
     return tableHandlers[tableName]->GetData();
 }
 
 IExtendableDataBaseManager::ManagerDataItem ExtendableDataBaseManagerPlugin::GetDataItem(QString tableName, int id)
 {
-    if(!tableHandlers.contains(tableName))
-        tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
+    SetupTable(tableName);
     return tableHandlers[tableName]->GetItem(id);
 }
 
 QAbstractItemModel *ExtendableDataBaseManagerPlugin::GetDataModel(QString tableName)
 {
-    if(!tableHandlers.contains(tableName))
-        return false;
+    SetupTable(tableName);
     return tableHandlers[tableName]->GetModel();
 }
 
 QMap<QString, QVariant::Type> ExtendableDataBaseManagerPlugin::GetTableHeader(QString tableName)
 {
-    if(!tableHandlers.contains(tableName))
-        tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
+    SetupTable(tableName);
     return tableHandlers[tableName]->GetHeader();
 }
 
 bool ExtendableDataBaseManagerPlugin::SetRelation(QString tableName, QString relationName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData)
 {
-    if(!tableHandlers.contains(tableName))
-        tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
+    SetupTable(tableName);
     return tableHandlers[tableName]->SetRelation(relationName, fields, defaultData);
 }
 
 bool ExtendableDataBaseManagerPlugin::DeleteRelation(QString tableName, QString relationName)
 {
-    if(!tableHandlers.contains(tableName))
-        return false;
+    SetupTable(tableName);
     return tableHandlers[tableName]->DeleteRelation(relationName);
 }
 
 bool ExtendableDataBaseManagerPlugin::SetActiveRelation(QString tableName, QString relationName)
 {
-    qDebug() << "SetActiveRelation";
-    if(!tableHandlers.contains(tableName))
-        return false;
+    SetupTable(tableName);
     tableHandlers[tableName]->SetActiveRelation(relationName);
     return true;
 }

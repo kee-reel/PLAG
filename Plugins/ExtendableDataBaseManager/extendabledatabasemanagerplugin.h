@@ -53,6 +53,7 @@ private:
     IDataBaseSourcePlugin* dataSource;
 
     QHash<QString, TableHandler*> tableHandlers;
+    void SetupTable(QString &tableName);
 };
 //! \}
 #endif // TASKDBTOOLPLUGIN_H
