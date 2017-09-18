@@ -6,17 +6,17 @@
 #include <QObject>
 #include <QVariant>
 
-#include "iextendabledatabasemanagerplugin.h"
+#include "iextendabledatamanager.h"
 #include "tablehandler.h"
 #include "extendableitemmodel.h"
 
 //! \addtogroup ExtendableDataBaseManagerPlugin_imp
 //! \{
-class ExtendableDataBaseManagerPlugin : public QObject, IExtendableDataBaseManager
+class ExtendableDataBaseManagerPlugin : public QObject, IExtendableDataManager
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "TreeDataManagerPlugin" FILE "PluginMeta.json")
-    Q_INTERFACES(IDataManagerPlugin IExtendableDataBaseManager)
+    Q_PLUGIN_METADATA(IID "ExtendableDataManager" FILE "PluginMeta.json")
+    Q_INTERFACES(IDataManagerPlugin IExtendableDataManager)
 
 public:
     ExtendableDataBaseManagerPlugin();
@@ -34,7 +34,7 @@ signals:
     void OnClose(PluginInfo *pointer);
     void OnClose();
 
-    // IExtendableDataBaseManagerPlugin interface
+    // IExtendableDataManagerPlugin interface
 public:
     QList<ManagerDataItem> GetDataList(QString treeName) override;
     ManagerDataItem GetDataItem(QString treeName, int id) override;

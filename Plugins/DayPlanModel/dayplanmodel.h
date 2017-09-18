@@ -9,7 +9,7 @@
 
 #include "idayplanmodel.h"
 #include "../TaskListModel/itasktreemodel.h"
-#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
+#include "../ExtendableDataManager/iextendabledatamanager.h"
 
 //! addtogroup DayPlanModel_imp
 //! {
@@ -56,7 +56,7 @@ private:
 
 private:
     ITaskTreeModel *taskTreeModel;
-    IExtendableDataBaseManager *dataManager;
+    IExtendableDataManager *dataManager;
     QString tableName, relationName;
     QAbstractItemModel *dataModel;
 

@@ -8,6 +8,16 @@ PaintWidget::PaintWidget(QWidget *parent) : QWidget(parent)
     pen = QPen(QBrush(Qt::black), 3);
 }
 
+QByteArray PaintWidget::GetRawData()
+{
+    QByteArray ba;
+    QBuffer buffer(&ba);
+    buffer.open(QIODevice::WriteOnly);
+    image.save(&buffer, "PNG");
+    buffer.close();
+    return ba;
+}
+
 void PaintWidget::Clean()
 {
     image.fill(Qt::white);

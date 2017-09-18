@@ -46,22 +46,22 @@ void TaskSketchModel::AddReferencePlugin(PluginInfo *pluginInfo)
         }break;
 
         case DATAMANAGER:{
-            this->dataManager = qobject_cast<IExtendableDataBaseManager*>(pluginInfo->Instance);
+            this->dataManager = qobject_cast<IExtendableDataManager*>(pluginInfo->Instance);
             if(!this->dataManager)
             {
-                qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataBaseManagerPlugin.";
+                qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataManagerPlugin.";
                 return;
             }
-            qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
+            qDebug() << "IExtendableDataManagerPlugin succesfully set.";
         }break;
 
         case PLUGINMODEL:{
             myModel = qobject_cast<ITaskTreeModel*>(pluginInfo->Instance);
             if(!myModel){
-                qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataBaseManagerPlugin.";
+                qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataManagerPlugin.";
                 return;
             }
-            qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
+            qDebug() << "IExtendableDataManagerPlugin succesfully set.";
         }break;
 
         case ROOTMODEL:{

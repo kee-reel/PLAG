@@ -23,7 +23,7 @@ QVariant RawImageDelegate::GetValue()
 
 QWidget *RawImageDelegate::GetWidget()
 {
-    return this;
+    //return this;
 }
 
 QByteArray RawImageDelegate::GetRawData()

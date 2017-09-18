@@ -8,7 +8,7 @@
 #include <QDateTime>
 
 #include "ipomodoromodel.h"
-#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
+#include "../ExtendableDataBaseManager/IExtendableDataManagerplugin.h"
 #include "../TaskListModel/itasktreemodel.h"
 
 //! \addtogroup PomodoroModel_imp
@@ -25,7 +25,7 @@ public:
 
 private:
     // Native part
-    IExtendableDataBaseManager *dataManager;
+    IExtendableDataManager *dataManager;
     ITaskTreeModel *myModel;
     QAbstractItemModel *taskModel;
     QAbstractItemModel *pomodoroItemModel;

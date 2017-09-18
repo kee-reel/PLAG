@@ -3,7 +3,7 @@
 # Project created by QtCreator 2017-02-01T20:08:55
 #
 #-------------------------------------------------
-TARGET = ExtendableDataBaseManagerPlugin
+TARGET = ExtendableDataManagerPlugin
 TEMPLATE = lib
 QT += core sql
 
@@ -13,14 +13,14 @@ DISTFILES += \
     PluginMeta.json
 
 HEADERS += \
-    extendabledatabasemanagerplugin.h \
-    iextendabledatabasemanagerplugin.h \
     tablehandler.h \
     extendableitemmodel.h \
-    item.h
+    item.h \
+    iextendabledatamanager.h \
+    extendabledamanager.h
 
 SOURCES += \
-    extendabledatabasemanagerplugin.cpp \
     tablehandler.cpp \
     extendableitemmodel.cpp \
-    item.cpp
+    item.cpp \
+    extendabledatamanager.cpp

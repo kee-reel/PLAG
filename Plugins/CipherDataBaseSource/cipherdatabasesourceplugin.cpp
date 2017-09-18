@@ -8,6 +8,8 @@ CipherDataBaseSourcePlugin::CipherDataBaseSourcePlugin()
 CipherDataBaseSourcePlugin::~CipherDataBaseSourcePlugin()
 {
     dbconn.close();
+    qDebug() << "Closing data source:" << GetLastError();
+
 }
 
 void CipherDataBaseSourcePlugin::OnAllSetup()
@@ -17,7 +19,7 @@ void CipherDataBaseSourcePlugin::OnAllSetup()
 
 QString CipherDataBaseSourcePlugin::GetLastError()
 {
-    if(lastError!="")
+    if(lastError != "")
         return lastError;
     else
         return dbconn.lastError().text();

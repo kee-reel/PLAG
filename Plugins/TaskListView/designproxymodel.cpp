@@ -3,6 +3,7 @@
 DesignProxyModel::DesignProxyModel(QAbstractItemModel *model)
 {
     setSourceModel(model);
+    this->model = model;
 }
 
 QVariant DesignProxyModel::data(const QModelIndex &index, int role) const
@@ -52,4 +53,9 @@ QVariant DesignProxyModel::headerData(int section, Qt::Orientation orientation, 
         return QIdentityProxyModel::headerData(section, orientation, role);
         break;
     }
+}
+
+QMap<int, QVariant> DesignProxyModel::itemData(const QModelIndex &index) const
+{
+     return model->itemData(index);
 }

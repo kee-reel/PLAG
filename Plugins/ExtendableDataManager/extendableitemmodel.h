@@ -8,26 +8,32 @@
 #include <QMimeData>
 #include <QDataStream>
 #include <QMap>
-#include <QApplication>
+#include <QObject>
 
-#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
+#include "iextendabledatamanager.h"
 #include "item.h"
 
+//! \addtogroup ExtendableDataBaseManagerPlugin_imp
+//! \{
 class ExtendableItemModel : public QAbstractItemModel
 {
-    typedef IExtendableDataBaseManagerPlugin::ManagerItemInfo ManagerItemInfo;
+    typedef IExtendableDataManager::ManagerDataItem ManagerDataItem;
+    typedef QMap<QString, QVariant::Type> TableStructMap;
 public:
+
     QString tableName;
     QString coreRelationName;
-    IExtendableDataBaseManagerPlugin* dataManager;
+    IExtendableDataManager* dataManager;
 
-    ExtendableItemModel(QString tableName, IExtendableDataBaseManagerPlugin* dataManager, QObject *parent = 0);
+    ExtendableItemModel(QString tableName, IExtendableDataManager* dataManager, QObject *parent = 0);
     ~ExtendableItemModel();
     void LoadData();
-    bool AttachRelation(QString relationName, QVector<QVariant> defaultData);
+    bool AttachRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData);
     void SetActiveRelation(QString relationName);
 
     virtual QVariant data(const QModelIndex &index, int role) const;
+    QMap<int, QVariant> itemData(const QModelIndex &index) const override;
+    bool setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles) override;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const;
     virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     virtual QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
@@ -51,6 +57,7 @@ private:
     QHash<int, Item*> internalList;
     QString currentActiveChunkName;
     Item defaultTask;
+    Item header;
     Item *rootItem;
 
     Item *AddItem(int row, Item *taskParent, Item *taskData = NULL);
@@ -58,7 +65,7 @@ private:
     bool UpdateItemsPosition(Item *parent, int from);
     bool DeleteItem(Item *task);
     void DeleteFromManagerRecursive(Item *task);
-    ManagerItemInfo ConvertToManagerItem(Item* item);
+//    ManagerDataItem ConvertToManagerItem(Item* item);
 };
-
+//! \}
 #endif // EXTENDABLEITEMMODEL_H

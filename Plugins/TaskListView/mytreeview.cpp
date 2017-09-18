@@ -42,7 +42,6 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
 
 void MyTreeView::dragMoveEvent(QDragMoveEvent* event)
 {
-    qDebug() << "dragMoveEvent";
     QTreeView::dragMoveEvent(event);
 }
 

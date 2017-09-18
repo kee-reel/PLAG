@@ -30,6 +30,7 @@ MainForm::MainForm(QWidget *parent) :
 
 MainForm::~MainForm()
 {
+    delete addForm;
     delete ui;
 }
 

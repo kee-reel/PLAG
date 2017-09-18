@@ -4,7 +4,7 @@
     "Name": "DayPlanModel",
     "RelatedPluginInterfaces": [
         "ITaskTreeModel",
-        "IExtendableDataBaseManager",
+        "IExtendableDataManager",
         "IMainMenuModel"
     ]
 }

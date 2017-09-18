@@ -10,8 +10,8 @@ MainForm::MainForm(QWidget *parent) :
     galleryForm = new GalleryForm(this);
     galleryForm->setVisible(false);
     imageFormat = "png";
-    //connect(ui->buttonSave, SIGNAL(clicked(bool)), SLOT(on_buttonSave_clicked()));
-    //connect(ui->buttonClear, SIGNAL(clicked(bool)), ui->widgetPaint, SLOT(Clean()));
+    connect(ui->buttonSave, SIGNAL(clicked(bool)), SLOT(on_buttonSave_clicked()));
+    connect(ui->buttonClear, SIGNAL(clicked(bool)), ui->widgetPaint, SLOT(Clean()));
     connect(galleryForm, SIGNAL(OnItemDelete(int)), SLOT(OnItemDelete(int)));
     connect(galleryForm, SIGNAL(OnItemConvert(int)), SLOT(OnItemConvertSlot(int)));
 

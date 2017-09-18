@@ -20,7 +20,13 @@ void DayPlanModel::SetPluginInfo(PluginInfo *pluginInfo)
 
 void DayPlanModel::OnAllSetup()
 {
-
+    if(!dataManager) return;
+    QMap<QString, QVariant::Type> newRelationStruct = {
+        {"datetime",        QVariant::String},
+    };
+    QVector<QVariant> defaultData;
+    defaultData << QDateTime::currentDateTime().toString(Qt::ISODate);
+    dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
 }
 
 QString DayPlanModel::GetLastError()
@@ -53,17 +59,11 @@ void DayPlanModel::AddReferencePlugin(PluginInfo *pluginInfo)
     } break;
 
     case DATAMANAGER:{
-        dataManager = qobject_cast<IExtendableDataBaseManager*>(pluginInfo->Instance);
+        dataManager = qobject_cast<IExtendableDataManager*>(pluginInfo->Instance);
         if(!this->dataManager){
-            qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataBaseManager.";
+            qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataManager.";
             return;
         }
-        QMap<QString, QVariant::Type> newRelationStruct = {
-            {"datetime",        QVariant::DateTime},
-        };
-        QVector<QVariant> defaultData;
-        defaultData << QDateTime::currentDateTime();
-        dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
     }break;
     }
 }

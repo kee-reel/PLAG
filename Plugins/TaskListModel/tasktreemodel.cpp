@@ -21,7 +21,13 @@ void TaskTreeModel::SetPluginInfo(PluginInfo *pluginInfo)
 
 void TaskTreeModel::OnAllSetup()
 {
-
+    if(!dataManager) return;
+    QMap<QString, QVariant::Type> newRelationStruct = {
+        {"name",        QVariant::String},
+    };
+    QVector<QVariant> defaultData;
+    defaultData << "New task";
+    dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
 }
 
 QString TaskTreeModel::GetLastError()
@@ -38,17 +44,11 @@ void TaskTreeModel::AddReferencePlugin(PluginInfo *pluginInfo)
         }break;
 
         case DATAMANAGER:{
-            this->dataManager = qobject_cast<IExtendableDataBaseManager*>(pluginInfo->Instance);
+            this->dataManager = qobject_cast<IExtendableDataManager*>(pluginInfo->Instance);
             if(!this->dataManager){
-                qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataBaseManager.";
+                qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataManager.";
                 return;
             }
-            QMap<QString, QVariant::Type> newRelationStruct = {
-                {"name",        QVariant::String},
-            };
-            QVector<QVariant> defaultData;
-            defaultData << "New task";
-            dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
         }break;
 
         case ROOTMODEL:{
@@ -99,6 +99,9 @@ QAbstractItemModel* TaskTreeModel::GetTreeModel()
 {
     if(!dataManager) return NULL;
     if(!treeModel) treeModel = dataManager->GetDataModel(tableName);
+    auto prt = treeModel->index(0,0);
+    IExtendableDataManager::ManagerDataItem *item = (IExtendableDataManager::ManagerDataItem *)prt.internalPointer();
+    auto meta = treeModel->metaObject();
     return treeModel;
 }
 

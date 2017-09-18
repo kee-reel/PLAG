@@ -6,6 +6,7 @@
 #include <QDataWidgetMapper>
 #include <QAbstractItemModel>
 #include <QKeyEvent>
+#include <QMap>
 
 namespace Ui {
 class AddForm;

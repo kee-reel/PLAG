@@ -1,4 +1,4 @@
-#include "extendabledatabasemanagerplugin.h"
+#include "extendabledamanager.h"
 
 ExtendableDataBaseManagerPlugin::ExtendableDataBaseManagerPlugin()
 {
@@ -32,8 +32,8 @@ void ExtendableDataBaseManagerPlugin::SetPluginInfo(PluginInfo *pluginInfo)
 
 void ExtendableDataBaseManagerPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    this->dataSource = qobject_cast<IDataBaseSourcePlugin*>(pluginInfo->Instance);
-    if(!this->dataSource)
+    dataSource = qobject_cast<IDataBaseSourcePlugin*>(pluginInfo->Instance);
+    if(!dataSource)
     {
         qDebug() << pluginInfo->Meta->Name << "is not ExtendableDataBaseManagerPlugin.";
     }
@@ -58,7 +58,7 @@ QList<ExtendableDataBaseManagerPlugin::ManagerDataItem> ExtendableDataBaseManage
     return tableHandlers[tableName]->GetData();
 }
 
-IExtendableDataBaseManager::ManagerDataItem ExtendableDataBaseManagerPlugin::GetDataItem(QString tableName, int id)
+IExtendableDataManager::ManagerDataItem ExtendableDataBaseManagerPlugin::GetDataItem(QString tableName, int id)
 {
     SetupTable(tableName);
     return tableHandlers[tableName]->GetItem(id);
@@ -97,15 +97,18 @@ bool ExtendableDataBaseManagerPlugin::SetActiveRelation(QString tableName, QStri
 
 int ExtendableDataBaseManagerPlugin::AddItem(QString tableName, ManagerDataItem item)
 {
+    SetupTable(tableName);
     return tableHandlers[tableName]->AddItem(item);
 }
 
 bool ExtendableDataBaseManagerPlugin::EditItem(QString tableName, ManagerDataItem item)
 {
+    SetupTable(tableName);
     return tableHandlers[tableName]->EditItem(item);
 }
 
 bool ExtendableDataBaseManagerPlugin::DeleteItem(QString tableName, int id)
 {
+    SetupTable(tableName);
     return tableHandlers[tableName]->DeleteItem(id);
 }

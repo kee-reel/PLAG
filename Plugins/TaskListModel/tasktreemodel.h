@@ -4,9 +4,10 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
+#include <QAbstractItemModel>
 
 #include "itasktreemodel.h"
-#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
+#include "../ExtendableDataManager/iextendabledatamanager.h"
 
 //! \addtogroup TaskTreeModel_imp
 //! \{
@@ -24,6 +25,7 @@ public:
     void AddReferencePlugin(PluginInfo *pluginInfo) override;
 public slots:
     void ReferencePluginClosed(PluginInfo *pluginInfo) override;
+
     // IModelPlugin interface
 public slots:
     bool Open(IModelPlugin *model) override;
@@ -59,11 +61,10 @@ private:
     // Unique part
     QString tableName;
     QString relationName;
-    IExtendableDataBaseManager* dataManager;
+    IExtendableDataManager* dataManager;
     QAbstractItemModel *treeModel;
 
     QMap<QString, ITaskRelationDelegate*> taskRelationDelegates;
-
 };
 //! \}
 #endif // TASKLISTMODEL_H

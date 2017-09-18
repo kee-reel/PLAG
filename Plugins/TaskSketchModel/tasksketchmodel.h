@@ -7,7 +7,7 @@
 #include <QAbstractItemModel>
 
 #include "itasksketchmodel.h"
-#include "../ExtendableDataBaseManager/iextendabledatabasemanagerplugin.h"
+#include "../ExtendableDataManager/iextendabledatamanager.h"
 #include "../TaskListModel/itasktreemodel.h"
 
 //! \addtogroup TaskSketchModel_imp
@@ -24,7 +24,7 @@ public:
 
 private:
     // Native part
-    IExtendableDataBaseManager *dataManager;
+    IExtendableDataManager *dataManager;
     ITaskTreeModel *myModel;
     QAbstractItemModel *taskModel;
     QAbstractItemModel *sketchItemModel;

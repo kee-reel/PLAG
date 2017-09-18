@@ -19,7 +19,8 @@ class QAbstractItemModel;
 
 //! \addtogroup ExtendableDataBaseManagerPlugin_int
 //! \{
-class IExtendableDataBaseManager : public IDataManagerPlugin
+//! \brief
+class IExtendableDataManager : public IDataManagerPlugin
 {
 public:
     class ManagerDataItem{
@@ -30,10 +31,12 @@ public:
 
     virtual QList<ManagerDataItem> GetDataList(QString treeName) = 0;
     virtual ManagerDataItem GetDataItem(QString treeName, int id) = 0;
-    virtual QAbstractItemModel *GetDataModel(QString treeName) = 0;
     virtual QMap<QString, QVariant::Type> GetTableHeader(QString treeName) = 0;
 
-    virtual bool SetRelation(QString mainName, QString relationName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData) = 0;
+    virtual QAbstractItemModel *GetDataModel(QString treeName) = 0;
+
+    virtual bool SetRelation(QString mainName, QString relationName,
+                             QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData) = 0;
     virtual bool DeleteRelation(QString mainName, QString relationName) = 0;
     virtual bool SetActiveRelation(QString mainName, QString relationName) = 0;
 
@@ -41,6 +44,6 @@ public:
     virtual bool EditItem(QString treeName, ManagerDataItem task) = 0;
     virtual bool DeleteItem(QString treeName, int id) = 0;
 };
-Q_DECLARE_INTERFACE(IExtendableDataBaseManager, "IExtendableDataBaseManager v0.1")
+Q_DECLARE_INTERFACE(IExtendableDataManager, "IExtendableDataManager v0.1")
 //! @}
 #endif // ITASKDBTOOLPLUGIN_H

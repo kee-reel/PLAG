@@ -53,7 +53,7 @@ void PomodoroModel::AddReferencePlugin(PluginInfo *pluginInfo)
                     qDebug() << pluginInfo->Instance->objectName() << "is not ITaskTreeModel.";
                     return;
                 }
-                qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
+                qDebug() << "IExtendableDataManagerPlugin succesfully set.";
                 connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
             }
         } break;
@@ -65,14 +65,14 @@ void PomodoroModel::AddReferencePlugin(PluginInfo *pluginInfo)
         } break;
 
         case DATAMANAGER:{
-            qDebug() <<  "is not IExtendableDataBaseManagerPlugin.";
-            this->dataManager = qobject_cast<IExtendableDataBaseManager*>(pluginInfo->Instance);
+            qDebug() <<  "is not IExtendableDataManagerPlugin.";
+            this->dataManager = qobject_cast<IExtendableDataManager*>(pluginInfo->Instance);
             if(!this->dataManager)
             {
-                qDebug() << pluginInfo->Instance->objectName() << "is not IExtendableDataBaseManagerPlugin.";
+                qDebug() << pluginInfo->Instance->objectName() << "is not IExtendableDataManagerPlugin.";
                 return;
             }
-            qDebug() << "IExtendableDataBaseManagerPlugin succesfully set.";
+            qDebug() << "IExtendableDataManagerPlugin succesfully set.";
         }break;
     }
 }

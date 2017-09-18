@@ -20,12 +20,12 @@ void AddForm::SetModel(QAbstractItemModel *model)
     mapper->setModel(model);
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);   
     mapper->addMapping(ui->lineEdit_2, 0);
-    model->buddy
 }
 
 void AddForm::ShowModelData(const QModelIndex &index, bool isNew)
 {
     show();
+    auto map = mapper->model()->itemData(index);
     ui->label_2->setText(mapper->model()->headerData(0, Qt::Horizontal).toString());
     ui->lineEdit_2->setFocus();
     mapper->setRootIndex(index.parent());

@@ -1,7 +1,7 @@
 #include "extendableitemmodel.h"
 
 ExtendableItemModel::ExtendableItemModel(QString tableName,
-                                     IExtendableDataBaseManager* dataManager,
+                                     IExtendableDataManager* dataManager,
                                      QObject *parent)
 {
     this->tableName = tableName;
@@ -26,14 +26,15 @@ void ExtendableItemModel::LoadData()
         {"parent",      QVariant::Int},
         {"position",    QVariant::Int}
     };
-    QVector<QVariant> defaultData;
+    QVector<QVariant> defaultData = {-1, 0};
     dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
+    defaultTask.SetChunkData(coreRelationName, defaultData);
 
     QStringList relationFields = newRelationStruct.keys();
     parentIndex = relationFields.indexOf("parent");
     positionIndex = relationFields.indexOf("position");
 
-    QList<ManagerItemInfo> managerList = dataManager->GetDataList(tableName);
+    QList<ManagerDataItem> managerList = dataManager->GetDataList(tableName);
     // Item Id -> Item children.
     QMap<int, QMap<int, Item*>> internalTree;
 
@@ -43,7 +44,7 @@ void ExtendableItemModel::LoadData()
     for(int i = 0; i < managerList.count(); i++)
     {
         Item *treeItem = new Item();
-        ManagerItemInfo *managerItemInfo = &managerList[i];
+        ManagerDataItem *managerItemInfo = &managerList[i];
 
         treeItem->SetId(managerItemInfo->id);
         for(int chunksIter = 0; chunksIter < chunksNames.count(); ++chunksIter)
@@ -53,10 +54,7 @@ void ExtendableItemModel::LoadData()
                 QVector<QVariant> *dataChunk = &(managerItemInfo->dataChunks[coreRelationName]);
                 internalTree[dataChunk->at(parentIndex).toInt()].insertMulti(dataChunk->at(positionIndex).toInt(), treeItem);
             }
-            else
-            {
-                treeItem->SetChunkData(chunksNames[chunksIter], managerItemInfo->dataChunks[chunksNames[chunksIter]]);
-            }
+            treeItem->SetChunkData(chunksNames[chunksIter], managerItemInfo->dataChunks[chunksNames[chunksIter]]);
         }
         internalList.insert(managerItemInfo->id, treeItem);
     }
@@ -67,8 +65,6 @@ void ExtendableItemModel::LoadData()
     {
         Item* parent = (internalList.contains(keys[i])) ? internalList[keys[i]] : rootItem;
         QList<Item*> childItemsList = internalTree[keys[i]].values();
-        for(int j = 0; j < childItemsList.count(); j++)
-           childItemsList[j]->parentItem = parent;
         parent->SetChilds(childItemsList);
     }
 }
@@ -90,10 +86,10 @@ void ExtendableItemModel::SetActiveRelation(QString relationName)
     qDebug() << "===SetActiveRelation===" << relationName;
     QList<Item*> keys = internalList.values();
     for(int i = 0; i < keys.count(); ++i)
-        keys[i]->SetActiveChunkName(relationName);
+        keys[i]->SetOneChunkActive(relationName);
     currentActiveChunkName = relationName;
-    defaultTask.SetActiveChunkName(relationName);
-    header.SetActiveChunkName(relationName);
+    defaultTask.SetOneChunkActive(relationName);
+    header.SetOneChunkActive(relationName);
 }
 
 QVariant ExtendableItemModel::data(const QModelIndex &index, int role) const
@@ -125,12 +121,12 @@ QMap<int, QVariant> ExtendableItemModel::itemData(const QModelIndex &index) cons
         return QMap<int, QVariant>();
 
     Item *item = static_cast<Item*>(index.internalPointer());
-    QVector<QVariant> data = item->GetChunkData();
-    QMap<int, QVariant> map;
-    map.insert(0, item->GetId());
-    for(int i = 0; i < data.length(); ++i)
-        map.insert(i+1, data[i]);
-    return map;
+    return item->GetAllChunksData();
+}
+
+bool ExtendableItemModel::setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles)
+{
+
 }
 
 Qt::ItemFlags ExtendableItemModel::flags(const QModelIndex &index) const
@@ -189,11 +185,10 @@ QModelIndex ExtendableItemModel::parent(const QModelIndex &index) const
         return QModelIndex();
 
     Item *childItem = static_cast<Item*>(index.internalPointer());
-    Item *parentItem = childItem->parentItem;
-
-    if (parentItem == rootItem)
+    if (childItem->ParentIsRoot() || !childItem->HasParent())
         return QModelIndex();
 
+    Item *parentItem = childItem->GetParent();
     return createIndex(parentItem->GetRow(), 0, parentItem);
 }
 
@@ -259,20 +254,19 @@ bool ExtendableItemModel::moveRows(const QModelIndex &sourceParent, int sourceRo
         return false;
     }
 
-    for(int i = sourceLast; i >= sourceRow; --i)
+    for(int i = sourceRow; i <= sourceLast; ++i)
     {
         movingItems.append(sourceParentItem->GetChildAt(i));
-        qDebug() << movingItems.last()->GetRow() << movingItems.last()->GetChunkDataElement(0) << i;
-        movingItems.last()->parentItem = destinationParentItem;
-        sourceParentItem->RemoveChildAt(i);
+//        sourceParentItem->RemoveChildAt(i);
+//        destinationParentItem->AddChild(movingItems.last());
     }
 
     destinationChild = destinationChildItem ? destinationChildItem->GetRow() : destinationChild;
 
     for(int i = 0; i < movingItems.count(); ++i)
     {
-        qDebug() << destinationParentItem->ChildCount() << destinationChild+i << movingItems.count()-1-i;
-        destinationParentItem->AddChild(destinationChild+i, movingItems[movingItems.count()-1-i]);
+        sourceParentItem->RemoveChild(movingItems[i]);
+        destinationParentItem->AddChild(movingItems[i], destinationChild);
     }
 
     endMoveRows();
@@ -437,12 +431,11 @@ Item *ExtendableItemModel::AddItem(int row, Item *taskParent, Item* taskData)
 
     qDebug() << "Add task";
     Item *newTask = new Item(taskParent, taskData);
-    if(taskParent) taskParent->AddChild(row, newTask);
+    if(taskParent) taskParent->AddChild(newTask, row);
 
-    ManagerItemInfo managerTask = ConvertToManagerItem(newTask);
-    int newTaskId = dataManager->AddItem(tableName, managerTask);
+    int newTaskId = dataManager->AddItem(tableName, *newTask);
     newTask->SetId(newTaskId);
-    newTask->SetActiveChunkName(currentActiveChunkName);
+    newTask->SetOneChunkActive(currentActiveChunkName);
     internalList.insert(newTaskId, newTask);
     return newTask;
 }
@@ -455,10 +448,9 @@ bool ExtendableItemModel::EditItem(Item *task, int column, QVariant dataField)
         return false;
     }
 
-    task->SetActiveChunkName(currentActiveChunkName);
+    task->SetOneChunkActive(currentActiveChunkName);
     task->SetChunkDataElement(column, dataField);
-    ManagerItemInfo managerTask = ConvertToManagerItem(task);
-    dataManager->EditItem(tableName, managerTask);
+    dataManager->EditItem(tableName, *task);
 }
 
 bool ExtendableItemModel::UpdateItemsPosition(Item *parent, int from)
@@ -477,7 +469,7 @@ bool ExtendableItemModel::UpdateItemsPosition(Item *parent, int from)
     {
         qDebug() << parent->ChildCount() << to;
         qDebug() << parent->ChildCount() << parent->GetChildAt(i);
-        dataManager->EditItem(tableName, ConvertToManagerItem(parent->GetChildAt(i)));
+        dataManager->EditItem(tableName, *(parent->GetChildAt(i)));
     }
 }
 
@@ -489,28 +481,26 @@ bool ExtendableItemModel::DeleteItem(Item *task)
         qDebug() << "Data manager not set!";
         return false;
     }
-    if(!task)
-        return false;
-    if(task->parentItem)
-        task->parentItem->RemoveChild(task);
+    if(!task) return false;
+    task->DetachFromParent();
     DeleteFromManagerRecursive(task);
 }
 
-IExtendableDataBaseManager::ManagerDataItem ExtendableItemModel::ConvertToManagerItem(Item* item)
-{
-    ManagerItemInfo managerStruct;
-    // Set id
-    managerStruct.id = item->GetId();
-    QStringList list = item->GetChunksNames();
-    for(int i = 0; i < list.count(); ++i)
-        managerStruct.dataChunks[list[i]] = item->GetChunkData(list[i]);
+//IExtendableDataManager::ManagerDataItem ExtendableItemModel::ConvertToManagerItem(Item* item)
+//{
+//    ManagerDataItem managerStruct;
+//    // Set id
+//    managerStruct.id = item->GetId();
+//    QStringList list = item->GetChunksNames();
+//    for(int i = 0; i < list.count(); ++i)
+//        managerStruct.dataChunks[list[i]] = item->GetChunkData(list[i]);
 
-    // Set parent
-    managerStruct.dataChunks[coreRelationName].append(item->parentItem ? item->parentItem->GetId() : -1);
-    // Set position
-    managerStruct.dataChunks[coreRelationName].append((item->parentItem) ? item->parentItem->GetChildPosition(item) : 0);
-    return managerStruct;
-}
+//    // Set parent
+//    managerStruct.dataChunks[coreRelationName].append(item->parentItem ? item->parentItem->GetId() : -1);
+//    // Set position
+//    managerStruct.dataChunks[coreRelationName].append((item->parentItem) ? item->parentItem->GetChildPosition(item) : 0);
+//    return managerStruct;
+//}
 
 void ExtendableItemModel::DeleteFromManagerRecursive(Item *task)
 {

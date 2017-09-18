@@ -8,6 +8,7 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QDebug>
+#include <QBuffer>
 
 //! \addtogroup TaskSketchView_imp
 //! \{
@@ -35,11 +36,6 @@ protected:
     virtual void paintEvent(QPaintEvent *event);
     virtual void resizeEvent(QResizeEvent *event);
 
-    // ITaskRelationDelegate interface
-public:
-    void SetValue(QVariant value) override;
-    QVariant GetValue() override;
-    QWidget *GetWidget() override;
 };
 //! \}
 #endif // PAINTWIDGET_H
