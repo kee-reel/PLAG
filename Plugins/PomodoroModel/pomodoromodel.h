@@ -8,7 +8,7 @@
 #include <QDateTime>
 
 #include "ipomodoromodel.h"
-#include "../ExtendableDataBaseManager/IExtendableDataManagerplugin.h"
+#include "../ExtendableDataManager/iextendabledatamanager.h"
 #include "../TaskListModel/itasktreemodel.h"
 
 //! \addtogroup PomodoroModel_imp

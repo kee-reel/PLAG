@@ -41,7 +41,7 @@ public:
     virtual bool SetActiveRelation(QString mainName, QString relationName) = 0;
 
     virtual int AddItem(QString treeName, ManagerDataItem task) = 0;
-    virtual bool EditItem(QString treeName, ManagerDataItem task) = 0;
+    virtual bool UpdateItem(QString treeName, ManagerDataItem task) = 0;
     virtual bool DeleteItem(QString treeName, int id) = 0;
 };
 Q_DECLARE_INTERFACE(IExtendableDataManager, "IExtendableDataManager v0.1")

@@ -34,7 +34,7 @@ public:
     bool DeleteRelation(QString relationName);
 
     int AddItem(ManagerDataItem item);
-    bool EditItem(ManagerDataItem item);
+    bool UpdateItem(ManagerDataItem item);
     bool DeleteItem(int id);
 
     QList<ManagerDataItem> GetData();

@@ -136,16 +136,29 @@ void Item::SetActiveChunksData(QVector<QVariant> data)
 
 }
 
-QMap<int, QVariant> Item::GetAllChunksData()
+QMap<QString, QVariant> Item::GetChunksData()
 {
-    QMap<int, QVariant> result;
-    auto chunkNames = dataChunks.keys();
-    foreach (auto chunkName, chunkNames) {
-        auto values = dataChunks[chunkName];
-        int flag = (chunkName == activeChunkName) ? 1 : 0;
-        result.insertMulti(flag, QVariant(values.toList()));
+    QMap<QString, QVariant> result;
+    auto iter = dataChunks.begin();
+    while(iter != dataChunks.end())
+    {
+        result.insert(iter.key(), QVariant(iter.value().toList()) );
+        ++iter;
     }
     return result;
+}
+
+void Item::SetChunksData(QMap<QString, QVariant> dataMap)
+{
+    auto iter = dataMap.begin();
+    while(iter != dataMap.end())
+    {
+        if(!dataChunks.contains(iter.key()))
+            qDebug() << "Adding a new data chunk in item:" << iter.key();
+        QList<QVariant> dataList = iter.value().toList();
+        dataChunks[iter.key()] = dataList.toVector();
+        ++iter;
+    }
 }
 
 void Item::SetChunkDataElement(int column, QVariant data)

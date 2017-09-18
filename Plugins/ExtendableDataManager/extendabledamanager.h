@@ -44,7 +44,7 @@ public:
     bool DeleteRelation(QString mainName, QString relationName) override;
     bool SetActiveRelation(QString mainName, QString relationName) override;
     int AddItem(QString treeName, ManagerDataItem task) override;
-    bool EditItem(QString treeName, ManagerDataItem task) override;
+    bool UpdateItem(QString treeName, ManagerDataItem task) override;
     bool DeleteItem(QString treeName, int id) override;
     //bool AddDataSource(QObject *dataSource) override;
 

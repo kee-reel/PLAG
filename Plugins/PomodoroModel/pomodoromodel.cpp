@@ -28,8 +28,8 @@ void PomodoroModel::OnAllSetup()
     QVector<QVariant> defaultData;
     defaultData << "Sample project" << 0;
     dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
-//    if(!myModel) return;
-//    dataManager->SetRelation(myModel->GetDataName(), coreRelationName, newRelationStruct, defaultData);
+    if(!myModel) return;
+    dataManager->SetRelation("ITaskTreeModel", coreRelationName, newRelationStruct, defaultData);
 }
 
 QString PomodoroModel::GetLastError()
@@ -144,6 +144,6 @@ void PomodoroModel::SetupModel()
     pomodoroItemModel = dataManager->GetDataModel(tableName);
     currentProject = pomodoroItemModel->index(0,0);
     finishedPomodoros = pomodoroItemModel->index(0,1);
-//    if(!myModel) return;
-//    taskModel = dataManager->GetDataModel(myModel->GetDataName());
+    if(!myModel) return;
+    taskModel = dataManager->GetDataModel("ITaskTreeModel");
 }

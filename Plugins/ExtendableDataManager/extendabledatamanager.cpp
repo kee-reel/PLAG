@@ -101,10 +101,10 @@ int ExtendableDataBaseManagerPlugin::AddItem(QString tableName, ManagerDataItem 
     return tableHandlers[tableName]->AddItem(item);
 }
 
-bool ExtendableDataBaseManagerPlugin::EditItem(QString tableName, ManagerDataItem item)
+bool ExtendableDataBaseManagerPlugin::UpdateItem(QString tableName, ManagerDataItem item)
 {
     SetupTable(tableName);
-    return tableHandlers[tableName]->EditItem(item);
+    return tableHandlers[tableName]->UpdateItem(item);
 }
 
 bool ExtendableDataBaseManagerPlugin::DeleteItem(QString tableName, int id)

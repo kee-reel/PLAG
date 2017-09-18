@@ -65,7 +65,9 @@ public:
 
     QVector<QVariant> GetActiveChunksData();
     void SetActiveChunksData(QVector<QVariant> data);
-    QMap<int, QVariant> GetAllChunksData();
+
+    QMap<QString, QVariant> GetChunksData();
+    void SetChunksData(QMap<QString, QVariant> dataMap);
 
     QVariant GetChunkDataElement(int column);
     void SetChunkDataElement(int column, QVariant data);

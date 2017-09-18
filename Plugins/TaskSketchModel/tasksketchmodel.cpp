@@ -111,17 +111,19 @@ QAbstractItemModel *TaskSketchModel::GetInternalModel()
 
 void TaskSketchModel::ConvertSketchToTask(int sketchId)
 {
-    QModelIndex modelIndex;
-    QMap<int, QVariant> map;
-
-    modelIndex = sketchItemModel->index(sketchId, 0);
-    map = sketchItemModel->itemData(modelIndex);
-    qDebug() << map[0];
+    QModelIndex modelIndex = sketchItemModel->index(sketchId, 0);
+    QMap<int, QVariant> map = sketchItemModel->itemData(modelIndex);
+    if(!map.contains(Qt::UserRole)){
+        qCritical() << "Can't resolve data model!";
+        return;
+    }
+//    QMap<QString, QVariant> dataMap = map[Qt::UserRole].toMap();
+//    QList<QVariant> data = dataMap[coreRelationName].toList();
 
     taskModel->insertRows(taskModel->rowCount(), 1);
     modelIndex = taskModel->index(taskModel->rowCount()-1, 0);
-    dataManager->SetActiveRelation(tableName, coreRelationName);
-    taskModel->setData(modelIndex, map[1]);
+//    dataManager->SetActiveRelation(tableName, coreRelationName);
+    taskModel->setItemData(modelIndex, map);
     qDebug() << map[0];
 
     //emit ConvertTaskToSketch(map[0].toInt());

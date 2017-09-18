@@ -262,7 +262,7 @@ int TableHandler::AddItem(ManagerDataItem item)
     return lastId;
 }
 
-bool TableHandler::EditItem(ManagerDataItem item)
+bool TableHandler::UpdateItem(ManagerDataItem item)
 {
     if(!IsDataSourceExists()) return false;
     qDebug() << "AddItem";

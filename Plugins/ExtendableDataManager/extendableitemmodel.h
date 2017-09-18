@@ -61,7 +61,7 @@ private:
     Item *rootItem;
 
     Item *AddItem(int row, Item *taskParent, Item *taskData = NULL);
-    bool EditItem(Item *task, int column, QVariant dataField);
+    bool UpdateItem(Item *task);
     bool UpdateItemsPosition(Item *parent, int from);
     bool DeleteItem(Item *task);
     void DeleteFromManagerRecursive(Item *task);

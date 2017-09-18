@@ -69,3 +69,6 @@ DISTFILES += \
     android/src/AlarmManagerBroadcastReceiver.java \
     android/src/com/mass/mainapp/AlarmReceiver.java \
     android/src/com/mass/mainapp/QtActivityExtention.java
+
+RESOURCES += \
+    rsc.qrc

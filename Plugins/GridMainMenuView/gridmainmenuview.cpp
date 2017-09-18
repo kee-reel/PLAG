@@ -2,7 +2,8 @@
 #include "ui_gridmainmenuview.h"
 
 GridMainMenuView::GridMainMenuView(QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    ui(new Ui::Form)
 {
     openedView = NULL;
     openedModel = NULL;
@@ -10,15 +11,14 @@ GridMainMenuView::GridMainMenuView(QWidget *parent) :
     rootMenuItem = NULL;
     exitItem = NULL;
 
-    quickView = new QQuickView();
-    container = QWidget::createWindowContainer(quickView, this);
-    quickView->setSource(QUrl(QStringLiteral("qrc:///Menu.qml")));
-
+//    quickView = new QQuickView();
+//    container = QWidget::createWindowContainer(quickView, this);
+//    quickView->setSource(QUrl(QStringLiteral("qrc:///Menu.qml")));
 //    ui->verticalLayout->addWidget(container);
 
-//    ui->setupUi(this);
-//    layout = new AspectAwareGridLayout(this);
-//    ui->scrollAreaWidgetContents->setLayout(layout);
+    ui->setupUi(this);
+    layout = new AspectAwareGridLayout(this);
+    ui->scrollAreaWidgetContents->setLayout(layout);
 #ifdef Q_OS_ANDROID
     ui->scrollArea->grabGesture(Qt::TapAndHoldGesture);
     QScroller::grabGesture(ui->scrollArea, QScroller::LeftMouseButtonGesture);
@@ -91,33 +91,33 @@ bool GridMainMenuView::Open(IModelPlugin *model)
         return false;
     }
 
-//    if(rootMenuItem == NULL)
-//    {
-//        rootMenuItem = mainMenu->GetRootMenuItem();
-//        int itemMinHeight = (height() / rootMenuItem->Items.count()) * 1.2;
-//        layout->setSpacing(itemMinHeight * 0.3);
-//        int rowCapacity = 1;
-//        QSpacerItem *topSpacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
-//        layout->addItem(topSpacer);
+    if(rootMenuItem == NULL)
+    {
+        rootMenuItem = mainMenu->GetRootMenuItem();
+        int itemMinHeight = (height() / rootMenuItem->Items.count()) * 1.2;
+        layout->setSpacing(itemMinHeight * 0.3);
+        int rowCapacity = 1;
+        QSpacerItem *topSpacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+        layout->addItem(topSpacer);
 
-//        for(int j = 0; j < rootMenuItem->Items.count(); ++j)
-//        {
-//            MenuItem* item = new MenuItem(j, FormatMenuItemName(rootMenuItem->Items[j]->Name), this);
-//            item->setMinimumHeight(itemMinHeight);
-//            connect(item, SIGNAL(OnMenuItemSelected(int)), SLOT(RunMenuItem(int)));
-//            items.append(item);
-//            layout->addWidget(item);// j/rowCapacity, j%rowCapacity);
-//        }
-//        QSpacerItem *bottomSpacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
-//        layout->addItem(bottomSpacer);
+        for(int j = 0; j < rootMenuItem->Items.count(); ++j)
+        {
+            MenuItem* item = new MenuItem(j, FormatMenuItemName(rootMenuItem->Items[j]->Name), this);
+            item->setMinimumHeight(itemMinHeight);
+            connect(item, SIGNAL(OnMenuItemSelected(int)), SLOT(RunMenuItem(int)));
+            items.append(item);
+            layout->addWidget(item);// j/rowCapacity, j%rowCapacity);
+        }
+        QSpacerItem *bottomSpacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+        layout->addItem(bottomSpacer);
 
-//#ifndef Q_OS_ANDROID
-//        MenuItem* exitItem = new MenuItem(items.length(), "Exit", this);
-//        connect(exitItem, SIGNAL(OnMenuItemSelected(int)), SLOT(RunMenuItem(int)));
-//        items.append(exitItem);
-//        layout->addWidget(exitItem);
-//#endif
-//    }
+#ifndef Q_OS_ANDROID
+        MenuItem* exitItem = new MenuItem(items.length(), "Exit", this);
+        connect(exitItem, SIGNAL(OnMenuItemSelected(int)), SLOT(RunMenuItem(int)));
+        items.append(exitItem);
+        layout->addWidget(exitItem);
+#endif
+    }
     emit OnOpen(this);
 }
 
@@ -177,5 +177,5 @@ QString GridMainMenuView::FormatMenuItemName(QString name)
 void GridMainMenuView::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    container->resize(size());
+//    container->resize(size());
 }

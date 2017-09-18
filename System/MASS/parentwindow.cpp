@@ -5,6 +5,12 @@ ParentWindow::ParentWindow(QWidget *parent) : QWidget(parent)
 //    childsJoint = new QWidget(this);
     layout = new QVBoxLayout();
     this->setLayout(layout);
+    setWindowIcon(QIcon("://Resources/Logo512.png"));
+
+    // Headless window mode
+//    Qt::WindowFlags flags = windowFlags();
+//    flags |= Qt::FramelessWindowHint;
+//    setWindowFlags(flags);
 
     pluginManager = new PluginLoader(this);
 #ifdef Q_OS_ANDROID

@@ -100,7 +100,8 @@ QAbstractItemModel* TaskTreeModel::GetTreeModel()
     if(!dataManager) return NULL;
     if(!treeModel) treeModel = dataManager->GetDataModel(tableName);
     auto prt = treeModel->index(0,0);
-    IExtendableDataManager::ManagerDataItem *item = (IExtendableDataManager::ManagerDataItem *)prt.internalPointer();
+    IExtendableDataManager::ManagerDataItem *item =
+            (IExtendableDataManager::ManagerDataItem *)prt.internalPointer();
     auto meta = treeModel->metaObject();
     return treeModel;
 }

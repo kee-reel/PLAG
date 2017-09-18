@@ -120,13 +120,28 @@ QMap<int, QVariant> ExtendableItemModel::itemData(const QModelIndex &index) cons
     if (!index.isValid())
         return QMap<int, QVariant>();
 
+    QMap<int, QVariant> result;
     Item *item = static_cast<Item*>(index.internalPointer());
-    return item->GetAllChunksData();
+    auto map = item->GetChunksData();
+    // Because for what reason internal data could be needed by user?
+    map.remove(coreRelationName);
+    result.insert(Qt::UserRole, QVariant(map));
+    return result;
 }
 
 bool ExtendableItemModel::setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles)
 {
+    if (!index.isValid()) return false;
+    if(!roles.contains(Qt::UserRole)) return QAbstractItemModel::setItemData(index, roles);
+    Item *item = static_cast<Item*>(index.internalPointer());
+    if(item == NULL) return false;
 
+    QMap<QString, QVariant> dataMap = roles[Qt::UserRole].toMap();
+    item->SetChunksData(dataMap);
+    UpdateItem(item);
+    emit dataChanged(index, index);
+
+    return QAbstractItemModel::setItemData(index, roles);
 }
 
 Qt::ItemFlags ExtendableItemModel::flags(const QModelIndex &index) const
@@ -279,8 +294,8 @@ bool ExtendableItemModel::setData(const QModelIndex &index, const QVariant &valu
     Item *item = (!index.isValid()) ? rootItem : static_cast<Item*>(index.internalPointer());
     switch (role) {
     case Qt::EditRole:
-        qDebug() << "!!!" << item->GetId() << index.column() << value;
-        EditItem(item, index.column(), value);
+        item->SetChunkDataElement(index.column(), value);
+        UpdateItem(item);
         emit dataChanged(index, index);
         break;
 //    case Qt::DecorationRole:
@@ -440,17 +455,14 @@ Item *ExtendableItemModel::AddItem(int row, Item *taskParent, Item* taskData)
     return newTask;
 }
 
-bool ExtendableItemModel::EditItem(Item *task, int column, QVariant dataField)
+bool ExtendableItemModel::UpdateItem(Item *task)
 {
     qDebug() << "EditTask";
     if(!dataManager){
         qDebug() << "Data manager not set!";
         return false;
     }
-
-    task->SetOneChunkActive(currentActiveChunkName);
-    task->SetChunkDataElement(column, dataField);
-    dataManager->EditItem(tableName, *task);
+    dataManager->UpdateItem(tableName, *task);
 }
 
 bool ExtendableItemModel::UpdateItemsPosition(Item *parent, int from)
@@ -469,7 +481,7 @@ bool ExtendableItemModel::UpdateItemsPosition(Item *parent, int from)
     {
         qDebug() << parent->ChildCount() << to;
         qDebug() << parent->ChildCount() << parent->GetChildAt(i);
-        dataManager->EditItem(tableName, *(parent->GetChildAt(i)));
+        dataManager->UpdateItem(tableName, *(parent->GetChildAt(i)));
     }
 }
 
