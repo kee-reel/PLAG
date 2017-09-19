@@ -49,6 +49,9 @@ QVariant DesignProxyModel::headerData(int section, Qt::Orientation orientation, 
     case Qt::BackgroundRole:
         return QBrush(QColor(120 + section*10, 180, 180));
         break;
+    case Qt::UserRole:
+        return model->headerData(section, orientation, role);
+        break;
     default:
         return QIdentityProxyModel::headerData(section, orientation, role);
         break;
@@ -57,5 +60,10 @@ QVariant DesignProxyModel::headerData(int section, Qt::Orientation orientation, 
 
 QMap<int, QVariant> DesignProxyModel::itemData(const QModelIndex &index) const
 {
-     return model->itemData(index);
+    return model->itemData(index);
+}
+
+bool DesignProxyModel::setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles)
+{
+    return model->setItemData(index, roles);
 }

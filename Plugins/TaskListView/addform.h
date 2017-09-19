@@ -7,6 +7,9 @@
 #include <QAbstractItemModel>
 #include <QKeyEvent>
 #include <QMap>
+#include <QLabel>
+#include <QLineEdit>
+#include <QGridLayout>
 
 namespace Ui {
 class AddForm;
@@ -29,11 +32,19 @@ signals:
 
 private:
     Ui::AddForm *ui;
-    QDataWidgetMapper *mapper;
+//    QDataWidgetMapper *mapper;
+    QList<QLabel*> labelsList;
+    QList<QLineEdit*> lineEdits;
+    QAbstractItemModel *model;
+    QGridLayout *gridLayout;
+    QMap<QString, QVariant> currentItemMap;
+    QModelIndex currentModelIndex;
+
+    void ClearEditors();
 
 private slots:
-    void on_buttonOk_clicked();
-    void on_buttonClose_clicked();
+    void AcceptChanges();
+    void CancelChanges();
 
     // QObject interface
 public:

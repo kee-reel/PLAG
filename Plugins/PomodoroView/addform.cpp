@@ -46,7 +46,6 @@ void AddForm::on_buttonClose_clicked()
 
 bool AddForm::event(QEvent *event)
 {
-    qDebug() << event->type();
     switch (event->type()) {
     case QEvent::KeyRelease:{
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);

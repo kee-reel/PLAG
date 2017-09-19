@@ -54,7 +54,7 @@ private:
     QString lastError;
     IDataBaseSourcePlugin* dataSource;
 
-    QMap<QString, IExtendableDataManager::IDataTypeEditor> dataEditorsMap;
+    QMap<QString, IExtendableDataManager::IDataTypeEditor*> dataEditorsMap;
 
     QHash<QString, TableHandler*> tableHandlers;
     void SetupTable(QString &tableName);

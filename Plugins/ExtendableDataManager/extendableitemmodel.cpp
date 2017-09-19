@@ -150,6 +150,7 @@ QMap<int, QVariant> ExtendableItemModel::itemData(const QModelIndex &index) cons
     Item *item = static_cast<Item*>(index.internalPointer());
     auto headerMap = header.GetChunksData();
     auto valuesMap = item->GetChunksData();
+
     // Because for which reason internal data could be needed by user?
     headerMap.remove(coreRelationName);
     valuesMap.remove(coreRelationName);
@@ -212,9 +213,11 @@ QVariant ExtendableItemModel::headerData(int section, Qt::Orientation orientatio
     case Qt::EditRole:
         return rootItem->GetChunkDataElement(section);
         break;
-    case Qt::UserRole:
-        return header.GetChunksData();
-        break;
+    case Qt::UserRole:{
+        auto map = header.GetChunksData();
+        map.remove(coreRelationName);
+        return QVariant(map);
+        }break;
     default:
         return QVariant();
         break;
