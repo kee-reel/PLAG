@@ -124,7 +124,6 @@ void TaskSketchModel::ConvertSketchToTask(int sketchId)
     modelIndex = taskModel->index(taskModel->rowCount()-1, 0);
 //    dataManager->SetActiveRelation(tableName, coreRelationName);
     taskModel->setItemData(modelIndex, map);
-    qDebug() << map[0];
 
     //emit ConvertTaskToSketch(map[0].toInt());
 }

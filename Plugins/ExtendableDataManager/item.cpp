@@ -107,13 +107,13 @@ QVariant Item::GetChunkName(int column) const
         return QVariant();
 }
 
-QVector<QVariant> Item::GetChunkData(QString chunkName)
+QVector<QVariant> Item::GetChunkData(QString chunkName) const
 {
     if(chunkName == "") chunkName = activeChunkName;
     return dataChunks[chunkName];
 }
 
-QVariant Item::GetChunkDataElement(int column)
+QVariant Item::GetChunkDataElement(int column) const
 {
     if(!activeChunk) return QVariant();
     return (activeChunk->length() > column) ? (*activeChunk)[column] : QVariant();
@@ -126,7 +126,7 @@ void Item::SetChunkData(QString chunkName, QVector<QVariant> data)
         SetOneChunkActive(chunkName);
 }
 
-QVector<QVariant> Item::GetActiveChunksData()
+QVector<QVariant> Item::GetActiveChunksData() const
 {
 
 }
@@ -136,7 +136,7 @@ void Item::SetActiveChunksData(QVector<QVariant> data)
 
 }
 
-QMap<QString, QVariant> Item::GetChunksData()
+QMap<QString, QVariant> Item::GetChunksData() const
 {
     QMap<QString, QVariant> result;
     auto iter = dataChunks.begin();

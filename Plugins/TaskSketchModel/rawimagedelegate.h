@@ -9,16 +9,16 @@
 
 #include "../TaskListModel/itasktreemodel.h"
 
-class RawImageDelegate : ITaskTreeModel::ITaskRelationDelegate
+class RawImageDelegate
 {
 public:
     RawImageDelegate();
 
     // ITaskRelationDelegate interface
 public:
-    void SetValue(QVariant value) override;
-    QVariant GetValue() override;
-    QWidget *GetWidget() override;
+    void SetValue(QVariant value);
+    QVariant GetValue();
+    QWidget *GetWidget();
 
 private:
     QByteArray GetRawData();

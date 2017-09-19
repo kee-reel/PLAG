@@ -29,6 +29,17 @@ public:
         QMap<QString, QVector<QVariant> > dataChunks;
     };
 
+    class IDataTypeEditor
+    {
+    public:
+        virtual void SetValue(QVariant value) = 0;
+        virtual QVariant GetValue() = 0;
+        virtual QWidget* GetWidget() = 0;
+    };
+
+    virtual void RegisterDataTypeEditor(QString relation, QString field, IDataTypeEditor *delegate) = 0;
+    virtual IDataTypeEditor* GetDataTypeEditor(QString relation, QString field) = 0;
+
     virtual QList<ManagerDataItem> GetDataList(QString treeName) = 0;
     virtual ManagerDataItem GetDataItem(QString treeName, int id) = 0;
     virtual QMap<QString, QVariant::Type> GetTableHeader(QString treeName) = 0;

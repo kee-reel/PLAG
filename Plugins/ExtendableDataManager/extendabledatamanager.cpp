@@ -45,6 +45,16 @@ void ExtendableDataBaseManagerPlugin::ReferencePluginClosed(PluginInfo *pluginIn
 
 }
 
+void ExtendableDataBaseManagerPlugin::RegisterDataTypeEditor(QString relation, QString field, IExtendableDataManager::IDataTypeEditor *delegate)
+{
+
+}
+
+IExtendableDataManager::IDataTypeEditor *ExtendableDataBaseManagerPlugin::GetDataTypeEditor(QString relation, QString field)
+{
+
+}
+
 void ExtendableDataBaseManagerPlugin::SetupTable(QString &tableName)
 {
     tableName = tableName.toLower();

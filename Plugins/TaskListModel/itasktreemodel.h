@@ -21,17 +21,7 @@ enum QVariant::Type;
 class ITaskTreeModel : public IModelPlugin
 {
 public:
-    class ITaskRelationDelegate
-    {
-    public:
-        virtual void SetValue(QVariant value) = 0;
-        virtual QVariant GetValue() = 0;
-        virtual QWidget* GetWidget() = 0;
-    };
-
     virtual QAbstractItemModel* GetTreeModel() = 0;
-    virtual void SetRelationDelegate(QString relation, ITaskRelationDelegate *delegate) = 0;
-    virtual QMap<QString, ITaskRelationDelegate *> GetRelationDelegates() = 0;
 
 signals:
     void OpenTaskEdit(int id);

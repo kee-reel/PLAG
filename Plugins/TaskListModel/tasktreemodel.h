@@ -36,9 +36,7 @@ signals:
 
     // ITaskTreeModel interface
 public:
-    QAbstractItemModel *GetTreeModel() override;
-    void SetRelationDelegate(QString relation, ITaskRelationDelegate *delegate) override;
-    QMap<QString, ITaskRelationDelegate *> GetRelationDelegates() override;
+    QAbstractItemModel *GetTreeModel();
 signals:
     void OpenTaskEdit(int id);
 
@@ -63,8 +61,6 @@ private:
     QString relationName;
     IExtendableDataManager* dataManager;
     QAbstractItemModel *treeModel;
-
-    QMap<QString, ITaskRelationDelegate*> taskRelationDelegates;
 };
 //! \}
 #endif // TASKLISTMODEL_H

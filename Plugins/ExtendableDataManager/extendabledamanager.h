@@ -36,6 +36,8 @@ signals:
 
     // IExtendableDataManagerPlugin interface
 public:
+    void RegisterDataTypeEditor(QString relation, QString field, IDataTypeEditor *delegate) override;
+    IDataTypeEditor *GetDataTypeEditor(QString relation, QString field) override;
     QList<ManagerDataItem> GetDataList(QString treeName) override;
     ManagerDataItem GetDataItem(QString treeName, int id) override;
     QAbstractItemModel *GetDataModel(QString treeName) override;
@@ -51,6 +53,8 @@ public:
 private:
     QString lastError;
     IDataBaseSourcePlugin* dataSource;
+
+    QMap<QString, IExtendableDataManager::IDataTypeEditor> dataEditorsMap;
 
     QHash<QString, TableHandler*> tableHandlers;
     void SetupTable(QString &tableName);

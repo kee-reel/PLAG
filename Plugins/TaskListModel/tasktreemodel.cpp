@@ -106,16 +106,6 @@ QAbstractItemModel* TaskTreeModel::GetTreeModel()
     return treeModel;
 }
 
-void TaskTreeModel::SetRelationDelegate(QString relation, ITaskRelationDelegate *delegate)
-{
-    taskRelationDelegates.insert(relation, delegate);
-}
-
-QMap<QString, ITaskTreeModel::ITaskRelationDelegate*> TaskTreeModel::GetRelationDelegates()
-{
-    return taskRelationDelegates;
-}
-
 void TaskTreeModel::SetupModel()
 {
     if(!dataManager) return;

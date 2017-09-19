@@ -42,13 +42,13 @@ public:
     inline int GetChildPosition(Item *item) {
         return childItems.indexOf(item);
     }
-    inline bool HasParent(){
+    inline bool HasParent() {
         return parentItem != 0;
     }
-    inline bool ParentIsRoot(){
+    inline bool ParentIsRoot() {
         return parentItem ? !parentItem->HasParent() : false;
     }
-    inline Item *GetParent(){
+    inline Item *GetParent() {
         return parentItem;
     }
 
@@ -60,16 +60,16 @@ public:
     QList<QString> GetChunksNames() const;
     QVariant GetChunkName(int column) const;
 
-    QVector<QVariant> GetChunkData(QString chunkName = "");
+    QVector<QVariant> GetChunkData(QString chunkName = "") const;
     void SetChunkData(QString chunkName, QVector<QVariant> data);
 
-    QVector<QVariant> GetActiveChunksData();
+    QVector<QVariant> GetActiveChunksData() const;
     void SetActiveChunksData(QVector<QVariant> data);
 
-    QMap<QString, QVariant> GetChunksData();
+    QMap<QString, QVariant> GetChunksData() const;
     void SetChunksData(QMap<QString, QVariant> dataMap);
 
-    QVariant GetChunkDataElement(int column);
+    QVariant GetChunkDataElement(int column) const;
     void SetChunkDataElement(int column, QVariant data);
 
     QVariant GetDecoration();

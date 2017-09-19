@@ -66,6 +66,9 @@ private:
     bool DeleteItem(Item *task);
     void DeleteFromManagerRecursive(Item *task);
 //    ManagerDataItem ConvertToManagerItem(Item* item);
+    QMap<QString, QVariant> ConvertFromHeadedMap(QMap<QString, QVariant> dataMap);
+    QMap<QString, QVariant> ConvertToHeadedMap(QMap<QString, QVariant> valuesMap,
+                                               QMap<QString, QVariant> headerMap) const;
 };
 //! \}
 #endif // EXTENDABLEITEMMODEL_H

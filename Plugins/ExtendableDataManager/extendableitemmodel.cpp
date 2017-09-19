@@ -115,6 +115,32 @@ QVariant ExtendableItemModel::data(const QModelIndex &index, int role) const
     }
 }
 
+QMap<QString, QVariant> ExtendableItemModel::ConvertToHeadedMap(QMap<QString, QVariant> valuesMap, QMap<QString, QVariant> headerMap) const
+{
+    QMap<QString, QVariant> chunksMap;
+    auto valuesNamesIter = headerMap.begin();
+    auto valuesIter = valuesMap.begin();
+    while(valuesNamesIter != headerMap.end() || valuesIter != valuesMap.end())
+    {
+        QString chunkName = valuesNamesIter.key();
+        QList<QVariant> valuesNamesList = valuesNamesIter.value().toList();
+        QList<QVariant> valuesList = valuesIter.value().toList();
+        if(valuesNamesList.length() == valuesList.length())
+        {
+            QMap<QString, QVariant> headedValuesMap;
+            for(int i = 0; i < valuesNamesList.length(); ++i)
+                headedValuesMap.insert(valuesNamesList[i].toString(), valuesList[i]);
+            chunksMap.insert(chunkName, QVariant(headedValuesMap));
+        }
+        else
+            qCritical() << "Well... Shit! Chunk" << chunkName << "is corrupted :c";
+        ++valuesNamesIter;
+        ++valuesIter;
+    }
+
+    return chunksMap;
+}
+
 QMap<int, QVariant> ExtendableItemModel::itemData(const QModelIndex &index) const
 {
     if (!index.isValid())
@@ -122,11 +148,31 @@ QMap<int, QVariant> ExtendableItemModel::itemData(const QModelIndex &index) cons
 
     QMap<int, QVariant> result;
     Item *item = static_cast<Item*>(index.internalPointer());
-    auto map = item->GetChunksData();
-    // Because for what reason internal data could be needed by user?
-    map.remove(coreRelationName);
-    result.insert(Qt::UserRole, QVariant(map));
+    auto headerMap = header.GetChunksData();
+    auto valuesMap = item->GetChunksData();
+    // Because for which reason internal data could be needed by user?
+    headerMap.remove(coreRelationName);
+    valuesMap.remove(coreRelationName);
+
+    QMap<QString, QVariant> chunksMap = ConvertToHeadedMap(valuesMap, headerMap);
+
+    result.insert(Qt::UserRole, QVariant(chunksMap));
     return result;
+}
+
+QMap<QString, QVariant> ExtendableItemModel::ConvertFromHeadedMap(QMap<QString, QVariant> dataMap)
+{
+    QMap<QString, QVariant> convertedMap;
+    auto iter = dataMap.begin();
+    while(iter != dataMap.end())
+    {
+        auto headedValuesMap = iter.value().toMap();
+        QList<QVariant> dataList = headedValuesMap.values();
+        convertedMap.insert(iter.key(), QVariant(dataList));
+        ++iter;
+    }
+
+    return convertedMap;
 }
 
 bool ExtendableItemModel::setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles)
@@ -137,7 +183,9 @@ bool ExtendableItemModel::setItemData(const QModelIndex &index, const QMap<int, 
     if(item == NULL) return false;
 
     QMap<QString, QVariant> dataMap = roles[Qt::UserRole].toMap();
-    item->SetChunksData(dataMap);
+    QMap<QString, QVariant> convertedMap = ConvertFromHeadedMap(dataMap);
+
+    item->SetChunksData(convertedMap);
     UpdateItem(item);
     emit dataChanged(index, index);
 
@@ -163,6 +211,9 @@ QVariant ExtendableItemModel::headerData(int section, Qt::Orientation orientatio
         break;
     case Qt::EditRole:
         return rootItem->GetChunkDataElement(section);
+        break;
+    case Qt::UserRole:
+        return header.GetChunksData();
         break;
     default:
         return QVariant();

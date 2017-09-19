@@ -22,11 +22,11 @@ void PomodoroModel::OnAllSetup()
 {
     if(!dataManager) return;
     QMap<QString, QVariant::Type> newRelationStruct = {
-        {"project",  QVariant::String},
-        {"pomodoros",       QVariant::Int},
+        {"pomodoros",   QVariant::Int},
+        {"project",     QVariant::String}
     };
     QVector<QVariant> defaultData;
-    defaultData << "Sample project" << 0;
+    defaultData << 0 << "Sample project";
     dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
     if(!myModel) return;
     dataManager->SetRelation("ITaskTreeModel", coreRelationName, newRelationStruct, defaultData);
