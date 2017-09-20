@@ -12,14 +12,16 @@ SOURCES += \
     mainform.cpp \
     addform.cpp \
     designproxymodel.cpp \
-    mytreeview.cpp
+    mytreeview.cpp \
+    paintwidget.cpp
 
 HEADERS +=\
     tasklistview.h \
     mainform.h \
     addform.h \
     designproxymodel.h \
-    mytreeview.h
+    mytreeview.h \
+    paintwidget.h
 
 include(../../System/MASS/BuildInfo.pri)
 

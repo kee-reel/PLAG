@@ -11,6 +11,8 @@
 #include <QLineEdit>
 #include <QGridLayout>
 
+#include "paintwidget.h"
+
 namespace Ui {
 class AddForm;
 }
@@ -39,6 +41,7 @@ private:
     QGridLayout *gridLayout;
     QMap<QString, QVariant> currentItemMap;
     QModelIndex currentModelIndex;
+    QWidget *paintWidget;
 
     void ClearEditors();
 

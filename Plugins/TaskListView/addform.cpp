@@ -11,6 +11,7 @@ AddForm::AddForm(QWidget *parent) :
     connect(ui->buttonAccept, SIGNAL(clicked(bool)), SLOT(AcceptChanges()));
     connect(ui->buttonCancel, SIGNAL(clicked(bool)), SLOT(CancelChanges()));
     gridLayout = new QGridLayout(ui->scrollAreaWidgetContents);
+    paintWidget = new PaintWidget(this);
 }
 
 AddForm::~AddForm()
@@ -51,9 +52,17 @@ void AddForm::ShowModelData(const QModelIndex &index, bool isNew)
         while(mapIter != map.end())
         {
             labelsList.append(new QLabel(mapIter.key(), this));
-            lineEdits.append(new QLineEdit(mapIter.value().toString(), this));
             gridLayout->addWidget(labelsList.last(), rowCount, 0);
-            gridLayout->addWidget(lineEdits.last(), rowCount, 1);
+            if(mapIter.key() == "sketch")
+            {
+                gridLayout->addWidget(paintWidget, rowCount, 1);
+                paintWidget->setProperty("value", mapIter.value().toByteArray());
+            }
+            else
+            {
+                lineEdits.append(new QLineEdit(mapIter.value().toString(), this));
+                gridLayout->addWidget(lineEdits.last(), rowCount, 1);
+            }
             ++rowCount;
             ++mapIter;
         }

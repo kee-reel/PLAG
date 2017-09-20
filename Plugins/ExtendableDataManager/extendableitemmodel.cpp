@@ -38,6 +38,7 @@ void ExtendableItemModel::LoadData()
     // Item Id -> Item children.
     QMap<int, QMap<int, Item*>> internalTree;
 
+
     // Convert data manager list to internal list.
     QList<QString> chunksNames;
     if(managerList.count() > 0) chunksNames = managerList.first().dataChunks.keys();
@@ -188,7 +189,7 @@ bool ExtendableItemModel::setItemData(const QModelIndex &index, const QMap<int, 
 
     item->SetChunksData(convertedMap);
     UpdateItem(item);
-    emit dataChanged(index, index);
+//    emit dataChanged(index, index);
 
     return QAbstractItemModel::setItemData(index, roles);
 }

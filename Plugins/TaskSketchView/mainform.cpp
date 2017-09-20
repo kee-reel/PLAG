@@ -74,7 +74,7 @@ void MainForm::on_buttonClear_clicked()
 
 void MainForm::on_buttonSave_clicked()
 {
-    QByteArray array = ui->widgetPaint->GetRawData();
+    QByteArray array = ui->widgetPaint->value();
 
     sketchModel->insertRows(0, 1);
     QModelIndex root = sketchModel->index(0, 0);
