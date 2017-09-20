@@ -9,6 +9,7 @@ TaskSketchView::TaskSketchView()
 
 TaskSketchView::~TaskSketchView()
 {
+    delete paintWidgetTypeEditor;
     delete mainForm;
 }
 
@@ -19,7 +20,8 @@ void TaskSketchView::SetPluginInfo(PluginInfo *pluginInfo)
 
 void TaskSketchView::OnAllSetup()
 {
-
+    paintWidgetTypeEditor = new PaintWidget();
+    myModel->LinkEditorWidget(new PaintWidget());
 }
 
 QString TaskSketchView::GetLastError()

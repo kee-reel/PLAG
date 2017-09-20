@@ -5,7 +5,7 @@
 #-------------------------------------------------
 TARGET = ExtendableDataManagerPlugin
 TEMPLATE = lib
-QT += core sql
+QT += widgets sql
 
 include(../../System/MASS/BuildInfo.pri)
 

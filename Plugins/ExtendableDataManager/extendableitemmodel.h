@@ -30,6 +30,7 @@ public:
     void LoadData();
     bool AttachRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData);
     void SetActiveRelation(QString relationName);
+    void SetDataTypeEditor(QString dataChunk, QString fieldName, QWidget *widget);
 
     virtual QVariant data(const QModelIndex &index, int role) const;
     QMap<int, QVariant> itemData(const QModelIndex &index) const override;
@@ -58,6 +59,7 @@ private:
     QString currentActiveChunkName;
     Item defaultTask;
     Item header;
+    Item dataTypeEditors;
     Item *rootItem;
 
     Item *AddItem(int row, Item *taskParent, Item *taskData = NULL);
@@ -65,10 +67,9 @@ private:
     bool UpdateItemsPosition(Item *parent, int from);
     bool DeleteItem(Item *task);
     void DeleteFromManagerRecursive(Item *task);
-//    ManagerDataItem ConvertToManagerItem(Item* item);
+
     QMap<QString, QVariant> ConvertFromHeadedMap(QMap<QString, QVariant> dataMap);
-    QMap<QString, QVariant> ConvertToHeadedMap(QMap<QString, QVariant> valuesMap,
-                                               QMap<QString, QVariant> headerMap) const;
+    QMap<QString, QVariant> ConvertToHeadedMap(QMap<QString, QVariant> headerMap, QMap<QString, QVariant> valuesMap) const;
 };
 //! \}
 #endif // EXTENDABLEITEMMODEL_H

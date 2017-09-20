@@ -6,12 +6,10 @@ AddForm::AddForm(QWidget *parent) :
     ui(new Ui::AddForm)
 {
     ui->setupUi(this);
-//    mapper = new QDataWidgetMapper(this);
     hide();
     connect(ui->buttonAccept, SIGNAL(clicked(bool)), SLOT(AcceptChanges()));
     connect(ui->buttonCancel, SIGNAL(clicked(bool)), SLOT(CancelChanges()));
     gridLayout = new QGridLayout(ui->scrollAreaWidgetContents);
-    paintWidget = new PaintWidget(this);
 }
 
 AddForm::~AddForm()
@@ -42,31 +40,40 @@ void AddForm::ShowModelData(const QModelIndex &index, bool isNew)
     currentModelIndex = index;
     auto rolesMap = model->itemData(currentModelIndex);
     currentItemMap = rolesMap[Qt::UserRole].toMap();
-    auto iter = currentItemMap.begin();
-
+    auto editorsMap = model->headerData(0, Qt::Horizontal, Qt::UserRole).toMap();
+    auto chunkIter = currentItemMap.begin();
+    auto editorsChunkIter = editorsMap.begin();
     int rowCount = 0;
-    while(iter != currentItemMap.end())
+    while(chunkIter != currentItemMap.end())
     {
-        auto map = iter.value().toMap();
-        auto mapIter = map.begin();
-        while(mapIter != map.end())
+        auto valuesMap = chunkIter.value().toMap();
+        auto valuesEditorsMap = editorsChunkIter.value().toMap();
+        auto valueIter = valuesMap.begin();
+        auto valueEditorsIter = valuesEditorsMap.begin();
+        while(valueIter != valuesMap.end())
         {
-            labelsList.append(new QLabel(mapIter.key(), this));
+            labelsList.append(new QLabel(valueIter.key(), this));
             gridLayout->addWidget(labelsList.last(), rowCount, 0);
-            if(mapIter.key() == "sketch")
+            QWidget *editWidget;
+            if(valueEditorsIter.value().isValid())
             {
-                gridLayout->addWidget(paintWidget, rowCount, 1);
-                paintWidget->setProperty("value", mapIter.value().toByteArray());
+                editWidget = (QWidget*)valueEditorsIter.value().value<void*>();
+                editWidget->setObjectName("custom");
+                editWidget->setProperty("value", valueIter.value());
             }
             else
             {
-                lineEdits.append(new QLineEdit(mapIter.value().toString(), this));
-                gridLayout->addWidget(lineEdits.last(), rowCount, 1);
+                editWidget = new QLineEdit(valueIter.value().toString(), this);
+                editWidget->setObjectName("line");
             }
+            editWidgets.append(editWidget);
+            gridLayout->addWidget(editWidgets.last(), rowCount, 1);
             ++rowCount;
-            ++mapIter;
+            ++valueIter;
+            ++valueEditorsIter;
         }
-        ++iter;
+        ++chunkIter;
+        ++editorsChunkIter;
     }
 }
 
@@ -78,12 +85,14 @@ void AddForm::ClearEditors()
         delete labelsList[i];
     }
     labelsList.clear();
-    for(int i = 0; i < lineEdits.length(); ++i)
+    for(int i = 0; i < editWidgets.length(); ++i)
     {
-        gridLayout->removeWidget(lineEdits[i]);
-        delete lineEdits[i];
+        gridLayout->removeWidget(editWidgets[i]);
+        bool isDefaultEditor = editWidgets[i]->objectName() == "line";
+        if(isDefaultEditor)
+            delete editWidgets[i];
     }
-    lineEdits.clear();
+    editWidgets.clear();
     currentItemMap.clear();
 }
 
@@ -97,8 +106,8 @@ void AddForm::AcceptChanges()
         auto mapIter = map.begin();
         while(mapIter != map.end())
         {
-            map[mapIter.key()] = QVariant(lineEdits[rowCount]->text());
-            gridLayout->addWidget(lineEdits.last(), rowCount, 1);
+            bool isDefaultEditor = editWidgets[rowCount]->objectName() == "line";
+            map[mapIter.key()] = editWidgets[rowCount]->property(isDefaultEditor ? "text" : "value");
             ++rowCount;
             ++mapIter;
         }

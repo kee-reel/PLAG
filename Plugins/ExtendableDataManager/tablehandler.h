@@ -27,10 +27,12 @@ public:
     ~TableHandler();
 
     inline QString TableName() { return tableName; }
+    bool HasRelation(QString relation);
 
     bool CreateTable();
     bool SetRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData);
     void SetActiveRelation(QString relationName);
+    void SetDataTypeEditor(QString dataChunk, QString fieldName, QWidget *widget);
     bool DeleteRelation(QString relationName);
 
     int AddItem(ManagerDataItem item);
@@ -65,6 +67,7 @@ private:
     bool IsTableExists(QString tableName);
     bool IsTableHasRightStructure(QString tableName, TableStructMap &tableStruct);
     void CombineWholeTableStruct();
+    void InstallModel();
 };
 //! \}
 #endif // TABLEHANDLER_H

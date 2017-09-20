@@ -163,7 +163,6 @@ void Item::SetChunksData(QMap<QString, QVariant> dataMap)
 
 void Item::SetChunkDataElement(int column, QVariant data)
 {
-    qDebug() << "SetChunkDataElement" << activeChunkName;
     if( (activeChunk->length() > column) || (column < 0) )
         (*activeChunk)[column] = data;
     else

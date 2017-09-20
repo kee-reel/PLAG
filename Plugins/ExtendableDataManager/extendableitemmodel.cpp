@@ -76,9 +76,12 @@ bool ExtendableItemModel::AttachRelation(QString relationName, TableStructMap fi
 
     auto list = fields.keys();
     QVector<QVariant> varList;
+    QVector<QVariant> emptyData;
     foreach (auto elem, list)
         varList.append(QVariant(elem));
+    emptyData.resize(list.length());
     header.SetChunkData(relationName, varList);
+    dataTypeEditors.SetChunkData(relationName, emptyData);
     return true;
 }
 
@@ -91,6 +94,21 @@ void ExtendableItemModel::SetActiveRelation(QString relationName)
     currentActiveChunkName = relationName;
     defaultTask.SetOneChunkActive(relationName);
     header.SetOneChunkActive(relationName);
+}
+
+void ExtendableItemModel::SetDataTypeEditor(QString dataChunk, QString fieldName, QWidget *widget)
+{
+    QVector<QVariant> data = dataTypeEditors.GetChunkData(dataChunk);
+    auto chunkHeader = header.GetChunkData(dataChunk);
+    if(data.length() == 0)
+        data.resize(chunkHeader.length());
+
+    for(int i = 0; i < chunkHeader.length(); ++i)
+    {
+        if(chunkHeader[i] == fieldName)
+            data[i] = QVariant::fromValue((void*)widget);
+    }
+    dataTypeEditors.SetChunkData(dataChunk, data);
 }
 
 QVariant ExtendableItemModel::data(const QModelIndex &index, int role) const
@@ -116,7 +134,7 @@ QVariant ExtendableItemModel::data(const QModelIndex &index, int role) const
     }
 }
 
-QMap<QString, QVariant> ExtendableItemModel::ConvertToHeadedMap(QMap<QString, QVariant> valuesMap, QMap<QString, QVariant> headerMap) const
+QMap<QString, QVariant> ExtendableItemModel::ConvertToHeadedMap(QMap<QString, QVariant> headerMap, QMap<QString, QVariant> valuesMap) const
 {
     QMap<QString, QVariant> chunksMap;
     auto valuesNamesIter = headerMap.begin();
@@ -156,7 +174,7 @@ QMap<int, QVariant> ExtendableItemModel::itemData(const QModelIndex &index) cons
     headerMap.remove(coreRelationName);
     valuesMap.remove(coreRelationName);
 
-    QMap<QString, QVariant> chunksMap = ConvertToHeadedMap(valuesMap, headerMap);
+    QMap<QString, QVariant> chunksMap = ConvertToHeadedMap(headerMap, valuesMap);
 
     result.insert(Qt::UserRole, QVariant(chunksMap));
     return result;
@@ -215,9 +233,13 @@ QVariant ExtendableItemModel::headerData(int section, Qt::Orientation orientatio
         return rootItem->GetChunkDataElement(section);
         break;
     case Qt::UserRole:{
-        auto map = header.GetChunksData();
-        map.remove(coreRelationName);
-        return QVariant(map);
+        auto headerMap = header.GetChunksData();
+        auto valuesMap = dataTypeEditors.GetChunksData();
+        // Because for which reason internal data could be needed by user?
+        headerMap.remove(coreRelationName);
+        valuesMap.remove(coreRelationName);
+        QMap<QString, QVariant> dataEditorsMap = ConvertToHeadedMap(headerMap, valuesMap);
+        return QVariant(dataEditorsMap);
         }break;
     default:
         return QVariant();

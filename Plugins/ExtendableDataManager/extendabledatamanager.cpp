@@ -45,14 +45,27 @@ void ExtendableDataBaseManagerPlugin::ReferencePluginClosed(PluginInfo *pluginIn
 
 }
 
-void ExtendableDataBaseManagerPlugin::RegisterDataTypeEditor(QString relation, QString field, IExtendableDataManager::IDataTypeEditor *delegate)
+bool ExtendableDataBaseManagerPlugin::RegisterDataTypeEditor(QString relation, QString field, QWidget *widget)
 {
+    QVariant value = widget->property("value");
+    if(widget == NULL || !value.isValid())
+        return false;
 
+    relation = relation.toLower();
+    field = field.toLower();
+    dataTypeEditorsMap[relation].insert(field, widget);
+
+    foreach (auto table, tableHandlers) {
+        if(table->HasRelation(relation))
+            table->SetDataTypeEditor(relation, field, widget);
+    }
 }
 
-IExtendableDataManager::IDataTypeEditor *ExtendableDataBaseManagerPlugin::GetDataTypeEditor(QString relation, QString field)
+QWidget *ExtendableDataBaseManagerPlugin::GetDataTypeEditor(QString relation, QString field)
 {
-
+    if(dataTypeEditorsMap.contains(relation) && dataTypeEditorsMap[relation].contains(field))
+        return dataTypeEditorsMap[relation].value(field);
+    return NULL;
 }
 
 void ExtendableDataBaseManagerPlugin::SetupTable(QString &tableName)
@@ -89,7 +102,22 @@ QMap<QString, QVariant::Type> ExtendableDataBaseManagerPlugin::GetTableHeader(QS
 bool ExtendableDataBaseManagerPlugin::SetRelation(QString tableName, QString relationName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData)
 {
     SetupTable(tableName);
-    return tableHandlers[tableName]->SetRelation(relationName, fields, defaultData);
+    bool succeed = tableHandlers[tableName]->SetRelation(relationName, fields, defaultData);
+    if(succeed && dataTypeEditorsMap.contains(relationName))
+    {
+        auto relationMap = dataTypeEditorsMap.value(relationName);
+        auto iter = fields.begin();
+        while(iter != fields.end())
+        {
+            if(relationMap.contains(iter.key()))
+            {
+               tableHandlers[tableName]->SetDataTypeEditor(relationName, iter.key(), relationMap.value(iter.key()));
+               break;
+            }
+            ++iter;
+        }
+    }
+    return succeed;
 }
 
 bool ExtendableDataBaseManagerPlugin::DeleteRelation(QString tableName, QString relationName)

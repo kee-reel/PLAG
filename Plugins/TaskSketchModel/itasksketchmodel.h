@@ -22,6 +22,7 @@ public:
     virtual QAbstractItemModel* GetModel() = 0;
     virtual QAbstractItemModel* GetInternalModel() = 0;
     virtual void ConvertSketchToTask(int sketchId) = 0;
+    virtual void LinkEditorWidget(QWidget*) = 0;
 signals:
     void ConvertTaskToSketch(int);
 };

@@ -15,6 +15,11 @@ TableHandler::~TableHandler()
     if(itemModel) delete itemModel;
 }
 
+bool TableHandler::HasRelation(QString relation)
+{
+    return relationTablesStructs.contains(relation);
+}
+
 bool TableHandler::CreateTable()
 {
     // Is name valid?
@@ -94,8 +99,16 @@ bool TableHandler::SetRelation(QString relationName, TableStructMap fields, QVec
 
 void TableHandler::SetActiveRelation(QString relationName)
 {
+    InstallModel();
     if(itemModel)
         itemModel->SetActiveRelation(relationName);
+}
+
+void TableHandler::SetDataTypeEditor(QString dataChunk, QString fieldName, QWidget *widget)
+{
+    InstallModel();
+    if(itemModel)
+        itemModel->SetDataTypeEditor(dataChunk, fieldName, widget);
 }
 
 bool TableHandler::DeleteRelation(QString relationName)
@@ -212,11 +225,9 @@ QList<IExtendableDataManager::ManagerDataItem> TableHandler::GetData()
     return itemInfoList;
 }
 
-QAbstractItemModel *TableHandler::GetModel()
+void TableHandler::InstallModel()
 {
-    if(!IsDataSourceExists()) return NULL;
-    if(itemModel) return itemModel;
-
+    if(itemModel) return;
     itemModel = new ExtendableItemModel(tableName, dataManager);
     auto defaultDataIter = relationsDefaultData.begin();
     auto relationStructIter = relationTablesStructs.begin();
@@ -227,6 +238,12 @@ QAbstractItemModel *TableHandler::GetModel()
         ++relationStructIter;
     }
     itemModel->LoadData();
+}
+
+QAbstractItemModel *TableHandler::GetModel()
+{
+    if(!IsDataSourceExists()) return NULL;
+    InstallModel();
     return itemModel;
 }
 

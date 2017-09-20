@@ -128,6 +128,11 @@ void TaskSketchModel::ConvertSketchToTask(int sketchId)
     //emit ConvertTaskToSketch(map[0].toInt());
 }
 
+void TaskSketchModel::LinkEditorWidget(QWidget *widget)
+{
+    dataManager->RegisterDataTypeEditor(tableName, "sketch", widget);
+}
+
 void TaskSketchModel::SetupModel()
 {
     if(!dataManager) return;

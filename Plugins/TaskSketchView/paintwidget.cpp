@@ -8,19 +8,24 @@ PaintWidget::PaintWidget(QWidget *parent) : QWidget(parent)
     pen = QPen(QBrush(Qt::black), 3);
 }
 
-QByteArray PaintWidget::value() const
+QVariant PaintWidget::value() const
 {
     QByteArray ba;
     QBuffer buffer(&ba);
     buffer.open(QIODevice::WriteOnly);
     image.save(&buffer, "PNG");
     buffer.close();
-    return ba;
+    return QVariant(ba);
 }
 
-void PaintWidget::setValue(const QByteArray value)
+void PaintWidget::setValue(const QVariant value)
 {
-    image.loadFromData(value);
+    if(!value.isValid() || value.type() != QVariant::ByteArray)
+    {
+        Clean();
+        return;
+    }
+    image.loadFromData(value.toByteArray());
 }
 
 void PaintWidget::Clean()
@@ -31,7 +36,6 @@ void PaintWidget::Clean()
 
 void PaintWidget::mousePressEvent(QMouseEvent *event)
 {
-    qDebug() << "mousePressEvent";
     isPressed = true;
     mousePos = prevMousePos = event->pos();
 }

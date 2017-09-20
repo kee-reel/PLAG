@@ -3,8 +3,9 @@
 
 #include <QHash>
 #include <QString>
-#include <QObject>
+#include <QWidget>
 #include <QVariant>
+#include <QPair>
 
 #include "iextendabledatamanager.h"
 #include "tablehandler.h"
@@ -36,8 +37,8 @@ signals:
 
     // IExtendableDataManagerPlugin interface
 public:
-    void RegisterDataTypeEditor(QString relation, QString field, IDataTypeEditor *delegate) override;
-    IDataTypeEditor *GetDataTypeEditor(QString relation, QString field) override;
+    bool RegisterDataTypeEditor(QString relation, QString field, QWidget *widget) override;
+    QWidget *GetDataTypeEditor(QString relation, QString field) override;
     QList<ManagerDataItem> GetDataList(QString treeName) override;
     ManagerDataItem GetDataItem(QString treeName, int id) override;
     QAbstractItemModel *GetDataModel(QString treeName) override;
@@ -48,16 +49,16 @@ public:
     int AddItem(QString treeName, ManagerDataItem task) override;
     bool UpdateItem(QString treeName, ManagerDataItem task) override;
     bool DeleteItem(QString treeName, int id) override;
-    //bool AddDataSource(QObject *dataSource) override;
 
 private:
     QString lastError;
     IDataBaseSourcePlugin* dataSource;
 
-    QMap<QString, IExtendableDataManager::IDataTypeEditor*> dataEditorsMap;
+    QMap<QString, QMap<QString, QWidget*> > dataTypeEditorsMap;
 
     QHash<QString, TableHandler*> tableHandlers;
     void SetupTable(QString &tableName);
+
 };
 //! \}
 #endif // TASKDBTOOLPLUGIN_H

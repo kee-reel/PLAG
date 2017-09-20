@@ -60,6 +60,7 @@ public:
     QAbstractItemModel *GetModel() override;
     QAbstractItemModel *GetInternalModel() override;
     void ConvertSketchToTask(int sketchId) override;
+    void LinkEditorWidget(QWidget *widget) override;
 
 signals:
     void OnClose(PluginInfo *model);

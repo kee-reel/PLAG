@@ -7,6 +7,7 @@
 
 #include "../TaskSketchModel/itasksketchmodel.h"
 #include "mainform.h"
+#include "paintwidget.h"
 
 //! \defgroup TaskSketchView
 //!     \ingroup MainMenuPlugin_rel_v
@@ -29,6 +30,7 @@ private:
     ITaskSketchModel *myModel;
     MainForm *mainForm;
     PluginInfo *pluginInfo;
+    PaintWidget *paintWidgetTypeEditor;
 
 signals:
     void OnOpen(QWidget *);

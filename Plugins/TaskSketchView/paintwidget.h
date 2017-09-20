@@ -15,12 +15,12 @@
 class PaintWidget : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(QByteArray value READ value WRITE setValue)
+    Q_PROPERTY(QVariant value READ value WRITE setValue)
 
 public:
     explicit PaintWidget(QWidget *parent = 0);
-    QByteArray value() const;
-    void setValue(const QByteArray value);
+    QVariant value() const;
+    void setValue(const QVariant value);
 private:
     QImage image;
     bool isPressed;
