@@ -106,7 +106,6 @@ void TableHandler::SetActiveRelation(QString relationName)
 
 void TableHandler::SetDataTypeEditor(QString dataChunk, QString fieldName, QWidget *widget)
 {
-    InstallModel();
     if(itemModel)
         itemModel->SetDataTypeEditor(dataChunk, fieldName, widget);
 }
@@ -151,11 +150,9 @@ TableHandler::ManagerDataItem TableHandler::GetItem(int id)
     QString bufStr;
     int queryFieldNum;
 
-    qDebug() << endl << ">> Query result";
     bufStr = "";
     queryFieldNum = 0;
 
-    qDebug() << query.value(queryFieldNum);
     buf.id = query.value(queryFieldNum).toInt();
     ++queryFieldNum;
 
@@ -192,28 +189,24 @@ QList<IExtendableDataManager::ManagerDataItem> TableHandler::GetData()
                         .arg(tableName)
                         .arg(joinTables[i]));
     }
+
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
     QList<ManagerDataItem> itemInfoList;
     ManagerDataItem buf;
-
     QString bufStr;
     int queryFieldNum;
 
     while (query.next()) {
-        qDebug() << endl << ">> Query result";
         bufStr = "";
         queryFieldNum = 0;
 
-        qDebug() << query.value(queryFieldNum);
         buf.id = query.value(queryFieldNum).toInt();
         ++queryFieldNum;
 
         for(int i = 0; i < joinTables.count(); ++i)
         {
-            qDebug() << "> " << joinTables[i];
             for(int j = 0; j < relationTablesStructs[joinTables[i]].count(); ++j)
             {
-                qDebug() << query.value(queryFieldNum);
                 buf.dataChunks[joinTables[i]].append( query.value(queryFieldNum) );
                 ++queryFieldNum;
             }

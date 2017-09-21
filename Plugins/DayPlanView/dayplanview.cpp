@@ -23,9 +23,8 @@ void DayPlanView::SetPluginInfo(PluginInfo *pluginInfo)
 
 void DayPlanView::OnAllSetup()
 {
-    if(itemModel == NULL) return;
-    itemModel = dayPlanModel->GetModel();
-    ui->treeView->setModel(itemModel);
+    if(dayPlanModel == NULL) return;
+    dayPlanModel->SetDataTypeEditor(new DateTimeTypeEditor(this));
 }
 
 QString DayPlanView::GetLastError()
@@ -77,6 +76,12 @@ bool DayPlanView::Open(IModelPlugin *model)
     if(false){
         qDebug() << "!DayPlanView not fully initialized!";
         return false;
+    }
+
+    if(dayPlanModel)
+    {
+        itemModel = dayPlanModel->GetModel();
+        ui->treeView->setModel(itemModel);
     }
 
     emit OnOpen(this);

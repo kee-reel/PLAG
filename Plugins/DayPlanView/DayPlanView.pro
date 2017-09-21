@@ -4,11 +4,13 @@ TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    dayplanview.cpp
+    dayplanview.cpp \
+    datetimetypeeditor.cpp
 
 HEADERS +=\
     idayplanview.h \
-    dayplanview.h
+    dayplanview.h \
+    datetimetypeeditor.h
 
 DISTFILES += \
     PluginMeta.json

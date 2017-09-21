@@ -64,7 +64,6 @@ void MainForm::OnItemDelete(int index)
 void MainForm::OnItemConvertSlot(int index)
 {
     myModel->ConvertSketchToTask(index);
-    //myModel->OpenTaskEdit(taskModel->rowCount()-1);
 }
 
 void MainForm::on_buttonClear_clicked()

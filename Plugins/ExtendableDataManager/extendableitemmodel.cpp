@@ -81,7 +81,8 @@ bool ExtendableItemModel::AttachRelation(QString relationName, TableStructMap fi
         varList.append(QVariant(elem));
     emptyData.resize(list.length());
     header.SetChunkData(relationName, varList);
-    dataTypeEditors.SetChunkData(relationName, emptyData);
+    if(!dataTypeEditors.HasChunk(relationName))
+        dataTypeEditors.SetChunkData(relationName, emptyData);
     return true;
 }
 

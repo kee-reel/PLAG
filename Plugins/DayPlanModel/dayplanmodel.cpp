@@ -119,3 +119,9 @@ QAbstractItemModel *DayPlanModel::GetModel()
     if(!dataModel) dataModel = dataManager->GetDataModel(tableName);
     return dataModel;
 }
+
+void DayPlanModel::SetDataTypeEditor(QWidget *widget)
+{
+    if(dataManager)
+        dataManager->RegisterDataTypeEditor(relationName, "datetime", widget);
+}

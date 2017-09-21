@@ -19,6 +19,7 @@ class IDayPlanModel :
 {
 public:
     virtual QAbstractItemModel* GetModel() = 0;
+    virtual void SetDataTypeEditor(QWidget *widget) = 0;
 };
 //! }
 Q_DECLARE_INTERFACE(IDayPlanModel, "IDayPlanModel")

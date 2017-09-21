@@ -8,6 +8,7 @@
 
 #include "idayplanview.h"
 #include "../DayPlanModel/idayplanmodel.h"
+#include "datetimetypeeditor.h"
 
 namespace Ui {
 class Form;

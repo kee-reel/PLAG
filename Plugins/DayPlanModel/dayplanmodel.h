@@ -63,6 +63,7 @@ private:
     // IDayPlanModel interface
 public:
     QAbstractItemModel *GetModel() override;
+    void SetDataTypeEditor(QWidget *widget) override;
 };
 //! }
 #endif // DAYPLANMODEL_H

@@ -58,6 +58,7 @@ void AddForm::ShowModelData(const QModelIndex &index, bool isNew)
             if(valueEditorsIter.value().isValid())
             {
                 editWidget = (QWidget*)valueEditorsIter.value().value<void*>();
+                editWidget->setParent(this);
                 editWidget->setObjectName("custom");
                 editWidget->setProperty("value", valueIter.value());
             }

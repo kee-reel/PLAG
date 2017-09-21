@@ -25,7 +25,14 @@ void PaintWidget::setValue(const QVariant value)
         Clean();
         return;
     }
-    image.loadFromData(value.toByteArray());
+    QByteArray array = value.toByteArray();
+    if(array.length() == 0)
+    {
+        image = QImage(size(), QImage::Format_RGB32);
+        image.fill(Qt::white);
+    }
+    else
+        image.loadFromData(value.toByteArray());
 }
 
 void PaintWidget::Clean()

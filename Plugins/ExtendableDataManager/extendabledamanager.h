@@ -50,6 +50,8 @@ public:
     bool UpdateItem(QString treeName, ManagerDataItem task) override;
     bool DeleteItem(QString treeName, int id) override;
 
+    void SetupDataTypeEditors(QString tableName);
+
 private:
     QString lastError;
     IDataBaseSourcePlugin* dataSource;

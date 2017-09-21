@@ -53,6 +53,10 @@ public:
     }
 
 // Data
+    inline bool HasChunk(QString chunkName){
+        return dataChunks.contains(chunkName);
+    }
+
     void SetOneChunkActive(QString &activeChunk);
     void ToggleChunkActive(QString &activeChunk);
     void ToggleAllChunksActive(QString &activeChunk);
