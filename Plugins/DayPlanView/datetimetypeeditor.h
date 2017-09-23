@@ -2,6 +2,7 @@
 #define DATETIMETYPEEDITOR_H
 
 #include <QWidget>
+#include <QCalendarWidget>
 #include <QDateTimeEdit>
 #include <QVariant>
 
@@ -18,6 +19,10 @@ public:
 signals:
 
 public slots:
+
+    // QWidget interface
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 };
 
 #endif // DATETIMETYPEEDITOR_H

@@ -4,7 +4,7 @@ DateTimeTypeEditor::DateTimeTypeEditor(QWidget *parent) : QDateTimeEdit(parent)
 {
     setMinimumDate(QDate::currentDate().addDays(-365));
     setMaximumDate(QDate::currentDate().addDays(365));
-    setCalendarPopup(true);
+    //setCalendarPopup(true);
 }
 
 QVariant DateTimeTypeEditor::value() const
@@ -22,4 +22,11 @@ void DateTimeTypeEditor::setValue(const QVariant value)
     else
         dateTime = value.toDateTime();
     setDateTime(dateTime);
+}
+
+void DateTimeTypeEditor::keyPressEvent(QKeyEvent *event)
+{
+    QDateTimeEdit::keyPressEvent(event);
+    auto calendar = calendarWidget();
+    calendar->show();
 }

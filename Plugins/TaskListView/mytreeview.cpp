@@ -28,7 +28,6 @@ MyTreeView::MyTreeView(QWidget *parent) : QTreeView(parent)
     setSelectionMode(QAbstractItemView::SingleSelection);
     setDragEnabled(false);
     setAcceptDrops(false);
-    setFocusPolicy(Qt::NoFocus);
     viewport()->installEventFilter(this);
     viewport()->grabGesture(Qt::TapAndHoldGesture);
     QScroller::grabGesture(viewport(), QScroller::LeftMouseButtonGesture);

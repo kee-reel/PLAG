@@ -5,6 +5,7 @@ DayPlanModel::DayPlanModel()
     openedView = NULL;
     openedModel = NULL;
     taskTreeModel = NULL;
+    dataModel = NULL;
     tableName = "ITaskTreeModel";
     relationName = "IDayPlanModel";
 }

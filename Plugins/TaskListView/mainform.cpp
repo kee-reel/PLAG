@@ -9,9 +9,9 @@ MainForm::MainForm(QWidget *parent) :
     myTreeView = new MyTreeView(this);
     ui->verticalLayout->setDirection(QBoxLayout::BottomToTop);
     ui->verticalLayout->addWidget(myTreeView);
-    connect(myTreeView, SIGNAL(clicked(QModelIndex)), SLOT(on_treeView_clicked(QModelIndex)));
-    connect(myTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(on_treeView_doubleClicked(QModelIndex)));
-    connect(myTreeView, SIGNAL(pressed(QModelIndex)), SLOT(on_treeView_pressed(QModelIndex)));
+    connect(myTreeView, SIGNAL(clicked(QModelIndex)), SLOT(onTreeViewClicked(QModelIndex)));
+    connect(myTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(onTreeViewDoubleClicked(QModelIndex)));
+    connect(myTreeView, SIGNAL(pressed(QModelIndex)), SLOT(onTreeViewPressed(QModelIndex)));
     myTreeView->setExpandsOnDoubleClick(false);
 
 #ifdef Q_OS_ANDROID
@@ -122,12 +122,12 @@ void MainForm::on_buttonEdit_clicked()
         addForm->ShowModelData(list.first());
 }
 
-void MainForm::on_treeView_pressed(const QModelIndex &index)
+void MainForm::onTreeViewPressed(const QModelIndex &index)
 {
     currentModelIndex = &index;
 }
 
-void MainForm::on_treeView_clicked(const QModelIndex &index)
+void MainForm::onTreeViewClicked(const QModelIndex &index)
 {
     if(expandFlag)
         expandFlag = false;
@@ -138,7 +138,7 @@ void MainForm::on_treeView_clicked(const QModelIndex &index)
     }
 }
 
-void MainForm::on_treeView_doubleClicked(const QModelIndex &index)
+void MainForm::onTreeViewDoubleClicked(const QModelIndex &index)
 {
     addForm->ShowModelData(index);
     model->insertColumn(1);

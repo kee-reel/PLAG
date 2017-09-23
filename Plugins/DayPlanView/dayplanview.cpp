@@ -10,6 +10,7 @@ DayPlanView::DayPlanView(QWidget *parent) :
     dayPlanModel = NULL;
     itemModel = NULL;
     ui->setupUi(this);
+    connect(ui->buttonExit, SIGNAL(clicked(bool)), SLOT(Close()));
 }
 
 DayPlanView::~DayPlanView()
@@ -24,7 +25,7 @@ void DayPlanView::SetPluginInfo(PluginInfo *pluginInfo)
 void DayPlanView::OnAllSetup()
 {
     if(dayPlanModel == NULL) return;
-    dayPlanModel->SetDataTypeEditor(new DateTimeTypeEditor(this));
+    dayPlanModel->SetDataTypeEditor(new DateTimeTypeEditor());
 }
 
 QString DayPlanView::GetLastError()

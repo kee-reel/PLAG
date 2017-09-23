@@ -44,11 +44,11 @@ private slots:
 
     void on_buttonExit_clicked();
     void on_buttonAdd_clicked();
-    void on_treeView_doubleClicked(const QModelIndex &index);
+    void onTreeViewDoubleClicked(const QModelIndex &index);
     void on_buttonDelete_clicked();
-    void on_treeView_pressed(const QModelIndex &index);
+    void onTreeViewPressed(const QModelIndex &index);
     void on_buttonEdit_clicked();
-    void on_treeView_clicked(const QModelIndex &index);
+    void onTreeViewClicked(const QModelIndex &index);
 };
 //! \}
 #endif // MAINFORM_H

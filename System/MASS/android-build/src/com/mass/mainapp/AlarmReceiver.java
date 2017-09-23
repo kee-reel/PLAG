@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class AlarmReceiver extends BroadcastReceiver{
 
     final public static String ONE_TIME = "onetime";
+    PowerManager.WakeLock wl;
 
 @Override
     public void onReceive(Context context, Intent intent)
@@ -25,7 +26,21 @@ public class AlarmReceiver extends BroadcastReceiver{
 //        //Осуществляем блокировку
 //        wl.acquire();
 
-        NotificationClient.MakeToast("Test succeded!");
+        try
+        {
+            final PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+
+            wl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "My Tag");
+            // m_WakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "My Tag");
+            // Does not work: https://stackoverflow.com/questions/5183859/partial-wake-lock-vs-screen-dim-wake-lock-in-download-thread
+            wl.acquire();
+        }
+        catch (Exception e)
+        {
+            System.out.println("WakeLock failed: " + e.toString());
+        }
+
+        QtActivityExtention.showNotification("MASS alarm test", "Alarm recieved", 1);
 
 //        //Разблокируем поток.
 //        wl.release();
