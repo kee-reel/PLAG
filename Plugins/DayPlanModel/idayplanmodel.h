@@ -18,7 +18,8 @@ class IDayPlanModel :
         public IModelPlugin
 {
 public:
-    virtual QAbstractItemModel* GetModel() = 0;
+    virtual QAbstractItemModel* GetTaskModel() = 0;
+    virtual QAbstractItemModel* GetDateModel() = 0;
     virtual void SetDataTypeEditor(QWidget *widget) = 0;
 };
 //! }

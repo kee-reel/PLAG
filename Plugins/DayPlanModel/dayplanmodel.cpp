@@ -5,7 +5,8 @@ DayPlanModel::DayPlanModel()
     openedView = NULL;
     openedModel = NULL;
     taskTreeModel = NULL;
-    dataModel = NULL;
+    taskDataModel = NULL;
+    dateDataModel = NULL;
     tableName = "ITaskTreeModel";
     relationName = "IDayPlanModel";
 }
@@ -28,6 +29,7 @@ void DayPlanModel::OnAllSetup()
     QVector<QVariant> defaultData;
     defaultData << QDateTime::currentDateTime().toString(Qt::ISODate);
     dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
+    dataManager->SetRelation(relationName, relationName, newRelationStruct, defaultData);
 }
 
 QString DayPlanModel::GetLastError()
@@ -114,11 +116,18 @@ void DayPlanModel::Close()
     emit OnClose();
 }
 
-QAbstractItemModel *DayPlanModel::GetModel()
+QAbstractItemModel *DayPlanModel::GetTaskModel()
 {
     if(!dataManager) return NULL;
-    if(!dataModel) dataModel = dataManager->GetDataModel(tableName);
-    return dataModel;
+    if(!taskDataModel) taskDataModel = dataManager->GetDataModel(tableName);
+    return taskDataModel;
+}
+
+QAbstractItemModel *DayPlanModel::GetDateModel()
+{
+    if(!dataManager) return NULL;
+    if(!dateDataModel) dateDataModel = dataManager->GetDataModel(relationName);
+    return dateDataModel;
 }
 
 void DayPlanModel::SetDataTypeEditor(QWidget *widget)

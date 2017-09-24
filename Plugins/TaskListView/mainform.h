@@ -23,7 +23,6 @@ class MainForm : public QWidget
 public:
     explicit MainForm(QWidget *parent = 0);
     ~MainForm();
-    bool eventFilter(QObject *watched, QEvent *event) override;
     void SetModel(QAbstractItemModel *model);
 
 private:
@@ -44,7 +43,6 @@ private slots:
 
     void on_buttonExit_clicked();
     void on_buttonAdd_clicked();
-    void onTreeViewDoubleClicked(const QModelIndex &index);
     void on_buttonDelete_clicked();
     void onTreeViewPressed(const QModelIndex &index);
     void on_buttonEdit_clicked();

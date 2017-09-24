@@ -506,7 +506,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/Res/ic_done_black_24dp.png</normaloff>:/Res/ic_done_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
@@ -526,7 +526,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/Res/ic_cancel_black_24dp.png</normaloff>:/Res/ic_cancel_black_24dp.png</iconset>
        </property>
        <property name="iconSize">
@@ -550,8 +550,6 @@
   <tabstop>buttonOk</tabstop>
   <tabstop>buttonClose</tabstop>
  </tabstops>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -58,11 +58,13 @@ private:
     ITaskTreeModel *taskTreeModel;
     IExtendableDataManager *dataManager;
     QString tableName, relationName;
-    QAbstractItemModel *dataModel;
+    QAbstractItemModel *taskDataModel;
+    QAbstractItemModel *dateDataModel;
 
     // IDayPlanModel interface
 public:
-    QAbstractItemModel *GetModel() override;
+    QAbstractItemModel *GetTaskModel() override;
+    QAbstractItemModel *GetDateModel() override;
     void SetDataTypeEditor(QWidget *widget) override;
 };
 //! }

@@ -34,31 +34,6 @@ MainForm::~MainForm()
     delete ui;
 }
 
-bool MainForm::eventFilter(QObject *watched, QEvent *event)
-{
-    switch (event->type()) {
-    case QEvent::KeyRelease:{
-        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-        switch (keyEvent->key()) {
-        case Qt::Key_Tab:
-            on_buttonAdd_clicked();
-            break;
-        case Qt::Key_Space:
-        case Qt::Key_Enter:
-            on_buttonEdit_clicked();
-            break;
-        default:
-            break;
-        }
-    }break;
-
-    default:
-        return false;
-        break;
-    }
-    return true;
-}
-
 void MainForm::SetModel(QAbstractItemModel *model)
 {
     this->model = model;
@@ -136,10 +111,4 @@ void MainForm::onTreeViewClicked(const QModelIndex &index)
         myTreeView->setExpanded(index, !myTreeView->isExpanded(index));
         expandFlag = true;
     }
-}
-
-void MainForm::onTreeViewDoubleClicked(const QModelIndex &index)
-{
-    addForm->ShowModelData(index);
-    model->insertColumn(1);
 }

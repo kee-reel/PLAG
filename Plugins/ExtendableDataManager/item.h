@@ -30,7 +30,11 @@ public:
 // Childs
     void DetachFromParent();
     void SetChilds(QList<Item *> childs);
-    void AddChild(Item *child, int row = INT32_MAX);
+#ifdef Q_OS_ANDROID
+    void AddChild(Item *child, int row = INT_MAX);
+#else
+     void AddChild(Item *child, int row = INT32_MAX);
+#endif
     void RemoveChild(Item *child);
     void RemoveChildAt(int row);
     inline Item *GetChildAt(int row) {

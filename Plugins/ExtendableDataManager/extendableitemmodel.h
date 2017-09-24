@@ -70,6 +70,7 @@ private:
 
     QMap<QString, QVariant> ConvertFromHeadedMap(QMap<QString, QVariant> dataMap);
     QMap<QString, QVariant> ConvertToHeadedMap(QMap<QString, QVariant> headerMap, QMap<QString, QVariant> valuesMap) const;
+    void ReadSameModelMime(int beginRow, int row, const QModelIndex &parent, QDataStream &stream);
 };
 //! \}
 #endif // EXTENDABLEITEMMODEL_H

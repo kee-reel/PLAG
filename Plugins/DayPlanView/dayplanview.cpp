@@ -81,8 +81,12 @@ bool DayPlanView::Open(IModelPlugin *model)
 
     if(dayPlanModel)
     {
-        itemModel = dayPlanModel->GetModel();
+        auto model = dayPlanModel->GetTaskModel();
+        itemModel = new DesignProxyModel(model);
         ui->treeView->setModel(itemModel);
+        model = dayPlanModel->GetDateModel();
+        itemModel = new DesignProxyModel(model);
+        ui->treeView_2->setModel(itemModel);
     }
 
     emit OnOpen(this);

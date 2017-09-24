@@ -401,6 +401,7 @@ QMimeData *ExtendableItemModel::mimeData(const QModelIndexList &indexes) const
     QByteArray encodedData;
 
     QDataStream stream(&encodedData, QIODevice::WriteOnly);
+    stream << (quintptr)this;
     foreach (const QModelIndex &index, indexes) {
         if (index.isValid()) {
             int row = index.row();
@@ -416,47 +417,8 @@ QMimeData *ExtendableItemModel::mimeData(const QModelIndexList &indexes) const
     return mimeData;
 }
 
-bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
+void ExtendableItemModel::ReadSameModelMime(int beginRow, int row, const QModelIndex &parent, QDataStream &stream)
 {
-    qDebug() << "dropMimeData" << row << column << parent;
-    if (action == Qt::IgnoreAction)
-        return true;
-
-    if (!data->hasFormat("application/vnd.text.list"))
-        return false;
-
-    if (column > 0)
-        return false;
-    int beginRow;
-
-    if (row != -1)
-        beginRow = row;
-    else if (parent.isValid())
-        beginRow = parent.row();
-    else
-        beginRow = rowCount(QModelIndex());
-
-    QByteArray encodedData = data->data("application/vnd.text.list");
-    QDataStream stream(&encodedData, QIODevice::ReadOnly);
-    QMap<quintptr, QMap<int, quintptr>> newItems;
-    int rows = 0;
-
-    while (!stream.atEnd()) {
-        int row;
-        int column;
-        quintptr idxPtr;
-        quintptr parentPtr;
-        stream >> row;
-        stream >> column;
-        stream >> idxPtr;
-        stream >> parentPtr;
-
-        qDebug() << row << column << idxPtr << parentPtr;
-        newItems[parentPtr][row] = idxPtr;
-        qDebug() << newItems.count();
-        ++rows;
-    }
-
     QModelIndex bufIdx;
     QModelIndex blockFirstIdx;
     QModelIndex parentIdx;
@@ -509,6 +471,63 @@ bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction act
         ++parentI;
     }
     UpdateItemsPosition((Item*)parent.internalPointer(), (row == -1) ? 0 : row);
+}
+
+bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
+{
+    qDebug() << "dropMimeData" << row << column << parent;
+    if (action == Qt::IgnoreAction)
+        return true;
+
+    if (!data->hasFormat("application/vnd.text.list"))
+        return false;
+
+    if (column > 0)
+        return false;
+    int beginRow;
+
+    if (row != -1)
+        beginRow = row;
+    else if (parent.isValid())
+        beginRow = parent.row();
+    else
+        beginRow = rowCount(QModelIndex());
+
+    QByteArray encodedData = data->data("application/vnd.text.list");
+    QDataStream stream(&encodedData, QIODevice::ReadOnly);
+
+    qintptr modelPtr = NULL;
+    stream >> modelPtr;
+
+    QMap<quintptr, QMap<int, quintptr>> newItems;
+    int rows = 0;
+    while (!stream.atEnd()) {
+        int row;
+        int column;
+        quintptr idxPtr;
+        quintptr parentPtr;
+        stream >> row;
+        stream >> column;
+        stream >> idxPtr;
+        stream >> parentPtr;
+
+        qDebug() << row << column << idxPtr << parentPtr;
+        newItems[parentPtr][row] = idxPtr;
+        qDebug() << newItems.count();
+        ++rows;
+    }
+
+    if(modelPtr == (qintptr)this)
+    {
+        qDebug() << "!Same model!";
+    }
+    else
+    {
+        qDebug() << "!Another model!";
+        return false;
+    }
+
+    ReadSameModelMime(beginRow, row, parent, stream);
     return true;
 }
 
