@@ -61,7 +61,7 @@ public slots:
 
     // IPomodoroModel interface
 public:
-    QAbstractItemModel *GetModel() override;
+    QAbstractItemModel *GetTaskModel() override;
     QAbstractItemModel *GetInternalModel() override;
     void SetActiveProject(QModelIndex index) override;
     QModelIndex* GetActiveProject() override;

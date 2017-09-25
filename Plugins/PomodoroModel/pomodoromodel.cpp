@@ -106,7 +106,7 @@ void PomodoroModel::Close()
     emit OnClose();
 }
 
-QAbstractItemModel *PomodoroModel::GetModel()
+QAbstractItemModel *PomodoroModel::GetTaskModel()
 {
     return taskModel;
 }
