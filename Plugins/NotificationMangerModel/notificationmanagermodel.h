@@ -4,25 +4,25 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
-#include <QtAndroid>
 #include <QDateTime>
+#include <QTimer>
 
-#include "iandroidnotificationmodel.h"
+#include "inotificationmanagermodel.h"
 
 //! addtogroup AndroidNotificationModel_imp
 //! {
-class AndroidNotificationModel : public QObject, IAndroidNotificationModel
+class NotificationManagerModel : public QObject, INotificationManagerModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(
             IModelPlugin
-            IAndroidNotificationModel
+            INotificationManagerModel
             )
 
 public:
-    AndroidNotificationModel();
-    ~AndroidNotificationModel();
+    NotificationManagerModel();
+    ~NotificationManagerModel();
 
     // IPlugin interface
 public:
@@ -47,7 +47,7 @@ public slots:
 public:
     void ShowNotification(QString title, QString message, int id = 0) override;
     void CancelNotification(int id) override;
-    void ShowToast(const QString &message, IAndroidNotificationModel::Duration duration = LONG) override;
+    void ShowToast(const QString &message, INotificationManagerModel::Duration duration = LONG) override;
     void PlanApplicationWakeup(TimeType timePlan, QDateTime secs) override;
     void SetAlarm(TimeType type, QDateTime time) override;
     void SetRepeatingAlarm(TimeType type, QDateTime triggerTime, QDateTime interval) override;
@@ -61,6 +61,7 @@ private:
     QList< PluginInfo* > relatedModelPlugins;
     PluginInfo *openedView;
     QList< PluginInfo* > relatedViewPlugins;
+    QMap<int, QTimer*> timersDictionary;
 };
 //! }
 #endif // ANDROIDNOTIFICATIONMODEL_H

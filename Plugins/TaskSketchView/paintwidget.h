@@ -24,6 +24,7 @@ public:
 private:
     QImage image;
     bool isPressed;
+    bool isDefaultCanvasChanged;
     QPoint mousePos, prevMousePos;
     QPen pen;
 

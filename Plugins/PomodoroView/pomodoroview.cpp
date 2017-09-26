@@ -79,13 +79,12 @@ bool PomodoroView::Open(IModelPlugin *model)
         return false;
     }
     auto columns = QVector<int> {0};
-    proxyModel = new DesignProxyModel(myModel->GetInternalModel(), columns);
-    currentProject = myModel->GetActiveProject();
-    finishedPomodoros = myModel->GetCompletedPomodoros();
+    proxyModel = myModel->GetTaskModel();//new DesignProxyModel(myModel->GetTaskModel());
+//    currentProject = myModel->GetActiveProject();
     ui->treeView->setModel(proxyModel);
     addForm->SetModel(proxyModel);
-    ui->labelProject->setText(currentProject->data().toString());
-    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
+//    ui->labelProject->setText(currentProject->data().toString());
+//    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
     emit OnOpen(this);
     return true;
 }
@@ -99,8 +98,7 @@ bool PomodoroView::Close()
 
 void PomodoroView::OnPomodoroFinished()
 {
-    myModel->IncrementPomodoro();
-    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
+//    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
 }
 
 void PomodoroView::on_buttonProjects_clicked()
@@ -155,10 +153,10 @@ void PomodoroView::on_treeView_pressed(const QModelIndex &index)
     auto list = ui->treeView->selectionModel()->selectedIndexes();
     if(list.length() == 0) return;
     auto selected = list.first();
-    myModel->SetActiveProject(selected);
-    ui->labelProject->setText(currentProject->data().toString());
-    qDebug() << currentProject->data().toString();
-    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
+//    myModel->SetActiveProject(selected);
+//    ui->labelProject->setText(currentProject->data().toString());
+//    qDebug() << currentProject->data().toString();
+//    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
 }
 
 void PomodoroView::on_treeView_clicked(const QModelIndex &index)

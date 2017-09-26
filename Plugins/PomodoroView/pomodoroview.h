@@ -37,7 +37,7 @@ private:
     Ui::PomodoroView *ui;
     IPomodoroModel *myModel;
     PomodoroButton *button;
-    DesignProxyModel *proxyModel;
+    QAbstractItemModel *proxyModel;
     AddForm *addForm;
     QModelIndex *currentProject;
     QModelIndex *finishedPomodoros;

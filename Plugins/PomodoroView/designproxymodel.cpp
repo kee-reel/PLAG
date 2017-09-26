@@ -11,8 +11,8 @@ DesignProxyModel::DesignProxyModel(QAbstractItemModel *model, QVector<int> model
 QVariant DesignProxyModel::data(const QModelIndex &index, int role) const
 {
     // TODO: Proxy index
-    int column = (modelIndexesShown.length() < index.column()) ? modelIndexesShown[index.column()] : 0;
-    QModelIndex proxyIndex = createIndex(index.row(), column, index.internalPointer());
+//    int column = (modelIndexesShown.length() < index.column()) ? modelIndexesShown[index.column()] : 0;
+//    QModelIndex proxyIndex = createIndex(index.row(), column, index.internalPointer());
     switch (role) {
     case Qt::SizeHintRole:
         return QSize(0, 50);
@@ -27,7 +27,7 @@ QVariant DesignProxyModel::data(const QModelIndex &index, int role) const
         }
         break;
     default:
-        return QIdentityProxyModel::data(proxyIndex, role);
+        return QIdentityProxyModel::data(index, role);
         break;
     }
 }

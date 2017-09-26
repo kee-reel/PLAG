@@ -21,11 +21,19 @@ class QTimer;
 class IPomodoroModel: public IModelPlugin
 {
 public:
+    struct WorkSetup{
+        int workSessionDuration;
+        int easyRestDuration;
+        int longRestDuration;
+        int longRestPeriod;
+    };
+
     virtual QAbstractItemModel* GetTaskModel() = 0;
-    virtual QAbstractItemModel* GetInternalModel() = 0;
     virtual void SetActiveProject(QModelIndex) = 0;
     virtual QModelIndex* GetActiveProject() = 0;
-    virtual QTimer* GetTimer() = 0;
+    virtual WorkSetup GetWorkSetup() = 0;
+signals:
+    void PomodoroFinished();
 };
 //! \}
 Q_DECLARE_INTERFACE(IPomodoroModel, "IPomodoroModel v0.1")

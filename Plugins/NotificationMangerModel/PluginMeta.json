@@ -1,7 +1,7 @@
 {
     "Type": "PluginModel",
-    "Interface": "IAndroidNotificationModel",
-    "Name": "AndroidNotificationModel",
+    "Interface": "INotificationMangerModel",
+    "Name": "NotificationMangerModel",
     "RelatedPluginInterfaces": [
         "IMAINMENUMODEL"
     ]

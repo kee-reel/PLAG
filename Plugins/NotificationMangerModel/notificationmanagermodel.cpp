@@ -1,31 +1,31 @@
-#include "androidnotificationmodel.h"
+#include "notificationmanagermodel.h"
 
-AndroidNotificationModel::AndroidNotificationModel()
+NotificationManagerModel::NotificationManagerModel()
 {
     openedView = NULL;
     openedModel = NULL;
 }
 
-AndroidNotificationModel::~AndroidNotificationModel()
+NotificationManagerModel::~NotificationManagerModel()
 {
 }
 
-void AndroidNotificationModel::SetPluginInfo(PluginInfo *pluginInfo)
+void NotificationManagerModel::SetPluginInfo(PluginInfo *pluginInfo)
 {
     this->pluginInfo = pluginInfo;
 }
 
-void AndroidNotificationModel::OnAllSetup()
+void NotificationManagerModel::OnAllSetup()
 {
 
 }
 
-QString AndroidNotificationModel::GetLastError()
+QString NotificationManagerModel::GetLastError()
 {
 
 }
 
-void AndroidNotificationModel::AddReferencePlugin(PluginInfo *pluginInfo)
+void NotificationManagerModel::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type){
     case PLUGINVIEW:{
@@ -50,12 +50,12 @@ void AndroidNotificationModel::AddReferencePlugin(PluginInfo *pluginInfo)
     }
 }
 
-void AndroidNotificationModel::ReferencePluginClosed(PluginInfo *pluginInfo)
+void NotificationManagerModel::ReferencePluginClosed(PluginInfo *pluginInfo)
 {
 
 }
 
-bool AndroidNotificationModel::Open(IModelPlugin *parent)
+bool NotificationManagerModel::Open(IModelPlugin *parent)
 {
     qDebug() << "AndroidNotificationModel open.";
     ShowNotification("AndroidNotificationModel says:", "Hi there!");
@@ -75,7 +75,7 @@ bool AndroidNotificationModel::Open(IModelPlugin *parent)
     return true;
 }
 
-void AndroidNotificationModel::Close()
+void NotificationManagerModel::Close()
 {
     qDebug() << "AndroidNotificationModel close.";
     if(openedView != NULL && !openedView->Plugin.view->Close()){
@@ -91,6 +91,8 @@ void AndroidNotificationModel::Close()
     emit OnClose();
 }
 
+#ifdef Q_OS_ANDROID
+#include <QtAndroid>
 void AndroidNotificationModel::ShowNotification(QString title, QString message, int id)
 {
     QAndroidJniObject javaTitle = QAndroidJniObject::fromString(title);
@@ -175,3 +177,52 @@ void AndroidNotificationModel::CancelAlarm()
 //    public static void cancelAlarm()
     QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/QtActivityExtention", "cancelAlarm");
 }
+#endif
+
+#ifdef Q_OS_WIN
+void NotificationManagerModel::ShowNotification(QString title, QString message, int id)
+{
+
+}
+
+void NotificationManagerModel::CancelNotification(int id)
+{
+
+}
+
+void NotificationManagerModel::ShowToast(const QString &message, Duration duration)
+{
+
+}
+
+void NotificationManagerModel::PlanApplicationWakeup(TimeType type, QDateTime time)
+{
+
+}
+
+void NotificationManagerModel::SetAlarm(INotificationManagerModel::TimeType type, QDateTime time)
+{
+    QTimer *newTimer = new QTimer(this);
+    switch (type) {
+    case INotificationManagerModel::RTC_TIME:{
+        qint64 remainingTime = QDateTime::currentDateTime().msecsTo(time);
+        newTimer->setInterval(remainingTime);
+    } break;
+    case INotificationManagerModel::FROM_DEVICE_START:
+        break;
+    default:
+        break;
+    }
+    newTimer->start();
+}
+
+void NotificationManagerModel::SetRepeatingAlarm(INotificationManagerModel::TimeType type, QDateTime triggerTime, QDateTime interval)
+{
+
+}
+
+void NotificationManagerModel::CancelAlarm()
+{
+
+}
+#endif

@@ -4,9 +4,13 @@ PomodoroModel::PomodoroModel()
 {
     myModel = NULL;
     dataManager = NULL;
-    tableName = "ipomodoromodel";
+    tableName = "itasktreemodel";
     coreRelationName = "ipomodoromodel";
     activeViewId = -1;
+    workSetup.easyRestDuration = 5;
+    workSetup.longRestDuration = 15;
+    workSetup.longRestPeriod = 3;
+    workSetup.workSessionDuration = 25;
 }
 
 PomodoroModel::~PomodoroModel()
@@ -22,14 +26,11 @@ void PomodoroModel::OnAllSetup()
 {
     if(!dataManager) return;
     QMap<QString, QVariant::Type> newRelationStruct = {
-        {"pomodoros",   QVariant::Int},
-        {"project",     QVariant::String}
+        {"pomodoros",   QVariant::Int}
     };
     QVector<QVariant> defaultData;
-    defaultData << 0 << "Sample project";
+    defaultData << 0;
     dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
-    if(!myModel) return;
-    dataManager->SetRelation("ITaskTreeModel", coreRelationName, newRelationStruct, defaultData);
 }
 
 QString PomodoroModel::GetLastError()
@@ -69,7 +70,7 @@ void PomodoroModel::AddReferencePlugin(PluginInfo *pluginInfo)
             this->dataManager = qobject_cast<IExtendableDataManager*>(pluginInfo->Instance);
             if(!this->dataManager)
             {
-                qDebug() << pluginInfo->Instance->objectName() << "is not IExtendableDataManagerPlugin.";
+                qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataManagerPlugin.";
                 return;
             }
             qDebug() << "IExtendableDataManagerPlugin succesfully set.";
@@ -111,15 +112,10 @@ QAbstractItemModel *PomodoroModel::GetTaskModel()
     return taskModel;
 }
 
-QAbstractItemModel *PomodoroModel::GetInternalModel()
-{
-    return pomodoroItemModel;
-}
-
 void PomodoroModel::SetActiveProject(QModelIndex index)
 {
-    currentProject = pomodoroItemModel->index(index.row(), 0);
-    finishedPomodoros = pomodoroItemModel->index(index.row(), 1);
+//    currentProject = pomodoroItemModel->index(index.row(), 0);
+//    finishedPomodoros = pomodoroItemModel->index(index.row(), 1);
 }
 
 QModelIndex* PomodoroModel::GetActiveProject()
@@ -127,23 +123,17 @@ QModelIndex* PomodoroModel::GetActiveProject()
     return &currentProject;
 }
 
-QModelIndex* PomodoroModel::GetCompletedPomodoros()
+IPomodoroModel::WorkSetup PomodoroModel::GetWorkSetup()
 {
-    return &finishedPomodoros;
-}
-
-void PomodoroModel::IncrementPomodoro()
-{
-    auto item = finishedPomodoros.data().toInt()+1;
-    pomodoroItemModel->setData(finishedPomodoros, QVariant(item));
+    return workSetup;
 }
 
 void PomodoroModel::SetupModel()
 {
     if(!dataManager) return;
-    pomodoroItemModel = dataManager->GetDataModel(tableName);
-    currentProject = pomodoroItemModel->index(0,0);
-    finishedPomodoros = pomodoroItemModel->index(0,1);
-    if(!myModel) return;
-    taskModel = dataManager->GetDataModel("ITaskTreeModel");
+    taskModel = dataManager->GetDataModel(tableName);
+    dataManager->SetActiveRelation(tableName, coreRelationName);
+    currentProject = taskModel->index(0,0);
+    finishedPomodoros = taskModel->index(0,1);
+
 }

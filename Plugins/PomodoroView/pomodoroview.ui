@@ -105,7 +105,7 @@
     </widget>
    </item>
    <item>
-    <widget class="MyTreeView" name="treeView">
+    <widget class="QTreeView" name="treeView">
      <property name="rootIsDecorated">
       <bool>false</bool>
      </property>
@@ -242,11 +242,6 @@
    <extends>QWidget</extends>
    <header>pomodorobutton.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MyTreeView</class>
-   <extends>QTreeView</extends>
-   <header>mytreeview.h</header>
   </customwidget>
  </customwidgets>
  <resources>

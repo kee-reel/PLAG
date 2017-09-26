@@ -28,7 +28,6 @@ private:
     IExtendableDataManager *dataManager;
     ITaskTreeModel *myModel;
     QAbstractItemModel *taskModel;
-    QAbstractItemModel *pomodoroItemModel;
     int myModelId;
     int activeViewId;
     int activeModelId;
@@ -41,6 +40,7 @@ private:
     QString tableName;
     QString coreRelationName;
 
+    WorkSetup workSetup;
     QModelIndex currentProject;
     QModelIndex finishedPomodoros;
 
@@ -62,11 +62,12 @@ public slots:
     // IPomodoroModel interface
 public:
     QAbstractItemModel *GetTaskModel() override;
-    QAbstractItemModel *GetInternalModel() override;
     void SetActiveProject(QModelIndex index) override;
     QModelIndex* GetActiveProject() override;
-    QModelIndex* GetCompletedPomodoros() override;
-    void IncrementPomodoro() override;
+    WorkSetup GetWorkSetup() override;
+signals:
+    void PomodoroFinished();
+
 signals:
     void OnClose(PluginInfo *pointer);
     void OnClose();

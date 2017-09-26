@@ -11,10 +11,13 @@ PaintWidget::PaintWidget(QWidget *parent) : QWidget(parent)
 QVariant PaintWidget::value() const
 {
     QByteArray ba;
-    QBuffer buffer(&ba);
-    buffer.open(QIODevice::WriteOnly);
-    image.save(&buffer, "PNG");
-    buffer.close();
+    if(isDefaultCanvasChanged)
+    {
+        QBuffer buffer(&ba);
+        buffer.open(QIODevice::WriteOnly);
+        image.save(&buffer, "PNG");
+        buffer.close();
+    }
     return QVariant(ba);
 }
 
@@ -23,16 +26,22 @@ void PaintWidget::setValue(const QVariant value)
     if(!value.isValid() || value.type() != QVariant::ByteArray)
     {
         Clean();
+        isDefaultCanvasChanged = false;
         return;
     }
+
     QByteArray array = value.toByteArray();
     if(array.length() == 0)
     {
         image = QImage(size(), QImage::Format_RGB32);
         image.fill(Qt::white);
+        isDefaultCanvasChanged = false;
     }
     else
+    {
         image.loadFromData(value.toByteArray());
+        isDefaultCanvasChanged = true;
+    }
 }
 
 void PaintWidget::Clean()
@@ -44,6 +53,7 @@ void PaintWidget::Clean()
 void PaintWidget::mousePressEvent(QMouseEvent *event)
 {
     isPressed = true;
+    isDefaultCanvasChanged = true;
     mousePos = prevMousePos = event->pos();
 }
 
