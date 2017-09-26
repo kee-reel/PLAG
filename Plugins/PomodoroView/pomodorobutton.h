@@ -38,7 +38,7 @@ private slots:
     void handleStateChanged(QAudio::State newState);
 
 signals:
-    void PomodoroFinished();
+    void OnStartPomodoro();
 };
 //! \}
 #endif // POMODOROBUTTON_H

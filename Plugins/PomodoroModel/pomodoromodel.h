@@ -6,10 +6,12 @@
 #include <QString>
 #include <QAbstractItemModel>
 #include <QDateTime>
+#include <QTimer>
 
 #include "ipomodoromodel.h"
 #include "../ExtendableDataManager/iextendabledatamanager.h"
 #include "../TaskListModel/itasktreemodel.h"
+#include "../NotificationMangerModel/inotificationmanagermodel.h"
 
 //! \addtogroup PomodoroModel_imp
 //! \{
@@ -27,6 +29,7 @@ private:
     // Native part
     IExtendableDataManager *dataManager;
     ITaskTreeModel *myModel;
+    INotificationManagerModel *notificationManger;
     QAbstractItemModel *taskModel;
     int myModelId;
     int activeViewId;
@@ -43,6 +46,12 @@ private:
     WorkSetup workSetup;
     QModelIndex currentProject;
     QModelIndex finishedPomodoros;
+    QTimer periodsTimer;
+    int notificationTimerId;
+
+    void SetupModel();
+private slots:
+    void OnTimerEnded(int timerId);
 
     // IPlugin interface
 public:
@@ -54,10 +63,15 @@ public:
 public slots:
     void ReferencePluginClosed(PluginInfo *pluginInfo) override;
 
+signals:
+    void OnClose(PluginInfo *pointer);
+    void OnClose();
+
     // IModelPlugin interface
 public slots:
     bool Open(IModelPlugin *model) override;
     void Close() override;
+    void TimerTimeout(int timerId);
 
     // IPomodoroModel interface
 public:
@@ -65,15 +79,11 @@ public:
     void SetActiveProject(QModelIndex index) override;
     QModelIndex* GetActiveProject() override;
     WorkSetup GetWorkSetup() override;
+public slots:
+    void StartPomodoro() override;
 signals:
     void PomodoroFinished();
-
-signals:
-    void OnClose(PluginInfo *pointer);
-    void OnClose();
-
-private:
-    void SetupModel();
+    void RestFinished();
 };
 //! \}
 #endif // TASKLISTMODEL_H

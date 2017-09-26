@@ -28,19 +28,14 @@ public:
         FROM_DEVICE_START = 2,
     };
 
-    typedef void (*TimeoutFunc)(int);
-
     // Write your interface methods here
     virtual void ShowNotification(QString title, QString message, int id = 0) = 0;
     virtual void CancelNotification(int id = 0) = 0;
     virtual void ShowToast(const QString &message, INotificationManagerModel::Duration duration = LONG) = 0;
     virtual void PlanApplicationWakeup(TimeType timePlan, QDateTime time) = 0;
-    virtual int SetAlarm(TimeType type, QDateTime time) = 0;
-    virtual int SetRepeatingAlarm(TimeType type, QDateTime triggerTime, QDateTime interval) = 0;
+    virtual void SetAlarm(TimeType type, QDateTime time) = 0;
+    virtual void SetRepeatingAlarm(TimeType type, QDateTime triggerTime, QDateTime interval) = 0;
     virtual void CancelAlarm() = 0;
-
-signals:
-    void OnTimerTimeout(int);
 };
 //! }
 Q_DECLARE_INTERFACE(INotificationManagerModel, "INotificationManagerModel")

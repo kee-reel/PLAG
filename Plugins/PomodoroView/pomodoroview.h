@@ -42,9 +42,12 @@ private:
     QModelIndex *currentProject;
     QModelIndex *finishedPomodoros;
     PluginInfo *pluginInfo;
+    IPomodoroModel::WorkSetup workSetup;
     bool isTimerWindow;
 
     // IPlugin interface
+    void InstallWorkSetup();
+
 public:
     void SetPluginInfo(PluginInfo *pluginInfo) override;
     void OnAllSetup() override;

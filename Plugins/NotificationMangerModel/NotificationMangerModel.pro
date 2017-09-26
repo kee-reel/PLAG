@@ -8,11 +8,13 @@ QT += androidextras
 }
 
 SOURCES += \
-    notificationmanagermodel.cpp
+    notificationmanagermodel.cpp \
+    qextendedtimer.cpp
 
 HEADERS +=\
     notificationmanagermodel.h \
-    inotificationmanagermodel.h
+    inotificationmanagermodel.h \
+    qextendedtimer.h
 
 DISTFILES += \
     PluginMeta.json

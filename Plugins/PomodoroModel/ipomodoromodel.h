@@ -8,6 +8,7 @@ class QVector;
 class QAbstractItemModel;
 class QModelIndex;
 class QTimer;
+class QDateTime;
 
 //! \defgroup PomodoroModel
 //!     \ingroup MainMenuPlugin_rel_m
@@ -32,6 +33,8 @@ public:
     virtual void SetActiveProject(QModelIndex) = 0;
     virtual QModelIndex* GetActiveProject() = 0;
     virtual WorkSetup GetWorkSetup() = 0;
+public slots:
+    virtual void StartPomodoro() = 0;
 signals:
     void PomodoroFinished();
 };

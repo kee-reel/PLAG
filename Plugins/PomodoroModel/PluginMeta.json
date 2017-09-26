@@ -5,6 +5,7 @@
     "RelatedPluginInterfaces": [
         "ITaskTreeModel",
         "IExtendableDataManager",
-        "IMainMenuModel"
+        "IMainMenuModel",
+        "INotificationMangerModel"
     ]
 }

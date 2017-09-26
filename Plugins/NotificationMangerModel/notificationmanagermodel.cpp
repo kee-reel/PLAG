@@ -153,7 +153,7 @@ void AndroidNotificationModel::PlanApplicationWakeup(TimeType type, QDateTime ti
                                     pendingIntent.object());
 }
 
-void AndroidNotificationModel::SetAlarm(IAndroidNotificationModel::TimeType type, QDateTime time)
+int AndroidNotificationModel::SetAlarm(IAndroidNotificationModel::TimeType type, QDateTime time)
 {
 //    public static void setAlarm(int type, int time)
     QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/QtActivityExtention", "setAlarm",
@@ -162,7 +162,7 @@ void AndroidNotificationModel::SetAlarm(IAndroidNotificationModel::TimeType type
                     jlong(time.toSecsSinceEpoch()));
 }
 
-void AndroidNotificationModel::SetRepeatingAlarm(IAndroidNotificationModel::TimeType type, QDateTime triggerTime, QDateTime interval)
+int AndroidNotificationModel::SetRepeatingAlarm(IAndroidNotificationModel::TimeType type, QDateTime triggerTime, QDateTime interval)
 {
 //    public static void setRepeatingAlarm(int type, int triggerTime, int interval)
     QAndroidJniObject::callStaticMethod<void>("com/mass/mainapp/QtActivityExtention", "setRepeatingAlarm",
@@ -179,7 +179,7 @@ void AndroidNotificationModel::CancelAlarm()
 }
 #endif
 
-#ifdef Q_OS_WIN
+#ifdef Q_OS_LINUX || Q_OS_WIN
 void NotificationManagerModel::ShowNotification(QString title, QString message, int id)
 {
 
@@ -200,9 +200,9 @@ void NotificationManagerModel::PlanApplicationWakeup(TimeType type, QDateTime ti
 
 }
 
-void NotificationManagerModel::SetAlarm(INotificationManagerModel::TimeType type, QDateTime time)
+int NotificationManagerModel::SetAlarm(INotificationManagerModel::TimeType type, QDateTime time)
 {
-    QTimer *newTimer = new QTimer(this);
+    QExtendedTimer *newTimer = new QExtendedTimer(this);
     switch (type) {
     case INotificationManagerModel::RTC_TIME:{
         qint64 remainingTime = QDateTime::currentDateTime().msecsTo(time);
@@ -214,9 +214,14 @@ void NotificationManagerModel::SetAlarm(INotificationManagerModel::TimeType type
         break;
     }
     newTimer->start();
+    int timerId = timersDictionary.count();
+    connect(newTimer, SIGNAL(timeout(QExtendedTimer*)), SLOT(OnPrivateTimerTimeout(QExtendedTimer*)));
+    timersDictionary.insert(newTimer, timerId);
+    return timerId;
+
 }
 
-void NotificationManagerModel::SetRepeatingAlarm(INotificationManagerModel::TimeType type, QDateTime triggerTime, QDateTime interval)
+int NotificationManagerModel::SetRepeatingAlarm(INotificationManagerModel::TimeType type, QDateTime triggerTime, QDateTime interval)
 {
 
 }
@@ -224,5 +229,13 @@ void NotificationManagerModel::SetRepeatingAlarm(INotificationManagerModel::Time
 void NotificationManagerModel::CancelAlarm()
 {
 
+}
+
+void NotificationManagerModel::OnPrivateTimerTimeout(QExtendedTimer *timer)
+{
+    if(!timersDictionary.contains(timer))
+        return;
+    int timerId = timersDictionary[timer];
+    emit OnTimerTimeout(timerId);
 }
 #endif

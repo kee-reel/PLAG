@@ -8,7 +8,7 @@ PomodoroView::PomodoroView(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->buttonExit, SIGNAL(clicked(bool)), SLOT(Close()));
     myModel = NULL;
-    button = ui->pomodoroButton;
+    button = ui->pomodoroButton;    
     ui->treeView->setVisible(false);
     connect(button, SIGNAL(PomodoroFinished()), SLOT(OnPomodoroFinished()));
     ui->verticalLayout->insertWidget(2, button);
@@ -43,7 +43,6 @@ void PomodoroView::SetPluginInfo(PluginInfo *pluginInfo)
 
 void PomodoroView::OnAllSetup()
 {
-
 }
 
 QString PomodoroView::GetLastError()
@@ -63,6 +62,7 @@ void PomodoroView::AddReferencePlugin(PluginInfo *pluginInfo)
         }
         qDebug() << "ITaskListModel succesfully set.";
         connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+        connect(button, SIGNAL(OnStartPomodoro()), pluginInfo->Instance, SLOT(StartPomodoro()));
         pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
     }
 }
@@ -72,19 +72,22 @@ void PomodoroView::ReferencePluginClosed(PluginInfo *pluginInfo)
 
 }
 
+void PomodoroView::InstallWorkSetup()
+{
+    workSetup = myModel->GetWorkSetup();
+    button->secsTarget = workSetup.workSessionDuration;
+}
+
 bool PomodoroView::Open(IModelPlugin *model)
 {
     if(!myModel){
         qDebug() << "Model isn't set!";
         return false;
     }
-    auto columns = QVector<int> {0};
-    proxyModel = myModel->GetTaskModel();//new DesignProxyModel(myModel->GetTaskModel());
-//    currentProject = myModel->GetActiveProject();
+    proxyModel = myModel->GetTaskModel();
     ui->treeView->setModel(proxyModel);
     addForm->SetModel(proxyModel);
-//    ui->labelProject->setText(currentProject->data().toString());
-//    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
+    InstallWorkSetup();
     emit OnOpen(this);
     return true;
 }

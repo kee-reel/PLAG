@@ -48,6 +48,7 @@ void PomodoroButton::mouseReleaseEvent(QMouseEvent *event)
     qDebug() << "Press";
     if(!timer->isActive())
     {
+        emit OnStartPomodoro();
         secsPassed = 0;
         repaint();
         time.restart();
@@ -121,6 +122,5 @@ void PomodoroButton::TimerTick()
         timer->stop();
         repaint();
         PlayAudio();
-        emit PomodoroFinished();
     }
 }

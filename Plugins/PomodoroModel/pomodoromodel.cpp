@@ -3,14 +3,15 @@
 PomodoroModel::PomodoroModel()
 {
     myModel = NULL;
+    notificationManger = NULL;
     dataManager = NULL;
     tableName = "itasktreemodel";
     coreRelationName = "ipomodoromodel";
     activeViewId = -1;
     workSetup.easyRestDuration = 5;
-    workSetup.longRestDuration = 15;
+    workSetup.longRestDuration = 10;
     workSetup.longRestPeriod = 3;
-    workSetup.workSessionDuration = 25;
+    workSetup.workSessionDuration = 15;
 }
 
 PomodoroModel::~PomodoroModel()
@@ -48,14 +49,23 @@ void PomodoroModel::AddReferencePlugin(PluginInfo *pluginInfo)
         } break;
 
         case PLUGINMODEL:{
-            if(!pluginInfo->Meta->InterfaceName.compare("ITaskTreeModel", Qt::CaseInsensitive)){
+            if(!pluginInfo->Meta->InterfaceName.compare("ITaskTreeModel", Qt::CaseInsensitive))
+            {
                 myModel = qobject_cast<ITaskTreeModel*>(pluginInfo->Instance);
                 if(!myModel){
                     qDebug() << pluginInfo->Instance->objectName() << "is not ITaskTreeModel.";
                     return;
                 }
-                qDebug() << "IExtendableDataManagerPlugin succesfully set.";
                 connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+            }
+            else if(!pluginInfo->Meta->InterfaceName.compare("INotificationMangerModel", Qt::CaseInsensitive))
+            {
+                notificationManger = qobject_cast<INotificationManagerModel*>(pluginInfo->Instance);
+                if(!myModel){
+                    qDebug() << pluginInfo->Instance->objectName() << "is not INotificationManagerModel.";
+                    return;
+                }
+                connect(pluginInfo->Instance, SIGNAL(OnTimerTimeout(int)), SLOT(OnTimerEnded(int)));
             }
         } break;
 
@@ -107,6 +117,11 @@ void PomodoroModel::Close()
     emit OnClose();
 }
 
+void PomodoroModel::TimerTimeout(int timerId)
+{
+
+}
+
 QAbstractItemModel *PomodoroModel::GetTaskModel()
 {
     return taskModel;
@@ -128,6 +143,11 @@ IPomodoroModel::WorkSetup PomodoroModel::GetWorkSetup()
     return workSetup;
 }
 
+void PomodoroModel::StartPomodoro()
+{
+    notificationTimerId = notificationManger->SetAlarm(INotificationManagerModel::RTC_TIME, QDateTime::currentDateTime().addSecs(workSetup.workSessionDuration));
+}
+
 void PomodoroModel::SetupModel()
 {
     if(!dataManager) return;
@@ -136,4 +156,11 @@ void PomodoroModel::SetupModel()
     currentProject = taskModel->index(0,0);
     finishedPomodoros = taskModel->index(0,1);
 
+}
+
+void PomodoroModel::OnTimerEnded(int timerId)
+{
+    if(notificationTimerId != timerId)
+        return;
+    qDebug() << "Success!";
 }

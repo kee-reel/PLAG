@@ -6,8 +6,10 @@
 #include <QString>
 #include <QDateTime>
 #include <QTimer>
+#include <QList>
 
 #include "inotificationmanagermodel.h"
+#include "qextendedtimer.h"
 
 //! addtogroup AndroidNotificationModel_imp
 //! {
@@ -23,6 +25,9 @@ class NotificationManagerModel : public QObject, INotificationManagerModel
 public:
     NotificationManagerModel();
     ~NotificationManagerModel();
+
+private slots:
+    void OnPrivateTimerTimeout(QExtendedTimer *timer);
 
     // IPlugin interface
 public:
@@ -49,9 +54,12 @@ public:
     void CancelNotification(int id) override;
     void ShowToast(const QString &message, INotificationManagerModel::Duration duration = LONG) override;
     void PlanApplicationWakeup(TimeType timePlan, QDateTime secs) override;
-    void SetAlarm(TimeType type, QDateTime time) override;
-    void SetRepeatingAlarm(TimeType type, QDateTime triggerTime, QDateTime interval) override;
+    int SetAlarm(TimeType type, QDateTime time) override;
+    int SetRepeatingAlarm(TimeType type, QDateTime triggerTime, QDateTime interval) override;
     void CancelAlarm() override;
+
+signals:
+    void OnTimerTimeout(int);
 
 private:
     QWidget *referenceWidget;
@@ -61,7 +69,7 @@ private:
     QList< PluginInfo* > relatedModelPlugins;
     PluginInfo *openedView;
     QList< PluginInfo* > relatedViewPlugins;
-    QMap<int, QTimer*> timersDictionary;
+    QMap<QExtendedTimer*, int> timersDictionary;
 };
 //! }
 #endif // ANDROIDNOTIFICATIONMODEL_H
