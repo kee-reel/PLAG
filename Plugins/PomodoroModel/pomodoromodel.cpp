@@ -61,7 +61,7 @@ void PomodoroModel::AddReferencePlugin(PluginInfo *pluginInfo)
             else if(!pluginInfo->Meta->InterfaceName.compare("INotificationMangerModel", Qt::CaseInsensitive))
             {
                 notificationManger = qobject_cast<INotificationManagerModel*>(pluginInfo->Instance);
-                if(!myModel){
+                if(!notificationManger){
                     qDebug() << pluginInfo->Instance->objectName() << "is not INotificationManagerModel.";
                     return;
                 }
@@ -117,11 +117,6 @@ void PomodoroModel::Close()
     emit OnClose();
 }
 
-void PomodoroModel::TimerTimeout(int timerId)
-{
-
-}
-
 QAbstractItemModel *PomodoroModel::GetTaskModel()
 {
     return taskModel;
@@ -129,13 +124,12 @@ QAbstractItemModel *PomodoroModel::GetTaskModel()
 
 void PomodoroModel::SetActiveProject(QModelIndex index)
 {
-//    currentProject = pomodoroItemModel->index(index.row(), 0);
-//    finishedPomodoros = pomodoroItemModel->index(index.row(), 1);
+    currentTask = index;
 }
 
 QModelIndex* PomodoroModel::GetActiveProject()
 {
-    return &currentProject;
+    return &currentTask;
 }
 
 IPomodoroModel::WorkSetup PomodoroModel::GetWorkSetup()
@@ -145,7 +139,9 @@ IPomodoroModel::WorkSetup PomodoroModel::GetWorkSetup()
 
 void PomodoroModel::StartPomodoro()
 {
-    notificationTimerId = notificationManger->SetAlarm(INotificationManagerModel::RTC_TIME, QDateTime::currentDateTime().addSecs(workSetup.workSessionDuration));
+    notificationTimerId = notificationManger->
+            SetAlarm(INotificationManagerModel::RTC_TIME,
+                     QDateTime::currentDateTime().addSecs(workSetup.workSessionDuration));
 }
 
 void PomodoroModel::SetupModel()
@@ -153,14 +149,18 @@ void PomodoroModel::SetupModel()
     if(!dataManager) return;
     taskModel = dataManager->GetDataModel(tableName);
     dataManager->SetActiveRelation(tableName, coreRelationName);
-    currentProject = taskModel->index(0,0);
-    finishedPomodoros = taskModel->index(0,1);
-
 }
 
 void PomodoroModel::OnTimerEnded(int timerId)
 {
-    if(notificationTimerId != timerId)
-        return;
-    qDebug() << "Success!";
+    if(notificationTimerId != timerId) return;
+    if(!currentTask.isValid()) return;
+    auto branchIndex = currentTask;
+    while(branchIndex.isValid())
+    {
+        auto pomodoros = branchIndex.data().toInt() + 1;
+        taskModel->setData(branchIndex, QVariant(pomodoros));
+        branchIndex = branchIndex.parent();
+    }
+    emit OnPomodoroFinished();
 }

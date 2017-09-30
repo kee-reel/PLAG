@@ -36,7 +36,7 @@ public:
 public slots:
     virtual void StartPomodoro() = 0;
 signals:
-    void PomodoroFinished();
+    void OnPomodoroFinished();
 };
 //! \}
 Q_DECLARE_INTERFACE(IPomodoroModel, "IPomodoroModel v0.1")

@@ -5,18 +5,15 @@ PomodoroView::PomodoroView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::PomodoroView)
 {
-    ui->setupUi(this);
-    connect(ui->buttonExit, SIGNAL(clicked(bool)), SLOT(Close()));
     myModel = NULL;
-    button = ui->pomodoroButton;    
+
+    ui->setupUi(this);
     ui->treeView->setVisible(false);
-    connect(button, SIGNAL(PomodoroFinished()), SLOT(OnPomodoroFinished()));
-    ui->verticalLayout->insertWidget(2, button);
-    isTimerWindow = true;
-    addForm = new AddForm(this);
     ui->buttonEdit->setVisible(false);
     ui->buttonDelete->setVisible(false);
     ui->buttonAdd->setVisible(false);
+
+    connect(ui->buttonExit, SIGNAL(clicked(bool)), SLOT(Close()));
 
 #ifdef Q_OS_ANDROID
     ui->buttonAdd->setFocusPolicy(Qt::NoFocus);
@@ -62,7 +59,8 @@ void PomodoroView::AddReferencePlugin(PluginInfo *pluginInfo)
         }
         qDebug() << "ITaskListModel succesfully set.";
         connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
-        connect(button, SIGNAL(OnStartPomodoro()), pluginInfo->Instance, SLOT(StartPomodoro()));
+        connect(ui->pomodoroButton, SIGNAL(OnStartPomodoro()), pluginInfo->Instance, SLOT(StartPomodoro()));
+        connect(pluginInfo->Instance, SIGNAL(OnPomodoroFinished()), SLOT(PomodoroFinished()));
         pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
     }
 }
@@ -75,7 +73,8 @@ void PomodoroView::ReferencePluginClosed(PluginInfo *pluginInfo)
 void PomodoroView::InstallWorkSetup()
 {
     workSetup = myModel->GetWorkSetup();
-    button->secsTarget = workSetup.workSessionDuration;
+    ui->pomodoroButton->secsTarget = workSetup.workSessionDuration;
+    UpdateSelectedTask();
 }
 
 bool PomodoroView::Open(IModelPlugin *model)
@@ -86,7 +85,6 @@ bool PomodoroView::Open(IModelPlugin *model)
     }
     proxyModel = myModel->GetTaskModel();
     ui->treeView->setModel(proxyModel);
-    addForm->SetModel(proxyModel);
     InstallWorkSetup();
     emit OnOpen(this);
     return true;
@@ -99,44 +97,30 @@ bool PomodoroView::Close()
     return true;
 }
 
-void PomodoroView::OnPomodoroFinished()
+void PomodoroView::PomodoroFinished()
 {
+    UpdateSelectedTask();
 //    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
 }
 
 void PomodoroView::on_buttonProjects_clicked()
 {
-    isTimerWindow = !isTimerWindow;
-
+    bool isTimerButtonVisible = !ui->pomodoroButton->isVisible();
     ui->buttonProjects->setIcon(QIcon(
-        isTimerWindow ?
+        isTimerButtonVisible ?
         ":/Res/ic_assignment_black_36dp.png" :
         ":/Res/ic_timelapse_black_24dp.png"));
-    ui->treeView->setVisible(!isTimerWindow);
-    ui->pomodoroButton->setVisible(isTimerWindow);
-    ui->buttonEdit->setVisible(!isTimerWindow);
-    ui->buttonDelete->setVisible(!isTimerWindow);
-    ui->buttonAdd->setVisible(!isTimerWindow);
+    ui->treeView->      setVisible(!isTimerButtonVisible);
+    ui->pomodoroButton->setVisible(isTimerButtonVisible);
+    ui->buttonEdit->    setVisible(!isTimerButtonVisible);
+    ui->buttonDelete->  setVisible(!isTimerButtonVisible);
+    ui->buttonAdd->     setVisible(!isTimerButtonVisible);
 }
 
 void PomodoroView::on_buttonEdit_clicked()
 {
     auto list = ui->treeView->selectionModel()->selectedRows();
     if(list.length() == 0) return;
-    addForm->ShowModelData(list.first());
-}
-
-void PomodoroView::resizeEvent(QResizeEvent *event)
-{
-    addForm->resize(event->size());
-}
-
-void PomodoroView::keyPressEvent(QKeyEvent *event)
-{
-    if (event->key() == Qt::Key_Back) {
-        Close();
-    }
-    event->accept();
 }
 
 void PomodoroView::on_buttonDelete_clicked()
@@ -151,15 +135,34 @@ void PomodoroView::on_buttonAdd_clicked()
     proxyModel->insertRow(0);
 }
 
+void PomodoroView::UpdateSelectedTask()
+{
+    bool isTaskValid = currentTask.isValid();
+    auto taskName = isTaskValid ? currentTask.data().toString() : "Task not selected";
+    ui->labelProject->setText(taskName);
+    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(taskName));
+    ui->pomodoroButton->isEnabled = isTaskValid;
+}
+
 void PomodoroView::on_treeView_pressed(const QModelIndex &index)
 {
     auto list = ui->treeView->selectionModel()->selectedIndexes();
     if(list.length() == 0) return;
     auto selected = list.first();
-//    myModel->SetActiveProject(selected);
-//    ui->labelProject->setText(currentProject->data().toString());
-//    qDebug() << currentProject->data().toString();
-//    ui->pomodoroCountLabel->setText(QString("%1 pomodoros").arg(finishedPomodoros->data().toString()));
+
+    currentTask = selected;
+    myModel->SetActiveProject(currentTask);
+
+    UpdateSelectedTask();
+}
+
+bool PomodoroView::eventFilter(QObject *watched, QEvent *event)
+{
+    if(watched == ui->pomodoroButton && event->type() == QEvent::MouseButtonRelease)
+    {
+        return currentTask.isValid();
+    }
+    return QWidget::eventFilter(watched, event);
 }
 
 void PomodoroView::on_treeView_clicked(const QModelIndex &index)

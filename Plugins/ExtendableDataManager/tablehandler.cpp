@@ -73,11 +73,18 @@ bool TableHandler::SetRelation(QString relationName, TableStructMap fields, QVec
     QString databaseRelationName = QString("r_%1_%2")
             .arg(tableName)
             .arg(relationName);
+    bool tableCreationNeeded = true;
     if(IsTableExists(databaseRelationName))
     {
-        IsTableHasRightStructure(databaseRelationName, fields);
+        tableCreationNeeded = false;
+        if(!IsTableHasRightStructure(databaseRelationName, fields))
+        {
+            tableCreationNeeded = true;
+            DeleteRelation(relationName);
+        }
     }
-    else
+
+    if(tableCreationNeeded)
     {
         QString dataFields = GetHeaderString(fields, true);
         if(dataFields == ""){
@@ -116,7 +123,7 @@ bool TableHandler::DeleteRelation(QString relationName)
 
     qDebug() << "DeleteRelation";
     relationName = relationName.toLower();
-    QString queryStr = QString("DROP TABLE IF EXISTS  %1_%2")
+    QString queryStr = QString("DROP TABLE  r_%1_%2")
             .arg(tableName)
             .arg(relationName);
     QSqlQuery queryResult = dataSource->ExecuteQuery(queryStr);
@@ -499,13 +506,13 @@ bool TableHandler::IsTableHasRightStructure(QString tableName, TableStructMap &t
     {
         if(!query.next()){
             qCritical("Too few records!");
-            return false;
+            return true;
         }
         name = query.value(1).toString();
         type = dataBaseTypesNames.key(query.value(2).toString());
         if(iter.key() != name || iter.value() != type)
         {
-            qDebug() << name << type << "cant exist in right table structure";
+            qDebug() << name << type << "is new field!";
             return false;
         }
         ++iter;

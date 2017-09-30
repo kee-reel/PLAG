@@ -7,6 +7,7 @@
 #include <QAbstractItemModel>
 #include <QDateTime>
 #include <QTimer>
+#include <QVariant>
 
 #include "ipomodoromodel.h"
 #include "../ExtendableDataManager/iextendabledatamanager.h"
@@ -44,7 +45,7 @@ private:
     QString coreRelationName;
 
     WorkSetup workSetup;
-    QModelIndex currentProject;
+    QModelIndex currentTask;
     QModelIndex finishedPomodoros;
     QTimer periodsTimer;
     int notificationTimerId;
@@ -71,7 +72,6 @@ signals:
 public slots:
     bool Open(IModelPlugin *model) override;
     void Close() override;
-    void TimerTimeout(int timerId);
 
     // IPomodoroModel interface
 public:
@@ -82,7 +82,7 @@ public:
 public slots:
     void StartPomodoro() override;
 signals:
-    void PomodoroFinished();
+    void OnPomodoroFinished();
     void RestFinished();
 };
 //! \}

@@ -11,15 +11,13 @@ SOURCES += \
     pomodoroview.cpp \
     pomodorobutton.cpp \
     mytreeview.cpp \
-    designproxymodel.cpp \
-    addform.cpp
+    designproxymodel.cpp
 
 HEADERS += \
     pomodoroview.h \
     pomodorobutton.h \
     mytreeview.h \
-    designproxymodel.h \
-    addform.h
+    designproxymodel.h
 
 include(../../System/MASS/BuildInfo.pri)
 
@@ -27,8 +25,7 @@ DISTFILES += \
     PluginMeta.json
 
 FORMS += \
-    pomodoroview.ui \
-    addform.ui
+    pomodoroview.ui
 
 RESOURCES += \
     res.qrc

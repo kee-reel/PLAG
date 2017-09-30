@@ -22,6 +22,7 @@ public:
     QTime time;
     int secsPassed;
     int secsTarget;
+    bool isEnabled;
 
 private:
     QFile sourceFile;

@@ -7,10 +7,9 @@ PomodoroButton::PomodoroButton(QWidget *parent) :
     timer = new QTimer(this);
     timer->setInterval(1000);
     timer->setSingleShot(false);
-    timer->setTimerType(Qt::VeryCoarseTimer);
     connect(timer, SIGNAL(timeout()), SLOT(TimerTick()));
-    timer->stop();
     secsTarget = secsPassed = 45 * 60;
+    isEnabled = false;
 }
 
 PomodoroButton::~PomodoroButton()
@@ -45,7 +44,8 @@ void PomodoroButton::PlayAudio()
 
 void PomodoroButton::mouseReleaseEvent(QMouseEvent *event)
 {
-    qDebug() << "Press";
+    if(!isEnabled)
+        return;
     if(!timer->isActive())
     {
         emit OnStartPomodoro();

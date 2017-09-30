@@ -179,7 +179,7 @@ void AndroidNotificationModel::CancelAlarm()
 }
 #endif
 
-#if (defined(Q_OS_WIN) || defined(Q_OS_LINUX))
+#ifdef Q_OS_LINUX | Q_OS_WIN
 void NotificationManagerModel::ShowNotification(QString title, QString message, int id)
 {
 
@@ -206,7 +206,6 @@ int NotificationManagerModel::SetAlarm(INotificationManagerModel::TimeType type,
     switch (type) {
     case INotificationManagerModel::RTC_TIME:{
         qint64 remainingTime = QDateTime::currentDateTime().msecsTo(time);
-        newTimer->setSingleShot(true);
         newTimer->setInterval(remainingTime);
     } break;
     case INotificationManagerModel::FROM_DEVICE_START:
@@ -238,10 +237,5 @@ void NotificationManagerModel::OnPrivateTimerTimeout(QExtendedTimer *timer)
         return;
     int timerId = timersDictionary[timer];
     emit OnTimerTimeout(timerId);
-    if(timer->isSingleShot())
-    {
-        timersDictionary.remove(timer);
-        delete timer;
-    }
 }
 #endif

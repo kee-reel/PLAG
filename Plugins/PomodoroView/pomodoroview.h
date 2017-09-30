@@ -10,7 +10,6 @@
 #include "pomodorobutton.h"
 #include "mytreeview.h"
 #include "designproxymodel.h"
-#include "addform.h"
 
 namespace Ui {
 class PomodoroView;
@@ -34,19 +33,17 @@ public:
     ~PomodoroView();
 
 private:
+    PluginInfo *pluginInfo;
     Ui::PomodoroView *ui;
     IPomodoroModel *myModel;
-    PomodoroButton *button;
     QAbstractItemModel *proxyModel;
-    AddForm *addForm;
-    QModelIndex *currentProject;
-    QModelIndex *finishedPomodoros;
-    PluginInfo *pluginInfo;
+
+    QModelIndex currentTask;
     IPomodoroModel::WorkSetup workSetup;
-    bool isTimerWindow;
 
     // IPlugin interface
     void InstallWorkSetup();
+    void UpdateSelectedTask();
 
 public:
     void SetPluginInfo(PluginInfo *pluginInfo) override;
@@ -68,7 +65,7 @@ signals:
     void OnClose();
 
 private slots:
-    void OnPomodoroFinished();
+    void PomodoroFinished();
     void on_buttonProjects_clicked();
     void on_buttonEdit_clicked();
 
@@ -76,17 +73,12 @@ private slots:
     void on_buttonDelete_clicked();
 
     void on_buttonAdd_clicked();
-
     void on_treeView_clicked(const QModelIndex &index);
-
     void on_treeView_pressed(const QModelIndex &index);
 
-protected:
-    void resizeEvent(QResizeEvent *event);
-
-    // QWidget interface
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
+    // QObject interface
+public:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 };
 //! \}
 #endif // TASKLISTVIEW_H
