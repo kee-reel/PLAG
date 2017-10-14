@@ -14,9 +14,14 @@ import android.os.Looper;
 import android.os.Handler;
 import android.util.Log;
 import java.lang.String;
+import java.util.Calendar;
+import java.util.Date;
 
 public class QtActivityExtention extends QtActivity
 {
+    // Native functions
+    public static native void OnAndroidAlarmRecieved();
+
     private static final String TAG = "QtActivityExtention";
     private static QtActivityExtention instance;
 
@@ -26,6 +31,17 @@ public class QtActivityExtention extends QtActivity
     private static PendingIntent contentIntent;
     private static PendingIntent pendingIntent;
 
+    private static String plannedTitle;
+    private static String plannedMessage;
+    private static int plannedNotificationId;
+    private static int plannedToastDuration;
+    private enum PlannedAlarmEvent{
+        NONE,
+        NOTIFICATION,
+        TOAST
+    }
+    private static PlannedAlarmEvent plannedAlarmEvent;
+
     public QtActivityExtention() { instance = this; }
 
 @Override
@@ -33,17 +49,11 @@ public class QtActivityExtention extends QtActivity
     {
         super.onCreate(savedInstanceState);
 
-//        Intent intent = new Intent(instance, QtActivityExtention.class);
-//        contentIntent = PendingIntent.getActivity(instance, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationBuilder = new Notification.Builder(instance);
         notificationBuilder
 //            .setContentIntent(contentIntent)
             .setSmallIcon(R.drawable.icon);
-
-        /* Retrieve a PendingIntent that will perform a broadcast */
-        Intent alarmIntent = new Intent(instance, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(instance, 0, alarmIntent, 0);
     }
 
 @Override
@@ -56,6 +66,65 @@ public class QtActivityExtention extends QtActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public static void setAlarm(int type, long time) {
+        Log.i(TAG, "setAlarm");
+        cancelAlarm();
+        AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
+        Intent alarmIntent = new Intent(instance, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(instance, 0, alarmIntent, 0);
+        manager.set(type, time, pendingIntent);
+    }
+
+    public static void setRepeatingAlarm(int type, long triggerTime, long interval) {
+        Log.i(TAG, "setRepeatingAlarm");
+        cancelAlarm();
+        AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
+        Intent alarmIntent = new Intent(instance, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(instance, 0, alarmIntent, 0);
+        manager.setRepeating(type, triggerTime, interval, pendingIntent);
+    }
+
+    public static void cancelAlarm() {
+        Log.i(TAG, "cancelAlarm");
+        AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
+        manager.cancel(pendingIntent);
+    }
+
+    public static void processAlarm() {
+        Log.i(TAG, "processAlarm");
+        switch(plannedAlarmEvent)
+        {
+            case NOTIFICATION:
+                showNotification(plannedTitle, plannedMessage, plannedNotificationId);
+                break;
+            case TOAST:
+                showToast(plannedMessage, plannedToastDuration);
+                break;
+        }
+
+        plannedAlarmEvent = PlannedAlarmEvent.NONE;
+        OnAndroidAlarmRecieved();
+    }
+
+    public static void setAlarmedNotification(int type, long time, String title, String message, int notifyId)
+    {
+        Log.i(TAG, "setAlarmedNotification");
+        plannedAlarmEvent = PlannedAlarmEvent.NOTIFICATION;
+        plannedTitle = title;
+        plannedMessage = message;
+        plannedNotificationId = notifyId;
+        setAlarm(type, time);
+    }
+
+    public static void setAlarmedToast(int type, long time, String message, int delay)
+    {
+        Log.i(TAG, "setAlarmedToast");
+        plannedAlarmEvent = PlannedAlarmEvent.TOAST;
+        plannedMessage = message;
+        plannedToastDuration = delay;
+        setAlarm(type, time);
     }
 
     public static void showNotification(String title, String message, int notifyId)
@@ -90,23 +159,5 @@ public class QtActivityExtention extends QtActivity
                 Toast.makeText(instance, tmpStr, tmpDelay).show();
             }
         });
-    }
-
-    public static void setAlarm(int type, int time) {
-        Log.i(TAG, "setAlarm");
-        AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
-        manager.set(type, time, pendingIntent);
-    }
-
-    public static void setRepeatingAlarm(int type, int triggerTime, int interval) {
-        Log.i(TAG, "setRepeatingAlarm");
-        AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
-        manager.setRepeating(type, triggerTime, interval, pendingIntent);
-    }
-
-    public static void cancelAlarm() {
-        Log.i(TAG, "cancelAlarm");
-        AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
-        manager.cancel(pendingIntent);
     }
 }

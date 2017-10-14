@@ -37,6 +37,8 @@ public:
     virtual void PlanApplicationWakeup(TimeType timePlan, QDateTime time) = 0;
     virtual int SetAlarm(TimeType type, QDateTime time) = 0;
     virtual int SetRepeatingAlarm(TimeType type, QDateTime triggerTime, QDateTime interval) = 0;
+    virtual void SetAlarmedNotification(TimeType type, QDateTime time, QString title, QString message, int id = 0) = 0;
+    virtual void setAlarmedToast(TimeType type, QDateTime time, const QString &message, INotificationManagerModel::Duration duration = LONG) = 0;
     virtual void CancelAlarm() = 0;
 
 signals:

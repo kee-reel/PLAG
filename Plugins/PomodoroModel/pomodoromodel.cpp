@@ -8,10 +8,10 @@ PomodoroModel::PomodoroModel()
     tableName = "itasktreemodel";
     coreRelationName = "ipomodoromodel";
     activeViewId = -1;
-    workSetup.easyRestDuration = 5;
-    workSetup.longRestDuration = 10;
+    workSetup.easyRestDuration = 5 * 60;
+    workSetup.longRestDuration = 15 * 60;
     workSetup.longRestPeriod = 3;
-    workSetup.workSessionDuration = 15;
+    workSetup.workSessionDuration = 35 * 60;
 }
 
 PomodoroModel::~PomodoroModel()
@@ -65,7 +65,8 @@ void PomodoroModel::AddReferencePlugin(PluginInfo *pluginInfo)
                     qDebug() << pluginInfo->Instance->objectName() << "is not INotificationManagerModel.";
                     return;
                 }
-                connect(pluginInfo->Instance, SIGNAL(OnTimerTimeout(int)), SLOT(OnTimerEnded(int)));
+                auto res = connect(pluginInfo->Instance, SIGNAL(OnTimerTimeout(int)), SLOT(OnTimerEnded(int)));
+                qDebug() << "~CONNECTED" << res;
             }
         } break;
 
@@ -142,6 +143,11 @@ void PomodoroModel::StartPomodoro()
     notificationTimerId = notificationManger->
             SetAlarm(INotificationManagerModel::RTC_TIME,
                      QDateTime::currentDateTime().addSecs(workSetup.workSessionDuration));
+
+    notificationManger->SetAlarmedNotification(INotificationManagerModel::RTC_TIME,
+             QDateTime::currentDateTime().addSecs(workSetup.workSessionDuration),
+                           "Message from Pomodoro:",
+                           "You can take a rest now");
 }
 
 void PomodoroModel::SetupModel()
@@ -153,7 +159,7 @@ void PomodoroModel::SetupModel()
 
 void PomodoroModel::OnTimerEnded(int timerId)
 {
-    if(notificationTimerId != timerId) return;
+//    if(notificationTimerId != timerId) return;
     if(!currentTask.isValid()) return;
     auto branchIndex = currentTask;
     while(branchIndex.isValid())
