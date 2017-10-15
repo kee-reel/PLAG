@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += widgets sql gui qml quick multimedia
+QT       += widgets sql gui qml quick multimedia serialport
 
 TARGET = MASS
 TEMPLATE = app

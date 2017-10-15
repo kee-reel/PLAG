@@ -13,4 +13,4 @@ HEADERS +=\\
 DISTFILES += \\
     PluginMeta.json
 
-include(../../System/MASS/BuildInfo.pri)
+include(../../BuildInfo.pri)

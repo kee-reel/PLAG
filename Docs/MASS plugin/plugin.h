@@ -15,6 +15,14 @@ namespace Ui {
 
 #include "%{IFileName}"
 
+@if '%{PluginType}' === 'Model' || '%{PluginType}' === 'View' || '%{PluginType}' === 'DataManager'
+// Here you can include your related plugins interfaces
+// For example: 
+// #include "../../[PluginTypes]/SomePlugin/isomeplugin.h"
+// [Plugin types]: DataSources, DataManagers, Models, Views
+
+@endif
+
 //! \addtogroup %{CN}_imp
 //! \{
 class %{CN} : public 
@@ -98,11 +106,17 @@ public:
 private:
     PluginInfo *pluginInfo;
 
+@if '%{PluginType}' === 'Model' || '%{PluginType}' === 'View' || '%{PluginType}' === 'DataManager'
+// ISomePlugin *myReferencedPlugin;
+@endif
+
+@if '%{PluginType}' === 'Model'
     PluginInfo *openedModel;
     QList< PluginInfo* > relatedModelPlugins;
     PluginInfo *openedView;
     QList< PluginInfo* > relatedViewPlugins;
-
+@endif
+    
 private:
     // Write your internal methods here
 @if '%{PluginType}' === 'View'

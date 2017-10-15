@@ -1,0 +1,8 @@
+{
+    "Type": "DataManager",
+    "Interface": "IHardwareDataManager",
+    "Name": "HardwareDataManager",
+    "RelatedPluginInterfaces": [
+        "ICOMPortDataSource"
+    ]
+}

@@ -2,15 +2,20 @@
 
 
 @if '%{PluginType}' === 'View'
-%{CN}::%{CN}() :
+%{CN}::%{CN}(QWidget *parent) :
     QWidget(parent)/*,
     ui(new Ui::Form)*/
-@elds
+@else
     %{CN}::%{CN}() 
 @endif
 {
+@if '%{PluginType}' === 'Model' || '%{PluginType}' === 'View' || '%{PluginType}' === 'DataManager'
+    // myReferencedPlugin = NULL;
+@endif
+@if '%{PluginType}' === 'Model'
     openedView = NULL;
     openedModel = NULL;
+@endif
     /*
     ui->setupUi(this);
     */
@@ -37,25 +42,41 @@ QString %{CN}::GetLastError()
 
 void %{CN}::AddReferencePlugin(PluginInfo *pluginInfo)
 {
+@if '%{PluginType}' === 'Model' || '%{PluginType}' === 'View' || '%{PluginType}' === 'DataManager'
+    /* Select your reference plugin case and get it. For example:
+        case PLUGINMODEL:{
+            myReferencedPlugin = qobject_cast<ISomePlugin*>(pluginInfo->Instance);
+            if(!myReferencedPlugin)
+            {
+                qDebug() << pluginInfo->Meta->Name << "is not ISomePlugin.";
+                return;
+            }
+            qDebug() << "ISomePlugin succesfully set.";
+            connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+        } break;
+    */
+
     switch(pluginInfo->Meta->Type){
         case PLUGINVIEW:{
+@if '%{PluginType}' === 'Model'
             relatedViewPlugins.append(pluginInfo);
             qDebug() << "New IViewPlugin added (" << pluginInfo->Meta->Name << ").";
             connect(pluginInfo->Instance, SIGNAL( OnClose(PluginInfo*) ), SLOT( ReferencePluginClosed(PluginInfo*) ));
+@endif
         } break;
 
         case PLUGINMODEL:{
+@if '%{PluginType}' === 'Model'
             relatedModelPlugins.append(pluginInfo);
             qDebug() << "New IModelPlugin added (" << pluginInfo->Meta->Name << ").";
             connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+@endif
         } break;
 
         case ROOTMODEL:{
-            
         } break;
 
         case DATAMANAGER:{
-            
         }break;
     }
 }
@@ -124,8 +145,6 @@ bool %{CN}::Close()
         qDebug() << "!%{CN} cannot close right now!";
         return false;
     }
-    openedView = NULL;
-    openedModel = NULL;
     emit OnClose(pluginInfo);
     emit OnClose();
     return true;

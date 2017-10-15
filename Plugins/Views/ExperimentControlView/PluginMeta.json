@@ -1,0 +1,8 @@
+{
+    "Type": "PluginView",
+    "Interface": "IExperimentControlView",
+    "Name": "ExperimentControlView",
+    "RelatedPluginInterfaces": [
+        "IExperimentControlModel"
+    ]
+}

@@ -1,12 +1,10 @@
-#include "cipherdatabasesourceplugin.h"
+#include "databasesource.h"
 
 DataBaseSourcePlugin::DataBaseSourcePlugin()
 {
     possibleDriverNames
             << "SQLITECIPHER"
             << "QSQLITE";
-
-    Setup();
 }
 
 DataBaseSourcePlugin::~DataBaseSourcePlugin()
@@ -74,6 +72,11 @@ QSqlQuery DataBaseSourcePlugin::ExecuteQuery(QString &queryText, QList<QString> 
     return query;
 }
 
+void DataBaseSourcePlugin::SetPassword(QString password)
+{
+    this->password = password;
+}
+
 void DataBaseSourcePlugin::Setup()
 {
     if(dbconn.isOpen())
@@ -86,32 +89,38 @@ void DataBaseSourcePlugin::Setup()
     foreach (auto driverName, possibleDriverNames)
     {
         qDebug() << "Trying to connect to database with" << driverName << "driver";
-
-        if(QSqlDatabase::isDriverAvailable(driverName))
+        if(ConnectWithDriver(driverName))
         {
-            if(ConnectWithDriver(driverName))
-            {
-                qDebug() << "Connected to database succesfully";
-                break;
-            }
-            else
-            {
-                qCritical() << "Can't establish connection with current driver driver";
-            }
-        }
-        else
-        {
-            qCritical() << "Driver not available";
+            qDebug() << "Connected to database succesfully";
+            break;
         }
     }
 }
 
 bool DataBaseSourcePlugin::ConnectWithDriver(QString driverName)
 {
+    if(!QSqlDatabase::isDriverAvailable(driverName))
+    {
+        qCritical() << "Driver not available";
+        return false;
+    }
+
+    connectionName = QString("db_%1.db").arg(driverName);
     dbconn = QSqlDatabase::addDatabase(driverName);
+
     // Create database
-    dbconn.setDatabaseName(QString("db_%1.db").arg(driverName));
-    // Add password
-    dbconn.setPassword("test");
-    dbconn.open();
+    dbconn.setDatabaseName(connectionName);
+    dbconn.setPassword(password);
+    bool isConnected = dbconn.open();
+
+    if(isConnected)
+    {
+        password = "";
+    }
+    else
+    {
+        qCritical() << "Database connection error:" << dbconn.lastError();
+    }
+
+    return isConnected;
 }

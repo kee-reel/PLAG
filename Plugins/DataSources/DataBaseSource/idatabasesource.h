@@ -22,6 +22,8 @@ public:
     //! \return Query result.
     //!
     virtual QSqlQuery ExecuteQuery(QString &query, QList<QString> *valuePlaceholders, QList<QVariant> *values) = 0;
+
+    virtual void SetPassword(QString password) = 0;
 };
 Q_DECLARE_INTERFACE(IDataBaseSourcePlugin, "IDataBaseSourcePlugin v0.1")
 

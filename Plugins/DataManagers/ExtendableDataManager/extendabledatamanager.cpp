@@ -38,6 +38,8 @@ void ExtendableDataBaseManagerPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
         qDebug() << pluginInfo->Meta->Name << "is not IDataBaseSourcePlugin.";
     }
     qDebug() << "IDataBaseSourcePlugin succesfully set.";
+    dataSource->SetPassword("rqCZB63Fr7tmTB");
+    dataSource->Setup();
 }
 
 void ExtendableDataBaseManagerPlugin::ReferencePluginClosed(PluginInfo *pluginInfo)

@@ -8,11 +8,11 @@ TEMPLATE = lib
 QT += core sql
 
 SOURCES += \
-    cipherdatabasesourceplugin.cpp
+    databasesource.cpp
 
 HEADERS += \
-    cipherdatabasesourceplugin.h \
-    idatabasesource.h
+    idatabasesource.h \
+    databasesource.h
 
 include(../../BuildInfo.pri)
 

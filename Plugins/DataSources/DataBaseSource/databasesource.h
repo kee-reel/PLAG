@@ -48,6 +48,7 @@ public:
 public:
     QSqlQuery ExecuteQuery(QString &query) override;
     QSqlQuery ExecuteQuery(QString &query, QList<QString> *valuePlaceholders, QList<QVariant> *values) override;
+    void SetPassword(QString password) override;
 
 private:
     //!
@@ -57,8 +58,11 @@ private:
     //!
     QList<QString> possibleDriverNames;
     QString lastError;
+    QString password;
+    QString connectionName;
     QSqlDatabase dbconn;
     bool ConnectWithDriver(QString driverName);
+
 };
 //! \}
 #endif // DATABASEMANAGERMODULE_H

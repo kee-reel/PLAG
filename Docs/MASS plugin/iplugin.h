@@ -2,7 +2,7 @@
 #ifndef I%{GUARD}
 #define I%{GUARD}
 
-#include "../MainMenuModelPlugin/interfaces.h"
+#include "../../interfaces.h"
 
 //! \defgroup %{CN}
 //!     \ingroup MainMenuPlugin_rel_m

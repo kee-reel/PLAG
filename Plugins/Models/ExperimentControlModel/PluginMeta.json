@@ -1,0 +1,9 @@
+{
+    "Type": "PluginModel",
+    "Interface": "IExperimentControlModel",
+    "Name": "ExperimentControlModel",
+    "RelatedPluginInterfaces": [
+        "IHardwareDataManager",
+        "IMainMenuModel"
+    ]
+}
