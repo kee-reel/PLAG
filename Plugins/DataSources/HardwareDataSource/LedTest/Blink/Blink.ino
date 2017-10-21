@@ -61,7 +61,7 @@ void ResolveMessage()
   switch(mode)
   {
     // Sets active pin.
-    case 's': GetPinsInfo(); break;
+    case 'g': GetPinsInfo(); break;
     case 'i': SetActiveInPin(); break;
     case 'o': SetActiveOutPin(); break;
     case 'd': SetDelay(); break;

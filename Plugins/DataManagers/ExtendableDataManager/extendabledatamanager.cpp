@@ -39,7 +39,7 @@ void ExtendableDataBaseManagerPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
     }
     qDebug() << "IDataBaseSourcePlugin succesfully set.";
     dataSource->SetPassword("rqCZB63Fr7tmTB");
-    dataSource->Setup();
+    dataSource->UpdatePortsList();
 }
 
 void ExtendableDataBaseManagerPlugin::ReferencePluginClosed(PluginInfo *pluginInfo)

@@ -2,43 +2,19 @@
 
 COMPortDataSource::COMPortDataSource()
 {
-//    ArduinoUno = {
-//        "Arduino Uno",
-//        9025,
-//        67,
-//        13,
-//        6
-//    };
-
-//    inputParser = QRegExp("\\{([\\w\\d,]+)\\}");
-
-//    isPortSet = false;
-//    portsData = new QStandardItemModel();
-//    portsData->setColumnCount(4);
-//    portsData->setHeaderData(0, Qt::Horizontal, "Name");
-//    portsData->setHeaderData(1, Qt::Horizontal, "Vendor ID");
-//    portsData->setHeaderData(2, Qt::Horizontal, "Product ID");
-//    portsData->setHeaderData(3, Qt::Horizontal, "Device");
-//    ui->tableView->setModel(portsData);
-//    startTime = 0;
-
-//    auto ports = QSerialPortInfo::availablePorts();
-//    portsData->setRowCount(ports.length());
-//    qDebug() << "Available ports:" << ports.length();
-//    for(int i = 0; i < ports.length(); ++i) {
-//        auto port = ports[i];
-//        portsData->setData(portsData->index(i, 0), port.portName());
-//        portsData->setData(portsData->index(i, 1), port.hasVendorIdentifier() ? port.vendorIdentifier() : -1);
-//        portsData->setData(portsData->index(i, 2), port.hasProductIdentifier() ? port.productIdentifier() : -1);
-//        if(ArduinoUno.Compare(port.vendorIdentifier(), port.productIdentifier()))
-//        {
-//            portsData->setData(portsData->index(i, 3), ArduinoUno.name);
-//        }
-//    }
+    supportedDevices["ArduinoUno"] = DeviceInfo{9025, 67};
+    UpdatePortsList();
 }
 
 COMPortDataSource::~COMPortDataSource()
 {
+    foreach (auto port, portHandlers)
+    {
+        if(port->isOpen())
+            port->clear();
+
+        delete port;
+    }
 }
 
 void COMPortDataSource::SetPluginInfo(PluginInfo *pluginInfo)
@@ -48,136 +24,127 @@ void COMPortDataSource::SetPluginInfo(PluginInfo *pluginInfo)
 
 void COMPortDataSource::OnAllSetup()
 {
-
 }
 
 QString COMPortDataSource::GetLastError()
 {
-
 }
 
 void COMPortDataSource::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    switch(pluginInfo->Meta->Type){
-    case PLUGINVIEW:{
-    } break;
+    switch(pluginInfo->Meta->Type)
+    {
+        case PLUGINVIEW:
+            {
+            } break;
 
-    case PLUGINMODEL:{
-    } break;
+        case PLUGINMODEL:
+            {
+            } break;
 
-    case ROOTMODEL:{
-    } break;
+        case ROOTMODEL:
+            {
+            } break;
 
-    case DATAMANAGER:{
-    }break;
+        case DATAMANAGER:
+            {
+            } break;
     }
 }
 
 void COMPortDataSource::ReferencePluginClosed(PluginInfo *pluginInfo)
 {
-
 }
 
-void COMPortDataSource::Setup()
+void COMPortDataSource::UpdatePortsList()
 {
-    auto ports = QSerialPortInfo::availablePorts();
-    for(int i = 0; i < ports.length(); ++i) {
-        auto port = ports[i];
-        if(ArduinoUno.Compare(port.vendorIdentifier(), port.productIdentifier()))
+    QList<QSerialPortInfo> availablePorts = QSerialPortInfo::availablePorts();
+    QList<QString> handledPortNames = portHandlers.keys();
+    DeviceInfo deviceInfoBuf;
+    qDebug() << "Connected ports count:" << availablePorts.length();
+
+    foreach (auto port, availablePorts)
+    {
+        auto portName = port.portName();
+        deviceInfoBuf.productId = port.productIdentifier();
+        deviceInfoBuf.vendorId = port.vendorIdentifier();
+        QSerialPortHandler *portHandler;
+
+        if(!portHandlers.contains(portName))
         {
-            activePortName = port.portName();
-            isPortSet = true;
-            SetupPins();
+            portHandler = new QSerialPortHandler(portName, this);
+            portHandlers.insert(portName, portHandler);
+        }
+        else
+        {
+            portHandler = portHandlers[portName];
+        }
+
+        bool isDeviceSupported = IsDeviceSupported(deviceInfoBuf);
+        portHandler->SetIsSupported(isDeviceSupported);
+        // Needs to find handlers which handles disconnected ports.
+        handledPortNames.removeOne(portName);
+    }
+
+    if(handledPortNames.length() != 0)
+    {
+        foreach (auto portName, handledPortNames)
+        {
+            delete portHandlers[portName];
+            portHandlers.remove(portName);
         }
     }
-
-    if(!isPortSet)
-    {
-        qDebug() << "Arduino isn't set!";
-        return;
-    }
-
-    openModeFlag = QSerialPort::ReadWrite;
-
-    arduinoPort = new QSerialPort();
-    arduinoPort->setPortName(activePortName);
-    arduinoPort->open(openModeFlag);
-    arduinoPort->setBaudRate(QSerialPort::Baud9600);
-    arduinoPort->setDataBits(QSerialPort::Data8);
-    arduinoPort->setParity(QSerialPort::NoParity);
-    arduinoPort->setStopBits(QSerialPort::OneStop);
-    arduinoPort->setFlowControl(QSerialPort::NoFlowControl);
-    connect(arduinoPort, SIGNAL(readyRead()), SLOT(ProcessPortInput()));
 }
 
-void COMPortDataSource::SetPinOutput(int value)
+void COMPortDataSource::AddSupportedDevice(QString deviceName, ICOMPortDataSource::DeviceInfo &deviceInfo)
 {
-    value = 2.55 * value;
-    QString message = QString("w%1").arg(value);
-    SendMessage(message);
-}
-
-void COMPortDataSource::SendMessage(QString message)
-{
-    if(isPortSet && arduinoPort->isWritable())
+    if(!IsDeviceSupported(deviceInfo))
     {
-        auto str = message.toLocal8Bit().toStdString().c_str();
-        arduinoPort->write(str);
-        qDebug() << "Sent:" << str;
-    }
-    else
-    {
-        qDebug() << "Can't write:" << arduinoPort->isWritable() << arduinoPort->errorString();
+        supportedDevices.insert(deviceName, deviceInfo);
     }
 }
 
-void COMPortDataSource::ProcessPortInput()
+bool COMPortDataSource::IsDeviceSupported(ICOMPortDataSource::DeviceInfo &deviceInfo)
 {
-    auto byteArray = arduinoPort->readAll();
-    auto message = QString::fromStdString(byteArray.toStdString());
-    serialBuffer.append(message);
-    if(inputParser.indexIn(serialBuffer) != -1)
-    {
-        QString res = inputParser.capturedTexts().at(1);
-        QStringList stringList = res.split(',');
-        serialBuffer = "";
+    auto deviceIter = supportedDevices.begin();
 
-        if(startTime == 0) startTime = QDateTime::currentMSecsSinceEpoch();
-        double time = (QDateTime::currentMSecsSinceEpoch() - startTime) / 1000.0;
-        timeScale.append(time);
-        inputData.append((stringList[1]).toDouble());
+    while(deviceIter != supportedDevices.end())
+    {
+        if(CompareDeviceInfo(deviceIter.value(), deviceInfo))
+        {
+            return true;
+        }
+
+        ++deviceIter;
     }
+
+    return false;
 }
 
-void COMPortDataSource::SetupPins()
+bool COMPortDataSource::CompareDeviceInfo(DeviceInfo device, DeviceInfo &deviceInfo)
 {
-//    if(inputPins.count() != 0)
-//        return;
+    // I don't compare names because it could vary because of user, but Ids - don't
+    return device.productId == deviceInfo.productId &&
+           device.vendorId == deviceInfo.vendorId;
+}
 
-//    auto device = ArduinoUno;
+QMap<QString, ICOMPortDataSource::DeviceInfo> COMPortDataSource::GetSupportedDevices()
+{
+    return supportedDevices;
+}
 
-//    QRadioButton *radioBtn;
+QMap<QString, ICOMPortDataSource::IPortHandler *> COMPortDataSource::GetPortHandlers()
+{
+    QMap<QString, ICOMPortDataSource::IPortHandler *> convertedMap;
+    auto iter = portHandlers.begin();
 
-//    for(int i = 0; i < device.inputPins; ++i)
-//    {
-//        radioBtn = new QRadioButton(QString("%1").arg(i+1));
-//        QGridLayout *layout = (QGridLayout*)ui->groupBoxInputs->layout();
-//        layout->addWidget(radioBtn, i%pinRowsCount, i/pinRowsCount);
-//        inputPins.append(radioBtn);
-//        connect(radioBtn, SIGNAL(clicked(bool)), SLOT(InputPinChanged()));
-//    }
+    while(iter != portHandlers.end())
+    {
+        if(iter.value()->IsSupported())
+            convertedMap.insert(iter.key(), (ICOMPortDataSource::IPortHandler*)iter.value());
 
-//    for(int i = 0; i < device.outputPins; ++i)
-//    {
-//        radioBtn = new QRadioButton(QString("%1").arg(i));
-//        QGridLayout *layout = (QGridLayout*)ui->groupBoxOutputs->layout();
-//        layout->addWidget(radioBtn, i%pinRowsCount, i/pinRowsCount);
-//        outputPins.append(radioBtn);
-//        connect(radioBtn, SIGNAL(clicked(bool)), SLOT(OutputPinChanged()));
-//    }
+        ++iter;
+    }
 
-//    radioBtn = new QRadioButton("None");
-//    ui->groupBoxOutputs->layout()->addWidget(radioBtn);
-//    outputPins.append(radioBtn);
-//    connect(radioBtn, SIGNAL(clicked(bool)), SLOT(OutputPinChanged()));
+    return convertedMap;
 }

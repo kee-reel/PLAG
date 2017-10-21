@@ -62,7 +62,7 @@ class IDataSourcePlugin : public IPlugin
 public:
     virtual ~IDataSourcePlugin() {}
     //! \brief Install connection with source.
-    virtual void Setup() = 0;
+    virtual void UpdatePortsList() = 0;
 };
 Q_DECLARE_INTERFACE(IDataSourcePlugin, "IDataSourcePlugin v0.1")
 

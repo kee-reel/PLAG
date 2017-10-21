@@ -4,13 +4,14 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
+#include <QList>
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QTimer>
 #include <QDateTime>
 
 #include "icomportdatasource.h"
-#include "devicepin.h"
+#include "qserialporthandler.h"
 
 // Here you can include your related plugins interfaces
 // For example: #include "../../Models/SomeModel/isomemodel.h"
@@ -22,9 +23,9 @@ class COMPortDataSource : public QObject, ICOMPortDataSource
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(
-            IDataSourcePlugin
-            ICOMPortDataSource
-            )
+        IDataSourcePlugin
+        ICOMPortDataSource
+    )
 
 public:
     COMPortDataSource();
@@ -46,52 +47,30 @@ signals:
 
     // IDataSourcePlugin interface
 public:
-    void Setup() override;
+    ///!
+    //! \brief UpdatePortsList
+    //! Update available and supported ports.
+    //!
+    void UpdatePortsList() override;
 
 private:
     PluginInfo *pluginInfo;
 
 private: // Internal methods and fields:
-    QList<DevicePin*> inputPins;
-    QList<DevicePin*> outputPins;
-    const int pinRowsCount = 7;
+    QMap<QString, QSerialPortHandler*> portHandlers;
+    QMap<QString, DeviceInfo> supportedDevices;
 
-    QSerialPort *arduinoPort;
-    QString activePortName;
-    bool isPortSet;
-    QTimer *readTimer;
-    QString serialBuffer;
-    QRegExp inputParser;
-    QVector<double> inputData;
-    QVector<double> timeScale;
-    double startTime;
-    double windowXScale;
-    double windowYScale;
-    QString activeOutPin;
+    bool CompareDeviceInfo(DeviceInfo device, ICOMPortDataSource::DeviceInfo &deviceInfo);
+    bool IsDeviceSupported(ICOMPortDataSource::DeviceInfo &deviceInfo);
 
-    QIODevice::OpenModeFlag openModeFlag;
-    struct DeviceInfo{
-        QString name;
-        quint16 vendorId;
-        quint16 productId;
-        int inputPins;
-        int outputPins;
-        bool Compare(quint16 vendorId, quint16 productId)
-        {
-            return this->vendorId == vendorId &&
-                    this->productId == productId;
-        }
-    };
+    // ICOMPortDataSource interface
+public:
+    void AddSupportedDevice(QString deviceName, DeviceInfo &deviceInfo) override;
+    QMap<QString, DeviceInfo> GetSupportedDevices() override;
+    QMap<QString, IPortHandler *> GetPortHandlers() override;
 
-    DeviceInfo ArduinoUno;
-
-    void SetPinOutput(int value);
-    void MakePlot(int graph, QVector<double> &x, QVector<double> &y);
-    void SetupPins();
-
-private slots:
-    void ProcessPortInput();
-    void SendMessage(QString message);
+signals:
+    void OnNewInput(QByteArray *buffer);
 };
 //! }
 #endif // COMPORTDATASOURCE_H

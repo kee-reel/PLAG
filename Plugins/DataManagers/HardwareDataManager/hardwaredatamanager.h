@@ -11,20 +11,22 @@
 // For example:
 // #include "../../[PluginTypes]/SomePlugin/isomeplugin.h"
 // [Plugin types]: DataSources, DataManagers, Models, Views
+#include "../../DataSources/COMPortDataSource/icomportdatasource.h"
 
+#include "devicedatahandler.h"
 
 //! addtogroup HardwareDataManager_imp
 //! {
 class HardwareDataManager : public
-        QObject,
-        IHardwareDataManager
+    QObject,
+    IHardwareDataManager
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(
-            IDataManagerPlugin
-            IHardwareDataManager
-            )
+        IDataManagerPlugin
+        IHardwareDataManager
+    )
 
 public:
     HardwareDataManager();
@@ -44,16 +46,14 @@ signals:
     void OnClose(PluginInfo*);
     void OnClose();
 
-
-
 private:
     PluginInfo *pluginInfo;
-
-    // ISomePlugin *myReferencedPlugin;
-
+    ICOMPortDataSource *myReferencedPlugin;
+    QMap<QString, DeviceDataHandler*> deviceDataHandlers;
 
 private:
     // Write your internal methods here
+    void SetupDataSource();
 };
 //! }
 #endif // HARDWAREDATAMANAGER_H

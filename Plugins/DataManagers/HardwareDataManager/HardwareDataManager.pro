@@ -1,14 +1,16 @@
 
 TARGET = HardwareDataManager
 TEMPLATE = lib
-QT += widgets
+QT += widgets serialport
 
 SOURCES += \
-    hardwaredatamanager.cpp
+    hardwaredatamanager.cpp \
+    devicedatahandler.cpp
 
 HEADERS +=\
     ihardwaredatamanager.h \
-    hardwaredatamanager.h
+    hardwaredatamanager.h \
+    devicedatahandler.h
 
 DISTFILES += \
     PluginMeta.json
