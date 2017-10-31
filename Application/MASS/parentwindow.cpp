@@ -55,7 +55,7 @@ ParentWindow::ParentWindow(QWidget *parent) : QWidget(parent)
 //    childsJoint = new QWidget(this);
     layout = new QVBoxLayout();
     this->setLayout(layout);
-    setWindowIcon(QIcon("://Resources/Logo512.png"));
+    setWindowIcon(QIcon("://Resources/Logo256.png"));
     // Headless window mode
 //    Qt::WindowFlags flags = windowFlags();
 //    flags |= Qt::FramelessWindowHint;
