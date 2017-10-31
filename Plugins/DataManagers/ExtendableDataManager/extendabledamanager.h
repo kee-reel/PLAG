@@ -37,15 +37,16 @@ signals:
 
     // IExtendableDataManagerPlugin interface
 public:
-    bool RegisterDataTypeEditor(QString relation, QString field, QWidget *widget) override;
-    QWidget *GetDataTypeEditor(QString relation, QString field) override;
+    bool RegisterExtentionFieldEditor(QString relation, QString field, QWidget *widget) override;
+    QWidget *GetExtentionFieldEditor(QString relation, QString field) override;
     QList<ManagerDataItem> GetDataList(QString treeName) override;
     ManagerDataItem GetDataItem(QString treeName, int id) override;
     QAbstractItemModel *GetDataModel(QString treeName) override;
+    QAbstractItemModel *GetDataModel(QVector<QPair<QString, QString> > dataModelFields) override;
     QMap<QString, QVariant::Type> GetTableHeader(QString treeName) override;
-    bool SetRelation(QString mainName, QString relationName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData) override;
-    bool DeleteRelation(QString mainName, QString relationName) override;
-    bool SetActiveRelation(QString mainName, QString relationName) override;
+    bool AddExtention(QString mainName, QString extentionName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData) override;
+    bool DeleteExtention(QString mainName, QString extentionName) override;
+    bool SetActiveExtention(QString mainName, QString extentionName) override;
     int AddItem(QString treeName, ManagerDataItem task) override;
     bool UpdateItem(QString treeName, ManagerDataItem task) override;
     bool DeleteItem(QString treeName, int id) override;
@@ -60,7 +61,7 @@ private:
 
     QHash<QString, TableHandler*> tableHandlers;
     void SetupTable(QString &tableName);
-
+    QAbstractItemModel *CreateProxy(QVector<QPair<QString, QString> > &dataModelFields);
 };
 //! \}
 #endif // TASKDBTOOLPLUGIN_H

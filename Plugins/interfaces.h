@@ -2,11 +2,10 @@
 #define INTERFACES_H
 
 #include "../../../Application/MASS/rootinterface.h"
-class QString;
-class QVariant;
+#include <QtGlobal>
+
 class QSqlDatabase;
 class QSqlQuery;
-template <class A> class QList;
 
 //! \addtogroup MainMenuPlugin_int
 //! @{
@@ -62,7 +61,7 @@ class IDataSourcePlugin : public IPlugin
 public:
     virtual ~IDataSourcePlugin() {}
     //! \brief Install connection with source.
-    virtual void UpdatePortsList() = 0;
+    virtual void Setup() = 0;
 };
 Q_DECLARE_INTERFACE(IDataSourcePlugin, "IDataSourcePlugin v0.1")
 

@@ -1,30 +1,33 @@
-#include "qserialporthandler.h"
+#include "serialporthandler.h"
 
 #include <QDebug>
 
-QSerialPortHandler::QSerialPortHandler(QString portName, QObject *parent) : QSerialPort(parent)
+SerialPortHandler::SerialPortHandler(QString portName, QObject *parent) : QSerialPort(parent)
 {
     setPortName(portName);
+    auto info = QSerialPortInfo(portName);
+    connectedDeviceInfo.productId = info.productIdentifier();
+    connectedDeviceInfo.vendorId = info.vendorIdentifier();
     serialBufferSize = 50;
     connect(this, SIGNAL(readyRead()), this, SLOT(ReadDataPrivate()));
 }
 
-QSerialPortHandler::~QSerialPortHandler()
+SerialPortHandler::~SerialPortHandler()
 {
     ClosePort();
 }
 
-bool QSerialPortHandler::IsSupported() const
+bool SerialPortHandler::IsSupported() const
 {
     return isSupported;
 }
 
-void QSerialPortHandler::SetIsSupported(bool value)
+void SerialPortHandler::SetIsSupported(bool value)
 {
     isSupported = value;
 }
 
-bool QSerialPortHandler::OpenPort(QIODevice::OpenMode openMode)
+bool SerialPortHandler::OpenPort(QIODevice::OpenMode openMode)
 {
     if(!isSupported)
     {
@@ -50,7 +53,7 @@ bool QSerialPortHandler::OpenPort(QIODevice::OpenMode openMode)
     return true;
 }
 
-void QSerialPortHandler::ClosePort()
+void SerialPortHandler::ClosePort()
 {
     if (!isOpen())
         return;
@@ -59,7 +62,7 @@ void QSerialPortHandler::ClosePort()
     close();
 }
 
-void QSerialPortHandler::WriteData(QByteArray &data)
+void SerialPortHandler::WriteData(QByteArray data)
 {
     if (!QSerialPort::isOpen())
     {
@@ -73,13 +76,13 @@ void QSerialPortHandler::WriteData(QByteArray &data)
         return;
     }
 
-    if(QSerialPort::write(data) == -1)
-        qDebug() << "COM port" << QSerialPort::portName() << "write error:" << QSerialPort::errorString();
-    else
+    if(QSerialPort::write(data) != -1)
         qDebug() << QString("Write to port %1:").arg(QSerialPort::portName()) << data;
+    else
+        qDebug() << "COM port" << QSerialPort::portName() << "write error:" << QSerialPort::errorString();
 }
 
-void QSerialPortHandler::ReadDataPrivate()
+void SerialPortHandler::ReadDataPrivate()
 {
     serialBuffer = QSerialPort::readAll();
 
@@ -94,7 +97,12 @@ void QSerialPortHandler::ReadDataPrivate()
     }
 }
 
-QObject *QSerialPortHandler::GetInstance()
+QObject *SerialPortHandler::GetInstance()
+{
+    return this;
+}
+
+QSerialPort *SerialPortHandler::GetSerialPort()
 {
     return this;
 }

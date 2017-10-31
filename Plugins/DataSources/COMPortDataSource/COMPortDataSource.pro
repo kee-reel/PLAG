@@ -5,12 +5,12 @@ QT += widgets serialport
 
 SOURCES += \
     comportdatasource.cpp \
-    qserialporthandler.cpp
+    serialporthandler.cpp
 
 HEADERS +=\
     icomportdatasource.h \
     comportdatasource.h \
-    qserialporthandler.h
+    serialporthandler.h
 
 DISTFILES += \
     PluginMeta.json

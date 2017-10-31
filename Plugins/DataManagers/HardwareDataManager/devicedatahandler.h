@@ -4,12 +4,13 @@
 #include <QObject>
 
 #include "../../DataSources/COMPortDataSource/icomportdatasource.h"
+#include "ihardwaredatamanager.h"
 
 class DeviceDataHandler : public QObject
 {
     Q_OBJECT
 public:
-    explicit DeviceDataHandler(ICOMPortDataSource::IPortHandler *portHandler, QObject *parent = nullptr);
+    explicit DeviceDataHandler(ICOMPortDataSource::ISerialPortHandler *portHandler, QObject *parent = nullptr);
 
 signals:
     void WriteData(QByteArray &buffer);
@@ -17,8 +18,9 @@ signals:
 public slots:
 
 private:
-    ICOMPortDataSource::IPortHandler *portHandler;
+    ICOMPortDataSource::ISerialPortHandler *portHandler;
     QByteArray lastMessage;
+    IHardwareDataManager::IProtocolHandler *protocolHandler;
 
 private slots:
     void ReadData(QByteArray *buffer);

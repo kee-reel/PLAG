@@ -8,6 +8,7 @@ ExtendableDataBaseManagerPlugin::ExtendableDataBaseManagerPlugin()
 ExtendableDataBaseManagerPlugin::~ExtendableDataBaseManagerPlugin()
 {
     QHash<QString, TableHandler*>::Iterator tablesIter = tableHandlers.begin();
+
     while(tablesIter != tableHandlers.end())
     {
         delete tablesIter.value();
@@ -17,7 +18,6 @@ ExtendableDataBaseManagerPlugin::~ExtendableDataBaseManagerPlugin()
 
 void ExtendableDataBaseManagerPlugin::OnAllSetup()
 {
-
 }
 
 QString ExtendableDataBaseManagerPlugin::GetLastError()
@@ -27,29 +27,30 @@ QString ExtendableDataBaseManagerPlugin::GetLastError()
 
 void ExtendableDataBaseManagerPlugin::SetPluginInfo(PluginInfo *pluginInfo)
 {
-
 }
 
 void ExtendableDataBaseManagerPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     dataSource = qobject_cast<IDataBaseSourcePlugin*>(pluginInfo->Instance);
+
     if(!dataSource)
     {
         qDebug() << pluginInfo->Meta->Name << "is not IDataBaseSourcePlugin.";
     }
+
     qDebug() << "IDataBaseSourcePlugin succesfully set.";
     dataSource->SetPassword("rqCZB63Fr7tmTB");
-    dataSource->UpdatePortsList();
+    dataSource->Setup();
 }
 
 void ExtendableDataBaseManagerPlugin::ReferencePluginClosed(PluginInfo *pluginInfo)
 {
-
 }
 
-bool ExtendableDataBaseManagerPlugin::RegisterDataTypeEditor(QString relation, QString field, QWidget *widget)
+bool ExtendableDataBaseManagerPlugin::RegisterExtentionFieldEditor(QString relation, QString field, QWidget *widget)
 {
     QVariant value = widget->property("value");
+
     if(widget == NULL || !value.isValid())
         return false;
 
@@ -57,22 +58,25 @@ bool ExtendableDataBaseManagerPlugin::RegisterDataTypeEditor(QString relation, Q
     field = field.toLower();
     dataTypeEditorsMap[relation].insert(field, widget);
 
-    foreach (auto table, tableHandlers) {
+    foreach (auto table, tableHandlers)
+    {
         if(table->HasRelation(relation))
             table->SetDataTypeEditor(relation, field, widget);
     }
 }
 
-QWidget *ExtendableDataBaseManagerPlugin::GetDataTypeEditor(QString relation, QString field)
+QWidget *ExtendableDataBaseManagerPlugin::GetExtentionFieldEditor(QString relation, QString field)
 {
     if(dataTypeEditorsMap.contains(relation) && dataTypeEditorsMap[relation].contains(field))
         return dataTypeEditorsMap[relation].value(field);
+
     return NULL;
 }
 
 void ExtendableDataBaseManagerPlugin::SetupTable(QString &tableName)
 {
     tableName = tableName.toLower();
+
     if(!tableHandlers.contains(tableName))
         tableHandlers[tableName] = new TableHandler(dataSource, this, tableName);
 }
@@ -92,22 +96,27 @@ IExtendableDataManager::ManagerDataItem ExtendableDataBaseManagerPlugin::GetData
 void ExtendableDataBaseManagerPlugin::SetupDataTypeEditors(QString tableName)
 {
     auto relationIter = dataTypeEditorsMap.begin();
+
     while(relationIter != dataTypeEditorsMap.end())
     {
         auto tablesIter = tableHandlers.begin();
+
         while(tablesIter != tableHandlers.end())
         {
             if(tablesIter.value()->HasRelation(relationIter.key()))
             {
                 auto fieldIter = relationIter.value().begin();
+
                 while(fieldIter != relationIter.value().end())
                 {
                     tableHandlers[tableName]->SetDataTypeEditor(relationIter.key(), fieldIter.key(), fieldIter.value());
                     ++fieldIter;
                 }
             }
+
             ++tablesIter;
         }
+
         ++relationIter;
     }
 }
@@ -120,28 +129,69 @@ QAbstractItemModel *ExtendableDataBaseManagerPlugin::GetDataModel(QString tableN
     return itemModel;
 }
 
+QAbstractItemModel *ExtendableDataBaseManagerPlugin::GetDataModel(QVector<QPair<QString, QString> > dataModelFields)
+{
+    auto iter = dataModelFields.begin();
+
+    while(iter != dataModelFields.end())
+    {
+        auto tableName = iter->first;
+
+        if(!tableHandlers.contains(tableName))
+        {
+            SetupTable(tableName);
+            SetupDataTypeEditors(tableName);
+        }
+
+        ++iter;
+    }
+
+    return CreateProxy(dataModelFields);
+}
+
+QAbstractItemModel * ExtendableDataBaseManagerPlugin::CreateProxy(QVector<QPair<QString, QString> > &dataModelFields)
+{
+    auto iter = dataModelFields.begin();
+
+    while(iter != dataModelFields.end())
+    {
+        auto tableName = iter->first;
+
+        if(!tableHandlers.contains(tableName))
+        {
+            SetupTable(tableName);
+            SetupDataTypeEditors(tableName);
+        }
+
+        ++iter;
+    }
+
+    //    QAbstractItemModel *itemModel = tableHandlers[tableName]->GetModel();
+}
+
 QMap<QString, QVariant::Type> ExtendableDataBaseManagerPlugin::GetTableHeader(QString tableName)
 {
     SetupTable(tableName);
     return tableHandlers[tableName]->GetHeader();
 }
 
-bool ExtendableDataBaseManagerPlugin::SetRelation(QString tableName, QString relationName, QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData)
+bool ExtendableDataBaseManagerPlugin::AddExtention(QString tableName, QString extentionName,
+        QMap<QString, QVariant::Type> fields, QVector<QVariant> defaultData)
 {
     SetupTable(tableName);
-    return tableHandlers[tableName]->SetRelation(relationName, fields, defaultData);
+    return tableHandlers[tableName]->SetRelation(extentionName, fields, defaultData);
 }
 
-bool ExtendableDataBaseManagerPlugin::DeleteRelation(QString tableName, QString relationName)
+bool ExtendableDataBaseManagerPlugin::DeleteExtention(QString tableName, QString extentionName)
 {
     SetupTable(tableName);
-    return tableHandlers[tableName]->DeleteRelation(relationName);
+    return tableHandlers[tableName]->DeleteRelation(extentionName);
 }
 
-bool ExtendableDataBaseManagerPlugin::SetActiveRelation(QString tableName, QString relationName)
+bool ExtendableDataBaseManagerPlugin::SetActiveExtention(QString tableName, QString extentionName)
 {
     SetupTable(tableName);
-    tableHandlers[tableName]->SetActiveRelation(relationName);
+    tableHandlers[tableName]->SetActiveRelation(extentionName);
     return true;
 }
 

@@ -4,27 +4,33 @@
 #include <QObject>
 #include <QDebug>
 #include <QString>
+#include <QTimer>
+#include <QDateTime>
+#include <QChartView>
 
 #include "iexperimentcontrolmodel.h"
+
+#include "QtCharts/QLineSeries"
 
 // Here you can include your related plugins interfaces
 // For example:
 // #include "../../[PluginTypes]/SomePlugin/isomeplugin.h"
 // [Plugin types]: DataSources, DataManagers, Models, Views
 
+#include "../../DataManagers/ArduinoSerialDataManager/iarduinoserialdatamanager.h"
 
 //! addtogroup ExperimentControlModel_imp
 //! {
 class ExperimentControlModel : public
-        QObject,
-        IExperimentControlModel
+    QObject,
+    IExperimentControlModel
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(
-            IModelPlugin
-            IExperimentControlModel
-            )
+        IModelPlugin
+        IExperimentControlModel
+    )
 
 public:
     ExperimentControlModel();
@@ -49,11 +55,8 @@ public slots:
     bool Open(IModelPlugin *model) override;
     void Close() override;
 
-
 private:
     PluginInfo *pluginInfo;
-
-    // ISomePlugin *myReferencedPlugin;
 
     PluginInfo *openedModel;
     QList< PluginInfo* > relatedModelPlugins;
@@ -61,7 +64,18 @@ private:
     QList< PluginInfo* > relatedViewPlugins;
 
 private:
-    // Write your internal methods here
+    IArduinoSerialDataManager *myReferencedPlugin;
+    QtCharts::QLineSeries lineSerie;
+    QTime dataRecieveTime;
+
+private slots:
+    void ProcessDataInput(int value);
+
+    // IExperimentControlModel interface
+public:
+    QLineSeries *GetLineSeries() override;
+    void StartExperiment() override;
+    void StopExperiment() override;
 };
 //! }
 #endif // EXPERIMENTCONTROLMODEL_H

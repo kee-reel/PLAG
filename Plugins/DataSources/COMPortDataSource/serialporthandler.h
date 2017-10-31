@@ -9,12 +9,12 @@
 
 #include "icomportdatasource.h"
 
-class QSerialPortHandler : public QSerialPort, ICOMPortDataSource::IPortHandler
+class SerialPortHandler : public QSerialPort, ICOMPortDataSource::ISerialPortHandler
 {
     Q_OBJECT
 public:
-    explicit QSerialPortHandler(QString portName, QObject *parent = nullptr);
-    virtual ~QSerialPortHandler();
+    explicit SerialPortHandler(QString portName, QObject *parent = nullptr);
+    virtual ~SerialPortHandler();
 
     bool IsSupported() const;
     void SetIsSupported(bool value);
@@ -31,12 +31,14 @@ private:
     // IPortHandler interface
 public:
     QObject *GetInstance() override;
+    QSerialPort *GetSerialPort() override;
     bool OpenPort(QIODevice::OpenMode openMode) override;
     void ClosePort() override;
 public slots:
-    void WriteData(QByteArray &data) override;
+    void WriteData(QByteArray data) override;
 signals:
     void ReadData(QByteArray *buffer);
+
 };
 
 #endif // QSERIALPORTHANDLER_H

@@ -11,7 +11,7 @@
 #include <QDateTime>
 
 #include "icomportdatasource.h"
-#include "qserialporthandler.h"
+#include "serialporthandler.h"
 
 // Here you can include your related plugins interfaces
 // For example: #include "../../Models/SomeModel/isomemodel.h"
@@ -51,23 +51,25 @@ public:
     //! \brief UpdatePortsList
     //! Update available and supported ports.
     //!
-    void UpdatePortsList() override;
+    void Setup() override;
 
 private:
     PluginInfo *pluginInfo;
 
 private: // Internal methods and fields:
-    QMap<QString, QSerialPortHandler*> portHandlers;
+    QMap<QString, SerialPortHandler*> portHandlers;
     QMap<QString, DeviceInfo> supportedDevices;
 
     bool CompareDeviceInfo(DeviceInfo device, ICOMPortDataSource::DeviceInfo &deviceInfo);
     bool IsDeviceSupported(ICOMPortDataSource::DeviceInfo &deviceInfo);
 
     // ICOMPortDataSource interface
+    void UpdateAvailablePorts();
+
 public:
     void AddSupportedDevice(QString deviceName, DeviceInfo &deviceInfo) override;
     QMap<QString, DeviceInfo> GetSupportedDevices() override;
-    QMap<QString, IPortHandler *> GetPortHandlers() override;
+    QMap<QString, ISerialPortHandler *> GetPortHandlers() override;
 
 signals:
     void OnNewInput(QByteArray *buffer);

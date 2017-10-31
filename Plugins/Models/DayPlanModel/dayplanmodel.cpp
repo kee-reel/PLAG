@@ -29,8 +29,8 @@ void DayPlanModel::OnAllSetup()
     };
     QVector<QVariant> defaultData;
     defaultData << QDateTime::currentDateTime().toString(Qt::ISODate);
-    dataManager->SetRelation(tableName, relationName, newRelationStruct, defaultData);
-    dataManager->SetRelation(relationName, relationName, newRelationStruct, defaultData);
+    dataManager->AddExtention(tableName, relationName, newRelationStruct, defaultData);
+    dataManager->AddExtention(relationName, relationName, newRelationStruct, defaultData);
 }
 
 QString DayPlanModel::GetLastError()
@@ -95,7 +95,7 @@ bool DayPlanModel::Open(IModelPlugin *parent)
 
     if(dataManager != NULL)
     {
-        dataManager->SetActiveRelation(tableName, relationName);
+        dataManager->SetActiveExtention(tableName, relationName);
     }
 
     return true;
@@ -134,5 +134,5 @@ QAbstractItemModel *DayPlanModel::GetDateModel()
 void DayPlanModel::SetDataTypeEditor(QWidget *widget)
 {
     if(dataManager)
-        dataManager->RegisterDataTypeEditor(relationName, "datetime", widget);
+        dataManager->RegisterExtentionFieldEditor(relationName, "datetime", widget);
 }

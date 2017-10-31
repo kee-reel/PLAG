@@ -1,0 +1,8 @@
+{
+    "Type": "DataManager",
+    "Interface": "IArduinoSerialDataManager",
+    "Name": "ArduinoSerialDataManager",
+    "RelatedPluginInterfaces": [
+        "ICOMPortDataSource"
+    ]
+}

@@ -16,7 +16,8 @@ class TableHandler
     typedef IExtendableDataManager::ManagerDataItem ManagerDataItem;
     typedef QMap<QString, QVariant::Type> TableStructMap;
 public:
-    QMap<QVariant::Type, QString> dataBaseTypesNames = {
+    QMap<QVariant::Type, QString> dataBaseTypesNames =
+    {
         {QVariant::Int,        "INTEGER"},
         {QVariant::String,     "VARCHAR"},
         {QVariant::DateTime,   "VARCHAR"},
@@ -44,8 +45,7 @@ public:
     QAbstractItemModel *GetModel();
     TableStructMap GetHeader();
     QVector<QVariant> GetRelationDefaultData(QString relationName);
-    QString GetHeaderString(TableStructMap &tableStruct, bool createRelation = false);
-    QString GetFieldsNames(QString tableName, TableStructMap &tableStruct, bool includeId = false);
+
 
 private:
     IDataBaseSourcePlugin *dataSource;
@@ -67,6 +67,8 @@ private:
     bool IsTableExists(QString tableName);
     bool IsTableHasRightStructure(QString tableName, TableStructMap &tableStruct);
     void CombineWholeTableStruct();
+    QString GetHeaderString(TableStructMap &tableStruct, bool createRelation = false);
+    QString GetFieldsNames(QString tableName, TableStructMap &tableStruct, bool includeId = false);
     void InstallModel();
 };
 //! \}

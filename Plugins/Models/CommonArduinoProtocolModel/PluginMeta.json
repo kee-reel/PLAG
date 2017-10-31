@@ -1,0 +1,8 @@
+{
+    "Type": "PluginModel",
+    "Interface": "ICommonArduinoProtocolModel",
+    "Name": "CommonArduinoProtocolModel",
+    "RelatedPluginInterfaces": [
+        "ICOMPortDataSource"
+    ]
+}

@@ -19,45 +19,56 @@ public:
     Item(Item *parent, int id, QString activeChunk, QMap<QString, QVector<QVariant>> dataChunks);
     ~Item();
 
-// Columns and rows
-    inline int ColumnCount() {
+    // Columns and rows
+    inline int ColumnCount()
+    {
         return activeChunk ? activeChunk->count() : 0;
     }
-    inline int GetRow() {
+    inline int GetRow()
+    {
         return parentItem ? parentItem->GetChildPosition(this) : 0;
     }
 
-// Childs
+    // Childs
     void DetachFromParent();
     void SetChilds(QList<Item *> childs);
+
+    void AddChild(Item *child,
 #ifdef Q_OS_ANDROID
-    void AddChild(Item *child, int row = INT_MAX);
+                  int row = INT_MAX);
 #else
-     void AddChild(Item *child, int row = INT32_MAX);
+                  int row = INT32_MAX);
 #endif
     void RemoveChild(Item *child);
     void RemoveChildAt(int row);
-    inline Item *GetChildAt(int row) {
+    inline Item *GetChildAt(int row)
+    {
         return childItems.count() > row ? childItems[row] : NULL;
     }
-    inline int ChildCount() {
+    inline int ChildCount()
+    {
         return childItems.count();
     }
-    inline int GetChildPosition(Item *item) {
+    inline int GetChildPosition(Item *item)
+    {
         return childItems.indexOf(item);
     }
-    inline bool HasParent() {
+    inline bool HasParent()
+    {
         return parentItem != 0;
     }
-    inline bool ParentIsRoot() {
+    inline bool ParentIsRoot()
+    {
         return parentItem ? !parentItem->HasParent() : false;
     }
-    inline Item *GetParent() {
+    inline Item *GetParent()
+    {
         return parentItem;
     }
 
-// Data
-    inline bool HasChunk(QString chunkName){
+    // Data
+    inline bool HasChunk(QString chunkName)
+    {
         return dataChunks.contains(chunkName);
     }
 
@@ -83,10 +94,12 @@ public:
     QVariant GetDecoration();
     void SetDecoration(QVariant pixmap);
 
-    inline int GetId() {
+    inline int GetId()
+    {
         return id;
     }
-    inline void SetId(int id) {
+    inline void SetId(int id)
+    {
         this->id = id;
     }
 

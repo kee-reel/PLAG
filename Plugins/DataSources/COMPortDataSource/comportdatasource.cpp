@@ -3,7 +3,7 @@
 COMPortDataSource::COMPortDataSource()
 {
     supportedDevices["ArduinoUno"] = DeviceInfo{9025, 67};
-    UpdatePortsList();
+    Setup();
 }
 
 COMPortDataSource::~COMPortDataSource()
@@ -24,6 +24,7 @@ void COMPortDataSource::SetPluginInfo(PluginInfo *pluginInfo)
 
 void COMPortDataSource::OnAllSetup()
 {
+    Setup();
 }
 
 QString COMPortDataSource::GetLastError()
@@ -56,7 +57,12 @@ void COMPortDataSource::ReferencePluginClosed(PluginInfo *pluginInfo)
 {
 }
 
-void COMPortDataSource::UpdatePortsList()
+void COMPortDataSource::Setup()
+{
+    UpdateAvailablePorts();
+}
+
+void COMPortDataSource::UpdateAvailablePorts()
 {
     QList<QSerialPortInfo> availablePorts = QSerialPortInfo::availablePorts();
     QList<QString> handledPortNames = portHandlers.keys();
@@ -68,11 +74,11 @@ void COMPortDataSource::UpdatePortsList()
         auto portName = port.portName();
         deviceInfoBuf.productId = port.productIdentifier();
         deviceInfoBuf.vendorId = port.vendorIdentifier();
-        QSerialPortHandler *portHandler;
+        SerialPortHandler *portHandler;
 
         if(!portHandlers.contains(portName))
         {
-            portHandler = new QSerialPortHandler(portName, this);
+            portHandler = new SerialPortHandler(portName, this);
             portHandlers.insert(portName, portHandler);
         }
         else
@@ -133,15 +139,15 @@ QMap<QString, ICOMPortDataSource::DeviceInfo> COMPortDataSource::GetSupportedDev
     return supportedDevices;
 }
 
-QMap<QString, ICOMPortDataSource::IPortHandler *> COMPortDataSource::GetPortHandlers()
+QMap<QString, ICOMPortDataSource::ISerialPortHandler *> COMPortDataSource::GetPortHandlers()
 {
-    QMap<QString, ICOMPortDataSource::IPortHandler *> convertedMap;
+    QMap<QString, ICOMPortDataSource::ISerialPortHandler *> convertedMap;
     auto iter = portHandlers.begin();
 
     while(iter != portHandlers.end())
     {
         if(iter.value()->IsSupported())
-            convertedMap.insert(iter.key(), (ICOMPortDataSource::IPortHandler*)iter.value());
+            convertedMap.insert(iter.key(), (ICOMPortDataSource::ISerialPortHandler*)iter.value());
 
         ++iter;
     }

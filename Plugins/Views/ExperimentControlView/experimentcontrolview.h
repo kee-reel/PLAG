@@ -5,8 +5,11 @@
 #include <QDebug>
 #include <QString>
 
-namespace Ui {
-    class Form;
+#include <QtCharts>
+
+namespace Ui
+{
+class Form;
 }
 
 
@@ -21,15 +24,15 @@ namespace Ui {
 //! addtogroup ExperimentControlView_imp
 //! {
 class ExperimentControlView : public
-        QWidget,
-        IExperimentControlView
+    QWidget,
+    IExperimentControlView
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(
-            IViewPlugin
-            IExperimentControlView
-            )
+        IViewPlugin
+        IExperimentControlView
+    )
 
 public:
     explicit ExperimentControlView(QWidget *parent = 0);
@@ -62,10 +65,10 @@ private:
 
     IExperimentControlModel *myReferencedPlugin;
 
-
 private:
     // Write your internal methods here
     Ui::Form *ui;
+    QChart dataChart;
 };
 //! }
 #endif // EXPERIMENTCONTROLVIEW_H

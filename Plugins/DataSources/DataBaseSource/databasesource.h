@@ -42,7 +42,7 @@ public slots:
 
     // IDataSourcePlugin interface
 public:
-    void UpdatePortsList() override;
+    void Setup() override;
 
     // IDataBaseSourcePlugin interface
 public:

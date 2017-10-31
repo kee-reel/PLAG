@@ -3,7 +3,8 @@
 
 #include "../../interfaces.h"
 #include <QtGlobal>
-#include <QIODevice>
+#include <QSerialPort>
+
 class QSerialPortInfo;
 class QMetaObject;
 class QMetaObject::Connection;
@@ -29,14 +30,17 @@ public:
         quint16 productId;
     };
 
-    class IPortHandler
+    class ISerialPortHandler
     {
     public:
+        DeviceInfo connectedDeviceInfo;
+
         virtual QObject *GetInstance() = 0;
+        virtual QSerialPort *GetSerialPort() = 0;
         virtual bool OpenPort(QIODevice::OpenMode openMode) = 0;
         virtual void ClosePort() = 0;
     public slots:
-        virtual void WriteData(QByteArray &data) = 0;
+        virtual void WriteData(QByteArray data) = 0;
     signals:
         //!
         //! \brief ReadData
@@ -46,9 +50,9 @@ public:
         void ReadData(QByteArray *buffer);
     };
 
-    virtual void AddSupportedDevice(QString deviceName, ICOMPortDataSource::DeviceInfo &deviceInfo) = 0;
+    virtual void AddSupportedDevice(QString deviceName, DeviceInfo &deviceInfo) = 0;
     virtual QMap<QString, DeviceInfo> GetSupportedDevices() = 0;
-    virtual QMap<QString, IPortHandler*> GetPortHandlers() = 0;
+    virtual QMap<QString, ISerialPortHandler*> GetPortHandlers() = 0;
 };
 //! }
 Q_DECLARE_INTERFACE(ICOMPortDataSource, "ICOMPortDataSource")

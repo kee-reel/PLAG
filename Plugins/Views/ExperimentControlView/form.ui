@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>714</width>
-    <height>457</height>
+    <width>920</width>
+    <height>524</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -200,7 +200,7 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <widget class="QCustomPlot" name="customPlot" native="true">
+         <widget class="QChartView" name="dataChartView" native="true">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -210,54 +210,29 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QLabel" name="label_5">
-            <property name="minimumSize">
-             <size>
-              <width>110</width>
-              <height>0</height>
-             </size>
-            </property>
+           <widget class="QPushButton" name="buttonStart">
             <property name="text">
-             <string>Plot scale</string>
+             <string>Start</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSlider" name="horizontalPlotScroll">
-            <property name="maximum">
-             <number>100</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+           <widget class="QPushButton" name="buttonStop">
+            <property name="text">
+             <string>Stop</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_6">
-            <property name="minimumSize">
-             <size>
-              <width>45</width>
-              <height>0</height>
-             </size>
-            </property>
+           <widget class="QPushButton" name="buttonExit">
             <property name="text">
-             <string>0</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <string>Exit</string>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="buttonExit">
-          <property name="text">
-           <string>Exit</string>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>
@@ -268,9 +243,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QCustomPlot</class>
+   <class>QChartView</class>
    <extends>QWidget</extends>
-   <header>qcustomplot.h</header>
+   <header location="global">QtCharts</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

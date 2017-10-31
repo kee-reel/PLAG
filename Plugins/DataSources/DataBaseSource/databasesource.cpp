@@ -77,7 +77,7 @@ void DataBaseSourcePlugin::SetPassword(QString password)
     this->password = password;
 }
 
-void DataBaseSourcePlugin::UpdatePortsList()
+void DataBaseSourcePlugin::Setup()
 {
     if(dbconn.isOpen())
     {

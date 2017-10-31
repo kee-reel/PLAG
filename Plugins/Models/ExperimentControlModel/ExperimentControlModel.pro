@@ -1,7 +1,7 @@
 
 TARGET = ExperimentControlModel
 TEMPLATE = lib
-QT += widgets
+QT += widgets charts
 
 SOURCES += \
     experimentcontrolmodel.cpp

@@ -31,7 +31,7 @@ void PomodoroModel::OnAllSetup()
     };
     QVector<QVariant> defaultData;
     defaultData << 0;
-    dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
+    dataManager->AddExtention(tableName, coreRelationName, newRelationStruct, defaultData);
 }
 
 QString PomodoroModel::GetLastError()
@@ -154,7 +154,7 @@ void PomodoroModel::SetupModel()
 {
     if(!dataManager) return;
     taskModel = dataManager->GetDataModel(tableName);
-    dataManager->SetActiveRelation(tableName, coreRelationName);
+    dataManager->SetActiveExtention(tableName, coreRelationName);
 }
 
 void PomodoroModel::OnTimerEnded(int timerId)

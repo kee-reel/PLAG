@@ -1,8 +1,8 @@
 #include "extendableitemmodel.h"
 
 ExtendableItemModel::ExtendableItemModel(QString tableName,
-                                     IExtendableDataManager* dataManager,
-                                     QObject *parent)
+        IExtendableDataManager* dataManager,
+        QObject *parent)
 {
     this->tableName = tableName;
     this->dataManager = dataManager;
@@ -18,36 +18,37 @@ ExtendableItemModel::~ExtendableItemModel()
 void ExtendableItemModel::LoadData()
 {
     qDebug() << "Load data";
-    if(rootItem) return;
+
+    if(rootItem)
+        return;
 
     rootItem = new Item(NULL, &defaultTask);
-
-    QMap<QString, QVariant::Type> newRelationStruct = {
+    QMap<QString, QVariant::Type> newRelationStruct =
+    {
         {"parent",      QVariant::Int},
         {"position",    QVariant::Int}
     };
     QVector<QVariant> defaultData = {-1, 0};
-    dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
+    dataManager->AddExtention(tableName, coreRelationName, newRelationStruct, defaultData);
     defaultTask.SetChunkData(coreRelationName, defaultData);
-
     QStringList relationFields = newRelationStruct.keys();
     parentIndex = relationFields.indexOf("parent");
     positionIndex = relationFields.indexOf("position");
-
     QList<ManagerDataItem> managerList = dataManager->GetDataList(tableName);
     // Item Id -> Item children.
     QMap<int, QMap<int, Item*>> internalTree;
-
-
     // Convert data manager list to internal list.
     QList<QString> chunksNames;
-    if(managerList.count() > 0) chunksNames = managerList.first().dataChunks.keys();
+
+    if(managerList.count() > 0)
+        chunksNames = managerList.first().dataChunks.keys();
+
     for(int i = 0; i < managerList.count(); i++)
     {
         Item *treeItem = new Item();
         ManagerDataItem *managerItemInfo = &managerList[i];
-
         treeItem->SetId(managerItemInfo->id);
+
         for(int chunksIter = 0; chunksIter < chunksNames.count(); ++chunksIter)
         {
             if(chunksNames[chunksIter] == coreRelationName)
@@ -55,13 +56,16 @@ void ExtendableItemModel::LoadData()
                 QVector<QVariant> *dataChunk = &(managerItemInfo->dataChunks[coreRelationName]);
                 internalTree[dataChunk->at(parentIndex).toInt()].insertMulti(dataChunk->at(positionIndex).toInt(), treeItem);
             }
+
             treeItem->SetChunkData(chunksNames[chunksIter], managerItemInfo->dataChunks[chunksNames[chunksIter]]);
         }
+
         internalList.insert(managerItemInfo->id, treeItem);
     }
 
     // Link list to tree
     QList<int> keys = internalTree.keys();
+
     for(int i = 0; i < keys.count(); i++)
     {
         Item* parent = (internalList.contains(keys[i])) ? internalList[keys[i]] : rootItem;
@@ -73,16 +77,19 @@ void ExtendableItemModel::LoadData()
 bool ExtendableItemModel::AttachRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData)
 {
     defaultTask.SetChunkData(relationName, defaultData);
-
     auto list = fields.keys();
     QVector<QVariant> varList;
     QVector<QVariant> emptyData;
+
     foreach (auto elem, list)
         varList.append(QVariant(elem));
+
     emptyData.resize(list.length());
     header.SetChunkData(relationName, varList);
+
     if(!dataTypeEditors.HasChunk(relationName))
         dataTypeEditors.SetChunkData(relationName, emptyData);
+
     return true;
 }
 
@@ -90,8 +97,10 @@ void ExtendableItemModel::SetActiveRelation(QString relationName)
 {
     qDebug() << "===SetActiveRelation===" << relationName;
     QList<Item*> keys = internalList.values();
+
     for(int i = 0; i < keys.count(); ++i)
         keys[i]->SetOneChunkActive(relationName);
+
     currentActiveChunkName = relationName;
     defaultTask.SetOneChunkActive(relationName);
     header.SetOneChunkActive(relationName);
@@ -101,6 +110,7 @@ void ExtendableItemModel::SetDataTypeEditor(QString dataChunk, QString fieldName
 {
     QVector<QVariant> data = dataTypeEditors.GetChunkData(dataChunk);
     auto chunkHeader = header.GetChunkData(dataChunk);
+
     if(data.length() == 0)
         data.resize(chunkHeader.length());
 
@@ -109,6 +119,7 @@ void ExtendableItemModel::SetDataTypeEditor(QString dataChunk, QString fieldName
         if(chunkHeader[i] == fieldName)
             data[i] = QVariant::fromValue((void*)widget);
     }
+
     dataTypeEditors.SetChunkData(dataChunk, data);
 }
 
@@ -118,20 +129,24 @@ QVariant ExtendableItemModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     Item *item = static_cast<Item*>(index.internalPointer());
-    switch (role) {
-    case Qt::DisplayRole:
-        return item->GetChunkDataElement(index.column());
-        break;
-    case Qt::EditRole:
-        return item->GetChunkDataElement(index.column());
-        break;
-//    case Qt::DecorationRole:
-//        qDebug() << "Get DecorationRole";
-//        return item->GetDecoration();
-//        break;
-    default:
-        return QVariant();
-        break;
+
+    switch (role)
+    {
+        case Qt::DisplayRole:
+            return item->GetChunkDataElement(index.column());
+            break;
+
+        case Qt::EditRole:
+            return item->GetChunkDataElement(index.column());
+            break;
+
+        //    case Qt::DecorationRole:
+        //        qDebug() << "Get DecorationRole";
+        //        return item->GetDecoration();
+        //        break;
+        default:
+            return QVariant();
+            break;
     }
 }
 
@@ -140,20 +155,25 @@ QMap<QString, QVariant> ExtendableItemModel::ConvertToHeadedMap(QMap<QString, QV
     QMap<QString, QVariant> chunksMap;
     auto valuesNamesIter = headerMap.begin();
     auto valuesIter = valuesMap.begin();
+
     while(valuesNamesIter != headerMap.end() || valuesIter != valuesMap.end())
     {
         QString chunkName = valuesNamesIter.key();
         QList<QVariant> valuesNamesList = valuesNamesIter.value().toList();
         QList<QVariant> valuesList = valuesIter.value().toList();
+
         if(valuesNamesList.length() == valuesList.length())
         {
             QMap<QString, QVariant> headedValuesMap;
+
             for(int i = 0; i < valuesNamesList.length(); ++i)
                 headedValuesMap.insert(valuesNamesList[i].toString(), valuesList[i]);
+
             chunksMap.insert(chunkName, QVariant(headedValuesMap));
         }
         else
             qCritical() << "Well... Shit! Chunk" << chunkName << "is corrupted :c";
+
         ++valuesNamesIter;
         ++valuesIter;
     }
@@ -170,13 +190,10 @@ QMap<int, QVariant> ExtendableItemModel::itemData(const QModelIndex &index) cons
     Item *item = static_cast<Item*>(index.internalPointer());
     auto headerMap = header.GetChunksData();
     auto valuesMap = item->GetChunksData();
-
     // Because for which reason internal data could be needed by user?
     headerMap.remove(coreRelationName);
     valuesMap.remove(coreRelationName);
-
     QMap<QString, QVariant> chunksMap = ConvertToHeadedMap(headerMap, valuesMap);
-
     result.insert(Qt::UserRole, QVariant(chunksMap));
     return result;
 }
@@ -185,6 +202,7 @@ QMap<QString, QVariant> ExtendableItemModel::ConvertFromHeadedMap(QMap<QString, 
 {
     QMap<QString, QVariant> convertedMap;
     auto iter = dataMap.begin();
+
     while(iter != dataMap.end())
     {
         auto headedValuesMap = iter.value().toMap();
@@ -198,18 +216,22 @@ QMap<QString, QVariant> ExtendableItemModel::ConvertFromHeadedMap(QMap<QString, 
 
 bool ExtendableItemModel::setItemData(const QModelIndex &index, const QMap<int, QVariant> &roles)
 {
-    if (!index.isValid()) return false;
-    if(!roles.contains(Qt::UserRole)) return QAbstractItemModel::setItemData(index, roles);
+    if (!index.isValid())
+        return false;
+
+    if(!roles.contains(Qt::UserRole))
+        return QAbstractItemModel::setItemData(index, roles);
+
     Item *item = static_cast<Item*>(index.internalPointer());
-    if(item == NULL) return false;
+
+    if(item == NULL)
+        return false;
 
     QMap<QString, QVariant> dataMap = roles[Qt::UserRole].toMap();
     QMap<QString, QVariant> convertedMap = ConvertFromHeadedMap(dataMap);
-
     item->SetChunksData(convertedMap);
     UpdateItem(item);
-//    emit dataChanged(index, index);
-
+    //    emit dataChanged(index, index);
     return QAbstractItemModel::setItemData(index, roles);
 }
 
@@ -223,28 +245,34 @@ Qt::ItemFlags ExtendableItemModel::flags(const QModelIndex &index) const
 
 QVariant ExtendableItemModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    switch (role) {
-    case Qt::DisplayRole:
-        return header.GetChunkName(section);
-        break;
-    case Qt::ToolTipRole:
-        return rootItem->GetId();
-        break;
-    case Qt::EditRole:
-        return rootItem->GetChunkDataElement(section);
-        break;
-    case Qt::UserRole:{
-        auto headerMap = header.GetChunksData();
-        auto valuesMap = dataTypeEditors.GetChunksData();
-        // Because for which reason internal data could be needed by user?
-        headerMap.remove(coreRelationName);
-        valuesMap.remove(coreRelationName);
-        QMap<QString, QVariant> dataEditorsMap = ConvertToHeadedMap(headerMap, valuesMap);
-        return QVariant(dataEditorsMap);
-        }break;
-    default:
-        return QVariant();
-        break;
+    switch (role)
+    {
+        case Qt::DisplayRole:
+            return header.GetChunkName(section);
+            break;
+
+        case Qt::ToolTipRole:
+            return rootItem->GetId();
+            break;
+
+        case Qt::EditRole:
+            return rootItem->GetChunkDataElement(section);
+            break;
+
+        case Qt::UserRole:
+            {
+                auto headerMap = header.GetChunksData();
+                auto valuesMap = dataTypeEditors.GetChunksData();
+                // Because for which reason internal data could be needed by user?
+                headerMap.remove(coreRelationName);
+                valuesMap.remove(coreRelationName);
+                QMap<QString, QVariant> dataEditorsMap = ConvertToHeadedMap(headerMap, valuesMap);
+                return QVariant(dataEditorsMap);
+            } break;
+
+        default:
+            return QVariant();
+            break;
     }
 
     return QVariant();
@@ -266,6 +294,7 @@ QModelIndex ExtendableItemModel::index(int row, int column, const QModelIndex &p
         parentItem = static_cast<Item*>(parent.internalPointer());
 
     Item *childItem = parentItem->GetChildAt(row);
+
     if (childItem)
         return createIndex(row, column, childItem);
     else
@@ -278,6 +307,7 @@ QModelIndex ExtendableItemModel::parent(const QModelIndex &index) const
         return QModelIndex();
 
     Item *childItem = static_cast<Item*>(index.internalPointer());
+
     if (childItem->ParentIsRoot() || !childItem->HasParent())
         return QModelIndex();
 
@@ -305,7 +335,9 @@ bool ExtendableItemModel::insertRows(int row, int count, const QModelIndex &pare
     Item *parentItem;
     parentItem = (!parent.isValid()) ? rootItem : static_cast<Item*>(parent.internalPointer());
 
-    if(row == -1 || row >= parentItem->ChildCount()) row = parentItem->ChildCount();
+    if(row == -1 || row >= parentItem->ChildCount())
+        row = parentItem->ChildCount();
+
     beginInsertRows(parent, row, row+count);
     Item *childItem = AddItem(row, parentItem);
     endInsertRows();
@@ -322,10 +354,11 @@ bool ExtendableItemModel::removeRows(int row, int count, const QModelIndex &pare
     beginRemoveRows(parent, row, row+count);
     Item *parentItem;
     parentItem = (!parent.isValid()) ? rootItem : static_cast<Item*>(parent.internalPointer());
-
     Item *item = parentItem->GetChildAt(row);
+
     if(item)
         DeleteItem(item);
+
     endRemoveRows();
     return true;
 }
@@ -334,7 +367,6 @@ bool ExtendableItemModel::moveRows(const QModelIndex &sourceParent, int sourceRo
 {
     qDebug() << "moveRows" << sourceParent << sourceRow << count << destinationParent << destinationChild;
     int sourceLast = sourceRow+count;
-
     Item *sourceParentItem = (!sourceParent.isValid()) ? rootItem : static_cast<Item*>(sourceParent.internalPointer());
     Item *destinationParentItem = (!destinationParent.isValid()) ? rootItem : static_cast<Item*>(destinationParent.internalPointer());
     Item *destinationChildItem = destinationParentItem->GetChildAt(destinationChild);
@@ -350,8 +382,8 @@ bool ExtendableItemModel::moveRows(const QModelIndex &sourceParent, int sourceRo
     for(int i = sourceRow; i <= sourceLast; ++i)
     {
         movingItems.append(sourceParentItem->GetChildAt(i));
-//        sourceParentItem->RemoveChildAt(i);
-//        destinationParentItem->AddChild(movingItems.last());
+        //        sourceParentItem->RemoveChildAt(i);
+        //        destinationParentItem->AddChild(movingItems.last());
     }
 
     destinationChild = destinationChildItem ? destinationChildItem->GetRow() : destinationChild;
@@ -370,18 +402,21 @@ bool ExtendableItemModel::setData(const QModelIndex &index, const QVariant &valu
 {
     qDebug() << "setData" << index.row() << index.column() << index.data() << value;
     Item *item = (!index.isValid()) ? rootItem : static_cast<Item*>(index.internalPointer());
-    switch (role) {
-    case Qt::EditRole:
-        item->SetChunkDataElement(index.column(), value);
-        UpdateItem(item);
-        emit dataChanged(index, index);
-        break;
-//    case Qt::DecorationRole:
-//        qDebug() << "Set DecorationRole";
-//        item->SetDecoration(value);
-//        break;
-    default:
-        break;
+
+    switch (role)
+    {
+        case Qt::EditRole:
+            item->SetChunkDataElement(index.column(), value);
+            UpdateItem(item);
+            emit dataChanged(index, index);
+            break;
+
+        //    case Qt::DecorationRole:
+        //        qDebug() << "Set DecorationRole";
+        //        item->SetDecoration(value);
+        //        break;
+        default:
+            break;
     }
 
     return true;
@@ -399,20 +434,22 @@ QMimeData *ExtendableItemModel::mimeData(const QModelIndexList &indexes) const
     qDebug() << "mimeData" << indexes.count();
     QMimeData *mimeData = new QMimeData();
     QByteArray encodedData;
-
     QDataStream stream(&encodedData, QIODevice::WriteOnly);
     stream << (quintptr)this;
-    foreach (const QModelIndex &index, indexes) {
-        if (index.isValid()) {
+
+    foreach (const QModelIndex &index, indexes)
+    {
+        if (index.isValid())
+        {
             int row = index.row();
             int column = index.column();
             quintptr indexPtr = (quintptr)index.internalPointer();
             quintptr parentPtr = (quintptr)index.parent().internalPointer();
-
             qDebug() << row << column << indexPtr << parentPtr;
             stream << row << column << indexPtr << parentPtr;
         }
     }
+
     mimeData->setData("application/vnd.text.list", encodedData);
     return mimeData;
 }
@@ -420,6 +457,7 @@ QMimeData *ExtendableItemModel::mimeData(const QModelIndexList &indexes) const
 bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
 {
     qDebug() << "dropMimeData" << row << column << parent;
+
     if (action == Qt::IgnoreAction)
         return true;
 
@@ -428,6 +466,7 @@ bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction act
 
     if (column > 0)
         return false;
+
     int beginRow;
 
     if (row != -1)
@@ -439,13 +478,13 @@ bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction act
 
     QByteArray encodedData = data->data("application/vnd.text.list");
     QDataStream stream(&encodedData, QIODevice::ReadOnly);
-
     qintptr modelPtr = NULL;
     stream >> modelPtr;
-
     QMap<quintptr, QMap<int, quintptr>> newItems;
     int rows = 0;
-    while (!stream.atEnd()) {
+
+    while (!stream.atEnd())
+    {
         int row;
         int column;
         quintptr idxPtr;
@@ -454,7 +493,6 @@ bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction act
         stream >> column;
         stream >> idxPtr;
         stream >> parentPtr;
-
         qDebug() << row << column << idxPtr << parentPtr;
         newItems[parentPtr][row] = idxPtr;
         qDebug() << newItems.count();
@@ -470,6 +508,7 @@ bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction act
         qDebug() << "!Another model!";
         return false;
     }
+
     return true;
 }
 
@@ -479,6 +518,7 @@ void ExtendableItemModel::ReadSameModelMime(int beginRow, int row, const QModelI
     QModelIndex blockFirstIdx;
     QModelIndex parentIdx;
     Item *blockFirstItem;
+
     if(!parent.isValid())
     {
         parentIdx = createIndex(-1, -1, newItems.begin().key());
@@ -488,6 +528,7 @@ void ExtendableItemModel::ReadSameModelMime(int beginRow, int row, const QModelI
         parentIdx = parent;
 
     QMap<quintptr, QMap<int, quintptr>>::Iterator parentI = newItems.begin();
+
     while(parentI != newItems.end())
     {
         qDebug() << "parentI" << parentI.key();
@@ -497,11 +538,14 @@ void ExtendableItemModel::ReadSameModelMime(int beginRow, int row, const QModelI
         int itemsBlock = 0;
         int prevRow = -1;
         blockFirstItem = NULL;
+
         while(rowsI != rows.end())
         {
             qDebug() << "rowsI" << rowsI.key();
             bufIdx = createIndex(rowsI.key(), 0, rowsI.value());
-            if(itemsBlock == 0) blockFirstIdx = bufIdx;
+
+            if(itemsBlock == 0)
+                blockFirstIdx = bufIdx;
 
             if( prevRow != -1 && (prevRow != rowsI.key()-1) )
             {
@@ -511,6 +555,7 @@ void ExtendableItemModel::ReadSameModelMime(int beginRow, int row, const QModelI
                 blockFirstIdx = bufIdx;
                 itemsBlock = 0;
             }
+
             if(rowsI == lastRowI)
             {
                 qDebug() << "First";
@@ -523,9 +568,11 @@ void ExtendableItemModel::ReadSameModelMime(int beginRow, int row, const QModelI
             ++itemsBlock;
             ++rowsI;
         }
+
         UpdateItemsPosition((Item*)parentI.key(), rows.begin().key());
         ++parentI;
     }
+
     UpdateItemsPosition((Item*)parent.internalPointer(), (row == -1) ? 0 : row);
 }
 
@@ -536,12 +583,18 @@ Item *ExtendableItemModel::AddItem(int row, Item *taskParent, Item* taskData)
         qDebug() << "Data manager not set!";
         return false;
     }
-    if(!taskParent) taskParent = rootItem;
-    if(!taskData) taskData = &defaultTask;
+
+    if(!taskParent)
+        taskParent = rootItem;
+
+    if(!taskData)
+        taskData = &defaultTask;
 
     qDebug() << "Add task";
     Item *newTask = new Item(taskParent, taskData);
-    if(taskParent) taskParent->AddChild(newTask, row);
+
+    if(taskParent)
+        taskParent->AddChild(newTask, row);
 
     int newTaskId = dataManager->AddItem(tableName, *newTask);
     newTask->SetId(newTaskId);
@@ -553,10 +606,13 @@ Item *ExtendableItemModel::AddItem(int row, Item *taskParent, Item* taskData)
 bool ExtendableItemModel::UpdateItem(Item *task)
 {
     qDebug() << "EditTask";
-    if(!dataManager){
+
+    if(!dataManager)
+    {
         qDebug() << "Data manager not set!";
         return false;
     }
+
     dataManager->UpdateItem(tableName, *task);
 }
 
@@ -568,7 +624,9 @@ bool ExtendableItemModel::UpdateItemsPosition(Item *parent, int from)
         return false;
     }
 
-    if(!parent) parent = rootItem;
+    if(!parent)
+        parent = rootItem;
+
     int to = parent->ChildCount();
     qDebug() << "UpdateTaskPositions" << parent << parent->GetChunkDataElement(0) << from;
 
@@ -583,12 +641,16 @@ bool ExtendableItemModel::UpdateItemsPosition(Item *parent, int from)
 bool ExtendableItemModel::DeleteItem(Item *task)
 {
     qDebug() << "DeleteTask";
+
     if(!dataManager)
     {
         qDebug() << "Data manager not set!";
         return false;
     }
-    if(!task) return false;
+
+    if(!task)
+        return false;
+
     task->DetachFromParent();
     DeleteFromManagerRecursive(task);
 }

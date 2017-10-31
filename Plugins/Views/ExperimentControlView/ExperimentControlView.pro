@@ -1,16 +1,14 @@
 
 TARGET = ExperimentControlView
 TEMPLATE = lib
-QT += widgets
+QT += widgets charts
 
 SOURCES += \
-    experimentcontrolview.cpp \
-    qcustomplot.cpp
+    experimentcontrolview.cpp
 
 HEADERS +=\
     iexperimentcontrolview.h \
-    experimentcontrolview.h \
-    qcustomplot.h
+    experimentcontrolview.h
 
 DISTFILES += \
     PluginMeta.json
