@@ -6,18 +6,15 @@
 #include <QString>
 #include <QTimer>
 #include <QDateTime>
-#include <QChartView>
 
 #include "iexperimentcontrolmodel.h"
-
-#include "QtCharts/QLineSeries"
 
 // Here you can include your related plugins interfaces
 // For example:
 // #include "../../[PluginTypes]/SomePlugin/isomeplugin.h"
 // [Plugin types]: DataSources, DataManagers, Models, Views
 
-#include "../../DataManagers/ArduinoSerialDataManager/iarduinoserialdatamanager.h"
+#include "../../DataManagers/ModbusDeviceDataManager/imodbusdevicedatamanager.h"
 
 //! addtogroup ExperimentControlModel_imp
 //! {
@@ -55,6 +52,15 @@ public slots:
     bool Open(IModelPlugin *model) override;
     void Close() override;
 
+    // IExperimentControlModel interface
+public:
+    QList<IExperimentSetup *> GetAvailableExperimentSetups() override;
+    void StartExperiment(IExperimentSetup *setup) override;
+    void StopExperiment() override;
+
+signals:
+    void ErrorOccurred(QString error);
+
 private:
     PluginInfo *pluginInfo;
 
@@ -64,18 +70,15 @@ private:
     QList< PluginInfo* > relatedViewPlugins;
 
 private:
-    IArduinoSerialDataManager *myReferencedPlugin;
+    IModbusDeviceDataManager *myReferencedPlugin;
     QtCharts::QLineSeries lineSerie;
     QTime dataRecieveTime;
+    QList<IExperimentSetup *> experimentSetups;
+    QList<IModbusDeviceDataManager::IModbusDeviceHandler*> deviceHandlers;
 
 private slots:
-    void ProcessDataInput(int value);
+    void ProcessDataInput(QModbusDataUnit::RegisterType dataType, const QVector<quint16> &data);
 
-    // IExperimentControlModel interface
-public:
-    QLineSeries *GetLineSeries() override;
-    void StartExperiment() override;
-    void StopExperiment() override;
 };
 //! }
 #endif // EXPERIMENTCONTROLMODEL_H

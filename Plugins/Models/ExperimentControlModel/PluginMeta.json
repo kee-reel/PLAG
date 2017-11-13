@@ -3,7 +3,7 @@
     "Interface": "IExperimentControlModel",
     "Name": "ExperimentControlModel",
     "RelatedPluginInterfaces": [
-        "IArduinoSerialDataManager",
+        "IModbusDeviceDataManager",
         "IMainMenuModel"
     ]
 }

@@ -47,6 +47,8 @@ signals:
 
     // IArduinoSerialDataManager interface
 public:
+    QMap<QString, QList<PinMode> > GetAvailablePins() override;
+
     void SetPinMode(int pin, PinMode pinMode) override;
     void DigitalWrite(int pin, DigitalValue value) override;
     void AnalogWrite(int pin, int value) override;
@@ -65,9 +67,26 @@ signals:
     void ReadTimeSinceDeviceStartValue(int value);
 
 private:
+    enum ArduinoPins
+    {
+        A0,
+        A1,
+        A2,
+        A3,
+        A4,
+        A5,
+
+        D1,
+        D2,
+        D3,
+        D4,
+    };
+
     PluginInfo *pluginInfo;
     ICOMPortDataSource* myReferencedPlugin;
     ICOMPortDataSource::ISerialPortHandler *arduinoPort;
+    ICOMPortDataSource::DeviceInfo ArduinoUnoDevice;
+    QMap<QString, QList<IArduinoSerialDataManager::PinMode> > predefinedPins;
 
     QRegExp inputParser;
     QString messageBuffer;
@@ -80,6 +99,7 @@ private:
 
 private slots:
     void ReadPortData(QByteArray *buffer);
+
 };
 //! }
 #endif // ARDUINOSERIALDATAMANAGER_H

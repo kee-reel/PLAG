@@ -5,10 +5,6 @@
 #include <QtGlobal>
 #include <QSerialPort>
 
-class QSerialPortInfo;
-class QMetaObject;
-class QMetaObject::Connection;
-
 //! defgroup COMPortDataSource
 //!     ingroup MainMenuPlugin_rel_m
 //! defgroup COMPortDataSource_int Interface

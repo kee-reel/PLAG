@@ -12,14 +12,14 @@ ExperimentControlView::ExperimentControlView(QWidget *parent) :
     dataChart.setTitle("Simple line dataChart example");
     ui->dataChartView->setChart(&dataChart);
     ui->dataChartView->setRenderHint(QPainter::Antialiasing);
-    connect(ui->buttonStart, &QPushButton::clicked, this, [=]()
-    {
-        myReferencedPlugin->StartExperiment();
-    });
-    connect(ui->buttonStop, &QPushButton::clicked, this, [=]()
-    {
-        myReferencedPlugin->StopExperiment();
-    });
+    //    connect(ui->buttonStart, &QPushButton::clicked, this, [=]()
+    //    {
+    //        myReferencedPlugin->StartExperiment();
+    //    });
+    //    connect(ui->buttonStop, &QPushButton::clicked, this, [=]()
+    //    {
+    //        myReferencedPlugin->StopExperiment();
+    //    });
 }
 
 ExperimentControlView::~ExperimentControlView()
@@ -56,39 +56,39 @@ void ExperimentControlView::AddReferencePlugin(PluginInfo *pluginInfo)
     switch(pluginInfo->Meta->Type)
     {
         case PLUGINVIEW:
-            {
-            } break;
+        {
+        } break;
 
         case PLUGINMODEL:
+        {
+            myReferencedPlugin = qobject_cast<IExperimentControlModel*>(pluginInfo->Instance);
+
+            if(!myReferencedPlugin)
             {
-                myReferencedPlugin = qobject_cast<IExperimentControlModel*>(pluginInfo->Instance);
+                qDebug() << pluginInfo->Meta->Name << "is not ISomePlugin.";
+                return;
+            }
 
-                if(!myReferencedPlugin)
-                {
-                    qDebug() << pluginInfo->Meta->Name << "is not ISomePlugin.";
-                    return;
-                }
-
-                qDebug() << "ISomePlugin succesfully set.";
-                myReferencedPlugin->AddReferencePlugin(this->pluginInfo);
-                connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
-                auto lineSeries = myReferencedPlugin->GetLineSeries();
-                dataChart.addSeries(lineSeries);
-                dataChart.createDefaultAxes();
-                dataChart.axisY()->setRange(0, 1024);
-                connect(lineSeries, &QLineSeries::pointAdded, this, [=](int index)
-                {
-                    dataChart.axisX()->setRange(0, lineSeries->at(index).x());
-                });
-            } break;
+            qDebug() << "ISomePlugin succesfully set.";
+            myReferencedPlugin->AddReferencePlugin(this->pluginInfo);
+            connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+            //            auto lineSeries = myReferencedPlugin->GetLineSeries();
+            //            dataChart.addSeries(lineSeries);
+            //            dataChart.createDefaultAxes();
+            //            dataChart.axisY()->setRange(0, 1024);
+            //            connect(lineSeries, &QLineSeries::pointAdded, this, [=](int index)
+            //            {
+            //                dataChart.axisX()->setRange(0, lineSeries->at(index).x());
+            //            });
+        } break;
 
         case ROOTMODEL:
-            {
-            } break;
+        {
+        } break;
 
         case DATAMANAGER:
-            {
-            } break;
+        {
+        } break;
     }
 }
 

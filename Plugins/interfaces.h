@@ -3,6 +3,7 @@
 
 #include "../../../Application/MASS/rootinterface.h"
 #include <QtGlobal>
+#include <QObject>
 
 class QSqlDatabase;
 class QSqlQuery;

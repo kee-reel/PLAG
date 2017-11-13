@@ -1,14 +1,18 @@
 
 TARGET = ExperimentControlModel
 TEMPLATE = lib
-QT += widgets charts
+QT += widgets serialport serialbus charts
 
 SOURCES += \
-    experimentcontrolmodel.cpp
+    experimentcontrolmodel.cpp \
+    experimentsetup.cpp \
+    datachannel.cpp
 
 HEADERS +=\
     iexperimentcontrolmodel.h \
-    experimentcontrolmodel.h
+    experimentcontrolmodel.h \
+    experimentsetup.h \
+    datachannel.h
 
 DISTFILES += \
     PluginMeta.json

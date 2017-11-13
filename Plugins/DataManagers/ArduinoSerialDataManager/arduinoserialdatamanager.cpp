@@ -8,6 +8,23 @@ ArduinoSerialDataManager::ArduinoSerialDataManager()
     arduinoPort = NULL;
     inputParser = QRegExp("\\{(.+)\\}");
     inputParser.setMinimal(true);
+    ArduinoUnoDevice = {9025, 67};
+    predefinedPins =
+    {
+        {"A0", {PinMode::INPUT}},
+        {"A1", {PinMode::INPUT}},
+        {"A2", {PinMode::INPUT}},
+        {"A3", {PinMode::INPUT}},
+        {"A4", {PinMode::INPUT}},
+        {"A5", {PinMode::INPUT}},
+        {"D0", {PinMode::OUTPUT}},
+        {"D0", {PinMode::OUTPUT}},
+        {"D0", {PinMode::OUTPUT}},
+        {"D0", {PinMode::OUTPUT}},
+        {"D0", {PinMode::OUTPUT}},
+        {"D0", {PinMode::OUTPUT}},
+        
+    };
 }
 
 ArduinoSerialDataManager::~ArduinoSerialDataManager()
@@ -21,7 +38,6 @@ void ArduinoSerialDataManager::SetPluginInfo(PluginInfo *pluginInfo)
 
 void ArduinoSerialDataManager::SetupPort()
 {
-    ICOMPortDataSource::DeviceInfo ArduinoUnoDevice = {9025, 67};
     myReferencedPlugin->AddSupportedDevice("Arduino Uno", ArduinoUnoDevice);
     auto ports = myReferencedPlugin->GetPortHandlers();
 
@@ -112,6 +128,11 @@ void ArduinoSerialDataManager::ReferencePluginClosed(PluginInfo *pluginInfo)
 {
 }
 
+QMap<QString, QList<IArduinoSerialDataManager::PinMode> > ArduinoSerialDataManager::GetAvailablePins()
+{
+    return predefinedPins;
+}
+
 void ArduinoSerialDataManager::WriteToPort(QString &str)
 {
     if(arduinoPort == NULL)
@@ -123,32 +144,7 @@ void ArduinoSerialDataManager::WriteToPort(QString &str)
 
 void ArduinoSerialDataManager::ProcessBuffer(QByteArray *buffer)
 {
-    //    messageBuffer.append( QString::fromStdString(buffer->toStdString()));
-    //    qDebug() << "messageBuffer:" << messageBuffer;
-    //    int pos = inputParser.indexIn(messageBuffer);
-    //    int lastCapturePos = -1;
-    //    while(pos != -1)
-    //    {
-    //        QString res = inputParser.capturedTexts().at(1);
-    //        qDebug() << "ProcessBuffer" << res;
-    //        if(res.contains("Osc"))
-    //        {
-    //            QStringList args = res.split(',');
-    //            if(args.length() > 1)
-    //            {
-    //                QByteArray byteValue = args[1].toStdString().c_str();
-    //                short unsigned int value = ((byteValue[0] & 0xFF) << 8) + (char)byteValue[1];
-    //                emit ReadOscilloscopeValue(value);
-    //            }
-    //        }
-    //        lastCapturePos = pos;
-    //        pos += inputParser.matchedLength();
-    //        pos = inputParser.indexIn(messageBuffer, pos);
-    //    }
-    //    if(lastCapturePos != -1)
-    //        messageBuffer = messageBuffer.mid(lastCapturePos);
     messageByteBuffer.append(*buffer);
-    //    qDebug() << "messageBuffer:" << messageByteBuffer;
     int pos = messageByteBuffer.indexOf('{');
     int endPos = messageByteBuffer.indexOf('}');
     bool isCaptured = (pos != -1) && (endPos != -1);
@@ -159,7 +155,7 @@ void ArduinoSerialDataManager::ProcessBuffer(QByteArray *buffer)
     {
         captureLenght = endPos - pos;
         QByteArray res = messageByteBuffer.mid(pos+1, captureLenght-1);
-        qDebug() << "ProcessBuffer" << res;
+        //        qDebug() << "ProcessBuffer" << res;
 
         if(res.contains("Osc"))
         {
@@ -169,7 +165,7 @@ void ArduinoSerialDataManager::ProcessBuffer(QByteArray *buffer)
             {
                 QByteArray byteValue = args[1];
                 short unsigned int value = ((byteValue[0] & 0xFF) << 8) | (byteValue[1] & 0xFF);
-                qDebug() << "Value:" << value;
+                //                qDebug() << "Value:" << value;
                 emit ReadOscilloscopeValue(value);
             }
         }

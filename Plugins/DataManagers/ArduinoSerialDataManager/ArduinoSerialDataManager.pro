@@ -1,7 +1,7 @@
 
 TARGET = ArduinoSerialDataManager
 TEMPLATE = lib
-QT += widgets serialport
+QT += widgets serialport 
 
 SOURCES += \
     arduinoserialdatamanager.cpp

@@ -19,6 +19,37 @@ void ExperimentControlModel::SetPluginInfo(PluginInfo *pluginInfo)
 
 void ExperimentControlModel::OnAllSetup()
 {
+    auto ports = myReferencedPlugin->GetAvailablePorts();
+
+    if(ports.length() == 0)
+        return;
+
+    IModbusDeviceDataManager::ConnectionSettings settings;
+    settings.baud = QSerialPort::Baud19200;
+    settings.dataBits = QSerialPort::Data8;
+    settings.numberOfRetries = 3;
+    settings.parity = QSerialPort::NoParity;
+    settings.responseTimeout = 1000;
+    settings.stopBits = QSerialPort::OneStop;
+    myReferencedPlugin->OpenPort(ports.first().portName, settings);
+    QTimer::singleShot(5000, [=]()
+    {
+        auto list = myReferencedPlugin->GetAvailableModbusDevices();
+
+        foreach (auto device, list)
+        {
+            auto deviceInstance = device->GetInstance();
+            //            public slots:
+            //                virtual bool ReadRequest(DataTypes dataType) = 0;
+            //                virtual bool WriteRequest(DataTypes dataType, const QVector<quint16> &data) = 0;
+            //            signals:
+            //                void OnReadRequestArrived(DataTypes dataType, const QVector<quint16> &data);
+            connect(deviceInstance, SIGNAL(OnReadRequestArrived(QModbusDataUnit::RegisterType, const QVector<quint16> &)),
+                    this, SLOT(ProcessDataInput(QModbusDataUnit::RegisterType,QVector<quint16>)));
+            device->ReadRequest(QModbusDataUnit::InputRegisters);
+            deviceHandlers.append(device);
+        }
+    });
 }
 
 QString ExperimentControlModel::GetLastError()
@@ -27,57 +58,44 @@ QString ExperimentControlModel::GetLastError()
 
 void ExperimentControlModel::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    // Select your referenced plugin case and get it. For example:
-    /*
-        case PLUGINMODEL:{
-            myReferencedPlugin = qobject_cast<ISomePlugin*>(pluginInfo->Instance);
-            if(!myReferencedPlugin)
-            {
-                qDebug() << pluginInfo->Meta->Name << "is not ISomePlugin.";
-                return;
-            }
-            qDebug() << "ISomePlugin succesfully set.";
-            connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
-        } break;
-    */
     switch(pluginInfo->Meta->Type)
     {
         case PLUGINVIEW:
-            {
-                relatedViewPlugins.append(pluginInfo);
-                qDebug() << "New IViewPlugin added (" << pluginInfo->Meta->Name << ").";
-                connect(pluginInfo->Instance, SIGNAL( OnClose(PluginInfo*) ), SLOT( ReferencePluginClosed(PluginInfo*) ));
-            } break;
+        {
+            relatedViewPlugins.append(pluginInfo);
+            qDebug() << "New IViewPlugin added (" << pluginInfo->Meta->Name << ").";
+            connect(pluginInfo->Instance, SIGNAL( OnClose(PluginInfo*) ), SLOT( ReferencePluginClosed(PluginInfo*) ));
+        } break;
 
         case PLUGINMODEL:
-            {
-                relatedModelPlugins.append(pluginInfo);
-                qDebug() << "New IModelPlugin added (" << pluginInfo->Meta->Name << ").";
-                connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
-            } break;
+        {
+            relatedModelPlugins.append(pluginInfo);
+            qDebug() << "New IModelPlugin added (" << pluginInfo->Meta->Name << ").";
+            connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+        } break;
 
         case ROOTMODEL:
+        {
+            if(pluginInfo->Meta->InterfaceName == "IMAINMENUMODEL")
             {
-                if(pluginInfo->Meta->InterfaceName == "IMAINMENUMODEL")
-                {
-                    pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
-                }
-            } break;
+                pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
+            }
+        } break;
 
         case DATAMANAGER:
+        {
+            myReferencedPlugin = qobject_cast<IModbusDeviceDataManager*>(pluginInfo->Instance);
+
+            if(!myReferencedPlugin)
             {
-                myReferencedPlugin = qobject_cast<IArduinoSerialDataManager*>(pluginInfo->Instance);
+                qDebug() << pluginInfo->Meta->Name << "is not IModbusDeviceDataManager.";
+                return;
+            }
 
-                if(!myReferencedPlugin)
-                {
-                    qDebug() << pluginInfo->Meta->Name << "is not IArduinoSerialDataManager.";
-                    return;
-                }
-
-                qDebug() << "IArduinoSerialDataManager succesfully set.";
-                connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
-                connect(pluginInfo->Instance, SIGNAL(ReadOscilloscopeValue(int)), this, SLOT(ProcessDataInput(int)));
-            } break;
+            qDebug() << "IModbusDeviceDataManager succesfully set.";
+            connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
+            connect(pluginInfo->Instance, SIGNAL(ErrorOccurred(QString)), this, SIGNAL(ErrorOccurred(QString)));
+        } break;
     }
 }
 
@@ -127,28 +145,27 @@ void ExperimentControlModel::Close()
     emit OnClose();
 }
 
-void ExperimentControlModel::ProcessDataInput(int value)
+void ExperimentControlModel::ProcessDataInput(QModbusDataUnit::RegisterType dataType, const QVector<quint16> &data)
 {
-    if(dataRecieveTime.isNull())
-    {
-        dataRecieveTime.start();
-    }
-
-    lineSerie.append(dataRecieveTime.elapsed(), value);
+    qDebug() << "KEKS" << dataType << data;
+    //    if(dataRecieveTime.isNull())
+    //    {
+    //        dataRecieveTime.start();
+    //    }
+    //    lineSerie.append(dataRecieveTime.elapsed(), dataType);
 }
 
-QLineSeries *ExperimentControlModel::GetLineSeries()
+QList<IExperimentControlModel::IExperimentSetup *> ExperimentControlModel::GetAvailableExperimentSetups()
 {
-    return &lineSerie;
 }
 
-void ExperimentControlModel::StartExperiment()
+void ExperimentControlModel::StartExperiment(IExperimentControlModel::IExperimentSetup *setup)
 {
-    myReferencedPlugin->OscilloscopeOn(0,100,0);
-    myReferencedPlugin->OscilloscopeGo(IArduinoSerialDataManager::OscilloscopeRepeatMode::ON);
+    //    myReferencedPlugin->OscilloscopeOn(0,100,0);
+    //    myReferencedPlugin->OscilloscopeGo(IArduinoSerialDataManager::OscilloscopeRepeatMode::ON);
 }
 
 void ExperimentControlModel::StopExperiment()
 {
-    myReferencedPlugin->OscilloscopeOff();
+    //    myReferencedPlugin->OscilloscopeOff();
 }

@@ -19,7 +19,6 @@ public:
     enum PinMode
     {
         INPUT,
-        INPUT_PULLUP,
         OUTPUT
     };
     enum DigitalValue
@@ -32,6 +31,8 @@ public:
         OFF,
         ON
     };
+
+    virtual QMap<QString, QList<PinMode>> GetAvailablePins() = 0;
 
     virtual void SetPinMode(int pin, PinMode pinMode) = 0;
     virtual void DigitalWrite(int pin, DigitalValue value) = 0;

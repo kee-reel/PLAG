@@ -1,0 +1,8 @@
+{
+    "Type": "DataManager",
+    "Interface": "IModbusDeviceDataManager",
+    "Name": "ModbusDeviceDataManager",
+    "RelatedPluginInterfaces": [
+        "ICOMPortDataSource"
+    ]
+}
