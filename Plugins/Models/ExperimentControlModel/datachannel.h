@@ -13,7 +13,7 @@ public:
 
     // IDataChannel interface
 public:
-    QString GetId() override;
+    QString GetName() override;
     ChannelMode GetChannelMode() override;
     bool SetChannelMode(ChannelMode channelMode) override;
     QList<ChannelMode> GetAvailableModes() override;

@@ -1,7 +1,7 @@
 
 TARGET = ExperimentControlView
 TEMPLATE = lib
-QT += widgets charts
+QT += widgets charts serialport serialbus
 
 SOURCES += \
     experimentcontrolview.cpp

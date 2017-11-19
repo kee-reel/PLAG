@@ -7,6 +7,7 @@
 #include <QModbusReply>
 #include <QModbusClient>
 #include <QSignalMapper>
+#include <QtGui>
 
 #include "imodbusdevicedatamanager.h"
 #include "modbusdevicehandler.h"
@@ -52,12 +53,13 @@ signals:
 public:
     QList<PortInfo> GetAvailablePorts() override;
     bool OpenPort(QString portName, ConnectionSettings connectionSettings) override;
-    QList<IModbusDeviceHandler*> GetAvailableModbusDevices() override;
+    void ScanForDevice(int deviceId) override;
+    QList<IModbusDeviceHandler*> GetAvailableModbusDeviceHandlers() override;
     void ClosePort(QString portName) override;
 
 signals:
     void ErrorOccurred(QString);
-    void OnDataRecieved(QModbusDataUnit::RegisterType dataType);
+    void ModbusListUpdated();
 
 private:
     PluginInfo *pluginInfo;
@@ -69,12 +71,11 @@ private:
     QModbusClient *modbusDevice;
     ICOMPortDataSource::ISerialPortHandler *connectedPort;
     QMap<int, ModbusDeviceHandler*> deviceHandlers;
+    QStringListModel devicesNames;
 
-    bool isScanPortForDevicesEnded;
     int scanningDeviceId;
 
     void CreateNewDevice(int deviceId);
-    void ScanPortForDevices(int deviceId);
 
 private slots:
     void SendReadRequest(const QModbusDataUnit &dataUnit);

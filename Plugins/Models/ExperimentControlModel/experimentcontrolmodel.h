@@ -16,6 +16,9 @@
 
 #include "../../DataManagers/ModbusDeviceDataManager/imodbusdevicedatamanager.h"
 
+#include "modbusdevicesmodel.h"
+#include "registerspacktablemodel.h"
+
 //! addtogroup ExperimentControlModel_imp
 //! {
 class ExperimentControlModel : public
@@ -58,6 +61,14 @@ public:
     void StartExperiment(IExperimentSetup *setup) override;
     void StopExperiment() override;
 
+    QAbstractItemModel *GetAvailablePorts() override;
+    void UpdateAvailablePorts() override;
+    bool OpenPort(int modelIndex, IModbusDeviceDataManager::ConnectionSettings connectionSettings) override;
+    void ScanForDevice(int deviceId) override;
+    QAbstractItemModel *GetAvailableModbusDeviceHandlers() override;
+    QAbstractItemModel *GetAvailableModbusDeviceNames() override;
+    void ClosePort(int modelIndex) override;
+
 signals:
     void ErrorOccurred(QString error);
 
@@ -76,8 +87,23 @@ private:
     QList<IExperimentSetup *> experimentSetups;
     QList<IModbusDeviceDataManager::IModbusDeviceHandler*> deviceHandlers;
 
+    QStandardItemModel AvailablePortsModel;
+    ModbusDevicesModel AvailableDevicesModel;
+    RegistersPackTableModel RegisterPacksModel;
+    QStandardItemModel ValuesModel;
+
+    void AddNewValuesFromPack(RegstersPack pack);
+
 private slots:
     void ProcessDataInput(QModbusDataUnit::RegisterType dataType, const QVector<quint16> &data);
+    void UpdateDevicesList();
+
+    // IExperimentControlModel interface
+public:
+    QAbstractItemModel *GetRegisterPacks() override;
+    void AddRegisterPack(RegstersPack pack) override;
+    void SetDeviceIdForPacks(int deviceRow) override;
+    QAbstractItemModel *GetValues() override;
 
 };
 //! }

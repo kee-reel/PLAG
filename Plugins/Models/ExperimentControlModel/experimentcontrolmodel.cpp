@@ -3,9 +3,20 @@
 
 ExperimentControlModel::ExperimentControlModel()
 {
-    // myReferencedPlugin = NULL;
+    myReferencedPlugin = NULL;
     openedView = NULL;
     openedModel = NULL;
+
+    AvailablePortsModel.setColumnCount(3);
+    AvailablePortsModel.setHeaderData(0, Qt::Horizontal, "Port");
+    AvailablePortsModel.setHeaderData(1, Qt::Horizontal, "Vendor");
+    AvailablePortsModel.setHeaderData(2, Qt::Horizontal, "Device");
+
+    ValuesModel.setColumnCount(4);
+    ValuesModel.setHeaderData(0, Qt::Horizontal, "Name");
+    ValuesModel.setHeaderData(1, Qt::Horizontal, "Type");
+    ValuesModel.setHeaderData(2, Qt::Horizontal, "Address");
+    ValuesModel.setHeaderData(3, Qt::Horizontal, "Value");
 }
 
 ExperimentControlModel::~ExperimentControlModel()
@@ -19,41 +30,18 @@ void ExperimentControlModel::SetPluginInfo(PluginInfo *pluginInfo)
 
 void ExperimentControlModel::OnAllSetup()
 {
-    auto ports = myReferencedPlugin->GetAvailablePorts();
 
-    if(ports.length() == 0)
-        return;
-
-    IModbusDeviceDataManager::ConnectionSettings settings;
-    settings.baud = QSerialPort::Baud19200;
-    settings.dataBits = QSerialPort::Data8;
-    settings.numberOfRetries = 3;
-    settings.parity = QSerialPort::NoParity;
-    settings.responseTimeout = 1000;
-    settings.stopBits = QSerialPort::OneStop;
-    myReferencedPlugin->OpenPort(ports.first().portName, settings);
-    QTimer::singleShot(5000, [=]()
-    {
-        auto list = myReferencedPlugin->GetAvailableModbusDevices();
-
-        foreach (auto device, list)
-        {
-            auto deviceInstance = device->GetInstance();
-            //            public slots:
-            //                virtual bool ReadRequest(DataTypes dataType) = 0;
-            //                virtual bool WriteRequest(DataTypes dataType, const QVector<quint16> &data) = 0;
-            //            signals:
-            //                void OnReadRequestArrived(DataTypes dataType, const QVector<quint16> &data);
-            connect(deviceInstance, SIGNAL(OnReadRequestArrived(QModbusDataUnit::RegisterType, const QVector<quint16> &)),
-                    this, SLOT(ProcessDataInput(QModbusDataUnit::RegisterType,QVector<quint16>)));
-            device->ReadRequest(QModbusDataUnit::InputRegisters);
-            deviceHandlers.append(device);
-        }
-    });
 }
 
 QString ExperimentControlModel::GetLastError()
 {
+}
+
+void ExperimentControlModel::UpdateDevicesList()
+{
+    auto devices = myReferencedPlugin->GetAvailableModbusDeviceHandlers();
+
+    AvailableDevicesModel.UpdateDevicesList(devices);
 }
 
 void ExperimentControlModel::AddReferencePlugin(PluginInfo *pluginInfo)
@@ -95,6 +83,8 @@ void ExperimentControlModel::AddReferencePlugin(PluginInfo *pluginInfo)
             qDebug() << "IModbusDeviceDataManager succesfully set.";
             connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
             connect(pluginInfo->Instance, SIGNAL(ErrorOccurred(QString)), this, SIGNAL(ErrorOccurred(QString)));
+            connect(pluginInfo->Instance, SIGNAL(ModbusListUpdated()), this, SLOT(UpdateDevicesList()));
+
         } break;
     }
 }
@@ -148,11 +138,6 @@ void ExperimentControlModel::Close()
 void ExperimentControlModel::ProcessDataInput(QModbusDataUnit::RegisterType dataType, const QVector<quint16> &data)
 {
     qDebug() << "KEKS" << dataType << data;
-    //    if(dataRecieveTime.isNull())
-    //    {
-    //        dataRecieveTime.start();
-    //    }
-    //    lineSerie.append(dataRecieveTime.elapsed(), dataType);
 }
 
 QList<IExperimentControlModel::IExperimentSetup *> ExperimentControlModel::GetAvailableExperimentSetups()
@@ -161,11 +146,98 @@ QList<IExperimentControlModel::IExperimentSetup *> ExperimentControlModel::GetAv
 
 void ExperimentControlModel::StartExperiment(IExperimentControlModel::IExperimentSetup *setup)
 {
-    //    myReferencedPlugin->OscilloscopeOn(0,100,0);
-    //    myReferencedPlugin->OscilloscopeGo(IArduinoSerialDataManager::OscilloscopeRepeatMode::ON);
 }
 
 void ExperimentControlModel::StopExperiment()
 {
-    //    myReferencedPlugin->OscilloscopeOff();
+
 }
+
+QAbstractItemModel *ExperimentControlModel::GetAvailablePorts()
+{
+    UpdateAvailablePorts();
+    return &AvailablePortsModel;
+}
+
+void ExperimentControlModel::UpdateAvailablePorts()
+{
+    auto ports = myReferencedPlugin->GetAvailablePorts();
+
+    AvailablePortsModel.clear();
+    foreach (auto port, ports)
+    {
+        QList<QStandardItem *> itemList = {
+            new QStandardItem(port.portName),
+            new QStandardItem(QString::number(port.vendorId)),
+            new QStandardItem(QString::number(port.productId))
+        };
+        AvailablePortsModel.appendRow(itemList);
+    }
+}
+
+bool ExperimentControlModel::OpenPort(int modelIndex, IModbusDeviceDataManager::ConnectionSettings connectionSettings)
+{
+    myReferencedPlugin->OpenPort(AvailablePortsModel.item(modelIndex, 0)->text(), connectionSettings);
+}
+
+void ExperimentControlModel::ScanForDevice(int deviceId)
+{
+    myReferencedPlugin->ScanForDevice(deviceId);
+}
+
+QAbstractItemModel *ExperimentControlModel::GetAvailableModbusDeviceHandlers()
+{
+    return &AvailableDevicesModel;
+}
+
+QAbstractItemModel *ExperimentControlModel::GetAvailableModbusDeviceNames()
+{
+    return AvailableDevicesModel.GetDeviceNamesModel();
+}
+
+void ExperimentControlModel::ClosePort(int modelIndex)
+{
+
+}
+
+
+QAbstractItemModel *ExperimentControlModel::GetRegisterPacks()
+{
+    return &RegisterPacksModel;
+}
+
+void ExperimentControlModel::SetDeviceIdForPacks(int deviceRow)
+{
+    int deviceId = (AvailableDevicesModel.rowCount() != 0 && AvailableDevicesModel.rowCount() > deviceRow) ?
+                AvailableDevicesModel.data(AvailableDevicesModel.index(deviceRow, 0)).toInt() : -1;
+    RegisterPacksModel.SetActiveDeviceId(deviceId);
+}
+
+void ExperimentControlModel::AddRegisterPack(RegstersPack pack)
+{
+    RegisterPacksModel.AddRegisterPack(pack);
+}
+
+void ExperimentControlModel::AddNewValuesFromPack(RegstersPack pack)
+{
+//    QString typeStr = GetRegisterString(pack.type);
+//    QString shortTypeStr = typeStr;
+//    shortTypeStr.truncate(3);
+//    for(int i = 0; i < pack.count; ++i)
+//    {
+//        QList<QStandardItem *> itemList = {
+//            new QStandardItem( QString("%1%2").arg(shortTypeStr).arg(pack.start + i)),
+//            new QStandardItem(typeStr),
+//            new QStandardItem(QString::number(pack.start + i)),
+//            new QStandardItem(QString::number(0))
+//        };
+//        ValuesModel.appendRow(itemList);
+//    }
+}
+
+QAbstractItemModel *ExperimentControlModel::GetValues()
+{
+    return &ValuesModel;
+}
+
+

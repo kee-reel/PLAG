@@ -4,8 +4,9 @@ DataChannel::DataChannel()
 {
 }
 
-QString DataChannel::GetId()
+QString DataChannel::GetName()
 {
+
 }
 
 IExperimentControlModel::IDataChannel::ChannelMode DataChannel::GetChannelMode()

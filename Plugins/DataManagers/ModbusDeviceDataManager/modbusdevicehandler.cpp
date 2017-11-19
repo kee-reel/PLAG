@@ -5,7 +5,6 @@
 ModbusDeviceHandler::ModbusDeviceHandler(int deviceId, QObject *parent) : QObject(parent)
 {
     this->deviceId = deviceId;
-    startAddress = 0;
 }
 
 QObject *ModbusDeviceHandler::GetInstance()
@@ -18,25 +17,9 @@ int ModbusDeviceHandler::GetDeviceId()
     return deviceId;
 }
 
-int ModbusDeviceHandler::GetDeviceTime()
+bool ModbusDeviceHandler::ReadRequest(QModbusDataUnit::RegisterType dataType, int startAddress, int count)
 {
-    return deviceTime;
-}
-
-int ModbusDeviceHandler::GetBufferSize(QModbusDataUnit::RegisterType dataType)
-{
-    auto *buffer = GetDataBufferForType(dataType);
-
-    if(!buffer)
-        return -1;
-
-    return buffer->length();
-}
-
-bool ModbusDeviceHandler::ReadRequest(QModbusDataUnit::RegisterType dataType, int startAddress)
-{
-    auto buffer = GetDataBufferForType(dataType);
-    auto unit = QModbusDataUnit(dataType, startAddress, buffer->size());
+    auto unit = QModbusDataUnit(dataType, startAddress, count);
     emit SendReadRequest(unit);
 }
 
@@ -53,7 +36,7 @@ void ModbusDeviceHandler::ReadDataUnit(const QModbusDataUnit &unit)
     QVector<quint16> *dataBuffer = GetDataBufferForType(registerType);
 
     if(dataBuffer->length() != unit.valueCount())
-        return;
+        dataBuffer->resize(unit.valueCount());
 
     for (uint i = 0; i < unit.valueCount(); ++i)
     {
@@ -94,14 +77,4 @@ void ModbusDeviceHandler::ReadServiceDataUnit(const QModbusDataUnit &dataUnit)
 {
     if(dataUnit.valueCount() != 4)
         return;
-}
-
-void ModbusDeviceHandler::SetBufferSize(QModbusDataUnit::RegisterType dataType, int size)
-{
-    auto *buffer = GetDataBufferForType(dataType);
-
-    if(!buffer)
-        return;
-
-    buffer->resize(size);
 }

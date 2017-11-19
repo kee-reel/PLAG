@@ -35,11 +35,10 @@ void ModbusDeviceDataManager::OnAllSetup()
 }
 
 
-void ModbusDeviceDataManager::ScanPortForDevices(int deviceId)
+void ModbusDeviceDataManager::ScanForDevice(int deviceId)
 {
-    isScanPortForDevicesEnded = false;
-    auto serviceUnit = QModbusDataUnit(QModbusDataUnit::InputRegisters, 50, 4);
     scanningDeviceId = deviceId;
+    auto serviceUnit = QModbusDataUnit(QModbusDataUnit::InputRegisters, 0, 1);
     SendReadRequest(serviceUnit);
 }
 
@@ -131,17 +130,19 @@ bool ModbusDeviceDataManager::OpenPort(QString portName, IModbusDeviceDataManage
         if (!modbusDevice->connectDevice())
         {
             qDebug() << "Connect failed: " << modbusDevice->errorString();
+            return false;
         }
+        qDebug() << "Connected to" << portName;
     }
     else
     {
         modbusDevice->disconnectDevice();
     }
 
-    ScanPortForDevices(1);
+    return true;
 }
 
-QList<IModbusDeviceDataManager::IModbusDeviceHandler*> ModbusDeviceDataManager::GetAvailableModbusDevices()
+QList<IModbusDeviceDataManager::IModbusDeviceHandler*> ModbusDeviceDataManager::GetAvailableModbusDeviceHandlers()
 {
     QList<IModbusDeviceHandler*> deviceHandlersInterfaces;
 
@@ -168,12 +169,12 @@ void ModbusDeviceDataManager::SendReadRequest(const QModbusDataUnit &dataUnit)
 
     int deviceId = -1;
 
-    if(!isScanPortForDevicesEnded)
+    if(scanningDeviceId != -1)
     {
         deviceId = scanningDeviceId;
+        scanningDeviceId = -1;
     }
-
-    if(deviceId == -1)
+    else
     {
         auto deviceHandler = qobject_cast<ModbusDeviceHandler *>(sender());
 
@@ -213,16 +214,7 @@ void ModbusDeviceDataManager::ReadReady()
             CreateNewDevice(deviceId);
         }
 
-        if(isScanPortForDevicesEnded)
-        {
-            deviceHandlers[deviceId]->ReadDataUnit(unit);
-        }
-        else
-        {
-            qDebug() << "Found device with id" << deviceId;
-            deviceHandlers[deviceId]->ReadServiceDataUnit(unit);
-            isScanPortForDevicesEnded = true;
-        }
+        deviceHandlers[deviceId]->ReadDataUnit(unit);
     }
     else if (reply->error() == QModbusDevice::ProtocolError)
     {
@@ -242,10 +234,12 @@ void ModbusDeviceDataManager::ReadReady()
 
 void ModbusDeviceDataManager::CreateNewDevice(int deviceId)
 {
+    qDebug() << "New device with id" << deviceId;
     auto *newDevice = new ModbusDeviceHandler(deviceId, this);
     deviceHandlers.insert(deviceId, newDevice);
     connect(newDevice, &ModbusDeviceHandler::SendReadRequest, this, &ModbusDeviceDataManager::SendReadRequest);
     connect(newDevice, &ModbusDeviceHandler::SendWriteRequest, this, &ModbusDeviceDataManager::SendWriteRequest);
+    emit ModbusListUpdated();
 }
 
 void ModbusDeviceDataManager::SendWriteRequest(const QModbusDataUnit &dataUnit)
@@ -255,21 +249,12 @@ void ModbusDeviceDataManager::SendWriteRequest(const QModbusDataUnit &dataUnit)
 
     int deviceId = -1;
 
-    if(!isScanPortForDevicesEnded)
-    {
-        deviceId = scanningDeviceId;
-        isScanPortForDevicesEnded = true;
-    }
+    auto deviceHandler = qobject_cast<ModbusDeviceHandler *>(sender());
 
-    if(deviceId == -1)
-    {
-        auto deviceHandler = qobject_cast<ModbusDeviceHandler *>(sender());
-
-        if(deviceHandler != NULL)
-            deviceId = deviceHandler->GetDeviceId();
-        else
-            return;
-    }
+    if(deviceHandler != NULL)
+        deviceId = deviceHandler->GetDeviceId();
+    else
+        return;
 
     if (auto *reply = modbusDevice->sendWriteRequest(dataUnit, deviceId))
     {

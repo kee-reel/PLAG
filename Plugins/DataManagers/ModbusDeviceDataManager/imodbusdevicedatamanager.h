@@ -40,10 +40,8 @@ public:
     public:
         virtual QObject *GetInstance() = 0;
         virtual int GetDeviceId() = 0;
-        virtual int GetDeviceTime() = 0;
-        virtual int GetBufferSize(QModbusDataUnit::RegisterType dataType) = 0;
     public slots:
-        virtual bool ReadRequest(QModbusDataUnit::RegisterType dataType, int startAddress) = 0;
+        virtual bool ReadRequest(QModbusDataUnit::RegisterType dataType, int startAddress, int count) = 0;
         virtual bool WriteRequest(QModbusDataUnit::RegisterType dataType, int startAddress, const QVector<quint16> &data) = 0;
     signals:
         void OnReadRequestArrived(QModbusDataUnit::RegisterType dataType, const QVector<quint16> &data);
@@ -51,11 +49,13 @@ public:
 
     virtual QList<PortInfo> GetAvailablePorts() = 0;
     virtual bool OpenPort(QString portName, ConnectionSettings connectionSettings) = 0;
-    virtual QList<IModbusDeviceHandler*> GetAvailableModbusDevices() = 0;
+    virtual void ScanForDevice(int deviceId) = 0;
+    virtual QList<IModbusDeviceHandler*> GetAvailableModbusDeviceHandlers() = 0;
     virtual void ClosePort(QString portName) = 0;
 
 signals:
     void ErrorOccurred(QString error);
+    void ModbusListUpdated();
 };
 //! }
 Q_DECLARE_INTERFACE(IModbusDeviceDataManager, "IModbusDeviceDataManager")

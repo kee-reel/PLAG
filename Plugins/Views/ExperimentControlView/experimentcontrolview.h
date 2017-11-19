@@ -60,6 +60,21 @@ public slots:
 signals:
     void OnOpen(QWidget *);
 
+private slots:
+    void on_connectButton_clicked();
+
+    void on_scanButton_clicked();
+
+    void on_refreshButton_clicked();
+
+    void on_addRegisterPackButton_clicked();
+
+    void on_removeRegistersButton_clicked();
+
+    void on_deviceNamesCombo_currentIndexChanged(int index);
+
+    void on_tabWidget_tabBarClicked(int index);
+
 private:
     PluginInfo *pluginInfo;
 
@@ -69,6 +84,8 @@ private:
     // Write your internal methods here
     Ui::Form *ui;
     QChart dataChart;
+    void SetupData();
+    void RemoveModelItem(QAbstractItemView *view);
 };
 //! }
 #endif // EXPERIMENTCONTROLVIEW_H

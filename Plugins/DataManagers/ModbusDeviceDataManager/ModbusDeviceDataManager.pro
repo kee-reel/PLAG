@@ -1,7 +1,7 @@
 
 TARGET = ModbusDeviceDataManager
 TEMPLATE = lib
-QT += widgets serialbus serialport
+QT += widgets serialbus serialport gui
 
 SOURCES += \
     modbusdevicedatamanager.cpp \

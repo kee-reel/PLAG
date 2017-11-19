@@ -141,6 +141,7 @@ QMap<QString, ICOMPortDataSource::DeviceInfo> COMPortDataSource::GetSupportedDev
 
 QMap<QString, ICOMPortDataSource::ISerialPortHandler *> COMPortDataSource::GetPortHandlers()
 {
+    UpdateAvailablePorts();
     QMap<QString, ICOMPortDataSource::ISerialPortHandler *> convertedMap;
     auto iter = portHandlers.begin();
 

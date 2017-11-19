@@ -2,7 +2,10 @@
 #define IEXPERIMENTCONTROLMODEL_H
 
 #include "../../interfaces.h"
+#include "../../DataManagers/ModbusDeviceDataManager/imodbusdevicedatamanager.h"
 #include "QtCharts"
+#include "QSerialPort"
+#include "QModbusDataUnit"
 
 //! defgroup ExperimentControlModel
 //!     ingroup MainMenuPlugin_rel_m
@@ -22,12 +25,13 @@ public:
     public:
         enum ChannelMode
         {
-            IN,
-            OUT,
+            INPUT,
+            OUTPUT,
             IN_OUT
         };
 
-        virtual QString GetId() = 0;
+        virtual QString GetName() = 0;
+        virtual QString SetName() = 0;
         virtual ChannelMode GetChannelMode() = 0;
         virtual bool SetChannelMode(ChannelMode channelMode) = 0;
         virtual QList<ChannelMode> GetAvailableModes() = 0;
@@ -46,6 +50,35 @@ public:
     virtual QList<IExperimentSetup*> GetAvailableExperimentSetups() = 0;
     virtual void StartExperiment(IExperimentSetup *setup) = 0;
     virtual void StopExperiment() = 0;
+
+    struct PortInfo
+    {
+        QString portName;
+        int productId;
+        int vendorId;
+    };
+
+    virtual QAbstractItemModel *GetAvailablePorts() = 0;
+    virtual void UpdateAvailablePorts() = 0;
+    virtual bool OpenPort(int modelIndex, IModbusDeviceDataManager::ConnectionSettings connectionSettings) = 0;
+    virtual void ScanForDevice(int deviceId) = 0;
+    virtual QAbstractItemModel *GetAvailableModbusDeviceHandlers() = 0;
+    virtual QAbstractItemModel *GetAvailableModbusDeviceNames() = 0;
+    virtual void ClosePort(int modelIndex) = 0;
+
+    struct RegstersPack
+    {
+        QModbusDataUnit::RegisterType type;
+        int start;
+        int count;
+        int updateInterval;
+    };
+
+    virtual QAbstractItemModel *GetRegisterPacks() = 0;
+    virtual void SetDeviceIdForPacks(int deviceRow) = 0;
+    virtual void AddRegisterPack(RegstersPack pack) = 0;
+
+    virtual QAbstractItemModel *GetValues() = 0;
 
 signals:
     void ErrorOccurred(QString error);
