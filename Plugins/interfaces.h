@@ -1,7 +1,7 @@
 #ifndef INTERFACES_H
 #define INTERFACES_H
 
-#include "../../../Application/MASS/rootinterface.h"
+#include "../Application/icoreplugin.h"
 #include <QtGlobal>
 #include <QObject>
 
@@ -14,11 +14,11 @@ class QSqlQuery;
 //! Enumeration of MASS system modules types.
 enum PluginTypes
 {
-    ROOTMODEL,      //!< Module type that implements IRootModelPlugin
-    PLUGINMODEL,    //!< Module type that implements IModelPlugin
-    PLUGINVIEW,     //!< Module type that implements IViewPlugin
-    DATASOURCE,     //!< Module type that implements IDataSourcePlugin
-    DATAMANAGER,    //!< Module type that implements IDataManagerPlugin
+    COREPLUGIN,      //!< Module type that implements IRootModelPlugin
+    MODELPLUGIN,    //!< Module type that implements IModelPlugin
+    VIEWPLUGIN,     //!< Module type that implements IViewPlugin
+    DATASOURCEPLUGIN,     //!< Module type that implements IDataSourcePlugin
+    DATAMANAGERPLUGIN,    //!< Module type that implements IDataManagerPlugin
 };
 
 //! \brief Holds information about plugin.
@@ -76,7 +76,17 @@ public:
 };
 Q_DECLARE_INTERFACE(IDataManagerPlugin, "IDBToolPlugin v0.1")
 
-class IModelPlugin;
+//! \brief The IModelPlugin class
+class IModelPlugin : public IPlugin
+{
+public:
+    virtual ~IModelPlugin() {}
+public slots:
+    virtual bool Open(IModelPlugin* model) = 0;
+    virtual void Close() = 0;
+};
+Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
+
 //! \brief This interface describes DataManager plugn.
 class IViewPlugin : public IPlugin
 {
@@ -89,17 +99,6 @@ signals:
     void OnOpen(QWidget*);
 };
 Q_DECLARE_INTERFACE(IViewPlugin, "IViewPlugin v0.1")
-
-//! \brief The IModelPlugin class
-class IModelPlugin : public IPlugin
-{
-public:
-    virtual ~IModelPlugin() {}
-public slots:
-    virtual bool Open(IModelPlugin* model) = 0;
-    virtual void Close() = 0;
-};
-Q_DECLARE_INTERFACE(IModelPlugin, "IModelPlugin v0.1")
 
 //! \brief Structure for internal needs.
 struct PluginInfo

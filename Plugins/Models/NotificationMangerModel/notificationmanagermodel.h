@@ -9,8 +9,8 @@
 #include <QDebug>
 
 #ifdef Q_OS_ANDROID
-#include <QtAndroid>
-#include <QAndroidJniEnvironment>
+    #include <QtAndroid>
+    #include <QAndroidJniEnvironment>
 #endif
 
 #include "inotificationmanagermodel.h"
@@ -23,9 +23,9 @@ class NotificationManagerModel : public QObject, INotificationManagerModel
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(
-            IModelPlugin
-            INotificationManagerModel
-            )
+        IModelPlugin
+        INotificationManagerModel
+    )
 
 public:
     NotificationManagerModel();
@@ -59,7 +59,7 @@ public:
     int SetAlarm(TimeType type, QDateTime time) override;
     int SetRepeatingAlarm(TimeType type, QDateTime triggerTime, QDateTime interval) override;
     void SetAlarmedNotification(TimeType type, QDateTime time, QString title, QString message, int id) override;
-    void setAlarmedToast(TimeType type, QDateTime time, const QString &message, INotificationManagerModel::Duration duration) override;
+    void SetAlarmedToast(TimeType type, QDateTime time, const QString &message, INotificationManagerModel::Duration duration) override;
     void CancelAlarm() override;
 
 #ifdef Q_OS_ANDROID

@@ -13,11 +13,11 @@
 
 //! \ingroup MainMenuPlugin_imp
 //! @{
-class MainMenuModelPlugin : public QObject, IMainMenuModel, IRootModelPlugin
+class MainMenuModelPlugin : public QObject, IMainMenuModel, ICorePlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(IModelPlugin IRootModelPlugin IMainMenuModel)
+    Q_INTERFACES(IModelPlugin ICorePlugin IMainMenuModel)
 
 // IPlugin interface
 public:

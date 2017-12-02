@@ -28,6 +28,7 @@ public:
 public:
     void UpdateDevicesList(QList<IModbusDeviceDataManager::IModbusDeviceHandler *> devices);
     QStringListModel *GetDeviceNamesModel();
+    IModbusDeviceDataManager::IModbusDeviceHandler *GetDeviceByName(QString deviceName);
 
 private:
     struct DeviceExtraData
@@ -39,6 +40,7 @@ private:
     QList<IModbusDeviceDataManager::IModbusDeviceHandler *> devices;
     QMap<IModbusDeviceDataManager::IModbusDeviceHandler *, DeviceExtraData> devicesExtraData;
     QStringListModel devicesNamesModel;
+
     void InsertModelDeviceName(int row, QString uniqueName);
 };
 

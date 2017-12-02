@@ -20,7 +20,7 @@ public slots:
     bool ReadRequest(QModbusDataUnit::RegisterType dataType, int startAddress, int count) override;
     bool WriteRequest(QModbusDataUnit::RegisterType dataType, int startAddress, const QVector<quint16> &data) override;
 signals:
-    void OnReadRequestArrived(QModbusDataUnit::RegisterType dataType, const QVector<quint16> &data);
+    void OnReadRequestArrived(QModbusDataUnit::RegisterType dataType, int startAddress, const QVector<quint16> &data);
 
 private:
     int deviceId;

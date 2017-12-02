@@ -12,9 +12,11 @@ Item::Item(Item *parent, Item *copy)
     parentItem = NULL;
     activeChunk = NULL;
     id = -1;
-
     parentItem = parent;
-    if(!copy) return;
+
+    if(!copy)
+        return;
+
     id = copy->id;
     dataChunks = copy->dataChunks;
     activeChunkName = copy->activeChunkName;
@@ -39,7 +41,9 @@ Item::~Item()
 
 void Item::DetachFromParent()
 {
-    if(!parentItem) return;
+    if(!parentItem)
+        return;
+
     parentItem->RemoveChild(this);
     parentItem = NULL;
 }
@@ -53,7 +57,8 @@ void Item::SetParent(Item *parent)
 
 void Item::SetChilds(QList<Item *> childs)
 {
-    foreach (auto child, childs) {
+    foreach (auto child, childs)
+    {
         AddChild(child, childItems.count());
     }
 }
@@ -71,7 +76,9 @@ void Item::RemoveChild(Item *child)
 
 void Item::RemoveChildAt(int row)
 {
-    if(childItems.count() < row) return;
+    if(childItems.count() < row)
+        return;
+
     Item *child = childItems[row];
     child->SetParent(NULL);
     childItems.removeAt(row);
@@ -79,19 +86,19 @@ void Item::RemoveChildAt(int row)
 
 void Item::SetOneChunkActive(QString &chunkName)
 {
-    if(!dataChunks.contains(chunkName)) return;
+    if(!dataChunks.contains(chunkName))
+        return;
+
     activeChunkName = chunkName;
     activeChunk = &(dataChunks[activeChunkName]);
 }
 
 void Item::ToggleChunkActive(QString &activeChunk)
 {
-
 }
 
 void Item::ToggleAllChunksActive(QString &activeChunk)
 {
-
 }
 
 QList<QString> Item::GetChunksNames() const
@@ -109,52 +116,59 @@ QVariant Item::GetChunkName(int column) const
 
 QVector<QVariant> Item::GetChunkData(QString chunkName) const
 {
-    if(chunkName == "") chunkName = activeChunkName;
+    if(chunkName == "")
+        chunkName = activeChunkName;
+
     return dataChunks[chunkName];
 }
 
 QVariant Item::GetChunkDataElement(int column) const
 {
-    if(!activeChunk) return QVariant();
+    if(!activeChunk)
+        return QVariant();
+
     return (activeChunk->length() > column) ? (*activeChunk)[column] : QVariant();
 }
 
 void Item::SetChunkData(QString chunkName, QVector<QVariant> data)
 {
     dataChunks[chunkName] = data;
+
     if(activeChunkName == "")
         SetOneChunkActive(chunkName);
 }
 
 QVector<QVariant> Item::GetActiveChunksData() const
 {
-
 }
 
 void Item::SetActiveChunksData(QVector<QVariant> data)
 {
-
 }
 
 QMap<QString, QVariant> Item::GetChunksData() const
 {
     QMap<QString, QVariant> result;
     auto iter = dataChunks.begin();
+
     while(iter != dataChunks.end())
     {
         result.insert(iter.key(), QVariant(iter.value().toList()) );
         ++iter;
     }
+
     return result;
 }
 
 void Item::SetChunksData(QMap<QString, QVariant> dataMap)
 {
     auto iter = dataMap.begin();
+
     while(iter != dataMap.end())
     {
         if(!dataChunks.contains(iter.key()))
             qDebug() << "Adding a new data chunk in item:" << iter.key();
+
         QList<QVariant> dataList = iter.value().toList();
         dataChunks[iter.key()] = dataList.toVector();
         ++iter;

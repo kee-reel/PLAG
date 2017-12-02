@@ -42,13 +42,13 @@ QString PomodoroModel::GetLastError()
 void PomodoroModel::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type){
-        case PLUGINVIEW:{
+        case VIEWPLUGIN:{
             viewPlugins.append(pluginInfo);
             qDebug() << "IPluginView succesfully set.";
             connect(pluginInfo->Instance, SIGNAL( OnClose(PluginInfo*) ), SLOT( ReferencePluginClosed(PluginInfo*) ));
         } break;
 
-        case PLUGINMODEL:{
+        case MODELPLUGIN:{
             if(!pluginInfo->Meta->InterfaceName.compare("ITaskTreeModel", Qt::CaseInsensitive))
             {
                 myModel = qobject_cast<ITaskTreeModel*>(pluginInfo->Instance);
@@ -70,13 +70,13 @@ void PomodoroModel::AddReferencePlugin(PluginInfo *pluginInfo)
             }
         } break;
 
-        case ROOTMODEL:{
+        case COREPLUGIN:{
             if(!pluginInfo->Meta->InterfaceName.compare("IMainMenuModel", Qt::CaseInsensitive)){
                 pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
             }
         } break;
 
-        case DATAMANAGER:{
+        case DATAMANAGERPLUGIN:{
             qDebug() <<  "is not IExtendableDataManagerPlugin.";
             this->dataManager = qobject_cast<IExtendableDataManager*>(pluginInfo->Instance);
             if(!this->dataManager)

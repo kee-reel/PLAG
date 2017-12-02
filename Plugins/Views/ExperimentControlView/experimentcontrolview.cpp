@@ -12,15 +12,9 @@ ExperimentControlView::ExperimentControlView(QWidget *parent) :
     dataChart.setTitle("Simple line dataChart example");
     ui->dataChartView->setChart(&dataChart);
     ui->dataChartView->setRenderHint(QPainter::Antialiasing);
-
-    //    connect(ui->buttonStart, &QPushButton::clicked, this, [=]()
-    //    {
-    //        myReferencedPlugin->StartExperiment();
-    //    });
-    //    connect(ui->buttonStop, &QPushButton::clicked, this, [=]()
-    //    {
-    //        myReferencedPlugin->StopExperiment();
-    //    });
+    ui->dataChartView->installEventFilter(this);
+    previousSliderValue = 0;
+    currentChartXScale = 100;
 }
 
 ExperimentControlView::~ExperimentControlView()
@@ -45,29 +39,23 @@ void ExperimentControlView::SetupData()
 {
     auto ports = myReferencedPlugin->GetAvailablePorts();
     ui->availablePortsView->setModel(ports);
-
     auto devices = myReferencedPlugin->GetAvailableModbusDeviceHandlers();
     ui->devicesView->setModel(devices);
-
     auto deviceNames = myReferencedPlugin->GetAvailableModbusDeviceNames();
     ui->deviceNamesCombo->setModel(deviceNames);
-
     auto registers = myReferencedPlugin->GetRegisterPacks();
     ui->registersView->setModel(registers);
-
-    auto values = myReferencedPlugin->GetValues();
-    ui->valuesView->setModel(values);
 }
 
 void ExperimentControlView::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type)
     {
-        case PLUGINVIEW:
+        case VIEWPLUGIN:
         {
         } break;
 
-        case PLUGINMODEL:
+        case MODELPLUGIN:
         {
             myReferencedPlugin = qobject_cast<IExperimentControlModel*>(pluginInfo->Instance);
 
@@ -80,7 +68,6 @@ void ExperimentControlView::AddReferencePlugin(PluginInfo *pluginInfo)
             qDebug() << "ISomePlugin succesfully set.";
             myReferencedPlugin->AddReferencePlugin(this->pluginInfo);
             connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
-
             //            auto lineSeries = myReferencedPlugin->GetLineSeries();
             //            dataChart.addSeries(lineSeries);
             //            dataChart.createDefaultAxes();
@@ -91,11 +78,11 @@ void ExperimentControlView::AddReferencePlugin(PluginInfo *pluginInfo)
             //            });
         } break;
 
-        case ROOTMODEL:
+        case COREPLUGIN:
         {
         } break;
 
-        case DATAMANAGER:
+        case DATAMANAGERPLUGIN:
         {
         } break;
     }
@@ -139,17 +126,18 @@ bool ExperimentControlView::Close()
 void ExperimentControlView::on_connectButton_clicked()
 {
     IModbusDeviceDataManager::ConnectionSettings settings;
-
     settings.parity = (QSerialPort::Parity)ui->parityCombo->currentIndex();
+
     if (settings.parity > 0)
         settings.parity = (QSerialPort::Parity)(settings.parity + 1);
+
     settings.baud = (QSerialPort::BaudRate)ui->baudCombo->currentText().toInt();
     settings.dataBits = (QSerialPort::DataBits)ui->dataBitsCombo->currentText().toInt();
     settings.stopBits = (QSerialPort::StopBits)ui->stopBitsCombo->currentText().toInt();
     settings.responseTimeout = ui->timeoutSpinner->value();
     settings.numberOfRetries = ui->retriesSpinner->value();
-
     auto selection = ui->availablePortsView->selectionModel()->selectedRows();
+
     if(selection.length() != 0)
     {
         int row = selection.first().row();
@@ -175,6 +163,17 @@ void ExperimentControlView::on_addRegisterPackButton_clicked()
     pack.count = ui->registersCountSpin->value();
     pack.updateInterval = ui->updateIntervalSpin->value();
     myReferencedPlugin->AddRegisterPack(pack);
+    QList<QLineSeries*> registerLineSeries = myReferencedPlugin->GetRegistersLineSeries();
+    dataChart.removeAllSeries();
+
+    foreach (QLineSeries* line, registerLineSeries)
+    {
+        dataChart.addSeries(line);
+        connect(line, &QLineSeries::pointAdded, this, &ExperimentControlView::SeriesPointAdded);
+        dataChart.createDefaultAxes();
+        dataChart.axisX()->setRange(0, currentChartXScale);
+        dataChart.axisY()->setRange(0, 1024);
+    }
 }
 
 void ExperimentControlView::on_removeRegistersButton_clicked()
@@ -186,6 +185,7 @@ void ExperimentControlView::on_removeRegistersButton_clicked()
 void ExperimentControlView::RemoveModelItem(QAbstractItemView *view)
 {
     auto selection = view->selectionModel()->selectedRows();
+
     if(selection.length() != 0)
     {
         int row = selection.first().row();
@@ -193,15 +193,63 @@ void ExperimentControlView::RemoveModelItem(QAbstractItemView *view)
     }
 }
 
-void ExperimentControlView::on_deviceNamesCombo_currentIndexChanged(int index)
+bool ExperimentControlView::eventFilter(QObject *watched, QEvent *event)
 {
-    myReferencedPlugin->SetDeviceIdForPacks(index);
+    if (watched == ui->dataChartView)
+    {
+        if (event->type() == QEvent::Wheel)
+        {
+            QWheelEvent *mouseEvent = static_cast<QWheelEvent*>(event);
+            bool isZoomIn = mouseEvent->angleDelta().y() > 0;
+            currentChartXScale += (currentChartXScale / 10) * (isZoomIn ? -1 : 1);
+            dataChart.axisX()->setRange(0, currentChartXScale);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        // pass the event on to the parent class
+        return QWidget::eventFilter(watched, event);
+    }
 }
 
-void ExperimentControlView::on_tabWidget_tabBarClicked(int index)
+void ExperimentControlView::on_deviceNamesCombo_currentIndexChanged(const QString &arg1)
 {
-    if(index == 2)
+    if(arg1 != "")
+        myReferencedPlugin->SetDeviceForSetup(arg1);
+}
+
+void ExperimentControlView::on_buttonStart_clicked()
+{
+    myReferencedPlugin->StartExperiment(NULL);
+}
+
+void ExperimentControlView::on_chartScroll_sliderMoved(int position)
+{
+    qreal xScroll = (currentChartXScale / 100.) * (position - previousSliderValue);
+    dataChart.scroll(xScroll, 0);
+    previousSliderValue = position;
+}
+
+void ExperimentControlView::SeriesPointAdded(int index)
+{
+    auto line = qobject_cast<QLineSeries *>(sender());
+
+    if (!line)
+        return;
+
+    int lastXPoint = line->at(index).x();
+    int chartScrollValue = ui->chartScroll->value();
+
+    if((chartScrollValue + chartScrollValue/10) >= ui->chartScroll->maximum())
     {
-        emit myReferencedPlugin->SetDeviceIdForPacks(ui->deviceNamesCombo->currentIndex());
+        ui->chartScroll->setMaximum(lastXPoint);
+        chartScrollValue++;
+        ui->chartScroll->setValue(chartScrollValue);
+        ui->chartScroll->sliderMoved(chartScrollValue);
     }
 }

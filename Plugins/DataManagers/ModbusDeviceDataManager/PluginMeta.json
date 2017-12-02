@@ -1,5 +1,5 @@
 {
-    "Type": "DataManager",
+    "Type": "DATAMANAGERPLUGIN",
     "Interface": "IModbusDeviceDataManager",
     "Name": "ModbusDeviceDataManager",
     "RelatedPluginInterfaces": [

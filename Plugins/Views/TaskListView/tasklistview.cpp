@@ -42,7 +42,7 @@ QString TaskListView::GetLastError()
 void TaskListView::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type){
-        case PLUGINMODEL:{
+        case MODELPLUGIN:{
             myModel = qobject_cast<ITaskTreeModel*>(pluginInfo->Instance);
             if(!myModel)
             {

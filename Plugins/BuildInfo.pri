@@ -1,3 +1,6 @@
-CONFIG += c++11 plugin
+# For nice folders organisation
+include(common.pri)
 
-DESTDIR = ../../../Application/MASS/Modules
+# Only for plugins
+CONFIG += plugin
+DESTDIR = $${PWD}/../Application/Plugins

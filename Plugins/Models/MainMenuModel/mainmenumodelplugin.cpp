@@ -21,7 +21,7 @@ void MainMenuModelPlugin::Run(QWidget *parentWidget)
     widgetStack = new WidgetStack(parentWidget);
     pluginLinker.SetupLinks();
     foreach (auto plugin, pluginLinker.pluginsInfo) {
-        if(plugin->Meta->Type == PLUGINVIEW)
+        if(plugin->Meta->Type == VIEWPLUGIN)
         {
             connect(plugin->Instance, SIGNAL(OnOpen(QWidget*)), widgetStack, SLOT(Push(QWidget*)));
             connect(plugin->Instance, SIGNAL(OnClose()), widgetStack, SLOT(Pop()));
@@ -50,21 +50,21 @@ void MainMenuModelPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type)
     {
-    case ROOTMODEL:
+    case COREPLUGIN:
         break;
-    case PLUGINMODEL:
+    case MODELPLUGIN:
         childModels.append(pluginInfo);
         rootMenuItem->Items.append(pluginInfo->Meta);
         connect(pluginInfo->Instance, SIGNAL(OnClose(PluginInfo*)), SLOT(ReferencePluginClosed(PluginInfo*)));
         break;
-    case PLUGINVIEW:
+    case VIEWPLUGIN:
         qDebug() << "AddReference" << pluginInfo->Meta->Name;
         views.append(pluginInfo);
         connect(pluginInfo->Instance, SIGNAL(OnClose(PluginInfo*)), SLOT(ReferencePluginClosed(PluginInfo*)));
         break;
-    case DATASOURCE:
+    case DATASOURCEPLUGIN:
         break;
-    case DATAMANAGER:
+    case DATAMANAGERPLUGIN:
         break;
     }
 }

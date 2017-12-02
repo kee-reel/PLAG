@@ -75,11 +75,10 @@ public:
     };
 
     virtual QAbstractItemModel *GetRegisterPacks() = 0;
-    virtual void SetDeviceIdForPacks(int deviceRow) = 0;
+    virtual void SetDeviceForSetup(QString deviceName) = 0;
     virtual void AddRegisterPack(RegstersPack pack) = 0;
 
-    virtual QAbstractItemModel *GetValues() = 0;
-
+    virtual QList<QLineSeries*> GetRegistersLineSeries() = 0;
 signals:
     void ErrorOccurred(QString error);
 };

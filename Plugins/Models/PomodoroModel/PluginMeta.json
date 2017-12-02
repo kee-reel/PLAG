@@ -1,5 +1,5 @@
 {
-    "Type": "PluginModel",
+    "Type": "MODELPLUGIN",
     "Interface": "IPomodoroModel",
     "Name": "PomodoroModel",
     "RelatedPluginInterfaces": [

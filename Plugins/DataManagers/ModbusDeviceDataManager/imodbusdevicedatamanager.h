@@ -44,7 +44,7 @@ public:
         virtual bool ReadRequest(QModbusDataUnit::RegisterType dataType, int startAddress, int count) = 0;
         virtual bool WriteRequest(QModbusDataUnit::RegisterType dataType, int startAddress, const QVector<quint16> &data) = 0;
     signals:
-        void OnReadRequestArrived(QModbusDataUnit::RegisterType dataType, const QVector<quint16> &data);
+        void OnReadRequestArrived(QModbusDataUnit::RegisterType dataType, int startAddress, const QVector<quint16> &data);
     };
 
     virtual QList<PortInfo> GetAvailablePorts() = 0;

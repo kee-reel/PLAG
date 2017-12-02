@@ -6,13 +6,13 @@ TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataMan
     this->dataManager = dataManager;
     this->tableName = tableName;
     itemModel = NULL;
-
     CreateTable();
 }
 
 TableHandler::~TableHandler()
 {
-    if(itemModel) delete itemModel;
+    if(itemModel)
+        delete itemModel;
 }
 
 bool TableHandler::HasRelation(QString relation)
@@ -23,7 +23,8 @@ bool TableHandler::HasRelation(QString relation)
 bool TableHandler::CreateTable()
 {
     // Is name valid?
-    if(tableName == NULL || tableName == ""){
+    if(tableName == NULL || tableName == "")
+    {
         qDebug() << "Tree name is empty!";
         return false;
     }
@@ -41,25 +42,28 @@ bool TableHandler::CreateTable()
     }
     else
     {
-        if(!IsDataSourceExists()) return false;
+        if(!IsDataSourceExists())
+            return false;
+
         // Create table.
         QString queryStr = QString("CREATE TABLE IF NOT EXISTS %1 (%2)")
-                .arg(tableName)
-                .arg(GetHeaderString(coreTableStruct));
+                           .arg(tableName)
+                           .arg(GetHeaderString(coreTableStruct));
         QSqlQuery query = dataSource->ExecuteQuery(queryStr);
     }
 
     CombineWholeTableStruct();
-
     isCreated = true;
     return true;
 }
 
 bool TableHandler::SetRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData)
 {
-    if(!IsDataSourceExists()) return false;
+    if(!IsDataSourceExists())
+        return false;
 
-    if(relationName == ""){
+    if(relationName == "")
+    {
         qDebug() << "Relation name is empty!";
         return false;
     }
@@ -68,15 +72,16 @@ bool TableHandler::SetRelation(QString relationName, TableStructMap fields, QVec
     // Because for setting relation I need "id" field in table but for operating with data
     // it only complicates everything
     fields.insert("id", QVariant::Int);                 // <-- Magic
-
     relationName = relationName.toLower();
     QString databaseRelationName = QString("r_%1_%2")
-            .arg(tableName)
-            .arg(relationName);
+                                   .arg(tableName)
+                                   .arg(relationName);
     bool tableCreationNeeded = true;
+
     if(IsTableExists(databaseRelationName))
     {
         tableCreationNeeded = false;
+
         if(!IsTableHasRightStructure(databaseRelationName, fields))
         {
             tableCreationNeeded = true;
@@ -87,26 +92,33 @@ bool TableHandler::SetRelation(QString relationName, TableStructMap fields, QVec
     if(tableCreationNeeded)
     {
         QString dataFields = GetHeaderString(fields, true);
-        if(dataFields == ""){
+
+        if(dataFields == "")
+        {
             qDebug() << "Can't create relation!";
             return false;
         }
+
         QString queryStr = QString("CREATE TABLE IF NOT EXISTS %1 (%2)")
-                .arg(databaseRelationName)
-                .arg(dataFields);
+                           .arg(databaseRelationName)
+                           .arg(dataFields);
         QSqlQuery queryResult = dataSource->ExecuteQuery(queryStr);
     }
-    fields.remove("id");                                // <-- Trick
 
+    fields.remove("id");                                // <-- Trick
     relationTablesStructs.insert(relationName, fields);
     relationsDefaultData.insert(relationName, defaultData);
-    if(itemModel) itemModel->AttachRelation(relationName, fields, defaultData);
+
+    if(itemModel)
+        itemModel->AttachRelation(relationName, fields, defaultData);
+
     return true;
 }
 
 void TableHandler::SetActiveRelation(QString relationName)
 {
     InstallModel();
+
     if(itemModel)
         itemModel->SetActiveRelation(relationName);
 }
@@ -119,13 +131,14 @@ void TableHandler::SetDataTypeEditor(QString dataChunk, QString fieldName, QWidg
 
 bool TableHandler::DeleteRelation(QString relationName)
 {
-    if(!IsDataSourceExists()) return false;
+    if(!IsDataSourceExists())
+        return false;
 
     qDebug() << "DeleteRelation";
     relationName = relationName.toLower();
     QString queryStr = QString("DROP TABLE  r_%1_%2")
-            .arg(tableName)
-            .arg(relationName);
+                       .arg(tableName)
+                       .arg(relationName);
     QSqlQuery queryResult = dataSource->ExecuteQuery(queryStr);
     relationTablesStructs.remove(relationName);
     CombineWholeTableStruct();
@@ -134,38 +147,42 @@ bool TableHandler::DeleteRelation(QString relationName)
 
 TableHandler::ManagerDataItem TableHandler::GetItem(int id)
 {
-    if(!IsDataSourceExists()) return ManagerDataItem();
+    if(!IsDataSourceExists())
+        return ManagerDataItem();
+
     QString queryStr = QString("SELECT %1.id").arg(tableName);
     QStringList joinTables = relationTablesStructs.keys();
     QString tableRefPrefix = QString("r_%1_").arg(tableName);
+
     for(int i = 0; i < joinTables.count(); ++i)
     {
         queryStr.append(",");
         queryStr.append( GetFieldsNames(tableRefPrefix+joinTables[i], relationTablesStructs[joinTables[i]]) );
     }
+
     queryStr.append( QString(" FROM %1 ").arg(tableName) );
     queryStr.append( QString(" ON %1.id = %2 ").arg(tableName).arg(id) );
+
     for(int i = 0; i < joinTables.count(); i++)
     {
         queryStr.append(QString(" LEFT OUTER JOIN r_%1_%2 ON %1.id = r_%1_%2.id")
                         .arg(tableName)
                         .arg(joinTables[i]));
     }
+
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
     ManagerDataItem buf;
-
     QString bufStr;
     int queryFieldNum;
-
     bufStr = "";
     queryFieldNum = 0;
-
     buf.id = query.value(queryFieldNum).toInt();
     ++queryFieldNum;
 
     for(int i = 0; i < joinTables.count(); ++i)
     {
         qDebug() << "> " << joinTables[i];
+
         for(int j = 0; j < relationTablesStructs[joinTables[i]].count(); ++j)
         {
             qDebug() << query.value(queryFieldNum);
@@ -179,7 +196,9 @@ TableHandler::ManagerDataItem TableHandler::GetItem(int id)
 
 QList<IExtendableDataManager::ManagerDataItem> TableHandler::GetData()
 {
-    if(!IsDataSourceExists()) return QList<IExtendableDataManager::ManagerDataItem>();
+    if(!IsDataSourceExists())
+        return QList<IExtendableDataManager::ManagerDataItem>();
+
     QString queryStr = QString("SELECT %1.id").arg(tableName);
     QStringList joinTables = relationTablesStructs.keys();
     QString tableRefPrefix = QString("r_%1_").arg(tableName);
@@ -189,7 +208,9 @@ QList<IExtendableDataManager::ManagerDataItem> TableHandler::GetData()
         queryStr.append(",");
         queryStr.append( GetFieldsNames(tableRefPrefix+joinTables[i], relationTablesStructs[joinTables[i]]) );
     }
+
     queryStr.append( QString(" FROM %1 ").arg(tableName) );
+
     for(int i = 0; i < joinTables.count(); i++)
     {
         queryStr.append(QString(" LEFT OUTER JOIN r_%1_%2 ON %1.id = r_%1_%2.id")
@@ -203,10 +224,10 @@ QList<IExtendableDataManager::ManagerDataItem> TableHandler::GetData()
     QString bufStr;
     int queryFieldNum;
 
-    while (query.next()) {
+    while (query.next())
+    {
         bufStr = "";
         queryFieldNum = 0;
-
         buf.id = query.value(queryFieldNum).toInt();
         ++queryFieldNum;
 
@@ -222,44 +243,54 @@ QList<IExtendableDataManager::ManagerDataItem> TableHandler::GetData()
         itemInfoList.append(buf);
         buf.dataChunks.clear();
     }
+
     return itemInfoList;
 }
 
 void TableHandler::InstallModel()
 {
-    if(itemModel) return;
+    if(itemModel)
+        return;
+
     itemModel = new ExtendableItemModel(tableName, dataManager);
     auto defaultDataIter = relationsDefaultData.begin();
     auto relationStructIter = relationTablesStructs.begin();
+
     while(defaultDataIter != relationsDefaultData.end())
     {
         itemModel->AttachRelation(defaultDataIter.key(), relationStructIter.value(), defaultDataIter.value());
         ++defaultDataIter;
         ++relationStructIter;
     }
+
     itemModel->LoadData();
 }
 
 QAbstractItemModel *TableHandler::GetModel()
 {
-    if(!IsDataSourceExists()) return NULL;
+    if(!IsDataSourceExists())
+        return NULL;
+
     InstallModel();
     return itemModel;
 }
 
 int TableHandler::AddItem(ManagerDataItem item)
 {
-    if(!IsDataSourceExists()) return -1;
+    if(!IsDataSourceExists())
+        return -1;
+
     qDebug() << "AddItem";
     QString queryStr = QString("INSERT INTO %1 (id) VALUES (NULL)").arg(tableName);
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
     int lastId = query.lastInsertId().toInt();
-
     QStringList joinTables = item.dataChunks.keys();
     qDebug() << joinTables.count();
+
     for(int i = 0; i < joinTables.count(); i++)
     {
         QString valuesString = GetInsertValuesString(relationTablesStructs[joinTables[i]], lastId, item.dataChunks[joinTables[i]]);
+
         if(valuesString != "")
         {
             queryStr = "";
@@ -267,7 +298,7 @@ int TableHandler::AddItem(ManagerDataItem item)
                             .arg(tableName)
                             .arg(joinTables[i])
                             .arg(valuesString)
-                            );
+                           );
             dataSource->ExecuteQuery(queryStr);
         }
         else
@@ -281,16 +312,19 @@ int TableHandler::AddItem(ManagerDataItem item)
 
 bool TableHandler::UpdateItem(ManagerDataItem item)
 {
-    if(!IsDataSourceExists()) return false;
+    if(!IsDataSourceExists())
+        return false;
+
     qDebug() << "AddItem";
     QString queryStr;
-
     QStringList joinTables = item.dataChunks.keys();
     qDebug() << joinTables.count();
+
     for(int i = 0; i < joinTables.count(); i++)
     {
         TableStructMap *tableStruct = &relationTablesStructs[joinTables[i]];
         QString valuesString = GetUpdateValuesString(*tableStruct, item.id);
+
         if(valuesString != "")
         {
             queryStr = "";
@@ -299,10 +333,11 @@ bool TableHandler::UpdateItem(ManagerDataItem item)
                             .arg(joinTables[i])
                             .arg(valuesString) );
             qDebug() << queryStr;
-
             QList<QString> list = tableStruct->keys();
+
             for(int i = 0; i < list.count(); ++i)
                 list[i] = ":" + list[i].toUpper();
+
             QList<QVariant> values = item.dataChunks[joinTables[i]].toList();
             dataSource->ExecuteQuery(queryStr, &list, &values);
         }
@@ -311,12 +346,15 @@ bool TableHandler::UpdateItem(ManagerDataItem item)
             qDebug() << "Empty string!";
         }
     }
+
     return true;
 }
 
 bool TableHandler::DeleteItem(int id)
 {
-    if(!IsDataSourceExists()) return false;
+    if(!IsDataSourceExists())
+        return false;
+
     QString queryStr = QString("delete from %1 where id=%2").arg(tableName).arg(id);
     qDebug() << "Delete Task" << queryStr;
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
@@ -332,6 +370,7 @@ QVector<QVariant> TableHandler::GetRelationDefaultData(QString relationName)
 {
     if(!relationsDefaultData.contains(relationName))
         return QVector<QVariant>();
+
     return relationsDefaultData[relationName];
 }
 
@@ -340,21 +379,27 @@ QString TableHandler::GetHeaderString(TableStructMap &tableStruct, bool createRe
     QString structStr = "";
     TableStructMap::Iterator i = tableStruct.begin();
     TableStructMap::Iterator lastElement = --tableStruct.end();
+
     while(i != tableStruct.end())
     {
         QString typeNameString = dataBaseTypesNames.contains(i.value()) ?
-                    dataBaseTypesNames[i.value()] : QVariant::typeToName(i.value());
+                                 dataBaseTypesNames[i.value()] : QVariant::typeToName(i.value());
         structStr.append(QString("%1 %2").arg(i.key()).arg(typeNameString));
+
         if(i.key() == "id")
         {
             QString idAppendix = createRelation ?
-                        QString(" REFERENCES %1(id) ON DELETE CASCADE").arg(tableName) :
-                        " PRIMARY KEY AUTOINCREMENT";
+                                 QString(" REFERENCES %1(id) ON DELETE CASCADE").arg(tableName) :
+                                 " PRIMARY KEY AUTOINCREMENT";
             structStr.append(idAppendix);
         }
-        if(i != lastElement) structStr.append(",");
+
+        if(i != lastElement)
+            structStr.append(",");
+
         ++i;
     }
+
     return structStr;
 }
 
@@ -363,13 +408,18 @@ QString TableHandler::GetFieldsNames(QString tableName, TableHandler::TableStruc
     QString structStr = "";
     TableStructMap::Iterator i = tableStruct.begin();
     TableStructMap::Iterator lastElement = --tableStruct.end();
+
     while(i != tableStruct.end())
     {
         if(i.key() != "id" || includeId)
             structStr.append(QString("%1.%2").arg(tableName).arg(i.key()));
-        if(i != lastElement) structStr.append(",");
+
+        if(i != lastElement)
+            structStr.append(",");
+
         ++i;
     }
+
     return structStr;
 }
 
@@ -386,14 +436,17 @@ QString TableHandler::GetInsertValuesString(TableStructMap &tableStruct, int id,
     TableStructMap::Iterator structIter = tableStruct.begin();
     TableStructMap::Iterator lastElement = --tableStruct.end();
     QVector<QVariant>::Iterator dataIter = itemData.begin();
+
     while(structIter != tableStruct.end())
     {
         fieldNamesStr.append(structIter.key());
         QString buf;
+
         if(dataIter->type() == QVariant::String || dataIter->type() == QVariant::ByteArray)
             buf = QString("'%1'").arg(dataIter->toString());
         else
             buf = dataIter->toString();
+
         valuesStr.append(buf);
 
         if(structIter != lastElement)
@@ -406,9 +459,11 @@ QString TableHandler::GetInsertValuesString(TableStructMap &tableStruct, int id,
             fieldNamesStr.append(")");
             valuesStr.append(")");
         }
+
         ++structIter;
         ++dataIter;
     }
+
     return QString("%1 VALUES %2").arg(fieldNamesStr).arg(valuesStr);
 }
 
@@ -417,6 +472,7 @@ QString TableHandler::GetUpdateValuesString(TableHandler::TableStructMap &tableS
     QString resultStr = "";
     TableStructMap::Iterator structIter = tableStruct.begin();
     TableStructMap::Iterator lastElement = --tableStruct.end();
+
     while(structIter != tableStruct.end())
     {
         resultStr.append(structIter.key()).append("=");
@@ -431,6 +487,7 @@ QString TableHandler::GetUpdateValuesString(TableHandler::TableStructMap &tableS
 
         ++structIter;
     }
+
     resultStr.append(" where id=").append(QString::number(id));
     return resultStr;
 }
@@ -447,6 +504,7 @@ QString TableHandler::GetUpdateValuesString(TableHandler::TableStructMap &tableS
     TableStructMap::Iterator structIter = tableStruct.begin();
     TableStructMap::Iterator lastElement = --tableStruct.end();
     QVector<QVariant>::Iterator dataIter = itemData.begin();
+
     while(structIter != tableStruct.end())
     {
         resultStr.append(structIter.key()).append("=");
@@ -462,22 +520,27 @@ QString TableHandler::GetUpdateValuesString(TableHandler::TableStructMap &tableS
         ++structIter;
         ++dataIter;
     }
+
     resultStr.append(" where id=").append(QString::number(id));
     return resultStr;
 }
 
 bool TableHandler::IsDataSourceExists()
 {
-    if(!dataSource){
+    if(!dataSource)
+    {
         qDebug() << "Data source doesn't exists!";
         return false;
     }
+
     return true;
 }
 
 bool TableHandler::IsTableExists(QString tableName)
 {
-    if(!IsDataSourceExists()) return false;
+    if(!IsDataSourceExists())
+        return false;
+
     QString queryStr = QString("pragma table_info(%1)").arg(tableName);
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
     return query.next();
@@ -488,7 +551,9 @@ void TableHandler::CombineWholeTableStruct()
     wholeTableStruct.clear();
     wholeTableStruct.unite(relationTablesStructs[tableName]);
     auto i = relationTablesStructs.begin();
-    while(i != relationTablesStructs.end()){
+
+    while(i != relationTablesStructs.end())
+    {
         wholeTableStruct.unite(i.value());
         ++i;
     }
@@ -500,22 +565,27 @@ bool TableHandler::IsTableHasRightStructure(QString tableName, TableStructMap &t
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
     QString name;
     QVariant::Type type;
-
     auto iter = tableStruct.begin();
+
     while(iter != tableStruct.end())
     {
-        if(!query.next()){
+        if(!query.next())
+        {
             qCritical("Too few records!");
             return true;
         }
+
         name = query.value(1).toString();
         type = dataBaseTypesNames.key(query.value(2).toString());
+
         if(iter.key() != name || iter.value() != type)
         {
             qDebug() << name << type << "is new field!";
             return false;
         }
+
         ++iter;
     }
+
     return true;
 }

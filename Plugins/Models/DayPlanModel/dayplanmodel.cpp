@@ -41,13 +41,13 @@ QString DayPlanModel::GetLastError()
 void DayPlanModel::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type){
-    case PLUGINVIEW:{
+    case VIEWPLUGIN:{
         relatedViewPlugins.append(pluginInfo);
         qDebug() << "New IViewPlugin added (" << pluginInfo->Meta->Name << ").";
         connect(pluginInfo->Instance, SIGNAL( OnClose(PluginInfo*) ), SLOT( ReferencePluginClosed(PluginInfo*) ));
     } break;
 
-    case PLUGINMODEL:{
+    case MODELPLUGIN:{
         relatedModelPlugins.append(pluginInfo);
         qDebug() << "New IModelPlugin added (" << pluginInfo->Meta->Name << ").";
         connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
@@ -58,11 +58,11 @@ void DayPlanModel::AddReferencePlugin(PluginInfo *pluginInfo)
         }
     } break;
 
-    case ROOTMODEL:{
+    case COREPLUGIN:{
         pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
     } break;
 
-    case DATAMANAGER:{
+    case DATAMANAGERPLUGIN:{
         dataManager = qobject_cast<IExtendableDataManager*>(pluginInfo->Instance);
         if(!this->dataManager){
             qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataManager.";

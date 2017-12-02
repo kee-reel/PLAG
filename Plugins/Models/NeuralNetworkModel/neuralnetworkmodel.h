@@ -49,18 +49,22 @@ private:
 
     // IPlugin interface
 public:
+    void SetPluginInfo(PluginInfo *pluginInfo) override;
     void OnAllSetup() override;
     QString GetLastError() override;
+    void AddReferencePlugin(PluginInfo *pluginInfo) override;
+
+public slots:
+    void ReferencePluginClosed(PluginInfo *pluginInfo) override;
+
+signals:
+    void OnClose(PluginInfo*);
+    void OnClose();
 
     // IModelPlugin interface
-public:
-    void AddChildModel(IModelPlugin *model, MetaInfo *meta) override;
-    void AddView(IViewPlugin *view, MetaInfo *meta) override;
-    void AddDataManager(QObject *dataManager) override;
-    bool Open(IModelPlugin *parent, QWidget *parentWidget) override;
-    bool CloseFromView(IViewPlugin *view) override;
-    void ChildSelfClosed(IModelPlugin *child) override;
-    void AddModel(QObject *model, MetaInfo *meta) override;
+public slots:
+    bool Open(IModelPlugin *model) override;
+    void Close() override;
 
     // INeuralNetworkModel interface
 public:

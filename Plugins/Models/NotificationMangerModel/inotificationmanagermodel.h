@@ -15,15 +15,17 @@ class QDateTime;
 //! addtogroup AndroidNotificationModel_int
 //! {
 class INotificationManagerModel :
-        public IModelPlugin
+    public IModelPlugin
 {
 public:
-    enum Duration {
+    enum Duration
+    {
         SHORT = 0,
         LONG = 1
     };
 
-    enum TimeType {
+    enum TimeType
+    {
         RTC_TIME = 0,
         FROM_DEVICE_START = 2,
     };
@@ -38,7 +40,8 @@ public:
     virtual int SetAlarm(TimeType type, QDateTime time) = 0;
     virtual int SetRepeatingAlarm(TimeType type, QDateTime triggerTime, QDateTime interval) = 0;
     virtual void SetAlarmedNotification(TimeType type, QDateTime time, QString title, QString message, int id = 0) = 0;
-    virtual void setAlarmedToast(TimeType type, QDateTime time, const QString &message, INotificationManagerModel::Duration duration = LONG) = 0;
+    virtual void SetAlarmedToast(TimeType type, QDateTime time, const QString &message,
+                                 INotificationManagerModel::Duration duration = LONG) = 0;
     virtual void CancelAlarm() = 0;
 
 signals:

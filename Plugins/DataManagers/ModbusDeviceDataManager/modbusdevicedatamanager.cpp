@@ -50,7 +50,7 @@ void ModbusDeviceDataManager::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type)
     {
-        case DATASOURCE:
+        case DATASOURCEPLUGIN:
         {
             myReferencedPlugin = qobject_cast<ICOMPortDataSource*>(pluginInfo->Instance);
 

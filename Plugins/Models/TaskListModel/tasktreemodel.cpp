@@ -42,13 +42,13 @@ void TaskTreeModel::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type)
     {
-        case PLUGINVIEW:
+        case VIEWPLUGIN:
             {
                 viewPlugins.append(pluginInfo);
                 connect(pluginInfo->Instance, SIGNAL(OnClose(PluginInfo*)), SLOT(ReferencePluginClosed(PluginInfo*)));
             } break;
 
-        case DATAMANAGER:
+        case DATAMANAGERPLUGIN:
             {
                 this->dataManager = qobject_cast<IExtendableDataManager*>(pluginInfo->Instance);
 
@@ -59,7 +59,7 @@ void TaskTreeModel::AddReferencePlugin(PluginInfo *pluginInfo)
                 }
             } break;
 
-        case ROOTMODEL:
+        case COREPLUGIN:
             {
                 myParent = pluginInfo->Plugin.model;
 
@@ -76,7 +76,7 @@ void TaskTreeModel::AddReferencePlugin(PluginInfo *pluginInfo)
 
 void TaskTreeModel::ReferencePluginClosed(PluginInfo *pluginInfo)
 {
-    if(pluginInfo->Meta->Type == PLUGINVIEW)
+    if(pluginInfo->Meta->Type == VIEWPLUGIN)
     {
         Close();
     }

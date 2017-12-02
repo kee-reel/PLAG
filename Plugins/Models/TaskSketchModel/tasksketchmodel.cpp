@@ -20,15 +20,19 @@ void TaskSketchModel::SetPluginInfo(PluginInfo *pluginInfo)
 
 void TaskSketchModel::OnAllSetup()
 {
-    if(dataManager == NULL) return;
-    QMap<QString, QVariant::Type> newRelationStruct = {
+    if(dataManager == NULL)
+        return;
+
+    QMap<QString, QVariant::Type> newRelationStruct =
+    {
         {"sketch",  QVariant::ByteArray},
     };
     QVector<QVariant> defaultData;
     defaultData << QByteArray();
-    dataManager->SetRelation(tableName, coreRelationName, newRelationStruct, defaultData);
+    dataManager->AddExtention(tableName, coreRelationName, newRelationStruct, defaultData);
+
     if(myModel != NULL)
-        dataManager->SetRelation("ITaskTreeModel", coreRelationName, newRelationStruct, defaultData);
+        dataManager->AddExtention("ITaskTreeModel", coreRelationName, newRelationStruct, defaultData);
 }
 
 QString TaskSketchModel::GetLastError()
@@ -38,35 +42,45 @@ QString TaskSketchModel::GetLastError()
 
 void TaskSketchModel::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    switch(pluginInfo->Meta->Type){
-        case PLUGINVIEW:{
+    switch(pluginInfo->Meta->Type)
+    {
+        case VIEWPLUGIN:
+        {
             viewPlugins.append(pluginInfo);
             qDebug() << "IPluginView succesfully set.";
             connect(pluginInfo->Instance, SIGNAL(OnClose(PluginInfo*)), SLOT(ReferencePluginClosed(PluginInfo*)));
-        }break;
+        } break;
 
-        case DATAMANAGER:{
+        case DATAMANAGERPLUGIN:
+        {
             this->dataManager = qobject_cast<IExtendableDataManager*>(pluginInfo->Instance);
+
             if(!this->dataManager)
             {
                 qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataManagerPlugin.";
                 return;
             }
-            qDebug() << "IExtendableDataManagerPlugin succesfully set.";
-        }break;
 
-        case PLUGINMODEL:{
+            qDebug() << "IExtendableDataManagerPlugin succesfully set.";
+        } break;
+
+        case MODELPLUGIN:
+        {
             myModel = qobject_cast<ITaskTreeModel*>(pluginInfo->Instance);
-            if(!myModel){
+
+            if(!myModel)
+            {
                 qDebug() << pluginInfo->Meta->Name << "is not IExtendableDataManagerPlugin.";
                 return;
             }
-            qDebug() << "IExtendableDataManagerPlugin succesfully set.";
-        }break;
 
-        case ROOTMODEL:{
+            qDebug() << "IExtendableDataManagerPlugin succesfully set.";
+        } break;
+
+        case COREPLUGIN:
+        {
             pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
-        }break;
+        } break;
     }
 }
 
@@ -78,17 +92,23 @@ void TaskSketchModel::ReferencePluginClosed(PluginInfo *pluginInfo)
 bool TaskSketchModel::Open(IModelPlugin *parent)
 {
     qDebug() << "TaskListModel runs";
-    if(viewPlugins.count() == 0){
+
+    if(viewPlugins.count() == 0)
+    {
         qDebug() << "I dont have any views!";
         return false;
     }
+
     activeViewId = 0;
     SetupModel();
     qDebug() << viewPlugins[activeViewId]->Meta->Name;
-    if(!viewPlugins[activeViewId]->Plugin.view->Open(this)){
+
+    if(!viewPlugins[activeViewId]->Plugin.view->Open(this))
+    {
         qDebug() << "Can't open first view!";
         return false;
     }
+
     return true;
 }
 
@@ -113,18 +133,19 @@ void TaskSketchModel::ConvertSketchToTask(int sketchId)
 {
     QModelIndex modelIndex = sketchItemModel->index(sketchId, 0);
     QMap<int, QVariant> map = sketchItemModel->itemData(modelIndex);
-    if(!map.contains(Qt::UserRole)){
+
+    if(!map.contains(Qt::UserRole))
+    {
         qCritical() << "Can't resolve data model!";
         return;
     }
-//    QMap<QString, QVariant> dataMap = map[Qt::UserRole].toMap();
-//    QList<QVariant> data = dataMap[coreRelationName].toList();
 
+    //    QMap<QString, QVariant> dataMap = map[Qt::UserRole].toMap();
+    //    QList<QVariant> data = dataMap[coreRelationName].toList();
     taskModel->insertRows(taskModel->rowCount(), 1);
     modelIndex = taskModel->index(taskModel->rowCount()-1, 0);
-//    dataManager->SetActiveRelation(tableName, coreRelationName);
+    //    dataManager->SetActiveRelation(tableName, coreRelationName);
     taskModel->setItemData(modelIndex, map);
-
     //emit ConvertTaskToSketch(map[0].toInt());
 }
 
@@ -132,15 +153,19 @@ void TaskSketchModel::LinkEditorWidget(QWidget *widget)
 {
     if(!dataManager)
         return;
-    dataManager->RegisterDataTypeEditor(tableName, "sketch", widget);
+
+    dataManager->RegisterExtentionFieldEditor(tableName, "sketch", widget);
 }
 
 void TaskSketchModel::SetupModel()
 {
     if(!dataManager)
         return;
+
     sketchItemModel = dataManager->GetDataModel(tableName);
+
     if(!myModel)
         return;
+
     taskModel = dataManager->GetDataModel("ITaskTreeModel");
 }

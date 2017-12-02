@@ -35,19 +35,19 @@ void COMPortDataSource::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type)
     {
-        case PLUGINVIEW:
+        case VIEWPLUGIN:
             {
             } break;
 
-        case PLUGINMODEL:
+        case MODELPLUGIN:
             {
             } break;
 
-        case ROOTMODEL:
+        case COREPLUGIN:
             {
             } break;
 
-        case DATAMANAGER:
+        case DATAMANAGERPLUGIN:
             {
             } break;
     }

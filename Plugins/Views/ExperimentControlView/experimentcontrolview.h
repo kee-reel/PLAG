@@ -62,18 +62,17 @@ signals:
 
 private slots:
     void on_connectButton_clicked();
-
     void on_scanButton_clicked();
-
     void on_refreshButton_clicked();
-
     void on_addRegisterPackButton_clicked();
-
     void on_removeRegistersButton_clicked();
+    void on_deviceNamesCombo_currentIndexChanged(const QString &arg1);
 
-    void on_deviceNamesCombo_currentIndexChanged(int index);
+    void on_buttonStart_clicked();
 
-    void on_tabWidget_tabBarClicked(int index);
+    void on_chartScroll_sliderMoved(int position);
+
+    void SeriesPointAdded(int index);
 
 private:
     PluginInfo *pluginInfo;
@@ -86,6 +85,12 @@ private:
     QChart dataChart;
     void SetupData();
     void RemoveModelItem(QAbstractItemView *view);
+    int previousSliderValue;
+    int currentChartXScale;
+
+    // QObject interface
+public:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 };
 //! }
 #endif // EXPERIMENTCONTROLVIEW_H

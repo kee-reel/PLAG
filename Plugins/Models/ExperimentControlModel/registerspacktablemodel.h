@@ -5,9 +5,9 @@
 #include <QBitArray>
 #include <QObject>
 
-#include "iexperimentcontrolmodel.h"
+#include "registerspackhandler.h"
 
-class RegistersPackTableModel : public QAbstractTableModel
+class RegistersPackTableModel : public QAbstractItemModel
 {
     Q_OBJECT
 
@@ -23,18 +23,29 @@ public:
 
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
+    QModelIndex index(int row, int column, const QModelIndex &parent) const override;
+    QModelIndex parent(const QModelIndex &child) const override;
+
 public slots:
     void AddRegisterPack(IExperimentControlModel::RegstersPack pack);
+    void ReadRegistersPack(QModbusDataUnit::RegisterType dataType, int startAddress, const QVector<quint16> &data);
 
 signals:
     void updateViewport();
 
 public:
-    void SetActiveDeviceId(int deviceId);
+    void SetActiveDevice(IModbusDeviceDataManager::IModbusDeviceHandler *device);
+    QList<QLineSeries*> GetDataLineSeries();
+    void SetStartTime(QDateTime experimentStartTime);
 
 private:
-    QMap<int, QList<IExperimentControlModel::RegstersPack> > devicesPacks;
-    QList<IExperimentControlModel::RegstersPack> *selectdPacks;
+    IModbusDeviceDataManager::IModbusDeviceHandler *activeDevice;
+    QMap<IModbusDeviceDataManager::IModbusDeviceHandler *, QList<RegistersPackHandler*> > devicesPacks;
+    QList<RegistersPackHandler*> *activePacks;
+    QHash<int, RegistersPackHandler*> registerPacksHash;
+    QHash<int, QLineSeries*> registersLineSeriesHash;
+    quint64 experimentStartTime;
+
     QString GetRegisterString(QModbusDataUnit::RegisterType type) const;
     QModbusDataUnit::RegisterType GetRegisterType(QString str) const;
     IExperimentControlModel::RegstersPack *FindExistedPack(IExperimentControlModel::RegstersPack pack);

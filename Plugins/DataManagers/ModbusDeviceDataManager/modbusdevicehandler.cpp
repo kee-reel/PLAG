@@ -33,18 +33,23 @@ void ModbusDeviceHandler::ReadDataUnit(const QModbusDataUnit &unit)
 {
     qDebug() << "New unit" << "Type:" << unit.registerType() << "Size:" << unit.valueCount();
     auto registerType = unit.registerType();
-    QVector<quint16> *dataBuffer = GetDataBufferForType(registerType);
+//    QVector<quint16> *dataBuffer = GetDataBufferForType(registerType);
 
-    if(dataBuffer->length() != unit.valueCount())
-        dataBuffer->resize(unit.valueCount());
+//    if(dataBuffer->length() != unit.valueCount())
+//        dataBuffer->resize(unit.valueCount());
+
+//    for (uint i = 0; i < unit.valueCount(); ++i)
+//    {
+//        (*dataBuffer)[i] = unit.value(i);
+//        qDebug() << (unit.startAddress() + i) << (*dataBuffer)[i];
+//    }
 
     for (uint i = 0; i < unit.valueCount(); ++i)
     {
-        (*dataBuffer)[i] = unit.value(i);
-        qDebug() << (unit.startAddress() + i) << (*dataBuffer)[i];
+        qDebug() << (unit.startAddress() + i) << unit.value(i);
     }
 
-    emit OnReadRequestArrived(registerType, *dataBuffer);
+    emit OnReadRequestArrived(registerType, unit.startAddress(), unit.values());
 }
 
 QVector<quint16> *ModbusDeviceHandler::GetDataBufferForType(QModbusDataUnit::RegisterType dataType)

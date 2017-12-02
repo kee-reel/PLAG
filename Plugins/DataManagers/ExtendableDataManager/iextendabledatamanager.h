@@ -5,8 +5,6 @@
 
 #include "../../interfaces.h"
 
-template <class T1, class T2> class QPair;
-enum QVariant::Type;
 class QAbstractItemModel;
 
 //! \defgroup ExtendableDataBaseManagerPlugin ExtendableDataBaseManagerPlugin
@@ -22,11 +20,10 @@ class QAbstractItemModel;
 class IExtendableDataManager : public IDataManagerPlugin
 {
 public:
-    class ManagerDataItem
+    struct ManagerDataItem
     {
-    public:
-        virtual QVector<QString> GetHeader() = 0;
-        virtual QMap<int, QVector<QVariant> > GetData() = 0;
+        int id;
+        QMap<QString, QVector<QVariant> > dataChunks;
     };
 
     virtual bool RegisterExtentionFieldEditor(QString relation, QString field, QWidget *widget) = 0;

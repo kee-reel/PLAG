@@ -49,7 +49,7 @@ QString PomodoroView::GetLastError()
 
 void PomodoroView::AddReferencePlugin(PluginInfo *pluginInfo)
 {
-    if(pluginInfo->Meta->Type == PLUGINMODEL)
+    if(pluginInfo->Meta->Type == MODELPLUGIN)
     {
         myModel = qobject_cast<IPomodoroModel*>(pluginInfo->Instance);
         if(!myModel)

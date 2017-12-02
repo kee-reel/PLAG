@@ -90,9 +90,6 @@ private:
     QStandardItemModel AvailablePortsModel;
     ModbusDevicesModel AvailableDevicesModel;
     RegistersPackTableModel RegisterPacksModel;
-    QStandardItemModel ValuesModel;
-
-    void AddNewValuesFromPack(RegstersPack pack);
 
 private slots:
     void ProcessDataInput(QModbusDataUnit::RegisterType dataType, const QVector<quint16> &data);
@@ -102,9 +99,12 @@ private slots:
 public:
     QAbstractItemModel *GetRegisterPacks() override;
     void AddRegisterPack(RegstersPack pack) override;
-    void SetDeviceIdForPacks(int deviceRow) override;
-    QAbstractItemModel *GetValues() override;
+    void SetDeviceForSetup(QString deviceName) override;
 
+
+    // IExperimentControlModel interface
+public:
+    QList<QLineSeries *> GetRegistersLineSeries() override;
 };
 //! }
 #endif // EXPERIMENTCONTROLMODEL_H

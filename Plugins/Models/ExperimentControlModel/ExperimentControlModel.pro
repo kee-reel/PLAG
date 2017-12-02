@@ -1,15 +1,15 @@
 
 TARGET = ExperimentControlModel
 TEMPLATE = lib
-QT += widgets serialport serialbus charts
+QT += widgets serialport serialbus charts jsonserializer
 
 SOURCES += \
     experimentcontrolmodel.cpp \
     experimentsetup.cpp \
     datachannel.cpp \
     registerspacktablemodel.cpp \
-    registervaluesmodel.cpp \
-    modbusdevicesmodel.cpp
+    modbusdevicesmodel.cpp \
+    registerspackhandler.cpp
 
 HEADERS +=\
     iexperimentcontrolmodel.h \
@@ -17,8 +17,8 @@ HEADERS +=\
     experimentsetup.h \
     datachannel.h \
     registerspacktablemodel.h \
-    registervaluesmodel.h \
-    modbusdevicesmodel.h
+    modbusdevicesmodel.h \
+    registerspackhandler.h
 
 DISTFILES += \
     PluginMeta.json

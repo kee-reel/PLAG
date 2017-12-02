@@ -102,8 +102,11 @@ bool ModbusDevicesModel::setData(const QModelIndex &index, const QVariant &value
 
     if(index.column() == DeviceNameColumn)
     {
-        devicesExtraData[device].name = value.toString();
-        devicesNamesModel.setData(devicesNamesModel.index(index.row()), value.toString());
+        auto str = value.toString();
+        if(str == "")
+            return false;
+        devicesExtraData[device].name = str;
+        devicesNamesModel.setData(devicesNamesModel.index(index.row()), str);
         emit dataChanged(index, index);
         return true;
     }
@@ -169,6 +172,18 @@ QStringListModel *ModbusDevicesModel::GetDeviceNamesModel()
     return &devicesNamesModel;
 }
 
+IModbusDeviceDataManager::IModbusDeviceHandler *ModbusDevicesModel::GetDeviceByName(QString deviceName)
+{
+    auto iter = devicesExtraData.begin();
+    while(iter != devicesExtraData.end())
+    {
+        DeviceExtraData value = iter.value();
+        if(value.name == deviceName)
+            return iter.key();
+        ++iter;
+    }
+    return NULL;
+}
 
 bool ModbusDevicesModel::removeRows(int row, int count, const QModelIndex &parent)
 {

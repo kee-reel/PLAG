@@ -49,19 +49,19 @@ QString GridMainMenuView::GetLastError()
 void GridMainMenuView::AddReferencePlugin(PluginInfo *pluginInfo)
 {
     switch(pluginInfo->Meta->Type){
-    case PLUGINVIEW:{
+    case VIEWPLUGIN:{
         relatedViewPlugins.append(pluginInfo);
         qDebug() << "New IViewPlugin added (" << pluginInfo->Meta->Name << ").";
         connect(pluginInfo->Instance, SIGNAL( OnClose(PluginInfo*) ), SLOT( ReferencePluginClosed(PluginInfo*) ));
     } break;
 
-    case PLUGINMODEL:{
+    case MODELPLUGIN:{
         relatedModelPlugins.append(pluginInfo);
         qDebug() << "New IModelPlugin added (" << pluginInfo->Meta->Name << ").";
         connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
     } break;
 
-    case ROOTMODEL:{
+    case COREPLUGIN:{
         mainMenu = qobject_cast<IMainMenuModel*>(pluginInfo->Instance);
         if(mainMenu == NULL){
             qDebug() << "Can't cast" << pluginInfo->Meta->Name << "to IMainMenuModel.";
@@ -70,7 +70,7 @@ void GridMainMenuView::AddReferencePlugin(PluginInfo *pluginInfo)
         pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
     } break;
 
-    case DATAMANAGER:{
+    case DATAMANAGERPLUGIN:{
 
     }break;
     }
