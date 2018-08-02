@@ -11,7 +11,7 @@ enum
 
 RegistersPackTableModel::RegistersPackTableModel(QObject *parent) : QAbstractItemModel(parent)
 {
-    activePacks = NULL;
+    activePacks = nullptr;
     experimentStartTime = QDateTime::currentMSecsSinceEpoch();
 }
 
@@ -19,19 +19,19 @@ int RegistersPackTableModel::rowCount(const QModelIndex &parent) const
 {
     if(!parent.isValid())
     {
-        return activePacks != NULL ? activePacks->length() : 0;
+        return activePacks != nullptr ? activePacks->length() : 0;
     }
 
     auto pack = static_cast<RegistersPackHandler*>(parent.internalPointer());
 
-    if(pack != NULL)
+    if(pack != nullptr)
     {
         return pack->count;
     }
 
     auto reg = static_cast<RegistersPackHandler::RegisterHandler*>(parent.internalPointer());
 
-    if(reg != NULL)
+    if(reg != nullptr)
     {
         return 0;
     }
@@ -51,14 +51,14 @@ int RegistersPackTableModel::columnCount(const QModelIndex &parent) const
 
 QVariant RegistersPackTableModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid() || activePacks == NULL)
+    if (!index.isValid() || activePacks == nullptr)
         return QVariant();
 
     if(!index.parent().isValid())
     {
         auto pack = static_cast<RegistersPackHandler*>(index.internalPointer());
 
-        if(pack != NULL)
+        if(pack != nullptr)
         {
             auto pack = activePacks->at(index.row());
 
@@ -88,7 +88,7 @@ QVariant RegistersPackTableModel::data(const QModelIndex &index, int role) const
     {
         auto reg = static_cast<RegistersPackHandler::RegisterHandler*>(index.internalPointer());
 
-        if(reg != NULL)
+        if(reg != nullptr)
         {
             if(role == Qt::DisplayRole)
             {
@@ -150,7 +150,7 @@ QVariant RegistersPackTableModel::headerData(int section, Qt::Orientation orient
 
 bool RegistersPackTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (!index.isValid() || activePacks == NULL || index.row() >= activePacks->length() || index.column() >= ColumnCount)
+    if (!index.isValid() || activePacks == nullptr || index.row() >= activePacks->length() || index.column() >= ColumnCount)
         return false;
 
     //    if (index.column() == CoilsColumn && role == Qt::CheckStateRole)
@@ -173,7 +173,7 @@ bool RegistersPackTableModel::setData(const QModelIndex &index, const QVariant &
 
 Qt::ItemFlags RegistersPackTableModel::flags(const QModelIndex &index) const
 {
-    if (!index.isValid() || activePacks == NULL || index.row() >= activePacks->length() || index.column() >= ColumnCount)
+    if (!index.isValid() || activePacks == nullptr || index.row() >= activePacks->length() || index.column() >= ColumnCount)
         return QAbstractItemModel::flags(index);
 
     Qt::ItemFlags flags = QAbstractItemModel::flags(index);
@@ -199,17 +199,17 @@ IExperimentControlModel::RegstersPack *RegistersPackTableModel::FindExistedPack(
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void RegistersPackTableModel::AddRegisterPack(IExperimentControlModel::RegstersPack pack)
 {
-    if(activePacks == NULL)
+    if(activePacks == nullptr)
         return;
 
     IExperimentControlModel::RegstersPack *foundPack = FindExistedPack(pack);
 
-    if(foundPack == NULL)
+    if(foundPack == nullptr)
     {
         emit beginInsertRows(QModelIndex(), activePacks->length(), activePacks->length());
         RegistersPackHandler *valuesPack = new RegistersPackHandler(pack, activeDevice, this);
@@ -244,7 +244,7 @@ void RegistersPackTableModel::ReadRegistersPack(QModbusDataUnit::RegisterType da
     //    {
     //        int hashValue = senderDevice->GetDeviceId() * (int)dataType * startAddress * data.length();
     //        auto packHandler = registerPacksHash.value(hashValue);
-    //        if(packHandler != NULL)
+    //        if(packHandler != nullptr)
     //            packHandler->data = data;
     //    }
 }
@@ -254,9 +254,9 @@ void RegistersPackTableModel::SetActiveDevice(IModbusDeviceDataManager::IModbusD
     beginResetModel();
     activeDevice = device;
 
-    if(activeDevice == NULL)
+    if(activeDevice == nullptr)
     {
-        activePacks = NULL;
+        activePacks = nullptr;
     }
     else
     {
@@ -351,7 +351,7 @@ QModelIndex RegistersPackTableModel::index(int row, int column, const QModelInde
 
     if (!parent.isValid())
     {
-        if(activePacks == NULL || activePacks->length() <= row)
+        if(activePacks == nullptr || activePacks->length() <= row)
             return QModelIndex();
 
         RegistersPackHandler* item = activePacks->at(row);
@@ -360,7 +360,7 @@ QModelIndex RegistersPackTableModel::index(int row, int column, const QModelInde
 
     auto parentItem = static_cast<RegistersPackHandler*>(parent.internalPointer());
 
-    if(parentItem != NULL)
+    if(parentItem != nullptr)
     {
         return createIndex(row, column, parentItem->registerHandlers[row]);
     }
@@ -375,7 +375,7 @@ QModelIndex RegistersPackTableModel::parent(const QModelIndex &index) const
 
     auto reg = static_cast<RegistersPackHandler::RegisterHandler*>(index.internalPointer());
 
-    if(reg != NULL && activePacks != NULL)
+    if(reg != nullptr && activePacks != nullptr)
     {
         RegistersPackHandler* item = reg->parentItem;
         int row = activePacks->indexOf(item);
@@ -386,7 +386,7 @@ QModelIndex RegistersPackTableModel::parent(const QModelIndex &index) const
 
     auto pack = static_cast<RegistersPackHandler*>(index.internalPointer());
 
-    if(pack != NULL && activePacks != NULL)
+    if(pack != nullptr && activePacks != nullptr)
     {
         return QModelIndex();
     }

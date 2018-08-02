@@ -45,7 +45,7 @@ MetaInfo *PluginLinker::GetPluginMeta(QJsonObject *metaData)
             for(QJsonObject::Iterator i = metaInfo.begin(); i != metaInfo.end(); ++i)
                 qDebug() << i.key() << " = " << i.value();
 
-            return NULL;
+            return nullptr;
         }
     }
 
@@ -57,7 +57,7 @@ MetaInfo *PluginLinker::GetPluginMeta(QJsonObject *metaData)
     {
         qDebug() << "Meta error: field" << FieldModuleType << "value is incorrect -" << moduleTypeStr;
         delete newMetaInfo;
-        return NULL;
+        return nullptr;
     }
 
     newMetaInfo->Type = pluginTypesNames[moduleTypeStr];
@@ -73,7 +73,7 @@ MetaInfo *PluginLinker::GetPluginMeta(QJsonObject *metaData)
     {
         qDebug() << "Meta error: field" << FieldName << "is empty";
         delete newMetaInfo;
-        return NULL;
+        return nullptr;
     }
 
     qDebug() << "Name:" << newMetaInfo->Name;

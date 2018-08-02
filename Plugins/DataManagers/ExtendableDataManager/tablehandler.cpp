@@ -5,7 +5,7 @@ TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataMan
     this->dataSource = dataSource;
     this->dataManager = dataManager;
     this->tableName = tableName;
-    itemModel = NULL;
+    itemModel = nullptr;
     CreateTable();
 }
 
@@ -23,7 +23,7 @@ bool TableHandler::HasRelation(QString relation)
 bool TableHandler::CreateTable()
 {
     // Is name valid?
-    if(tableName == NULL || tableName == "")
+    if(tableName == nullptr || tableName == "")
     {
         qDebug() << "Tree name is empty!";
         return false;
@@ -269,7 +269,7 @@ void TableHandler::InstallModel()
 QAbstractItemModel *TableHandler::GetModel()
 {
     if(!IsDataSourceExists())
-        return NULL;
+        return nullptr;
 
     InstallModel();
     return itemModel;
@@ -281,7 +281,7 @@ int TableHandler::AddItem(ManagerDataItem item)
         return -1;
 
     qDebug() << "AddItem";
-    QString queryStr = QString("INSERT INTO %1 (id) VALUES (NULL)").arg(tableName);
+    QString queryStr = QString("INSERT INTO %1 (id) VALUES (nullptr)").arg(tableName);
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
     int lastId = query.lastInsertId().toInt();
     QStringList joinTables = item.dataChunks.keys();

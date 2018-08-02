@@ -7,7 +7,7 @@ GalleryForm::GalleryForm(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->buttonClose, SIGNAL(clicked(bool)), this, SLOT(close()));
-    focusedItem = NULL;
+    focusedItem = nullptr;
 }
 
 GalleryForm::~GalleryForm()
@@ -55,7 +55,7 @@ void GalleryForm::on_buttonDelete_clicked()
     int index = galleryItems.indexOf(focusedItem);
     galleryItems.removeAt(index);
     delete focusedItem;
-    focusedItem = NULL;
+    focusedItem = nullptr;
 
     emit OnItemDelete(index);
 }

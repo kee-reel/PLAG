@@ -4,9 +4,9 @@ TaskListView::TaskListView()
 {
     mainForm = new MainForm;
     connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
-    myModel = NULL;
-    taskTree = NULL;
-    proxyModel = NULL;
+    myModel = nullptr;
+    taskTree = nullptr;
+    proxyModel = nullptr;
 }
 
 TaskListView::~TaskListView()

@@ -4,8 +4,8 @@
 
 NotificationManagerModel::NotificationManagerModel()
 {
-    openedView = NULL;
-    openedModel = NULL;
+    openedView = nullptr;
+    openedModel = nullptr;
     //    NotificationManagerModel::SetInstance(this);
 }
 
@@ -71,7 +71,7 @@ bool NotificationManagerModel::Open(IModelPlugin *parent)
     if(!openedView->Plugin.view->Open(this))
     {
         qDebug() << "!Can't open first view!";
-        openedView = NULL;
+        openedView = nullptr;
         return false;
     }
 
@@ -82,17 +82,17 @@ void NotificationManagerModel::Close()
 {
     qDebug() << "AndroidNotificationModel close.";
 
-    if(openedView != NULL && !openedView->Plugin.view->Close())
+    if(openedView != nullptr && !openedView->Plugin.view->Close())
     {
         qDebug() << "View plugin" << openedView->Meta->Name
                  << "not closed, but model closing anyway.";
     }
 
-    if(openedModel != NULL)
+    if(openedModel != nullptr)
         openedView->Plugin.view->Close();
 
-    openedView = NULL;
-    openedModel = NULL;
+    openedView = nullptr;
+    openedModel = nullptr;
     emit OnClose(pluginInfo);
     emit OnClose();
 }

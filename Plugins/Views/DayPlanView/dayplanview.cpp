@@ -5,10 +5,10 @@ DayPlanView::DayPlanView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form)
 {
-    openedView = NULL;
-    openedModel = NULL;
-    dayPlanModel = NULL;
-    itemModel = NULL;
+    openedView = nullptr;
+    openedModel = nullptr;
+    dayPlanModel = nullptr;
+    itemModel = nullptr;
     ui->setupUi(this);
     connect(ui->buttonExit, SIGNAL(clicked(bool)), SLOT(Close()));
 }
@@ -24,7 +24,7 @@ void DayPlanView::SetPluginInfo(PluginInfo *pluginInfo)
 
 void DayPlanView::OnAllSetup()
 {
-    if(dayPlanModel == NULL) return;
+    if(dayPlanModel == nullptr) return;
     dayPlanModel->SetDataTypeEditor(new DateTimeTypeEditor());
 }
 
@@ -101,8 +101,8 @@ bool DayPlanView::Close()
         qDebug() << "!DayPlanView cannot close right now!";
         return false;
     }
-    openedView = NULL;
-    openedModel = NULL;
+    openedView = nullptr;
+    openedModel = nullptr;
     emit OnClose(pluginInfo);
     emit OnClose();
     return true;

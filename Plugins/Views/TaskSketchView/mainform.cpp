@@ -5,7 +5,7 @@ MainForm::MainForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainForm)
 {
-    myModel = NULL;
+    myModel = nullptr;
     ui->setupUi(this);
     galleryForm = new GalleryForm(this);
     galleryForm->setVisible(false);
@@ -34,7 +34,7 @@ MainForm::~MainForm()
 
 void MainForm::SetModel(ITaskSketchModel *model)
 {
-    if(myModel != NULL)
+    if(myModel != nullptr)
         return;
 
     myModel = model;

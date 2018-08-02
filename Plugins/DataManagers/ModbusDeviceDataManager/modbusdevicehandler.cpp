@@ -73,7 +73,7 @@ QVector<quint16> *ModbusDeviceHandler::GetDataBufferForType(QModbusDataUnit::Reg
             break;
 
         default:
-            return NULL;
+            return nullptr;
             break;
     }
 }

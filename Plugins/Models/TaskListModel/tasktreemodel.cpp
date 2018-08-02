@@ -4,10 +4,10 @@ TaskTreeModel::TaskTreeModel()
 {
     tableName = "itasktreemodel";
     relationName = "itasktreemodel";
-    activeView = NULL;
-    activeModel = NULL;
-    dataManager = NULL;
-    treeModel = NULL;
+    activeView = nullptr;
+    activeModel = nullptr;
+    dataManager = nullptr;
+    treeModel = nullptr;
 }
 
 TaskTreeModel::~TaskTreeModel()
@@ -116,7 +116,7 @@ void TaskTreeModel::Close()
 QAbstractItemModel* TaskTreeModel::GetTreeModel()
 {
     if(!dataManager)
-        return NULL;
+        return nullptr;
 
     if(!treeModel)
         treeModel = dataManager->GetDataModel(tableName);

@@ -7,8 +7,8 @@
 
 ModbusDeviceDataManager::ModbusDeviceDataManager()
 {
-    modbusDevice = NULL;
-    lastRequest = NULL;
+    modbusDevice = nullptr;
+    lastRequest = nullptr;
     connect(this, &ModbusDeviceDataManager::ErrorOccurred, [](QString error)
     {
         qDebug() << "Modbus error:" << error;
@@ -178,7 +178,7 @@ void ModbusDeviceDataManager::SendReadRequest(const QModbusDataUnit &dataUnit)
     {
         auto deviceHandler = qobject_cast<ModbusDeviceHandler *>(sender());
 
-        if(deviceHandler != NULL)
+        if(deviceHandler != nullptr)
             deviceId = deviceHandler->GetDeviceId();
         else
             return;
@@ -251,7 +251,7 @@ void ModbusDeviceDataManager::SendWriteRequest(const QModbusDataUnit &dataUnit)
 
     auto deviceHandler = qobject_cast<ModbusDeviceHandler *>(sender());
 
-    if(deviceHandler != NULL)
+    if(deviceHandler != nullptr)
         deviceId = deviceHandler->GetDeviceId();
     else
         return;

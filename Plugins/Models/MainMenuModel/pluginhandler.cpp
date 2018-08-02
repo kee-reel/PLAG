@@ -1,7 +1,7 @@
 #include "pluginhandler.h"
 
-QHash<QString, QList<PluginHandler*>> *PluginHandler::handlersWithReferencesNames = NULL;
-QHash<QString, QList<PluginHandler*>> *PluginHandler::handlersWithSelfNames = NULL;
+QHash<QString, QList<PluginHandler*>> *PluginHandler::handlersWithReferencesNames = nullptr;
+QHash<QString, QList<PluginHandler*>> *PluginHandler::handlersWithSelfNames = nullptr;
 
 PluginHandler::PluginHandler(PluginInfo *pluginInfo)
 {

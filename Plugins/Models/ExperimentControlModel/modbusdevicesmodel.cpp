@@ -182,7 +182,7 @@ IModbusDeviceDataManager::IModbusDeviceHandler *ModbusDevicesModel::GetDeviceByN
             return iter.key();
         ++iter;
     }
-    return NULL;
+    return nullptr;
 }
 
 bool ModbusDevicesModel::removeRows(int row, int count, const QModelIndex &parent)

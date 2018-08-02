@@ -27,7 +27,7 @@ void MainMenuModelPlugin::Run(QWidget *parentWidget)
             connect(plugin->Instance, SIGNAL(OnClose()), widgetStack, SLOT(Pop()));
         }
     }
-    Open(NULL);
+    Open(nullptr);
 }
 
 void MainMenuModelPlugin::SetPluginInfo(PluginInfo *pluginInfo)
@@ -74,7 +74,7 @@ void MainMenuModelPlugin::ReferencePluginClosed(PluginInfo *pluginInfo)
 //    switch(pluginInfo->Meta->Type)
 //    {
 //    case PLUGINMODEL:
-//        Open(NULL);
+//        Open(nullptr);
 //        break;
 //    case PLUGINVIEW:
 //        Close();
@@ -122,5 +122,5 @@ void MainMenuModelPlugin::RunItem(IMainMenuModel::MenuItem *item, MetaInfo *item
 
 void MainMenuModelPlugin::OpenChildView()
 {
-    Open(NULL);
+    Open(nullptr);
 }

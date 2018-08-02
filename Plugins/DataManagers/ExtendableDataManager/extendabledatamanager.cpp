@@ -2,18 +2,18 @@
 
 ExtendableDataBaseManagerPlugin::ExtendableDataBaseManagerPlugin()
 {
-    dataSource = NULL;
+    dataSource = nullptr;
 }
 
 ExtendableDataBaseManagerPlugin::~ExtendableDataBaseManagerPlugin()
 {
     QHash<QString, TableHandler*>::Iterator tablesIter = tableHandlers.begin();
 
-    while(tablesIter != tableHandlers.end())
-    {
-        delete tablesIter.value();
-        ++tablesIter;
-    }
+//    while(tablesIter != tableHandlers.end())
+//    {
+//        delete tablesIter.value();
+//        ++tablesIter;
+//    }
 }
 
 void ExtendableDataBaseManagerPlugin::OnAllSetup()
@@ -51,7 +51,7 @@ bool ExtendableDataBaseManagerPlugin::RegisterExtentionFieldEditor(QString relat
 {
     QVariant value = widget->property("value");
 
-    if(widget == NULL || !value.isValid())
+    if(widget == nullptr || !value.isValid())
         return false;
 
     relation = relation.toLower();
@@ -70,7 +70,7 @@ QWidget *ExtendableDataBaseManagerPlugin::GetExtentionFieldEditor(QString relati
     if(dataTypeEditorsMap.contains(relation) && dataTypeEditorsMap[relation].contains(field))
         return dataTypeEditorsMap[relation].value(field);
 
-    return NULL;
+    return nullptr;
 }
 
 void ExtendableDataBaseManagerPlugin::SetupTable(QString &tableName)

@@ -2,9 +2,9 @@
 
 PomodoroModel::PomodoroModel()
 {
-    myModel = NULL;
-    notificationManger = NULL;
-    dataManager = NULL;
+    myModel = nullptr;
+    notificationManger = nullptr;
+    dataManager = nullptr;
     tableName = "itasktreemodel";
     coreRelationName = "ipomodoromodel";
     activeViewId = -1;

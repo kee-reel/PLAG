@@ -37,7 +37,7 @@ MainForm::~MainForm()
 void MainForm::SetModel(QAbstractItemModel *model)
 {
     this->model = model;
-    currentModelIndex = NULL;
+    currentModelIndex = nullptr;
     myTreeView->setModel(model);
     addForm->SetModel(model);
 }

@@ -7,7 +7,7 @@ ExtendableItemModel::ExtendableItemModel(QString tableName,
     this->tableName = tableName;
     this->dataManager = dataManager;
     coreRelationName = "tree";
-    rootItem = NULL;
+    rootItem = nullptr;
 }
 
 ExtendableItemModel::~ExtendableItemModel()
@@ -22,7 +22,7 @@ void ExtendableItemModel::LoadData()
     if(rootItem)
         return;
 
-    rootItem = new Item(NULL, &defaultTask);
+    rootItem = new Item(nullptr, &defaultTask);
     QMap<QString, QVariant::Type> newRelationStruct =
     {
         {"parent",      QVariant::Int},
@@ -224,7 +224,7 @@ bool ExtendableItemModel::setItemData(const QModelIndex &index, const QMap<int, 
 
     Item *item = static_cast<Item*>(index.internalPointer());
 
-    if(item == NULL)
+    if(item == nullptr)
         return false;
 
     QMap<QString, QVariant> dataMap = roles[Qt::UserRole].toMap();
@@ -478,7 +478,7 @@ bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction act
 
     QByteArray encodedData = data->data("application/vnd.text.list");
     QDataStream stream(&encodedData, QIODevice::ReadOnly);
-    qintptr modelPtr = NULL;
+    qintptr modelPtr = reinterpret_cast<qintptr>(nullptr);
     stream >> modelPtr;
     QMap<quintptr, QMap<int, quintptr>> newItems;
     int rows = 0;
@@ -499,7 +499,7 @@ bool ExtendableItemModel::dropMimeData(const QMimeData *data, Qt::DropAction act
         ++rows;
     }
 
-    if(modelPtr == (qintptr)this)
+    if(modelPtr == reinterpret_cast<qintptr>(this))
     {
         ReadSameModelMime(beginRow, row, parent, newItems);
     }
@@ -537,7 +537,7 @@ void ExtendableItemModel::ReadSameModelMime(int beginRow, int row, const QModelI
         QMap<int, quintptr>::Iterator lastRowI = --rows.end();
         int itemsBlock = 0;
         int prevRow = -1;
-        blockFirstItem = NULL;
+        blockFirstItem = nullptr;
 
         while(rowsI != rows.end())
         {

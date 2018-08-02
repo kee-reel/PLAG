@@ -56,7 +56,7 @@ RegistersPackHandler::RegisterHandler::RegisterHandler(RegistersPackHandler *par
 
 int RegistersPackHandler::RegisterHandler::GetAddress()
 {
-    return (parentItem != NULL) ? (parentItem->start + index) : -1;
+    return (parentItem != nullptr) ? (parentItem->start + index) : -1;
 }
 
 void RegistersPackHandler::RegisterHandler::SetData(const qreal &x, const quint16 &y)
@@ -67,5 +67,5 @@ void RegistersPackHandler::RegisterHandler::SetData(const qreal &x, const quint1
 
 quint16 RegistersPackHandler::RegisterHandler::GetData()
 {
-    return (parentItem != NULL) ? parentItem->data.at(index) : -1;
+    return (parentItem != nullptr) ? parentItem->data.at(index) : -1;
 }

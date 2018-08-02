@@ -2,15 +2,15 @@
 
 Item::Item()
 {
-    parentItem = NULL;
-    activeChunk = NULL;
+    parentItem = nullptr;
+    activeChunk = nullptr;
     id = -1;
 }
 
 Item::Item(Item *parent, Item *copy)
 {
-    parentItem = NULL;
-    activeChunk = NULL;
+    parentItem = nullptr;
+    activeChunk = nullptr;
     id = -1;
     parentItem = parent;
 
@@ -45,7 +45,7 @@ void Item::DetachFromParent()
         return;
 
     parentItem->RemoveChild(this);
-    parentItem = NULL;
+    parentItem = nullptr;
 }
 
 void Item::SetParent(Item *parent)
@@ -80,7 +80,7 @@ void Item::RemoveChildAt(int row)
         return;
 
     Item *child = childItems[row];
-    child->SetParent(NULL);
+    child->SetParent(nullptr);
     childItems.removeAt(row);
 }
 

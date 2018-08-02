@@ -2,9 +2,9 @@
 
 ExperimentControlModel::ExperimentControlModel()
 {
-    myReferencedPlugin = NULL;
-    openedView = NULL;
-    openedModel = NULL;
+    myReferencedPlugin = nullptr;
+    openedView = nullptr;
+    openedModel = nullptr;
     AvailablePortsModel.setColumnCount(3);
     AvailablePortsModel.setHeaderData(0, Qt::Horizontal, "Port");
     AvailablePortsModel.setHeaderData(1, Qt::Horizontal, "Vendor");
@@ -36,7 +36,7 @@ void ExperimentControlModel::UpdateDevicesList()
     if(AvailableDevicesModel.rowCount() == 0 && devices.length() > 0)
         RegisterPacksModel.SetActiveDevice(devices.at(0));
     else if(devices.length() == 0)
-        RegisterPacksModel.SetActiveDevice(NULL);
+        RegisterPacksModel.SetActiveDevice(nullptr);
 
     AvailableDevicesModel.UpdateDevicesList(devices);
 }
@@ -105,7 +105,7 @@ bool ExperimentControlModel::Open(IModelPlugin *parent)
     if(!openedView->Plugin.view->Open(this))
     {
         qDebug() << "!Can't open first view!";
-        openedView = NULL;
+        openedView = nullptr;
         return false;
     }
 
@@ -116,17 +116,17 @@ void ExperimentControlModel::Close()
 {
     qDebug() << "ExperimentControlModel close.";
 
-    if(openedView != NULL && !openedView->Plugin.view->Close())
+    if(openedView != nullptr && !openedView->Plugin.view->Close())
     {
         qDebug() << "View plugin" << openedView->Meta->Name
                  << "not closed, but model closing anyway.";
     }
 
-    if(openedModel != NULL)
+    if(openedModel != nullptr)
         openedView->Plugin.view->Close();
 
-    openedView = NULL;
-    openedModel = NULL;
+    openedView = nullptr;
+    openedModel = nullptr;
     emit OnClose(pluginInfo);
     emit OnClose();
 }

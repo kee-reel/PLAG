@@ -5,11 +5,11 @@ GridMainMenuView::GridMainMenuView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form)
 {
-    openedView = NULL;
-    openedModel = NULL;
-    mainMenu = NULL;
-    rootMenuItem = NULL;
-    exitItem = NULL;
+    openedView = nullptr;
+    openedModel = nullptr;
+    mainMenu = nullptr;
+    rootMenuItem = nullptr;
+    exitItem = nullptr;
 
 //    quickView = new QQuickView();
 //    container = QWidget::createWindowContainer(quickView, this);
@@ -63,7 +63,7 @@ void GridMainMenuView::AddReferencePlugin(PluginInfo *pluginInfo)
 
     case COREPLUGIN:{
         mainMenu = qobject_cast<IMainMenuModel*>(pluginInfo->Instance);
-        if(mainMenu == NULL){
+        if(mainMenu == nullptr){
             qDebug() << "Can't cast" << pluginInfo->Meta->Name << "to IMainMenuModel.";
             return;
         }
@@ -91,7 +91,7 @@ bool GridMainMenuView::Open(IModelPlugin *model)
         return false;
     }
 
-    if(rootMenuItem == NULL)
+    if(rootMenuItem == nullptr)
     {
         rootMenuItem = mainMenu->GetRootMenuItem();
         if(rootMenuItem->Items.count() != 0)
@@ -131,8 +131,8 @@ bool GridMainMenuView::Close()
         qDebug() << "!GridMainMenuView cannot close right now!";
         return false;
     }
-    openedView = NULL;
-    openedModel = NULL;
+    openedView = nullptr;
+    openedModel = nullptr;
     emit OnClose();
     emit OnClose(pluginInfo);
     return true;

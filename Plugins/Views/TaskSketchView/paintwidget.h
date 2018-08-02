@@ -18,7 +18,8 @@ class PaintWidget : public QWidget
     Q_PROPERTY(QVariant value READ value WRITE setValue)
 
 public:
-    explicit PaintWidget(QWidget *parent = 0);
+    explicit PaintWidget(QWidget *parent = nullptr);
+    virtual ~PaintWidget() override;
     QVariant value() const;
     void setValue(const QVariant value);
 private:
@@ -33,11 +34,11 @@ public slots:
 
     // QWidget interface
 protected:
-    virtual void mousePressEvent(QMouseEvent *event);
-    virtual void mouseReleaseEvent(QMouseEvent *event);
-    virtual void mouseMoveEvent(QMouseEvent *event);
-    virtual void paintEvent(QPaintEvent *event);
-    virtual void resizeEvent(QResizeEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override;
 
 };
 //! \}

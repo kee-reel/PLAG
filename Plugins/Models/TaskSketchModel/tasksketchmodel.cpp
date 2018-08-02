@@ -5,8 +5,8 @@ TaskSketchModel::TaskSketchModel()
     tableName = "itasksketchmodel";
     coreRelationName = "itasksketchmodel";
     activeViewId = -1;
-    myModel = NULL;
-    dataManager = NULL;
+    myModel = nullptr;
+    dataManager = nullptr;
 }
 
 TaskSketchModel::~TaskSketchModel()
@@ -20,7 +20,7 @@ void TaskSketchModel::SetPluginInfo(PluginInfo *pluginInfo)
 
 void TaskSketchModel::OnAllSetup()
 {
-    if(dataManager == NULL)
+    if(dataManager == nullptr)
         return;
 
     QMap<QString, QVariant::Type> newRelationStruct =
@@ -31,7 +31,7 @@ void TaskSketchModel::OnAllSetup()
     defaultData << QByteArray();
     dataManager->AddExtention(tableName, coreRelationName, newRelationStruct, defaultData);
 
-    if(myModel != NULL)
+    if(myModel != nullptr)
         dataManager->AddExtention("ITaskTreeModel", coreRelationName, newRelationStruct, defaultData);
 }
 

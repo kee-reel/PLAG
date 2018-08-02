@@ -4,9 +4,9 @@ MainMenuPluginView::MainMenuPluginView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainForm)
 {
-    myModel = NULL;
+    myModel = nullptr;
     ui->setupUi(this);
-    rootMenuItem = NULL;
+    rootMenuItem = nullptr;
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
     sceneScale = 1;
@@ -128,14 +128,14 @@ void MainMenuPluginView::SetRootMenuItem(IMainMenuModel::MenuItem *RootMenuItem)
     {
         if(rootMenuItem->Items[j] == this->pluginInfo->Meta)
             continue;
-        menuItem = new MenuItemGraphicsObject(NULL, rootMenuItem, rootMenuItem->Items[j]);
+        menuItem = new MenuItemGraphicsObject(nullptr, rootMenuItem, rootMenuItem->Items[j]);
         connect(menuItem, SIGNAL(OnClicked(MenuItemGraphicsObject*)),
                 SLOT(OnItemSelected(MenuItemGraphicsObject*)));
         scene->addItem(menuItem);
         menuItems.append(menuItem);
     }
 
-    AddSubitems(NULL, rootMenuItem);
+    AddSubitems(nullptr, rootMenuItem);
 }
 
 void MainMenuPluginView::AddSubitems(MenuItemGraphicsObject *ParentMenuItem, IMainMenuModel::MenuItem *ParentMenuItemStruct)

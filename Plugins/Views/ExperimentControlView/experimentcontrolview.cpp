@@ -5,7 +5,7 @@ ExperimentControlView::ExperimentControlView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form)
 {
-    myReferencedPlugin = NULL;
+    myReferencedPlugin = nullptr;
     ui->setupUi(this);
     connect(ui->buttonExit, SIGNAL(clicked(bool)), this, SLOT(Close()));
     dataChart.legend()->hide();
@@ -225,7 +225,7 @@ void ExperimentControlView::on_deviceNamesCombo_currentIndexChanged(const QStrin
 
 void ExperimentControlView::on_buttonStart_clicked()
 {
-    myReferencedPlugin->StartExperiment(NULL);
+    myReferencedPlugin->StartExperiment(nullptr);
 }
 
 void ExperimentControlView::on_chartScroll_sliderMoved(int position)

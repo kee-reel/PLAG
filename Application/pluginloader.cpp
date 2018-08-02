@@ -5,7 +5,7 @@
 PluginLoader::PluginLoader(QWidget* parent) : QObject(parent)
 {
     this->parent = parent;
-    corePlugin = NULL;
+    corePlugin = nullptr;
 }
 
 PluginLoader::~PluginLoader()
@@ -136,7 +136,7 @@ QPluginLoader *PluginLoader::LoadPlugin(QString pluginName)
     if(!QLibrary::isLibrary(pluginName))
     {
         qDebug() << "Can't load the plugin" << pluginName << ": not a library file.";
-        return NULL;
+        return nullptr;
     }
 
     QPluginLoader* loader = new QPluginLoader(pluginName);

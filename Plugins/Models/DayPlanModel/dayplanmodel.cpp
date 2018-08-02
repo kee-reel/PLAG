@@ -2,12 +2,12 @@
 
 DayPlanModel::DayPlanModel()
 {
-    openedView = NULL;
-    openedModel = NULL;
-    taskTreeModel = NULL;
-    taskDataModel = NULL;
-    dateDataModel = NULL;
-    dataManager = NULL;
+    openedView = nullptr;
+    openedModel = nullptr;
+    taskTreeModel = nullptr;
+    taskDataModel = nullptr;
+    dateDataModel = nullptr;
+    dataManager = nullptr;
     tableName = "ITaskTreeModel";
     relationName = "IDayPlanModel";
 }
@@ -89,11 +89,11 @@ bool DayPlanModel::Open(IModelPlugin *parent)
     qDebug() << "DayPlanModel opens related view " << openedView->Meta->Name;
     if(!openedView->Plugin.view->Open(this)){
         qDebug() << "!Can't open first view!";
-        openedView = NULL;
+        openedView = nullptr;
         return false;
     }
 
-    if(dataManager != NULL)
+    if(dataManager != nullptr)
     {
         dataManager->SetActiveExtention(tableName, relationName);
     }
@@ -104,29 +104,29 @@ bool DayPlanModel::Open(IModelPlugin *parent)
 void DayPlanModel::Close()
 {
     qDebug() << "DayPlanModel close.";
-    if(openedView != NULL && !openedView->Plugin.view->Close()){
+    if(openedView != nullptr && !openedView->Plugin.view->Close()){
         qDebug() << "View plugin" << openedView->Meta->Name
                  << "not closed, but model closing anyway.";
     }
-    if(openedModel != NULL)
+    if(openedModel != nullptr)
         openedView->Plugin.view->Close();
 
-    openedView = NULL;
-    openedModel = NULL;
+    openedView = nullptr;
+    openedModel = nullptr;
     emit OnClose(pluginInfo);
     emit OnClose();
 }
 
 QAbstractItemModel *DayPlanModel::GetTaskModel()
 {
-    if(!dataManager) return NULL;
+    if(!dataManager) return nullptr;
     if(!taskDataModel) taskDataModel = dataManager->GetDataModel(tableName);
     return taskDataModel;
 }
 
 QAbstractItemModel *DayPlanModel::GetDateModel()
 {
-    if(!dataManager) return NULL;
+    if(!dataManager) return nullptr;
     if(!dateDataModel) dateDataModel = dataManager->GetDataModel(relationName);
     return dateDataModel;
 }

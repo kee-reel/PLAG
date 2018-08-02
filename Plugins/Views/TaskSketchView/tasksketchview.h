@@ -30,7 +30,6 @@ private:
     ITaskSketchModel *myModel;
     MainForm *mainForm;
     PluginInfo *pluginInfo;
-    PaintWidget *paintWidgetTypeEditor;
 
 signals:
     void OnOpen(QWidget *);

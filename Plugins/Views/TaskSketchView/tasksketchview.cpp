@@ -2,7 +2,6 @@
 
 TaskSketchView::TaskSketchView()
 {
-    paintWidgetTypeEditor = nullptr;
     mainForm = nullptr;
     myModel = nullptr;
 }
@@ -11,9 +10,6 @@ TaskSketchView::~TaskSketchView()
 {
     if(mainForm)
         delete mainForm;
-
-    if(paintWidgetTypeEditor)
-        delete paintWidgetTypeEditor;
 }
 
 void TaskSketchView::SetPluginInfo(PluginInfo *pluginInfo)
@@ -25,7 +21,8 @@ void TaskSketchView::OnAllSetup()
 {
     mainForm = new MainForm();
     connect(mainForm, SIGNAL(onClose()), this, SLOT(Close()));
-    paintWidgetTypeEditor = new PaintWidget();
+
+    PaintWidget* paintWidgetTypeEditor = new PaintWidget();
 
     if(myModel)
         myModel->LinkEditorWidget(paintWidgetTypeEditor);

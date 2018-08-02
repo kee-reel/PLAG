@@ -43,7 +43,7 @@ public:
     void RemoveChildAt(int row);
     inline Item *GetChildAt(int row)
     {
-        return childItems.count() > row ? childItems[row] : NULL;
+        return childItems.count() > row ? childItems[row] : nullptr;
     }
     inline int ChildCount()
     {

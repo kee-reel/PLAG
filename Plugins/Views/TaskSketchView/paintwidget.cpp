@@ -8,6 +8,11 @@ PaintWidget::PaintWidget(QWidget *parent) : QWidget(parent)
     pen = QPen(QBrush(Qt::black), 3);
 }
 
+PaintWidget::~PaintWidget()
+{
+    qDebug("PaintWidget::~PaintWidget");
+}
+
 QVariant PaintWidget::value() const
 {
     QByteArray ba;

@@ -5,7 +5,7 @@ PomodoroView::PomodoroView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::PomodoroView)
 {
-    myModel = NULL;
+    myModel = nullptr;
 
     ui->setupUi(this);
     ui->treeView->setVisible(false);

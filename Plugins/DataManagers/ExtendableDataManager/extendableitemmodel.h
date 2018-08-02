@@ -62,7 +62,7 @@ private:
     Item dataTypeEditors;
     Item *rootItem;
 
-    Item *AddItem(int row, Item *taskParent, Item *taskData = NULL);
+    Item *AddItem(int row, Item *taskParent, Item *taskData = nullptr);
     bool UpdateItem(Item *task);
     bool UpdateItemsPosition(Item *parent, int from);
     bool DeleteItem(Item *task);
