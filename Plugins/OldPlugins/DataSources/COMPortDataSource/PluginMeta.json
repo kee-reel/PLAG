@@ -1,0 +1,7 @@
+{
+    "Type": "DATASOURCEPLUGIN",
+    "Interface": "ICOMPortDataSource",
+    "Name": "COMPortDataSource",
+    "RelatedPluginInterfaces": [
+    ]
+}

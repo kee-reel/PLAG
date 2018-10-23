@@ -64,10 +64,10 @@ ParentWindow::~ParentWindow()
 
 bool ParentWindow::Init()
 {
-    if(pluginManager->SetupPlugins())
+    if(pluginManager->setupPlugins())
     {
         SetupWidget();
-        pluginManager->RunCorePlugin();
+        pluginManager->runCorePlugin();
         return true;
     }
     else

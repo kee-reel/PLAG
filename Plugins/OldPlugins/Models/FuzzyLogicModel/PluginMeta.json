@@ -1,0 +1,7 @@
+{
+    "Type": "MODELPLUGIN",
+    "Interface": "IFuzzyLogicModel",
+    "Name": "FuzzyLogicModel",
+    "RelatedPluginInterfaces": [
+    ]
+}

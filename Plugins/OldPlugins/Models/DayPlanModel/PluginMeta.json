@@ -1,0 +1,10 @@
+{
+    "Type": "MODELPLUGIN",
+    "Interface": "IDayPlanModel",
+    "Name": "DayPlanModel",
+    "RelatedPluginInterfaces": [
+        "ITaskTreeModel",
+        "IExtendableDataManager",
+        "IMainMenuModel"
+    ]
+}

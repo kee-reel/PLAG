@@ -53,3 +53,6 @@ CMakeLists.txt.user*
 */html/*
 */latex/*
 *.db
+
+.directory
+*/.qmake.stash

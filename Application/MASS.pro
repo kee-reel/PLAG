@@ -4,20 +4,24 @@
 #
 #-------------------------------------------------
 
-QT       += widgets sql gui qml quick multimedia serialport
+QT       += widgets sql gui qml quick multimedia serialport charts
 
 TARGET = MASS
 TEMPLATE = app
-CONFIG += plugin
+
+include(common.pri)
 
 SOURCES += main.cpp\
     parentwindow.cpp \
-    pluginloader.cpp
+    pluginloader.cpp \
+    pluginhandler.cpp
 
 HEADERS  += \
     parentwindow.h \
     pluginloader.h \
-    icoreplugin.h
+    icoreplugin.h \
+    pluginhandler.h \
+    ipluginhandler.h
 
 android {
     QT += androidextras
@@ -63,9 +67,6 @@ android {
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 }
-
-DISTFILES += \
-    BuildInfo.pri
 
 RESOURCES += \
     rsc.qrc

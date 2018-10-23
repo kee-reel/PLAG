@@ -12,6 +12,7 @@
 #include <QtSql>
 
 #include "icoreplugin.h"
+#include "ipluginhandler.h"
 
 //! \addtogroup MASS MASS
 //! @{
@@ -27,29 +28,8 @@ public:
     //!
     //! \param parent QWidget which will be parent for all application windows.
     //!
-    explicit PluginLoader(QWidget *parent = 0);
+    explicit PluginLoader(QWidget *m_parent = nullptr);
     ~PluginLoader();
-
-private:
-    QWidget* parent;
-    ICorePlugin* corePlugin;
-
-    QMap<QString, ICorePlugin*> corePlugins;
-    QMap<QObject*, QJsonObject> pluginInstances;
-
-    QDir internalPluginsPath;
-
-    void LoadPluginsToHome();
-    void LoadFilesFromDirectory(QDir directory, QDir dstDirectory);
-    bool SetupPlugin(QString pluginName);
-    QPluginLoader* LoadPlugin(QString pluginName);
-    QObject* GetPluginInstance(QPluginLoader* loader);
-    void BindPluginToSystem(QObject* instance, QPluginLoader* loader);
-
-    template<class Type>
-    Type *CastToPlugin(QObject* possiblePlugin);
-
-    bool SetupPluginsConnections();
 
 public slots:
     ///
@@ -57,11 +37,29 @@ public slots:
     //! If it exists - set this plugin as rootModel and send to it all unspecified plugins.
     /// \return Is core plugin found
     ///
-    bool SetupPlugins();
+    bool setupPlugins();
     ///
     /// \brief Calls Run method on selected core plugin.
     ///
-    void RunCorePlugin();
+    void runCorePlugin();
+
+private:
+    void loadPluginsToHome();
+    void loadFilesFromDirectory(QDir directory, QDir dstDirectory);
+    bool setupPlugin(QString pluginName);
+
+    template<class Type>
+    Type *castToPlugin(QObject* possiblePlugin);
+
+private:
+    QWidget* m_parent;
+    QSharedPointer<ICorePlugin> m_corePlugin;
+
+    QList<QSharedPointer<IPluginHandler>> m_pluginHandlers;
+    QList<QSharedPointer<IPluginHandler>> m_corePluginHandlers;
+
+    QDir m_internalPluginsPath;
+
 };
 //! @}
 #endif // PLUGINMANAGER_H

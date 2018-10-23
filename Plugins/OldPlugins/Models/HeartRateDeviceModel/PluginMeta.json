@@ -1,0 +1,10 @@
+{
+    "Type": "MODELPLUGIN",
+    "Interface": "IHeartRateDeviceModel",
+    "Name": "HeartRateDeviceModel",
+    "RelatedPluginInterfaces": [
+        "IFuzzyLogicModel",
+        "IMainMenuModel",
+        "IExperimentControlModel"
+    ]
+}

@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Res/ic_add_black_24dp.png</file>
+        <file>Res/ic_cancel_black_24dp.png</file>
+        <file>Res/ic_delete_black_24dp.png</file>
+        <file>Res/ic_done_black_24dp.png</file>
+        <file>Res/ic_exit_to_app_black_24dp.png</file>
+        <file>Res/ic_mode_edit_black_24dp.png</file>
+        <file>Res/sketch_to_task_24dp.png</file>
+        <file>Res/ic_file_restore_black_24dp.png</file>
+        <file>Res/ic_content_save_black_24dp.png</file>
+        <file>Res/ic_image_multiple_black_24dp.png</file>
+        <file>Res/alert.raw</file>
+        <file>Res/ic_assignment_black_36dp.png</file>
+        <file>Res/ic_timelapse_black_24dp.png</file>
+    </qresource>
+</RCC>

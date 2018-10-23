@@ -1,9 +1,0 @@
-{
-    "Type": "MODELPLUGIN",
-    "Interface": "IExperimentControlModel",
-    "Name": "ExperimentControlModel",
-    "RelatedPluginInterfaces": [
-        "IModbusDeviceDataManager",
-        "IMainMenuModel"
-    ]
-}

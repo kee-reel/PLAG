@@ -1,0 +1,8 @@
+{
+    "Type": "DATASOURCEPLUGIN",
+    "Interface": "IDataBaseSourcePlugin",
+    "Name": "DataBaseSourcePlugin",
+    "RelatedPluginInterfaces": [
+        ""
+    ]
+}

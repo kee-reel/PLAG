@@ -1,7 +1,0 @@
-{
-    "Type": "COREPLUGIN",
-    "Interface": "IMainMenuModel",
-    "Name": "MainMenuModel",
-    "RelatedPluginInterfaces": [
-    ]
-}

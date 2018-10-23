@@ -1,0 +1,8 @@
+{
+    "Type": "PluginModel",
+    "Interface": "INeuralNetworkModel",
+    "Name": "NeuralNetworkModel",
+    "RelatedPluginInterfaces": [
+        "IMainMenuModel"
+    ],
+}

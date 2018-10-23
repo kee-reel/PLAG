@@ -1,0 +1,8 @@
+{
+    "Type": "VIEWPLUGIN",
+    "Interface": "IHeartRateDeviceView",
+    "Name": "HeartRateDeviceView",
+    "RelatedPluginInterfaces": [
+        "IHeartRateDeviceModel"
+    ]
+}

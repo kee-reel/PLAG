@@ -1,0 +1,8 @@
+{
+    "Type": "VIEWPLUGIN",
+    "Interface": "",
+    "Name": "TaskListView",
+    "RelatedPluginInterfaces": [
+        "ITaskTreeModel"
+    ]
+}

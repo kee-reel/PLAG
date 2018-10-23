@@ -1,0 +1,8 @@
+{
+    "Type": "VIEWPLUGIN",
+    "Interface": "IDayPlanView",
+    "Name": "DayPlanView",
+    "RelatedPluginInterfaces": [
+        "IDayPlanModel"
+    ]
+}

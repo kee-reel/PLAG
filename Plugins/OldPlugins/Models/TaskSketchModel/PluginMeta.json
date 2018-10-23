@@ -1,0 +1,10 @@
+{
+    "Type": "MODELPLUGIN",
+    "Interface": "ITaskSketchModel",
+    "Name": "TaskSketchModel",
+    "RelatedPluginInterfaces": [
+        "IExtendableDataManager",
+        "ITaskTreeModel",
+        "IMainMenuModel"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "Type": "MODELPLUGIN",
+    "Interface": "INotificationMangerModel",
+    "Name": "NotificationMangerModel",
+    "RelatedPluginInterfaces": [
+        "IMAINMENUMODEL"
+    ]
+}

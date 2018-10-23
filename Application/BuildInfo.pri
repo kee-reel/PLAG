@@ -1,4 +1,5 @@
-CONFIG += c++11 plugin
+# For nice folders organisation
+include(common.pri)
 
 DESTDIR = $PWD/Modules
 

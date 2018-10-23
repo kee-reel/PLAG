@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Res/ic_add_black_24dp.png</file>
+        <file>Res/ic_delete_black_24dp.png</file>
+        <file>Res/ic_play_circle_outline_black_24dp.png</file>
+        <file>Res/ic_replay_black_24dp.png</file>
+        <file>Res/ic_cancel_black_24dp.png</file>
+    </qresource>
+</RCC>

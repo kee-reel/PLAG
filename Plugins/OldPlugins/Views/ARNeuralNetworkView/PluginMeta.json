@@ -1,0 +1,9 @@
+{
+    "Type": "PluginView",
+    "Interface": "",
+    "Name": "ARNeuralNetworkView",
+    "RelatedPluginInterfaces": [
+        "NeuralNetworkModel",
+        "DataManager",
+    ],
+}
