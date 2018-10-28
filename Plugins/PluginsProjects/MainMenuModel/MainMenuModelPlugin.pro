@@ -7,7 +7,6 @@ TARGET = MainMenuModel
 TEMPLATE = lib
 QT += core widgets
 
-include(../../PluginsCommon/BuildInfo.pri)
 
 SOURCES += \
     mainmenumodelplugin.cpp \
@@ -19,8 +18,12 @@ HEADERS +=\
     mainmenumodelplugin.h \
     pluginlinker.h \
     widgetstack.h \
-    iplugin.h \
-    linkeritem.h
+    linkeritem.h \
+    ../../PluginsInterfaces/imainmenumodule.h
+
+DEFINES += PLUGIN_BASE_QOBJECT
+
+include(../../PluginsCommon/BuildInfo.pri)
 
 DISTFILES += \
     PluginMeta.json

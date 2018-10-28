@@ -22,7 +22,6 @@ class QWidget;
 class ICorePlugin
 {
 public:
-    virtual ~ICorePlugin() = 0;
     //! \brief Recieve loaded plugin with it's meta data.
     //! \param Plugin instance.
     //! \param Plugin meta data.
@@ -31,6 +30,8 @@ public:
     //! \brief Starts plugin work. Some kind of 'start' signal.
     //! \param This will be parent widget for all widgets in app.
     virtual void start(QWidget* parentWidget) = 0;
+protected:
+    ~ICorePlugin() {}
 };
 Q_DECLARE_INTERFACE(ICorePlugin, "ICorePlugin")
 //! @}

@@ -7,13 +7,13 @@
 
 #include "ipluginhandler.h"
 
-class LinkerItem : public IPluginHandler
+class PluginHandler : public IPluginHandler
 {
     const QString META_DATA_CORE_FLAG = "IsCorePlugin";
 
 public:
-    LinkerItem(QString m_filename, QObject *m_parent = nullptr);
-    virtual ~LinkerItem() override {}
+    PluginHandler(QString m_filename, QObject *m_parent = nullptr);
+    virtual ~PluginHandler() override {}
 
     // IPlugin interface
 public:

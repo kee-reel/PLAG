@@ -4,21 +4,6 @@
 #include <QObject>
 #include <QWeakPointer>
 
-bool PluginBase::setupMetaInfo(const MetaInfo &metaInfo, const QJsonObject &metaInfoJsonObject)
-{
-    m_metaInfo = metaInfo;
-    return true;
-}
-
-QString PluginBase::getLastError()
-{
-    return m_lastErrorString;
-}
-
-const MetaInfo &PluginBase::getPluginMetaInfo()
-{
-    return m_metaInfo;
-}
 
 bool PluginBase::addReferencePlugin(const IPlugin *referencePlugin)
 {

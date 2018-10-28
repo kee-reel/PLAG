@@ -2,25 +2,23 @@
     "version": 1,
     "supportedProjectTypes": [ ],
     "id": "C.MASSPlugin",
-    "category": "A.Projects",
+    "category": "A.Plugins",
 
     "trDescription": "Creates plugin for MASS.",
     "trDisplayName": "MASS Plugin",
-    "trDisplayCategory": "Library",
+    "trDisplayCategory": "Project",
 	"icon": "Logo128.png",
 	"enabled": "true",
 
     "options":
     [
         { "key": "TargetPath", "value": "%{Path}" },
-		{ "key": "IPath", 	"value": "%{Path}/%{IFileName}" },
+		{ "key": "IPath", "value": "%{InterfacePath}/%{IFileName}" },
         { "key": "HdrPath", "value": "%{Path}/%{HdrFileName}" },
         { "key": "SrcPath", "value": "%{Path}/%{SrcFileName}" },
         { "key": "CN", "value": "%{JS: Cpp.className('%{Class}')}" },
-        { "key": "Base", "value": "%{JS: ( '%{BaseCB}' === '' ) ? '%{BaseEdit}' : '%{BaseCB}'}" },
         { "key": "isQObject", "value": "%{JS: [ 'QObject', 'QWidget', 'QMainWindow', 'QDeclarativeItem', 'QQuickItem'].indexOf('%{Base}') >= 0 }" },
         { "key": "GUARD", "value": "%{JS: Cpp.headerGuard('%{HdrFileName}')}" },
-        { "key": "SharedDataInit", "value": "%{JS: ('%{IncludeQSharedData}') ? 'data(new %{CN}Data)' : '' }" },
         { "key": "InterfaceName", "value": "I%{CN}" }
     ],
 
@@ -46,16 +44,23 @@
                     "type": "ComboBox",
                     "data":
                     {
-                        "items": [ { "trKey": "Model", "value": "Model" },
-                                   "RootModel", "Model", "View", "DataManager", "DataSource" ]
+                        "items": [ { "trKey": "QObject", "value": "QObject" },
+                        "QWidget", "QWidget with QML" ]
                     }
                 },
                 {
-                    "name": "Sp1",
-                    "type": "Spacer",
-                    "data": { "factor": 2 }
+                    "name": "CreateNewInterface",
+                    "trDisplayName": "Create new interface for plugin:",
+                    "type": "CheckBox",
+                    "data":
+                    {
+                        "checkedValue": "true",
+                        "uncheckedValue": "false",
+                        "checked": "false"
+                    }
                 },
                 {
+                    "visible": "%{CreateNewInterface}",
                     "name": "IFileName",
                     "type": "LineEdit",
                     "trDisplayName": "Interface header file:",
@@ -87,6 +92,19 @@
                         "basePath": "%{InitialPath}",
                         "path": "%{InitialPath}"
                     }
+                },
+                {
+                    "visible": "%{CreateNewInterface}",
+                    "name": "InterfacePath",
+                    "type": "PathChooser",
+                    "trDisplayName": "Interface path:",
+                    "mandatory": true,
+                    "data":
+                    {
+                        "kind": "existingDirectory",
+                        "basePath": "%{InitialPath}",
+                        "path": "%{InitialPath}"
+                    }
                 }
             ]
         },
@@ -110,7 +128,8 @@
                     "options": [
                         { "key": "Cpp:License:FileName", "value": "%{IFileName}" },
                         { "key": "Cpp:License:ClassName", "value": "%{CN}" }
-                    ]
+                    ],
+                    "condition": "%{CreateNewInterface}"
                 },
 				{
                     "source": "plugin.h",

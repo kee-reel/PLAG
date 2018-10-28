@@ -53,7 +53,7 @@ private:
 
 private:
     QWidget* m_parent;
-    QSharedPointer<ICorePlugin> m_corePlugin;
+    ICorePlugin* m_corePlugin;
 
     QList<QSharedPointer<IPluginHandler>> m_pluginHandlers;
     QList<QSharedPointer<IPluginHandler>> m_corePluginHandlers;

@@ -6,8 +6,10 @@
 
 bool PluginBase::init(const MetaInfo &metaInfo, const QJsonObject &metaInfoJsonObject)
 {
-
     m_metaInfo = metaInfo;
+    qDebug() << QString("Plugin [interface: %1, plugin: %2] inited\n")
+                   .arg(m_metaInfo.Name).arg(m_metaInfo.InterfaceName);
+
     return true;
 }
 
@@ -65,6 +67,11 @@ QString PluginBase::getLastError() const
 const MetaInfo &PluginBase::getPluginMetaInfo() const
 {
     return m_metaInfo;
+}
+
+QWidget *PluginBase::getWidget()
+{
+    return qobject_cast<QWidget*>(this);
 }
 
 bool PluginBase::open(const IPlugin *openedByPlugin)

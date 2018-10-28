@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-LinkerItem::LinkerItem(QString filename, QObject *parent)
+PluginHandler::PluginHandler(QString filename, QObject *parent)
 {
     m_instance = nullptr;
     m_pluginLoader.reset(new QPluginLoader(filename, parent));
@@ -10,7 +10,7 @@ LinkerItem::LinkerItem(QString filename, QObject *parent)
     m_file.setFileName(filename);
 }
 
-QObject *LinkerItem::getInstance()
+QObject *PluginHandler::getInstance()
 {
     qDebug() << "Load plugin:" << m_pluginLoader->fileName();
 
@@ -23,12 +23,12 @@ QObject *LinkerItem::getInstance()
     return m_instance;
 }
 
-const QJsonObject &LinkerItem::getMeta()
+const QJsonObject &PluginHandler::getMeta()
 {
     return m_meta;
 }
 
-bool LinkerItem::load()
+bool PluginHandler::load()
 {
     if(m_instance)
         return true;
@@ -46,7 +46,7 @@ bool LinkerItem::load()
     return result;
 }
 
-bool LinkerItem::unload()
+bool PluginHandler::unload()
 {
     bool result = m_pluginLoader->unload();
 
@@ -60,12 +60,12 @@ bool LinkerItem::unload()
     return result;
 }
 
-QString LinkerItem::getLastError()
+QString PluginHandler::getLastError()
 {
     return m_lastError;
 }
 
-bool LinkerItem::isCorePlugin()
+bool PluginHandler::isCorePlugin()
 {
     QJsonObject metaData = m_meta.value("MetaData").toObject();
 
@@ -75,7 +75,7 @@ bool LinkerItem::isCorePlugin()
     return metaData.value(META_DATA_CORE_FLAG).toBool(false);
 }
 
-QObject* LinkerItem::ResolvePluginInstance()
+QObject* PluginHandler::ResolvePluginInstance()
 {
     if(!m_pluginLoader->isLoaded())
     {

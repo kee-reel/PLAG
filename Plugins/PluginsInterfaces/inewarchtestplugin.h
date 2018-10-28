@@ -15,9 +15,10 @@
 class INewArchTestPlugin
 {
 public:
-    virtual ~INewArchTestPlugin() = 0;
-
     virtual int someMethod(int x) = 0;
+
+protected:
+    virtual ~INewArchTestPlugin() {};
 };
 //! }
 Q_DECLARE_INTERFACE(INewArchTestPlugin, "INewArchTestPlugin")

@@ -3,7 +3,8 @@
 
 #include <QtCore>
 
-class MetaInfo;
+#include "../PluginsCommon/iplugin.h"
+
 //! \defgroup MainMenuPlugin MainMenuPlugin
 //!     \ingroup MASS
 //! \defgroup MainMenuPlugin_imp Implementation
@@ -41,14 +42,13 @@ public:
     class IMenuItem
     {
     public:
-        virtual ~IMenuItem() = 0;
         //! \brief Meta information about plugin.
-        virtual QWeakPointer<MetaInfo> getMeta() = 0;
+        virtual const MetaInfo &getMeta() = 0;
         //! \brief Model plugins that relate to plugin.
         virtual QVector<QWeakPointer<IMenuItem>> getReferences() = 0;
+    protected:
+        ~IMenuItem() {}
     };
-
-    virtual ~IMainMenuModel() = 0;
 
     //! \brief Returns root menu item.
     virtual QVector<const IMenuItem*> getMenuItems() = 0;
@@ -57,6 +57,9 @@ public:
     //! \param Model plugin that contains view plugin to run.
     //! \param View plugin that needs to open.
     virtual void openItem(IMenuItem* item, MetaInfo *viewMeta) = 0;
+
+protected:
+    ~IMainMenuModel() {}
 };
 Q_DECLARE_INTERFACE(IMainMenuModel, "IMainMenuModule v0.1")
 //! }@

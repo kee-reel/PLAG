@@ -21,24 +21,30 @@ public:
     virtual ~LinkerItem() {}
 
     const QString& getName();
-    const QList<QString>& getReferenceNamesList();
+    const QList<QString> &getReferenceNamesList();
     void addReference(QWeakPointer<LinkerItem> linkItem);
+    void removeReference(QWeakPointer<LinkerItem> linkItem);
 
     bool load();
+    bool unload();
+
+    bool open(const QWidget *parent);
 
     // IMenuItem interface
 public:
-    QWeakPointer<MetaInfo> getMeta();
+    const MetaInfo &getMeta();
     QVector<QWeakPointer<IMainMenuModel::IMenuItem> > getReferences();
 
 private:
     void addReferent(QWeakPointer<LinkerItem> linkItem);
+    const IPlugin *getPluginInstance();
 
 private:
+    IPlugin* m_plugin;
     QWeakPointer<IPluginHandler> m_pluginHandler;
-    QWeakPointer<MetaInfo> m_metaInfo;
-    QList<QWeakPointer<LinkerItem>> m_referencesList;
-    QList<QWeakPointer<LinkerItem>> m_referentsList;
+    MetaInfo m_metaInfo;
+    QMap<QString, QWeakPointer<LinkerItem>> m_references;
+    QMap<QString, QWeakPointer<LinkerItem>> m_referents;
 };
 
 #endif // PLUGINHANDLER_H

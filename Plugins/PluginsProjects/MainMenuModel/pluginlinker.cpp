@@ -86,23 +86,24 @@ Type *PluginLinker::castToPlugin(QObject *possiblePlugin) const
 bool PluginLinker::setupLinks()
 {
     bool isLinkageSucceded = true;
-    // For all plugins
+    // For all plugins.
     for(auto iter = m_linkerItemsMap.begin(); iter != m_linkerItemsMap.end(); ++iter)
     {
         auto& item = iter.value();
         auto& referencesNames = item->getReferenceNamesList();
-        // For all references of plugin
+        // For all references of plugin.
         for(auto& referenceName : referencesNames)
         {
             auto referenceIter = m_linkerItemsMap.find(referenceName);
             if(referenceIter != m_linkerItemsMap.end())
             {
+                // For references with same interface.
                 do
                 {
                     item->addReference(referenceIter.value());
                     ++referenceIter;
                 }
-                while(referenceIter != m_linkerItemsMap.end());
+                while(referenceIter.key() == referenceName && referenceIter != m_linkerItemsMap.end());
             }
             else
             {

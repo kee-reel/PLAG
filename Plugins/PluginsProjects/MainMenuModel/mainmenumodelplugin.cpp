@@ -3,7 +3,8 @@
 #include <QPluginLoader>
 
 
-MainMenuModelPlugin::MainMenuModelPlugin()
+MainMenuModelPlugin::MainMenuModelPlugin() :
+    PluginBase(nullptr)
 {
 //    activeViewId = -1;
 //    rootMenuItem = new MenuItem();

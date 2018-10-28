@@ -2,7 +2,7 @@
 #ifndef I%{GUARD}
 #define I%{GUARD}
 
-#include "../../interfaces.h"
+#include <QtCore>
 
 //! \defgroup %{CN}
 //!     \ingroup MainMenuPlugin_rel_m
@@ -13,19 +13,10 @@
 
 //! \addtogroup %{CN}_int
 //! \{
-class %{InterfaceName} : 
-@if '%{PluginType}' === 'RootModel' || '%{PluginType}' === 'Model'
-	public IModelPlugin
-@elsif '%{PluginType}' === 'View'
-	public IViewPlugin
-@elsif '%{PluginType}' === 'DataManager'
-	public IDataManagerPlugin
-@elsif '%{PluginType}' === 'DataSource'
-	public IDataSourcePlugin
-@endif
+class %{InterfaceName}
 {
 public:
-    // Write your interface methods here
+    
 };
 //! \}
 Q_DECLARE_INTERFACE(%{InterfaceName}, "%{InterfaceName}")

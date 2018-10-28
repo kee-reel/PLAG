@@ -12,15 +12,6 @@ PluginLoader::PluginLoader(QWidget* parent) : QObject(parent)
 
 PluginLoader::~PluginLoader()
 {
-    for(auto plugin : m_pluginHandlers)
-    {
-        plugin.clear();
-    }
-
-    for(auto plugin : m_corePluginHandlers)
-    {
-        plugin.clear();
-    }
 }
 
 void PluginLoader::loadPluginsToHome()
@@ -106,15 +97,15 @@ bool PluginLoader::setupPlugins()
     qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
     for(auto plugin : m_corePluginHandlers)
     {
-        if(!plugin->load())
+        if(!plugin.data()->load())
             continue;
 
-        auto instance = plugin->getInstance();
+        auto instance = plugin.data()->getInstance();
         auto* corePluginPtr = castToPlugin<ICorePlugin>(instance);
         if(!corePluginPtr)
             continue;
 
-        m_corePlugin = QSharedPointer<ICorePlugin>(corePluginPtr);
+        m_corePlugin = corePluginPtr;
         break;
     }
 
@@ -130,7 +121,7 @@ bool PluginLoader::setupPlugins()
 
 void PluginLoader::runCorePlugin()
 {
-    assert(m_corePlugin != nullptr);
+    assert(m_corePlugin);
 
     qDebug() << "PluginLoader::setupPlugins:" << m_pluginHandlers.count() << "plugins found, adding to core plugin.";
     QVector<QWeakPointer<IPluginHandler>> pluginHandlers(m_pluginHandlers.size());
@@ -155,7 +146,7 @@ bool PluginLoader::setupPlugin(QString pluginName)
     //    QObject* possiblePlugin = GetPluginInstance(loader);
     //    if(!possiblePlugin)
     //        return false;
-    auto handler = new LinkerItem(pluginName);
+    auto handler = new PluginHandler(pluginName);
     auto handlerInterface = QSharedPointer<IPluginHandler>(handler);
 
     if(handler->isCorePlugin())

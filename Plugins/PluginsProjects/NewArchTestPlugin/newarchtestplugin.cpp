@@ -1,7 +1,8 @@
 #include "newarchtestplugin.h"
 
 
-NewArchTestPlugin::NewArchTestPlugin()
+NewArchTestPlugin::NewArchTestPlugin() :
+    PluginBase(nullptr)
 {
     qDebug() << "NewArchTestPlugin::NewArchTestPlugin()";
 }
