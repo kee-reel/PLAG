@@ -4,5 +4,6 @@
     "Interface": "IMainMenuModel",
     "Name": "MainMenuModel",
     "RelatedPluginInterfaces": [
+        "IUIManager"
     ]
 }

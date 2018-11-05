@@ -4,6 +4,6 @@
 PluginBase::PluginBase(QObject *parent) :
     QObject(parent)
 {
-
+    constructorInit();
 }
 #endif

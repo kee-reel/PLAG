@@ -41,7 +41,7 @@ public:
        @brief Returns meta info of plugin. Available even if plugin not loaded.
        @return Meta info of plugin in JSON format.
      */
-    virtual const QJsonObject& getMeta() override;
+    virtual const QJsonObject &getMeta() override;
     /**
        @brief Flag that indicates that plugin meta says that it is core plugin.
        @return Is this core plugin.

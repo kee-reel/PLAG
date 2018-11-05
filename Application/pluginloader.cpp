@@ -4,7 +4,7 @@
 
 #include "pluginhandler.h"
 
-PluginLoader::PluginLoader(QWidget* parent) : QObject(parent)
+PluginLoader::PluginLoader(QWidget *parent) : QObject(parent)
 {
     this->m_parent = parent;
     m_corePlugin = nullptr;
@@ -17,9 +17,9 @@ PluginLoader::~PluginLoader()
 void PluginLoader::loadPluginsToHome()
 {
     qDebug() << "Home path:" << QDir::homePath() << endl <<
-                "Root path:" << QDir::rootPath() << endl <<
-                "Current path:" << QDir::currentPath() << endl <<
-                "Temp path:" << QDir::tempPath();
+             "Root path:" << QDir::rootPath() << endl <<
+             "Current path:" << QDir::currentPath() << endl <<
+             "Temp path:" << QDir::tempPath();
     m_internalPluginsPath = QDir(QString("%1/%2/").arg(QDir::currentPath()).arg(pluginsSubdirName));
     QApplication::addLibraryPath(m_internalPluginsPath.absolutePath());
     qDebug() << "Library paths:" << QApplication::libraryPaths();
@@ -28,10 +28,14 @@ void PluginLoader::loadPluginsToHome()
     QDir storageDirectoryPath("/storage/emulated/0/Android/data/" + packageName);
 
     if(!internalPluginsPath.exists())
+    {
         internalPluginsPath.mkdir(internalPluginsPath.absolutePath());
+    }
 
-    qDebug() << "Storage:" << storageDirectoryPath.absolutePath() << endl << storageDirectoryPath.entryList(QDir::AllEntries);
-    qDebug() << "Internal:" << internalPluginsPath.absolutePath() << endl << internalPluginsPath.entryList(QDir::AllEntries);
+    qDebug() << "Storage:" << storageDirectoryPath.absolutePath() << endl << storageDirectoryPath.entryList(
+                 QDir::AllEntries);
+    qDebug() << "Internal:" << internalPluginsPath.absolutePath() << endl << internalPluginsPath.entryList(
+                 QDir::AllEntries);
     LoadFilesFromDirectory(storageDirectoryPath, internalPluginsPath);
 
     foreach (QString dirPath, storageDirectoryPath.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
@@ -98,14 +102,19 @@ bool PluginLoader::setupPlugins()
     for(auto plugin : m_corePluginHandlers)
     {
         if(!plugin.data()->load())
+        {
             continue;
+        }
 
         auto instance = plugin.data()->getInstance();
-        auto* corePluginPtr = castToPlugin<ICorePlugin>(instance);
+        auto *corePluginPtr = castToPlugin<ICorePlugin>(instance);
         if(!corePluginPtr)
+        {
+            plugin.data()->unload();
             continue;
+        }
 
-        m_corePlugin = corePluginPtr;
+        m_corePlugin = plugin;
         break;
     }
 
@@ -130,14 +139,18 @@ void PluginLoader::runCorePlugin()
         pluginHandlers[i] = QWeakPointer<IPluginHandler>(m_pluginHandlers[i]);
     }
 
-    m_corePlugin->addPlugins(pluginHandlers);
-    m_corePlugin->start(m_parent);
+    auto instance = m_corePlugin.data()->getInstance();
+    auto *corePluginPtr = castToPlugin<ICorePlugin>(instance);
+    corePluginPtr->addPlugins(pluginHandlers);
+    corePluginPtr->start(m_corePlugin, m_parent);
 }
 
 bool PluginLoader::setupPlugin(QString pluginName)
 {
     if(!QLibrary::isLibrary(pluginName))
+    {
         return false;
+    }
 
     qDebug() << endl << "=====" << pluginName << "=====";
     //    QPluginLoader* loader = LoadPlugin(pluginName);
@@ -162,9 +175,9 @@ bool PluginLoader::setupPlugin(QString pluginName)
 }
 
 template <class Type>
-Type *PluginLoader::castToPlugin(QObject* possiblePlugin)
+Type *PluginLoader::castToPlugin(QObject *possiblePlugin)
 {
-    Type* plugin = qobject_cast<Type*>(possiblePlugin);
+    Type *plugin = qobject_cast<Type *>(possiblePlugin);
 
     if(!plugin)
     {

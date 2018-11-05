@@ -1,0 +1,7 @@
+{
+    "Interface": "",
+    "Name": "GridMainMenuView",
+    "RelatedPluginInterfaces": [
+        "IUIManager"
+    ]
+}

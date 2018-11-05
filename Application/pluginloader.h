@@ -49,11 +49,11 @@ private:
     bool setupPlugin(QString pluginName);
 
     template<class Type>
-    Type *castToPlugin(QObject* possiblePlugin);
+    Type *castToPlugin(QObject *possiblePlugin);
 
 private:
-    QWidget* m_parent;
-    ICorePlugin* m_corePlugin;
+    QWidget *m_parent;
+    QSharedPointer<IPluginHandler> m_corePlugin;
 
     QList<QSharedPointer<IPluginHandler>> m_pluginHandlers;
     QList<QSharedPointer<IPluginHandler>> m_corePluginHandlers;

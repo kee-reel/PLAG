@@ -34,7 +34,7 @@ public:
        @brief Returns meta info of plugin. Available even if plugin not loaded.
        @return Meta info of plugin in JSON format.
      */
-    virtual const QJsonObject& getMeta() = 0;
+    virtual const QJsonObject &getMeta() = 0;
 };
 
 #endif // I_PLUGIN_HANDLER_H

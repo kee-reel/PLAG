@@ -32,7 +32,7 @@
 //! Menu contains items that describes plugins that now included in
 //! programm.
 class IMainMenuModel
-{ 
+{
 public:
     //! \brief Structure that contains some info about menu item.
     //!
@@ -45,21 +45,21 @@ public:
         //! \brief Meta information about plugin.
         virtual const MetaInfo &getMeta() = 0;
         //! \brief Model plugins that relate to plugin.
-        virtual QVector<QWeakPointer<IMenuItem>> getReferences() = 0;
+        virtual QVector<QWeakPointer<IMenuItem>> getConnectedItems() = 0;
     protected:
-        ~IMenuItem() {}
+        virtual ~IMenuItem() {}
     };
 
     //! \brief Returns root menu item.
-    virtual QVector<const IMenuItem*> getMenuItems() = 0;
+    virtual QVector<QWeakPointer<IMenuItem>> getMenuItems() = 0;
 
     //! \brief Runs view plugin that relates to item.
     //! \param Model plugin that contains view plugin to run.
     //! \param View plugin that needs to open.
-    virtual void openItem(IMenuItem* item, MetaInfo *viewMeta) = 0;
+    virtual void openItem(QWeakPointer<IMenuItem> item) = 0;
 
 protected:
-    ~IMainMenuModel() {}
+    virtual ~IMainMenuModel() {}
 };
 Q_DECLARE_INTERFACE(IMainMenuModel, "IMainMenuModule v0.1")
 //! }@

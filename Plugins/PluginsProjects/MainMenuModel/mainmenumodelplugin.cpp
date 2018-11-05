@@ -4,159 +4,80 @@
 
 
 MainMenuModelPlugin::MainMenuModelPlugin() :
-    PluginBase(nullptr)
+    PluginBase(nullptr),
+    m_widgetStack(nullptr),
+    m_uiManager(nullptr),
+    m_parentWidget(nullptr)
 {
-//    activeViewId = -1;
-//    rootMenuItem = new MenuItem();
 }
 
 MainMenuModelPlugin::~MainMenuModelPlugin()
 {
 }
 
-void MainMenuModelPlugin::addPlugins(const QVector<QWeakPointer<IPluginHandler>>& pluginHandlers)
+void MainMenuModelPlugin::addPlugins(const QVector<QWeakPointer<IPluginHandler>> &pluginHandlers)
 {
-    for(auto& plugin : pluginHandlers)
+    for(auto &plugin : pluginHandlers)
     {
-        pluginLinker.addNewPlugin(plugin);
+        m_pluginLinker.addNewPlugin(plugin);
     }
 }
 
-void MainMenuModelPlugin::start(QWidget *parentWidget)
+void MainMenuModelPlugin::start(QWeakPointer<IPluginHandler> selfHandler, QWidget *parentWidget)
 {
-//    widgetStack = new WidgetStack(parentWidget);
     qDebug() << "MainMenuModelPlugin::start";
-    pluginLinker.setupLinks();
+    m_selfHandler = selfHandler;
+    m_parentWidget = parentWidget;
 
-    auto& plugins = pluginLinker.getPluginsMap();
-
-    for(auto& plugin : plugins)
+    if(!m_pluginLinker.addCorePlugin(m_selfHandler))
     {
-        plugin->load();
+        return;
     }
 
-//    foreach (auto plugin, pluginLinker.pluginsInfo)
-//    {
-//        if(plugin->Meta->Type == VIEWPLUGIN)
-//        {
-//            connect(plugin->Instance, SIGNAL(OnOpen(QWidget*)), widgetStack, SLOT(Push(QWidget*)));
-//            connect(plugin->Instance, SIGNAL(OnClose()), widgetStack, SLOT(Pop()));
-//        }
-//    }
+    m_pluginLinker.setupLinks();
 
-    //    Open(nullptr);
+    const auto &corePluginLinkerItem = m_pluginLinker.getCorePlugin();
+    corePluginLinkerItem.data()->load();
+    corePluginLinkerItem.data()->open(nullptr);
+
+    if(!m_uiManager)
+    {
+        qDebug() << "MainMenuModelPlugin::start: UIManger not found creating default UIManager";
+        m_widgetStack = new WidgetStack(parentWidget);
+        m_uiManager = static_cast<IUIManager *>(m_widgetStack);
+    }
+
+    m_uiManager->init(corePluginLinkerItem);
+    auto plugins = m_pluginLinker.getClildPluginsMap();
+    for(const auto &plugin : plugins)
+    {
+        m_uiManager->addChildItem(plugin);
+    }
+
+    m_uiManagerPlugin->open(this);
 }
 
-QVector<const IMainMenuModel::IMenuItem *> MainMenuModelPlugin::getMenuItems()
+void MainMenuModelPlugin::onAllReferencesSetStateChanged()
 {
-
+    if(m_isAllReferencesSet)
+    {
+        for(const auto &reference : m_referencesMap)
+        {
+            const auto &meta = reference->getPluginMetaInfo();
+            if(meta.InterfaceName == "IUIMANAGER")
+            {
+                if(!m_uiManager)
+                {
+                    qDebug() << "MainMenuModelPlugin::onAllReferencesSetStateChanged: UIManger set";
+                    m_uiManagerPlugin = reference;
+                    m_uiManager = castPluginToInterface<IUIManager>(reference);
+                }
+            }
+        }
+    }
 }
 
-void MainMenuModelPlugin::openItem(IMainMenuModel::IMenuItem *item, MetaInfo *viewMeta)
+QWidget *MainMenuModelPlugin::getWidget()
 {
-
+    return m_parentWidget;
 }
-
-//void MainMenuModelPlugin::SetPluginInfo(PluginInfo *pluginInfo)
-//{
-//    this->pluginInfo = pluginInfo;
-//    rootMenuItem->meta = this->pluginInfo->Meta;
-//}
-
-//void MainMenuModelPlugin::OnAllSetup()
-//{
-//    qDebug() << "OnAllSetup";
-//}
-
-//QString MainMenuModelPlugin::GetLastError()
-//{
-//    return QString();
-//}
-
-//void MainMenuModelPlugin::AddReferencePlugin(PluginInfo *pluginInfo)
-//{
-//    switch(pluginInfo->Meta->Type)
-//    {
-//        case COREPLUGIN:
-//            break;
-
-//        case MODELPLUGIN:
-//            childModels.append(pluginInfo);
-//            rootMenuItem->Items.append(pluginInfo->Meta);
-//            connect(pluginInfo->Instance, SIGNAL(OnClose(PluginInfo*)), SLOT(ReferencePluginClosed(PluginInfo*)));
-//            break;
-
-//        case VIEWPLUGIN:
-//            qDebug() << "AddReference" << pluginInfo->Meta->Name;
-//            views.append(pluginInfo);
-//            connect(pluginInfo->Instance, SIGNAL(OnClose(PluginInfo*)), SLOT(ReferencePluginClosed(PluginInfo*)));
-//            break;
-
-//        case DATASOURCEPLUGIN:
-//            break;
-
-//        case DATAMANAGERPLUGIN:
-//            break;
-//    }
-//}
-
-//void MainMenuModelPlugin::ReferencePluginClosed(PluginInfo *pluginInfo)
-//{
-//    //    switch(pluginInfo->Meta->Type)
-//    //    {
-//    //    case PLUGINMODEL:
-//    //        Open(nullptr);
-//    //        break;
-//    //    case PLUGINVIEW:
-//    //        Close();
-//    //        break;
-//    //    }
-//}
-
-//bool MainMenuModelPlugin::Open(IModelPlugin *model)
-//{
-//    qDebug() << "MainMenuModel runs";
-
-//    if(views.count())
-//    {
-//        qDebug() << "OPEN" << views.first()->Meta->Name;
-//        views.first()->Plugin.view->Open(this);
-//    }
-//    else
-//    {
-//        qDebug() << "!Model have no views!";
-//    }
-
-//    return true;
-//}
-
-//void MainMenuModelPlugin::Close()
-//{
-//    QApplication::exit();
-//}
-
-//IMainMenuModel::MenuItem *MainMenuModelPlugin::GetRootMenuItem()
-//{
-//    return rootMenuItem;
-//}
-
-//void MainMenuModelPlugin::RunItem(IMainMenuModel::MenuItem *item, MetaInfo *itemMeta)
-//{
-//    foreach (auto iter, childModels)
-//    {
-//        if(iter->Meta == itemMeta)
-//        {
-//            qDebug() << "Open plugin" << iter->Meta->Name;
-
-//            if(!iter->Plugin.model->Open(this))
-//            {
-//                qDebug() << "Model wasn't opened";
-//            }
-//        }
-//    }
-//}
-
-//void MainMenuModelPlugin::OpenChildView()
-//{
-//    Open(nullptr);
-//}

@@ -6,6 +6,7 @@ PluginBase::PluginBase(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Form)
 {
+    constructorInit();
     ui->setupUi(this);
 }
 #endif

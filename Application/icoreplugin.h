@@ -25,13 +25,13 @@ public:
     //! \brief Recieve loaded plugin with it's meta data.
     //! \param Plugin instance.
     //! \param Plugin meta data.
-    virtual void addPlugins(const QVector<QWeakPointer<IPluginHandler>>& pluginHandlers) = 0;
+    virtual void addPlugins(const QVector<QWeakPointer<IPluginHandler>> &pluginHandlers) = 0;
 
     //! \brief Starts plugin work. Some kind of 'start' signal.
     //! \param This will be parent widget for all widgets in app.
-    virtual void start(QWidget* parentWidget) = 0;
+    virtual void start(QWeakPointer<IPluginHandler> selfHandler, QWidget *parentWidget) = 0;
 protected:
-    ~ICorePlugin() {}
+    virtual ~ICorePlugin() {}
 };
 Q_DECLARE_INTERFACE(ICorePlugin, "ICorePlugin")
 //! @}

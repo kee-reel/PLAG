@@ -10,20 +10,16 @@
 //! addtogroup NewArchTestView_imp
 //! {
 class NewArchTestView :
-        public PluginBase
+    public PluginBase
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(
-            IPlugin
-            )
+        IPlugin
+    )
 public:
     NewArchTestView();
     virtual ~NewArchTestView() override;
-
-    // PluginBase interface
-public:
-    virtual bool addReferencePlugin(const IPlugin *referencePlugin) override;
 };
 //! }
 #endif // NEWARCHTESTVIEW_H

@@ -11,23 +11,19 @@
 //! addtogroup NewArchTestPlugin_imp
 //! {
 class NewArchTestPlugin : public
-        PluginBase,
-        INewArchTestPlugin
+    PluginBase,
+    INewArchTestPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
     Q_INTERFACES(
-            IPlugin
-            INewArchTestPlugin
-            )
+        IPlugin
+        INewArchTestPlugin
+    )
 
 public:
     NewArchTestPlugin();
     virtual ~NewArchTestPlugin() override;
-
-    // PluginBase interface
-public:
-    virtual bool addReferencePlugin(const IPlugin *referencePlugin) override;
 
     // INewArchTestPlugin interface
 public:

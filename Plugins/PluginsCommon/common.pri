@@ -30,3 +30,6 @@ INCLUDEPATH += $${IMPORT_PATH}
 
 # Включаем С++11 для всех платформ
 CONFIG += c++11
+
+QMAKE_CXXFLAGS += -W
+QMAKE_CXXFLAGS += -Wno-undef

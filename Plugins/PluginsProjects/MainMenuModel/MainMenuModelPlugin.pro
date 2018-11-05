@@ -19,7 +19,8 @@ HEADERS +=\
     pluginlinker.h \
     widgetstack.h \
     linkeritem.h \
-    ../../PluginsInterfaces/imainmenumodule.h
+    ../../PluginsInterfaces/imainmenumodule.h \
+    ../../PluginsInterfaces/iuimanager.h
 
 DEFINES += PLUGIN_BASE_QOBJECT
 
