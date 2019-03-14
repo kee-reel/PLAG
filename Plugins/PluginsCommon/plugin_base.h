@@ -3,7 +3,6 @@
 
 #include <QtCore>
 #include <QObject>
-#include <QWidget>
 #include <QJsonObject>
 #include <QMap>
 
@@ -14,6 +13,7 @@
 
 #elif defined(PLUGIN_BASE_QWIDGET)
 #define PLUGIN_BASE_PARENT QWidget
+#include <QWidget>
 
 namespace Ui
 {
@@ -53,12 +53,12 @@ public:
     virtual QObject *getObject() override;
     virtual QWidget *getWidget() override;
 
-    virtual bool open(const IPlugin *openedByPlugin) override;
-    virtual bool close(const IPlugin *closedByPlugin) override;
+    virtual bool open() override;
+    virtual bool close() override;
 
 signals:
-    void onOpen(const IPlugin *openedByPlugin);
-    void onClose(const IPlugin *closedByPlugin);
+    void onOpen();
+    void onClose();
 
 protected:
     void constructorInit();

@@ -3,12 +3,18 @@
 #include <QtCore>
 #include <QObject>
 #include <QWeakPointer>
+#include <QVariant>
+
+
+void PluginBase::constructorInit()
+{
+    m_isInited = false;
+    m_isAllReferencesSet = false;
+}
 
 bool PluginBase::init(const MetaInfo &metaInfo, const QJsonObject &metaInfoJsonObject)
 {
     m_metaInfo = metaInfo;
-    qDebug() << QString("Plugin [interface: %1, plugin: %2] inited\n")
-             .arg(m_metaInfo.Name).arg(m_metaInfo.InterfaceName);
 
     for(const auto &reference : m_metaInfo.RelatedPluginNames)
     {
@@ -32,11 +38,11 @@ bool PluginBase::addReferencePlugin(IPlugin *referencePlugin)
 
     if(!referenceIter.value())
     {
-        referenceIter.value() = referencePlugin;
+        m_referencesMap[referenceName] = referencePlugin;
     }
     else
     {
-        raiseError(QString("PluginBase::addReferencePlugin: reference %1 already set").arg(referenceName));
+        //        raiseError(QString("PluginBase::addReferencePlugin: reference %1 already set").arg(referenceName));
         return false;
     }
 
@@ -87,25 +93,23 @@ QObject *PluginBase::getObject()
 
 QWidget *PluginBase::getWidget()
 {
+#if defined(PLUGIN_BASE_QOBJECT)
+    return nullptr;
+#else
     return qobject_cast<QWidget *>(this);
+#endif
 }
 
-bool PluginBase::open(const IPlugin *openedByPlugin)
+bool PluginBase::open()
 {
-    emit onOpen(openedByPlugin);
+    emit onOpen();
     return true;
 }
 
-bool PluginBase::close(const IPlugin *closedByPlugin)
+bool PluginBase::close()
 {
-    emit onClose(closedByPlugin);
+    emit onClose();
     return true;
-}
-
-void PluginBase::constructorInit()
-{
-    m_isInited = false;
-    m_isAllReferencesSet = false;
 }
 
 void PluginBase::raiseError(QString errorMessage)

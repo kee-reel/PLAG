@@ -1,7 +1,0 @@
-{
-    "Interface": "INewArchTestView",
-    "Name": "NewArchTestView",
-    "RelatedPluginInterfaces": [
-        "INewArchTestPlugin"
-    ]
-}

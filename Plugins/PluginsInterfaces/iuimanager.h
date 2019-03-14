@@ -25,24 +25,19 @@ public:
         virtual QWidget *getElementWidget() const = 0;
         virtual const QObject *getElementSignalsLinkObject() const = 0;
 
-        virtual QVector<QWeakPointer<IUIElement>> getConnectedElements() = 0;
+        virtual QMap<int, QWeakPointer<IUIElement> > getConnectedElements() = 0;
 
-        virtual bool open(QWeakPointer<IUIElement> openedByElement) = 0;
-        virtual bool close(QWeakPointer<IUIElement> closedByElement) = 0;
+        virtual bool open() = 0;
+        virtual bool close() = 0;
 
     signals:
         void onOpened(int selfId);
-        void onClosed(int selfId);
-        void onConnectionsChanged(int selfId);
+        void onClosed();
+        void onConnectionsChanged();
 
     protected:
         virtual ~IUIElement() {}
     };
-
-    virtual bool init(QWeakPointer<IUIElement> rootElement) = 0;
-    virtual bool fini() = 0;
-    virtual bool addChildItem(QWeakPointer<IUIElement> element) = 0;
-    virtual bool removeChildItem(QWeakPointer<IUIElement> element) = 0;
 
     virtual const QWeakPointer<IUIElement> getRootElement() = 0;
     virtual const QVector<QWeakPointer<IUIElement>> getChildElements() = 0;

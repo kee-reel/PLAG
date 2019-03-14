@@ -1,6 +1,5 @@
 {
     "IsCorePlugin": true,
-    "Type": "COREPLUGIN",
     "Interface": "IMainMenuModel",
     "Name": "MainMenuModel",
     "RelatedPluginInterfaces": [

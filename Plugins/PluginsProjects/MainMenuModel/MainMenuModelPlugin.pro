@@ -9,18 +9,12 @@ QT += core widgets
 
 
 SOURCES += \
-    mainmenumodelplugin.cpp \
-    pluginlinker.cpp \
-    widgetstack.cpp \
-    linkeritem.cpp
+    mainmenumodelplugin.cpp
 
 HEADERS +=\
     mainmenumodelplugin.h \
-    pluginlinker.h \
-    widgetstack.h \
-    linkeritem.h \
     ../../PluginsInterfaces/imainmenumodule.h \
-    ../../PluginsInterfaces/iuimanager.h
+    ../../PluginsInterfaces/ipluginlinker.h
 
 DEFINES += PLUGIN_BASE_QOBJECT
 

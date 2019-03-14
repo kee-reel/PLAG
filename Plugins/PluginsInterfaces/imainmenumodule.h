@@ -62,5 +62,6 @@ protected:
     virtual ~IMainMenuModel() {}
 };
 Q_DECLARE_INTERFACE(IMainMenuModel, "IMainMenuModule v0.1")
+Q_DECLARE_METATYPE(IMainMenuModel*)
 //! }@
 #endif // IMAINMENUMODULE_H

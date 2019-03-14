@@ -1,0 +1,8 @@
+{
+    "Interface": "ITaskTreeModel",
+    "Name": "TaskListModel",
+    "RelatedPluginInterfaces": [
+        "IExtendableDataManager",
+        "IPluginLinker"
+    ]
+}

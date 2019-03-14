@@ -9,17 +9,19 @@
 
 #include "../../PluginsCommon/plugin_base.h"
 #include "../../../Application/icoreplugin.h"
-
-#include "pluginlinker.h"
-#include "widgetstack.h"
+#include "../../PluginsInterfaces/ipluginlinker.h"
+#include "../../PluginsInterfaces/iuimanager.h"
 
 //! \ingroup MainMenuPlugin_imp
 //! @{
-class MainMenuModelPlugin : public PluginBase, ICorePlugin
+class MainMenuModelPlugin : public PluginBase, public ICorePlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
-    Q_INTERFACES(ICorePlugin)
+    Q_INTERFACES(
+        IPlugin
+        ICorePlugin
+    )
 
 public:
     MainMenuModelPlugin();
@@ -30,24 +32,28 @@ public:
     virtual void addPlugins(const QVector<QWeakPointer<IPluginHandler>> &pluginHandlers) override;
     virtual void start(QWeakPointer<IPluginHandler> selfHandler, QWidget *parentWidget) override;
 
-    // PluginBase interface
-protected:
-    virtual void onAllReferencesSetStateChanged() override;
-
     // IPlugin interface
 public:
     virtual QWidget *getWidget() override;
 
 private:
-    WidgetStack *m_widgetStack;
+//    Q_PROPERTY(IPluginLinker* IPluginLinker MEMBER m_pluginLinker USER true)
+//    Q_PROPERTY(IUIManager* IUIManager MEMBER m_uiManager USER true)
 
-    IPlugin *m_uiManagerPlugin;
+private:
+    IPluginLinker* m_pluginLinker;
     IUIManager *m_uiManager;
+
+    QVector<QWeakPointer<IPluginHandler>> m_pluginHandlers;
+
     QWidget *m_parentWidget;
 
     QWeakPointer<IPluginHandler> m_selfHandler;
-    PluginLinker m_pluginLinker;
 
+
+    // PluginBase interface
+protected:
+    virtual void onAllReferencesSetStateChanged() override;
 };
 //! @}
 #endif // MAINMENUMODULE_H

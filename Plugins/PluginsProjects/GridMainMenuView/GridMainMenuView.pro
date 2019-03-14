@@ -3,7 +3,6 @@ TARGET = GridMainMenuView
 TEMPLATE = lib
 QT += widgets
 
-
 DEFINES += \
     PLUGIN_BASE_QWIDGET
 
@@ -14,7 +13,8 @@ SOURCES += \
     aspectawaregridlayout.cpp \
     uniquepushbutton.cpp
 
-HEADERS +=\
+HEADERS += \
+    ../../PluginsInterfaces/iuimanager.h \
     gridmainmenuview.h \
     aspectawaregridlayout.h \
     uniquepushbutton.h

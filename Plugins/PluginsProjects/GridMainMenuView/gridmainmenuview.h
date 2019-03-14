@@ -61,7 +61,7 @@ protected:
 
     // IPlugin interface
 public:
-    virtual bool open(const IPlugin *openedByPlugin) override;
+    virtual bool open() override;
 };
 //! }
 #endif // GRIDMAINMENUVIEW_H

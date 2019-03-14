@@ -4,11 +4,14 @@ TEMPLATE = lib
 QT += widgets
 
 SOURCES += \
-    uimanager.cpp
+    uimanager.cpp \
+    uielement.cpp
 
 HEADERS += \
     uimanager.h \
-    ../../PluginsInterfaces/iuimanager.h
+    ../../PluginsInterfaces/ipluginlinker.h \
+    ../../PluginsInterfaces/iuimanager.h \
+    uielement.h
 
 DEFINES += \
     PLUGIN_BASE_QOBJECT

@@ -30,13 +30,13 @@ void GridMainMenuView::UniqueButtonPressed(UniquePushButton *button)
 {
     if(button == m_exitItem)
     {
-        close(nullptr);
+        close();
     }
     else
     {
         auto menuItem = m_uiElements[button->getId()];
         auto root = m_uiManager->getRootElement();
-        menuItem.data()->open(root);
+        menuItem.data()->open();
     }
 }
 
@@ -99,6 +99,7 @@ void GridMainMenuView::onAllReferencesSetStateChanged()
         {
             if(reference->getPluginMetaInfo().InterfaceName == "IUIMANAGER")
             {
+                qDebug() << "Setup grid";
                 m_uiManager = castPluginToInterface<IUIManager>(reference);
                 Q_ASSERT(m_uiManager);
             }
@@ -106,25 +107,15 @@ void GridMainMenuView::onAllReferencesSetStateChanged()
     }
 }
 
-bool GridMainMenuView::open(const IPlugin *openedByPlugin)
+bool GridMainMenuView::open()
 {
-    qDebug() << "GridMainMenuView open.";
-
-    if(!m_isAllReferencesSet)
-    {
-        qCritical() << QString("Not all references set for [%1 : %2]; can't open.")
-                    .arg(m_metaInfo.InterfaceName)
-                    .arg(m_metaInfo.Name);
-        return false;
-    }
-
     auto connectedElements = m_uiManager->getRootElement().data()->getConnectedElements();
 
     QVector<QWeakPointer<IUIManager::IUIElement>> menuItems;
     menuItems.reserve(connectedElements.size());
     for(const auto &item : connectedElements)
     {
-        if(!item.data()->getElementWidget() && !item.data()->isOpened())
+        if(!item.data()->getElementWidget())
         {
             menuItems.append(item);
         }
@@ -161,5 +152,5 @@ bool GridMainMenuView::open(const IPlugin *openedByPlugin)
     layout->addWidget(exitItem);
 #endif
 
-    return PluginBase::open(openedByPlugin);
+    return PluginBase::open();
 }

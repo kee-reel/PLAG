@@ -16,13 +16,13 @@ PluginLoader::~PluginLoader()
 
 void PluginLoader::loadPluginsToHome()
 {
-    qDebug() << "Home path:" << QDir::homePath() << endl <<
-             "Root path:" << QDir::rootPath() << endl <<
-             "Current path:" << QDir::currentPath() << endl <<
-             "Temp path:" << QDir::tempPath();
+    qDebug() << "PluginLoader::loadPluginsToHome: home path:" << QDir::homePath() << endl <<
+             "PluginLoader::loadPluginsToHome: root path:" << QDir::rootPath() << endl <<
+             "PluginLoader::loadPluginsToHome: current path:" << QDir::currentPath() << endl <<
+             "PluginLoader::loadPluginsToHome: temp path:" << QDir::tempPath();
     m_internalPluginsPath = QDir(QString("%1/%2/").arg(QDir::currentPath()).arg(pluginsSubdirName));
     QApplication::addLibraryPath(m_internalPluginsPath.absolutePath());
-    qDebug() << "Library paths:" << QApplication::libraryPaths();
+    qDebug() << "PluginLoader::loadPluginsToHome: library paths:" << QApplication::libraryPaths();
     //TODO: DT entry
 #ifdef Q_OS_ANDROID
     QDir storageDirectoryPath("/storage/emulated/0/Android/data/" + packageName);
@@ -99,7 +99,8 @@ bool PluginLoader::setupPlugins()
     }
 
     qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
-    for(auto plugin : m_corePluginHandlers)
+
+    for(const auto& plugin : m_corePluginHandlers)
     {
         if(!plugin.data()->load())
         {
@@ -110,6 +111,7 @@ bool PluginLoader::setupPlugins()
         auto *corePluginPtr = castToPlugin<ICorePlugin>(instance);
         if(!corePluginPtr)
         {
+            qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
             plugin.data()->unload();
             continue;
         }
@@ -119,10 +121,10 @@ bool PluginLoader::setupPlugins()
     }
 
     bool isSetupSucceed = m_corePlugin != nullptr;
-
     if(!isSetupSucceed)
     {
-        qDebug() << "PluginLoader::setupPlugins: no core plugins loaded, application can't be started without core plugin.";
+        qDebug() << "PluginLoader::setupPlugins: no core plugins loaded, "
+                 "application can't be started without core plugin.";
     }
 
     return isSetupSucceed;
@@ -132,13 +134,13 @@ void PluginLoader::runCorePlugin()
 {
     assert(m_corePlugin);
 
-    qDebug() << "PluginLoader::setupPlugins:" << m_pluginHandlers.count() << "plugins found, adding to core plugin.";
     QVector<QWeakPointer<IPluginHandler>> pluginHandlers(m_pluginHandlers.size());
     for(int i = 0; i < m_pluginHandlers.size(); ++i)
     {
         pluginHandlers[i] = QWeakPointer<IPluginHandler>(m_pluginHandlers[i]);
     }
 
+    qDebug() << "PluginLoader::runCorePlugin: starting core plugin." << endl;
     auto instance = m_corePlugin.data()->getInstance();
     auto *corePluginPtr = castToPlugin<ICorePlugin>(instance);
     corePluginPtr->addPlugins(pluginHandlers);
@@ -149,16 +151,10 @@ bool PluginLoader::setupPlugin(QString pluginName)
 {
     if(!QLibrary::isLibrary(pluginName))
     {
+        qCritical() << QString("PluginLoader: can't load plugin '%1': not a library.").arg(pluginName);
         return false;
     }
 
-    qDebug() << endl << "=====" << pluginName << "=====";
-    //    QPluginLoader* loader = LoadPlugin(pluginName);
-    //    if(!loader)
-    //        return false;
-    //    QObject* possiblePlugin = GetPluginInstance(loader);
-    //    if(!possiblePlugin)
-    //        return false;
     auto handler = new PluginHandler(pluginName);
     auto handlerInterface = QSharedPointer<IPluginHandler>(handler);
 
@@ -181,7 +177,7 @@ Type *PluginLoader::castToPlugin(QObject *possiblePlugin)
 
     if(!plugin)
     {
-        qDebug() << "Can't load the plugin " << possiblePlugin->objectName() << ": wrong type.";
+        qDebug() << "PluginLoader::castToPlugin: can't cast the plugin " << possiblePlugin->objectName() << ": wrong type.";
     }
 
     return plugin;

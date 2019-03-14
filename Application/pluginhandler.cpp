@@ -12,8 +12,6 @@ PluginHandler::PluginHandler(QString filename, QObject *parent)
 
 QObject *PluginHandler::getInstance()
 {
-    qDebug() << "Load plugin:" << m_pluginLoader->fileName();
-
     if(!m_instance)
     {
         load();
@@ -87,7 +85,6 @@ QObject *PluginHandler::ResolvePluginInstance()
         return nullptr;
     }
 
-    qDebug() << "Get instance";
     QObject *possiblePlugin = m_pluginLoader->instance();
 
     if(!possiblePlugin)

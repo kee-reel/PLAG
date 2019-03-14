@@ -3,7 +3,9 @@
 
 #include <QtCore>
 
-#include "../../Application/icoreplugin.h"
+
+#include "../../../Application/ipluginhandler.h"
+#include "../../PluginsCommon/iplugin.h"
 
 //! defgroup PluginLinker
 //!     ingroup MainMenuPlugin_rel_m
@@ -19,29 +21,36 @@ class IPluginLinker
 public:
     class ILinkerItem
     {
-        const QString &getName();
-        const QList<QString> &getReferenceNamesList();
-        bool load();
-        bool unload();
+    public:
+        virtual bool isLoaded() const = 0;
+        virtual bool isOpened() const = 0;
+        virtual MetaInfo getMeta() const = 0;
+        virtual int getPluginUID() const = 0;
+
+        virtual QWidget *getWidget() const = 0;
+        virtual const QObject *getObject() const = 0;
+
+        virtual QMap<int, QWeakPointer<ILinkerItem>> getReferences() = 0;
+        virtual QMap<int, QWeakPointer<ILinkerItem>> getReferents() = 0;
+
+        virtual bool open() = 0;
+        virtual bool close() = 0;
 
     signals:
-        void onOpened(ILinkerItem *openedByItem);
-        void onClosed(ILinkerItem *closedByItem);
-
-    protected:
-        virtual ~ILinkerItem() {}
+        void onOpened(int itemId);
+        void onClosed(int itemId);
+        void onConnectionsChanged(int itemId);
     };
 
     virtual bool addCorePlugin(QWeakPointer<IPluginHandler> pluginHandler) = 0;
-    virtual bool addNewPlugin(QWeakPointer<IPluginHandler> pluginHandler) = 0;
+    virtual bool addPlugin(QWeakPointer<IPluginHandler> pluginHandler) = 0;
     virtual bool setupLinks() = 0;
 
-    virtual const QWeakPointer<ILinkerItem> getCorePlugin() = 0;
-    virtual const QMap<QString, QWeakPointer<ILinkerItem> > getClildPluginsMap() = 0;
-    virtual const QMap<QString, QWeakPointer<ILinkerItem> > getAllPluginsMap() = 0;
+    virtual int getCorePluginUID() = 0;
+    virtual QMap<int, QWeakPointer<ILinkerItem> > getPluginsMap() = 0;
 
-protected:
-    virtual ~IPluginLinker() {}
+signals:
+    void onLinkageFinished();
 };
 //! }
 Q_DECLARE_INTERFACE(IPluginLinker, "IPluginLinker")

@@ -8,9 +8,12 @@
 #include <QList>
 #include <QLayout>
 
-#include "../../PluginsInterfaces/iuimanager.h"
-
 #include "../../PluginsCommon/plugin_base.h"
+
+#include "../../PluginsInterfaces/iuimanager.h"
+#include "../../PluginsInterfaces/ipluginlinker.h"
+
+#include "uielement.h"
 
 //! addtogroup UIManager_imp
 //! {
@@ -40,28 +43,38 @@ signals:
 public:
     bool eventFilter(QObject *watched, QEvent *event) override;
 
+    // PluginBase interface
+protected:
+    virtual void onAllReferencesSetStateChanged() override;
+
     // IUIManager interface
 public:
-    virtual bool init(QWeakPointer<IUIElement> rootElement) override;
-    virtual bool fini() override;
-    virtual bool addChildItem(QWeakPointer<IUIElement> element) override;
-    virtual bool removeChildItem(QWeakPointer<IUIElement> element) override;
-    const QWeakPointer<IUIElement> getRootElement();
-    const QVector<QWeakPointer<IUIElement> > getChildElements();
+    virtual const QWeakPointer<IUIElement> getRootElement() override;
+    virtual const QVector<QWeakPointer<IUIElement> > getChildElements() override;
 
 private:
-    bool validateElement(QWeakPointer<IUIElement> element) const;
-    const QWeakPointer<IUIElement> &getElementById(int elementId) const;
+    bool addRootItem(QWeakPointer<IPluginLinker::ILinkerItem> rootItem);
+    bool addChildItem(QWeakPointer<IPluginLinker::ILinkerItem> item);
+    bool removeChildItem(int elementId);
+    void setupElementsLinks();
+
+    bool validateElement(QWeakPointer<IUIElement> element);
+    bool validateElementId(int elementId);
+    int createElementIdForItem(QWeakPointer<IPluginLinker::ILinkerItem> item);
+    QWeakPointer<IUIElement> getElementById(int elementId);
 
 private slots:
     void onElementOpened(int elementId);
     void onElementClosed(int elementId);
     void onElementConnectionChanged(int elementId);
+    void onLinkageFinished();
 
 private:
+    IPluginLinker* m_pluginLinker;
+
     QWidget *m_parentWidget;
     int m_rootElementId;
-    QMap<int, QWeakPointer<IUIElement>> m_elementsMap;
+    QMap<int, QSharedPointer<UIElement>> m_elementsMap;
     QList<QWidget *> m_widgetStack;
 };
 //! }

@@ -1,7 +1,0 @@
-{
-    "Interface": "INewArchTestPlugin",
-    "Name": "NewArchTestPlugin",
-    "RelatedPluginInterfaces": [
-        "IMAINMENUMODEL"
-    ]
-}

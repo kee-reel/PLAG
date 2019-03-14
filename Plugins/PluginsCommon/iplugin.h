@@ -31,12 +31,12 @@ public:
     virtual QObject *getObject() = 0;
     virtual QWidget *getWidget() = 0;
 
-    virtual bool open(const IPlugin *openedByPlugin) = 0;
-    virtual bool close(const IPlugin *closedByPlugin) = 0;
+    virtual bool open() = 0;
+    virtual bool close() = 0;
 
 signals:
-    void onOpen(const IPlugin *openedByPlugin);
-    void onClose(const IPlugin *closedByPlugin);
+    void onOpen();
+    void onClose();
 
 protected:
     virtual ~IPlugin() {}
