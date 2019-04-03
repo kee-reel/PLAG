@@ -63,7 +63,6 @@ private:
 private slots:
     void OnAddFormClosed();
 
-    void on_buttonExit_clicked();
     void on_buttonAdd_clicked();
     void on_buttonDelete_clicked();
     void onTreeViewPressed(const QModelIndex &index);
