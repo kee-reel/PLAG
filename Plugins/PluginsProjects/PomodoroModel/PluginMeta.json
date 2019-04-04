@@ -1,0 +1,11 @@
+{
+    "Type": "MODELPLUGIN",
+    "Interface": "IPomodoroModel",
+    "Name": "PomodoroModel",
+    "RelatedPluginInterfaces": [
+        "ITaskTreeModel",
+        "IExtendableDataManager",
+        "IPluginLinker",
+        "INotificationManagerModel"
+    ]
+}

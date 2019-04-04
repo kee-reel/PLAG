@@ -7,8 +7,6 @@
 #include <QAbstractItemModel>
 #include <QKeyEvent>
 #include <QMap>
-#include <QLabel>
-#include <QLineEdit>
 #include <QGridLayout>
 
 namespace Ui {
@@ -21,7 +19,7 @@ class AddForm : public QWidget
     Q_OBJECT
 
 public:
-    explicit AddForm(QWidget *parent = 0);
+    explicit AddForm(QWidget *parent = nullptr);
     ~AddForm();
 
     void SetModel(QAbstractItemModel *model);
@@ -32,15 +30,16 @@ signals:
 
 private:
     Ui::AddForm *ui;
-    QList<QLabel*> labelsList;
-    QList<QWidget*> editWidgets;
+    QList< QPair<QWidget*, QWidget*> > editWidgets;
     QAbstractItemModel *model;
     QGridLayout *gridLayout;
     QMap<QString, QVariant> currentItemMap;
     QModelIndex currentModelIndex;
+    const QString DEFAULT_EDITOR_OBJECT_NAME = "defaultEditor";
 
     void ClearEditors();
 
+    QWidget *GetStandardDataTypeEditor(const QVariant &value, QWidget *parent);
 private slots:
     void AcceptChanges();
     void CancelChanges();

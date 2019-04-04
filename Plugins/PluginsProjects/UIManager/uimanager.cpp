@@ -31,7 +31,9 @@ void UIManager::pop()
 
     if (count() != 1)
     {
-        m_widgetStack.last()->close();
+        auto last = m_widgetStack.last();
+        last->setParent(nullptr);
+        last->close();
         m_widgetStack.removeLast();
         m_widgetStack.last()->show();
 
@@ -140,6 +142,7 @@ bool UIManager::removeChildItem(int elementId)
 
     const auto &widget = element.data()->getElementWidget();
     widget->removeEventFilter(this);
+    widget->setParent(nullptr);
 
     const auto &object = element.data()->getElementSignalsLinkObject();
     disconnect(object, SIGNAL(onOpened(int)), this, SLOT(onElementOpened(int)));
@@ -294,7 +297,7 @@ void UIManager::onLinkageFinished()
     setupElementsLinks();
 }
 
-void UIManager::onAllReferencesSetStateChanged()
+void UIManager::onAllReferencesSet()
 {
     for(auto iter = m_referencesMap.begin(); iter != m_referencesMap.end(); ++iter)
     {
@@ -307,4 +310,5 @@ void UIManager::onAllReferencesSetStateChanged()
             connect(instance, SIGNAL(onLinkageFinished()), this, SLOT(onLinkageFinished()));
         }
     }
+    PluginBase::onAllReferencesSet();
 }

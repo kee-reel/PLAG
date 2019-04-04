@@ -4,10 +4,12 @@
 
 #include "pluginhandler.h"
 
-PluginLoader::PluginLoader(QWidget *parent) : QObject(parent)
+PluginLoader::PluginLoader(QWidget *parent) :
+    QObject(parent),
+    m_corePlugin(nullptr)
 {
     this->m_parent = parent;
-    m_corePlugin = nullptr;
+    m_corePluginHandler = nullptr;
 }
 
 PluginLoader::~PluginLoader()
@@ -25,23 +27,29 @@ void PluginLoader::loadPluginsToHome()
     qDebug() << "PluginLoader::loadPluginsToHome: library paths:" << QApplication::libraryPaths();
     //TODO: DT entry
 #ifdef Q_OS_ANDROID
+
     QDir storageDirectoryPath("/storage/emulated/0/Android/data/" + packageName);
 
-    if(!internalPluginsPath.exists())
+    if(!m_internalPluginsPath.exists())
     {
-        internalPluginsPath.mkdir(internalPluginsPath.absolutePath());
+        m_internalPluginsPath.mkdir(m_internalPluginsPath.absolutePath());
+    }
+
+    if(!storageDirectoryPath.exists())
+    {
+        storageDirectoryPath.mkdir(storageDirectoryPath.absolutePath());
     }
 
     qDebug() << "Storage:" << storageDirectoryPath.absolutePath() << endl << storageDirectoryPath.entryList(
                  QDir::AllEntries);
-    qDebug() << "Internal:" << internalPluginsPath.absolutePath() << endl << internalPluginsPath.entryList(
+    qDebug() << "Internal:" << m_internalPluginsPath.absolutePath() << endl << m_internalPluginsPath.entryList(
                  QDir::AllEntries);
-    LoadFilesFromDirectory(storageDirectoryPath, internalPluginsPath);
+    loadFilesFromDirectory(storageDirectoryPath, m_internalPluginsPath);
 
-    foreach (QString dirPath, storageDirectoryPath.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+    for(QString dirPath : storageDirectoryPath.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
     {
         QDir subDir(storageDirectoryPath.absolutePath() + "/" + dirPath);
-        QDir dstSubDir(internalPluginsPath.absolutePath() + "/" + dirPath);
+        QDir dstSubDir(m_internalPluginsPath.absolutePath() + "/" + dirPath);
 
         if(!dstSubDir.exists())
         {
@@ -49,7 +57,7 @@ void PluginLoader::loadPluginsToHome()
             dstSubDir.mkdir(dstSubDir.absolutePath());
         }
 
-        LoadFilesFromDirectory(subDir, dstSubDir);
+        loadFilesFromDirectory(subDir, dstSubDir);
     }
 
 #endif
@@ -57,11 +65,11 @@ void PluginLoader::loadPluginsToHome()
 
 void PluginLoader::loadFilesFromDirectory(QDir directory, QDir dstDirectory)
 {
-    qDebug() << "LoadFilesFromDirectory" << directory.absolutePath() << endl << directory.entryList(QDir::AllEntries);
+    qDebug() << "LoadFilesFromDirectory" << directory.absolutePath() << endl << directory.entryList(QDir::Files);
     QFile fileToCopy;
     QFile existingFile;
 
-    foreach (QString file, directory.entryList(QDir::Files))
+    for(QString file : directory.entryList(QDir::Files))
     {
         qDebug() << "File" << file;
         // If internal file already exists - delete it
@@ -116,11 +124,11 @@ bool PluginLoader::setupPlugins()
             continue;
         }
 
-        m_corePlugin = plugin;
+        m_corePluginHandler = plugin;
         break;
     }
 
-    bool isSetupSucceed = m_corePlugin != nullptr;
+    bool isSetupSucceed = m_corePluginHandler != nullptr;
     if(!isSetupSucceed)
     {
         qDebug() << "PluginLoader::setupPlugins: no core plugins loaded, "
@@ -132,7 +140,7 @@ bool PluginLoader::setupPlugins()
 
 void PluginLoader::runCorePlugin()
 {
-    assert(m_corePlugin);
+    assert(m_corePluginHandler);
 
     QVector<QWeakPointer<IPluginHandler>> pluginHandlers(m_pluginHandlers.size());
     for(int i = 0; i < m_pluginHandlers.size(); ++i)
@@ -141,10 +149,15 @@ void PluginLoader::runCorePlugin()
     }
 
     qDebug() << "PluginLoader::runCorePlugin: starting core plugin." << endl;
-    auto instance = m_corePlugin.data()->getInstance();
-    auto *corePluginPtr = castToPlugin<ICorePlugin>(instance);
-    corePluginPtr->addPlugins(pluginHandlers);
-    corePluginPtr->start(m_corePlugin, m_parent);
+    auto instance = m_corePluginHandler.data()->getInstance();
+    m_corePlugin = castToPlugin<ICorePlugin>(instance);
+    m_corePlugin->addPlugins(pluginHandlers);
+    m_corePlugin->start(m_corePluginHandler, m_parent);
+}
+
+bool PluginLoader::closePlugins()
+{
+    return m_corePlugin->close();
 }
 
 bool PluginLoader::setupPlugin(QString pluginName)

@@ -41,6 +41,7 @@ public:
 public:
     virtual void addPlugins(const QVector<QWeakPointer<IPluginHandler> > &pluginHandlers) override;
     virtual void start(QWeakPointer<IPluginHandler> selfHandler, QWidget *parentWidget) override;
+    virtual bool close() override;
 
     // IPlugin interface
 public:

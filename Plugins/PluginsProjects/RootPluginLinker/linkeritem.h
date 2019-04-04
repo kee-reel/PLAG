@@ -41,7 +41,9 @@ public:
     virtual bool close() override;
 
     const QString getPluginDescriptionName();
+
 signals:
+    void onLoaded(int itemId);
     void onOpened(int itemId);
     void onClosed(int itemId);
     void onConnectionsChanged(int itemId);
@@ -54,10 +56,11 @@ public:
     void addReferent(QWeakPointer<LinkerItem> linkItem);
     void removeReferent(QWeakPointer<LinkerItem> linkItem);
     bool load();
-    bool loadWithReferents();
+    bool loadAllConnected();
     bool unload();
 
 private:
+    bool initPlugin();
     IPlugin *getPluginInstance() const;
     bool loadReferencePlugins();
     bool unloadReferencePlugins();
@@ -66,12 +69,13 @@ private:
 private slots:
     void onInstanceOpenSlot();
     void onInstanceCloseSlot();
+    void onReferenceLoaded(int referenceId);
 
 private:
     IPlugin *m_pluginInstance;
     QObject *m_pluginQObject;
-    bool m_isOpened;
     bool m_isReferencesLoaded;
+    bool m_isOpened;
 
     QWeakPointer<IPluginHandler> m_pluginHandler;
     MetaInfo m_metaInfo;

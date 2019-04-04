@@ -45,7 +45,7 @@ public:
 
     // PluginBase interface
 protected:
-    virtual void onAllReferencesSetStateChanged() override;
+    virtual void onAllReferencesSet() override;
 
     // IUIManager interface
 public:

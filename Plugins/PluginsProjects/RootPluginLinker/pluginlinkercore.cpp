@@ -11,7 +11,6 @@ PluginLinkerCore::PluginLinkerCore() :
 
 PluginLinkerCore::~PluginLinkerCore()
 {
-
 }
 
 int PluginLinkerCore::getCorePluginUID()
@@ -40,10 +39,21 @@ void PluginLinkerCore::start(QWeakPointer<IPluginHandler> selfHandler, QWidget *
     if(!setupLinks())
     {
         raiseError("Can't link plugins.");
-        return;
     }
 
     m_corePlugin->open();
+}
+
+bool PluginLinkerCore::close()
+{
+    for (auto iter = m_linkerItemsMap.begin(); iter != m_linkerItemsMap.end(); ++iter)
+    {
+        if(iter.key() != m_corePlugin.data()->getPluginUID())
+        {
+            iter.value().data()->unload();
+        }
+    }
+    return true;
 }
 
 QWidget *PluginLinkerCore::getWidget()
@@ -148,7 +158,7 @@ QSharedPointer<LinkerItem> PluginLinkerCore::createLinkerItem(QWeakPointer<IPlug
 
     if(metaInfo.isNull())
     {
-        qCritical() << "PluginLinker::createLinkerItem: can't load plugin";
+        qCritical() << "PluginLinker::createLinkerItem: can't load plugin" << m_metaInfo.Name;
         return QWeakPointer<LinkerItem>();
     }
 
@@ -177,16 +187,17 @@ Type *PluginLinkerCore::castToPlugin(QObject *possiblePlugin) const
 bool PluginLinkerCore::setupLinks()
 {
     bool isLinkageSucceded = true;
+    QStringList troubledPlugins;
     // For all plugins.
     for(auto iter = m_interfacesMap.begin(); iter != m_interfacesMap.end(); ++iter)
     {
         auto &item = iter.value();
         auto &referencesNames = item->getReferenceNamesList();
-        qDebug() << "Setup" << item.get()->getMeta().Name;
+//        qDebug() << "Setup" << item.get()->getMeta().Name;
         // For all references of plugin.
         for(auto &referenceName : referencesNames)
         {
-            qDebug() << "Link to reference" << referenceName;
+//            qDebug() << "Link to reference" << referenceName;
             auto referenceIter = m_interfacesMap.find(referenceName);
             if(referenceIter != m_interfacesMap.end())
             {
@@ -201,19 +212,27 @@ bool PluginLinkerCore::setupLinks()
             }
             else
             {
+                if(!troubledPlugins.contains(referenceName))
+                {
+                    troubledPlugins.append(referenceName);
+                }
                 isLinkageSucceded = false;
             }
         }
     }
 
-    qDebug() << "Linkage suceeded:" << isLinkageSucceded;
-
-    m_corePlugin->loadWithReferents();
-
-    for(auto item : m_linkerItemsMap)
+    if(isLinkageSucceded)
     {
-        qDebug() << "Load:" << item.get()->getMeta().Name;
-        item.get()->loadWithReferents();
+        qDebug() << "Linkage suceeded";
+    }
+    else
+    {
+        qWarning() << "Linkage failed, next referenced plugins not found:" << troubledPlugins;
+    }
+
+    for (auto iter = m_linkerItemsMap.begin(); iter != m_linkerItemsMap.end(); ++iter)
+    {
+        iter.value().data()->load();
     }
 
     onLinkageFinished();

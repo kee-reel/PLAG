@@ -19,7 +19,6 @@ namespace Ui
 {
 class Form;
 }
-
 #elif defined(PLUGIN_BASE_QWIDGET_QML)
 #define PLUGIN_BASE_PARENT QObject
 
@@ -41,7 +40,10 @@ public:
 
 #endif
 
-    virtual ~PluginBase() override {}
+    virtual ~PluginBase() override
+    {
+        qDebug() << "Plugin" << getPluginDescription(m_metaInfo) << "unloaded";
+    }
 
 public:
     virtual bool init(const MetaInfo &metaInfo, const QJsonObject &metaInfoJsonObject) override;
@@ -52,20 +54,30 @@ public:
     virtual const MetaInfo &getPluginMetaInfo() const override;
     virtual QObject *getObject() override;
     virtual QWidget *getWidget() override;
+    virtual bool isReady() override;
 
     virtual bool open() override;
     virtual bool close() override;
 
+    virtual void onAllReferencesSet();
+    virtual void onAllReferencesReady();
+
 signals:
-    void onOpen();
-    void onClose();
+    void onReady(IPlugin*);
+    void onOpen(IPlugin*);
+    void onClose(IPlugin*);
+
+protected slots:
+    virtual void onReferenceReady(IPlugin* reference) override;
 
 protected:
     void constructorInit();
     void raiseError(QString errorMessage);
-    void checkAllReferencesSet();
     QString getPluginDescription(const MetaInfo &meta);
-    virtual void onAllReferencesSetStateChanged();
+
+    void checkAllReferencesSet();
+    void checkAllReferencesReady();
+
     template<class T>
     T *castPluginToInterface(IPlugin *possiblePlugin)
     {
@@ -88,11 +100,13 @@ protected:
 
 protected:
     QMap<QString, IPlugin *> m_referencesMap;
+    QMap<QString, bool> m_referencesReadyMap;
     QString m_lastErrorString;
     MetaInfo m_metaInfo;
 
     bool m_isInited;
     bool m_isAllReferencesSet;
+    bool m_isAllReferencesReady;
 
 #if defined(PLUGIN_BASE_QWIDGET)
 protected:

@@ -49,14 +49,10 @@ public:
     bool isCorePlugin();
 
 private:
-    QObject *ResolvePluginInstance();
-
-private:
     QObject *m_instance;
-    QJsonObject m_meta;
-    QFile m_file;
-    QString m_lastError;
     QSharedPointer<QPluginLoader> m_pluginLoader;
+    QJsonObject m_meta;
+    QString m_lastError;
 };
 
 #endif // PLUGIN_H

@@ -1,6 +1,8 @@
 #include "gridmainmenuview.h"
 #include "ui_form.h"
 
+#include <QMessageBox>
+
 GridMainMenuView::GridMainMenuView() :
     PluginBase(),
     m_uiManager(nullptr),
@@ -91,7 +93,7 @@ void GridMainMenuView::resizeEvent(QResizeEvent *event)
     //    container->resize(size());
 }
 
-void GridMainMenuView::onAllReferencesSetStateChanged()
+void GridMainMenuView::onAllReferencesSet()
 {
     if(m_isAllReferencesSet)
     {
@@ -105,6 +107,7 @@ void GridMainMenuView::onAllReferencesSetStateChanged()
             }
         }
     }
+    PluginBase::onAllReferencesSet();
 }
 
 bool GridMainMenuView::open()
@@ -153,4 +156,17 @@ bool GridMainMenuView::open()
 #endif
 
     return PluginBase::open();
+}
+
+void GridMainMenuView::closeEvent(QCloseEvent *event)
+{
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Close",
+                                                                    tr("Are you sure?\n"),
+                                                                    QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                    QMessageBox::Yes);
+        if (resBtn != QMessageBox::Yes) {
+            event->ignore();
+        } else {
+            event->accept();
+        }
 }

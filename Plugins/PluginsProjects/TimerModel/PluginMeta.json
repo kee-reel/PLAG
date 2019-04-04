@@ -1,0 +1,7 @@
+{
+    "Type": "PluginModel",
+    "Interface": "ITimerModel",
+    "Name": "TimerModel",
+    "RelatedPluginInterfaces": [
+    ]
+}

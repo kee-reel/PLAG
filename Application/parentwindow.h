@@ -18,16 +18,24 @@ class ParentWindow : public QWidget
     Q_OBJECT
 public:
     explicit ParentWindow(QWidget *parent = 0);
-    ~ParentWindow();
+    virtual ~ParentWindow() override;
 
+    // QWidget interface
+protected:
+    virtual void resizeEvent(QResizeEvent* event) override;
+    virtual void closeEvent(QCloseEvent *event) override;
+
+public:
     bool Init();
+
+private:
+    void SetupWidget();
 
 private:
     PluginLoader *pluginManager;
     QVBoxLayout *layout;
-
-    void SetupWidget();
-    void resizeEvent(QResizeEvent* event);
+    const int MAX_TRIES_TO_CLOSE_APP = 2;
+    int triesToCloseApp;
 };
 
 //! @}

@@ -1,6 +1,7 @@
 #include "extendabledamanager.h"
 
-ExtendableDataBaseManagerPlugin::ExtendableDataBaseManagerPlugin()
+ExtendableDataBaseManagerPlugin::ExtendableDataBaseManagerPlugin() :
+    PluginBase ()
 {
     dataSource = nullptr;
 }
@@ -16,7 +17,7 @@ ExtendableDataBaseManagerPlugin::~ExtendableDataBaseManagerPlugin()
     }
 }
 
-void ExtendableDataBaseManagerPlugin::onAllReferencesSetStateChanged()
+void ExtendableDataBaseManagerPlugin::onAllReferencesSet()
 {
     for(auto iter = m_referencesMap.begin(); iter != m_referencesMap.end(); ++iter)
     {
@@ -29,6 +30,7 @@ void ExtendableDataBaseManagerPlugin::onAllReferencesSetStateChanged()
             dataSource->SetPassword("rqCZB63Fr7tmTB");
         }
     }
+    PluginBase::onAllReferencesSet();
 }
 
 bool ExtendableDataBaseManagerPlugin::RegisterExtentionFieldEditor(QString relation, QString field, QWidget *widget)
@@ -47,6 +49,7 @@ bool ExtendableDataBaseManagerPlugin::RegisterExtentionFieldEditor(QString relat
         if(table->HasRelation(relation))
             table->SetDataTypeEditor(relation, field, widget);
     }
+    return true;
 }
 
 QWidget *ExtendableDataBaseManagerPlugin::GetExtentionFieldEditor(QString relation, QString field)

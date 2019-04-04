@@ -42,9 +42,6 @@ bool TableHandler::CreateTable()
     }
     else
     {
-        if(!IsDataSourceExists())
-            return false;
-
         // Create table.
         QString queryStr = QString("CREATE TABLE IF NOT EXISTS %1 (%2)")
                            .arg(tableName)
@@ -59,9 +56,6 @@ bool TableHandler::CreateTable()
 
 bool TableHandler::SetRelation(QString relationName, TableStructMap fields, QVector<QVariant> defaultData)
 {
-    if(!IsDataSourceExists())
-        return false;
-
     if(relationName == "")
     {
         qDebug() << "Relation name is empty!";
@@ -131,9 +125,6 @@ void TableHandler::SetDataTypeEditor(QString dataChunk, QString fieldName, QWidg
 
 bool TableHandler::DeleteRelation(QString relationName)
 {
-    if(!IsDataSourceExists())
-        return false;
-
     qDebug() << "DeleteRelation";
     relationName = relationName.toLower();
     QString queryStr = QString("DROP TABLE  r_%1_%2")
@@ -147,9 +138,6 @@ bool TableHandler::DeleteRelation(QString relationName)
 
 TableHandler::ManagerDataItem TableHandler::GetItem(int id)
 {
-    if(!IsDataSourceExists())
-        return ManagerDataItem();
-
     QString queryStr = QString("SELECT %1.id").arg(tableName);
     QStringList joinTables = relationTablesStructs.keys();
     QString tableRefPrefix = QString("r_%1_").arg(tableName);
@@ -196,9 +184,6 @@ TableHandler::ManagerDataItem TableHandler::GetItem(int id)
 
 QList<IExtendableDataManager::ManagerDataItem> TableHandler::GetData()
 {
-    if(!IsDataSourceExists())
-        return QList<IExtendableDataManager::ManagerDataItem>();
-
     QString queryStr = QString("SELECT %1.id").arg(tableName);
     QStringList joinTables = relationTablesStructs.keys();
     QString tableRefPrefix = QString("r_%1_").arg(tableName);
@@ -268,18 +253,12 @@ void TableHandler::InstallModel()
 
 QAbstractItemModel *TableHandler::GetModel()
 {
-    if(!IsDataSourceExists())
-        return nullptr;
-
     InstallModel();
     return itemModel;
 }
 
 int TableHandler::AddItem(ManagerDataItem item)
 {
-    if(!IsDataSourceExists())
-        return -1;
-
     qDebug() << "AddItem";
     QString queryStr = QString("INSERT INTO %1 (id) VALUES (NULL)").arg(tableName);
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
@@ -312,9 +291,6 @@ int TableHandler::AddItem(ManagerDataItem item)
 
 bool TableHandler::UpdateItem(ManagerDataItem item)
 {
-    if(!IsDataSourceExists())
-        return false;
-
     qDebug() << "AddItem";
     QString queryStr;
     QStringList joinTables = item.dataChunks.keys();
@@ -352,9 +328,6 @@ bool TableHandler::UpdateItem(ManagerDataItem item)
 
 bool TableHandler::DeleteItem(int id)
 {
-    if(!IsDataSourceExists())
-        return false;
-
     QString queryStr = QString("delete from %1 where id=%2").arg(tableName).arg(id);
     qDebug() << "Delete Task" << queryStr;
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
@@ -525,22 +498,8 @@ QString TableHandler::GetUpdateValuesString(TableHandler::TableStructMap &tableS
     return resultStr;
 }
 
-bool TableHandler::IsDataSourceExists()
-{
-    if(!dataSource)
-    {
-        qDebug() << "Data source doesn't exists!";
-        return false;
-    }
-
-    return true;
-}
-
 bool TableHandler::IsTableExists(QString tableName)
 {
-    if(!IsDataSourceExists())
-        return false;
-
     QString queryStr = QString("pragma table_info(%1)").arg(tableName);
     QSqlQuery query = dataSource->ExecuteQuery(queryStr);
     return query.next();

@@ -28,11 +28,12 @@ class ExtendableDataBaseManagerPlugin : public PluginBase, IExtendableDataManage
 
 public:
     ExtendableDataBaseManagerPlugin();
-    ~ExtendableDataBaseManagerPlugin();
+    virtual ~ExtendableDataBaseManagerPlugin() override;
+
 
     // PluginBase interface
-protected:
-    void onAllReferencesSetStateChanged();
+public:
+    virtual void onAllReferencesSet() override;
 
     // IExtendableDataManagerPlugin interface
 public:

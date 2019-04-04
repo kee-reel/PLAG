@@ -1,0 +1,9 @@
+{
+    "Interface": "ITaskSketchModel",
+    "Name": "TaskSketchModel",
+    "RelatedPluginInterfaces": [
+        "IExtendableDataManager",
+        "ITaskTreeModel",
+        "IPluginLinker"
+    ]
+}

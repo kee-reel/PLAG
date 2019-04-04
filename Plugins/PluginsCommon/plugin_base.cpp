@@ -1,24 +1,34 @@
 #include "plugin_base.h"
 
-#include <QtCore>
-#include <QObject>
-#include <QWeakPointer>
-#include <QVariant>
-
-
 void PluginBase::constructorInit()
 {
     m_isInited = false;
     m_isAllReferencesSet = false;
+    m_isAllReferencesReady = false;
 }
 
 bool PluginBase::init(const MetaInfo &metaInfo, const QJsonObject &metaInfoJsonObject)
 {
     m_metaInfo = metaInfo;
 
-    for(const auto &reference : m_metaInfo.RelatedPluginNames)
+    if(m_metaInfo.RelatedPluginNames.count())
     {
-        m_referencesMap.insert(reference, nullptr);
+        for(const auto &reference : m_metaInfo.RelatedPluginNames)
+        {
+            m_referencesMap.insert(reference, nullptr);
+        }
+
+        for(const auto &reference : m_metaInfo.RelatedPluginNames)
+        {
+            m_referencesReadyMap.insert(reference, false);
+        }
+    }
+    else
+    {
+        m_isAllReferencesSet = true;
+        onAllReferencesSet();
+        m_isAllReferencesReady = true;
+        onAllReferencesReady();
     }
 
     m_isInited = true;
@@ -39,11 +49,16 @@ bool PluginBase::addReferencePlugin(IPlugin *referencePlugin)
     if(!referenceIter.value())
     {
         m_referencesMap[referenceName] = referencePlugin;
+        connect(referencePlugin->getObject(), SIGNAL(onReady(IPlugin*)), this, SLOT(onReferenceReady(IPlugin*)));
+        if(referencePlugin->isReady())
+        {
+            onReferenceReady(referencePlugin);
+        }
     }
     else
     {
         //        raiseError(QString("PluginBase::addReferencePlugin: reference %1 already set").arg(referenceName));
-        return false;
+        return true;
     }
 
     checkAllReferencesSet();
@@ -65,6 +80,7 @@ bool PluginBase::removeReferencePlugin(IPlugin *referencePlugin)
     if(referenceIter.value())
     {
         referenceIter.value() = nullptr;
+        disconnect(referencePlugin->getObject(), SIGNAL(onReady(IPlugin*)), this, SLOT(onReferenceReady(IPlugin*)));
     }
     else
     {
@@ -73,6 +89,7 @@ bool PluginBase::removeReferencePlugin(IPlugin *referencePlugin)
     }
 
     m_isAllReferencesSet = false;
+    m_isAllReferencesReady = false;
     return true;
 }
 
@@ -88,7 +105,7 @@ const MetaInfo &PluginBase::getPluginMetaInfo() const
 
 QObject *PluginBase::getObject()
 {
-    return static_cast<QObject *>(this);
+    return this;
 }
 
 QWidget *PluginBase::getWidget()
@@ -100,15 +117,20 @@ QWidget *PluginBase::getWidget()
 #endif
 }
 
+bool PluginBase::isReady()
+{
+    return m_isAllReferencesReady;
+}
+
 bool PluginBase::open()
 {
-    emit onOpen();
+    emit onOpen(this);
     return true;
 }
 
 bool PluginBase::close()
 {
-    emit onClose();
+    emit onClose(this);
     return true;
 }
 
@@ -134,7 +156,29 @@ void PluginBase::checkAllReferencesSet()
     if(isAllReferencesSet)
     {
         m_isAllReferencesSet = true;
-        onAllReferencesSetStateChanged();
+        onAllReferencesSet();
+    }
+}
+
+void PluginBase::checkAllReferencesReady()
+{
+    bool isAllReferencesReady = true;
+    for (const auto &reference : m_referencesReadyMap)
+    {
+        if(!reference)
+        {
+            isAllReferencesReady = false;
+            break;
+        }
+    }
+
+    if(isAllReferencesReady)
+    {
+        if(m_isAllReferencesSet && !m_isAllReferencesReady)
+        {
+            m_isAllReferencesReady = true;
+            onAllReferencesReady();
+        }
     }
 }
 
@@ -143,7 +187,42 @@ QString PluginBase::getPluginDescription(const MetaInfo &meta)
     return QString("[%1 : %2]").arg(meta.InterfaceName).arg(meta.Name);
 }
 
-void PluginBase::onAllReferencesSetStateChanged()
+void PluginBase::onAllReferencesSet()
 {
+//    for(auto iter = m_referencesMap.begin(); iter != m_referencesMap.end(); ++iter)
+//    {
+//        auto&& interfaceName = iter.key();
+//        auto&& plugin = iter.value();
+//        setProperty(interfaceName.toStdString().c_str(), QVariant());
+//    }
+    qDebug() << "onAllReferencesSet" << m_metaInfo.Name;
+    checkAllReferencesReady();
+    emit onReady(this);
+}
 
+void PluginBase::onAllReferencesReady()
+{
+    qDebug() << "onAllReferencesReady" << m_metaInfo.Name;
+}
+
+void PluginBase::onReferenceReady(IPlugin *reference)
+{
+    const auto &referenceName = reference->getPluginMetaInfo().InterfaceName;
+    auto referenceIter = m_referencesReadyMap.find(referenceName);
+    if(referenceIter == m_referencesReadyMap.end())
+    {
+        raiseError(QString("PluginBase::onReferenceReady: reference %1 not found in needed references").arg(referenceName));
+        return;
+    }
+
+    if(!referenceIter.value())
+    {
+        m_referencesReadyMap[referenceName] = true;
+    }
+    else
+    {
+        return;
+    }
+
+    checkAllReferencesReady();
 }

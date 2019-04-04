@@ -1,5 +1,7 @@
 #include "parentwindow.h"
 
+#include <QMessageBox>
+
 #ifdef Q_OS_ANDROID
 #include <QtAndroid>
 #include <QDebug>
@@ -49,7 +51,9 @@ void RegisterNativeMethods()
 }
 #endif
 
-ParentWindow::ParentWindow(QWidget *parent) : QWidget(parent)
+ParentWindow::ParentWindow(QWidget *parent) :
+    QWidget(parent),
+    triesToCloseApp(0)
 {
 #ifdef Q_OS_ANDROID
     RegisterNativeMethods();
@@ -94,4 +98,24 @@ void ParentWindow::SetupWidget()
 void ParentWindow::resizeEvent(QResizeEvent *event)
 {
     layout->setGeometry(QRect(0, 0, event->size().width(), event->size().height()));
+}
+
+
+void ParentWindow::closeEvent(QCloseEvent *event)
+{
+    bool needToClose = pluginManager->closePlugins();
+
+    if(!needToClose)
+    {
+        needToClose = ++triesToCloseApp >= MAX_TRIES_TO_CLOSE_APP;
+    }
+
+    if(needToClose)
+    {
+        event->accept();
+    }
+    else
+    {
+        event->ignore();
+    }
 }

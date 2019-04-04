@@ -30,6 +30,10 @@ public:
     //! \brief Starts plugin work. Some kind of 'start' signal.
     //! \param This will be parent widget for all widgets in app.
     virtual void start(QWeakPointer<IPluginHandler> selfHandler, QWidget *parentWidget) = 0;
+
+    //! \brief Starts plugin work. Some kind of 'start' signal.
+    //! \param This will be parent widget for all widgets in app.
+    virtual bool close() = 0;
 protected:
     virtual ~ICorePlugin() {}
 };

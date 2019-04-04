@@ -1,0 +1,8 @@
+{
+    "Type": "MODELPLUGIN",
+    "Interface": "INotificationManagerModel",
+    "Name": "NotificationManagerModel",
+    "RelatedPluginInterfaces": [
+        "IPluginLinker"
+    ]
+}

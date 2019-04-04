@@ -8,8 +8,3 @@
 %{CN}::~%{CN}()
 {
 }
-
-bool %{CN}::addReferencePlugin(const IPlugin *referencePlugin)
-{
-    return PluginBase::addReferencePlugin(referencePlugin);
-}

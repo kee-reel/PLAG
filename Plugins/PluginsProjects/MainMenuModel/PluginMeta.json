@@ -1,8 +1,0 @@
-{
-    "IsCorePlugin": true,
-    "Interface": "IMainMenuModel",
-    "Name": "MainMenuModel",
-    "RelatedPluginInterfaces": [
-        "IUIManager"
-    ]
-}

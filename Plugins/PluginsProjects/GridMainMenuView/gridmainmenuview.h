@@ -57,11 +57,15 @@ protected:
 
     // PluginBase interface
 protected:
-    virtual void onAllReferencesSetStateChanged() override;
+    virtual void onAllReferencesSet() override;
 
     // IPlugin interface
 public:
     virtual bool open() override;
+
+    // QWidget interface
+protected:
+    virtual void closeEvent(QCloseEvent *event) override;
 };
 //! }
 #endif // GRIDMAINMENUVIEW_H

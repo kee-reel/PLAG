@@ -46,7 +46,7 @@ QSqlQuery DataBaseSourcePlugin::ExecuteQuery(QString &queryText, QList<QString> 
     }
     query.exec();
     qDebug() << endl << ">Executing" << query.executedQuery();
-    if(query.lastError().text() != "")
+    if(query.lastError().isValid())
     {
         qDebug() << query.lastError();
     }

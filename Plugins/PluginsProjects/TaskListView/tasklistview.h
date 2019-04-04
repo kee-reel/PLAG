@@ -16,8 +16,6 @@
 #include "addform.h"
 #include "mytreeview.h"
 
-class AddForm;
-
 //! \defgroup TaskListView
 //!     \ingroup MainMenuPlugin_rel_v
 //! \defgroup TaskListView_imp Implementation
@@ -35,13 +33,9 @@ public:
     TaskListView(QWidget *parent = nullptr);
     ~TaskListView();
 
-    // IPlugin interface
-public:
-    bool open();
-
     // PluginBase interface
 protected:
-    void onAllReferencesSetStateChanged();
+    void onAllReferencesSet();
 
 private:
     ITaskTreeModel *myModel;
@@ -70,6 +64,10 @@ private slots:
     void on_buttonEdit_clicked();
     void onTreeViewClicked(const QModelIndex &index);
 
+
+    // PluginBase interface
+public:
+    virtual void onAllReferencesReady() override;
 };
 //! \}
 #endif // TASKLISTVIEW_H

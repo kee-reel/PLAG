@@ -1,0 +1,8 @@
+{
+    "Type": "VIEWPLUGIN",
+    "Interface": "",
+    "Name": "PomodoroView",
+    "RelatedPluginInterfaces": [
+        "IPomodoroModel"
+    ]
+}

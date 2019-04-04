@@ -1,0 +1,7 @@
+{
+    "Interface": "INeuralNetworkModel",
+    "Name": "NeuralNetworkModel",
+    "RelatedPluginInterfaces": [
+        "IPluginLinker"
+    ]
+}

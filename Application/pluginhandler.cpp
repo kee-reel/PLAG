@@ -2,22 +2,15 @@
 
 #include <QDebug>
 
-PluginHandler::PluginHandler(QString filename, QObject *parent)
+PluginHandler::PluginHandler(QString filename, QObject *parent) :
+    m_instance(nullptr),
+    m_pluginLoader(new QPluginLoader(filename, parent)),
+    m_meta(m_pluginLoader->metaData())
 {
-    m_instance = nullptr;
-    m_pluginLoader.reset(new QPluginLoader(filename, parent));
-    m_meta = m_pluginLoader->metaData();
-    m_file.setFileName(filename);
 }
 
 QObject *PluginHandler::getInstance()
 {
-    if(!m_instance)
-    {
-        load();
-        m_instance = ResolvePluginInstance();
-    }
-
     return m_instance;
 }
 
@@ -33,31 +26,42 @@ bool PluginHandler::load()
         return true;
     }
 
-    bool result = m_pluginLoader->load();
-
-    if(!result)
+    if(!m_pluginLoader->load())
     {
         m_lastError = QString("Can't load the plugin %1. Error: %2")
                       .arg(m_pluginLoader->fileName()).arg(m_pluginLoader->errorString());
         qDebug() << m_lastError;
+        return false;
     }
 
-    m_instance = m_pluginLoader->instance();
-    return result;
+    QObject *possiblePlugin = m_pluginLoader->instance();
+
+    if(!possiblePlugin)
+    {
+        m_lastError = QString("Can't load the plugin %1: not a plugin. Error: %2")
+                      .arg(m_pluginLoader->fileName()).arg(m_pluginLoader->errorString());
+        qCritical() << m_lastError;
+
+        unload();
+        return false;
+    }
+
+    m_instance = possiblePlugin;
+    return true;
 }
 
 bool PluginHandler::unload()
 {
-    bool result = m_pluginLoader->unload();
-
-    if(!result)
+    if(!m_pluginLoader->unload())
     {
         m_lastError = QString("Can't unload the plugin %1. Error: %2")
                       .arg(m_pluginLoader->fileName()).arg(m_pluginLoader->errorString());
         qCritical() << m_lastError;
+        return false;
     }
 
-    return result;
+    m_instance = nullptr;
+    return true;
 }
 
 QString PluginHandler::getLastError()
@@ -75,24 +79,4 @@ bool PluginHandler::isCorePlugin()
     }
 
     return metaData.value(META_DATA_CORE_FLAG).toBool(false);
-}
-
-QObject *PluginHandler::ResolvePluginInstance()
-{
-    if(!m_pluginLoader->isLoaded())
-    {
-        qCritical() << "Plugin not loaded yet.";
-        return nullptr;
-    }
-
-    QObject *possiblePlugin = m_pluginLoader->instance();
-
-    if(!possiblePlugin)
-    {
-        m_lastError = QString("Can't load the plugin %1: not a plugin. Error: %2")
-                      .arg(m_pluginLoader->fileName()).arg(m_pluginLoader->errorString());
-        qCritical() << m_lastError;
-    }
-
-    return possiblePlugin;
 }

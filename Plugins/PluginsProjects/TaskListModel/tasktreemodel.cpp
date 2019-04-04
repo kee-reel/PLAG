@@ -12,7 +12,7 @@ TaskTreeModel::~TaskTreeModel()
 {
 }
 
-void TaskTreeModel::onAllReferencesSetStateChanged()
+void TaskTreeModel::onAllReferencesSet()
 {
     for(auto iter = m_referencesMap.begin(); iter != m_referencesMap.end(); ++iter)
     {
@@ -24,19 +24,15 @@ void TaskTreeModel::onAllReferencesSetStateChanged()
             dataManager = qobject_cast<IExtendableDataManager*>(instance);
         }
     }
-
+    PluginBase::onAllReferencesSet();
 }
 
 QAbstractItemModel* TaskTreeModel::GetTreeModel()
 {
-    if(!treeModel)
-    {
-        SetupModel();
-    }
     return treeModel;
 }
 
-void TaskTreeModel::SetupModel()
+void TaskTreeModel::onAllReferencesReady()
 {
     QMap<QString, QVariant::Type> newRelationStruct =
     {
@@ -45,7 +41,15 @@ void TaskTreeModel::SetupModel()
     QVector<QVariant> defaultData;
     defaultData << "New task";
     dataManager->AddExtention(tableName, relationName, newRelationStruct, defaultData);
-    dataManager->SetActiveExtention(tableName, relationName);
 
     treeModel = dataManager->GetDataModel(tableName);
+
+    PluginBase::onAllReferencesReady();
+}
+
+
+bool TaskTreeModel::open()
+{
+    dataManager->SetActiveExtention(tableName, relationName);
+    PluginBase::open();
 }

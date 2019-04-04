@@ -1,6 +1,12 @@
 #include "addform.h"
 #include "ui_addform.h"
 
+#include <QLabel>
+#include <QLineEdit>
+#include <QSpinBox>
+#include <QDoubleSpinBox>
+#include <QDateTimeEdit>
+
 AddForm::AddForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AddForm)
@@ -41,57 +47,88 @@ void AddForm::ShowModelData(const QModelIndex &index, bool isNew)
     auto rolesMap = model->itemData(currentModelIndex);
     currentItemMap = rolesMap[Qt::UserRole].toMap();
     auto editorsMap = model->headerData(0, Qt::Horizontal, Qt::UserRole).toMap();
-    auto chunkIter = currentItemMap.begin();
     auto editorsChunkIter = editorsMap.begin();
     int rowCount = 0;
-    while(chunkIter != currentItemMap.end())
+    for(auto chunkIter = currentItemMap.begin(); chunkIter != currentItemMap.end(); ++chunkIter)
     {
         auto valuesMap = chunkIter.value().toMap();
         auto valuesEditorsMap = editorsChunkIter.value().toMap();
-        auto valueIter = valuesMap.begin();
         auto valueEditorsIter = valuesEditorsMap.begin();
-        while(valueIter != valuesMap.end())
+        for(auto valueIter = valuesMap.begin(); valueIter != valuesMap.end(); ++valueIter)
         {
-            labelsList.append(new QLabel(valueIter.key(), this));
-            gridLayout->addWidget(labelsList.last(), rowCount, 0);
+            auto label = new QLabel(valueIter.key(), this);
             QWidget *editWidget;
             if(valueEditorsIter.value().isValid())
             {
-                editWidget = (QWidget*)valueEditorsIter.value().value<void*>();
+                editWidget = static_cast<QWidget*>(valueEditorsIter.value().value<void*>());
                 editWidget->setParent(this);
                 editWidget->setObjectName("custom");
                 editWidget->setProperty("value", valueIter.value());
             }
             else
             {
-                editWidget = new QLineEdit(valueIter.value().toString(), this);
-                editWidget->setObjectName("line");
+                editWidget = GetStandardDataTypeEditor(valueIter.value(), this);
+                editWidget->setObjectName(DEFAULT_EDITOR_OBJECT_NAME);
             }
-            editWidgets.append(editWidget);
-            gridLayout->addWidget(editWidgets.last(), rowCount, 1);
+            gridLayout->addWidget(label, rowCount, 0);
+            gridLayout->addWidget(editWidget, rowCount, 1);
+            editWidgets.append(QPair<QWidget*, QWidget*>(label, editWidget));
             ++rowCount;
-            ++valueIter;
             ++valueEditorsIter;
         }
-        ++chunkIter;
         ++editorsChunkIter;
+    }
+}
+
+QWidget* AddForm::GetStandardDataTypeEditor(const QVariant& value, QWidget* parent)
+{
+    switch (value.type())
+    {
+    case QVariant::String:
+    {
+        auto widget = new QLineEdit(parent);
+        widget->setText(value.toString());
+        return widget;
+    }
+    case QVariant::Int:
+    {
+        auto widget = new QSpinBox(parent);
+        widget->setValue(value.toInt());
+        return widget;
+    }
+    case QVariant::Double:
+    {
+        auto widget = new QDoubleSpinBox(parent);
+        widget->setValue(value.toInt());
+        return widget;
+    }
+    case QVariant::DateTime:
+    {
+        auto widget = new QDateTimeEdit(parent);
+        widget->setDateTime(value.toDateTime());
+        return widget;
+    }
+    default:
+    {
+        auto widget = new QLineEdit(parent);
+        widget->setText(value.toString());
+        return widget;
+    }
     }
 }
 
 void AddForm::ClearEditors()
 {
-    for(int i = 0; i < labelsList.length(); ++i)
+    for(auto value : editWidgets)
     {
-        gridLayout->removeWidget(labelsList[i]);
-        delete labelsList[i];
-    }
-    labelsList.clear();
-    for(int i = 0; i < editWidgets.length(); ++i)
-    {
-        gridLayout->removeWidget(editWidgets[i]);
-        bool isDefaultEditor = editWidgets[i]->objectName() == "line";
-        if(isDefaultEditor)
-            delete editWidgets[i];
+        auto label = value.first;
+        auto editWidget = value.second;
+
+        gridLayout->removeWidget(label);
+        delete label;
+        gridLayout->removeWidget(editWidget);
+        if(editWidget->objectName() == DEFAULT_EDITOR_OBJECT_NAME)
+            delete editWidget;
     }
     editWidgets.clear();
     currentItemMap.clear();
@@ -99,27 +136,31 @@ void AddForm::ClearEditors()
 
 void AddForm::AcceptChanges()
 {
-    auto iter = currentItemMap.begin();
+    qDebug() << "AcceptChanges";
     int rowCount = 0;
-    while(iter != currentItemMap.end())
+    for(auto iter = currentItemMap.begin(); iter != currentItemMap.end(); ++iter)
     {
+        qDebug() << "AcceptChanges";
         auto map = iter.value().toMap();
-        auto mapIter = map.begin();
-        while(mapIter != map.end())
+        for(auto mapIter = map.begin(); mapIter != map.end(); ++mapIter)
         {
-            bool isDefaultEditor = editWidgets[rowCount]->objectName() == "line";
-            map[mapIter.key()] = editWidgets[rowCount]->property(isDefaultEditor ? "text" : "value");
+            qDebug() << "AcceptChanges";
+            auto&& editWidgetsPair = editWidgets[rowCount];
+            auto&& editWidget = editWidgetsPair.second;
+            bool isDefaultEditor = editWidget->objectName() == DEFAULT_EDITOR_OBJECT_NAME;
+            map[mapIter.key()] = editWidget->property(isDefaultEditor ? "text" : "value");
             ++rowCount;
-            ++mapIter;
         }
         currentItemMap[iter.key()] = QVariant(map);
-        ++iter;
     }
     QMap<int, QVariant> rolesMap;
     rolesMap.insert(Qt::UserRole, currentItemMap);
     model->setItemData(currentModelIndex, rolesMap);
+    qDebug() << "AcceptChanges";
     ClearEditors();
+    qDebug() << "ClearEditors";
     CancelChanges();
+    qDebug() << "CancelChanges";
 }
 
 void AddForm::CancelChanges()

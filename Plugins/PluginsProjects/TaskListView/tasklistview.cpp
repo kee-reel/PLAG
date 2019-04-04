@@ -8,7 +8,7 @@ TaskListView::TaskListView(QWidget* parent) :
     taskTree = nullptr;
     proxyModel = nullptr;
 
-    myTreeView = new MyTreeView(this);
+    myTreeView = new QTreeView(this);// MyTreeView(this);
     ui->verticalLayout->setDirection(QBoxLayout::BottomToTop);
     ui->verticalLayout->addWidget(myTreeView);
 
@@ -16,7 +16,7 @@ TaskListView::TaskListView(QWidget* parent) :
     connect(ui->buttonEdit, &QPushButton::clicked, this, &TaskListView::on_buttonEdit_clicked);
     connect(ui->buttonDelete, &QPushButton::clicked, this, &TaskListView::on_buttonDelete_clicked);
     connect(ui->buttonExit, &QPushButton::clicked, this, [this]() {
-        emit onClose();
+        emit onClose(this);
     });
 
     connect(myTreeView, SIGNAL(clicked(QModelIndex)), SLOT(onTreeViewClicked(QModelIndex)));
@@ -43,18 +43,7 @@ TaskListView::~TaskListView()
 
 }
 
-bool TaskListView::open()
-{
-    taskTree = myModel->GetTreeModel();
-    model = new DesignProxyModel(taskTree);
-    currentModelIndex = nullptr;
-    myTreeView->setModel(model);
-    addForm->SetModel(model);
-
-    return PluginBase::open();
-}
-
-void TaskListView::onAllReferencesSetStateChanged()
+void TaskListView::onAllReferencesSet()
 {
     for(auto iter = m_referencesMap.begin(); iter != m_referencesMap.end(); ++iter)
     {
@@ -65,9 +54,20 @@ void TaskListView::onAllReferencesSetStateChanged()
             auto instance = plugin->getObject();
             myModel = qobject_cast<ITaskTreeModel*>(instance);
             //connect(pluginInfo->Instance, SIGNAL(OpenTaskEdit(int)), SLOT(OpenTaskEditor(int)));
-            //connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
         }
     }
+    PluginBase::onAllReferencesSet();
+}
+
+void TaskListView::onAllReferencesReady()
+{
+    taskTree = myModel->GetTreeModel();
+    model = new DesignProxyModel(taskTree);
+    currentModelIndex = nullptr;
+    myTreeView->setModel(model);
+    addForm->SetModel(model);
+
+    PluginBase::onAllReferencesReady();
 }
 
 void TaskListView::OpenTaskEditor(int id)
@@ -90,6 +90,11 @@ void TaskListView::OnAddFormClosed()
     ui->buttonExit->setFocusPolicy(Qt::StrongFocus);
     myTreeView->setFocusPolicy(Qt::StrongFocus);
     myTreeView->setFocus();
+}
+
+void TaskListView::on_buttonExit_clicked()
+{
+
 }
 
 void TaskListView::on_buttonAdd_clicked()

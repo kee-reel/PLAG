@@ -7,8 +7,7 @@ TARGET = TaskListView
 TEMPLATE = lib
 QT += widgets
 
-DEFINES += \
-    PLUGIN_BASE_QWIDGET
+DEFINES += PLUGIN_BASE_QWIDGET
 
 include(../../PluginsCommon/BuildInfo.pri)
 
@@ -24,8 +23,6 @@ HEADERS += \
     addform.h \
     designproxymodel.h \
     mytreeview.h
-
-include(../../BuildInfo.pri)
 
 DISTFILES += \
     PluginMeta.json

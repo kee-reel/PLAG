@@ -42,6 +42,10 @@ public slots:
     /// \brief Calls Run method on selected core plugin.
     ///
     void runCorePlugin();
+    ///
+    /// \brief Calls Run method on selected core plugin.
+    ///
+    bool closePlugins();
 
 private:
     void loadPluginsToHome();
@@ -53,7 +57,8 @@ private:
 
 private:
     QWidget *m_parent;
-    QSharedPointer<IPluginHandler> m_corePlugin;
+    ICorePlugin* m_corePlugin;
+    QSharedPointer<IPluginHandler> m_corePluginHandler;
 
     QList<QSharedPointer<IPluginHandler>> m_pluginHandlers;
     QList<QSharedPointer<IPluginHandler>> m_corePluginHandlers;

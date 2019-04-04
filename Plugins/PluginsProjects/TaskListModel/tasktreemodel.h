@@ -28,7 +28,8 @@ public:
 
     // PluginBase interface
 protected:
-    void onAllReferencesSetStateChanged();
+    virtual void onAllReferencesSet() override;
+    virtual void onAllReferencesReady() override;
 
     // ITaskTreeModel interface
 public:
@@ -43,6 +44,11 @@ private:
     QString relationName;
     IExtendableDataManager* dataManager;
     QAbstractItemModel *treeModel;
+
+
+    // IPlugin interface
+public:
+    virtual bool open() override;
 };
 //! \}
 #endif // TASKLISTMODEL_H

@@ -84,6 +84,11 @@ void UIElement::addConnectedElement(QWeakPointer<UIElement> element)
     m_connectedElements.insert(element.data()->getElementId(), element);
 }
 
+void UIElement::refreshConnections()
+{
+
+}
+
 QWeakPointer<IPluginLinker::ILinkerItem> UIElement::getLinkerItem()
 {
     return m_linkerItem;

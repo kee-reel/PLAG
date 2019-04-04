@@ -7,13 +7,18 @@ LinkerItem::LinkerItem(QWeakPointer<IPluginHandler> pluginHandler, QSharedPointe
     QObject(nullptr),
     m_pluginInstance(nullptr),
     m_pluginQObject(nullptr),
-    m_isOpened(false),
     m_isReferencesLoaded(false),
+    m_isOpened(false),
     m_pluginHandler(pluginHandler),
     m_metaInfo(*metaInfo.data()),
     m_pluginUID(uid)
 {
     m_descriptionName = QString("[%1 : %2]").arg(m_metaInfo.InterfaceName).arg(m_metaInfo.Name);
+
+    if(m_pluginHandler.data()->getInstance())
+    {
+        initPlugin();
+    }
 }
 
 const QString LinkerItem::getPluginDescriptionName()
@@ -35,12 +40,14 @@ void LinkerItem::addReference(QWeakPointer<LinkerItem> linkItem)
 {
     auto &&uid = linkItem.data()->getPluginUID();
     m_references.insert(uid, linkItem);
+    connect(linkItem.data(), SIGNAL(onLoaded(int)), this, SLOT(onReferenceLoaded(int)));
 }
 
 void LinkerItem::removeReference(QWeakPointer<LinkerItem> linkItem)
 {
     auto &&uid = linkItem.data()->getPluginUID();
     m_references.remove(uid);
+    disconnect(linkItem.data(), SIGNAL(onLoaded(int)), this, SLOT(onReferenceLoaded(int)));
 }
 
 void LinkerItem::addReferent(QWeakPointer<LinkerItem> linkItem)
@@ -59,9 +66,11 @@ bool LinkerItem::load()
 {
     if(isLoaded())
     {
-        qDebug() << "Plugin" << m_metaInfo.Name << "already loaded";
+//        qDebug() << "Plugin" << m_metaInfo.Name << "already loaded";
         return true;
     }
+
+    qDebug() << "Loading plugin:" << m_metaInfo.Name;
 
     if(!m_pluginHandler.data()->load())
     {
@@ -72,34 +81,48 @@ bool LinkerItem::load()
         return false;
     }
 
-    m_pluginQObject = m_pluginHandler.data()->getInstance();
-
-    m_pluginInstance = qobject_cast<IPlugin *>(m_pluginQObject);
-    m_pluginInstance->init(m_metaInfo, m_pluginHandler.data()->getMeta());
-
-    connect(m_pluginQObject, SIGNAL(onOpen()), this, SLOT(onInstanceOpenSlot()));
-    connect(m_pluginQObject, SIGNAL(onClose()), this, SLOT(onInstanceCloseSlot()));
-
-    qDebug() << "Plugin" << m_metaInfo.Name << "loaded";
-
-    bool loadResult = loadReferencePlugins();
-    if(!loadResult)
+    if(!initPlugin())
     {
-        qCritical() << QString("Can't load plugin %1: error: %3.")
-                    .arg(getPluginDescriptionName())
-                    .arg(m_pluginHandler.data()->getLastError());
+        return false;
     }
 
-    return loadResult;
+    emit onLoaded(m_pluginUID);
+    return true;
 }
 
-bool LinkerItem::loadWithReferents()
+bool LinkerItem::loadAllConnected()
 {
-    load();
+    for(auto referent : m_references)
+    {
+        referent.data()->load();
+    }
     for(auto referent : m_referents)
     {
         referent.data()->load();
     }
+    return true;
+}
+
+bool LinkerItem::initPlugin()
+{
+    m_pluginQObject = m_pluginHandler.data()->getInstance();
+    m_pluginInstance = qobject_cast<IPlugin *>(m_pluginQObject);
+
+    if(!m_pluginInstance)
+    {
+        qCritical() << QString("Can't load plugin [%1 : %2]: error: can't cast plugin to IPlugin interface.")
+                    .arg(m_metaInfo.InterfaceName)
+                    .arg(m_metaInfo.Name);
+        return false;
+    }
+
+    m_pluginInstance->init(m_metaInfo, m_pluginHandler.data()->getMeta());
+
+    connect(m_pluginQObject, SIGNAL(onOpen(IPlugin *)), this, SLOT(onInstanceOpenSlot()));
+    connect(m_pluginQObject, SIGNAL(onClose(IPlugin *)), this, SLOT(onInstanceCloseSlot()));
+
+    loadReferencePlugins();
+
     return true;
 }
 
@@ -110,8 +133,8 @@ bool LinkerItem::unload()
         return true;
     }
 
-    disconnect(m_pluginQObject, SIGNAL(onOpen()), this, SLOT(onInstanceOpenSlot()));
-    disconnect(m_pluginQObject, SIGNAL(onClose()), this, SLOT(onInstanceCloseSlot()));
+    disconnect(m_pluginQObject, SIGNAL(onOpen(IPlugin*)), this, SLOT(onInstanceOpenSlot()));
+    disconnect(m_pluginQObject, SIGNAL(onClose(IPlugin*)), this, SLOT(onInstanceCloseSlot()));
 
     m_pluginQObject = nullptr;
     m_pluginInstance = nullptr;
@@ -134,21 +157,20 @@ bool LinkerItem::loadReferencePlugins()
         return true;
     }
 
-    qDebug() << "Len:" << m_references.count();
+    m_isReferencesLoaded = true;
 
-    QList<QWeakPointer<LinkerItem>> loadedItemsList;
     for(const auto &item : m_references)
     {
-        qDebug() << "Load reference" << item.data()->getMeta().InterfaceName << item.data()->getMeta().Name << item.data()->getMeta().RelatedPluginNames;
-        if(!item.data()->load())
+//        qDebug() << "Load reference" << item.data()->getMeta().InterfaceName << item.data()->getMeta().Name << item.data()->getMeta().RelatedPluginNames;
+        auto referenceInstance = item.data()->getPluginInstance();
+        if(referenceInstance)
         {
-            unloadItems(loadedItemsList);
-            m_isReferencesLoaded = false;
-            return false;
+            m_pluginInstance->addReferencePlugin(referenceInstance);
         }
-        loadedItemsList.append(item);
-        auto pluginInstance = item.data()->getPluginInstance();
-        m_pluginInstance->addReferencePlugin(pluginInstance);
+        else
+        {
+            m_isReferencesLoaded = false;
+        }
     }
 
     m_isReferencesLoaded = true;
@@ -222,6 +244,18 @@ void LinkerItem::onInstanceCloseSlot()
 {
     m_isOpened = false;
     emit onClosed(getPluginUID());
+}
+
+void LinkerItem::onReferenceLoaded(int referenceId)
+{
+    if(!m_pluginInstance)
+    {
+        return;
+    }
+    auto reference = m_references[referenceId];
+    auto pluginInstance = reference.data()->getPluginInstance();
+    m_pluginInstance->addReferencePlugin(pluginInstance);
+    qDebug() << "Add referenc" << reference.data()->getPluginDescriptionName() << "to" << getPluginDescriptionName();
 }
 
 QWidget *LinkerItem::getWidget() const

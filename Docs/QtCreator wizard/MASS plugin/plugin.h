@@ -34,10 +34,6 @@ class %{CN} :
 public:
     %{CN}();
     virtual ~%{CN}() override;
-
-    // PluginBase interface
-public:
-    virtual bool addReferencePlugin(const IPlugin *referencePlugin) override;
 };
 //! \}
 #endif // %{GUARD}
