@@ -15,9 +15,7 @@ TaskListView::TaskListView(QWidget* parent) :
     connect(ui->buttonAdd, &QPushButton::clicked, this, &TaskListView::on_buttonAdd_clicked);
     connect(ui->buttonEdit, &QPushButton::clicked, this, &TaskListView::on_buttonEdit_clicked);
     connect(ui->buttonDelete, &QPushButton::clicked, this, &TaskListView::on_buttonDelete_clicked);
-    connect(ui->buttonExit, &QPushButton::clicked, this, [this]() {
-        emit onClose(this);
-    });
+    connect(ui->buttonExit, &QPushButton::clicked, this, &TaskListView::on_buttonExit_clicked);
 
     connect(myTreeView, SIGNAL(clicked(QModelIndex)), SLOT(onTreeViewClicked(QModelIndex)));
     connect(myTreeView, SIGNAL(doubleClicked(QModelIndex)), SLOT(onTreeViewDoubleClicked(QModelIndex)));
@@ -94,7 +92,7 @@ void TaskListView::OnAddFormClosed()
 
 void TaskListView::on_buttonExit_clicked()
 {
-
+    emit onClose(this);
 }
 
 void TaskListView::on_buttonAdd_clicked()

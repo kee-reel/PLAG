@@ -35,7 +35,7 @@ public:
 
     // PluginBase interface
 protected:
-    void onAllReferencesSet();
+    virtual void onAllReferencesSet() override;
 
 private:
     ITaskTreeModel *myModel;
@@ -62,6 +62,7 @@ private slots:
     void onTreeViewPressed(const QModelIndex &index);
     void on_buttonEdit_clicked();
     void onTreeViewClicked(const QModelIndex &index);
+    void on_buttonExit_clicked();
 
 
     // PluginBase interface
