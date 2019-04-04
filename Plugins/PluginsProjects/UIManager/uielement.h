@@ -31,9 +31,6 @@ public:
     QVector<int> getConnectedElementsIDs();
     void addConnectedElement(QWeakPointer<UIElement> element);
 
-private slots:
-    void refreshConnections();
-
 private:
     QWeakPointer<IPluginLinker::ILinkerItem> getLinkerItem();
 
