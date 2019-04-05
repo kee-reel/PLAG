@@ -1,7 +1,0 @@
-{
-    "Type": "PluginModel",
-    "Interface": "IWorkTimerModel",
-    "Name": "WorkTimerModel",
-    "RelatedPluginInterfaces": [
-    ]
-}

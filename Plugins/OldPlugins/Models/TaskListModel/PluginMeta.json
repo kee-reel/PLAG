@@ -1,9 +1,0 @@
-{
-    "Type": "MODELPLUGIN",
-    "Interface": "ITaskTreeModel",
-    "Name": "TaskListModel",
-    "RelatedPluginInterfaces": [
-        "IExtendableDataManager",
-        "IMainMenuModel"
-    ]
-}

@@ -1,1 +1,0 @@
-If you want to use wizard to create new plugin - you should place folder "MASS plugin" in directory: "[your QtCreator application dir]/share/qtcreator/templates/wizards".
