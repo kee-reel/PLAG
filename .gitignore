@@ -55,3 +55,5 @@ CMakeLists.txt.user*
 
 .directory
 */.qmake.stash
+
+MASSP-*

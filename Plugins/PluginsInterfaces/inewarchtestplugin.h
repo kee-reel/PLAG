@@ -3,8 +3,6 @@
 
 #include <QtCore>
 
-//! defgroup NewArchTestPlugin
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup NewArchTestPlugin_int Interface
 //!     ingroup NewArchTestPlugin
 //! defgroup NewArchTestPlugin_imp Implementation

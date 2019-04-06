@@ -3,8 +3,6 @@
 
 #include <QtCore>
 
-//! \defgroup TaskSketchModel
-//!     \ingroup MainMenuPlugin_rel_m
 //! \defgroup TaskSketchModel_int Interface
 //!     \ingroup TaskSketchModel
 //! \defgroup TaskSketchModel_imp Implementation

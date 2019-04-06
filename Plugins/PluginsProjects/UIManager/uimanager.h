@@ -8,10 +8,10 @@
 #include <QList>
 #include <QLayout>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/iuimanager.h"
-#include "../../PluginsInterfaces/ipluginlinker.h"
+#include "../../Interfaces/iuimanager.h"
+#include "../../Interfaces/ipluginlinker.h"
 
 #include "uielement.h"
 

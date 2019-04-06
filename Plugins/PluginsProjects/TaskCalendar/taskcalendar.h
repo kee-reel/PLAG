@@ -5,11 +5,11 @@
 #include <QDebug>
 #include <QString>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/itaskcalendar.h"
-#include "../../PluginsInterfaces/iextendabledatamanager.h"
-#include "../../PluginsInterfaces/itasktreemodel.h"
+#include "../../Interfaces/itaskcalendar.h"
+#include "../../Interfaces/iextendabledatamanager.h"
+#include "../../Interfaces/itasktreemodel.h"
 
 //! addtogroup TaskCalendar_imp
 //! {

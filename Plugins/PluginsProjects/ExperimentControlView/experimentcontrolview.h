@@ -7,9 +7,9 @@
 
 #include <QtCharts>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/iexperimentcontrolmodel.h"
+#include "../../Interfaces/iexperimentcontrolmodel.h"
 
 //! addtogroup ExperimentControlView_imp
 //! {

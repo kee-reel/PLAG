@@ -5,9 +5,9 @@
 #include <QDebug>
 #include <QString>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/ifuzzylogicmodel.h"
+#include "../../Interfaces/ifuzzylogicmodel.h"
 
 #include "membershipfunc.h"
 #include "inputvariable.h"

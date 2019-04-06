@@ -4,7 +4,7 @@ QT += widgets
 
 DEFINES += PLUGIN_BASE_QOBJECT
 
-include(../../PluginsCommon/BuildInfo.pri)
+include(../../Common/BuildInfo.pri)
 
 HEADERS += \
     ../../PluginsInterfaces/itasktreemodel.h \

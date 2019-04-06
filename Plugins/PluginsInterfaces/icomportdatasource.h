@@ -4,8 +4,6 @@
 #include <QtGlobal>
 #include <QSerialPort>
 
-//! defgroup COMPortDataSource
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup COMPortDataSource_int Interface
 //!     ingroup COMPortDataSource
 //! defgroup COMPortDataSource_imp Implementation

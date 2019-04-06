@@ -9,7 +9,7 @@ QT += core script
 
 DEFINES += PLUGIN_BASE_QOBJECT
 
-include(../../PluginsCommon/BuildInfo.pri)
+include(../../Common/BuildInfo.pri)
 
 SOURCES += \
     neuralnetworkmodel.cpp \

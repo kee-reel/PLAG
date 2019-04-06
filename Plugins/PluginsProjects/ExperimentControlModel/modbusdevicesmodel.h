@@ -5,7 +5,7 @@
 #include <QBitArray>
 #include <QObject>
 
-#include "../../PluginsInterfaces/iexperimentcontrolmodel.h"
+#include "../../Interfaces/iexperimentcontrolmodel.h"
 
 class ModbusDevicesModel : public QAbstractTableModel
 {

@@ -7,8 +7,6 @@
 #include <QSerialPort>
 #include <QModbusDataUnit>
 
-//! defgroup ExperimentControlModel
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup ExperimentControlModel_int Interface
 //!     ingroup ExperimentControlModel
 //! defgroup ExperimentControlModel_imp Implementation

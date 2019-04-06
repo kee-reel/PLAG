@@ -20,7 +20,7 @@ HEADERS += \
 
 DEFINES += PLUGIN_BASE_QOBJECT
 
-include(../../PluginsCommon/BuildInfo.pri)
+include(../../Common/BuildInfo.pri)
 
 DISTFILES += \
     PluginMeta.json

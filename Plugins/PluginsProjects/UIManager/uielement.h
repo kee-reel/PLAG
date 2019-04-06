@@ -1,8 +1,8 @@
 #ifndef UIELEMENT_H
 #define UIELEMENT_H
 
-#include "../../PluginsInterfaces/iuimanager.h"
-#include "../../PluginsInterfaces/ipluginlinker.h"
+#include "../../Interfaces/iuimanager.h"
+#include "../../Interfaces/ipluginlinker.h"
 
 class UIElement : public QObject, public IUIManager::IUIElement
 {

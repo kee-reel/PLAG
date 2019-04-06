@@ -9,8 +9,8 @@
 #include <QSpacerItem>
 #include <QScroller>
 
-#include "../../PluginsInterfaces/iuimanager.h"
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Interfaces/iuimanager.h"
+#include "../../Common/plugin_base.h"
 
 #include "uniquepushbutton.h"
 #include "aspectawaregridlayout.h"

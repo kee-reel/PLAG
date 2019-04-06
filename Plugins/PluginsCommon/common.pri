@@ -1,4 +1,4 @@
-PROJECT_ROOT_PATH = $${PWD}/../PluginsBuildFiles
+PROJECT_ROOT_PATH = $${PWD}/../BuildFiles
 
 win32: OS_SUFFIX = win32
 linux-g++: OS_SUFFIX = linux

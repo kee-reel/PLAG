@@ -10,7 +10,7 @@
 #include <QMap>
 #include <QObject>
 
-#include "../../PluginsInterfaces/iextendabledatamanager.h"
+#include "../../Interfaces/iextendabledatamanager.h"
 #include "item.h"
 
 //! \addtogroup ExtendableDataBaseManagerPlugin_imp

@@ -5,8 +5,6 @@
 
 class QAbstractItemModel;
 
-//! defgroup DayPlanModel
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup DayPlanModel_int Interface
 //!     ingroup DayPlanModel
 //! defgroup DayPlanModel_imp Implementation

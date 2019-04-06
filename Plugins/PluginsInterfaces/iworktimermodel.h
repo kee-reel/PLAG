@@ -3,8 +3,6 @@
 
 #include <QtCore>
 
-//! defgroup WorkTimerModel
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup WorkTimerModel_int Interface
 //!     ingroup WorkTimerModel
 //! defgroup WorkTimerModel_imp Implementation

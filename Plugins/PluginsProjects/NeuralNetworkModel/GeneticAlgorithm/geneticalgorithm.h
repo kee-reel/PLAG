@@ -9,7 +9,7 @@
 #include <QRegExp>
 #include <limits>
 
-#include "../../PluginsInterfaces/ineuralnetworkmodel.h"
+#include "../../Interfaces/ineuralnetworkmodel.h"
 #include "parameters.h"
 #include "GeneticAlgorithm/chromosome.h"
 

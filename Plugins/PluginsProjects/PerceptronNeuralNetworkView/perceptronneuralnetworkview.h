@@ -7,9 +7,9 @@
 #include <QDebug>
 #include <QStandardItemModel>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/ineuralnetworkmodel.h"
+#include "../../Interfaces/ineuralnetworkmodel.h"
 
 //! \defgroup PerceptronNetworkViewPlugin
 //!     \ingroup MainMenuPlugin_rel_v

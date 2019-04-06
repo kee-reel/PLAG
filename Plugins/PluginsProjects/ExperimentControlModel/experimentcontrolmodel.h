@@ -7,10 +7,10 @@
 #include <QTimer>
 #include <QDateTime>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/iexperimentcontrolmodel.h"
-#include "../../PluginsInterfaces/imodbusdevicedatamanager.h"
+#include "../../Interfaces/iexperimentcontrolmodel.h"
+#include "../../Interfaces/imodbusdevicedatamanager.h"
 
 #include "modbusdevicesmodel.h"
 #include "registerspacktablemodel.h"

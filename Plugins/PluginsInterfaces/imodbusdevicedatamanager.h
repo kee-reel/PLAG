@@ -5,8 +5,6 @@
 #include <QSerialPort>
 #include <QModbusDataUnit>
 
-//! defgroup ModbusDeviceDataManager
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup ModbusDeviceDataManager_int Interface
 //!     ingroup ModbusDeviceDataManager
 //! defgroup ModbusDeviceDataManager_imp Implementation

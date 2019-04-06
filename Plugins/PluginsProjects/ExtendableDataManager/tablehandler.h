@@ -6,8 +6,8 @@
 #include <QDebug>
 #include <QVariant>
 
-#include "../../PluginsInterfaces/iextendabledatamanager.h"
-#include "../../PluginsInterfaces/idatabasesource.h"
+#include "../../Interfaces/iextendabledatamanager.h"
+#include "../../Interfaces/idatabasesource.h"
 #include "extendableitemmodel.h"
 
 //! \addtogroup ExtendableDataBaseManagerPlugin_imp

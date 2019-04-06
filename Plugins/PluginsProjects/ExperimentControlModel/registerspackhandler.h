@@ -2,7 +2,7 @@
 #define REGISTERSPACKHANDLER_H
 
 #include <QObject>
-#include "../../PluginsInterfaces/iexperimentcontrolmodel.h"
+#include "../../Interfaces/iexperimentcontrolmodel.h"
 
 class RegistersPackHandler : public QObject, public IExperimentControlModel::RegstersPack
 {

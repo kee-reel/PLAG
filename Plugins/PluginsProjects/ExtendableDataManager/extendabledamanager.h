@@ -7,10 +7,10 @@
 #include <QVariant>
 #include <QPair>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/iextendabledatamanager.h"
-#include "../../PluginsInterfaces/idatabasesource.h"
+#include "../../Interfaces/iextendabledatamanager.h"
+#include "../../Interfaces/idatabasesource.h"
 
 #include "tablehandler.h"
 #include "extendableitemmodel.h"

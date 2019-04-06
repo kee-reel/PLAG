@@ -1,5 +1,4 @@
 #include "pluginlinkercore.h"
-#include "pluginlinkercore.h"
 
 PluginLinkerCore::PluginLinkerCore() :
     PluginBase(nullptr),

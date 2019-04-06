@@ -7,7 +7,7 @@
 #include <QVariant>
 #include <QDebug>
 
-#include "../../PluginsInterfaces/itasktreemodel.h"
+#include "../../Interfaces/itasktreemodel.h"
 
 class RawImageDelegate
 {

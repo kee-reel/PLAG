@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QString>
 
-#include "../../PluginsInterfaces/ifuzzylogicmodel.h"
+#include "../../Interfaces/ifuzzylogicmodel.h"
 
 class FuzzySet : public IFuzzyLogicModel::IFuzzySet
 {

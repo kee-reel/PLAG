@@ -3,8 +3,6 @@
 
 #include <QtCore>
 
-//! defgroup HeartRateDeviceModel
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup HeartRateDeviceModel_int Interface
 //!     ingroup HeartRateDeviceModel
 //! defgroup HeartRateDeviceModel_imp Implementation

@@ -7,11 +7,11 @@
 #include <QAbstractItemModel>
 #include <QDateTime>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/idayplanmodel.h"
-#include "../../PluginsInterfaces/itasktreemodel.h"
-#include "../../PluginsInterfaces/iextendabledatamanager.h"
+#include "../../Interfaces/idayplanmodel.h"
+#include "../../Interfaces/itasktreemodel.h"
+#include "../../Interfaces/iextendabledatamanager.h"
 
 //! addtogroup DayPlanModel_imp
 //! {

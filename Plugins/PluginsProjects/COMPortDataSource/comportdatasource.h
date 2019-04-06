@@ -10,9 +10,9 @@
 #include <QTimer>
 #include <QDateTime>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/icomportdatasource.h"
+#include "../../Interfaces/icomportdatasource.h"
 #include "serialporthandler.h"
 
 // Here you can include your related plugins interfaces

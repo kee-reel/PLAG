@@ -6,10 +6,10 @@
 #include <QString>
 #include <QJsonObject>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/iextendabledatamanager.h"
-#include "../../PluginsInterfaces/ineuralnetworkmodel.h"
+#include "../../Interfaces/iextendabledatamanager.h"
+#include "../../Interfaces/ineuralnetworkmodel.h"
 
 #include "Perceptron/perceptronnetwork.h"
 #include "ART/artnetwork.h"

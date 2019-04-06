@@ -2,10 +2,8 @@
 #define IUIMANAGER_H
 
 #include <QtCore>
-#include "../PluginsCommon/iplugin.h"
+#include "../Common/iplugin.h"
 
-//! defgroup UIManager
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup UIManager_int Interface
 //!     ingroup UIManager
 //! defgroup UIManager_imp Implementation

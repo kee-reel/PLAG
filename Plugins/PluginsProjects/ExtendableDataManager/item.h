@@ -7,7 +7,7 @@
 #include <QPixmap>
 #include <QMap>
 
-#include "../../PluginsInterfaces/iextendabledatamanager.h"
+#include "../../Interfaces/iextendabledatamanager.h"
 
 //! \addtogroup ExtendableDataBaseManagerPlugin_imp
 //! \{

@@ -5,7 +5,7 @@ QT += widgets serialport serialbus charts
 
 DEFINES += PLUGIN_BASE_QOBJECT
 
-include(../../PluginsCommon/BuildInfo.pri)
+include(../../Common/BuildInfo.pri)
 
 SOURCES += \
     heartratedevicemodel.cpp

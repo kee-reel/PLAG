@@ -1,3 +1,3 @@
 TEMPLATE = subdirs
 
-SUBDIRS += $$files(PluginsProjects/*.pro, true)
+SUBDIRS += $$files(Projects/*.pro, true)

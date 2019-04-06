@@ -9,8 +9,8 @@
 #include <QAbstractItemModel>
 #include <QResizeEvent>
 
-#include "../../PluginsCommon/plugin_base.h"
-#include "../../PluginsInterfaces/itasktreemodel.h"
+#include "../../Common/plugin_base.h"
+#include "../../Interfaces/itasktreemodel.h"
 
 #include "designproxymodel.h"
 #include "addform.h"

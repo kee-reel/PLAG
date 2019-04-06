@@ -6,9 +6,9 @@
 #include <QString>
 #include <QAbstractItemModel>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/idayplanmodel.h"
+#include "../../Interfaces/idayplanmodel.h"
 #include "datetimetypeeditor.h"
 #include "designproxymodel.h"
 

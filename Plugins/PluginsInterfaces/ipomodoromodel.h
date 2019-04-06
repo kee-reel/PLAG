@@ -10,8 +10,6 @@ class QModelIndex;
 class QTimer;
 class QDateTime;
 
-//! \defgroup PomodoroModel
-//!     \ingroup MainMenuPlugin_rel_m
 //! \defgroup PomodoroModel_int Interface
 //!     \ingroup PomodoroModel
 //! \defgroup PomodoroModel_imp Implementation

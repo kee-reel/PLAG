@@ -3,8 +3,6 @@
 
 #include <QtCore>
 
-//! defgroup TaskCalendar
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup TaskCalendar_int Interface
 //!     ingroup TaskCalendar
 //! defgroup TaskCalendar_imp Implementation

@@ -9,9 +9,9 @@
 #include <QAbstractItemModel>
 #include <QResizeEvent>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/itasksketchmodel.h"
+#include "../../Interfaces/itasksketchmodel.h"
 #include "mainform.h"
 #include "paintwidget.h"
 

@@ -6,7 +6,7 @@
 #include <QVariant>
 #include <QJsonObject>
 
-#include "../../PluginsInterfaces/ineuralnetworkmodel.h"
+#include "../../Interfaces/ineuralnetworkmodel.h"
 #include "ART/comparinglayer.h"
 #include "ART/recognitionlayer.h"
 #include "parameters.h"

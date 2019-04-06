@@ -9,10 +9,10 @@
 #include <QSignalMapper>
 #include <QtGui>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/imodbusdevicedatamanager.h"
-#include "../../PluginsInterfaces/icomportdatasource.h"
+#include "../../Interfaces/imodbusdevicedatamanager.h"
+#include "../../Interfaces/icomportdatasource.h"
 
 #include "modbusdevicehandler.h"
 

@@ -8,7 +8,7 @@
 #include <QAbstractProxyModel>
 #include <QResizeEvent>
 
-#include "../../PluginsInterfaces/itasksketchmodel.h"
+#include "../../Interfaces/itasksketchmodel.h"
 #include "galleryform.h"
 
 namespace Ui {

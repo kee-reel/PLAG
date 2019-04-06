@@ -2,8 +2,7 @@
 #define IANDROIDNOTIFICATIONMODEL_H
 
 #include <QtCore>
-//! defgroup AndroidNotificationModel
-//!     ingroup MainMenuPlugin_rel_m
+
 //! defgroup AndroidNotificationModel_int Interface
 //!     ingroup AndroidNotificationModel
 //! defgroup AndroidNotificationModel_imp Implementation

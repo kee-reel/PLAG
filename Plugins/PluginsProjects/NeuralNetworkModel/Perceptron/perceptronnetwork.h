@@ -8,7 +8,7 @@
 #include <QDebug>
 #include <QPair>
 
-#include "../../PluginsInterfaces/ineuralnetworkmodel.h"
+#include "../../Interfaces/ineuralnetworkmodel.h"
 #include "Perceptron/neurallayer.h"
 
 class PerceptronNetwork : public QObject, public INeuralNetworkModel::INeuralNetwork

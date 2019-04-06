@@ -4,11 +4,9 @@
 #include <QtCore>
 
 
-#include "../../../Application/ipluginhandler.h"
-#include "../../PluginsCommon/iplugin.h"
+#include "../../Application/ipluginhandler.h"
+#include "../Common/iplugin.h"
 
-//! defgroup PluginLinker
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup PluginLinker_int Interface
 //!     ingroup PluginLinker
 //! defgroup PluginLinker_imp Implementation

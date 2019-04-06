@@ -10,11 +10,11 @@
 #include <QMap>
 #include <QHash>
 
-#include "../../PluginsInterfaces/ipluginlinker.h"
-#include "../../PluginsInterfaces/iuimanager.h"
+#include "../../Interfaces/ipluginlinker.h"
+#include "../../Interfaces/iuimanager.h"
 
 #include "../../../Application/icoreplugin.h"
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
 #include "linkeritem.h"
 
@@ -45,7 +45,7 @@ public:
 
     // IPlugin interface
 public:
-    QWidget *getWidget();
+    virtual QWidget *getWidget() override;
 
     // IPluginLinker interface
 public:

@@ -9,12 +9,12 @@
 #include <QTimer>
 #include <QVariant>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/ipomodoromodel.h"
-#include "../../PluginsInterfaces/iextendabledatamanager.h"
-#include "../../PluginsInterfaces/itasktreemodel.h"
-#include "../../PluginsInterfaces/inotificationmanagermodel.h"
+#include "../../Interfaces/ipomodoromodel.h"
+#include "../../Interfaces/iextendabledatamanager.h"
+#include "../../Interfaces/itasktreemodel.h"
+#include "../../Interfaces/inotificationmanagermodel.h"
 
 //! \addtogroup PomodoroModel_imp
 //! \{

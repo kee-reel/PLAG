@@ -3,8 +3,6 @@
 
 #include <QtCore>
 
-//! defgroup FuzzyLogicModel
-//!     ingroup MainMenuPlugin_rel_m
 //! defgroup FuzzyLogicModel_int Interface
 //!     ingroup FuzzyLogicModel
 //! defgroup FuzzyLogicModel_imp Implementation

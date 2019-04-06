@@ -6,9 +6,9 @@
 #include <QLayout>
 #include <QWidget>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/ipomodoromodel.h"
+#include "../../Interfaces/ipomodoromodel.h"
 #include "pomodorobutton.h"
 #include "mytreeview.h"
 #include "designproxymodel.h"

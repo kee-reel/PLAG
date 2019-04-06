@@ -2,12 +2,8 @@
 include(common.pri)
 
 # Only for plugins
-DISTFILES += \
-    $$PWD/Models/TimerModel/PluginMeta.json
-    
 CONFIG += plugin
 DESTDIR = $${PWD}/../../Application/Plugins
-
 
 HEADERS += \
     $$PWD/iplugin.h \

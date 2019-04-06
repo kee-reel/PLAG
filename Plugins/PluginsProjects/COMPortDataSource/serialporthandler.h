@@ -7,7 +7,7 @@
 #include <QTimer>
 #include <QSerialPortInfo>
 
-#include "../../PluginsInterfaces/icomportdatasource.h"
+#include "../../Interfaces/icomportdatasource.h"
 
 class SerialPortHandler : public QSerialPort, ICOMPortDataSource::ISerialPortHandler
 {

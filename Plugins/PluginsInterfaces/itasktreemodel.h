@@ -3,8 +3,6 @@
 
 #include <QtCore>
 
-//! \defgroup TaskTreeModel
-//!     \ingroup MainMenuPlugin_rel_m
 //! \defgroup TaskTreeModel_int Interface
 //!     \ingroup TaskTreeModel
 //! \defgroup TaskTreeModel_imp Implementation

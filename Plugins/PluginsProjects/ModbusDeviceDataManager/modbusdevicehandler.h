@@ -4,7 +4,7 @@
 #include <QModbusDataUnit>
 #include <QObject>
 
-#include "../../PluginsInterfaces/imodbusdevicedatamanager.h"
+#include "../../Interfaces/imodbusdevicedatamanager.h"
 
 class ModbusDeviceHandler : public QObject, IModbusDeviceDataManager::IModbusDeviceHandler
 {

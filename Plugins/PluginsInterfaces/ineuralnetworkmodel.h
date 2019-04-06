@@ -11,8 +11,6 @@ class QVector;
 typedef QPair<QVector<float>, QVector<float>> InputSampleF;
 typedef QPair<QVector<int>, QVector<int>> InputSampleI;
 
-//! \defgroup NeuralNetworkModel
-//!     \ingroup MainMenuPlugin_rel_m
 //! \defgroup NeuralNetworkModel_int Interfaces
 //!     \ingroup NeuralNetworkModel
 //! \defgroup NeuralNetworkModel_imp Implementation

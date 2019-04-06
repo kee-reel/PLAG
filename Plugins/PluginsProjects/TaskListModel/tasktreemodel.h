@@ -6,10 +6,10 @@
 #include <QString>
 #include <QAbstractItemModel>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/itasktreemodel.h"
-#include "../../PluginsInterfaces/iextendabledatamanager.h"
+#include "../../Interfaces/itasktreemodel.h"
+#include "../../Interfaces/iextendabledatamanager.h"
 
 //! \addtogroup TaskTreeModel_imp
 //! \{

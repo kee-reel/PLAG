@@ -6,11 +6,11 @@
 #include <QString>
 #include <QLineSeries>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/iheartratedevicemodel.h"
-#include "../../PluginsInterfaces/iexperimentcontrolmodel.h"
-#include "../../PluginsInterfaces/ifuzzylogicmodel.h"
+#include "../../Interfaces/iheartratedevicemodel.h"
+#include "../../Interfaces/iexperimentcontrolmodel.h"
+#include "../../Interfaces/ifuzzylogicmodel.h"
 
 //! addtogroup HeartRateDeviceModel_imp
 //! {

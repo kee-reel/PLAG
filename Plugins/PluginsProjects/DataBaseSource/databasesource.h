@@ -6,8 +6,8 @@
 #include <QDebug>
 #include <QList>
 
-#include "../../PluginsInterfaces/idatabasesource.h"
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Interfaces/idatabasesource.h"
+#include "../../Common/plugin_base.h"
 
 #define CONNECTION_FAILED -1
 

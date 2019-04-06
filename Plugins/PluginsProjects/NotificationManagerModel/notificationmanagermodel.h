@@ -13,9 +13,9 @@
     #include <QAndroidJniEnvironment>
 #endif
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
-#include "../../PluginsInterfaces/inotificationmanagermodel.h"
+#include "../../Interfaces/inotificationmanagermodel.h"
 #include "qextendedtimer.h"
 
 //! addtogroup AndroidNotificationModel_imp

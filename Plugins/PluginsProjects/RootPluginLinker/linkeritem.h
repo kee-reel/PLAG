@@ -11,9 +11,9 @@
 #include <QHash>
 
 #include "../../../Application/icoreplugin.h"
-#include "../../PluginsCommon/plugin_base.h"
-#include "../../PluginsInterfaces/imainmenumodule.h"
-#include "../../PluginsInterfaces/ipluginlinker.h"
+#include "../../Common/plugin_base.h"
+#include "../../Interfaces/imainmenumodule.h"
+#include "../../Interfaces/ipluginlinker.h"
 
 class LinkerItem :
     public QObject,
