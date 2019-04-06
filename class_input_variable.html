@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_input_variable.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -74,12 +95,8 @@ Inheritance diagram for InputVariable:</div>
  <div class="center">
   <img src="class_input_variable.png" usemap="#InputVariable_map" alt=""/>
   <map id="InputVariable_map" name="InputVariable_map">
-<area href="class_i_fuzzy_logic_model_1_1_i_input_variable.html" alt="IFuzzyLogicModel::IInputVariable" shape="rect" coords="104,56,303,80"/>
-<area href="class_i_fuzzy_logic_model_1_1_i_input_variable.html" alt="IFuzzyLogicModel::IInputVariable" shape="rect" coords="522,56,721,80"/>
+<area href="class_i_fuzzy_logic_model_1_1_i_input_variable.html" alt="IFuzzyLogicModel::IInputVariable" shape="rect" coords="0,56,199,80"/>
 <area href="class_i_fuzzy_logic_model_1_1_i_variable.html" alt="IFuzzyLogicModel::IVariable" shape="rect" coords="0,0,199,24"/>
-<area href="class_i_fuzzy_logic_model_1_1_i_variable.html" alt="IFuzzyLogicModel::IVariable" shape="rect" coords="209,0,408,24"/>
-<area href="class_i_fuzzy_logic_model_1_1_i_variable.html" alt="IFuzzyLogicModel::IVariable" shape="rect" coords="418,0,617,24"/>
-<area href="class_i_fuzzy_logic_model_1_1_i_variable.html" alt="IFuzzyLogicModel::IVariable" shape="rect" coords="627,0,826,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -100,32 +117,21 @@ virtual QList&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom">
 <tr class="memitem:a6bbcda228ab8e55df5cb15da6ebe0027"><td class="memItemLeft" align="right" valign="top"><a id="a6bbcda228ab8e55df5cb15da6ebe0027"></a>
 virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>GetSetValue</b> (<a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *set) override</td></tr>
 <tr class="separator:a6bbcda228ab8e55df5cb15da6ebe0027"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6259c652057b83ec4cc0f3e5306ad0e9"><td class="memItemLeft" align="right" valign="top"><a id="a6259c652057b83ec4cc0f3e5306ad0e9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>InputVariable</b> (QString name, float min, float max)</td></tr>
-<tr class="separator:a6259c652057b83ec4cc0f3e5306ad0e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c021c5d97ff39342677afe365658727"><td class="memItemLeft" align="right" valign="top"><a id="a8c021c5d97ff39342677afe365658727"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddSet</b> (<a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *set) override</td></tr>
-<tr class="separator:a8c021c5d97ff39342677afe365658727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a219e24e14012ad0940624838202db526"><td class="memItemLeft" align="right" valign="top"><a id="a219e24e14012ad0940624838202db526"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetValue</b> (float value) override</td></tr>
-<tr class="separator:a219e24e14012ad0940624838202db526"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93846ab10a5fb0066a79beb5414099a1"><td class="memItemLeft" align="right" valign="top"><a id="a93846ab10a5fb0066a79beb5414099a1"></a>
-virtual QList&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetSetsValues</b> () override</td></tr>
-<tr class="separator:a93846ab10a5fb0066a79beb5414099a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0420ca76751180e0b6edf9797c1b86cd"><td class="memItemLeft" align="right" valign="top"><a id="a0420ca76751180e0b6edf9797c1b86cd"></a>
-virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>GetSetValue</b> (<a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *set) override</td></tr>
-<tr class="separator:a0420ca76751180e0b6edf9797c1b86cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/FuzzyLogicModel/<a class="el" href="_old_plugins_2_models_2_fuzzy_logic_model_2inputvariable_8h_source.html">inputvariable.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/FuzzyLogicModel/inputvariable.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/FuzzyLogicModel/<a class="el" href="inputvariable_8h_source.html">inputvariable.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/FuzzyLogicModel/inputvariable.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_input_variable.html">InputVariable</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

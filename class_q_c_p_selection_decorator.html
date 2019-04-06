@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_q_c_p_selection_decorator.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -81,8 +102,6 @@ Inheritance diagram for QCPSelectionDecorator:</div>
   <img src="class_q_c_p_selection_decorator.png" usemap="#QCPSelectionDecorator_map" alt=""/>
   <map id="QCPSelectionDecorator_map" name="QCPSelectionDecorator_map">
 <area href="class_q_c_p_selection_decorator_bracket.html" title="A selection decorator which draws brackets around each selected data segment. " alt="QCPSelectionDecoratorBracket" shape="rect" coords="0,56,191,80"/>
-<area href="class_q_c_p_selection_decorator_bracket.html" title="A selection decorator which draws brackets around each selected data segment. " alt="QCPSelectionDecoratorBracket" shape="rect" coords="201,56,392,80"/>
-<area href="class_q_c_p_selection_decorator_bracket.html" title="A selection decorator which draws brackets around each selected data segment. " alt="QCPSelectionDecoratorBracket" shape="rect" coords="402,56,593,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -106,7 +125,7 @@ QCPScatterStyle::ScatterProperties&#160;</td><td class="memItemRight" valign="bo
 <tr class="separator:ac2c8192e1e294aa3a4a7f32a859e3d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa74b626be518ea17055f918d423c8c2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_selection_decorator.html#aa74b626be518ea17055f918d423c8c2d">setBrush</a> (const QBrush &amp;brush)</td></tr>
 <tr class="separator:aa74b626be518ea17055f918d423c8c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab403a613289714ff4fd4a0c0371ab116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_selection_decorator.html#ab403a613289714ff4fd4a0c0371ab116">setScatterStyle</a> (const <a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a> &amp;scatterStyle, QCPScatterStyle::ScatterProperties usedProperties=<a class="el" href="class_q_c_p_scatter_style.html#a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79">QCPScatterStyle::spPen</a>)</td></tr>
+<tr class="memitem:ab403a613289714ff4fd4a0c0371ab116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_selection_decorator.html#ab403a613289714ff4fd4a0c0371ab116">setScatterStyle</a> (const <a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a> &amp;scatterStyle, QCPScatterStyle::ScatterProperties usedProperties=<a class="el" href="class_q_c_p_scatter_style.html#a8974f6a20f8f6eea7781f0e6af9deb46aa04d012e7c03e455db2b68fdd55c2a04">QCPScatterStyle::spPen</a>)</td></tr>
 <tr class="separator:ab403a613289714ff4fd4a0c0371ab116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a808c1607cd4e83869c04986e332455c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_selection_decorator.html#a808c1607cd4e83869c04986e332455c0">setUsedScatterProperties</a> (const QCPScatterStyle::ScatterProperties &amp;properties)</td></tr>
 <tr class="separator:a808c1607cd4e83869c04986e332455c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,96 +139,12 @@ QCPScatterStyle::ScatterProperties&#160;</td><td class="memItemRight" valign="bo
 <tr class="separator:a467a8d5cfcab27e862a17c797ac27b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f8eb49e277063845391e803ae23054a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_selection_decorator.html#a4f8eb49e277063845391e803ae23054a">drawDecoration</a> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter, <a class="el" href="class_q_c_p_data_selection.html">QCPDataSelection</a> selection)</td></tr>
 <tr class="separator:a4f8eb49e277063845391e803ae23054a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9307a60c9759223367909aed2d05ad91"><td class="memItemLeft" align="right" valign="top"><a id="a9307a60c9759223367909aed2d05ad91"></a>
-QPen&#160;</td><td class="memItemRight" valign="bottom"><b>pen</b> () const</td></tr>
-<tr class="separator:a9307a60c9759223367909aed2d05ad91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a783b643aa52120a25308fc501b9998b1"><td class="memItemLeft" align="right" valign="top"><a id="a783b643aa52120a25308fc501b9998b1"></a>
-QBrush&#160;</td><td class="memItemRight" valign="bottom"><b>brush</b> () const</td></tr>
-<tr class="separator:a783b643aa52120a25308fc501b9998b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6558f6f270a188bb633386aba0d1ae4"><td class="memItemLeft" align="right" valign="top"><a id="aa6558f6f270a188bb633386aba0d1ae4"></a>
-<a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>scatterStyle</b> () const</td></tr>
-<tr class="separator:aa6558f6f270a188bb633386aba0d1ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2019bf31dde39f1ec028e3810dfc08b"><td class="memItemLeft" align="right" valign="top"><a id="ab2019bf31dde39f1ec028e3810dfc08b"></a>
-QCPScatterStyle::ScatterProperties&#160;</td><td class="memItemRight" valign="bottom"><b>usedScatterProperties</b> () const</td></tr>
-<tr class="separator:ab2019bf31dde39f1ec028e3810dfc08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2c8192e1e294aa3a4a7f32a859e3d76"><td class="memItemLeft" align="right" valign="top"><a id="ac2c8192e1e294aa3a4a7f32a859e3d76"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPen</b> (const QPen &amp;pen)</td></tr>
-<tr class="separator:ac2c8192e1e294aa3a4a7f32a859e3d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa74b626be518ea17055f918d423c8c2d"><td class="memItemLeft" align="right" valign="top"><a id="aa74b626be518ea17055f918d423c8c2d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setBrush</b> (const QBrush &amp;brush)</td></tr>
-<tr class="separator:aa74b626be518ea17055f918d423c8c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab403a613289714ff4fd4a0c0371ab116"><td class="memItemLeft" align="right" valign="top"><a id="ab403a613289714ff4fd4a0c0371ab116"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setScatterStyle</b> (const <a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a> &amp;scatterStyle, QCPScatterStyle::ScatterProperties usedProperties=<a class="el" href="class_q_c_p_scatter_style.html#a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79">QCPScatterStyle::spPen</a>)</td></tr>
-<tr class="separator:ab403a613289714ff4fd4a0c0371ab116"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a808c1607cd4e83869c04986e332455c0"><td class="memItemLeft" align="right" valign="top"><a id="a808c1607cd4e83869c04986e332455c0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setUsedScatterProperties</b> (const QCPScatterStyle::ScatterProperties &amp;properties)</td></tr>
-<tr class="separator:a808c1607cd4e83869c04986e332455c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75098893f7d08660ea449206810679d7"><td class="memItemLeft" align="right" valign="top"><a id="a75098893f7d08660ea449206810679d7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>applyPen</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter) const</td></tr>
-<tr class="separator:a75098893f7d08660ea449206810679d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a225544527d51b49546b70d0e6d655a34"><td class="memItemLeft" align="right" valign="top"><a id="a225544527d51b49546b70d0e6d655a34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>applyBrush</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter) const</td></tr>
-<tr class="separator:a225544527d51b49546b70d0e6d655a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1277b373248896bc70e8cc1de96da9fa"><td class="memItemLeft" align="right" valign="top"><a id="a1277b373248896bc70e8cc1de96da9fa"></a>
-<a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getFinalScatterStyle</b> (const <a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a> &amp;unselectedStyle) const</td></tr>
-<tr class="separator:a1277b373248896bc70e8cc1de96da9fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06f487bf8fb0047f2ba3b6c3f63f80b3"><td class="memItemLeft" align="right" valign="top"><a id="a06f487bf8fb0047f2ba3b6c3f63f80b3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>copyFrom</b> (const <a class="el" href="class_q_c_p_selection_decorator.html">QCPSelectionDecorator</a> *other)</td></tr>
-<tr class="separator:a06f487bf8fb0047f2ba3b6c3f63f80b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52954b804ad581b5dedb9c331306b932"><td class="memItemLeft" align="right" valign="top"><a id="a52954b804ad581b5dedb9c331306b932"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawDecoration</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter, <a class="el" href="class_q_c_p_data_selection.html">QCPDataSelection</a> selection)</td></tr>
-<tr class="separator:a52954b804ad581b5dedb9c331306b932"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9307a60c9759223367909aed2d05ad91"><td class="memItemLeft" align="right" valign="top"><a id="a9307a60c9759223367909aed2d05ad91"></a>
-QPen&#160;</td><td class="memItemRight" valign="bottom"><b>pen</b> () const</td></tr>
-<tr class="separator:a9307a60c9759223367909aed2d05ad91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a783b643aa52120a25308fc501b9998b1"><td class="memItemLeft" align="right" valign="top"><a id="a783b643aa52120a25308fc501b9998b1"></a>
-QBrush&#160;</td><td class="memItemRight" valign="bottom"><b>brush</b> () const</td></tr>
-<tr class="separator:a783b643aa52120a25308fc501b9998b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6558f6f270a188bb633386aba0d1ae4"><td class="memItemLeft" align="right" valign="top"><a id="aa6558f6f270a188bb633386aba0d1ae4"></a>
-<a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>scatterStyle</b> () const</td></tr>
-<tr class="separator:aa6558f6f270a188bb633386aba0d1ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2019bf31dde39f1ec028e3810dfc08b"><td class="memItemLeft" align="right" valign="top"><a id="ab2019bf31dde39f1ec028e3810dfc08b"></a>
-QCPScatterStyle::ScatterProperties&#160;</td><td class="memItemRight" valign="bottom"><b>usedScatterProperties</b> () const</td></tr>
-<tr class="separator:ab2019bf31dde39f1ec028e3810dfc08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2c8192e1e294aa3a4a7f32a859e3d76"><td class="memItemLeft" align="right" valign="top"><a id="ac2c8192e1e294aa3a4a7f32a859e3d76"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPen</b> (const QPen &amp;pen)</td></tr>
-<tr class="separator:ac2c8192e1e294aa3a4a7f32a859e3d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa74b626be518ea17055f918d423c8c2d"><td class="memItemLeft" align="right" valign="top"><a id="aa74b626be518ea17055f918d423c8c2d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setBrush</b> (const QBrush &amp;brush)</td></tr>
-<tr class="separator:aa74b626be518ea17055f918d423c8c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab403a613289714ff4fd4a0c0371ab116"><td class="memItemLeft" align="right" valign="top"><a id="ab403a613289714ff4fd4a0c0371ab116"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setScatterStyle</b> (const <a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a> &amp;scatterStyle, QCPScatterStyle::ScatterProperties usedProperties=<a class="el" href="class_q_c_p_scatter_style.html#a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79">QCPScatterStyle::spPen</a>)</td></tr>
-<tr class="separator:ab403a613289714ff4fd4a0c0371ab116"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a808c1607cd4e83869c04986e332455c0"><td class="memItemLeft" align="right" valign="top"><a id="a808c1607cd4e83869c04986e332455c0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setUsedScatterProperties</b> (const QCPScatterStyle::ScatterProperties &amp;properties)</td></tr>
-<tr class="separator:a808c1607cd4e83869c04986e332455c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75098893f7d08660ea449206810679d7"><td class="memItemLeft" align="right" valign="top"><a id="a75098893f7d08660ea449206810679d7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>applyPen</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter) const</td></tr>
-<tr class="separator:a75098893f7d08660ea449206810679d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a225544527d51b49546b70d0e6d655a34"><td class="memItemLeft" align="right" valign="top"><a id="a225544527d51b49546b70d0e6d655a34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>applyBrush</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter) const</td></tr>
-<tr class="separator:a225544527d51b49546b70d0e6d655a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1277b373248896bc70e8cc1de96da9fa"><td class="memItemLeft" align="right" valign="top"><a id="a1277b373248896bc70e8cc1de96da9fa"></a>
-<a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getFinalScatterStyle</b> (const <a class="el" href="class_q_c_p_scatter_style.html">QCPScatterStyle</a> &amp;unselectedStyle) const</td></tr>
-<tr class="separator:a1277b373248896bc70e8cc1de96da9fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06f487bf8fb0047f2ba3b6c3f63f80b3"><td class="memItemLeft" align="right" valign="top"><a id="a06f487bf8fb0047f2ba3b6c3f63f80b3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>copyFrom</b> (const <a class="el" href="class_q_c_p_selection_decorator.html">QCPSelectionDecorator</a> *other)</td></tr>
-<tr class="separator:a06f487bf8fb0047f2ba3b6c3f63f80b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52954b804ad581b5dedb9c331306b932"><td class="memItemLeft" align="right" valign="top"><a id="a52954b804ad581b5dedb9c331306b932"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawDecoration</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter, <a class="el" href="class_q_c_p_data_selection.html">QCPDataSelection</a> selection)</td></tr>
-<tr class="separator:a52954b804ad581b5dedb9c331306b932"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:af66cb39e308da0285ae5d533e1e85027"><td class="memItemLeft" align="right" valign="top"><a id="af66cb39e308da0285ae5d533e1e85027"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>registerWithPlottable</b> (<a class="el" href="class_q_c_p_abstract_plottable.html">QCPAbstractPlottable</a> *plottable)</td></tr>
 <tr class="separator:af66cb39e308da0285ae5d533e1e85027"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13dd7ec86c3159eea76c2eb293b99213"><td class="memItemLeft" align="right" valign="top"><a id="a13dd7ec86c3159eea76c2eb293b99213"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>registerWithPlottable</b> (<a class="el" href="class_q_c_p_abstract_plottable.html">QCPAbstractPlottable</a> *plottable)</td></tr>
-<tr class="separator:a13dd7ec86c3159eea76c2eb293b99213"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13dd7ec86c3159eea76c2eb293b99213"><td class="memItemLeft" align="right" valign="top"><a id="a13dd7ec86c3159eea76c2eb293b99213"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>registerWithPlottable</b> (<a class="el" href="class_q_c_p_abstract_plottable.html">QCPAbstractPlottable</a> *plottable)</td></tr>
-<tr class="separator:a13dd7ec86c3159eea76c2eb293b99213"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -225,15 +160,15 @@ QBrush&#160;</td><td class="memItemRight" valign="bottom"><b>mBrush</b></td></tr
 <tr class="memitem:acb4f6af085283c9ce7d5c168fb53e855"><td class="memItemLeft" align="right" valign="top"><a id="acb4f6af085283c9ce7d5c168fb53e855"></a>
 QCPScatterStyle::ScatterProperties&#160;</td><td class="memItemRight" valign="bottom"><b>mUsedScatterProperties</b></td></tr>
 <tr class="separator:acb4f6af085283c9ce7d5c168fb53e855"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44fb66e2198569c035f67104a74388ca"><td class="memItemLeft" align="right" valign="top"><a id="a44fb66e2198569c035f67104a74388ca"></a>
+<tr class="memitem:a25250a1d29b0723c4fa59a97e62f5758"><td class="memItemLeft" align="right" valign="top"><a id="a25250a1d29b0723c4fa59a97e62f5758"></a>
 <a class="el" href="class_q_c_p_abstract_plottable.html">QCPAbstractPlottable</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mPlottable</b></td></tr>
-<tr class="separator:a44fb66e2198569c035f67104a74388ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a25250a1d29b0723c4fa59a97e62f5758"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:ab986d82221cf19fcfdc2833494186c03"><td class="memItemLeft" align="right" valign="top"><a id="ab986d82221cf19fcfdc2833494186c03"></a>
+<tr class="memitem:a53cf0e76aca814550c796fed79e345d6"><td class="memItemLeft" align="right" valign="top"><a id="a53cf0e76aca814550c796fed79e345d6"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>QCPAbstractPlottable</b></td></tr>
-<tr class="separator:ab986d82221cf19fcfdc2833494186c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a53cf0e76aca814550c796fed79e345d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Controls how a plottable's data selection is drawn. </p>
@@ -365,7 +300,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QCPAbstractPlottable
 <p>This method is called by all plottables' draw methods to allow custom selection decorations to be drawn. Use the passed <em>painter</em> to perform the drawing operations. <em>selection</em> carries the data selection for which the decoration shall be drawn.</p>
 <p>The default base class implementation of <a class="el" href="class_q_c_p_selection_decorator.html">QCPSelectionDecorator</a> has no special decoration, so this method does nothing. </p>
 
-<p>Reimplemented in <a class="el" href="class_q_c_p_selection_decorator_bracket.html#a1ceb893063ea3d7197a24098018f4bfb">QCPSelectionDecoratorBracket</a>, <a class="el" href="class_q_c_p_selection_decorator_bracket.html#ae96f09ef95abf81a2514d54149387097">QCPSelectionDecoratorBracket</a>, and <a class="el" href="class_q_c_p_selection_decorator_bracket.html#ae96f09ef95abf81a2514d54149387097">QCPSelectionDecoratorBracket</a>.</p>
+<p>Reimplemented in <a class="el" href="class_q_c_p_selection_decorator_bracket.html#a1ceb893063ea3d7197a24098018f4bfb">QCPSelectionDecoratorBracket</a>.</p>
 
 </div>
 </div>
@@ -443,7 +378,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QCPAbstractPlottable
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QCPScatterStyle::ScatterProperties&#160;</td>
-          <td class="paramname"><em>usedProperties</em> = <code><a class="el" href="class_q_c_p_scatter_style.html#a8974f6a20f8f6eea7781f0e6af9deb46a1b8f3179d60006d2bcfd4e14a3fcde79">QCPScatterStyle::spPen</a></code>&#160;</td>
+          <td class="paramname"><em>usedProperties</em> = <code><a class="el" href="class_q_c_p_scatter_style.html#a8974f6a20f8f6eea7781f0e6af9deb46aa04d012e7c03e455db2b68fdd55c2a04">QCPScatterStyle::spPen</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -477,15 +412,19 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QCPAbstractPlottable
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/<a class="el" href="_old_plugins_2_views_2_a_r_neural_network_view_2qcustomplot_8h_source.html">qcustomplot.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/qcustomplot.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/qcustomplot.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:41 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_q_c_p_selection_decorator.html">QCPSelectionDecorator</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:59 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

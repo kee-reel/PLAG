@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_q_c_p_axis_painter_private.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -90,48 +111,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (<a 
 <tr class="memitem:a60fc2eec99ed23e9a3c98e8f7e5730b0"><td class="memItemLeft" align="right" valign="top"><a id="a60fc2eec99ed23e9a3c98e8f7e5730b0"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const</td></tr>
 <tr class="separator:a60fc2eec99ed23e9a3c98e8f7e5730b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b6806e32c44384fd0ae4dcdaa72b1b5"><td class="memItemLeft" align="right" valign="top"><a id="a7b6806e32c44384fd0ae4dcdaa72b1b5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearCache</b> ()</td></tr>
-<tr class="separator:a7b6806e32c44384fd0ae4dcdaa72b1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab29635564acb5d0012fa9e297477db05"><td class="memItemLeft" align="right" valign="top"><a id="ab29635564acb5d0012fa9e297477db05"></a>
-QRect&#160;</td><td class="memItemRight" valign="bottom"><b>axisSelectionBox</b> () const</td></tr>
-<tr class="separator:ab29635564acb5d0012fa9e297477db05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf8a4fef47cec70b596fe20941aa5b16"><td class="memItemLeft" align="right" valign="top"><a id="acf8a4fef47cec70b596fe20941aa5b16"></a>
-QRect&#160;</td><td class="memItemRight" valign="bottom"><b>tickLabelsSelectionBox</b> () const</td></tr>
-<tr class="separator:acf8a4fef47cec70b596fe20941aa5b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7800667d15867040ada5f4bf027f070"><td class="memItemLeft" align="right" valign="top"><a id="ae7800667d15867040ada5f4bf027f070"></a>
-QRect&#160;</td><td class="memItemRight" valign="bottom"><b>labelSelectionBox</b> () const</td></tr>
-<tr class="separator:ae7800667d15867040ada5f4bf027f070"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f14aa5c4aa83dbcd68984a7c73bf94f"><td class="memItemLeft" align="right" valign="top"><a id="a0f14aa5c4aa83dbcd68984a7c73bf94f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPAxisPainterPrivate</b> (<a class="el" href="class_q_custom_plot.html">QCustomPlot</a> *parentPlot)</td></tr>
-<tr class="separator:a0f14aa5c4aa83dbcd68984a7c73bf94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73d5da6d2296825fcf3134dc688510c7"><td class="memItemLeft" align="right" valign="top"><a id="a73d5da6d2296825fcf3134dc688510c7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter)</td></tr>
-<tr class="separator:a73d5da6d2296825fcf3134dc688510c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfd1e93dd9d8532c267b83a1fdd73e21"><td class="memItemLeft" align="right" valign="top"><a id="adfd1e93dd9d8532c267b83a1fdd73e21"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const</td></tr>
-<tr class="separator:adfd1e93dd9d8532c267b83a1fdd73e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b6806e32c44384fd0ae4dcdaa72b1b5"><td class="memItemLeft" align="right" valign="top"><a id="a7b6806e32c44384fd0ae4dcdaa72b1b5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearCache</b> ()</td></tr>
-<tr class="separator:a7b6806e32c44384fd0ae4dcdaa72b1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab29635564acb5d0012fa9e297477db05"><td class="memItemLeft" align="right" valign="top"><a id="ab29635564acb5d0012fa9e297477db05"></a>
-QRect&#160;</td><td class="memItemRight" valign="bottom"><b>axisSelectionBox</b> () const</td></tr>
-<tr class="separator:ab29635564acb5d0012fa9e297477db05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf8a4fef47cec70b596fe20941aa5b16"><td class="memItemLeft" align="right" valign="top"><a id="acf8a4fef47cec70b596fe20941aa5b16"></a>
-QRect&#160;</td><td class="memItemRight" valign="bottom"><b>tickLabelsSelectionBox</b> () const</td></tr>
-<tr class="separator:acf8a4fef47cec70b596fe20941aa5b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7800667d15867040ada5f4bf027f070"><td class="memItemLeft" align="right" valign="top"><a id="ae7800667d15867040ada5f4bf027f070"></a>
-QRect&#160;</td><td class="memItemRight" valign="bottom"><b>labelSelectionBox</b> () const</td></tr>
-<tr class="separator:ae7800667d15867040ada5f4bf027f070"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f14aa5c4aa83dbcd68984a7c73bf94f"><td class="memItemLeft" align="right" valign="top"><a id="a0f14aa5c4aa83dbcd68984a7c73bf94f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPAxisPainterPrivate</b> (<a class="el" href="class_q_custom_plot.html">QCustomPlot</a> *parentPlot)</td></tr>
-<tr class="separator:a0f14aa5c4aa83dbcd68984a7c73bf94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73d5da6d2296825fcf3134dc688510c7"><td class="memItemLeft" align="right" valign="top"><a id="a73d5da6d2296825fcf3134dc688510c7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter)</td></tr>
-<tr class="separator:a73d5da6d2296825fcf3134dc688510c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfd1e93dd9d8532c267b83a1fdd73e21"><td class="memItemLeft" align="right" valign="top"><a id="adfd1e93dd9d8532c267b83a1fdd73e21"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const</td></tr>
-<tr class="separator:adfd1e93dd9d8532c267b83a1fdd73e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b6806e32c44384fd0ae4dcdaa72b1b5"><td class="memItemLeft" align="right" valign="top"><a id="a7b6806e32c44384fd0ae4dcdaa72b1b5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clearCache</b> ()</td></tr>
 <tr class="separator:a7b6806e32c44384fd0ae4dcdaa72b1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,15 +204,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>abbreviateDecimalPowe
 <tr class="memitem:a06d0ef3f4f1b567feb84196fc3b140da"><td class="memItemLeft" align="right" valign="top"><a id="a06d0ef3f4f1b567feb84196fc3b140da"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>reversedEndings</b></td></tr>
 <tr class="separator:a06d0ef3f4f1b567feb84196fc3b140da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ad4973fb113e3ebeb66d67a799ddf7d"><td class="memItemLeft" align="right" valign="top"><a id="a4ad4973fb113e3ebeb66d67a799ddf7d"></a>
+<tr class="memitem:afcde7484bbcc1004b8f59ab984ada6f9"><td class="memItemLeft" align="right" valign="top"><a id="afcde7484bbcc1004b8f59ab984ada6f9"></a>
 <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>subTickPositions</b></td></tr>
-<tr class="separator:a4ad4973fb113e3ebeb66d67a799ddf7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a354f0ff839da7c9105c8cba34c5154ce"><td class="memItemLeft" align="right" valign="top"><a id="a354f0ff839da7c9105c8cba34c5154ce"></a>
+<tr class="separator:afcde7484bbcc1004b8f59ab984ada6f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae55e3dc2cf2af8d8a6e7235ccab54786"><td class="memItemLeft" align="right" valign="top"><a id="ae55e3dc2cf2af8d8a6e7235ccab54786"></a>
 <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tickPositions</b></td></tr>
-<tr class="separator:a354f0ff839da7c9105c8cba34c5154ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a268cffb1555545f4889125f7b3532f92"><td class="memItemLeft" align="right" valign="top"><a id="a268cffb1555545f4889125f7b3532f92"></a>
+<tr class="separator:ae55e3dc2cf2af8d8a6e7235ccab54786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0a4998ca358ba751e84fca45a025abd"><td class="memItemLeft" align="right" valign="top"><a id="ad0a4998ca358ba751e84fca45a025abd"></a>
 <a class="el" href="class_q_vector.html">QVector</a>&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tickLabels</b></td></tr>
-<tr class="separator:a268cffb1555545f4889125f7b3532f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ad0a4998ca358ba751e84fca45a025abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -255,54 +234,18 @@ virtual QPointF&#160;</td><td class="memItemRight" valign="bottom"><b>getTickLab
 <tr class="memitem:a7a961f0e05c57b51cf1100b05e93f5b9"><td class="memItemLeft" align="right" valign="top"><a id="a7a961f0e05c57b51cf1100b05e93f5b9"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxTickLabelSize</b> (const QFont &amp;font, const QString &amp;text, QSize *tickLabelsSize) const</td></tr>
 <tr class="separator:a7a961f0e05c57b51cf1100b05e93f5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8118056ce40edbe5f5a5180850c6cbf1"><td class="memItemLeft" align="right" valign="top"><a id="a8118056ce40edbe5f5a5180850c6cbf1"></a>
-virtual QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>generateLabelParameterHash</b> () const</td></tr>
-<tr class="separator:a8118056ce40edbe5f5a5180850c6cbf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a829170e248b76a226a68e28f36d8ba6c"><td class="memItemLeft" align="right" valign="top"><a id="a829170e248b76a226a68e28f36d8ba6c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>placeTickLabel</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter, double position, int distanceToAxis, const QString &amp;text, QSize *tickLabelsSize)</td></tr>
-<tr class="separator:a829170e248b76a226a68e28f36d8ba6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a343b7ffbf09f978b79a0af8971dad7"><td class="memItemLeft" align="right" valign="top"><a id="a3a343b7ffbf09f978b79a0af8971dad7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawTickLabel</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter, double x, double y, const <a class="el" href="struct_q_c_p_axis_painter_private_1_1_tick_label_data.html">TickLabelData</a> &amp;labelData) const</td></tr>
-<tr class="separator:a3a343b7ffbf09f978b79a0af8971dad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae71b3bd47d4b874f46c7258affb878bc"><td class="memItemLeft" align="right" valign="top"><a id="ae71b3bd47d4b874f46c7258affb878bc"></a>
-virtual <a class="el" href="struct_q_c_p_axis_painter_private_1_1_tick_label_data.html">TickLabelData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getTickLabelData</b> (const QFont &amp;font, const QString &amp;text) const</td></tr>
-<tr class="separator:ae71b3bd47d4b874f46c7258affb878bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef24b8ac5fc9e2bb3a8bdb95508960cc"><td class="memItemLeft" align="right" valign="top"><a id="aef24b8ac5fc9e2bb3a8bdb95508960cc"></a>
-virtual QPointF&#160;</td><td class="memItemRight" valign="bottom"><b>getTickLabelDrawOffset</b> (const <a class="el" href="struct_q_c_p_axis_painter_private_1_1_tick_label_data.html">TickLabelData</a> &amp;labelData) const</td></tr>
-<tr class="separator:aef24b8ac5fc9e2bb3a8bdb95508960cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70f68712f3b867cafafa59e72cd7f256"><td class="memItemLeft" align="right" valign="top"><a id="a70f68712f3b867cafafa59e72cd7f256"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxTickLabelSize</b> (const QFont &amp;font, const QString &amp;text, QSize *tickLabelsSize) const</td></tr>
-<tr class="separator:a70f68712f3b867cafafa59e72cd7f256"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8118056ce40edbe5f5a5180850c6cbf1"><td class="memItemLeft" align="right" valign="top"><a id="a8118056ce40edbe5f5a5180850c6cbf1"></a>
-virtual QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>generateLabelParameterHash</b> () const</td></tr>
-<tr class="separator:a8118056ce40edbe5f5a5180850c6cbf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a829170e248b76a226a68e28f36d8ba6c"><td class="memItemLeft" align="right" valign="top"><a id="a829170e248b76a226a68e28f36d8ba6c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>placeTickLabel</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter, double position, int distanceToAxis, const QString &amp;text, QSize *tickLabelsSize)</td></tr>
-<tr class="separator:a829170e248b76a226a68e28f36d8ba6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a343b7ffbf09f978b79a0af8971dad7"><td class="memItemLeft" align="right" valign="top"><a id="a3a343b7ffbf09f978b79a0af8971dad7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>drawTickLabel</b> (<a class="el" href="class_q_c_p_painter.html">QCPPainter</a> *painter, double x, double y, const <a class="el" href="struct_q_c_p_axis_painter_private_1_1_tick_label_data.html">TickLabelData</a> &amp;labelData) const</td></tr>
-<tr class="separator:a3a343b7ffbf09f978b79a0af8971dad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae71b3bd47d4b874f46c7258affb878bc"><td class="memItemLeft" align="right" valign="top"><a id="ae71b3bd47d4b874f46c7258affb878bc"></a>
-virtual <a class="el" href="struct_q_c_p_axis_painter_private_1_1_tick_label_data.html">TickLabelData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getTickLabelData</b> (const QFont &amp;font, const QString &amp;text) const</td></tr>
-<tr class="separator:ae71b3bd47d4b874f46c7258affb878bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef24b8ac5fc9e2bb3a8bdb95508960cc"><td class="memItemLeft" align="right" valign="top"><a id="aef24b8ac5fc9e2bb3a8bdb95508960cc"></a>
-virtual QPointF&#160;</td><td class="memItemRight" valign="bottom"><b>getTickLabelDrawOffset</b> (const <a class="el" href="struct_q_c_p_axis_painter_private_1_1_tick_label_data.html">TickLabelData</a> &amp;labelData) const</td></tr>
-<tr class="separator:aef24b8ac5fc9e2bb3a8bdb95508960cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70f68712f3b867cafafa59e72cd7f256"><td class="memItemLeft" align="right" valign="top"><a id="a70f68712f3b867cafafa59e72cd7f256"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxTickLabelSize</b> (const QFont &amp;font, const QString &amp;text, QSize *tickLabelsSize) const</td></tr>
-<tr class="separator:a70f68712f3b867cafafa59e72cd7f256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a846f8030d23be6ccde28fc51957642a2"><td class="memItemLeft" align="right" valign="top"><a id="a846f8030d23be6ccde28fc51957642a2"></a>
+<tr class="memitem:a882029a5f2d4abd71289d415c9b90a28"><td class="memItemLeft" align="right" valign="top"><a id="a882029a5f2d4abd71289d415c9b90a28"></a>
 <a class="el" href="class_q_custom_plot.html">QCustomPlot</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mParentPlot</b></td></tr>
-<tr class="separator:a846f8030d23be6ccde28fc51957642a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a882029a5f2d4abd71289d415c9b90a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab8be59df22ed4e43e3a6d511cbc466a"><td class="memItemLeft" align="right" valign="top"><a id="aab8be59df22ed4e43e3a6d511cbc466a"></a>
 QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>mLabelParameterHash</b></td></tr>
 <tr class="separator:aab8be59df22ed4e43e3a6d511cbc466a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5dd41f8de9cfd65b41819520bd3b74e"><td class="memItemLeft" align="right" valign="top"><a id="ac5dd41f8de9cfd65b41819520bd3b74e"></a>
+<tr class="memitem:a07ac270ea0c0ae084debd48d6a740e35"><td class="memItemLeft" align="right" valign="top"><a id="a07ac270ea0c0ae084debd48d6a740e35"></a>
 QCache&lt; QString, <a class="el" href="struct_q_c_p_axis_painter_private_1_1_cached_label.html">CachedLabel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mLabelCache</b></td></tr>
-<tr class="separator:ac5dd41f8de9cfd65b41819520bd3b74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a07ac270ea0c0ae084debd48d6a740e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d7586f4923994488bdd006415b13f5f"><td class="memItemLeft" align="right" valign="top"><a id="a9d7586f4923994488bdd006415b13f5f"></a>
 QRect&#160;</td><td class="memItemRight" valign="bottom"><b>mAxisSelectionBox</b></td></tr>
 <tr class="separator:a9d7586f4923994488bdd006415b13f5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -342,15 +285,19 @@ QRect&#160;</td><td class="memItemRight" valign="bottom"><b>mLabelSelectionBox</
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/<a class="el" href="_old_plugins_2_views_2_a_r_neural_network_view_2qcustomplot_8h_source.html">qcustomplot.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/qcustomplot.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/qcustomplot.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:30 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_q_c_p_axis_painter_private.html">QCPAxisPainterPrivate</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

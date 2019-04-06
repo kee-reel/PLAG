@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_q_c_p_axis_ticker.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -80,60 +101,19 @@ Inheritance diagram for QCPAxisTicker:</div>
  <div class="center">
   <img src="class_q_c_p_axis_ticker.png" usemap="#QCPAxisTicker_map" alt=""/>
   <map id="QCPAxisTicker_map" name="QCPAxisTicker_map">
-<area href="class_q_c_p_axis_ticker_date_time.html" title="Specialized axis ticker for calendar dates and times as axis ticks. " alt="QCPAxisTickerDateTime" shape="rect" coords="160,56,310,80"/>
-<area href="class_q_c_p_axis_ticker_date_time.html" title="Specialized axis ticker for calendar dates and times as axis ticks. " alt="QCPAxisTickerDateTime" shape="rect" coords="160,112,310,136"/>
-<area href="class_q_c_p_axis_ticker_date_time.html" title="Specialized axis ticker for calendar dates and times as axis ticks. " alt="QCPAxisTickerDateTime" shape="rect" coords="160,168,310,192"/>
-<area href="class_q_c_p_axis_ticker_fixed.html" title="Specialized axis ticker with a fixed tick step. " alt="QCPAxisTickerFixed" shape="rect" coords="160,224,310,248"/>
-<area href="class_q_c_p_axis_ticker_fixed.html" title="Specialized axis ticker with a fixed tick step. " alt="QCPAxisTickerFixed" shape="rect" coords="160,280,310,304"/>
-<area href="class_q_c_p_axis_ticker_fixed.html" title="Specialized axis ticker with a fixed tick step. " alt="QCPAxisTickerFixed" shape="rect" coords="160,336,310,360"/>
-<area href="class_q_c_p_axis_ticker_log.html" title="Specialized axis ticker suited for logarithmic axes. " alt="QCPAxisTickerLog" shape="rect" coords="160,392,310,416"/>
-<area href="class_q_c_p_axis_ticker_log.html" title="Specialized axis ticker suited for logarithmic axes. " alt="QCPAxisTickerLog" shape="rect" coords="160,448,310,472"/>
-<area href="class_q_c_p_axis_ticker_log.html" title="Specialized axis ticker suited for logarithmic axes. " alt="QCPAxisTickerLog" shape="rect" coords="160,504,310,528"/>
-<area href="class_q_c_p_axis_ticker_pi.html" title="Specialized axis ticker to display ticks in units of an arbitrary constant, for example pi..." alt="QCPAxisTickerPi" shape="rect" coords="160,560,310,584"/>
-<area href="class_q_c_p_axis_ticker_pi.html" title="Specialized axis ticker to display ticks in units of an arbitrary constant, for example pi..." alt="QCPAxisTickerPi" shape="rect" coords="160,616,310,640"/>
-<area href="class_q_c_p_axis_ticker_pi.html" title="Specialized axis ticker to display ticks in units of an arbitrary constant, for example pi..." alt="QCPAxisTickerPi" shape="rect" coords="160,672,310,696"/>
-<area href="class_q_c_p_axis_ticker_text.html" title="Specialized axis ticker which allows arbitrary labels at specified coordinates. " alt="QCPAxisTickerText" shape="rect" coords="160,728,310,752"/>
-<area href="class_q_c_p_axis_ticker_text.html" title="Specialized axis ticker which allows arbitrary labels at specified coordinates. " alt="QCPAxisTickerText" shape="rect" coords="160,784,310,808"/>
-<area href="class_q_c_p_axis_ticker_text.html" title="Specialized axis ticker which allows arbitrary labels at specified coordinates. " alt="QCPAxisTickerText" shape="rect" coords="160,840,310,864"/>
-<area href="class_q_c_p_axis_ticker_time.html" title="Specialized axis ticker for time spans in units of milliseconds to days. " alt="QCPAxisTickerTime" shape="rect" coords="160,896,310,920"/>
-<area href="class_q_c_p_axis_ticker_time.html" title="Specialized axis ticker for time spans in units of milliseconds to days. " alt="QCPAxisTickerTime" shape="rect" coords="160,952,310,976"/>
-<area href="class_q_c_p_axis_ticker_time.html" title="Specialized axis ticker for time spans in units of milliseconds to days. " alt="QCPAxisTickerTime" shape="rect" coords="160,1008,310,1032"/>
+<area href="class_q_c_p_axis_ticker_date_time.html" title="Specialized axis ticker for calendar dates and times as axis ticks. " alt="QCPAxisTickerDateTime" shape="rect" coords="0,56,150,80"/>
+<area href="class_q_c_p_axis_ticker_fixed.html" title="Specialized axis ticker with a fixed tick step. " alt="QCPAxisTickerFixed" shape="rect" coords="160,56,310,80"/>
+<area href="class_q_c_p_axis_ticker_log.html" title="Specialized axis ticker suited for logarithmic axes. " alt="QCPAxisTickerLog" shape="rect" coords="320,56,470,80"/>
+<area href="class_q_c_p_axis_ticker_pi.html" title="Specialized axis ticker to display ticks in units of an arbitrary constant, for example pi..." alt="QCPAxisTickerPi" shape="rect" coords="480,56,630,80"/>
+<area href="class_q_c_p_axis_ticker_text.html" title="Specialized axis ticker which allows arbitrary labels at specified coordinates. " alt="QCPAxisTickerText" shape="rect" coords="640,56,790,80"/>
+<area href="class_q_c_p_axis_ticker_time.html" title="Specialized axis ticker for time spans in units of milliseconds to days. " alt="QCPAxisTickerTime" shape="rect" coords="800,56,950,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ab6d2f9d9477821623ac9bc4b21ddf49a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">TickStepStrategy</a> { <br />
-&#160;&#160;<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">tssReadability</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">tssMeetTickCount</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">tssReadability</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">tssMeetTickCount</a>, 
-<br />
-&#160;&#160;<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">tssReadability</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">tssMeetTickCount</a>
-<br />
- }</td></tr>
-<tr class="separator:ab6d2f9d9477821623ac9bc4b21ddf49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6d2f9d9477821623ac9bc4b21ddf49a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">TickStepStrategy</a> { <br />
-&#160;&#160;<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">tssReadability</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">tssMeetTickCount</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">tssReadability</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">tssMeetTickCount</a>, 
-<br />
-&#160;&#160;<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">tssReadability</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">tssMeetTickCount</a>
-<br />
- }</td></tr>
-<tr class="separator:ab6d2f9d9477821623ac9bc4b21ddf49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6d2f9d9477821623ac9bc4b21ddf49a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">TickStepStrategy</a> { <br />
-&#160;&#160;<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">tssReadability</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">tssMeetTickCount</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">tssReadability</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">tssMeetTickCount</a>, 
-<br />
-&#160;&#160;<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">tssReadability</a>, 
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">tssMeetTickCount</a>
-<br />
+<tr class="memitem:ab6d2f9d9477821623ac9bc4b21ddf49a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">TickStepStrategy</a> { <a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa9002aa2fd5633ab5556c71a26fed63a8">tssReadability</a>, 
+<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa770312b6b9b0c64a37ceeba96e0cd7f2">tssMeetTickCount</a>
  }</td></tr>
 <tr class="separator:ab6d2f9d9477821623ac9bc4b21ddf49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -158,48 +138,6 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>tickOrigin</b> () c
 <tr class="separator:ab509c7e500293bf66a8409f0d7c23943"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefbd11725678ca824add8cf926cbc856"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_axis_ticker.html#aefbd11725678ca824add8cf926cbc856">generate</a> (const <a class="el" href="class_q_c_p_range.html">QCPRange</a> &amp;range, const QLocale &amp;locale, QChar formatChar, int precision, <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;ticks, <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; *subTicks, <a class="el" href="class_q_vector.html">QVector</a>&lt; QString &gt; *tickLabels)</td></tr>
 <tr class="separator:aefbd11725678ca824add8cf926cbc856"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58df76f2ec3eb48401bdd314b0e14ba1"><td class="memItemLeft" align="right" valign="top"><a id="a58df76f2ec3eb48401bdd314b0e14ba1"></a>
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">TickStepStrategy</a>&#160;</td><td class="memItemRight" valign="bottom"><b>tickStepStrategy</b> () const</td></tr>
-<tr class="separator:a58df76f2ec3eb48401bdd314b0e14ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf9edbe4169ce55e216fd067cc139452"><td class="memItemLeft" align="right" valign="top"><a id="aaf9edbe4169ce55e216fd067cc139452"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>tickCount</b> () const</td></tr>
-<tr class="separator:aaf9edbe4169ce55e216fd067cc139452"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0c6e9587c36fdeefb5518c00fe7ab15"><td class="memItemLeft" align="right" valign="top"><a id="ac0c6e9587c36fdeefb5518c00fe7ab15"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>tickOrigin</b> () const</td></tr>
-<tr class="separator:ac0c6e9587c36fdeefb5518c00fe7ab15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73b1d847c1a12159af6bfda4ebebe7d5"><td class="memItemLeft" align="right" valign="top"><a id="a73b1d847c1a12159af6bfda4ebebe7d5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTickStepStrategy</b> (<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">TickStepStrategy</a> strategy)</td></tr>
-<tr class="separator:a73b1d847c1a12159af6bfda4ebebe7d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47752abba8293e6dc18491501ae34008"><td class="memItemLeft" align="right" valign="top"><a id="a47752abba8293e6dc18491501ae34008"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTickCount</b> (int count)</td></tr>
-<tr class="separator:a47752abba8293e6dc18491501ae34008"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab509c7e500293bf66a8409f0d7c23943"><td class="memItemLeft" align="right" valign="top"><a id="ab509c7e500293bf66a8409f0d7c23943"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTickOrigin</b> (double origin)</td></tr>
-<tr class="separator:ab509c7e500293bf66a8409f0d7c23943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae11e785e1d9ecfe7d4ba1292551b4a46"><td class="memItemLeft" align="right" valign="top"><a id="ae11e785e1d9ecfe7d4ba1292551b4a46"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>generate</b> (const <a class="el" href="class_q_c_p_range.html">QCPRange</a> &amp;range, const QLocale &amp;locale, QChar formatChar, int precision, <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;ticks, <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; *subTicks, <a class="el" href="class_q_vector.html">QVector</a>&lt; QString &gt; *tickLabels)</td></tr>
-<tr class="separator:ae11e785e1d9ecfe7d4ba1292551b4a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58df76f2ec3eb48401bdd314b0e14ba1"><td class="memItemLeft" align="right" valign="top"><a id="a58df76f2ec3eb48401bdd314b0e14ba1"></a>
-<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">TickStepStrategy</a>&#160;</td><td class="memItemRight" valign="bottom"><b>tickStepStrategy</b> () const</td></tr>
-<tr class="separator:a58df76f2ec3eb48401bdd314b0e14ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf9edbe4169ce55e216fd067cc139452"><td class="memItemLeft" align="right" valign="top"><a id="aaf9edbe4169ce55e216fd067cc139452"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>tickCount</b> () const</td></tr>
-<tr class="separator:aaf9edbe4169ce55e216fd067cc139452"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0c6e9587c36fdeefb5518c00fe7ab15"><td class="memItemLeft" align="right" valign="top"><a id="ac0c6e9587c36fdeefb5518c00fe7ab15"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>tickOrigin</b> () const</td></tr>
-<tr class="separator:ac0c6e9587c36fdeefb5518c00fe7ab15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73b1d847c1a12159af6bfda4ebebe7d5"><td class="memItemLeft" align="right" valign="top"><a id="a73b1d847c1a12159af6bfda4ebebe7d5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTickStepStrategy</b> (<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">TickStepStrategy</a> strategy)</td></tr>
-<tr class="separator:a73b1d847c1a12159af6bfda4ebebe7d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47752abba8293e6dc18491501ae34008"><td class="memItemLeft" align="right" valign="top"><a id="a47752abba8293e6dc18491501ae34008"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTickCount</b> (int count)</td></tr>
-<tr class="separator:a47752abba8293e6dc18491501ae34008"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab509c7e500293bf66a8409f0d7c23943"><td class="memItemLeft" align="right" valign="top"><a id="ab509c7e500293bf66a8409f0d7c23943"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTickOrigin</b> (double origin)</td></tr>
-<tr class="separator:ab509c7e500293bf66a8409f0d7c23943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae11e785e1d9ecfe7d4ba1292551b4a46"><td class="memItemLeft" align="right" valign="top"><a id="ae11e785e1d9ecfe7d4ba1292551b4a46"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>generate</b> (const <a class="el" href="class_q_c_p_range.html">QCPRange</a> &amp;range, const QLocale &amp;locale, QChar formatChar, int precision, <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;ticks, <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; *subTicks, <a class="el" href="class_q_vector.html">QVector</a>&lt; QString &gt; *tickLabels)</td></tr>
-<tr class="separator:ae11e785e1d9ecfe7d4ba1292551b4a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -233,66 +171,6 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>getMantissa</b> (do
 <tr class="memitem:ac7df6c72876b7abd67c932663a0b0f6a"><td class="memItemLeft" align="right" valign="top"><a id="ac7df6c72876b7abd67c932663a0b0f6a"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>cleanMantissa</b> (double input) const</td></tr>
 <tr class="separator:ac7df6c72876b7abd67c932663a0b0f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ff8a8bff34993820d3b75b6cdc4a85d"><td class="memItemLeft" align="right" valign="top"><a id="a4ff8a8bff34993820d3b75b6cdc4a85d"></a>
-virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>getTickStep</b> (const <a class="el" href="class_q_c_p_range.html">QCPRange</a> &amp;range)</td></tr>
-<tr class="separator:a4ff8a8bff34993820d3b75b6cdc4a85d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3703390b2b7a54b8cf0a81d58f75624"><td class="memItemLeft" align="right" valign="top"><a id="aa3703390b2b7a54b8cf0a81d58f75624"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getSubTickCount</b> (double tickStep)</td></tr>
-<tr class="separator:aa3703390b2b7a54b8cf0a81d58f75624"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad51fe3f25144d24d84694fb21a2a1222"><td class="memItemLeft" align="right" valign="top"><a id="ad51fe3f25144d24d84694fb21a2a1222"></a>
-virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>getTickLabel</b> (double tick, const QLocale &amp;locale, QChar formatChar, int precision)</td></tr>
-<tr class="separator:ad51fe3f25144d24d84694fb21a2a1222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a861191fe54b81d4d1d6ff21af05af65c"><td class="memItemLeft" align="right" valign="top"><a id="a861191fe54b81d4d1d6ff21af05af65c"></a>
-virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createTickVector</b> (double tickStep, const <a class="el" href="class_q_c_p_range.html">QCPRange</a> &amp;range)</td></tr>
-<tr class="separator:a861191fe54b81d4d1d6ff21af05af65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08dddea0b6a833dcbd9e0b4366814640"><td class="memItemLeft" align="right" valign="top"><a id="a08dddea0b6a833dcbd9e0b4366814640"></a>
-virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createSubTickVector</b> (int subTickCount, const <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;ticks)</td></tr>
-<tr class="separator:a08dddea0b6a833dcbd9e0b4366814640"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1ec5c1c6dad57320d64ceef837b439c"><td class="memItemLeft" align="right" valign="top"><a id="ab1ec5c1c6dad57320d64ceef837b439c"></a>
-virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createLabelVector</b> (const <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;ticks, const QLocale &amp;locale, QChar formatChar, int precision)</td></tr>
-<tr class="separator:ab1ec5c1c6dad57320d64ceef837b439c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab28cc1ab549489be7975f5ce7e717916"><td class="memItemLeft" align="right" valign="top"><a id="ab28cc1ab549489be7975f5ce7e717916"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>trimTicks</b> (const <a class="el" href="class_q_c_p_range.html">QCPRange</a> &amp;range, <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;ticks, bool keepOneOutlier) const</td></tr>
-<tr class="separator:ab28cc1ab549489be7975f5ce7e717916"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ea0a7c4ca1c610f92b9bd5944ab4260"><td class="memItemLeft" align="right" valign="top"><a id="a4ea0a7c4ca1c610f92b9bd5944ab4260"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>pickClosest</b> (double target, const <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;candidates) const</td></tr>
-<tr class="separator:a4ea0a7c4ca1c610f92b9bd5944ab4260"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f1e223bafbf2cec7c3ba8b08d5c77e8"><td class="memItemLeft" align="right" valign="top"><a id="a2f1e223bafbf2cec7c3ba8b08d5c77e8"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getMantissa</b> (double input, double *magnitude=0) const</td></tr>
-<tr class="separator:a2f1e223bafbf2cec7c3ba8b08d5c77e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7df6c72876b7abd67c932663a0b0f6a"><td class="memItemLeft" align="right" valign="top"><a id="ac7df6c72876b7abd67c932663a0b0f6a"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>cleanMantissa</b> (double input) const</td></tr>
-<tr class="separator:ac7df6c72876b7abd67c932663a0b0f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ff8a8bff34993820d3b75b6cdc4a85d"><td class="memItemLeft" align="right" valign="top"><a id="a4ff8a8bff34993820d3b75b6cdc4a85d"></a>
-virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>getTickStep</b> (const <a class="el" href="class_q_c_p_range.html">QCPRange</a> &amp;range)</td></tr>
-<tr class="separator:a4ff8a8bff34993820d3b75b6cdc4a85d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3703390b2b7a54b8cf0a81d58f75624"><td class="memItemLeft" align="right" valign="top"><a id="aa3703390b2b7a54b8cf0a81d58f75624"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getSubTickCount</b> (double tickStep)</td></tr>
-<tr class="separator:aa3703390b2b7a54b8cf0a81d58f75624"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad51fe3f25144d24d84694fb21a2a1222"><td class="memItemLeft" align="right" valign="top"><a id="ad51fe3f25144d24d84694fb21a2a1222"></a>
-virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>getTickLabel</b> (double tick, const QLocale &amp;locale, QChar formatChar, int precision)</td></tr>
-<tr class="separator:ad51fe3f25144d24d84694fb21a2a1222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a861191fe54b81d4d1d6ff21af05af65c"><td class="memItemLeft" align="right" valign="top"><a id="a861191fe54b81d4d1d6ff21af05af65c"></a>
-virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createTickVector</b> (double tickStep, const <a class="el" href="class_q_c_p_range.html">QCPRange</a> &amp;range)</td></tr>
-<tr class="separator:a861191fe54b81d4d1d6ff21af05af65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08dddea0b6a833dcbd9e0b4366814640"><td class="memItemLeft" align="right" valign="top"><a id="a08dddea0b6a833dcbd9e0b4366814640"></a>
-virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createSubTickVector</b> (int subTickCount, const <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;ticks)</td></tr>
-<tr class="separator:a08dddea0b6a833dcbd9e0b4366814640"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1ec5c1c6dad57320d64ceef837b439c"><td class="memItemLeft" align="right" valign="top"><a id="ab1ec5c1c6dad57320d64ceef837b439c"></a>
-virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createLabelVector</b> (const <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;ticks, const QLocale &amp;locale, QChar formatChar, int precision)</td></tr>
-<tr class="separator:ab1ec5c1c6dad57320d64ceef837b439c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab28cc1ab549489be7975f5ce7e717916"><td class="memItemLeft" align="right" valign="top"><a id="ab28cc1ab549489be7975f5ce7e717916"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>trimTicks</b> (const <a class="el" href="class_q_c_p_range.html">QCPRange</a> &amp;range, <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;ticks, bool keepOneOutlier) const</td></tr>
-<tr class="separator:ab28cc1ab549489be7975f5ce7e717916"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ea0a7c4ca1c610f92b9bd5944ab4260"><td class="memItemLeft" align="right" valign="top"><a id="a4ea0a7c4ca1c610f92b9bd5944ab4260"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>pickClosest</b> (double target, const <a class="el" href="class_q_vector.html">QVector</a>&lt; double &gt; &amp;candidates) const</td></tr>
-<tr class="separator:a4ea0a7c4ca1c610f92b9bd5944ab4260"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f1e223bafbf2cec7c3ba8b08d5c77e8"><td class="memItemLeft" align="right" valign="top"><a id="a2f1e223bafbf2cec7c3ba8b08d5c77e8"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getMantissa</b> (double input, double *magnitude=0) const</td></tr>
-<tr class="separator:a2f1e223bafbf2cec7c3ba8b08d5c77e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7df6c72876b7abd67c932663a0b0f6a"><td class="memItemLeft" align="right" valign="top"><a id="ac7df6c72876b7abd67c932663a0b0f6a"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>cleanMantissa</b> (double input) const</td></tr>
-<tr class="separator:ac7df6c72876b7abd67c932663a0b0f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -309,7 +187,7 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>mTickOrigin</b></td
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The base class tick generator used by <a class="el" href="class_q_c_p_axis.html" title="Manages a single axis inside a QCustomPlot. ">QCPAxis</a> to create tick positions and tick labels. </p>
 <p>Each <a class="el" href="class_q_c_p_axis.html" title="Manages a single axis inside a QCustomPlot. ">QCPAxis</a> has an internal <a class="el" href="class_q_c_p_axis_ticker.html" title="The base class tick generator used by QCPAxis to create tick positions and tick labels. ">QCPAxisTicker</a> (or a subclass) in order to generate tick positions and tick labels for the current axis range. The ticker of an axis can be set via <a class="el" href="class_q_c_p_axis.html#a4ee03fcd2c74d05cd1a419b9af5cfbdc">QCPAxis::setTicker</a>. Since that method takes a <code>QSharedPointer&lt;QCPAxisTicker&gt;</code>, multiple axes can share the same ticker instance.</p>
-<p>This base class generates normal tick coordinates and numeric labels for linear axes. It picks a reasonable tick step (the separation between ticks) which results in readable tick labels. The number of ticks that should be approximately generated can be set via <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>. Depending on the current tick step strategy (<a class="el" href="class_q_c_p_axis_ticker.html#a73b1d847c1a12159af6bfda4ebebe7d5">setTickStepStrategy</a>), the algorithm either sacrifices readability to better match the specified tick count (<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f">QCPAxisTicker::tssMeetTickCount</a>) or relaxes the tick count in favor of better tick steps (<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40">QCPAxisTicker::tssReadability</a>), which is the default.</p>
+<p>This base class generates normal tick coordinates and numeric labels for linear axes. It picks a reasonable tick step (the separation between ticks) which results in readable tick labels. The number of ticks that should be approximately generated can be set via <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>. Depending on the current tick step strategy (<a class="el" href="class_q_c_p_axis_ticker.html#a73b1d847c1a12159af6bfda4ebebe7d5">setTickStepStrategy</a>), the algorithm either sacrifices readability to better match the specified tick count (<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa770312b6b9b0c64a37ceeba96e0cd7f2">QCPAxisTicker::tssMeetTickCount</a>) or relaxes the tick count in favor of better tick steps (<a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49aa9002aa2fd5633ab5556c71a26fed63a8">QCPAxisTicker::tssReadability</a>), which is the default.</p>
 <p>The following more specialized axis ticker subclasses are available, see details in the respective class documentation:</p>
 <center> <table class="doxtable">
 <tr>
@@ -355,7 +233,7 @@ Creating own axis tickers</h1>
 <p>See the documentation of all these virtual methods in <a class="el" href="class_q_c_p_axis_ticker.html" title="The base class tick generator used by QCPAxis to create tick positions and tick labels. ">QCPAxisTicker</a> for detailed information about the parameters and expected return values. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="ab6d2f9d9477821623ac9bc4b21ddf49a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6d2f9d9477821623ac9bc4b21ddf49a">&#9670;&nbsp;</a></span>TickStepStrategy <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6d2f9d9477821623ac9bc4b21ddf49a">&#9670;&nbsp;</a></span>TickStepStrategy</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -368,77 +246,9 @@ Creating own axis tickers</h1>
 <p>Defines the strategies that the axis ticker may follow when choosing the size of the tick step.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_q_c_p_axis_ticker.html#a73b1d847c1a12159af6bfda4ebebe7d5">setTickStepStrategy</a> </dd></dl>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa9002aa2fd5633ab5556c71a26fed63a8"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a id="ab6d2f9d9477821623ac9bc4b21ddf49a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6d2f9d9477821623ac9bc4b21ddf49a">&#9670;&nbsp;</a></span>TickStepStrategy <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">QCPAxisTicker::TickStepStrategy</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Defines the strategies that the axis ticker may follow when choosing the size of the tick step.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_q_c_p_axis_ticker.html#a73b1d847c1a12159af6bfda4ebebe7d5">setTickStepStrategy</a> </dd></dl>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a id="ab6d2f9d9477821623ac9bc4b21ddf49a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6d2f9d9477821623ac9bc4b21ddf49a">&#9670;&nbsp;</a></span>TickStepStrategy <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="class_q_c_p_axis_ticker.html#ab6d2f9d9477821623ac9bc4b21ddf49a">QCPAxisTicker::TickStepStrategy</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Defines the strategies that the axis ticker may follow when choosing the size of the tick step.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_q_c_p_axis_ticker.html#a73b1d847c1a12159af6bfda4ebebe7d5">setTickStepStrategy</a> </dd></dl>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa58661394415760a6eb2fd2f1e6604f40"></a>tssReadability&#160;</td><td class="fielddoc"><p>A nicely readable tick step is prioritized over matching the requested number of ticks (see <a class="el" href="class_q_c_p_axis_ticker.html#a47752abba8293e6dc18491501ae34008">setTickCount</a>) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa00554450d75d9741f6312a161c49a31f"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
+<tr><td class="fieldname"><a id="ab6d2f9d9477821623ac9bc4b21ddf49aa770312b6b9b0c64a37ceeba96e0cd7f2"></a>tssMeetTickCount&#160;</td><td class="fielddoc"><p>Less readable tick steps are allowed which in turn facilitates getting closer to the requested tick count. </p>
 </td></tr>
 </table>
 
@@ -593,15 +403,19 @@ Creating own axis tickers</h1>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/<a class="el" href="_old_plugins_2_views_2_a_r_neural_network_view_2qcustomplot_8h_source.html">qcustomplot.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/qcustomplot.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/qcustomplot.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:30 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_q_c_p_axis_ticker.html">QCPAxisTicker</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

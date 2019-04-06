@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_i_extendable_data_manager.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -75,8 +96,7 @@ Inheritance diagram for IExtendableDataManager:</div>
  <div class="center">
   <img src="class_i_extendable_data_manager.png" usemap="#IExtendableDataManager_map" alt=""/>
   <map id="IExtendableDataManager_map" name="IExtendableDataManager_map">
-<area href="class_extendable_data_base_manager_plugin.html" alt="ExtendableDataBaseManagerPlugin" shape="rect" coords="0,112,214,136"/>
-<area href="class_extendable_data_base_manager_plugin.html" alt="ExtendableDataBaseManagerPlugin" shape="rect" coords="224,112,438,136"/>
+<area href="class_extendable_data_base_manager_plugin.html" alt="ExtendableDataBaseManagerPlugin" shape="rect" coords="0,56,214,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -100,7 +120,7 @@ virtual QList&lt; <a class="el" href="struct_i_extendable_data_manager_1_1_manag
 virtual <a class="el" href="struct_i_extendable_data_manager_1_1_manager_data_item.html">ManagerDataItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataItem</b> (QString treeName, int id)=0</td></tr>
 <tr class="separator:a6bc946147413f90648a87518eb10f4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d4fdf0415017d52d7df65912ec68823"><td class="memItemLeft" align="right" valign="top"><a id="a6d4fdf0415017d52d7df65912ec68823"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant::Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTableHeader</b> (QString treeName)=0</td></tr>
+virtual QMap&lt; QString, QVariant::Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTableHeader</b> (QString treeName)=0</td></tr>
 <tr class="separator:a6d4fdf0415017d52d7df65912ec68823"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65b7a8197f05cc3ec99680684a84f480"><td class="memItemLeft" align="right" valign="top"><a id="a65b7a8197f05cc3ec99680684a84f480"></a>
 virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataModel</b> (QString treeName)=0</td></tr>
@@ -109,7 +129,7 @@ virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom">
 virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataModel</b> (<a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_q_pair.html">QPair</a>&lt; QString, QString &gt; &gt; dataModelFields)=0</td></tr>
 <tr class="separator:aade03b266a8fb8ab42eeb6327d2cf523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c1791ea454139f9527053e41d2debe6"><td class="memItemLeft" align="right" valign="top"><a id="a3c1791ea454139f9527053e41d2debe6"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>AddExtention</b> (QString mainName, QString relationName, <a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant::Type &gt; fields, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; defaultData)=0</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>AddExtention</b> (QString mainName, QString relationName, QMap&lt; QString, QVariant::Type &gt; fields, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; defaultData)=0</td></tr>
 <tr class="separator:a3c1791ea454139f9527053e41d2debe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa05156a2477ab710a98f766664ddd12f"><td class="memItemLeft" align="right" valign="top"><a id="aa05156a2477ab710a98f766664ddd12f"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteExtention</b> (QString mainName, QString relationName)=0</td></tr>
@@ -139,7 +159,7 @@ virtual QList&lt; <a class="el" href="struct_i_extendable_data_manager_1_1_manag
 virtual <a class="el" href="struct_i_extendable_data_manager_1_1_manager_data_item.html">ManagerDataItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataItem</b> (QString treeName, int id)=0</td></tr>
 <tr class="separator:a6bc946147413f90648a87518eb10f4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d4fdf0415017d52d7df65912ec68823"><td class="memItemLeft" align="right" valign="top"><a id="a6d4fdf0415017d52d7df65912ec68823"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant::Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTableHeader</b> (QString treeName)=0</td></tr>
+virtual QMap&lt; QString, QVariant::Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTableHeader</b> (QString treeName)=0</td></tr>
 <tr class="separator:a6d4fdf0415017d52d7df65912ec68823"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65b7a8197f05cc3ec99680684a84f480"><td class="memItemLeft" align="right" valign="top"><a id="a65b7a8197f05cc3ec99680684a84f480"></a>
 virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataModel</b> (QString treeName)=0</td></tr>
@@ -148,46 +168,7 @@ virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom">
 virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataModel</b> (<a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_q_pair.html">QPair</a>&lt; QString, QString &gt; &gt; dataModelFields)=0</td></tr>
 <tr class="separator:aade03b266a8fb8ab42eeb6327d2cf523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c1791ea454139f9527053e41d2debe6"><td class="memItemLeft" align="right" valign="top"><a id="a3c1791ea454139f9527053e41d2debe6"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>AddExtention</b> (QString mainName, QString relationName, <a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant::Type &gt; fields, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; defaultData)=0</td></tr>
-<tr class="separator:a3c1791ea454139f9527053e41d2debe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa05156a2477ab710a98f766664ddd12f"><td class="memItemLeft" align="right" valign="top"><a id="aa05156a2477ab710a98f766664ddd12f"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteExtention</b> (QString mainName, QString relationName)=0</td></tr>
-<tr class="separator:aa05156a2477ab710a98f766664ddd12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f38ff6c81403a8243ac084fd42dd51e"><td class="memItemLeft" align="right" valign="top"><a id="a2f38ff6c81403a8243ac084fd42dd51e"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetActiveExtention</b> (QString mainName, QString relationName)=0</td></tr>
-<tr class="separator:a2f38ff6c81403a8243ac084fd42dd51e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8e0ec438b879e3dbaaf258840338f4e"><td class="memItemLeft" align="right" valign="top"><a id="ac8e0ec438b879e3dbaaf258840338f4e"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>AddItem</b> (QString treeName, <a class="el" href="struct_i_extendable_data_manager_1_1_manager_data_item.html">ManagerDataItem</a> task)=0</td></tr>
-<tr class="separator:ac8e0ec438b879e3dbaaf258840338f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67195a8b7eb5a5e2ae10db0945990fcf"><td class="memItemLeft" align="right" valign="top"><a id="a67195a8b7eb5a5e2ae10db0945990fcf"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateItem</b> (QString treeName, <a class="el" href="struct_i_extendable_data_manager_1_1_manager_data_item.html">ManagerDataItem</a> task)=0</td></tr>
-<tr class="separator:a67195a8b7eb5a5e2ae10db0945990fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa92d02e31d6608abb1e4784c78c070d9"><td class="memItemLeft" align="right" valign="top"><a id="aa92d02e31d6608abb1e4784c78c070d9"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteItem</b> (QString treeName, int id)=0</td></tr>
-<tr class="separator:aa92d02e31d6608abb1e4784c78c070d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afebf34c71fabd82a39136918813e4e4d"><td class="memItemLeft" align="right" valign="top"><a id="afebf34c71fabd82a39136918813e4e4d"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>RegisterExtentionFieldEditor</b> (QString relation, QString field, QWidget *widget)=0</td></tr>
-<tr class="separator:afebf34c71fabd82a39136918813e4e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5005e9f7ea693189f8b468a88bd1645a"><td class="memItemLeft" align="right" valign="top"><a id="a5005e9f7ea693189f8b468a88bd1645a"></a>
-virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>GetExtentionFieldEditor</b> (QString relation, QString field)=0</td></tr>
-<tr class="separator:a5005e9f7ea693189f8b468a88bd1645a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2748184b5c3904dc8385159a9366e1b"><td class="memItemLeft" align="right" valign="top"><a id="ad2748184b5c3904dc8385159a9366e1b"></a>
-virtual QList&lt; <a class="el" href="struct_i_extendable_data_manager_1_1_manager_data_item.html">ManagerDataItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataList</b> (QString treeName)=0</td></tr>
-<tr class="separator:ad2748184b5c3904dc8385159a9366e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bc946147413f90648a87518eb10f4bb"><td class="memItemLeft" align="right" valign="top"><a id="a6bc946147413f90648a87518eb10f4bb"></a>
-virtual <a class="el" href="struct_i_extendable_data_manager_1_1_manager_data_item.html">ManagerDataItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataItem</b> (QString treeName, int id)=0</td></tr>
-<tr class="separator:a6bc946147413f90648a87518eb10f4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d4fdf0415017d52d7df65912ec68823"><td class="memItemLeft" align="right" valign="top"><a id="a6d4fdf0415017d52d7df65912ec68823"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant::Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTableHeader</b> (QString treeName)=0</td></tr>
-<tr class="separator:a6d4fdf0415017d52d7df65912ec68823"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65b7a8197f05cc3ec99680684a84f480"><td class="memItemLeft" align="right" valign="top"><a id="a65b7a8197f05cc3ec99680684a84f480"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataModel</b> (QString treeName)=0</td></tr>
-<tr class="separator:a65b7a8197f05cc3ec99680684a84f480"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aade03b266a8fb8ab42eeb6327d2cf523"><td class="memItemLeft" align="right" valign="top"><a id="aade03b266a8fb8ab42eeb6327d2cf523"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDataModel</b> (<a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_q_pair.html">QPair</a>&lt; QString, QString &gt; &gt; dataModelFields)=0</td></tr>
-<tr class="separator:aade03b266a8fb8ab42eeb6327d2cf523"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c1791ea454139f9527053e41d2debe6"><td class="memItemLeft" align="right" valign="top"><a id="a3c1791ea454139f9527053e41d2debe6"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>AddExtention</b> (QString mainName, QString relationName, <a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant::Type &gt; fields, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; defaultData)=0</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>AddExtention</b> (QString mainName, QString relationName, QMap&lt; QString, QVariant::Type &gt; fields, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; defaultData)=0</td></tr>
 <tr class="separator:a3c1791ea454139f9527053e41d2debe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa05156a2477ab710a98f766664ddd12f"><td class="memItemLeft" align="right" valign="top"><a id="aa05156a2477ab710a98f766664ddd12f"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteExtention</b> (QString mainName, QString relationName)=0</td></tr>
@@ -206,14 +187,18 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteItem</b
 <tr class="separator:aa92d02e31d6608abb1e4784c78c070d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/DataManagers/ExtendableDataManager/<a class="el" href="_old_plugins_2_data_managers_2_extendable_data_manager_2iextendabledatamanager_8h_source.html">iextendabledatamanager.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="_plugins_interfaces_2iextendabledatamanager_8h_source.html">iextendabledatamanager.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_extendable_data_manager.html">IExtendableDataManager</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

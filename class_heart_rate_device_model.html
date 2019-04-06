@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_heart_rate_device_model.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
@@ -71,7 +92,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="_old_plugins_2_models_2_heart_rate_device_model_2heartratedevicemodel_8h_source.html">heartratedevicemodel.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="heartratedevicemodel_8h_source.html">heartratedevicemodel.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for HeartRateDeviceModel:</div>
 <div class="dyncontent">
@@ -79,26 +100,16 @@ Inheritance diagram for HeartRateDeviceModel:</div>
   <img src="class_heart_rate_device_model.png" usemap="#HeartRateDeviceModel_map" alt=""/>
   <map id="HeartRateDeviceModel_map" name="HeartRateDeviceModel_map">
 <area href="class_plugin_base.html" title="This interface provides basic methods for all plugins. " alt="PluginBase" shape="rect" coords="81,56,233,80"/>
-<area href="class_i_heart_rate_device_model.html" title="} " alt="IHeartRateDeviceModel" shape="rect" coords="243,56,395,80"/>
-<area href="class_i_heart_rate_device_model.html" title="} " alt="IHeartRateDeviceModel" shape="rect" coords="567,56,719,80"/>
+<area href="class_i_heart_rate_device_model.html" alt="IHeartRateDeviceModel" shape="rect" coords="243,56,395,80"/>
 <area href="class_i_plugin.html" title="This interface provides basic methods for all plugins. " alt="IPlugin" shape="rect" coords="162,0,314,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:ac29dd71b9803716f7da7cbe554b0bd9a"><td class="memItemLeft" align="right" valign="top"><a id="ac29dd71b9803716f7da7cbe554b0bd9a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReferencePluginClosed</b> (PluginInfo *pluginInfo) override</td></tr>
-<tr class="separator:ac29dd71b9803716f7da7cbe554b0bd9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c5d506964ed604a48d00d83a5533c6f"><td class="memItemLeft" align="right" valign="top"><a id="a2c5d506964ed604a48d00d83a5533c6f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Open</b> (IModelPlugin *model) override</td></tr>
-<tr class="separator:a2c5d506964ed604a48d00d83a5533c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a268f96b8597ba50a233e1ab38ef185da"><td class="memItemLeft" align="right" valign="top"><a id="a268f96b8597ba50a233e1ab38ef185da"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Close</b> () override</td></tr>
-<tr class="separator:a268f96b8597ba50a233e1ab38ef185da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09815ab8fe2db7dee0cc55ffd7a5d03f"><td class="memItemLeft" align="right" valign="top"><a id="a09815ab8fe2db7dee0cc55ffd7a5d03f"></a>
+<tr class="memitem:ab436203bf46f931ab7495cee12be6a31"><td class="memItemLeft" align="right" valign="top"><a id="ab436203bf46f931ab7495cee12be6a31"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHbO2Data</b> (float value) override</td></tr>
-<tr class="separator:a09815ab8fe2db7dee0cc55ffd7a5d03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ab436203bf46f931ab7495cee12be6a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e5f6e323dda13c883fde0f22378082a"><td class="memItemLeft" align="right" valign="top"><a id="a1e5f6e323dda13c883fde0f22378082a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ChooseDataIndex</b> (int index) override</td></tr>
 <tr class="separator:a1e5f6e323dda13c883fde0f22378082a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,18 +129,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onReferenceRe
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:aa437a0d3ed9a478d2830b5b7188a4be5"><td class="memItemLeft" align="right" valign="top"><a id="aa437a0d3ed9a478d2830b5b7188a4be5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClose</b> (PluginInfo *)</td></tr>
-<tr class="separator:aa437a0d3ed9a478d2830b5b7188a4be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11e52461a5a6bfbb3df76174be395a34"><td class="memItemLeft" align="right" valign="top"><a id="a11e52461a5a6bfbb3df76174be395a34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClose</b> ()</td></tr>
-<tr class="separator:a11e52461a5a6bfbb3df76174be395a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3d18fe21b47b1df858747fea1e9b265"><td class="memItemLeft" align="right" valign="top"><a id="af3d18fe21b47b1df858747fea1e9b265"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>HeartbeatData</b> (float)</td></tr>
-<tr class="separator:af3d18fe21b47b1df858747fea1e9b265"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8ffd5d25e7eba1db8e35d8ff2be56cf"><td class="memItemLeft" align="right" valign="top"><a id="ab8ffd5d25e7eba1db8e35d8ff2be56cf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>TempoData</b> (float)</td></tr>
-<tr class="separator:ab8ffd5d25e7eba1db8e35d8ff2be56cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3d18fe21b47b1df858747fea1e9b265"><td class="memItemLeft" align="right" valign="top"><a id="af3d18fe21b47b1df858747fea1e9b265"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>HeartbeatData</b> (float)</td></tr>
 <tr class="separator:af3d18fe21b47b1df858747fea1e9b265"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,33 +162,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>HeartbeatData</b> (fl
 <tr class="memitem:a799e9fdd17151f84c9281caa160b0576 inherit signals_class_i_heart_rate_device_model"><td class="memItemLeft" align="right" valign="top"><a id="a799e9fdd17151f84c9281caa160b0576"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>TempoData</b> (float)</td></tr>
 <tr class="separator:a799e9fdd17151f84c9281caa160b0576 inherit signals_class_i_heart_rate_device_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a992c2d93d043eb78a4442e30bfd349cc inherit signals_class_i_heart_rate_device_model"><td class="memItemLeft" align="right" valign="top"><a id="a992c2d93d043eb78a4442e30bfd349cc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>TempoData12</b> (float)</td></tr>
-<tr class="separator:a992c2d93d043eb78a4442e30bfd349cc inherit signals_class_i_heart_rate_device_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24a33728d5c25d5dcb7acd13699b6dd4 inherit signals_class_i_heart_rate_device_model"><td class="memItemLeft" align="right" valign="top"><a id="a24a33728d5c25d5dcb7acd13699b6dd4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>HeartbeatData</b> (float)</td></tr>
-<tr class="separator:a24a33728d5c25d5dcb7acd13699b6dd4 inherit signals_class_i_heart_rate_device_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a799e9fdd17151f84c9281caa160b0576 inherit signals_class_i_heart_rate_device_model"><td class="memItemLeft" align="right" valign="top"><a id="a799e9fdd17151f84c9281caa160b0576"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>TempoData</b> (float)</td></tr>
-<tr class="separator:a799e9fdd17151f84c9281caa160b0576 inherit signals_class_i_heart_rate_device_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4ccfe3b0aeec445f2f2dbd11238b7c82"><td class="memItemLeft" align="right" valign="top"><a id="a4ccfe3b0aeec445f2f2dbd11238b7c82"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPluginInfo</b> (PluginInfo *pluginInfo) override</td></tr>
-<tr class="separator:a4ccfe3b0aeec445f2f2dbd11238b7c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98e1211af67a61a93326ffe482f13d3b"><td class="memItemLeft" align="right" valign="top"><a id="a98e1211af67a61a93326ffe482f13d3b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnAllSetup</b> () override</td></tr>
-<tr class="separator:a98e1211af67a61a93326ffe482f13d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4a3861957f5b5e1aad8f74ac28c86c3"><td class="memItemLeft" align="right" valign="top"><a id="aa4a3861957f5b5e1aad8f74ac28c86c3"></a>
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>GetLastError</b> () override</td></tr>
-<tr class="separator:aa4a3861957f5b5e1aad8f74ac28c86c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a5674f2ea1c79bcd85e3488f4cca9b6"><td class="memItemLeft" align="right" valign="top"><a id="a0a5674f2ea1c79bcd85e3488f4cca9b6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AddReferencePlugin</b> (PluginInfo *pluginInfo) override</td></tr>
-<tr class="separator:a0a5674f2ea1c79bcd85e3488f4cca9b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab436203bf46f931ab7495cee12be6a31"><td class="memItemLeft" align="right" valign="top"><a id="ab436203bf46f931ab7495cee12be6a31"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHbO2Data</b> (float value) override</td></tr>
-<tr class="separator:ab436203bf46f931ab7495cee12be6a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad966765a892bfac9f6581c7c417db0f5"><td class="memItemLeft" align="right" valign="top"><a id="ad966765a892bfac9f6581c7c417db0f5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onAllReferencesSet</b> () override</td></tr>
 <tr class="separator:ad966765a892bfac9f6581c7c417db0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -257,10 +232,10 @@ template&lt;class T &gt; </td></tr>
 <tr class="separator:a21ef424393f846a1f3d3a7283c16caee inherit pro_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:a8e42955422640f8014aff87f242a3d5c inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a8e42955422640f8014aff87f242a3d5c"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, <a class="el" href="class_i_plugin.html">IPlugin</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesMap</b></td></tr>
+QMap&lt; QString, <a class="el" href="class_i_plugin.html">IPlugin</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesMap</b></td></tr>
 <tr class="separator:a8e42955422640f8014aff87f242a3d5c inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3792623c30203d82de060eea737321a inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ac3792623c30203d82de060eea737321a"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesReadyMap</b></td></tr>
+QMap&lt; QString, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesReadyMap</b></td></tr>
 <tr class="separator:ac3792623c30203d82de060eea737321a inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aa0c8bcbf614a222aecbde4f55fb6a4 inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a2aa0c8bcbf614a222aecbde4f55fb6a4"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_lastErrorString</b></td></tr>
@@ -281,16 +256,20 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesRead
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>addtogroup HeartRateDeviceModel_imp { </p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/HeartRateDeviceModel/<a class="el" href="_old_plugins_2_models_2_heart_rate_device_model_2heartratedevicemodel_8h_source.html">heartratedevicemodel.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/HeartRateDeviceModel/heartratedevicemodel.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/HeartRateDeviceModel/<a class="el" href="heartratedevicemodel_8h_source.html">heartratedevicemodel.h</a></li>
 <li>/home/curunir/Documents/MASS/Plugins/PluginsBuildFiles/build/debug/HeartRateDeviceModel/moc/moc_heartratedevicemodel.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/HeartRateDeviceModel/heartratedevicemodel.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_heart_rate_device_model.html">HeartRateDeviceModel</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

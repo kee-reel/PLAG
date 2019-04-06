@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_item.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -76,7 +97,6 @@ Inheritance diagram for Item:</div>
   <map id="Item_map" name="Item_map">
 <area href="struct_i_extendable_data_manager_1_1_manager_data_item.html" alt="IExtendableDataManager::ManagerDataItem" shape="rect" coords="0,0,259,24"/>
 <area href="struct_i_extendable_data_manager_1_1_manager_data_item.html" alt="IExtendableDataManager::ManagerDataItem" shape="rect" coords="269,0,528,24"/>
-<area href="struct_i_extendable_data_manager_1_1_manager_data_item.html" alt="IExtendableDataManager::ManagerDataItem" shape="rect" coords="538,0,797,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -86,7 +106,7 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (<a class="el" href="class_item.html">Item</a> *parent, <a class="el" href="class_item.html">Item</a> *copy)</td></tr>
 <tr class="separator:aef96722ef425ab3794691db85ba4abd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27fb96423d6e35b384b226bc3408b348"><td class="memItemLeft" align="right" valign="top"><a id="a27fb96423d6e35b384b226bc3408b348"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (<a class="el" href="class_item.html">Item</a> *parent, int id, QString activeChunk, <a class="el" href="class_q_map.html">QMap</a>&lt; QString, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt;&gt; dataChunks)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (<a class="el" href="class_item.html">Item</a> *parent, int id, QString activeChunk, QMap&lt; QString, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt;&gt; dataChunks)</td></tr>
 <tr class="separator:a27fb96423d6e35b384b226bc3408b348"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae09610bc79b15b17cce0428661b14a88"><td class="memItemLeft" align="right" valign="top"><a id="ae09610bc79b15b17cce0428661b14a88"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>ColumnCount</b> ()</td></tr>
@@ -158,10 +178,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChunkData</b> (QSt
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetActiveChunksData</b> (<a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; data)</td></tr>
 <tr class="separator:afd9e7f1716d896f8e8c0f3ea8fb41d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89c7f7ef3774d44689e32d3ef960fc80"><td class="memItemLeft" align="right" valign="top"><a id="a89c7f7ef3774d44689e32d3ef960fc80"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunksData</b> () const</td></tr>
+QMap&lt; QString, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunksData</b> () const</td></tr>
 <tr class="separator:a89c7f7ef3774d44689e32d3ef960fc80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a735f7f38af80faddceec12f223a4b173"><td class="memItemLeft" align="right" valign="top"><a id="a735f7f38af80faddceec12f223a4b173"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChunksData</b> (<a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant &gt; dataMap)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChunksData</b> (QMap&lt; QString, QVariant &gt; dataMap)</td></tr>
 <tr class="separator:a735f7f38af80faddceec12f223a4b173"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58bb538ac6364dce47626aa9005faf15"><td class="memItemLeft" align="right" valign="top"><a id="a58bb538ac6364dce47626aa9005faf15"></a>
 QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunkDataElement</b> (int column) const</td></tr>
@@ -185,7 +205,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetId</b> (int id)</t
 &#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (<a class="el" href="class_item.html">Item</a> *parent, <a class="el" href="class_item.html">Item</a> *copy)</td></tr>
 <tr class="separator:aef96722ef425ab3794691db85ba4abd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27fb96423d6e35b384b226bc3408b348"><td class="memItemLeft" align="right" valign="top"><a id="a27fb96423d6e35b384b226bc3408b348"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (<a class="el" href="class_item.html">Item</a> *parent, int id, QString activeChunk, <a class="el" href="class_q_map.html">QMap</a>&lt; QString, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt;&gt; dataChunks)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (<a class="el" href="class_item.html">Item</a> *parent, int id, QString activeChunk, QMap&lt; QString, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt;&gt; dataChunks)</td></tr>
 <tr class="separator:a27fb96423d6e35b384b226bc3408b348"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae09610bc79b15b17cce0428661b14a88"><td class="memItemLeft" align="right" valign="top"><a id="ae09610bc79b15b17cce0428661b14a88"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>ColumnCount</b> ()</td></tr>
@@ -257,109 +277,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChunkData</b> (QSt
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetActiveChunksData</b> (<a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; data)</td></tr>
 <tr class="separator:afd9e7f1716d896f8e8c0f3ea8fb41d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e6be042312434c27bbaa582395d7df6"><td class="memItemLeft" align="right" valign="top"><a id="a3e6be042312434c27bbaa582395d7df6"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunksData</b> () const</td></tr>
+QMap&lt; QString, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunksData</b> () const</td></tr>
 <tr class="separator:a3e6be042312434c27bbaa582395d7df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a735f7f38af80faddceec12f223a4b173"><td class="memItemLeft" align="right" valign="top"><a id="a735f7f38af80faddceec12f223a4b173"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChunksData</b> (<a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant &gt; dataMap)</td></tr>
-<tr class="separator:a735f7f38af80faddceec12f223a4b173"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58bb538ac6364dce47626aa9005faf15"><td class="memItemLeft" align="right" valign="top"><a id="a58bb538ac6364dce47626aa9005faf15"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunkDataElement</b> (int column) const</td></tr>
-<tr class="separator:a58bb538ac6364dce47626aa9005faf15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2206a4c379b351c9cbbe2406399d2b30"><td class="memItemLeft" align="right" valign="top"><a id="a2206a4c379b351c9cbbe2406399d2b30"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChunkDataElement</b> (int column, QVariant data)</td></tr>
-<tr class="separator:a2206a4c379b351c9cbbe2406399d2b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad74957af2eb1996ebdcece4ccdb11c4d"><td class="memItemLeft" align="right" valign="top"><a id="ad74957af2eb1996ebdcece4ccdb11c4d"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>GetDecoration</b> ()</td></tr>
-<tr class="separator:ad74957af2eb1996ebdcece4ccdb11c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0fa052dc1e0dc785767d25a6010ea13"><td class="memItemLeft" align="right" valign="top"><a id="ab0fa052dc1e0dc785767d25a6010ea13"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDecoration</b> (QVariant pixmap)</td></tr>
-<tr class="separator:ab0fa052dc1e0dc785767d25a6010ea13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3466b4b51b244ccbcac853ee7240af47"><td class="memItemLeft" align="right" valign="top"><a id="a3466b4b51b244ccbcac853ee7240af47"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetId</b> ()</td></tr>
-<tr class="separator:a3466b4b51b244ccbcac853ee7240af47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46a50959228845fc8d4c1a1e3cdfc9a3"><td class="memItemLeft" align="right" valign="top"><a id="a46a50959228845fc8d4c1a1e3cdfc9a3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetId</b> (int id)</td></tr>
-<tr class="separator:a46a50959228845fc8d4c1a1e3cdfc9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef96722ef425ab3794691db85ba4abd6"><td class="memItemLeft" align="right" valign="top"><a id="aef96722ef425ab3794691db85ba4abd6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (<a class="el" href="class_item.html">Item</a> *parent, <a class="el" href="class_item.html">Item</a> *copy)</td></tr>
-<tr class="separator:aef96722ef425ab3794691db85ba4abd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27fb96423d6e35b384b226bc3408b348"><td class="memItemLeft" align="right" valign="top"><a id="a27fb96423d6e35b384b226bc3408b348"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Item</b> (<a class="el" href="class_item.html">Item</a> *parent, int id, QString activeChunk, <a class="el" href="class_q_map.html">QMap</a>&lt; QString, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt;&gt; dataChunks)</td></tr>
-<tr class="separator:a27fb96423d6e35b384b226bc3408b348"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae09610bc79b15b17cce0428661b14a88"><td class="memItemLeft" align="right" valign="top"><a id="ae09610bc79b15b17cce0428661b14a88"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ColumnCount</b> ()</td></tr>
-<tr class="separator:ae09610bc79b15b17cce0428661b14a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adad3b372e59e9b033d3f8dc371fac651"><td class="memItemLeft" align="right" valign="top"><a id="adad3b372e59e9b033d3f8dc371fac651"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetRow</b> ()</td></tr>
-<tr class="separator:adad3b372e59e9b033d3f8dc371fac651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25475c33dac1488c97d8d70dfed404a5"><td class="memItemLeft" align="right" valign="top"><a id="a25475c33dac1488c97d8d70dfed404a5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DetachFromParent</b> ()</td></tr>
-<tr class="separator:a25475c33dac1488c97d8d70dfed404a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a279eb94495d56f33e8779f1de7110681"><td class="memItemLeft" align="right" valign="top"><a id="a279eb94495d56f33e8779f1de7110681"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChilds</b> (QList&lt; <a class="el" href="class_item.html">Item</a> *&gt; childs)</td></tr>
-<tr class="separator:a279eb94495d56f33e8779f1de7110681"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ed80cb06fd196a1b2a4ad8df96fd849"><td class="memItemLeft" align="right" valign="top"><a id="a3ed80cb06fd196a1b2a4ad8df96fd849"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AddChild</b> (<a class="el" href="class_item.html">Item</a> *child, int row=INT32_MAX)</td></tr>
-<tr class="separator:a3ed80cb06fd196a1b2a4ad8df96fd849"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab77ee89c1d573571d46276904ddea022"><td class="memItemLeft" align="right" valign="top"><a id="ab77ee89c1d573571d46276904ddea022"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>RemoveChild</b> (<a class="el" href="class_item.html">Item</a> *child)</td></tr>
-<tr class="separator:ab77ee89c1d573571d46276904ddea022"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88f43c96e836f5a1473763fd0e8846bb"><td class="memItemLeft" align="right" valign="top"><a id="a88f43c96e836f5a1473763fd0e8846bb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>RemoveChildAt</b> (int row)</td></tr>
-<tr class="separator:a88f43c96e836f5a1473763fd0e8846bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80ac5f26c6d125de147b2c5aae8631c7"><td class="memItemLeft" align="right" valign="top"><a id="a80ac5f26c6d125de147b2c5aae8631c7"></a>
-<a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetChildAt</b> (int row)</td></tr>
-<tr class="separator:a80ac5f26c6d125de147b2c5aae8631c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9324d6e789340e65394bea357954e6e1"><td class="memItemLeft" align="right" valign="top"><a id="a9324d6e789340e65394bea357954e6e1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ChildCount</b> ()</td></tr>
-<tr class="separator:a9324d6e789340e65394bea357954e6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afccf539d108a9b083b67105ccb548f11"><td class="memItemLeft" align="right" valign="top"><a id="afccf539d108a9b083b67105ccb548f11"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetChildPosition</b> (<a class="el" href="class_item.html">Item</a> *item)</td></tr>
-<tr class="separator:afccf539d108a9b083b67105ccb548f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e724420eaddbc442a21b9670f96b113"><td class="memItemLeft" align="right" valign="top"><a id="a1e724420eaddbc442a21b9670f96b113"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>HasParent</b> ()</td></tr>
-<tr class="separator:a1e724420eaddbc442a21b9670f96b113"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab30ca3e317eefdadc4c46228513eab9c"><td class="memItemLeft" align="right" valign="top"><a id="ab30ca3e317eefdadc4c46228513eab9c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ParentIsRoot</b> ()</td></tr>
-<tr class="separator:ab30ca3e317eefdadc4c46228513eab9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d69e49a71014747117e415929a66071"><td class="memItemLeft" align="right" valign="top"><a id="a2d69e49a71014747117e415929a66071"></a>
-<a class="el" href="class_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetParent</b> ()</td></tr>
-<tr class="separator:a2d69e49a71014747117e415929a66071"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e455d42f88494875fbf91d02c6a6392"><td class="memItemLeft" align="right" valign="top"><a id="a2e455d42f88494875fbf91d02c6a6392"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>HasChunk</b> (QString chunkName)</td></tr>
-<tr class="separator:a2e455d42f88494875fbf91d02c6a6392"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49f7e1b1d48f1d4e0d42c41242f3ca0a"><td class="memItemLeft" align="right" valign="top"><a id="a49f7e1b1d48f1d4e0d42c41242f3ca0a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetOneChunkActive</b> (QString &amp;activeChunk)</td></tr>
-<tr class="separator:a49f7e1b1d48f1d4e0d42c41242f3ca0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39abf2ce8788fb6cb5ca6b85adf25b62"><td class="memItemLeft" align="right" valign="top"><a id="a39abf2ce8788fb6cb5ca6b85adf25b62"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ToggleChunkActive</b> (QString &amp;activeChunk)</td></tr>
-<tr class="separator:a39abf2ce8788fb6cb5ca6b85adf25b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a1f701ef0fa176e1acca08f023c3fdb"><td class="memItemLeft" align="right" valign="top"><a id="a3a1f701ef0fa176e1acca08f023c3fdb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ToggleAllChunksActive</b> (QString &amp;activeChunk)</td></tr>
-<tr class="separator:a3a1f701ef0fa176e1acca08f023c3fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5958400331c85b092099cf266ad14a9"><td class="memItemLeft" align="right" valign="top"><a id="af5958400331c85b092099cf266ad14a9"></a>
-QList&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunksNames</b> () const</td></tr>
-<tr class="separator:af5958400331c85b092099cf266ad14a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada674ba38fda9b9dab657e09f1f5cc10"><td class="memItemLeft" align="right" valign="top"><a id="ada674ba38fda9b9dab657e09f1f5cc10"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunkName</b> (int column) const</td></tr>
-<tr class="separator:ada674ba38fda9b9dab657e09f1f5cc10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a04c82a440a481d4f03b14f58cd2132"><td class="memItemLeft" align="right" valign="top"><a id="a5a04c82a440a481d4f03b14f58cd2132"></a>
-<a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunkData</b> (QString chunkName=&quot;&quot;) const</td></tr>
-<tr class="separator:a5a04c82a440a481d4f03b14f58cd2132"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0617312073b3d751518cfd6269c25c0a"><td class="memItemLeft" align="right" valign="top"><a id="a0617312073b3d751518cfd6269c25c0a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChunkData</b> (QString chunkName, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; data)</td></tr>
-<tr class="separator:a0617312073b3d751518cfd6269c25c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a511740667a73cb92aa0515323a6891ef"><td class="memItemLeft" align="right" valign="top"><a id="a511740667a73cb92aa0515323a6891ef"></a>
-<a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetActiveChunksData</b> () const</td></tr>
-<tr class="separator:a511740667a73cb92aa0515323a6891ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd9e7f1716d896f8e8c0f3ea8fb41d9e"><td class="memItemLeft" align="right" valign="top"><a id="afd9e7f1716d896f8e8c0f3ea8fb41d9e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetActiveChunksData</b> (<a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; data)</td></tr>
-<tr class="separator:afd9e7f1716d896f8e8c0f3ea8fb41d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e6be042312434c27bbaa582395d7df6"><td class="memItemLeft" align="right" valign="top"><a id="a3e6be042312434c27bbaa582395d7df6"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunksData</b> () const</td></tr>
-<tr class="separator:a3e6be042312434c27bbaa582395d7df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a735f7f38af80faddceec12f223a4b173"><td class="memItemLeft" align="right" valign="top"><a id="a735f7f38af80faddceec12f223a4b173"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChunksData</b> (<a class="el" href="class_q_map.html">QMap</a>&lt; QString, QVariant &gt; dataMap)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetChunksData</b> (QMap&lt; QString, QVariant &gt; dataMap)</td></tr>
 <tr class="separator:a735f7f38af80faddceec12f223a4b173"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58bb538ac6364dce47626aa9005faf15"><td class="memItemLeft" align="right" valign="top"><a id="a58bb538ac6364dce47626aa9005faf15"></a>
 QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>GetChunkDataElement</b> (int column) const</td></tr>
@@ -387,21 +308,25 @@ Additional Inherited Members</h2></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
 <tr class="separator:a2ce144f0878f1e577d66e19d01016839 inherit pub_attribs_struct_i_extendable_data_manager_1_1_manager_data_item"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5323e9b85c396033d267fc728fea061 inherit pub_attribs_struct_i_extendable_data_manager_1_1_manager_data_item"><td class="memItemLeft" align="right" valign="top"><a id="ac5323e9b85c396033d267fc728fea061"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>dataChunks</b></td></tr>
+QMap&lt; QString, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>dataChunks</b></td></tr>
 <tr class="separator:ac5323e9b85c396033d267fc728fea061 inherit pub_attribs_struct_i_extendable_data_manager_1_1_manager_data_item"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/DataManagers/ExtendableDataManager/<a class="el" href="_old_plugins_2_data_managers_2_extendable_data_manager_2item_8h_source.html">item.h</a></li>
 <li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/<a class="el" href="dataitem_8h_source.html">dataitem.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/DataManagers/ExtendableDataManager/item.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/<a class="el" href="item_8h_source.html">item.h</a></li>
 <li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/dataitem.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/item.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:28 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_item.html">Item</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

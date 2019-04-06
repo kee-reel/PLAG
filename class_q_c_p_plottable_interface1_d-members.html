@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_q_c_p_plottable_interface1_d.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">QCPPlottableInterface1D Member List</div>  </div>
@@ -69,41 +90,24 @@ $(function() {
 <p>This is the complete list of members for <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#a058a22c770ef4d5a0e878a7f02183da9">dataCount</a>() const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>dataCount</b>() const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>dataCount</b>() const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#a2bd60daaac046945fead558cbd83cf73">dataMainKey</a>(int index) const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>dataMainKey</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>dataMainKey</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#af6330919e8023277d08c958a6074fc76">dataMainValue</a>(int index) const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>dataMainValue</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>dataMainValue</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#a78911838cfbcfd2d8df9ad2fdbfb8e93">dataPixelPosition</a>(int index) const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>dataPixelPosition</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>dataPixelPosition</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#afdc92f9f01e7e35f2e96b2ea9dc14ae7">dataSortKey</a>(int index) const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>dataSortKey</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>dataSortKey</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#a9ca7fcf14d885a200879768679b19be9">dataValueRange</a>(int index) const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>dataValueRange</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>dataValueRange</b>(int index) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#a5b95783271306a4de97be54eac1e7d13">findBegin</a>(double sortKey, bool expandedRange=true) const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>findBegin</b>(double sortKey, bool expandedRange=true) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>findBegin</b>(double sortKey, bool expandedRange=true) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#a5deced1016bc55a41a2339619045b295">findEnd</a>(double sortKey, bool expandedRange=true) const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>findEnd</b>(double sortKey, bool expandedRange=true) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>findEnd</b>(double sortKey, bool expandedRange=true) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#a67093e4ccf490ff5f7750640941ff34c">selectTestRect</a>(const QRectF &amp;rect, bool onlySelectable) const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>selectTestRect</b>(const QRectF &amp;rect, bool onlySelectable) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>selectTestRect</b>(const QRectF &amp;rect, bool onlySelectable) const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html#a229e65e7ab968dd6cd0e259fa504b79d">sortKeyIsMainKey</a>() const =0</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>sortKeyIsMainKey</b>() const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>sortKeyIsMainKey</b>() const =0 (defined in <a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a>)</td><td class="entry"><a class="el" href="class_q_c_p_plottable_interface1_d.html">QCPPlottableInterface1D</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:40 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:59 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

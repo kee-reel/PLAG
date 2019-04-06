@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_p.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -112,16 +133,16 @@ $(function() {
 , <a class="el" href="class_q_c_p_axis_rect.html#a587d073a97b27bc7293fab4b2774ad59">QCPAxisRect</a>
 </li>
 <li>pmDefault
-: <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">QCPPainter</a>
+: <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da3bac5e87e3d58553b297befb4eee2a45">QCPPainter</a>
 </li>
 <li>pmNoCaching
-: <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">QCPPainter</a>
+: <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dae78f9a4eb277a5f9207f50850a51a0b0">QCPPainter</a>
 </li>
 <li>pmNonCosmetic
-: <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">QCPPainter</a>
+: <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dac1e481bfaf408f2bd2eaad3ec341f36b">QCPPainter</a>
 </li>
 <li>pmVectorized
-: <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">QCPPainter</a>
+: <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daeda679cd55dcd468341d07d48a30b6ab">QCPPainter</a>
 </li>
 <li>position()
 : <a class="el" href="class_q_c_p_abstract_item.html#a2589c3d298f9a576d77d9addb440a18d">QCPAbstractItem</a>
@@ -133,24 +154,27 @@ $(function() {
 : <a class="el" href="class_q_c_p_item_position.html#aad9936c22bf43e3d358552f6e86dbdc8">QCPItemPosition</a>
 </li>
 <li>ptAbsolute
-: <a class="el" href="class_q_c_p_item_position.html#aad9936c22bf43e3d358552f6e86dbdc8a3702d60f75c3259c625381c9675c053e">QCPItemPosition</a>
+: <a class="el" href="class_q_c_p_item_position.html#aad9936c22bf43e3d358552f6e86dbdc8a564f5e53e550ead1ec5fc7fc7d0b73e0">QCPItemPosition</a>
 </li>
 <li>ptAxisRectRatio
-: <a class="el" href="class_q_c_p_item_position.html#aad9936c22bf43e3d358552f6e86dbdc8a5122cb53066293593ba4445ea9a75391">QCPItemPosition</a>
+: <a class="el" href="class_q_c_p_item_position.html#aad9936c22bf43e3d358552f6e86dbdc8a01080fd00eaf09fa238ef6b73bbfef75">QCPItemPosition</a>
 </li>
 <li>ptPlotCoords
-: <a class="el" href="class_q_c_p_item_position.html#aad9936c22bf43e3d358552f6e86dbdc8ae797603bd91e9561c0f2da044a30e5c6">QCPItemPosition</a>
+: <a class="el" href="class_q_c_p_item_position.html#aad9936c22bf43e3d358552f6e86dbdc8ad5ffb8dc99ad73263f7010c77342294c">QCPItemPosition</a>
 </li>
 <li>ptViewportRatio
-: <a class="el" href="class_q_c_p_item_position.html#aad9936c22bf43e3d358552f6e86dbdc8ad2ec2c0f63a73a94c098af9334903f9b">QCPItemPosition</a>
+: <a class="el" href="class_q_c_p_item_position.html#aad9936c22bf43e3d358552f6e86dbdc8ac7d6aa89ceacb39658b0d6da061c789a">QCPItemPosition</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

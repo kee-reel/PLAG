@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_g.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -79,12 +100,12 @@ $(function() {
 <li>getKeyRange()
 : <a class="el" href="class_q_c_p_abstract_plottable.html#a4da16d3cd4b509e1104a9b0275623c96">QCPAbstractPlottable</a>
 , <a class="el" href="class_q_c_p_bars.html#ac5a3854774d9d9cd129b1eae1426de2d">QCPBars</a>
-, <a class="el" href="class_q_c_p_color_map.html#a7c87826c64551d5f2ade620f12599e45">QCPColorMap</a>
-, <a class="el" href="class_q_c_p_curve.html#a83e4b33a6f949211b0191168f8448d0b">QCPCurve</a>
-, <a class="el" href="class_q_c_p_error_bars.html#aa8850872dd67af338e612427ec595a13">QCPErrorBars</a>
-, <a class="el" href="class_q_c_p_financial.html#abb56add5757f53239d8bef462bd53578">QCPFinancial</a>
-, <a class="el" href="class_q_c_p_graph.html#a7b332af5ead6a278f4a6a065febeed24">QCPGraph</a>
-, <a class="el" href="class_q_c_p_statistical_box.html#ae44dd2e135ebf2a53eb6e4bfe7343211">QCPStatisticalBox</a>
+, <a class="el" href="class_q_c_p_color_map.html#a985861974560f950af6cb7fae8c46267">QCPColorMap</a>
+, <a class="el" href="class_q_c_p_curve.html#a22d09087f78f254731197cc0b8783299">QCPCurve</a>
+, <a class="el" href="class_q_c_p_error_bars.html#a6cac828a430d66ac77a167549d01d212">QCPErrorBars</a>
+, <a class="el" href="class_q_c_p_financial.html#a15d68fb257113fef697356d65fa76559">QCPFinancial</a>
+, <a class="el" href="class_q_c_p_graph.html#aac47c6189e3aea46ea46939e5d14796c">QCPGraph</a>
+, <a class="el" href="class_q_c_p_statistical_box.html#a77d2d13301dfe60c13adfaa17fc1802f">QCPStatisticalBox</a>
 </li>
 <li>getLastError()
 : <a class="el" href="class_i_plugin.html#a4ebf36b0985ce50811c5bd65153033fc">IPlugin</a>
@@ -123,40 +144,40 @@ $(function() {
 : <a class="el" href="class_q_c_p_graph.html#a8599447a7f8cbbdcf0b94edcc11df560">QCPGraph</a>
 </li>
 <li>gpCandy
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072ae15e7650a85bb33d5c1164ea26c5c6d4">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a9e72663bf6b94b65945f7843f24e0721">QCPColorGradient</a>
 </li>
 <li>gpCold
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072ac9e62b3462c0837b4be0855a14c63ab6">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072aec8c001f62c0d5cb853db5fd85309557">QCPColorGradient</a>
 </li>
 <li>gpGeography
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a6deb5ec11029f48cf859be2b6f66d2b8">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a382f0b07cec1a59d8a533438aea815d2">QCPColorGradient</a>
 </li>
 <li>gpGrayscale
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a231b77e839ec2cf01e1573aae5bc4a35">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072add11ae369a86f3b1b6205ec72e5021fb">QCPColorGradient</a>
 </li>
 <li>gpHot
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072ad899fc6ce4f4f957a017e9e60a55196d">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a4f42e534cf6cff5a29a5388094d099b5">QCPColorGradient</a>
 </li>
 <li>gpHues
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072aa9382f15c19d131045d8ee3b4a40b799">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a30efe58407acfb67939032f70213a130">QCPColorGradient</a>
 </li>
 <li>gpIon
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072abe9934ecde531d948f89fe78e62bbd97">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a4297f4f9e212a819cd65e8e34567182b">QCPColorGradient</a>
 </li>
 <li>gpJet
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a099491b74c9e2121da78a5c5900173c1">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a5f8a9e67b64c17ddfe4f069fe2b9fb02">QCPColorGradient</a>
 </li>
 <li>gpNight
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a966669645266af90223fb69ac8baeb77">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a1bb89351b6def7d220973443fe059c62">QCPColorGradient</a>
 </li>
 <li>gpPolar
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a3cefa4e01a387539b36792558e5f335c">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072ab7414ce4e36dc3e82e0132a7f0f41b52">QCPColorGradient</a>
 </li>
 <li>gpSpectrum
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072a2037a77bbfe46278d1cf42743f2b62ac">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072ad63adc100ef46f6b4a8a6deacec4642f">QCPColorGradient</a>
 </li>
 <li>gpThermal
-: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072acbc3848125d37b0e6a1e9f4934868937">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#aed6569828fee337023670272910c9072af1676b129f9f458ace453f280c731cf7">QCPColorGradient</a>
 </li>
 <li>gradientChanged()
 : <a class="el" href="class_q_c_p_color_map.html#a31a12726736b1ac274e7b1d8dfb67468">QCPColorMap</a>
@@ -180,11 +201,14 @@ $(function() {
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

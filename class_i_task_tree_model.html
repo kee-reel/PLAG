@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_i_task_tree_model.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#signals">Signals</a> &#124;
@@ -75,16 +96,12 @@ Inheritance diagram for ITaskTreeModel:</div>
  <div class="center">
   <img src="class_i_task_tree_model.png" usemap="#ITaskTreeModel_map" alt=""/>
   <map id="ITaskTreeModel_map" name="ITaskTreeModel_map">
-<area href="class_task_tree_model.html" alt="TaskTreeModel" shape="rect" coords="0,112,102,136"/>
-<area href="class_task_tree_model.html" alt="TaskTreeModel" shape="rect" coords="112,112,214,136"/>
+<area href="class_task_tree_model.html" alt="TaskTreeModel" shape="rect" coords="0,56,102,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:a562d5278962363c02872c528b839a0c8"><td class="memItemLeft" align="right" valign="top"><a id="a562d5278962363c02872c528b839a0c8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OpenTaskEdit</b> (int id)</td></tr>
-<tr class="separator:a562d5278962363c02872c528b839a0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a562d5278962363c02872c528b839a0c8"><td class="memItemLeft" align="right" valign="top"><a id="a562d5278962363c02872c528b839a0c8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OpenTaskEdit</b> (int id)</td></tr>
 <tr class="separator:a562d5278962363c02872c528b839a0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -94,19 +111,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adbffd903706e118845cbeced9f47b914"><td class="memItemLeft" align="right" valign="top"><a id="adbffd903706e118845cbeced9f47b914"></a>
 virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetTreeModel</b> ()=0</td></tr>
 <tr class="separator:adbffd903706e118845cbeced9f47b914"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbffd903706e118845cbeced9f47b914"><td class="memItemLeft" align="right" valign="top"><a id="adbffd903706e118845cbeced9f47b914"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetTreeModel</b> ()=0</td></tr>
-<tr class="separator:adbffd903706e118845cbeced9f47b914"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/TaskListModel/<a class="el" href="_old_plugins_2_models_2_task_list_model_2itasktreemodel_8h_source.html">itasktreemodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="itasktreemodel_8h_source.html">itasktreemodel.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:28 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_task_tree_model.html">ITaskTreeModel</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

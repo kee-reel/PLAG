@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_registers_pack_handler.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -77,7 +98,6 @@ Inheritance diagram for RegistersPackHandler:</div>
   <img src="class_registers_pack_handler.png" usemap="#RegistersPackHandler_map" alt=""/>
   <map id="RegistersPackHandler_map" name="RegistersPackHandler_map">
 <area href="struct_i_experiment_control_model_1_1_regsters_pack.html" alt="IExperimentControlModel::RegstersPack" shape="rect" coords="246,0,482,24"/>
-<area href="struct_i_experiment_control_model_1_1_regsters_pack.html" alt="IExperimentControlModel::RegstersPack" shape="rect" coords="738,0,974,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -97,24 +117,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>FillRegistersHash</b>
 <tr class="memitem:a0dceeb30a9085b51a40ae74fee52b895"><td class="memItemLeft" align="right" valign="top"><a id="a0dceeb30a9085b51a40ae74fee52b895"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataPack</b> (qreal &amp;xValue, const <a class="el" href="class_q_vector.html">QVector</a>&lt; quint16 &gt; &amp;data)</td></tr>
 <tr class="separator:a0dceeb30a9085b51a40ae74fee52b895"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b79b4176352ad51dc6349ceda8e1bf1"><td class="memItemLeft" align="right" valign="top"><a id="a6b79b4176352ad51dc6349ceda8e1bf1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RegistersPackHandler</b> (<a class="el" href="struct_i_experiment_control_model_1_1_regsters_pack.html">IExperimentControlModel::RegstersPack</a> &amp;pack, <a class="el" href="class_i_modbus_device_data_manager_1_1_i_modbus_device_handler.html">IModbusDeviceDataManager::IModbusDeviceHandler</a> *device, QObject *parent=0)</td></tr>
-<tr class="separator:a6b79b4176352ad51dc6349ceda8e1bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eed12350995e8f88042a428c4f72d0c"><td class="memItemLeft" align="right" valign="top"><a id="a4eed12350995e8f88042a428c4f72d0c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>FillRegistersHash</b> (int startHash, QHash&lt; int, QLineSeries *&gt; &amp;hash)</td></tr>
-<tr class="separator:a4eed12350995e8f88042a428c4f72d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dceeb30a9085b51a40ae74fee52b895"><td class="memItemLeft" align="right" valign="top"><a id="a0dceeb30a9085b51a40ae74fee52b895"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataPack</b> (qreal &amp;xValue, const <a class="el" href="class_q_vector.html">QVector</a>&lt; quint16 &gt; &amp;data)</td></tr>
-<tr class="separator:a0dceeb30a9085b51a40ae74fee52b895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ae56f8f8eb6444339a74b24b98f0e2f06"><td class="memItemLeft" align="right" valign="top"><a id="ae56f8f8eb6444339a74b24b98f0e2f06"></a>
+<tr class="memitem:a7cd965a60d747f78f35f6ed67f05180e"><td class="memItemLeft" align="right" valign="top"><a id="a7cd965a60d747f78f35f6ed67f05180e"></a>
 <a class="el" href="class_q_vector.html">QVector</a>&lt; quint16 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
-<tr class="separator:ae56f8f8eb6444339a74b24b98f0e2f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a870a722dea1dcc9fa8ad36fbe0121652"><td class="memItemLeft" align="right" valign="top"><a id="a870a722dea1dcc9fa8ad36fbe0121652"></a>
+<tr class="separator:a7cd965a60d747f78f35f6ed67f05180e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f1537837bc456208b9780b0a822fcd1"><td class="memItemLeft" align="right" valign="top"><a id="a7f1537837bc456208b9780b0a822fcd1"></a>
 <a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_registers_pack_handler_1_1_register_handler.html">RegisterHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>registerHandlers</b></td></tr>
-<tr class="separator:a870a722dea1dcc9fa8ad36fbe0121652"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a7f1537837bc456208b9780b0a822fcd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_struct_i_experiment_control_model_1_1_regsters_pack"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_struct_i_experiment_control_model_1_1_regsters_pack')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="struct_i_experiment_control_model_1_1_regsters_pack.html">IExperimentControlModel::RegstersPack</a></td></tr>
 <tr class="memitem:a259ba50ca59710f30b90e37ab9e9c7c6 inherit pub_attribs_struct_i_experiment_control_model_1_1_regsters_pack"><td class="memItemLeft" align="right" valign="top"><a id="a259ba50ca59710f30b90e37ab9e9c7c6"></a>
 QModbusDataUnit::RegisterType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
@@ -130,15 +141,19 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>updateInterval</b></td
 <tr class="separator:a14527f6c7daa880659310317a14a0c97 inherit pub_attribs_struct_i_experiment_control_model_1_1_regsters_pack"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/ExperimentControlModel/<a class="el" href="_old_plugins_2_models_2_experiment_control_model_2registerspackhandler_8h_source.html">registerspackhandler.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/ExperimentControlModel/registerspackhandler.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExperimentControlModel/<a class="el" href="registerspackhandler_8h_source.html">registerspackhandler.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExperimentControlModel/registerspackhandler.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:45 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_registers_pack_handler.html">RegistersPackHandler</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:00 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

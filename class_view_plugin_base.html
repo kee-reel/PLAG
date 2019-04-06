@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_view_plugin_base.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
@@ -213,10 +234,10 @@ template&lt;class T &gt; </td></tr>
 <tr class="separator:a21ef424393f846a1f3d3a7283c16caee inherit pro_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:a8e42955422640f8014aff87f242a3d5c inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a8e42955422640f8014aff87f242a3d5c"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, <a class="el" href="class_i_plugin.html">IPlugin</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesMap</b></td></tr>
+QMap&lt; QString, <a class="el" href="class_i_plugin.html">IPlugin</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesMap</b></td></tr>
 <tr class="separator:a8e42955422640f8014aff87f242a3d5c inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3792623c30203d82de060eea737321a inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ac3792623c30203d82de060eea737321a"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesReadyMap</b></td></tr>
+QMap&lt; QString, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesReadyMap</b></td></tr>
 <tr class="separator:ac3792623c30203d82de060eea737321a inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aa0c8bcbf614a222aecbde4f55fb6a4 inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a2aa0c8bcbf614a222aecbde4f55fb6a4"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_lastErrorString</b></td></tr>
@@ -240,11 +261,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesRead
 <li>/home/curunir/Documents/MASS/Plugins/PluginsCommon/<a class="el" href="view__plugin__base_8h_source.html">view_plugin_base.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_view_plugin_base.html">ViewPluginBase</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:01 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

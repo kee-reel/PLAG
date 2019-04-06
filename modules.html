@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('modules.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -85,33 +106,34 @@ $(function() {
 <tr id="row_0_2_2_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_2_1_" class="arrow" onclick="toggleFolder('0_2_2_1_')">&#9660;</span><a class="el" href="group___pomodoro_model.html" target="_self">PomodoroModel</a></td><td class="desc"></td></tr>
 <tr id="row_0_2_2_1_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___pomodoro_model__int.html" target="_self">Interface</a></td><td class="desc"></td></tr>
 <tr id="row_0_2_2_1_1_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___pomodoro_model__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_2_2_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_2_2_" class="arrow" onclick="toggleFolder('0_2_2_2_')">&#9660;</span><a class="el" href="group___task_tree_model.html" target="_self">TaskTreeModel</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_2_2_0_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_tree_model__int.html" target="_self">Interface</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_2_2_1_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_tree_model__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_2_3_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_2_3_" class="arrow" onclick="toggleFolder('0_2_2_3_')">&#9660;</span><a class="el" href="group___task_sketch_model.html" target="_self">TaskSketchModel</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_2_3_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_sketch_model__int.html" target="_self">Interface</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_2_3_1_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_sketch_model__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_2_2_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_2_2_" class="arrow" onclick="toggleFolder('0_2_2_2_')">&#9660;</span><a class="el" href="group___task_sketch_model.html" target="_self">TaskSketchModel</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_2_2_0_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_sketch_model__int.html" target="_self">Interface</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_2_2_1_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_sketch_model__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_2_3_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_2_3_" class="arrow" onclick="toggleFolder('0_2_2_3_')">&#9660;</span><a class="el" href="group___task_tree_model.html" target="_self">TaskTreeModel</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_2_3_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_tree_model__int.html" target="_self">Interface</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_2_3_1_"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_tree_model__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
 <tr id="row_0_2_3_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span id="arr_0_2_3_" class="arrow" onclick="toggleFolder('0_2_3_')">&#9660;</span><a class="el" href="group___main_menu_plugin__rel__v.html" target="_self">View plugins</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_0_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_0_" class="arrow" onclick="toggleFolder('0_2_3_0_')">&#9660;</span><a class="el" href="group___a_r_neural_network_view.html" target="_self">ARNeuralNetworkView</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_0_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___a_r_neural_network_view__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_1_" class="arrow" onclick="toggleFolder('0_2_3_1_')">&#9660;</span><a class="el" href="group___main_menu_plugin_view.html" target="_self">MainMenuPluginView</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_1_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___main_menu_plugin_view__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_2_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_2_" class="arrow" onclick="toggleFolder('0_2_3_2_')">&#9660;</span><a class="el" href="group___perceptron_network_view_plugin.html" target="_self">PerceptronNetworkViewPlugin</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_2_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___perceptron_network_view_plugin__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_3_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_3_" class="arrow" onclick="toggleFolder('0_2_3_3_')">&#9660;</span><a class="el" href="group___pomodoro_view.html" target="_self">PomodoroView</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_3_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___pomodoro_view__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_4_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_4_" class="arrow" onclick="toggleFolder('0_2_3_4_')">&#9660;</span><a class="el" href="group___task_list_view.html" target="_self">TaskListView</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_4_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_list_view__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_5_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_5_" class="arrow" onclick="toggleFolder('0_2_3_5_')">&#9660;</span><a class="el" href="group___task_sketch_view.html" target="_self">TaskSketchView</a></td><td class="desc"></td></tr>
-<tr id="row_0_2_3_5_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_sketch_view__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_0_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_0_" class="arrow" onclick="toggleFolder('0_2_3_0_')">&#9660;</span><a class="el" href="group___main_menu_plugin_view.html" target="_self">MainMenuPluginView</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_0_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___main_menu_plugin_view__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_1_" class="arrow" onclick="toggleFolder('0_2_3_1_')">&#9660;</span><a class="el" href="group___perceptron_network_view_plugin.html" target="_self">PerceptronNetworkViewPlugin</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_1_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___perceptron_network_view_plugin__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_2_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_2_" class="arrow" onclick="toggleFolder('0_2_3_2_')">&#9660;</span><a class="el" href="group___pomodoro_view.html" target="_self">PomodoroView</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_2_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___pomodoro_view__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_3_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_3_" class="arrow" onclick="toggleFolder('0_2_3_3_')">&#9660;</span><a class="el" href="group___task_list_view.html" target="_self">TaskListView</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_3_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_list_view__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_4_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span id="arr_0_2_3_4_" class="arrow" onclick="toggleFolder('0_2_3_4_')">&#9660;</span><a class="el" href="group___task_sketch_view.html" target="_self">TaskSketchView</a></td><td class="desc"></td></tr>
+<tr id="row_0_2_3_4_0_" class="even"><td class="entry"><span style="width:80px;display:inline-block;">&#160;</span><a class="el" href="group___task_sketch_view__imp.html" target="_self">Implementation</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

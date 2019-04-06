@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_i.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -85,17 +106,17 @@ $(function() {
 <li>insetLayout()
 : <a class="el" href="class_q_c_p_axis_rect.html#a949f803466619924c7018df4b511ae10">QCPAxisRect</a>
 </li>
-<li>insetPlacement()
-: <a class="el" href="class_q_c_p_layout_inset.html#a6fcbd74ebbc45bfe64c604b2791aa57f">QCPLayoutInset</a>
-</li>
 <li>InsetPlacement
 : <a class="el" href="class_q_c_p_layout_inset.html#a8b9e17d9a2768293d2a7d72f5e298192">QCPLayoutInset</a>
+</li>
+<li>insetPlacement()
+: <a class="el" href="class_q_c_p_layout_inset.html#a6fcbd74ebbc45bfe64c604b2791aa57f">QCPLayoutInset</a>
 </li>
 <li>insetRect()
 : <a class="el" href="class_q_c_p_layout_inset.html#ab23099a46af17c31f4c40668f13c9de1">QCPLayoutInset</a>
 </li>
 <li>interface1D()
-: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#ab5f14406cf661087a8ed87baea37bc7e">QCPAbstractPlottable1D&lt; DataType &gt;</a>
+: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#a3ab7511c279af967955369606c584dd6">QCPAbstractPlottable1D&lt; DataType &gt;</a>
 , <a class="el" href="class_q_c_p_abstract_plottable.html#a81fd9fd5c4f429c074785e2eb238a8e7">QCPAbstractPlottable</a>
 , <a class="el" href="class_q_c_p_error_bars.html#a0b6fbf3a943b4241ee485d066cc8562a">QCPErrorBars</a>
 </li>
@@ -116,10 +137,10 @@ $(function() {
 : <a class="el" href="class_q_c_p_color_gradient.html#a9f72f501de429829ec446333316decda">QCPColorGradient</a>
 </li>
 <li>ipBorderAligned
-: <a class="el" href="class_q_c_p_layout_inset.html#a8b9e17d9a2768293d2a7d72f5e298192a41ae236f04e42d7098e09fd49dffeb06">QCPLayoutInset</a>
+: <a class="el" href="class_q_c_p_layout_inset.html#a8b9e17d9a2768293d2a7d72f5e298192aa81e7df4a785ddee2229a8f47c46e817">QCPLayoutInset</a>
 </li>
 <li>ipFree
-: <a class="el" href="class_q_c_p_layout_inset.html#a8b9e17d9a2768293d2a7d72f5e298192a06556307ae5b8255297984219da4e8f4">QCPLayoutInset</a>
+: <a class="el" href="class_q_c_p_layout_inset.html#a8b9e17d9a2768293d2a7d72f5e298192aa4802986ea2cea457f932b115acba59e">QCPLayoutInset</a>
 </li>
 <li>isActive()
 : <a class="el" href="class_q_c_p_selection_rect.html#ad27c1569c6ea8fa48e24b81e2a302df3">QCPSelectionRect</a>
@@ -170,11 +191,14 @@ $(function() {
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('struct_perceptron_1_1_layer_params.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><b>Perceptron</b></li><li class="navelem"><a class="el" href="struct_perceptron_1_1_layer_params.html">LayerParams</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
@@ -75,31 +92,35 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2e54d0a4d2d5b21b74f3fe1201edf496"><td class="memItemLeft" align="right" valign="top"><a id="a2e54d0a4d2d5b21b74f3fe1201edf496"></a>
+<tr class="memitem:a2b7908df7e8e4f1b8d836d732fc29fde"><td class="memItemLeft" align="right" valign="top"><a id="a2b7908df7e8e4f1b8d836d732fc29fde"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b></td></tr>
-<tr class="separator:a2e54d0a4d2d5b21b74f3fe1201edf496"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1461967bf879d4aa8eedcbd8557578ae"><td class="memItemLeft" align="right" valign="top"><a id="a1461967bf879d4aa8eedcbd8557578ae"></a>
+<tr class="separator:a2b7908df7e8e4f1b8d836d732fc29fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb000611727cbf8ad2051118f2d8234"><td class="memItemLeft" align="right" valign="top"><a id="aecb000611727cbf8ad2051118f2d8234"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>LearnSpeed</b></td></tr>
-<tr class="separator:a1461967bf879d4aa8eedcbd8557578ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8519674bc4f1a5aca12a75f2a64883fc"><td class="memItemLeft" align="right" valign="top"><a id="a8519674bc4f1a5aca12a75f2a64883fc"></a>
+<tr class="separator:aecb000611727cbf8ad2051118f2d8234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78bd006d129e016f1f710b9c07b2f985"><td class="memItemLeft" align="right" valign="top"><a id="a78bd006d129e016f1f710b9c07b2f985"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>Moment</b></td></tr>
-<tr class="separator:a8519674bc4f1a5aca12a75f2a64883fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae57514ee2e26631a5117c4e51bfcc11"><td class="memItemLeft" align="right" valign="top"><a id="aae57514ee2e26631a5117c4e51bfcc11"></a>
+<tr class="separator:a78bd006d129e016f1f710b9c07b2f985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c9b4e0e12a9705d99a3392873088d7d"><td class="memItemLeft" align="right" valign="top"><a id="a9c9b4e0e12a9705d99a3392873088d7d"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>FuncIndent</b></td></tr>
-<tr class="separator:aae57514ee2e26631a5117c4e51bfcc11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91105a7a6bbd8a8c6c4b60cb105f0008"><td class="memItemLeft" align="right" valign="top"><a id="a91105a7a6bbd8a8c6c4b60cb105f0008"></a>
+<tr class="separator:a9c9b4e0e12a9705d99a3392873088d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ac7b22335513c6b707d99ac45ec95db"><td class="memItemLeft" align="right" valign="top"><a id="a3ac7b22335513c6b707d99ac45ec95db"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>Bias</b></td></tr>
-<tr class="separator:a91105a7a6bbd8a8c6c4b60cb105f0008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a3ac7b22335513c6b707d99ac45ec95db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/NeuralNetworkModel/<a class="el" href="_old_plugins_2_models_2_neural_network_model_2parameters_8h_source.html">parameters.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/NeuralNetworkModel/<a class="el" href="parameters_8h_source.html">parameters.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>Perceptron</b></li><li class="navelem"><a class="el" href="struct_perceptron_1_1_layer_params.html">LayerParams</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:01 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

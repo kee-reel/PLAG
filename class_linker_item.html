@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_linker_item.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#signals">Signals</a> &#124;
@@ -76,21 +97,11 @@ Inheritance diagram for LinkerItem:</div>
   <img src="class_linker_item.png" usemap="#LinkerItem_map" alt=""/>
   <map id="LinkerItem_map" name="LinkerItem_map">
 <area href="class_i_plugin_linker_1_1_i_linker_item.html" alt="IPluginLinker::ILinkerItem" shape="rect" coords="161,0,312,24"/>
-<area href="class_i_plugin_linker_1_1_i_linker_item.html" alt="IPluginLinker::ILinkerItem" shape="rect" coords="483,0,634,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:a837906e32afc6e76de3b15d899efdfd8"><td class="memItemLeft" align="right" valign="top"><a id="a837906e32afc6e76de3b15d899efdfd8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onItemOpened</b> (int selfId)</td></tr>
-<tr class="separator:a837906e32afc6e76de3b15d899efdfd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8a5b6a6c1a092d57f3c40d5d1164064"><td class="memItemLeft" align="right" valign="top"><a id="ac8a5b6a6c1a092d57f3c40d5d1164064"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onItemClosed</b> (int selfId)</td></tr>
-<tr class="separator:ac8a5b6a6c1a092d57f3c40d5d1164064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12337c5184d872196f40f06277712409"><td class="memItemLeft" align="right" valign="top"><a id="a12337c5184d872196f40f06277712409"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onItemConnectionsChanged</b> (int selfId)</td></tr>
-<tr class="separator:a12337c5184d872196f40f06277712409"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe2e802177730c98049ce8957d89e295"><td class="memItemLeft" align="right" valign="top"><a id="abe2e802177730c98049ce8957d89e295"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onLoaded</b> (int itemId)</td></tr>
 <tr class="separator:abe2e802177730c98049ce8957d89e295"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,33 +130,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a75ba007081ab7f3ca27175fc415befa5"><td class="memItemLeft" align="right" valign="top"><a id="a75ba007081ab7f3ca27175fc415befa5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>LinkerItem</b> (QWeakPointer&lt; IPluginHandler &gt; pluginHandler, QSharedPointer&lt; <a class="el" href="struct_meta_info.html">MetaInfo</a> &gt; metaInfo, int uid)</td></tr>
 <tr class="separator:a75ba007081ab7f3ca27175fc415befa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab21cafbcdc624f239fe118372c577407"><td class="memItemLeft" align="right" valign="top"><a id="ab21cafbcdc624f239fe118372c577407"></a>
-const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getInterfaceName</b> ()</td></tr>
-<tr class="separator:ab21cafbcdc624f239fe118372c577407"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26cfcfb9d7c6faf291086cc570d17676"><td class="memItemLeft" align="right" valign="top"><a id="a26cfcfb9d7c6faf291086cc570d17676"></a>
-const QList&lt; QString &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferenceNamesList</b> ()</td></tr>
-<tr class="separator:a26cfcfb9d7c6faf291086cc570d17676"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4f9a839b20bbe4ac30e75a970c65497"><td class="memItemLeft" align="right" valign="top"><a id="ab4f9a839b20bbe4ac30e75a970c65497"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addReference</b> (QWeakPointer&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
-<tr class="separator:ab4f9a839b20bbe4ac30e75a970c65497"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf3969dd5aac7d0df669692c0be47547"><td class="memItemLeft" align="right" valign="top"><a id="aaf3969dd5aac7d0df669692c0be47547"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeReference</b> (QWeakPointer&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
-<tr class="separator:aaf3969dd5aac7d0df669692c0be47547"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaa3159f125da358eafeae02c6b4a6aa"><td class="memItemLeft" align="right" valign="top"><a id="adaa3159f125da358eafeae02c6b4a6aa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addReferent</b> (QWeakPointer&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
-<tr class="separator:adaa3159f125da358eafeae02c6b4a6aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab987a49b785f432dda6578b9afc3cd91"><td class="memItemLeft" align="right" valign="top"><a id="ab987a49b785f432dda6578b9afc3cd91"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeReferent</b> (QWeakPointer&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
-<tr class="separator:ab987a49b785f432dda6578b9afc3cd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2139d3bf6e9918088cba03956c1d8ee4"><td class="memItemLeft" align="right" valign="top"><a id="a2139d3bf6e9918088cba03956c1d8ee4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> ()</td></tr>
-<tr class="separator:a2139d3bf6e9918088cba03956c1d8ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb11746da21fdfc3f66041916170a7bf"><td class="memItemLeft" align="right" valign="top"><a id="adb11746da21fdfc3f66041916170a7bf"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>unload</b> ()</td></tr>
-<tr class="separator:adb11746da21fdfc3f66041916170a7bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab52ba4bab96ffa7e13f18b58c5faf5d2"><td class="memItemLeft" align="right" valign="top"><a id="ab52ba4bab96ffa7e13f18b58c5faf5d2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> (const <a class="el" href="class_i_plugin.html">IPlugin</a> *pluginInstance)</td></tr>
-<tr class="separator:ab52ba4bab96ffa7e13f18b58c5faf5d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dafbf48ab5687fae2cbc38970ecf521"><td class="memItemLeft" align="right" valign="top"><a id="a9dafbf48ab5687fae2cbc38970ecf521"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isLoaded</b> () const override</td></tr>
 <tr class="separator:a9dafbf48ab5687fae2cbc38970ecf521"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,47 +149,11 @@ virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidge
 virtual const QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () const override</td></tr>
 <tr class="separator:a261e6d1d5679d2d691bb50c74cda1ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ba863f3fbb3aaaacf23f90d871d8313"><td class="memItemLeft" align="right" valign="top"><a id="a2ba863f3fbb3aaaacf23f90d871d8313"></a>
-virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; QWeakPointer&lt; ILinkerItem &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferences</b> () override</td></tr>
+virtual QMap&lt; int, QWeakPointer&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferences</b> () override</td></tr>
 <tr class="separator:a2ba863f3fbb3aaaacf23f90d871d8313"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea2359bc361d5bc1621642ddda1b6ab3"><td class="memItemLeft" align="right" valign="top"><a id="aea2359bc361d5bc1621642ddda1b6ab3"></a>
-virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; QWeakPointer&lt; ILinkerItem &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferents</b> () override</td></tr>
+virtual QMap&lt; int, QWeakPointer&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferents</b> () override</td></tr>
 <tr class="separator:aea2359bc361d5bc1621642ddda1b6ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c48920aa61c208282596b2afd20a871"><td class="memItemLeft" align="right" valign="top"><a id="a0c48920aa61c208282596b2afd20a871"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> (QWeakPointer&lt; ILinkerItem &gt; openedByElement) override</td></tr>
-<tr class="separator:a0c48920aa61c208282596b2afd20a871"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa0c91725ffb2ae970628070e0df2dd3"><td class="memItemLeft" align="right" valign="top"><a id="aaa0c91725ffb2ae970628070e0df2dd3"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> (QWeakPointer&lt; ILinkerItem &gt; closedByElement) override</td></tr>
-<tr class="separator:aaa0c91725ffb2ae970628070e0df2dd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac628c70d41ed05a3fad149063c5668f2"><td class="memItemLeft" align="right" valign="top"><a id="ac628c70d41ed05a3fad149063c5668f2"></a>
-const QString&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginDescriptionName</b> ()</td></tr>
-<tr class="separator:ac628c70d41ed05a3fad149063c5668f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75ba007081ab7f3ca27175fc415befa5"><td class="memItemLeft" align="right" valign="top"><a id="a75ba007081ab7f3ca27175fc415befa5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LinkerItem</b> (QWeakPointer&lt; IPluginHandler &gt; pluginHandler, QSharedPointer&lt; <a class="el" href="struct_meta_info.html">MetaInfo</a> &gt; metaInfo, int uid)</td></tr>
-<tr class="separator:a75ba007081ab7f3ca27175fc415befa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6369e0fc837ff9d46122a0b76f82af69"><td class="memItemLeft" align="right" valign="top"><a id="a6369e0fc837ff9d46122a0b76f82af69"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isLoaded</b> () const override</td></tr>
-<tr class="separator:a6369e0fc837ff9d46122a0b76f82af69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac04637ad105d46bdaba23374505aec4e"><td class="memItemLeft" align="right" valign="top"><a id="ac04637ad105d46bdaba23374505aec4e"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isOpened</b> () const override</td></tr>
-<tr class="separator:ac04637ad105d46bdaba23374505aec4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9b2d1278725a00cafca24fa9792ab07"><td class="memItemLeft" align="right" valign="top"><a id="af9b2d1278725a00cafca24fa9792ab07"></a>
-virtual <a class="el" href="struct_meta_info.html">MetaInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getMeta</b> () const override</td></tr>
-<tr class="separator:af9b2d1278725a00cafca24fa9792ab07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4bcda0e8821f793607314abf47f49de"><td class="memItemLeft" align="right" valign="top"><a id="af4bcda0e8821f793607314abf47f49de"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginUID</b> () const override</td></tr>
-<tr class="separator:af4bcda0e8821f793607314abf47f49de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a363e87e12ec2660edf85ae4f883b6e9b"><td class="memItemLeft" align="right" valign="top"><a id="a363e87e12ec2660edf85ae4f883b6e9b"></a>
-virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () const override</td></tr>
-<tr class="separator:a363e87e12ec2660edf85ae4f883b6e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6325d96021cc9fce16b91672e9276d6b"><td class="memItemLeft" align="right" valign="top"><a id="a6325d96021cc9fce16b91672e9276d6b"></a>
-virtual const QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () const override</td></tr>
-<tr class="separator:a6325d96021cc9fce16b91672e9276d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d1175a9537328cde7c94021e3ffa852"><td class="memItemLeft" align="right" valign="top"><a id="a9d1175a9537328cde7c94021e3ffa852"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; int, QWeakPointer&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferences</b> () override</td></tr>
-<tr class="separator:a9d1175a9537328cde7c94021e3ffa852"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a758303adc7e02cfaf291a7f9a3071d46"><td class="memItemLeft" align="right" valign="top"><a id="a758303adc7e02cfaf291a7f9a3071d46"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; int, QWeakPointer&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferents</b> () override</td></tr>
-<tr class="separator:a758303adc7e02cfaf291a7f9a3071d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab49054f278db6332b6bdff13ac957f49"><td class="memItemLeft" align="right" valign="top"><a id="ab49054f278db6332b6bdff13ac957f49"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> () override</td></tr>
 <tr class="separator:ab49054f278db6332b6bdff13ac957f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -215,12 +163,12 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> () 
 <tr class="memitem:ac628c70d41ed05a3fad149063c5668f2"><td class="memItemLeft" align="right" valign="top"><a id="ac628c70d41ed05a3fad149063c5668f2"></a>
 const QString&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginDescriptionName</b> ()</td></tr>
 <tr class="separator:ac628c70d41ed05a3fad149063c5668f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae40cbd05dbe16384885cccecefc87be6"><td class="memItemLeft" align="right" valign="top"><a id="ae40cbd05dbe16384885cccecefc87be6"></a>
+<tr class="memitem:ab21cafbcdc624f239fe118372c577407"><td class="memItemLeft" align="right" valign="top"><a id="ab21cafbcdc624f239fe118372c577407"></a>
 const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getInterfaceName</b> ()</td></tr>
-<tr class="separator:ae40cbd05dbe16384885cccecefc87be6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0444604d236c95f424a3b1b50bc491e0"><td class="memItemLeft" align="right" valign="top"><a id="a0444604d236c95f424a3b1b50bc491e0"></a>
+<tr class="separator:ab21cafbcdc624f239fe118372c577407"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26cfcfb9d7c6faf291086cc570d17676"><td class="memItemLeft" align="right" valign="top"><a id="a26cfcfb9d7c6faf291086cc570d17676"></a>
 const QList&lt; QString &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferenceNamesList</b> ()</td></tr>
-<tr class="separator:a0444604d236c95f424a3b1b50bc491e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a26cfcfb9d7c6faf291086cc570d17676"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4f9a839b20bbe4ac30e75a970c65497"><td class="memItemLeft" align="right" valign="top"><a id="ab4f9a839b20bbe4ac30e75a970c65497"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addReference</b> (QWeakPointer&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
 <tr class="separator:ab4f9a839b20bbe4ac30e75a970c65497"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,16 +192,20 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>unload</b> ()</td></t
 <tr class="separator:adb11746da21fdfc3f66041916170a7bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PluginLinker/<a class="el" href="_plugin_linker_2linkeritem_8h_source.html">linkeritem.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/RootPluginLinker/<a class="el" href="linkeritem_8h_source.html">linkeritem.h</a></li>
 <li>/home/curunir/Documents/MASS/Plugins/PluginsBuildFiles/build/debug/RootPluginLinker/moc/moc_linkeritem.cpp</li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PluginLinker/linkeritem.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/RootPluginLinker/linkeritem.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:28 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_linker_item.html">LinkerItem</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

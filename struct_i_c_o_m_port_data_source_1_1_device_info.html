@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('struct_i_c_o_m_port_data_source_1_1_device_info.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="class_i_c_o_m_port_data_source.html">ICOMPortDataSource</a></li><li class="navelem"><a class="el" href="struct_i_c_o_m_port_data_source_1_1_device_info.html">DeviceInfo</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
@@ -76,7 +93,7 @@ $(function() {
 <p>The <a class="el" href="struct_i_c_o_m_port_data_source_1_1_device_info.html" title="The DeviceInfo struct Identifies device. ">DeviceInfo</a> struct Identifies device.  
  <a href="struct_i_c_o_m_port_data_source_1_1_device_info.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_old_plugins_2_data_sources_2_c_o_m_port_data_source_2icomportdatasource_8h_source.html">icomportdatasource.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="icomportdatasource_8h_source.html">icomportdatasource.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -90,14 +107,18 @@ quint16&#160;</td><td class="memItemRight" valign="bottom"><b>productId</b></td>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="struct_i_c_o_m_port_data_source_1_1_device_info.html" title="The DeviceInfo struct Identifies device. ">DeviceInfo</a> struct Identifies device. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/DataSources/COMPortDataSource/<a class="el" href="_old_plugins_2_data_sources_2_c_o_m_port_data_source_2icomportdatasource_8h_source.html">icomportdatasource.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="icomportdatasource_8h_source.html">icomportdatasource.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_c_o_m_port_data_source.html">ICOMPortDataSource</a></li><li class="navelem"><a class="el" href="struct_i_c_o_m_port_data_source_1_1_device_info.html">DeviceInfo</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

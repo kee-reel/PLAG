@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_rela.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,18 +82,16 @@ $(function() {
 </div>
 
 <div class="contents">
-&#160;
-
-<h3><a id="index_o"></a>- o -</h3><ul>
+&#160;<ul>
 <li>operator*
 : <a class="el" href="class_q_c_p_range.html#a558b1248ff6a9e41fd5b2630555a8acc">QCPRange</a>
 </li>
 <li>operator+
-: <a class="el" href="class_q_c_p_data_selection.html#a5feed9419bd3df5cb4d4a761580545cc">QCPDataSelection</a>
+: <a class="el" href="class_q_c_p_data_selection.html#a0822e3133b80b5dedfc8050a19c1e0c5">QCPDataSelection</a>
 , <a class="el" href="class_q_c_p_range.html#a9fb2e9941d32001482df670c0d704977">QCPRange</a>
 </li>
 <li>operator-
-: <a class="el" href="class_q_c_p_data_selection.html#a41147ef7d6303c746e398278b7b624d1">QCPDataSelection</a>
+: <a class="el" href="class_q_c_p_data_selection.html#a726652cb9ed840e3025435cc2c266468">QCPDataSelection</a>
 , <a class="el" href="class_q_c_p_range.html#a797f82830b516646da8873f82e39e356">QCPRange</a>
 </li>
 <li>operator/
@@ -80,11 +99,14 @@ $(function() {
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

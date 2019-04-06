@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_i_pomodoro_model.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -77,8 +98,7 @@ Inheritance diagram for IPomodoroModel:</div>
  <div class="center">
   <img src="class_i_pomodoro_model.png" usemap="#IPomodoroModel_map" alt=""/>
   <map id="IPomodoroModel_map" name="IPomodoroModel_map">
-<area href="class_pomodoro_model.html" alt="PomodoroModel" shape="rect" coords="0,112,107,136"/>
-<area href="class_pomodoro_model.html" alt="PomodoroModel" shape="rect" coords="117,112,224,136"/>
+<area href="class_pomodoro_model.html" alt="PomodoroModel" shape="rect" coords="0,56,107,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -92,15 +112,9 @@ Public Slots</h2></td></tr>
 <tr class="memitem:a1988b9a666cbb53395ebd008d20b1eb7"><td class="memItemLeft" align="right" valign="top"><a id="a1988b9a666cbb53395ebd008d20b1eb7"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>StartPomodoro</b> ()=0</td></tr>
 <tr class="separator:a1988b9a666cbb53395ebd008d20b1eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1988b9a666cbb53395ebd008d20b1eb7"><td class="memItemLeft" align="right" valign="top"><a id="a1988b9a666cbb53395ebd008d20b1eb7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>StartPomodoro</b> ()=0</td></tr>
-<tr class="separator:a1988b9a666cbb53395ebd008d20b1eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:a3c1cfa72c94d995995cca327b000daf6"><td class="memItemLeft" align="right" valign="top"><a id="a3c1cfa72c94d995995cca327b000daf6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnPomodoroFinished</b> ()</td></tr>
-<tr class="separator:a3c1cfa72c94d995995cca327b000daf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c1cfa72c94d995995cca327b000daf6"><td class="memItemLeft" align="right" valign="top"><a id="a3c1cfa72c94d995995cca327b000daf6"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnPomodoroFinished</b> ()</td></tr>
 <tr class="separator:a3c1cfa72c94d995995cca327b000daf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,28 +133,20 @@ virtual QModelIndex *&#160;</td><td class="memItemRight" valign="bottom"><b>GetA
 <tr class="memitem:a223f5543d1ad45eccdf6d8033874bcf2"><td class="memItemLeft" align="right" valign="top"><a id="a223f5543d1ad45eccdf6d8033874bcf2"></a>
 virtual <a class="el" href="struct_i_pomodoro_model_1_1_work_setup.html">WorkSetup</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetWorkSetup</b> ()=0</td></tr>
 <tr class="separator:a223f5543d1ad45eccdf6d8033874bcf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16248315594b89e25fe9726cf14d2c42"><td class="memItemLeft" align="right" valign="top"><a id="a16248315594b89e25fe9726cf14d2c42"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetTaskModel</b> ()=0</td></tr>
-<tr class="separator:a16248315594b89e25fe9726cf14d2c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22b4a98c0e544f2788130726fe33b1ec"><td class="memItemLeft" align="right" valign="top"><a id="a22b4a98c0e544f2788130726fe33b1ec"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetActiveProject</b> (QModelIndex)=0</td></tr>
-<tr class="separator:a22b4a98c0e544f2788130726fe33b1ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adeeecb7f22e50dc26925a353ef76f3b8"><td class="memItemLeft" align="right" valign="top"><a id="adeeecb7f22e50dc26925a353ef76f3b8"></a>
-virtual QModelIndex *&#160;</td><td class="memItemRight" valign="bottom"><b>GetActiveProject</b> ()=0</td></tr>
-<tr class="separator:adeeecb7f22e50dc26925a353ef76f3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a223f5543d1ad45eccdf6d8033874bcf2"><td class="memItemLeft" align="right" valign="top"><a id="a223f5543d1ad45eccdf6d8033874bcf2"></a>
-virtual <a class="el" href="struct_i_pomodoro_model_1_1_work_setup.html">WorkSetup</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetWorkSetup</b> ()=0</td></tr>
-<tr class="separator:a223f5543d1ad45eccdf6d8033874bcf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/PomodoroModel/<a class="el" href="_old_plugins_2_models_2_pomodoro_model_2ipomodoromodel_8h_source.html">ipomodoromodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="ipomodoromodel_8h_source.html">ipomodoromodel.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_pomodoro_model.html">IPomodoroModel</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

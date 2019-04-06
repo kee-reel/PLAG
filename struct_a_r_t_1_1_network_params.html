@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('struct_a_r_t_1_1_network_params.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><b>ART</b></li><li class="navelem"><a class="el" href="struct_a_r_t_1_1_network_params.html">NetworkParams</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
@@ -75,25 +92,29 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2612b5e41fbedbb08d3f437b7b6c7ca9"><td class="memItemLeft" align="right" valign="top"><a id="a2612b5e41fbedbb08d3f437b7b6c7ca9"></a>
+<tr class="memitem:aababa990b5d0e5d080003e52bc8347a2"><td class="memItemLeft" align="right" valign="top"><a id="aababa990b5d0e5d080003e52bc8347a2"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b></td></tr>
-<tr class="separator:a2612b5e41fbedbb08d3f437b7b6c7ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfe6c094d0bb34b6439d85f87167f80d"><td class="memItemLeft" align="right" valign="top"><a id="adfe6c094d0bb34b6439d85f87167f80d"></a>
+<tr class="separator:aababa990b5d0e5d080003e52bc8347a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac985741814be043af5c083d3fb6cb44a"><td class="memItemLeft" align="right" valign="top"><a id="ac985741814be043af5c083d3fb6cb44a"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>similarity</b></td></tr>
-<tr class="separator:adfe6c094d0bb34b6439d85f87167f80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40f5fd7f2755a55158e86440c5398496"><td class="memItemLeft" align="right" valign="top"><a id="a40f5fd7f2755a55158e86440c5398496"></a>
+<tr class="separator:ac985741814be043af5c083d3fb6cb44a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bd0fa378b49bddad207de236a7292d9"><td class="memItemLeft" align="right" valign="top"><a id="a2bd0fa378b49bddad207de236a7292d9"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>L</b></td></tr>
-<tr class="separator:a40f5fd7f2755a55158e86440c5398496"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a2bd0fa378b49bddad207de236a7292d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/NeuralNetworkModel/<a class="el" href="_old_plugins_2_models_2_neural_network_model_2parameters_8h_source.html">parameters.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/NeuralNetworkModel/<a class="el" href="parameters_8h_source.html">parameters.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>ART</b></li><li class="navelem"><a class="el" href="struct_a_r_t_1_1_network_params.html">NetworkParams</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:01 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

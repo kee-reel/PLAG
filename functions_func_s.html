@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_func_s.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -95,8 +116,7 @@ $(function() {
 : <a class="el" href="class_q_c_p_axis.html#a3505ed8a93bd2e349d858d84996bf767">QCPAxis</a>
 </li>
 <li>SecondTick()
-: <a class="el" href="class_i_timer_model.html#a801fc3ab286105437b3275d78f50ae7a">ITimerModel</a>
-, <a class="el" href="class_i_work_timer_model.html#a5f9e1096d5eeeb4fb7ed4f1aaff5ba2a">IWorkTimerModel</a>
+: <a class="el" href="class_i_work_timer_model.html#a5f9e1096d5eeeb4fb7ed4f1aaff5ba2a">IWorkTimerModel</a>
 </li>
 <li>selectableChanged()
 : <a class="el" href="class_q_c_p_abstract_plottable.html#a663b1a44123c8340ac041a29d1e2c973">QCPAbstractPlottable</a>
@@ -128,6 +148,7 @@ $(function() {
 : <a class="el" href="class_q_c_p_abstract_item.html#aa5cffb034fc65dbb91c77e02c1c14251">QCPAbstractItem</a>
 , <a class="el" href="class_q_c_p_abstract_legend_item.html#a7cb61fdfbaf69c590bacb8f9e7099d9e">QCPAbstractLegendItem</a>
 , <a class="el" href="class_q_c_p_abstract_plottable.html#a3af66432b1dca93b28e00e78a8c7c1d9">QCPAbstractPlottable</a>
+, <a class="el" href="class_q_c_p_axis.html#a62b598abeee7174a05f9d542cc85b1f5">QCPAxis</a>
 , <a class="el" href="class_q_c_p_legend.html#a82c88464edac07a9eefaf3906268df3b">QCPLegend</a>
 , <a class="el" href="class_q_c_p_text_element.html#a49f45b87ee9c1fe866c2cdd12af17a9a">QCPTextElement</a>
 </li>
@@ -142,31 +163,31 @@ $(function() {
 </li>
 <li>selectTest()
 : <a class="el" href="class_q_c_p_abstract_item.html#ae41d0349d68bb802c49104afd100ba2a">QCPAbstractItem</a>
-, <a class="el" href="class_q_c_p_abstract_legend_item.html#a8ca19faad8e2062e945772289a9151bd">QCPAbstractLegendItem</a>
-, <a class="el" href="class_q_c_p_abstract_plottable1_d.html#ab69f71c97019e44699599e654d382a98">QCPAbstractPlottable1D&lt; DataType &gt;</a>
+, <a class="el" href="class_q_c_p_abstract_legend_item.html#a80ec112a6608fc39dbed56239849b187">QCPAbstractLegendItem</a>
+, <a class="el" href="class_q_c_p_abstract_plottable1_d.html#a071e2df66ba1746067dfcb5e27947b43">QCPAbstractPlottable1D&lt; DataType &gt;</a>
 , <a class="el" href="class_q_c_p_abstract_plottable.html#a38efe9641d972992a3d44204bc80ec1d">QCPAbstractPlottable</a>
 , <a class="el" href="class_q_c_p_axis.html#a63b7103c57fe9acfbce164334ea837f8">QCPAxis</a>
-, <a class="el" href="class_q_c_p_bars.html#a7b282a2932c7c0b4a45bd61e8c490153">QCPBars</a>
-, <a class="el" href="class_q_c_p_color_map.html#ada7fe6f5314d7a75377e86d3867d23f0">QCPColorMap</a>
-, <a class="el" href="class_q_c_p_curve.html#a0b3f4916f33b692508a6a1292b46880e">QCPCurve</a>
-, <a class="el" href="class_q_c_p_error_bars.html#a78990786eb7632c9ba07105888eb6b1c">QCPErrorBars</a>
-, <a class="el" href="class_q_c_p_financial.html#a6067c625621b07a85a6989a0a4b8d309">QCPFinancial</a>
-, <a class="el" href="class_q_c_p_graph.html#ab70a737dabcedbd4da4a0bc5a9cff60e">QCPGraph</a>
-, <a class="el" href="class_q_c_p_item_bracket.html#ae0e06156ec6a11c8a0c4b6f8883c72a8">QCPItemBracket</a>
-, <a class="el" href="class_q_c_p_item_curve.html#a3633c02c3d753081ca26debd92f6cf3a">QCPItemCurve</a>
-, <a class="el" href="class_q_c_p_item_ellipse.html#adae105786cd2f5dbc557c8846a0ec994">QCPItemEllipse</a>
-, <a class="el" href="class_q_c_p_item_line.html#a6ab9156f12d5f4cf23bf24121c2bf97c">QCPItemLine</a>
-, <a class="el" href="class_q_c_p_item_pixmap.html#aa2919a96737ed02f643fe138fb830712">QCPItemPixmap</a>
-, <a class="el" href="class_q_c_p_item_rect.html#a9a19c1c6a0c4ad8cbd9c4cbe93d6e2ac">QCPItemRect</a>
-, <a class="el" href="class_q_c_p_item_straight_line.html#ab5058792781373379db1c3ddd3462576">QCPItemStraightLine</a>
-, <a class="el" href="class_q_c_p_item_text.html#ab9d7938a7445f16a00391e9355a5ceaa">QCPItemText</a>
-, <a class="el" href="class_q_c_p_item_tracer.html#a690bdc69b630e01a16cdd03a883bebbf">QCPItemTracer</a>
+, <a class="el" href="class_q_c_p_bars.html#a121f899c27af3186fe93dcd0eb98f49b">QCPBars</a>
+, <a class="el" href="class_q_c_p_color_map.html#afb4b843596addf58096082827a9e3450">QCPColorMap</a>
+, <a class="el" href="class_q_c_p_curve.html#a0ed9b7e6b4bc72010d6fcd974af46a8b">QCPCurve</a>
+, <a class="el" href="class_q_c_p_error_bars.html#ac1b6675ef43e32547a3cbcf7b7ac46ed">QCPErrorBars</a>
+, <a class="el" href="class_q_c_p_financial.html#aac8e91622ac58330fa9ce81cc8fd40ee">QCPFinancial</a>
+, <a class="el" href="class_q_c_p_graph.html#a6d669d04462d272c6aa0e5f85846d673">QCPGraph</a>
+, <a class="el" href="class_q_c_p_item_bracket.html#a49a6b2f41e0a8c2a2e3a2836027a8455">QCPItemBracket</a>
+, <a class="el" href="class_q_c_p_item_curve.html#a718fa40140a43c8afbd41a3d85c92d72">QCPItemCurve</a>
+, <a class="el" href="class_q_c_p_item_ellipse.html#ab6e2b8a29695c606c7731e498297ca29">QCPItemEllipse</a>
+, <a class="el" href="class_q_c_p_item_line.html#a8e02bfbca04fbcf3dbc375a2bf693229">QCPItemLine</a>
+, <a class="el" href="class_q_c_p_item_pixmap.html#a65d1ede7bb479b90d40186d083071947">QCPItemPixmap</a>
+, <a class="el" href="class_q_c_p_item_rect.html#a2e68621b75bae4da6ae0ab2cdd0dd733">QCPItemRect</a>
+, <a class="el" href="class_q_c_p_item_straight_line.html#a2e36c9d4dcc3aeda78a5584f790e39e3">QCPItemStraightLine</a>
+, <a class="el" href="class_q_c_p_item_text.html#a676aaec10ad3cc4d7d0e4847db04c838">QCPItemText</a>
+, <a class="el" href="class_q_c_p_item_tracer.html#a9fd955fea40e977d66f3a9fd5765aec4">QCPItemTracer</a>
 , <a class="el" href="class_q_c_p_layerable.html#a04db8351fefd44cfdb77958e75c6288e">QCPLayerable</a>
 , <a class="el" href="class_q_c_p_layout_element.html#ae97f483cccedadbf18ea4525ef240ee4">QCPLayoutElement</a>
 , <a class="el" href="class_q_c_p_layout_inset.html#a2eeef7ea1b8340e7c7c2e2fc229df5ea">QCPLayoutInset</a>
-, <a class="el" href="class_q_c_p_legend.html#a9dc868bd95069fad9f40718b7715e100">QCPLegend</a>
-, <a class="el" href="class_q_c_p_statistical_box.html#ae78bfe096f463a8d08464c20cc25defe">QCPStatisticalBox</a>
-, <a class="el" href="class_q_c_p_text_element.html#a29d2998b50ef369d88ca990b9d3542b3">QCPTextElement</a>
+, <a class="el" href="class_q_c_p_legend.html#aa53507624491908fb3d1a514b1fc674e">QCPLegend</a>
+, <a class="el" href="class_q_c_p_statistical_box.html#a1607fa92f829c631107c20ccb2d70a6d">QCPStatisticalBox</a>
+, <a class="el" href="class_q_c_p_text_element.html#a1e721bc2994a127ef5a8f0a514a5dbac">QCPTextElement</a>
 </li>
 <li>selectTestRect()
 : <a class="el" href="class_q_c_p_abstract_plottable1_d.html#ac385c38a79e419ed3600c2ee398fd216">QCPAbstractPlottable1D&lt; DataType &gt;</a>
@@ -177,7 +198,7 @@ $(function() {
 , <a class="el" href="class_q_c_p_statistical_box.html#a42febad6ad5e924a151434cc434b4ffc">QCPStatisticalBox</a>
 </li>
 <li>set()
-: <a class="el" href="class_q_c_p_data_container.html#aff99fffbb26597a354c4bc8312596ab2">QCPDataContainer&lt; DataType &gt;</a>
+: <a class="el" href="class_q_c_p_data_container.html#ae7042bd534fc3ce7befa2ce3f790b5bf">QCPDataContainer&lt; DataType &gt;</a>
 </li>
 <li>setAdaptiveSampling()
 : <a class="el" href="class_q_c_p_graph.html#ab468cd600160f327836aa0644291e64c">QCPGraph</a>
@@ -505,6 +526,9 @@ $(function() {
 : <a class="el" href="class_q_c_p_layer.html#a938d57b04f4e4c23cedf1711f983919b">QCPLayer</a>
 , <a class="el" href="class_q_c_p_painter.html#af6b1f7d2bbc548b10aa55d8b6ad49577">QCPPainter</a>
 </li>
+<li>setModes()
+: <a class="el" href="class_q_c_p_painter.html#a5fac93adc29c7c4dea9f3e171e9e635e">QCPPainter</a>
+</li>
 <li>setMultiSelectModifier()
 : <a class="el" href="class_q_custom_plot.html#a8fc96e3b5138a06759a2a90c166df516">QCustomPlot</a>
 </li>
@@ -563,7 +587,7 @@ $(function() {
 , <a class="el" href="class_q_c_p_item_straight_line.html#a9f36c9c9e60d7d9ac084c80380ac8601">QCPItemStraightLine</a>
 , <a class="el" href="class_q_c_p_item_text.html#a9b9ec6eea0eb0603977ff84d4c78d0a3">QCPItemText</a>
 , <a class="el" href="class_q_c_p_item_tracer.html#af8048636fc1ef0152e51809b008df2ca">QCPItemTracer</a>
-, <a class="el" href="class_q_c_p_painter.html#af9c7a4cd1791403901f8c5b82a150195">QCPPainter</a>
+, <a class="el" href="class_q_c_p_painter.html#a5c4d88f21564e156e88ef807f7cf0003">QCPPainter</a>
 , <a class="el" href="class_q_c_p_scatter_style.html#a761f1f229cc0ca4703e1e2b89f6dd1ba">QCPScatterStyle</a>
 , <a class="el" href="class_q_c_p_selection_decorator.html#ac2c8192e1e294aa3a4a7f32a859e3d76">QCPSelectionDecorator</a>
 , <a class="el" href="class_q_c_p_selection_rect.html#ada20b7fb1b2dcbe50523262636b06963">QCPSelectionRect</a>
@@ -672,7 +696,8 @@ $(function() {
 , <a class="el" href="class_q_c_p_text_element.html#a3c5f9b1897a036b16495ed3fb8371c55">QCPTextElement</a>
 </li>
 <li>setSelectableParts()
-: <a class="el" href="class_q_c_p_legend.html#a9ce60aa8bbd89f62ae4fa83ac6c60110">QCPLegend</a>
+: <a class="el" href="class_q_c_p_axis.html#a513f9b9e326c505d9bec54880031b085">QCPAxis</a>
+, <a class="el" href="class_q_c_p_legend.html#a9ce60aa8bbd89f62ae4fa83ac6c60110">QCPLegend</a>
 </li>
 <li>setSelected()
 : <a class="el" href="class_q_c_p_abstract_item.html#a203de94ad586cc44d16c9565f49d3378">QCPAbstractItem</a>
@@ -711,7 +736,8 @@ $(function() {
 : <a class="el" href="class_q_c_p_axis.html#a02ec2a75d4d8401eaab834fbc6803d30">QCPAxis</a>
 </li>
 <li>setSelectedParts()
-: <a class="el" href="class_q_c_p_legend.html#a2aee309bb5c2a794b1987f3fc97f8ad8">QCPLegend</a>
+: <a class="el" href="class_q_c_p_axis.html#ab9d7a69277dcbed9119b3c1f25ca19c3">QCPAxis</a>
+, <a class="el" href="class_q_c_p_legend.html#a2aee309bb5c2a794b1987f3fc97f8ad8">QCPLegend</a>
 </li>
 <li>setSelectedPen()
 : <a class="el" href="class_q_c_p_item_bracket.html#a349785c31122778a520c64891fa204c5">QCPItemBracket</a>
@@ -867,14 +893,14 @@ $(function() {
 </li>
 <li>setTickOrigin()
 : <a class="el" href="class_q_c_p_axis_ticker.html#ab509c7e500293bf66a8409f0d7c23943">QCPAxisTicker</a>
-, <a class="el" href="class_q_c_p_axis_ticker_date_time.html#a2ea905872b8171847a49a5e093fb0c48">QCPAxisTickerDateTime</a>
+, <a class="el" href="class_q_c_p_axis_ticker_date_time.html#a5388e048cbd32cf1ba730b9f1859eb5c">QCPAxisTickerDateTime</a>
 </li>
 <li>setTickPen()
 : <a class="el" href="class_q_c_p_axis.html#ad80923bcc1c5da4c4db602c5325e797e">QCPAxis</a>
 </li>
 <li>setTicks()
 : <a class="el" href="class_q_c_p_axis.html#ac891409315bc379e3b1abdb162c1a011">QCPAxis</a>
-, <a class="el" href="class_q_c_p_axis_ticker_text.html#a8cdf1f21940f1f53f5e3d30b2c74f5cf">QCPAxisTickerText</a>
+, <a class="el" href="class_q_c_p_axis_ticker_text.html#a69f3898cc1cf11d2437851f959faa1e8">QCPAxisTickerText</a>
 </li>
 <li>setTickStep()
 : <a class="el" href="class_q_c_p_axis_ticker_fixed.html#a4bc83d85a4f81d4abdd3fa5042d7b833">QCPAxisTickerFixed</a>
@@ -900,9 +926,6 @@ $(function() {
 </li>
 <li>setTypeY()
 : <a class="el" href="class_q_c_p_item_position.html#ac2a454aa5a54c1615c50686601ec4510">QCPItemPosition</a>
-</li>
-<li>Setup()
-: <a class="el" href="class_c_o_m_port_data_source.html#a13fb6a3c96e1e6e12dc9b0db4c55b362">COMPortDataSource</a>
 </li>
 <li>setupFullAxesBox()
 : <a class="el" href="class_q_c_p_axis_rect.html#a5fa906175447b14206954f77fc7f1ef4">QCPAxisRect</a>
@@ -967,8 +990,8 @@ $(function() {
 <li>simplify()
 : <a class="el" href="class_q_c_p_data_selection.html#a4a2fbad1a6e4d1dd26fdfdf88956f2a4">QCPDataSelection</a>
 , <a class="el" href="class_q_c_p_layout.html#a41e6ac049143866e8f8b4964efab01b2">QCPLayout</a>
-, <a class="el" href="class_q_c_p_layout_grid.html#a07841807e57ea5f6f0072250797defc0">QCPLayoutGrid</a>
-, <a class="el" href="class_q_c_p_layout_inset.html#abdac9a04752751ea68c320016086a2e8">QCPLayoutInset</a>
+, <a class="el" href="class_q_c_p_layout_grid.html#a38621ca7aa633b6a9a88617df7f08672">QCPLayoutGrid</a>
+, <a class="el" href="class_q_c_p_layout_inset.html#a18b7d508f0baa60cc5dcb1343cf7f32a">QCPLayoutInset</a>
 </li>
 <li>size()
 : <a class="el" href="class_q_c_p_axis_rect.html#a7a8289346eb612f422c704f8b75cf479">QCPAxisRect</a>
@@ -991,10 +1014,10 @@ $(function() {
 , <a class="el" href="class_q_c_p_statistical_box_data.html#a168100275e85935207deec86216abc88">QCPStatisticalBoxData</a>
 </li>
 <li>sortKeyIsMainKey()
-: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#aa4a61e7fc79f1b71ff660db53c92efd2">QCPAbstractPlottable1D&lt; DataType &gt;</a>
+: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#a022e8905f5a667d8379493d6a037e79f">QCPAbstractPlottable1D&lt; DataType &gt;</a>
 , <a class="el" href="class_q_c_p_bars_data.html#aebaabda335bd4c9f81bd585d16b63aa8">QCPBarsData</a>
 , <a class="el" href="class_q_c_p_curve_data.html#a1b78f228e31ca40a1e69add44537918c">QCPCurveData</a>
-, <a class="el" href="class_q_c_p_error_bars.html#a2e5264bcd56e516d2ce0e1bdbccb4e6c">QCPErrorBars</a>
+, <a class="el" href="class_q_c_p_error_bars.html#aa00fcef7b0cb5c54bafe32ab4b16e674">QCPErrorBars</a>
 , <a class="el" href="class_q_c_p_financial_data.html#a1121db9420a7694144f6a99b09257a5f">QCPFinancialData</a>
 , <a class="el" href="class_q_c_p_graph_data.html#a1c98dfd21b82321a173db4ff860dfd21">QCPGraphData</a>
 , <a class="el" href="class_q_c_p_plottable_interface1_d.html#a229e65e7ab968dd6cd0e259fa504b79d">QCPPlottableInterface1D</a>
@@ -1011,19 +1034,21 @@ $(function() {
 </li>
 <li>startPainting()
 : <a class="el" href="class_q_c_p_abstract_paint_buffer.html#a9e9f29b19c033cf02fb96f1a148463f3">QCPAbstractPaintBuffer</a>
-, <a class="el" href="class_q_c_p_paint_buffer_pixmap.html#a0b919d080c2551ee35aedccebde0a67d">QCPPaintBufferPixmap</a>
+, <a class="el" href="class_q_c_p_paint_buffer_pixmap.html#a357964ef7d28cfa530338be4e5c93234">QCPPaintBufferPixmap</a>
 </li>
 <li>StartTimer()
-: <a class="el" href="class_i_timer_model.html#aa3c2930d4f2a1d34c85ac1333fd2ad5b">ITimerModel</a>
-, <a class="el" href="class_i_work_timer_model.html#a67412cb852847255971fe12b2ea13456">IWorkTimerModel</a>
+: <a class="el" href="class_i_work_timer_model.html#a67412cb852847255971fe12b2ea13456">IWorkTimerModel</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

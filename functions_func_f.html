@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_func_f.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -71,15 +92,15 @@ $(function() {
 : <a class="el" href="class_q_c_p_color_map_data.html#a93e2a549d7702bc849cd48a585294657">QCPColorMapData</a>
 </li>
 <li>findBegin()
-: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#ae8206cf770f180e01d0a02e998d4e788">QCPAbstractPlottable1D&lt; DataType &gt;</a>
+: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#ae6ead74a0d6a17954e1857f361b9ccf2">QCPAbstractPlottable1D&lt; DataType &gt;</a>
 , <a class="el" href="class_q_c_p_data_container.html#a2ad8a5399072d99a242d3a6d2d7e278a">QCPDataContainer&lt; DataType &gt;</a>
-, <a class="el" href="class_q_c_p_error_bars.html#aad74fa52d2471f23677faff1d8697cee">QCPErrorBars</a>
+, <a class="el" href="class_q_c_p_error_bars.html#a5c74b510f1d7254263ec18cd3a359a07">QCPErrorBars</a>
 , <a class="el" href="class_q_c_p_plottable_interface1_d.html#a5b95783271306a4de97be54eac1e7d13">QCPPlottableInterface1D</a>
 </li>
 <li>findEnd()
-: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#a02434e0e5599cd072225692f3469750b">QCPAbstractPlottable1D&lt; DataType &gt;</a>
+: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#ad913df7f02add35150779dce3913aeae">QCPAbstractPlottable1D&lt; DataType &gt;</a>
 , <a class="el" href="class_q_c_p_data_container.html#afb8b8f23cc2b7234a793a25ce79fe48f">QCPDataContainer&lt; DataType &gt;</a>
-, <a class="el" href="class_q_c_p_error_bars.html#a5a529f3a9e71b6c29f8a0397d570489e">QCPErrorBars</a>
+, <a class="el" href="class_q_c_p_error_bars.html#a64629f13bb290d41dd8f1b37346bfdd4">QCPErrorBars</a>
 , <a class="el" href="class_q_c_p_plottable_interface1_d.html#a5deced1016bc55a41a2339619045b295">QCPPlottableInterface1D</a>
 </li>
 <li>fromSortKey()
@@ -91,11 +112,14 @@ $(function() {
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

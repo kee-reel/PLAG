@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_pomodoro_view.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +81,8 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-slots">Public Slots</a> &#124;
-<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_pomodoro_view-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -81,74 +100,8 @@ Inheritance diagram for PomodoroView:</div>
 </map>
  </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
-Public Slots</h2></td></tr>
-<tr class="memitem:a4bd9bd6df37420a9fd31c9d067806905"><td class="memItemLeft" align="right" valign="top"><a id="a4bd9bd6df37420a9fd31c9d067806905"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReferencePluginClosed</b> (PluginInfo *pluginInfo) override</td></tr>
-<tr class="separator:a4bd9bd6df37420a9fd31c9d067806905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad19b7ff7983a662cd78235a47dd75f02"><td class="memItemLeft" align="right" valign="top"><a id="ad19b7ff7983a662cd78235a47dd75f02"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Open</b> (IModelPlugin *model) override</td></tr>
-<tr class="separator:ad19b7ff7983a662cd78235a47dd75f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a250f01540e299dc3777c0e118075461a"><td class="memItemLeft" align="right" valign="top"><a id="a250f01540e299dc3777c0e118075461a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Close</b> () override</td></tr>
-<tr class="separator:a250f01540e299dc3777c0e118075461a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_slots_class_i_plugin"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_class_i_plugin')"><img src="closed.png" alt="-"/>&#160;Public Slots inherited from <a class="el" href="class_i_plugin.html">IPlugin</a></td></tr>
-<tr class="memitem:a2168e932856b984e571d493f49568992 inherit pub_slots_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a2168e932856b984e571d493f49568992"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onReferenceReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *reference)=0</td></tr>
-<tr class="separator:a2168e932856b984e571d493f49568992 inherit pub_slots_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
-Signals</h2></td></tr>
-<tr class="memitem:a63d48e2cffcf576e8858881a23d0b598"><td class="memItemLeft" align="right" valign="top"><a id="a63d48e2cffcf576e8858881a23d0b598"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnOpen</b> (QWidget *)</td></tr>
-<tr class="separator:a63d48e2cffcf576e8858881a23d0b598"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1058eb9fce75886681928df1605b395"><td class="memItemLeft" align="right" valign="top"><a id="aa1058eb9fce75886681928df1605b395"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClose</b> (PluginInfo *)</td></tr>
-<tr class="separator:aa1058eb9fce75886681928df1605b395"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e1ce7df3abf33b7c08a2287e3962ad9"><td class="memItemLeft" align="right" valign="top"><a id="a2e1ce7df3abf33b7c08a2287e3962ad9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClose</b> ()</td></tr>
-<tr class="separator:a2e1ce7df3abf33b7c08a2287e3962ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header signals_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('signals_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
-<tr class="memitem:a6ecc1aa9db1cecb123679c71262cead8 inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a6ecc1aa9db1cecb123679c71262cead8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:a6ecc1aa9db1cecb123679c71262cead8 inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb79f6aa7708440126afad50bce83a32 inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="abb79f6aa7708440126afad50bce83a32"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:abb79f6aa7708440126afad50bce83a32 inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad34235ae16d16e61f20470497dc53e3b inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ad34235ae16d16e61f20470497dc53e3b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:ad34235ae16d16e61f20470497dc53e3b inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header signals_class_i_plugin"><td colspan="2" onclick="javascript:toggleInherit('signals_class_i_plugin')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_i_plugin.html">IPlugin</a></td></tr>
-<tr class="memitem:a0d3a6b2aa652b127ab693df292790cca inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a0d3a6b2aa652b127ab693df292790cca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:a0d3a6b2aa652b127ab693df292790cca inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26f0a7edd6c50a9b5b6e8d9443c1bee3 inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a26f0a7edd6c50a9b5b6e8d9443c1bee3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:a26f0a7edd6c50a9b5b6e8d9443c1bee3 inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a6bc1065d86cbf667d37eb4ddb03879fd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a73074fd29303bf2e933f6e4fcba3e05a"><td class="memItemLeft" align="right" valign="top"><a id="a73074fd29303bf2e933f6e4fcba3e05a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PomodoroView</b> (QWidget *parent=0)</td></tr>
-<tr class="separator:a73074fd29303bf2e933f6e4fcba3e05a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc539b824d8898bc18cfb6d6bf04aab8"><td class="memItemLeft" align="right" valign="top"><a id="afc539b824d8898bc18cfb6d6bf04aab8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPluginInfo</b> (PluginInfo *pluginInfo) override</td></tr>
-<tr class="separator:afc539b824d8898bc18cfb6d6bf04aab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af08465f4631ec877442d5fcde56d2f99"><td class="memItemLeft" align="right" valign="top"><a id="af08465f4631ec877442d5fcde56d2f99"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnAllSetup</b> () override</td></tr>
-<tr class="separator:af08465f4631ec877442d5fcde56d2f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac18c3f31681087212f58d0c83f9efaa0"><td class="memItemLeft" align="right" valign="top"><a id="ac18c3f31681087212f58d0c83f9efaa0"></a>
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>GetLastError</b> () override</td></tr>
-<tr class="separator:ac18c3f31681087212f58d0c83f9efaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32b03813c0722058d9c440db89c5b806"><td class="memItemLeft" align="right" valign="top"><a id="a32b03813c0722058d9c440db89c5b806"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AddReferencePlugin</b> (PluginInfo *pluginInfo) override</td></tr>
-<tr class="separator:a32b03813c0722058d9c440db89c5b806"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6e1150784fc09e65d53eb5d9a1fe798"><td class="memItemLeft" align="right" valign="top"><a id="ac6e1150784fc09e65d53eb5d9a1fe798"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>eventFilter</b> (QObject *watched, QEvent *event) override</td></tr>
-<tr class="separator:ac6e1150784fc09e65d53eb5d9a1fe798"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73074fd29303bf2e933f6e4fcba3e05a"><td class="memItemLeft" align="right" valign="top"><a id="a73074fd29303bf2e933f6e4fcba3e05a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>PomodoroView</b> (QWidget *parent=0)</td></tr>
 <tr class="separator:a73074fd29303bf2e933f6e4fcba3e05a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,6 +149,30 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> () 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_slots_class_i_plugin"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_class_i_plugin')"><img src="closed.png" alt="-"/>&#160;Public Slots inherited from <a class="el" href="class_i_plugin.html">IPlugin</a></td></tr>
+<tr class="memitem:a2168e932856b984e571d493f49568992 inherit pub_slots_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a2168e932856b984e571d493f49568992"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onReferenceReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *reference)=0</td></tr>
+<tr class="separator:a2168e932856b984e571d493f49568992 inherit pub_slots_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('signals_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
+<tr class="memitem:a6ecc1aa9db1cecb123679c71262cead8 inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a6ecc1aa9db1cecb123679c71262cead8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:a6ecc1aa9db1cecb123679c71262cead8 inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb79f6aa7708440126afad50bce83a32 inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="abb79f6aa7708440126afad50bce83a32"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:abb79f6aa7708440126afad50bce83a32 inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad34235ae16d16e61f20470497dc53e3b inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ad34235ae16d16e61f20470497dc53e3b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:ad34235ae16d16e61f20470497dc53e3b inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_class_i_plugin"><td colspan="2" onclick="javascript:toggleInherit('signals_class_i_plugin')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_i_plugin.html">IPlugin</a></td></tr>
+<tr class="memitem:a0d3a6b2aa652b127ab693df292790cca inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a0d3a6b2aa652b127ab693df292790cca"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:a0d3a6b2aa652b127ab693df292790cca inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26f0a7edd6c50a9b5b6e8d9443c1bee3 inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a26f0a7edd6c50a9b5b6e8d9443c1bee3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:a26f0a7edd6c50a9b5b6e8d9443c1bee3 inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a6bc1065d86cbf667d37eb4ddb03879fd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_slots_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Protected Slots inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:ae00bb6214162abc83e05a983b4bd4640 inherit pro_slots_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ae00bb6214162abc83e05a983b4bd4640"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onReferenceReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *reference) override</td></tr>
@@ -222,10 +199,10 @@ template&lt;class T &gt; </td></tr>
 <tr class="separator:a21ef424393f846a1f3d3a7283c16caee inherit pro_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:a8e42955422640f8014aff87f242a3d5c inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a8e42955422640f8014aff87f242a3d5c"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, <a class="el" href="class_i_plugin.html">IPlugin</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesMap</b></td></tr>
+QMap&lt; QString, <a class="el" href="class_i_plugin.html">IPlugin</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesMap</b></td></tr>
 <tr class="separator:a8e42955422640f8014aff87f242a3d5c inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3792623c30203d82de060eea737321a inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ac3792623c30203d82de060eea737321a"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesReadyMap</b></td></tr>
+QMap&lt; QString, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesReadyMap</b></td></tr>
 <tr class="separator:ac3792623c30203d82de060eea737321a inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aa0c8bcbf614a222aecbde4f55fb6a4 inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a2aa0c8bcbf614a222aecbde4f55fb6a4"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_lastErrorString</b></td></tr>
@@ -244,15 +221,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesRead
 <tr class="separator:af26000611e1bd088ef9f3fd2f79d84b3 inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/PomodoroView/<a class="el" href="_old_plugins_2_views_2_pomodoro_view_2pomodoroview_8h_source.html">pomodoroview.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/PomodoroView/pomodoroview.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PomodoroView/<a class="el" href="pomodoroview_8h_source.html">pomodoroview.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PomodoroView/pomodoroview.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:28 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_pomodoro_view.html">PomodoroView</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

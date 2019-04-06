@@ -1,0 +1,57 @@
+var group___main_menu_plugin_view__imp =
+[
+    [ "MainForm", "class_main_form.html", [
+      [ "MainForm", "class_main_form.html#a8407ed1ab0a7b7bef115711157c8f344", null ],
+      [ "~MainForm", "class_main_form.html#a707cc28a931b2ae8cf0bd57d602a6b69", null ],
+      [ "MainForm", "class_main_form.html#a8407ed1ab0a7b7bef115711157c8f344", null ],
+      [ "~MainForm", "class_main_form.html#a707cc28a931b2ae8cf0bd57d602a6b69", null ],
+      [ "MainForm", "class_main_form.html#a09342a503d74453c0ef981ca356cd722", null ],
+      [ "~MainForm", "class_main_form.html#a707cc28a931b2ae8cf0bd57d602a6b69", null ],
+      [ "MainForm", "class_main_form.html#a8407ed1ab0a7b7bef115711157c8f344", null ],
+      [ "~MainForm", "class_main_form.html#a707cc28a931b2ae8cf0bd57d602a6b69", null ],
+      [ "AddSubitems", "class_main_form.html#ab32e3ac88ba472935727703bdd23b045", null ],
+      [ "onClose", "class_main_form.html#af5c793d14da28ffb85334e9788f64756", null ],
+      [ "OnClose", "class_main_form.html#ae51e9ea97c7c12d0d8b59cb295f8018b", null ],
+      [ "onClose", "class_main_form.html#af5c793d14da28ffb85334e9788f64756", null ],
+      [ "onClose", "class_main_form.html#af5c793d14da28ffb85334e9788f64756", null ],
+      [ "OnItemConvert", "class_main_form.html#a9f87a145f41c5b1bf064415f79423586", null ],
+      [ "OnItemSelected", "class_main_form.html#ae851ce012e842342e51efd6890f6c1cd", null ],
+      [ "SetModel", "class_main_form.html#aa6a63e62eb08de727aba05a0a20c3d3e", null ],
+      [ "SetModel", "class_main_form.html#a4d6783977b0be48e1523fd03d836e64b", null ],
+      [ "SetModel", "class_main_form.html#a69da72ae01b90a41559c050e81020135", null ],
+      [ "SetRootMenuItem", "class_main_form.html#aef6db4e76d3134f8fb4832e324f890ee", null ],
+      [ "WipeAllItems", "class_main_form.html#a27f6000033cf622a9629b82927055c95", null ],
+      [ "itemModel", "class_main_form.html#a7786cdf045d6037668f86b6db1277ba3", null ],
+      [ "testImagesModel", "class_main_form.html#afcb8254310b51c1fd58c3852a6f063fa", null ],
+      [ "testSamples", "class_main_form.html#a04762603238b7eace528239e5354a632", null ],
+      [ "trainImagesModel", "class_main_form.html#af5cdf86f72c4e89d8038b1594078b2a3", null ],
+      [ "trainingSamples", "class_main_form.html#a52b405f679729e32653e468a14aec648", null ]
+    ] ],
+    [ "MainMenuPluginView", "class_main_menu_plugin_view.html", [
+      [ "MainMenuPluginView", "class_main_menu_plugin_view.html#a84d6863b40cb523802a923f90060cd67", null ],
+      [ "~MainMenuPluginView", "class_main_menu_plugin_view.html#a5a73edd7c69bc94e8767d5b3712818aa", null ],
+      [ "AddSubitems", "class_main_menu_plugin_view.html#ac7fa1b381a025e4100039d8257c171f1", null ],
+      [ "onAllReferencesReady", "class_main_menu_plugin_view.html#a0cba6026bd44314cdb737566f1d9db43", null ],
+      [ "onAllReferencesSet", "class_main_menu_plugin_view.html#a41b58021caff159cbe208ead68b0b8d0", null ],
+      [ "OnItemSelected", "class_main_menu_plugin_view.html#aa35a6d543f0e6bbf475667f06157a974", null ],
+      [ "SetRootMenuItem", "class_main_menu_plugin_view.html#af22c8dc600c659df1f67f65b1ab3ea48", null ],
+      [ "WipeAllItems", "class_main_menu_plugin_view.html#a88382becc2f68c1d84b5f9850309525b", null ]
+    ] ],
+    [ "MenuItemGraphicsObject", "class_menu_item_graphics_object.html", [
+      [ "MenuItemGraphicsObject", "class_menu_item_graphics_object.html#a045fc50c8e1f2a0c4494df1f7c4c3875", null ],
+      [ "MenuItemGraphicsObject", "class_menu_item_graphics_object.html#ab94571343e3347ded419856b39df27d8", null ],
+      [ "boundingRect", "class_menu_item_graphics_object.html#ab17f3bcb176ffd6550df607a3e8eb3a9", null ],
+      [ "mousePressEvent", "class_menu_item_graphics_object.html#a6f291090f45fc75a171ae55a09fd4f3d", null ],
+      [ "mouseReleaseEvent", "class_menu_item_graphics_object.html#addbf1e6b7247679ccf8b31f6a885f6e6", null ],
+      [ "OnClicked", "class_menu_item_graphics_object.html#a8cc186eece634847665b15f4ae58b426", null ],
+      [ "paint", "class_menu_item_graphics_object.html#a00a392d4eeba783e2e8f73211adf8732", null ],
+      [ "boundRect", "class_menu_item_graphics_object.html#ae78d7732b7108406484238c3814bb1e6", null ],
+      [ "dx", "class_menu_item_graphics_object.html#aba38dc2a531e530d08f2aa92544f3104", null ],
+      [ "dy", "class_menu_item_graphics_object.html#a9b7f14de2c2e5ff71aad8a6ab729ef1d", null ],
+      [ "itemMenuName", "class_menu_item_graphics_object.html#a6ed305de3a3718503a5e3dabdbc07786", null ],
+      [ "menuItem", "class_menu_item_graphics_object.html#a6b943b0d1f967b2d8392701b25b2a77c", null ],
+      [ "parentMenuItem", "class_menu_item_graphics_object.html#a94290bfb4d0a10a7adb0516c84239b53", null ],
+      [ "pressed", "class_menu_item_graphics_object.html#ac8a4aab9ad0917b4f4270225a7ecbb58", null ],
+      [ "viewPluginMeta", "class_menu_item_graphics_object.html#a3066852a232e7371502c006d9576a35a", null ]
+    ] ]
+];

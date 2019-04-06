@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_q_c_p_painter.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -84,58 +105,10 @@ Inheritance diagram for QCPPainter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a156cf16444ff5e0d81a73c615fdb156d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156d">PainterMode</a> { <br />
-&#160;&#160;<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">pmDefault</a> = 0x00, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">pmVectorized</a> = 0x01, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">pmNoCaching</a> = 0x02, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> = 0x04, 
-<br />
-&#160;&#160;<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">pmDefault</a> = 0x00, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">pmVectorized</a> = 0x01, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">pmNoCaching</a> = 0x02, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> = 0x04, 
-<br />
-&#160;&#160;<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">pmDefault</a> = 0x00, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">pmVectorized</a> = 0x01, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">pmNoCaching</a> = 0x02, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> = 0x04
-<br />
- }</td></tr>
-<tr class="separator:a156cf16444ff5e0d81a73c615fdb156d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156cf16444ff5e0d81a73c615fdb156d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156d">PainterMode</a> { <br />
-&#160;&#160;<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">pmDefault</a> = 0x00, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">pmVectorized</a> = 0x01, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">pmNoCaching</a> = 0x02, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> = 0x04, 
-<br />
-&#160;&#160;<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">pmDefault</a> = 0x00, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">pmVectorized</a> = 0x01, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">pmNoCaching</a> = 0x02, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> = 0x04, 
-<br />
-&#160;&#160;<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">pmDefault</a> = 0x00, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">pmVectorized</a> = 0x01, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">pmNoCaching</a> = 0x02, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> = 0x04
-<br />
- }</td></tr>
-<tr class="separator:a156cf16444ff5e0d81a73c615fdb156d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156cf16444ff5e0d81a73c615fdb156d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156d">PainterMode</a> { <br />
-&#160;&#160;<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">pmDefault</a> = 0x00, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">pmVectorized</a> = 0x01, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">pmNoCaching</a> = 0x02, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> = 0x04, 
-<br />
-&#160;&#160;<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">pmDefault</a> = 0x00, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">pmVectorized</a> = 0x01, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">pmNoCaching</a> = 0x02, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> = 0x04, 
-<br />
-&#160;&#160;<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd">pmDefault</a> = 0x00, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd">pmVectorized</a> = 0x01, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff">pmNoCaching</a> = 0x02, 
-<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> = 0x04
-<br />
+<tr class="memitem:a156cf16444ff5e0d81a73c615fdb156d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156d">PainterMode</a> { <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156da3bac5e87e3d58553b297befb4eee2a45">pmDefault</a> = 0x00, 
+<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156daeda679cd55dcd468341d07d48a30b6ab">pmVectorized</a> = 0x01, 
+<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dae78f9a4eb277a5f9207f50850a51a0b0">pmNoCaching</a> = 0x02, 
+<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dac1e481bfaf408f2bd2eaad3ec341f36b">pmNonCosmetic</a> = 0x04
  }</td></tr>
 <tr class="separator:a156cf16444ff5e0d81a73c615fdb156d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -155,8 +128,7 @@ PainterModes&#160;</td><td class="memItemRight" valign="bottom"><b>modes</b> () 
 <tr class="separator:aaba1deb9188244d9ea65b035112b4d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6b1f7d2bbc548b10aa55d8b6ad49577"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_painter.html#af6b1f7d2bbc548b10aa55d8b6ad49577">setMode</a> (<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156d">PainterMode</a> mode, bool enabled=true)</td></tr>
 <tr class="separator:af6b1f7d2bbc548b10aa55d8b6ad49577"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fac93adc29c7c4dea9f3e171e9e635e"><td class="memItemLeft" align="right" valign="top"><a id="a5fac93adc29c7c4dea9f3e171e9e635e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setModes</b> (PainterModes modes)</td></tr>
+<tr class="memitem:a5fac93adc29c7c4dea9f3e171e9e635e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_painter.html#a5fac93adc29c7c4dea9f3e171e9e635e">setModes</a> (PainterModes modes)</td></tr>
 <tr class="separator:a5fac93adc29c7c4dea9f3e171e9e635e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a41146ccd619dceab6e25ec7b46b044"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_painter.html#a0a41146ccd619dceab6e25ec7b46b044">begin</a> (QPaintDevice *device)</td></tr>
 <tr class="separator:a0a41146ccd619dceab6e25ec7b46b044"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,96 +149,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>drawLine</b> (const Q
 <tr class="separator:a64908e6298d5bbd83457dc987cc3a022"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e63fbcf47e35c6f2ecd11b8fef7c7d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_painter.html#a7e63fbcf47e35c6f2ecd11b8fef7c7d8">makeNonCosmetic</a> ()</td></tr>
 <tr class="separator:a7e63fbcf47e35c6f2ecd11b8fef7c7d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae58dbb1795ddc4351ab324dc9898aa22"><td class="memItemLeft" align="right" valign="top"><a id="ae58dbb1795ddc4351ab324dc9898aa22"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPPainter</b> (QPaintDevice *device)</td></tr>
-<tr class="separator:ae58dbb1795ddc4351ab324dc9898aa22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aff96296e995f6f35b2596a482aae37"><td class="memItemLeft" align="right" valign="top"><a id="a5aff96296e995f6f35b2596a482aae37"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>antialiasing</b> () const</td></tr>
-<tr class="separator:a5aff96296e995f6f35b2596a482aae37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef102658219b24165f7ee2aad1b9e48f"><td class="memItemLeft" align="right" valign="top"><a id="aef102658219b24165f7ee2aad1b9e48f"></a>
-PainterModes&#160;</td><td class="memItemRight" valign="bottom"><b>modes</b> () const</td></tr>
-<tr class="separator:aef102658219b24165f7ee2aad1b9e48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaba1deb9188244d9ea65b035112b4d05"><td class="memItemLeft" align="right" valign="top"><a id="aaba1deb9188244d9ea65b035112b4d05"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setAntialiasing</b> (bool enabled)</td></tr>
-<tr class="separator:aaba1deb9188244d9ea65b035112b4d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6b1f7d2bbc548b10aa55d8b6ad49577"><td class="memItemLeft" align="right" valign="top"><a id="af6b1f7d2bbc548b10aa55d8b6ad49577"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMode</b> (<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156d">PainterMode</a> mode, bool enabled=true)</td></tr>
-<tr class="separator:af6b1f7d2bbc548b10aa55d8b6ad49577"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fac93adc29c7c4dea9f3e171e9e635e"><td class="memItemLeft" align="right" valign="top"><a id="a5fac93adc29c7c4dea9f3e171e9e635e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setModes</b> (PainterModes modes)</td></tr>
-<tr class="separator:a5fac93adc29c7c4dea9f3e171e9e635e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a41146ccd619dceab6e25ec7b46b044"><td class="memItemLeft" align="right" valign="top"><a id="a0a41146ccd619dceab6e25ec7b46b044"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (QPaintDevice *device)</td></tr>
-<tr class="separator:a0a41146ccd619dceab6e25ec7b46b044"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9c7a4cd1791403901f8c5b82a150195"><td class="memItemLeft" align="right" valign="top"><a id="af9c7a4cd1791403901f8c5b82a150195"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPen</b> (const QPen &amp;pen)</td></tr>
-<tr class="separator:af9c7a4cd1791403901f8c5b82a150195"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4d88f21564e156e88ef807f7cf0003"><td class="memItemLeft" align="right" valign="top"><a id="a5c4d88f21564e156e88ef807f7cf0003"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPen</b> (const QColor &amp;color)</td></tr>
-<tr class="separator:a5c4d88f21564e156e88ef807f7cf0003"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25e76095aae41da0d08035060e5f81ca"><td class="memItemLeft" align="right" valign="top"><a id="a25e76095aae41da0d08035060e5f81ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPen</b> (Qt::PenStyle penStyle)</td></tr>
-<tr class="separator:a25e76095aae41da0d08035060e5f81ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b4b1b9bd495e182c731774dc800e6e0"><td class="memItemLeft" align="right" valign="top"><a id="a0b4b1b9bd495e182c731774dc800e6e0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawLine</b> (const QLineF &amp;line)</td></tr>
-<tr class="separator:a0b4b1b9bd495e182c731774dc800e6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1638db27929491b3f1beb74d6cbad5e"><td class="memItemLeft" align="right" valign="top"><a id="ad1638db27929491b3f1beb74d6cbad5e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawLine</b> (const QPointF &amp;p1, const QPointF &amp;p2)</td></tr>
-<tr class="separator:ad1638db27929491b3f1beb74d6cbad5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fd6821ee6fecbfa04444c9062912abd"><td class="memItemLeft" align="right" valign="top"><a id="a8fd6821ee6fecbfa04444c9062912abd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>save</b> ()</td></tr>
-<tr class="separator:a8fd6821ee6fecbfa04444c9062912abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64908e6298d5bbd83457dc987cc3a022"><td class="memItemLeft" align="right" valign="top"><a id="a64908e6298d5bbd83457dc987cc3a022"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>restore</b> ()</td></tr>
-<tr class="separator:a64908e6298d5bbd83457dc987cc3a022"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e63fbcf47e35c6f2ecd11b8fef7c7d8"><td class="memItemLeft" align="right" valign="top"><a id="a7e63fbcf47e35c6f2ecd11b8fef7c7d8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>makeNonCosmetic</b> ()</td></tr>
-<tr class="separator:a7e63fbcf47e35c6f2ecd11b8fef7c7d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae58dbb1795ddc4351ab324dc9898aa22"><td class="memItemLeft" align="right" valign="top"><a id="ae58dbb1795ddc4351ab324dc9898aa22"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPPainter</b> (QPaintDevice *device)</td></tr>
-<tr class="separator:ae58dbb1795ddc4351ab324dc9898aa22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aff96296e995f6f35b2596a482aae37"><td class="memItemLeft" align="right" valign="top"><a id="a5aff96296e995f6f35b2596a482aae37"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>antialiasing</b> () const</td></tr>
-<tr class="separator:a5aff96296e995f6f35b2596a482aae37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef102658219b24165f7ee2aad1b9e48f"><td class="memItemLeft" align="right" valign="top"><a id="aef102658219b24165f7ee2aad1b9e48f"></a>
-PainterModes&#160;</td><td class="memItemRight" valign="bottom"><b>modes</b> () const</td></tr>
-<tr class="separator:aef102658219b24165f7ee2aad1b9e48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaba1deb9188244d9ea65b035112b4d05"><td class="memItemLeft" align="right" valign="top"><a id="aaba1deb9188244d9ea65b035112b4d05"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setAntialiasing</b> (bool enabled)</td></tr>
-<tr class="separator:aaba1deb9188244d9ea65b035112b4d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6b1f7d2bbc548b10aa55d8b6ad49577"><td class="memItemLeft" align="right" valign="top"><a id="af6b1f7d2bbc548b10aa55d8b6ad49577"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMode</b> (<a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156d">PainterMode</a> mode, bool enabled=true)</td></tr>
-<tr class="separator:af6b1f7d2bbc548b10aa55d8b6ad49577"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fac93adc29c7c4dea9f3e171e9e635e"><td class="memItemLeft" align="right" valign="top"><a id="a5fac93adc29c7c4dea9f3e171e9e635e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setModes</b> (PainterModes modes)</td></tr>
-<tr class="separator:a5fac93adc29c7c4dea9f3e171e9e635e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a41146ccd619dceab6e25ec7b46b044"><td class="memItemLeft" align="right" valign="top"><a id="a0a41146ccd619dceab6e25ec7b46b044"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (QPaintDevice *device)</td></tr>
-<tr class="separator:a0a41146ccd619dceab6e25ec7b46b044"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9c7a4cd1791403901f8c5b82a150195"><td class="memItemLeft" align="right" valign="top"><a id="af9c7a4cd1791403901f8c5b82a150195"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPen</b> (const QPen &amp;pen)</td></tr>
-<tr class="separator:af9c7a4cd1791403901f8c5b82a150195"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4d88f21564e156e88ef807f7cf0003"><td class="memItemLeft" align="right" valign="top"><a id="a5c4d88f21564e156e88ef807f7cf0003"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPen</b> (const QColor &amp;color)</td></tr>
-<tr class="separator:a5c4d88f21564e156e88ef807f7cf0003"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25e76095aae41da0d08035060e5f81ca"><td class="memItemLeft" align="right" valign="top"><a id="a25e76095aae41da0d08035060e5f81ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPen</b> (Qt::PenStyle penStyle)</td></tr>
-<tr class="separator:a25e76095aae41da0d08035060e5f81ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b4b1b9bd495e182c731774dc800e6e0"><td class="memItemLeft" align="right" valign="top"><a id="a0b4b1b9bd495e182c731774dc800e6e0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawLine</b> (const QLineF &amp;line)</td></tr>
-<tr class="separator:a0b4b1b9bd495e182c731774dc800e6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1638db27929491b3f1beb74d6cbad5e"><td class="memItemLeft" align="right" valign="top"><a id="ad1638db27929491b3f1beb74d6cbad5e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>drawLine</b> (const QPointF &amp;p1, const QPointF &amp;p2)</td></tr>
-<tr class="separator:ad1638db27929491b3f1beb74d6cbad5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fd6821ee6fecbfa04444c9062912abd"><td class="memItemLeft" align="right" valign="top"><a id="a8fd6821ee6fecbfa04444c9062912abd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>save</b> ()</td></tr>
-<tr class="separator:a8fd6821ee6fecbfa04444c9062912abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64908e6298d5bbd83457dc987cc3a022"><td class="memItemLeft" align="right" valign="top"><a id="a64908e6298d5bbd83457dc987cc3a022"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>restore</b> ()</td></tr>
-<tr class="separator:a64908e6298d5bbd83457dc987cc3a022"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e63fbcf47e35c6f2ecd11b8fef7c7d8"><td class="memItemLeft" align="right" valign="top"><a id="a7e63fbcf47e35c6f2ecd11b8fef7c7d8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>makeNonCosmetic</b> ()</td></tr>
-<tr class="separator:a7e63fbcf47e35c6f2ecd11b8fef7c7d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -276,9 +158,9 @@ PainterModes&#160;</td><td class="memItemRight" valign="bottom"><b>mModes</b></t
 <tr class="memitem:a7055085da176aee0f6b23298f1003d08"><td class="memItemLeft" align="right" valign="top"><a id="a7055085da176aee0f6b23298f1003d08"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>mIsAntialiasing</b></td></tr>
 <tr class="separator:a7055085da176aee0f6b23298f1003d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e7db2d502086480a77540196cb8b085"><td class="memItemLeft" align="right" valign="top"><a id="a1e7db2d502086480a77540196cb8b085"></a>
+<tr class="memitem:a0189e641bbf7dc31ac15aef7b36501fa"><td class="memItemLeft" align="right" valign="top"><a id="a0189e641bbf7dc31ac15aef7b36501fa"></a>
 QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAntialiasingStack</b></td></tr>
-<tr class="separator:a1e7db2d502086480a77540196cb8b085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a0189e641bbf7dc31ac15aef7b36501fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>QPainter subclass used internally. </p>
@@ -286,7 +168,7 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
 <dl class="section warning"><dt>Warning</dt><dd>This class intentionally hides non-virtual functions of QPainter, e.g. setPen, save and restore. So while it is possible to pass a <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a> instance to a function that expects a QPainter pointer, some of the workarounds and tweaks will be unavailable to the function (because it will call the base class implementations of the functions actually hidden by <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a>). </dd></dl>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a156cf16444ff5e0d81a73c615fdb156d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a156cf16444ff5e0d81a73c615fdb156d">&#9670;&nbsp;</a></span>PainterMode <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a156cf16444ff5e0d81a73c615fdb156d">&#9670;&nbsp;</a></span>PainterMode</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -298,111 +180,13 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
 </div><div class="memdoc">
 <p>Defines special modes the painter can operate in. They disable or enable certain subsets of features/fixes/workarounds, depending on whether they are wanted on the respective output device. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da3bac5e87e3d58553b297befb4eee2a45"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
+<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daeda679cd55dcd468341d07d48a30b6ab"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
+<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dae78f9a4eb277a5f9207f50850a51a0b0"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a id="a156cf16444ff5e0d81a73c615fdb156d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a156cf16444ff5e0d81a73c615fdb156d">&#9670;&nbsp;</a></span>PainterMode <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156d">QCPPainter::PainterMode</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Defines special modes the painter can operate in. They disable or enable certain subsets of features/fixes/workarounds, depending on whether they are wanted on the respective output device. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-<a id="a156cf16444ff5e0d81a73c615fdb156d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a156cf16444ff5e0d81a73c615fdb156d">&#9670;&nbsp;</a></span>PainterMode <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156d">QCPPainter::PainterMode</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Defines special modes the painter can operate in. They disable or enable certain subsets of features/fixes/workarounds, depending on whether they are wanted on the respective output device. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daf70f0b3a3322c7edb6273a817ef9efcd"></a>pmDefault&#160;</td><td class="fielddoc"><p><code>0x00</code> Default mode for painting on screen devices </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156daa4e636d20dd73397079efd4900abe5dd"></a>pmVectorized&#160;</td><td class="fielddoc"><p><code>0x01</code> Mode for vectorized painting (e.g. PDF export). For example, this prevents some antialiasing fixes. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156da8ce8e67295145ede7599425bdfaaceff"></a>pmNoCaching&#160;</td><td class="fielddoc"><p><code>0x02</code> Mode for all sorts of exports (e.g. PNG, PDF,...). For example, this prevents using cached pixmap labels </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
+<tr><td class="fieldname"><a id="a156cf16444ff5e0d81a73c615fdb156dac1e481bfaf408f2bd2eaad3ec341f36b"></a>pmNonCosmetic&#160;</td><td class="fielddoc"><p><code>0x04</code> Turns pen widths 0 to 1, i.e. disables cosmetic pens. (A cosmetic pen is always drawn with width 1 pixel in the vector image/pdf viewer, independent of zoom.) </p>
 </td></tr>
 </table>
 
@@ -512,7 +296,7 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Changes the pen width to 1 if it currently is 0. This function is called in the <a class="el" href="class_q_c_p_painter.html#af9c7a4cd1791403901f8c5b82a150195">setPen</a> overrides when the <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dab1f50f65b248c5222d1d826cc01c837a">pmNonCosmetic</a> mode is set. </p>
+<p>Changes the pen width to 1 if it currently is 0. This function is called in the <a class="el" href="class_q_c_p_painter.html#af9c7a4cd1791403901f8c5b82a150195">setPen</a> overrides when the <a class="el" href="class_q_c_p_painter.html#a156cf16444ff5e0d81a73c615fdb156dac1e481bfaf408f2bd2eaad3ec341f36b">pmNonCosmetic</a> mode is set. </p>
 
 </div>
 </div>
@@ -605,6 +389,25 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
 
 </div>
 </div>
+<a id="a5fac93adc29c7c4dea9f3e171e9e635e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fac93adc29c7c4dea9f3e171e9e635e">&#9670;&nbsp;</a></span>setModes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QCPPainter::setModes </td>
+          <td>(</td>
+          <td class="paramtype">PainterModes&#160;</td>
+          <td class="paramname"><em>modes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets the mode of the painter. This controls whether the painter shall adjust its fixes/workarounds optimized for certain output devices. </p>
+
+</div>
+</div>
 <a id="af9c7a4cd1791403901f8c5b82a150195"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af9c7a4cd1791403901f8c5b82a150195">&#9670;&nbsp;</a></span>setPen() <span class="overload">[1/3]</span></h2>
 
@@ -668,15 +471,19 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/<a class="el" href="_old_plugins_2_views_2_a_r_neural_network_view_2qcustomplot_8h_source.html">qcustomplot.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/qcustomplot.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/qcustomplot.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:40 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_q_c_p_painter.html">QCPPainter</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:59 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

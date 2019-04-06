@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_i_modbus_device_data_manager_1_1_i_modbus_device_handler.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="class_i_modbus_device_data_manager.html">IModbusDeviceDataManager</a></li><li class="navelem"><a class="el" href="class_i_modbus_device_data_manager_1_1_i_modbus_device_handler.html">IModbusDeviceHandler</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
@@ -81,18 +98,11 @@ Inheritance diagram for IModbusDeviceDataManager::IModbusDeviceHandler:</div>
   <img src="class_i_modbus_device_data_manager_1_1_i_modbus_device_handler.png" usemap="#IModbusDeviceDataManager::IModbusDeviceHandler_map" alt=""/>
   <map id="IModbusDeviceDataManager::IModbusDeviceHandler_map" name="IModbusDeviceDataManager::IModbusDeviceHandler_map">
 <area href="class_modbus_device_handler.html" alt="ModbusDeviceHandler" shape="rect" coords="0,56,316,80"/>
-<area href="class_modbus_device_handler.html" alt="ModbusDeviceHandler" shape="rect" coords="326,56,642,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a772351acfc01548ba241fcb4622b4680"><td class="memItemLeft" align="right" valign="top"><a id="a772351acfc01548ba241fcb4622b4680"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>ReadRequest</b> (QModbusDataUnit::RegisterType dataType, int startAddress, int count)=0</td></tr>
-<tr class="separator:a772351acfc01548ba241fcb4622b4680"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaa1d91ab0695a2b941282fe5dfa8dc9"><td class="memItemLeft" align="right" valign="top"><a id="adaa1d91ab0695a2b941282fe5dfa8dc9"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>WriteRequest</b> (QModbusDataUnit::RegisterType dataType, int startAddress, const <a class="el" href="class_q_vector.html">QVector</a>&lt; quint16 &gt; &amp;data)=0</td></tr>
-<tr class="separator:adaa1d91ab0695a2b941282fe5dfa8dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a772351acfc01548ba241fcb4622b4680"><td class="memItemLeft" align="right" valign="top"><a id="a772351acfc01548ba241fcb4622b4680"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>ReadRequest</b> (QModbusDataUnit::RegisterType dataType, int startAddress, int count)=0</td></tr>
 <tr class="separator:a772351acfc01548ba241fcb4622b4680"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -105,9 +115,6 @@ Signals</h2></td></tr>
 <tr class="memitem:a97b4d51d3548d4f985d807a2f6956295"><td class="memItemLeft" align="right" valign="top"><a id="a97b4d51d3548d4f985d807a2f6956295"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnReadRequestArrived</b> (QModbusDataUnit::RegisterType dataType, int startAddress, const <a class="el" href="class_q_vector.html">QVector</a>&lt; quint16 &gt; &amp;data)</td></tr>
 <tr class="separator:a97b4d51d3548d4f985d807a2f6956295"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97b4d51d3548d4f985d807a2f6956295"><td class="memItemLeft" align="right" valign="top"><a id="a97b4d51d3548d4f985d807a2f6956295"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnReadRequestArrived</b> (QModbusDataUnit::RegisterType dataType, int startAddress, const <a class="el" href="class_q_vector.html">QVector</a>&lt; quint16 &gt; &amp;data)</td></tr>
-<tr class="separator:a97b4d51d3548d4f985d807a2f6956295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -117,22 +124,20 @@ virtual QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>GetInsta
 <tr class="memitem:abd7b0163e501d454fc9572cad66daa20"><td class="memItemLeft" align="right" valign="top"><a id="abd7b0163e501d454fc9572cad66daa20"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>GetDeviceId</b> ()=0</td></tr>
 <tr class="separator:abd7b0163e501d454fc9572cad66daa20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84445c00dfbf9ac396628fa8abff05fb"><td class="memItemLeft" align="right" valign="top"><a id="a84445c00dfbf9ac396628fa8abff05fb"></a>
-virtual QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>GetInstance</b> ()=0</td></tr>
-<tr class="separator:a84445c00dfbf9ac396628fa8abff05fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd7b0163e501d454fc9572cad66daa20"><td class="memItemLeft" align="right" valign="top"><a id="abd7b0163e501d454fc9572cad66daa20"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>GetDeviceId</b> ()=0</td></tr>
-<tr class="separator:abd7b0163e501d454fc9572cad66daa20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/DataManagers/ModbusDeviceDataManager/<a class="el" href="_old_plugins_2_data_managers_2_modbus_device_data_manager_2imodbusdevicedatamanager_8h_source.html">imodbusdevicedatamanager.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="imodbusdevicedatamanager_8h_source.html">imodbusdevicedatamanager.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_modbus_device_data_manager.html">IModbusDeviceDataManager</a></li><li class="navelem"><a class="el" href="class_i_modbus_device_data_manager_1_1_i_modbus_device_handler.html">IModbusDeviceHandler</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

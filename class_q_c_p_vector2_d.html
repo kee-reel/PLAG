@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_q_c_p_vector2_d.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -116,8 +137,7 @@ double &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ry</b> ()</td
 <tr class="separator:a707bb3af3b1f9331a2450ec75eaf7eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e08d09f9027784237e302e32290b001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_vector2_d.html#a0e08d09f9027784237e302e32290b001">perpendicular</a> () const</td></tr>
 <tr class="separator:a0e08d09f9027784237e302e32290b001"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39f8d28db7dbffcca6aa63a1f1f6e176"><td class="memItemLeft" align="right" valign="top"><a id="a39f8d28db7dbffcca6aa63a1f1f6e176"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>dot</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec) const</td></tr>
+<tr class="memitem:a39f8d28db7dbffcca6aa63a1f1f6e176"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_vector2_d.html#a39f8d28db7dbffcca6aa63a1f1f6e176">dot</a> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec) const</td></tr>
 <tr class="separator:a39f8d28db7dbffcca6aa63a1f1f6e176"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14840cd3da80cfee4eb3f8977cab89ab"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_vector2_d.html#a14840cd3da80cfee4eb3f8977cab89ab">distanceSquaredToLine</a> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;start, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;end) const</td></tr>
 <tr class="separator:a14840cd3da80cfee4eb3f8977cab89ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,195 +153,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>dot</b> (const <a c
 <tr class="separator:aa2c34754ce8839b2d074dec741783c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a2e906bb924983bb801e89f28a3d566"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_vector2_d.html#a3a2e906bb924983bb801e89f28a3d566">operator-=</a> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vector)</td></tr>
 <tr class="separator:a3a2e906bb924983bb801e89f28a3d566"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47bd86cebc5588dad6ec84349d9098d4"><td class="memItemLeft" align="right" valign="top"><a id="a47bd86cebc5588dad6ec84349d9098d4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPVector2D</b> (double x, double y)</td></tr>
-<tr class="separator:a47bd86cebc5588dad6ec84349d9098d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8f30a064dc37c90a7ba5e6732ceb5bb"><td class="memItemLeft" align="right" valign="top"><a id="ad8f30a064dc37c90a7ba5e6732ceb5bb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPVector2D</b> (const QPoint &amp;point)</td></tr>
-<tr class="separator:ad8f30a064dc37c90a7ba5e6732ceb5bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c16eba1006c210ffc3299253fef2339"><td class="memItemLeft" align="right" valign="top"><a id="a3c16eba1006c210ffc3299253fef2339"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPVector2D</b> (const QPointF &amp;point)</td></tr>
-<tr class="separator:a3c16eba1006c210ffc3299253fef2339"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a099e1f9788d52cb46deb8139aa6195"><td class="memItemLeft" align="right" valign="top"><a id="a4a099e1f9788d52cb46deb8139aa6195"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>x</b> () const</td></tr>
-<tr class="separator:a4a099e1f9788d52cb46deb8139aa6195"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6398fb643ba380d7961a4b208f4eecf1"><td class="memItemLeft" align="right" valign="top"><a id="a6398fb643ba380d7961a4b208f4eecf1"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>y</b> () const</td></tr>
-<tr class="separator:a6398fb643ba380d7961a4b208f4eecf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1516252dac9eb5ffb7ddb17fb26e60e0"><td class="memItemLeft" align="right" valign="top"><a id="a1516252dac9eb5ffb7ddb17fb26e60e0"></a>
-double &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>rx</b> ()</td></tr>
-<tr class="separator:a1516252dac9eb5ffb7ddb17fb26e60e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8f59a5b54aec8be8e4d1f39db892fea"><td class="memItemLeft" align="right" valign="top"><a id="aa8f59a5b54aec8be8e4d1f39db892fea"></a>
-double &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ry</b> ()</td></tr>
-<tr class="separator:aa8f59a5b54aec8be8e4d1f39db892fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4249e6ce7bfc37be56f014c54b761ae"><td class="memItemLeft" align="right" valign="top"><a id="ab4249e6ce7bfc37be56f014c54b761ae"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setX</b> (double x)</td></tr>
-<tr class="separator:ab4249e6ce7bfc37be56f014c54b761ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada288019aa8cd51e3b30acfc07b461dc"><td class="memItemLeft" align="right" valign="top"><a id="ada288019aa8cd51e3b30acfc07b461dc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setY</b> (double y)</td></tr>
-<tr class="separator:ada288019aa8cd51e3b30acfc07b461dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10adb5ab031fe94f0b64a3c5aefb552e"><td class="memItemLeft" align="right" valign="top"><a id="a10adb5ab031fe94f0b64a3c5aefb552e"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>length</b> () const</td></tr>
-<tr class="separator:a10adb5ab031fe94f0b64a3c5aefb552e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a766585459d84cb149334fda1a498b2e5"><td class="memItemLeft" align="right" valign="top"><a id="a766585459d84cb149334fda1a498b2e5"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>lengthSquared</b> () const</td></tr>
-<tr class="separator:a766585459d84cb149334fda1a498b2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add3edf75de9b7bf1abc693b973b2e906"><td class="memItemLeft" align="right" valign="top"><a id="add3edf75de9b7bf1abc693b973b2e906"></a>
-QPoint&#160;</td><td class="memItemRight" valign="bottom"><b>toPoint</b> () const</td></tr>
-<tr class="separator:add3edf75de9b7bf1abc693b973b2e906"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd7af3f4a62833ada58be3f3021dbbac"><td class="memItemLeft" align="right" valign="top"><a id="acd7af3f4a62833ada58be3f3021dbbac"></a>
-QPointF&#160;</td><td class="memItemRight" valign="bottom"><b>toPointF</b> () const</td></tr>
-<tr class="separator:acd7af3f4a62833ada58be3f3021dbbac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace99f200b347b14864808213eef16593"><td class="memItemLeft" align="right" valign="top"><a id="ace99f200b347b14864808213eef16593"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isNull</b> () const</td></tr>
-<tr class="separator:ace99f200b347b14864808213eef16593"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad83268be370685c2a0630acc0fb1a425"><td class="memItemLeft" align="right" valign="top"><a id="ad83268be370685c2a0630acc0fb1a425"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>normalize</b> ()</td></tr>
-<tr class="separator:ad83268be370685c2a0630acc0fb1a425"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a707bb3af3b1f9331a2450ec75eaf7eb0"><td class="memItemLeft" align="right" valign="top"><a id="a707bb3af3b1f9331a2450ec75eaf7eb0"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>normalized</b> () const</td></tr>
-<tr class="separator:a707bb3af3b1f9331a2450ec75eaf7eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e08d09f9027784237e302e32290b001"><td class="memItemLeft" align="right" valign="top"><a id="a0e08d09f9027784237e302e32290b001"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>perpendicular</b> () const</td></tr>
-<tr class="separator:a0e08d09f9027784237e302e32290b001"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39f8d28db7dbffcca6aa63a1f1f6e176"><td class="memItemLeft" align="right" valign="top"><a id="a39f8d28db7dbffcca6aa63a1f1f6e176"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>dot</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec) const</td></tr>
-<tr class="separator:a39f8d28db7dbffcca6aa63a1f1f6e176"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14840cd3da80cfee4eb3f8977cab89ab"><td class="memItemLeft" align="right" valign="top"><a id="a14840cd3da80cfee4eb3f8977cab89ab"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>distanceSquaredToLine</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;start, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;end) const</td></tr>
-<tr class="separator:a14840cd3da80cfee4eb3f8977cab89ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c44ca97d46ee04feec32c1c57e70831"><td class="memItemLeft" align="right" valign="top"><a id="a0c44ca97d46ee04feec32c1c57e70831"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>distanceSquaredToLine</b> (const QLineF &amp;line) const</td></tr>
-<tr class="separator:a0c44ca97d46ee04feec32c1c57e70831"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae240b845c3744e43a5d0aa7b2bb66c19"><td class="memItemLeft" align="right" valign="top"><a id="ae240b845c3744e43a5d0aa7b2bb66c19"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>distanceToStraightLine</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;base, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;direction) const</td></tr>
-<tr class="separator:ae240b845c3744e43a5d0aa7b2bb66c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40c5c7c1b3e613936e7cd2d0e132e0db"><td class="memItemLeft" align="right" valign="top"><a id="a40c5c7c1b3e613936e7cd2d0e132e0db"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (double factor)</td></tr>
-<tr class="separator:a40c5c7c1b3e613936e7cd2d0e132e0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1540d17102cb4e26d4af2c58c5ce6807"><td class="memItemLeft" align="right" valign="top"><a id="a1540d17102cb4e26d4af2c58c5ce6807"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (double divisor)</td></tr>
-<tr class="separator:a1540d17102cb4e26d4af2c58c5ce6807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40549cdc8ecace36c241e949a6d8c1dc"><td class="memItemLeft" align="right" valign="top"><a id="a40549cdc8ecace36c241e949a6d8c1dc"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vector)</td></tr>
-<tr class="separator:a40549cdc8ecace36c241e949a6d8c1dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96e47599c085a1e7cee8088e0f7cae35"><td class="memItemLeft" align="right" valign="top"><a id="a96e47599c085a1e7cee8088e0f7cae35"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vector)</td></tr>
-<tr class="separator:a96e47599c085a1e7cee8088e0f7cae35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47bd86cebc5588dad6ec84349d9098d4"><td class="memItemLeft" align="right" valign="top"><a id="a47bd86cebc5588dad6ec84349d9098d4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPVector2D</b> (double x, double y)</td></tr>
-<tr class="separator:a47bd86cebc5588dad6ec84349d9098d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8f30a064dc37c90a7ba5e6732ceb5bb"><td class="memItemLeft" align="right" valign="top"><a id="ad8f30a064dc37c90a7ba5e6732ceb5bb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPVector2D</b> (const QPoint &amp;point)</td></tr>
-<tr class="separator:ad8f30a064dc37c90a7ba5e6732ceb5bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c16eba1006c210ffc3299253fef2339"><td class="memItemLeft" align="right" valign="top"><a id="a3c16eba1006c210ffc3299253fef2339"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPVector2D</b> (const QPointF &amp;point)</td></tr>
-<tr class="separator:a3c16eba1006c210ffc3299253fef2339"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a099e1f9788d52cb46deb8139aa6195"><td class="memItemLeft" align="right" valign="top"><a id="a4a099e1f9788d52cb46deb8139aa6195"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>x</b> () const</td></tr>
-<tr class="separator:a4a099e1f9788d52cb46deb8139aa6195"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6398fb643ba380d7961a4b208f4eecf1"><td class="memItemLeft" align="right" valign="top"><a id="a6398fb643ba380d7961a4b208f4eecf1"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>y</b> () const</td></tr>
-<tr class="separator:a6398fb643ba380d7961a4b208f4eecf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1516252dac9eb5ffb7ddb17fb26e60e0"><td class="memItemLeft" align="right" valign="top"><a id="a1516252dac9eb5ffb7ddb17fb26e60e0"></a>
-double &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>rx</b> ()</td></tr>
-<tr class="separator:a1516252dac9eb5ffb7ddb17fb26e60e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8f59a5b54aec8be8e4d1f39db892fea"><td class="memItemLeft" align="right" valign="top"><a id="aa8f59a5b54aec8be8e4d1f39db892fea"></a>
-double &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ry</b> ()</td></tr>
-<tr class="separator:aa8f59a5b54aec8be8e4d1f39db892fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4249e6ce7bfc37be56f014c54b761ae"><td class="memItemLeft" align="right" valign="top"><a id="ab4249e6ce7bfc37be56f014c54b761ae"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setX</b> (double x)</td></tr>
-<tr class="separator:ab4249e6ce7bfc37be56f014c54b761ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada288019aa8cd51e3b30acfc07b461dc"><td class="memItemLeft" align="right" valign="top"><a id="ada288019aa8cd51e3b30acfc07b461dc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setY</b> (double y)</td></tr>
-<tr class="separator:ada288019aa8cd51e3b30acfc07b461dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10adb5ab031fe94f0b64a3c5aefb552e"><td class="memItemLeft" align="right" valign="top"><a id="a10adb5ab031fe94f0b64a3c5aefb552e"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>length</b> () const</td></tr>
-<tr class="separator:a10adb5ab031fe94f0b64a3c5aefb552e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a766585459d84cb149334fda1a498b2e5"><td class="memItemLeft" align="right" valign="top"><a id="a766585459d84cb149334fda1a498b2e5"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>lengthSquared</b> () const</td></tr>
-<tr class="separator:a766585459d84cb149334fda1a498b2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add3edf75de9b7bf1abc693b973b2e906"><td class="memItemLeft" align="right" valign="top"><a id="add3edf75de9b7bf1abc693b973b2e906"></a>
-QPoint&#160;</td><td class="memItemRight" valign="bottom"><b>toPoint</b> () const</td></tr>
-<tr class="separator:add3edf75de9b7bf1abc693b973b2e906"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd7af3f4a62833ada58be3f3021dbbac"><td class="memItemLeft" align="right" valign="top"><a id="acd7af3f4a62833ada58be3f3021dbbac"></a>
-QPointF&#160;</td><td class="memItemRight" valign="bottom"><b>toPointF</b> () const</td></tr>
-<tr class="separator:acd7af3f4a62833ada58be3f3021dbbac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace99f200b347b14864808213eef16593"><td class="memItemLeft" align="right" valign="top"><a id="ace99f200b347b14864808213eef16593"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isNull</b> () const</td></tr>
-<tr class="separator:ace99f200b347b14864808213eef16593"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad83268be370685c2a0630acc0fb1a425"><td class="memItemLeft" align="right" valign="top"><a id="ad83268be370685c2a0630acc0fb1a425"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>normalize</b> ()</td></tr>
-<tr class="separator:ad83268be370685c2a0630acc0fb1a425"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a707bb3af3b1f9331a2450ec75eaf7eb0"><td class="memItemLeft" align="right" valign="top"><a id="a707bb3af3b1f9331a2450ec75eaf7eb0"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>normalized</b> () const</td></tr>
-<tr class="separator:a707bb3af3b1f9331a2450ec75eaf7eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e08d09f9027784237e302e32290b001"><td class="memItemLeft" align="right" valign="top"><a id="a0e08d09f9027784237e302e32290b001"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>perpendicular</b> () const</td></tr>
-<tr class="separator:a0e08d09f9027784237e302e32290b001"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39f8d28db7dbffcca6aa63a1f1f6e176"><td class="memItemLeft" align="right" valign="top"><a id="a39f8d28db7dbffcca6aa63a1f1f6e176"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>dot</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec) const</td></tr>
-<tr class="separator:a39f8d28db7dbffcca6aa63a1f1f6e176"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14840cd3da80cfee4eb3f8977cab89ab"><td class="memItemLeft" align="right" valign="top"><a id="a14840cd3da80cfee4eb3f8977cab89ab"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>distanceSquaredToLine</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;start, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;end) const</td></tr>
-<tr class="separator:a14840cd3da80cfee4eb3f8977cab89ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c44ca97d46ee04feec32c1c57e70831"><td class="memItemLeft" align="right" valign="top"><a id="a0c44ca97d46ee04feec32c1c57e70831"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>distanceSquaredToLine</b> (const QLineF &amp;line) const</td></tr>
-<tr class="separator:a0c44ca97d46ee04feec32c1c57e70831"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae240b845c3744e43a5d0aa7b2bb66c19"><td class="memItemLeft" align="right" valign="top"><a id="ae240b845c3744e43a5d0aa7b2bb66c19"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>distanceToStraightLine</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;base, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;direction) const</td></tr>
-<tr class="separator:ae240b845c3744e43a5d0aa7b2bb66c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40c5c7c1b3e613936e7cd2d0e132e0db"><td class="memItemLeft" align="right" valign="top"><a id="a40c5c7c1b3e613936e7cd2d0e132e0db"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator*=</b> (double factor)</td></tr>
-<tr class="separator:a40c5c7c1b3e613936e7cd2d0e132e0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1540d17102cb4e26d4af2c58c5ce6807"><td class="memItemLeft" align="right" valign="top"><a id="a1540d17102cb4e26d4af2c58c5ce6807"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator/=</b> (double divisor)</td></tr>
-<tr class="separator:a1540d17102cb4e26d4af2c58c5ce6807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40549cdc8ecace36c241e949a6d8c1dc"><td class="memItemLeft" align="right" valign="top"><a id="a40549cdc8ecace36c241e949a6d8c1dc"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vector)</td></tr>
-<tr class="separator:a40549cdc8ecace36c241e949a6d8c1dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96e47599c085a1e7cee8088e0f7cae35"><td class="memItemLeft" align="right" valign="top"><a id="a96e47599c085a1e7cee8088e0f7cae35"></a>
-<a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator-=</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vector)</td></tr>
-<tr class="separator:a96e47599c085a1e7cee8088e0f7cae35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:aa75268fb64b9eaee5448fb815007bee9"><td class="memItemLeft" align="right" valign="top"><a id="aa75268fb64b9eaee5448fb815007bee9"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (double factor, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec)</td></tr>
-<tr class="separator:aa75268fb64b9eaee5448fb815007bee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aace10d28a76e84e7380ede1a9cb58274"><td class="memItemLeft" align="right" valign="top"><a id="aace10d28a76e84e7380ede1a9cb58274"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec, double factor)</td></tr>
-<tr class="separator:aace10d28a76e84e7380ede1a9cb58274"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa69909afc8c656999a2ea292ea01244b"><td class="memItemLeft" align="right" valign="top"><a id="aa69909afc8c656999a2ea292ea01244b"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec, double divisor)</td></tr>
-<tr class="separator:aa69909afc8c656999a2ea292ea01244b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24cc5985429b12dbed4d0d3c5a917d20"><td class="memItemLeft" align="right" valign="top"><a id="a24cc5985429b12dbed4d0d3c5a917d20"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec1, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec2)</td></tr>
-<tr class="separator:a24cc5985429b12dbed4d0d3c5a917d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e01331d8debf0877ee4cba9abd83605"><td class="memItemLeft" align="right" valign="top"><a id="a9e01331d8debf0877ee4cba9abd83605"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec1, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec2)</td></tr>
-<tr class="separator:a9e01331d8debf0877ee4cba9abd83605"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14c807d345ee3f22d6809bb5a4137b52"><td class="memItemLeft" align="right" valign="top"><a id="a14c807d345ee3f22d6809bb5a4137b52"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec)</td></tr>
-<tr class="separator:a14c807d345ee3f22d6809bb5a4137b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa75268fb64b9eaee5448fb815007bee9"><td class="memItemLeft" align="right" valign="top"><a id="aa75268fb64b9eaee5448fb815007bee9"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (double factor, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec)</td></tr>
-<tr class="separator:aa75268fb64b9eaee5448fb815007bee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aace10d28a76e84e7380ede1a9cb58274"><td class="memItemLeft" align="right" valign="top"><a id="aace10d28a76e84e7380ede1a9cb58274"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec, double factor)</td></tr>
-<tr class="separator:aace10d28a76e84e7380ede1a9cb58274"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa69909afc8c656999a2ea292ea01244b"><td class="memItemLeft" align="right" valign="top"><a id="aa69909afc8c656999a2ea292ea01244b"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec, double divisor)</td></tr>
-<tr class="separator:aa69909afc8c656999a2ea292ea01244b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24cc5985429b12dbed4d0d3c5a917d20"><td class="memItemLeft" align="right" valign="top"><a id="a24cc5985429b12dbed4d0d3c5a917d20"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec1, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec2)</td></tr>
-<tr class="separator:a24cc5985429b12dbed4d0d3c5a917d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e01331d8debf0877ee4cba9abd83605"><td class="memItemLeft" align="right" valign="top"><a id="a9e01331d8debf0877ee4cba9abd83605"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec1, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec2)</td></tr>
-<tr class="separator:a9e01331d8debf0877ee4cba9abd83605"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14c807d345ee3f22d6809bb5a4137b52"><td class="memItemLeft" align="right" valign="top"><a id="a14c807d345ee3f22d6809bb5a4137b52"></a>
-const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec)</td></tr>
-<tr class="separator:a14c807d345ee3f22d6809bb5a4137b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa75268fb64b9eaee5448fb815007bee9"><td class="memItemLeft" align="right" valign="top"><a id="aa75268fb64b9eaee5448fb815007bee9"></a>
 const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (double factor, const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;vec)</td></tr>
 <tr class="separator:aa75268fb64b9eaee5448fb815007bee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -517,6 +351,33 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns the shortest distance of this vector (interpreted as a point) to the infinite straight line given by a <em>base</em> point and a <em>direction</em> vector.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_q_c_p_vector2_d.html#a14840cd3da80cfee4eb3f8977cab89ab">distanceSquaredToLine</a> </dd></dl>
+
+</div>
+</div>
+<a id="a39f8d28db7dbffcca6aa63a1f1f6e176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39f8d28db7dbffcca6aa63a1f1f6e176">&#9670;&nbsp;</a></span>dot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double QCPVector2D::dot </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the dot/scalar product of this vector with the specified vector <em>vec</em>. </p>
 
 </div>
 </div>
@@ -889,15 +750,19 @@ Related Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/<a class="el" href="_old_plugins_2_views_2_a_r_neural_network_view_2qcustomplot_8h_source.html">qcustomplot.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/qcustomplot.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/qcustomplot.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:42 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_q_c_p_vector2_d.html">QCPVector2D</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:00 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

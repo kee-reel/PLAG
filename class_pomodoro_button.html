@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_pomodoro_button.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#signals">Signals</a> &#124;
@@ -85,24 +106,18 @@ Signals</h2></td></tr>
 <tr class="memitem:ae65ecb4690f2e861ff0e5fc49e96043a"><td class="memItemLeft" align="right" valign="top"><a id="ae65ecb4690f2e861ff0e5fc49e96043a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnStartPomodoro</b> ()</td></tr>
 <tr class="separator:ae65ecb4690f2e861ff0e5fc49e96043a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae65ecb4690f2e861ff0e5fc49e96043a"><td class="memItemLeft" align="right" valign="top"><a id="ae65ecb4690f2e861ff0e5fc49e96043a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnStartPomodoro</b> ()</td></tr>
-<tr class="separator:ae65ecb4690f2e861ff0e5fc49e96043a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af566cac51b9c2ddba1b26ced5ed01de1"><td class="memItemLeft" align="right" valign="top"><a id="af566cac51b9c2ddba1b26ced5ed01de1"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>PomodoroButton</b> (QWidget *parent=0)</td></tr>
 <tr class="separator:af566cac51b9c2ddba1b26ced5ed01de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af566cac51b9c2ddba1b26ced5ed01de1"><td class="memItemLeft" align="right" valign="top"><a id="af566cac51b9c2ddba1b26ced5ed01de1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PomodoroButton</b> (QWidget *parent=0)</td></tr>
-<tr class="separator:af566cac51b9c2ddba1b26ced5ed01de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a88d0e99d0d6f9a4c97f0f38971dd195b"><td class="memItemLeft" align="right" valign="top"><a id="a88d0e99d0d6f9a4c97f0f38971dd195b"></a>
+<tr class="memitem:ab42338e4ce1e5d0f8acbe73565177e41"><td class="memItemLeft" align="right" valign="top"><a id="ab42338e4ce1e5d0f8acbe73565177e41"></a>
 QTimer *&#160;</td><td class="memItemRight" valign="bottom"><b>timer</b></td></tr>
-<tr class="separator:a88d0e99d0d6f9a4c97f0f38971dd195b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ab42338e4ce1e5d0f8acbe73565177e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefe61372fa75bdeb9a5a367187466c9c"><td class="memItemLeft" align="right" valign="top"><a id="aefe61372fa75bdeb9a5a367187466c9c"></a>
 QTime&#160;</td><td class="memItemRight" valign="bottom"><b>time</b></td></tr>
 <tr class="separator:aefe61372fa75bdeb9a5a367187466c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,24 +139,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mouseReleaseEvent</b>
 <tr class="memitem:afb688dd2937945dd444a63999ef69ece"><td class="memItemLeft" align="right" valign="top"><a id="afb688dd2937945dd444a63999ef69ece"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>paintEvent</b> (QPaintEvent *event) override</td></tr>
 <tr class="separator:afb688dd2937945dd444a63999ef69ece"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75802646c43d4f9ffd4d7e5b4c20be8b"><td class="memItemLeft" align="right" valign="top"><a id="a75802646c43d4f9ffd4d7e5b4c20be8b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>mouseReleaseEvent</b> (QMouseEvent *event) override</td></tr>
-<tr class="separator:a75802646c43d4f9ffd4d7e5b4c20be8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb688dd2937945dd444a63999ef69ece"><td class="memItemLeft" align="right" valign="top"><a id="afb688dd2937945dd444a63999ef69ece"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>paintEvent</b> (QPaintEvent *event) override</td></tr>
-<tr class="separator:afb688dd2937945dd444a63999ef69ece"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/PomodoroView/<a class="el" href="_old_plugins_2_views_2_pomodoro_view_2pomodorobutton_8h_source.html">pomodorobutton.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/PomodoroView/pomodorobutton.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PomodoroView/<a class="el" href="pomodorobutton_8h_source.html">pomodorobutton.h</a></li>
 <li>/home/curunir/Documents/MASS/Plugins/PluginsBuildFiles/build/debug/PomodoroView/moc/moc_pomodorobutton.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PomodoroView/pomodorobutton.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:28 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_pomodoro_button.html">PomodoroButton</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

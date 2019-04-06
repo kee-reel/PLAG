@@ -4,7 +4,7 @@ var searchData=
   ['parentlayerable',['parentLayerable',['../class_q_c_p_layerable.html#aa78b7e644d2c519e1a9a6f2ac5fcd858',1,'QCPLayerable']]],
   ['perpendicular',['perpendicular',['../class_q_c_p_vector2_d.html#a0e08d09f9027784237e302e32290b001',1,'QCPVector2D']]],
   ['pixelorientation',['pixelOrientation',['../class_q_c_p_axis.html#a45c45bed7e5666683b8d56afa66fa51f',1,'QCPAxis']]],
-  ['pixelposition',['pixelPosition',['../class_q_c_p_item_anchor.html#a06dcfb7220d26eee93eef56ae66582cb',1,'QCPItemAnchor::pixelPosition()'],['../class_q_c_p_item_position.html#a3b5a12a8e5081c1a5bb878ffdcfa92ad',1,'QCPItemPosition::pixelPosition() const'],['../class_q_c_p_item_position.html#a6ebd073ec4d248b655f3e07804835e6e',1,'QCPItemPosition::pixelPosition() const'],['../class_q_c_p_item_position.html#a6ebd073ec4d248b655f3e07804835e6e',1,'QCPItemPosition::pixelPosition() const']]],
+  ['pixelposition',['pixelPosition',['../class_q_c_p_item_anchor.html#a06dcfb7220d26eee93eef56ae66582cb',1,'QCPItemAnchor::pixelPosition()'],['../class_q_c_p_item_position.html#a3b5a12a8e5081c1a5bb878ffdcfa92ad',1,'QCPItemPosition::pixelPosition()']]],
   ['pixelstocoords',['pixelsToCoords',['../class_q_c_p_abstract_plottable.html#a3903c1120ab5c27e7fa46b597ef267bd',1,'QCPAbstractPlottable::pixelsToCoords(double x, double y, double &amp;key, double &amp;value) const'],['../class_q_c_p_abstract_plottable.html#a28d32c0062b9450847851ffdee1c5f69',1,'QCPAbstractPlottable::pixelsToCoords(const QPointF &amp;pixelPos, double &amp;key, double &amp;value) const']]],
   ['pixeltocoord',['pixelToCoord',['../class_q_c_p_axis.html#a536ef8f624cac59b6b6fdcb495723c57',1,'QCPAxis']]],
   ['plotlayout',['plotLayout',['../class_q_custom_plot.html#af1a1f1f571237deb7c2bd34a5e9f018f',1,'QCustomPlot']]],

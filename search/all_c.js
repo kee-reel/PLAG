@@ -1,7 +1,7 @@
 var searchData=
 [
   ['name',['Name',['../struct_meta_info.html#a5a2f44643b5406699d1fb9ef742ab331',1,'MetaInfo']]],
-  ['networkparams',['NetworkParams',['../struct_a_r_t_1_1_network_params.html',1,'ART::NetworkParams'],['../struct_network_params.html',1,'NetworkParams'],['../struct_perceptron_1_1_network_params.html',1,'Perceptron::NetworkParams']]],
+  ['networkparams',['NetworkParams',['../struct_perceptron_1_1_network_params.html',1,'Perceptron::NetworkParams'],['../struct_a_r_t_1_1_network_params.html',1,'ART::NetworkParams'],['../struct_network_params.html',1,'NetworkParams']]],
   ['neurallayer',['NeuralLayer',['../class_neural_layer.html',1,'']]],
   ['neuralnetworkmodel',['NeuralNetworkModel',['../class_neural_network_model.html',1,'NeuralNetworkModel'],['../group___neural_network_model.html',1,'(Global Namespace)']]],
   ['neuron',['Neuron',['../class_neuron.html',1,'']]],

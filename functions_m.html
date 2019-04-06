@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_m.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -86,11 +107,11 @@ $(function() {
 </li>
 <li>maximumSizeHint()
 : <a class="el" href="class_q_c_p_layout_element.html#ab5ce2ba22b36d9a3b70a1be562c326e5">QCPLayoutElement</a>
-, <a class="el" href="class_q_c_p_layout_grid.html#a22505c47e97c26621116072994e70cf3">QCPLayoutGrid</a>
-, <a class="el" href="class_q_c_p_text_element.html#a174551b248c8960d1b250bbe04e1b20c">QCPTextElement</a>
+, <a class="el" href="class_q_c_p_layout_grid.html#acb285925df25b54b3db25c7b1804d230">QCPLayoutGrid</a>
+, <a class="el" href="class_q_c_p_text_element.html#a65e5f4c5a852bbff48acef236048354f">QCPTextElement</a>
 </li>
 <li>maxRange
-: <a class="el" href="class_q_c_p_range.html#a34c2817056d5eb5c32524e34a85b4255">QCPRange</a>
+: <a class="el" href="class_q_c_p_range.html#a5ca51e7a2dc5dc0d49527ab171fe1f4f">QCPRange</a>
 </li>
 <li>minimumSizeHint()
 : <a class="el" href="class_q_c_p_layout_element.html#ab3fdb5c9a5189bb2dac10d4d25329cd8">QCPLayoutElement</a>
@@ -99,7 +120,7 @@ $(function() {
 , <a class="el" href="class_q_c_p_text_element.html#a5b6e94c79d0cd56c13cbedbb7021ea08">QCPTextElement</a>
 </li>
 <li>minRange
-: <a class="el" href="class_q_c_p_range.html#a95e4931d712418c3020517cbec669ed1">QCPRange</a>
+: <a class="el" href="class_q_c_p_range.html#ab46d3bc95030ee25efda41b89e2b616b">QCPRange</a>
 </li>
 <li>mouseDoubleClick()
 : <a class="el" href="class_q_custom_plot.html#a9b232142c64fcf273a953ee08e5b90e9">QCustomPlot</a>
@@ -121,18 +142,21 @@ $(function() {
 </li>
 <li>mousePressEvent()
 : <a class="el" href="class_q_c_p_axis_rect.html#aa9a7c807eaa4666870ac94aa6abc4dde">QCPAxisRect</a>
-, <a class="el" href="class_q_c_p_color_scale.html#ab73a9f3a28aec68494e26bbdd1bb987a">QCPColorScale</a>
+, <a class="el" href="class_q_c_p_color_scale.html#a91f633b97ffcd57fdf8cd814974c20e6">QCPColorScale</a>
 , <a class="el" href="class_q_c_p_layerable.html#af6567604818db90f4fd52822f8bc8376">QCPLayerable</a>
-, <a class="el" href="class_q_c_p_text_element.html#aa52d0292e7444526cccd453945238f4b">QCPTextElement</a>
+, <a class="el" href="class_q_c_p_text_element.html#ad7b2c98355e3d2f912574b74fcee0574">QCPTextElement</a>
 </li>
 <li>mouseRelease()
 : <a class="el" href="class_q_custom_plot.html#ac8dc0ee6bb98e923c00b4ebafbe6134d">QCustomPlot</a>
 </li>
 <li>mouseReleaseEvent()
-: <a class="el" href="class_q_c_p_axis_rect.html#ae4d536756ccd48928e8b3c475d8384b1">QCPAxisRect</a>
+: <a class="el" href="class_q_c_p_axis_rect.html#a6c89b988d3a0b93c0878f0ebdb5037f4">QCPAxisRect</a>
 , <a class="el" href="class_q_c_p_color_scale.html#a6a35dd39ab4e5cb2d7b29ebb4d5b61b0">QCPColorScale</a>
 , <a class="el" href="class_q_c_p_layerable.html#aa0d79b005686f668622bbe66ac03ba2c">QCPLayerable</a>
 , <a class="el" href="class_q_c_p_text_element.html#acfcbaf9b1da18745e72726aafb39c855">QCPTextElement</a>
+</li>
+<li>mouseWheel()
+: <a class="el" href="class_q_custom_plot.html#ac80a14206f99304a91d2aa55775ec3ff">QCustomPlot</a>
 </li>
 <li>moveAbove()
 : <a class="el" href="class_q_c_p_bars.html#ac22e00a6a41509538c21b04f0a57318c">QCPBars</a>
@@ -148,11 +172,14 @@ $(function() {
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

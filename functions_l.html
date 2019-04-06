@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_l.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -108,10 +129,10 @@ $(function() {
 : <a class="el" href="class_q_c_p_vector2_d.html#a766585459d84cb149334fda1a498b2e5">QCPVector2D</a>
 </li>
 <li>limAbove
-: <a class="el" href="class_q_custom_plot.html#a75a8afbe6ef333b1f3d47abb25b9add7a56ffb40bbf81e9b5d869cffc88999a36">QCustomPlot</a>
+: <a class="el" href="class_q_custom_plot.html#a75a8afbe6ef333b1f3d47abb25b9add7a062b0b7825650b432a713c0df6742d41">QCustomPlot</a>
 </li>
 <li>limBelow
-: <a class="el" href="class_q_custom_plot.html#a75a8afbe6ef333b1f3d47abb25b9add7a127695ec06044d5986ae0fe6bd8f0ec3">QCustomPlot</a>
+: <a class="el" href="class_q_custom_plot.html#a75a8afbe6ef333b1f3d47abb25b9add7aee39cf650cd24e68552da0b697ce4a93">QCustomPlot</a>
 </li>
 <li>limitIteratorsToDataRange()
 : <a class="el" href="class_q_c_p_data_container.html#aa1b36f5ae86a5a5a0b92141d3a0945c4">QCPDataContainer&lt; DataType &gt;</a>
@@ -121,47 +142,50 @@ $(function() {
 , <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859">QCPGraph</a>
 </li>
 <li>lmBuffered
-: <a class="el" href="class_q_c_p_layer.html#a67dcfc1590be2a1f2227c5a39bb59c7cada274b1644a2a3c1b794c052f1601bb2">QCPLayer</a>
+: <a class="el" href="class_q_c_p_layer.html#a67dcfc1590be2a1f2227c5a39bb59c7cab581b9fab3007c4c65f057f4185d7538">QCPLayer</a>
 </li>
 <li>lmLogical
-: <a class="el" href="class_q_c_p_layer.html#a67dcfc1590be2a1f2227c5a39bb59c7ca6294b5ed9040aede762c626f5108f934">QCPLayer</a>
+: <a class="el" href="class_q_c_p_layer.html#a67dcfc1590be2a1f2227c5a39bb59c7ca02eb5e9a4cb7f1baf1e2b6b99e3b87ce">QCPLayer</a>
 </li>
 <li>loadPreset()
 : <a class="el" href="class_q_c_p_color_gradient.html#aa0aeec1528241728b9671bf8e60b1622">QCPColorGradient</a>
 </li>
 <li>lsImpulse
-: <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859a9564511c68ac5c2d27146e8fd977335f">QCPGraph</a>
+: <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859aa3b358b4ae7cca94aceeb8e529c12ebb">QCPGraph</a>
 </li>
 <li>lsInside
-: <a class="el" href="class_q_c_p_axis.html#a24b13374b9b8f75f47eed2ea78c37db9aff95f9e416645472248f680fc64c28d1">QCPAxis</a>
+: <a class="el" href="class_q_c_p_axis.html#a24b13374b9b8f75f47eed2ea78c37db9aae7b027ac2839cf4ad611df30236fc3f">QCPAxis</a>
 </li>
 <li>lsLine
-: <a class="el" href="class_q_c_p_curve.html#a2710e9f79302152cff794c6e16cc01f1abb5cbe337df27682d7674652057fdc58">QCPCurve</a>
-, <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859ac2ecb6878883968d436c06d5a1345867">QCPGraph</a>
+: <a class="el" href="class_q_c_p_curve.html#a2710e9f79302152cff794c6e16cc01f1ade5822ce6fbf131d3df131795c2e1003">QCPCurve</a>
+, <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859a3c42a27b15aa3c92d399082fad8b7515">QCPGraph</a>
 </li>
 <li>lsNone
-: <a class="el" href="class_q_c_p_curve.html#a2710e9f79302152cff794c6e16cc01f1a65deb77129bf07722cc01d54ddf0b6b7">QCPCurve</a>
-, <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859a2c4b4f5d9c34928d369cd649518bdb79">QCPGraph</a>
+: <a class="el" href="class_q_c_p_curve.html#a2710e9f79302152cff794c6e16cc01f1aec1601a191cdf0b4e761c4c66092cc48">QCPCurve</a>
+, <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859aea9591b933733cc7b20786b71e60fa04">QCPGraph</a>
 </li>
 <li>lsOutside
-: <a class="el" href="class_q_c_p_axis.html#a24b13374b9b8f75f47eed2ea78c37db9a6485a6945fe86bb5acb881c4f45121b0">QCPAxis</a>
+: <a class="el" href="class_q_c_p_axis.html#a24b13374b9b8f75f47eed2ea78c37db9a2eadb509fc0c9a8b35b85c86ec9f3c7a">QCPAxis</a>
 </li>
 <li>lsStepCenter
-: <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859a9f7f3f66a811a18fe1b0a3e3a0928a73">QCPGraph</a>
+: <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859a5adf7b04da215a40a764c21294ea7366">QCPGraph</a>
 </li>
 <li>lsStepLeft
-: <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859a50a5619169124b3b524cebb6de993eee">QCPGraph</a>
+: <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859ae10568bda57836487d9dec5eba1d6c6e">QCPGraph</a>
 </li>
 <li>lsStepRight
-: <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859afc3a655d34d56ee2a3a9d4969bf0a6b8">QCPGraph</a>
+: <a class="el" href="class_q_c_p_graph.html#ad60175cd9b5cac937c5ee685c32c0859a9c37951f7d11aa070100fd16f2935c9e">QCPGraph</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_r.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -128,7 +149,7 @@ $(function() {
 : <a class="el" href="class_q_c_p_data_container.html#aa7f74cbce304b0369e1626c3798e1eda">QCPDataContainer&lt; DataType &gt;</a>
 </li>
 <li>removeFromLegend()
-: <a class="el" href="class_q_c_p_abstract_plottable.html#ac95fb2604d9106d0852ad9ceb326fe8c">QCPAbstractPlottable</a>
+: <a class="el" href="class_q_c_p_abstract_plottable.html#a3cc235007e2343a65ad4f463767e0e20">QCPAbstractPlottable</a>
 </li>
 <li>removeGraph()
 : <a class="el" href="class_q_custom_plot.html#a903561be895fb6528a770d66ac5e6713">QCustomPlot</a>
@@ -141,7 +162,7 @@ $(function() {
 : <a class="el" href="class_q_custom_plot.html#a40f75e342c5eaab6a86066a42a0e2a94">QCustomPlot</a>
 </li>
 <li>removePlottable()
-: <a class="el" href="class_q_custom_plot.html#afc210e0021480f8119bccf37839dbcc8">QCustomPlot</a>
+: <a class="el" href="class_q_custom_plot.html#af3dafd56884208474f311d6226513ab2">QCustomPlot</a>
 </li>
 <li>replot()
 : <a class="el" href="class_q_c_p_layer.html#adefd53b6db02f470151c416f42e37180">QCPLayer</a>
@@ -177,24 +198,27 @@ $(function() {
 : <a class="el" href="class_q_c_p_layout_grid.html#a19c66fd76cbce58a8e94f33797e0c0aa">QCPLayoutGrid</a>
 </li>
 <li>rpImmediateRefresh
-: <a class="el" href="class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39ae0655eb7caba1996004d27939970af2c">QCustomPlot</a>
+: <a class="el" href="class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39aa6eda645ccf1a60635df3e8b71ea6ae2">QCustomPlot</a>
 </li>
 <li>rpQueuedRefresh
-: <a class="el" href="class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39ae51e73bce42e9d76081f2266bb429acb">QCustomPlot</a>
+: <a class="el" href="class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39acd6f1e590ea775d1ddee666428077f3e">QCustomPlot</a>
 </li>
 <li>rpQueuedReplot
-: <a class="el" href="class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39a074ea69d5b4756518e334e71a0ba4ad4">QCustomPlot</a>
+: <a class="el" href="class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39a019650c6ddf308f97e811fbfff207a8f">QCustomPlot</a>
 </li>
 <li>rpRefreshHint
-: <a class="el" href="class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39a5349b4ed6366760e34653bc54613a5ad">QCustomPlot</a>
+: <a class="el" href="class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39a49666a5854a68dbcca8b277b03331260">QCustomPlot</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_ui_1_1_form.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><b>Ui</b></li><li class="navelem"><a class="el" href="class_ui_1_1_form.html">Form</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Ui::Form Member List</div>  </div>
@@ -113,90 +130,92 @@ $(function() {
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>disconnectButton</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>frame</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>frame_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout_10</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout_6</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout_7</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout_8</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout_9</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>groupBox</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>groupBox_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>groupBox_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>groupBox_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>groupBox_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_10</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_11</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_12</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_13</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_14</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_15</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_16</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_17</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_19</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_6</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_7</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_8</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_9</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalSpacer</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalSpacer_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalSpacer_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_10</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_11</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_12</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_13</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_14</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_15</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_16</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_17</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_18</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_22</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_27</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_6</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_7</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_8</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_9</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>labelEpoch</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>labelProject</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>labelTestError</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>labelTrainError</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>lcdHours</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>lcdHR</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>lcdValuesRecieved</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>line</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>lineFilename</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>listView</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>listViewImages</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>listViewImages_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>pageConnection</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pageDevices</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>pageExperiment</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pageRegisters</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>parityCombo</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pomodoroButton</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>pomodoroCountLabel</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>progressBarTempo</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>pushButton</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pushButton_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>pushButton_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>refreshButton</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>registersCombo</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>registersCountSpin</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>registersView</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>removeRegistersButton</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>graphicsView</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout_10</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout_6</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout_7</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>gridLayout_8</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>gridLayout_9</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>groupBox</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>groupBox_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>groupBox_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>groupBox_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>groupBox_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_10</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_11</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_12</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_13</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_14</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_15</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_16</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_17</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_19</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_6</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_7</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalLayout_8</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalLayout_9</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalSpacer</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>horizontalSpacer_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>horizontalSpacer_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_10</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_11</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_12</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_13</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_14</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_15</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_16</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_17</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_18</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_22</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_27</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_6</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_7</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>label_8</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>label_9</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>labelEpoch</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>labelProject</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>labelTestError</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>labelTrainError</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>lcdHours</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>lcdHR</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>lcdValuesRecieved</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>line</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>lineFilename</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>listView</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>listViewImages</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>listViewImages_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pageConnection</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>pageDevices</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pageExperiment</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>pageRegisters</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>parityCombo</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>pomodoroButton</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pomodoroCountLabel</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>progressBarTempo</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pushButton</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>pushButton_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pushButton_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>refreshButton</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>registersCombo</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>registersCountSpin</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>registersView</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>removeRegistersButton</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>retranslateUi</b>(QWidget *Form) (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>retranslateUi</b>(QWidget *Form) (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>retranslateUi</b>(QWidget *Form) (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>retranslateUi</b>(QWidget *Form) (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
@@ -217,49 +236,53 @@ $(function() {
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setupUi</b>(QWidget *Form) (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>setupUi</b>(QWidget *Form) (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setupUi</b>(QWidget *Form) (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>sliderSPo2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinBias</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinBox</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinDataIndex</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinEpoch</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinErrorThreshold</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinErrorThreshold_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinFuncIndent</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinLearnSpeed</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinMaxWeight</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinMinWeight</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinMoment</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinSize</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinTestErrorThreshold</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>startRegisterSpin</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>stopBitsCombo</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>tab</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>tab_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>tab_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>tab_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>tabWidget</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>timeoutSpinner</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>treeView</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setupUi</b>(QWidget *Form) (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>sliderSPo2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinBias</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinBox</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinDataIndex</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinEpoch</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinErrorThreshold</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinErrorThreshold_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinFuncIndent</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinLearnSpeed</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinMaxWeight</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinMinWeight</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinMoment</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spinSize</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>spinTestErrorThreshold</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>startRegisterSpin</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>stopBitsCombo</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>tab</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>tab_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>tab_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>tab_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>tabWidget</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>timeoutSpinner</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>treeView</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>treeView_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>updateIntervalSpin</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalLayout</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalLayout_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalLayout_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalLayout_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalLayout_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalLayout_7</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalLayout_8</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalLayout_9</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalSpacer</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalSpacer_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>widgetPaint</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>treeView</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>treeView_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>updateIntervalSpin</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalLayout</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalLayout_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalLayout_3</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalLayout_4</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalLayout_5</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalLayout_7</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalLayout_8</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalLayout_9</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>verticalSpacer</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>verticalSpacer_2</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>widgetPaint</b> (defined in <a class="el" href="class_ui___form.html">Ui_Form</a>)</td><td class="entry"><a class="el" href="class_ui___form.html">Ui_Form</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

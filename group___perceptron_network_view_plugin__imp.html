@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('group___perceptron_network_view_plugin__imp.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -66,8 +87,7 @@ $(function() {
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#enumval-members">Enumerator</a> &#124;
 <a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a> &#124;
-<a href="#pub-slot-members">Public Slots</a>  </div>
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Implementation<div class="ingroups"><a class="el" href="group___main_menu_plugin.html">MainMenuPlugin</a> &raquo; <a class="el" href="group___main_menu_plugin__rel.html">Related plugins</a> &raquo; <a class="el" href="group___main_menu_plugin__rel__v.html">View plugins</a> &raquo; <a class="el" href="group___perceptron_network_view_plugin.html">PerceptronNetworkViewPlugin</a></div></div>  </div>
 </div><!--header-->
@@ -75,54 +95,25 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_form.html">MainForm</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_network_params.html">NetworkParams</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_layer_params.html">LayerParams</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_form.html">MainForm</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_perceptron_network_view_plugin.html">PerceptronNetworkViewPlugin</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga56943a0946e5f15e5e58054b8e7a04a4"><td class="memItemLeft" align="right" valign="top"><a id="ga56943a0946e5f15e5e58054b8e7a04a4"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>LayerType</b> { <br />
-&#160;&#160;<b>Input</b>, 
+<tr class="memitem:ga56943a0946e5f15e5e58054b8e7a04a4"><td class="memItemLeft" align="right" valign="top"><a id="ga56943a0946e5f15e5e58054b8e7a04a4"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>LayerType</b> { <b>Input</b>, 
 <b>Hidden</b>, 
-<b>Output</b>, 
-<b>Input</b>, 
-<br />
-&#160;&#160;<b>Hidden</b>, 
 <b>Output</b>
-<br />
- }</td></tr>
-<tr class="separator:ga56943a0946e5f15e5e58054b8e7a04a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga56943a0946e5f15e5e58054b8e7a04a4"><td class="memItemLeft" align="right" valign="top"><a id="ga56943a0946e5f15e5e58054b8e7a04a4"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>LayerType</b> { <br />
-&#160;&#160;<b>Input</b>, 
-<b>Hidden</b>, 
-<b>Output</b>, 
-<b>Input</b>, 
-<br />
-&#160;&#160;<b>Hidden</b>, 
-<b>Output</b>
-<br />
  }</td></tr>
 <tr class="separator:ga56943a0946e5f15e5e58054b8e7a04a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gace8ae52e9cd4093ffc637e5b19a446ff"><td class="memItemLeft" align="right" valign="top"><a id="gace8ae52e9cd4093ffc637e5b19a446ff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>PerceptronNetworkViewPlugin::OnAllSetup</b> () override</td></tr>
-<tr class="separator:gace8ae52e9cd4093ffc637e5b19a446ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa4942c85bb0eb6001b23dda5eee1d36b"><td class="memItemLeft" align="right" valign="top"><a id="gaa4942c85bb0eb6001b23dda5eee1d36b"></a>
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>PerceptronNetworkViewPlugin::GetLastError</b> () override</td></tr>
-<tr class="separator:gaa4942c85bb0eb6001b23dda5eee1d36b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa5cf945d9102ea76269b6603fbf78b1b"><td class="memItemLeft" align="right" valign="top"><a id="gaa5cf945d9102ea76269b6603fbf78b1b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>PerceptronNetworkViewPlugin::AddModel</b> (QObject *model) override</td></tr>
-<tr class="separator:gaa5cf945d9102ea76269b6603fbf78b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga33791a775a8ac09f54a8c35905efe1cd"><td class="memItemLeft" align="right" valign="top"><a id="ga33791a775a8ac09f54a8c35905efe1cd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>PerceptronNetworkViewPlugin::Open</b> (QWidget *parent) override</td></tr>
-<tr class="separator:ga33791a775a8ac09f54a8c35905efe1cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4fac440fcedd86096cc932024c7a138"><td class="memItemLeft" align="right" valign="top"><a id="gaa4fac440fcedd86096cc932024c7a138"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>PerceptronNetworkViewPlugin::onAllReferencesSet</b> () override</td></tr>
 <tr class="separator:gaa4fac440fcedd86096cc932024c7a138"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,20 +168,17 @@ QStandardItemModel&#160;</td><td class="memItemRight" valign="bottom"><b>Percept
 <tr class="memitem:ga7fa5484e3d904a3a6b35772d937c518a"><td class="memItemLeft" align="right" valign="top"><a id="ga7fa5484e3d904a3a6b35772d937c518a"></a>
 QStandardItemModel&#160;</td><td class="memItemRight" valign="bottom"><b>PerceptronNetworkViewPlugin::testImagesModel</b></td></tr>
 <tr class="separator:ga7fa5484e3d904a3a6b35772d937c518a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slot-members"></a>
-Public Slots</h2></td></tr>
-<tr class="memitem:ga0b926a5f59e199142cb3a6bd2fc58e2d"><td class="memItemLeft" align="right" valign="top"><a id="ga0b926a5f59e199142cb3a6bd2fc58e2d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>PerceptronNetworkViewPlugin::Close</b> () override</td></tr>
-<tr class="separator:ga0b926a5f59e199142cb3a6bd2fc58e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

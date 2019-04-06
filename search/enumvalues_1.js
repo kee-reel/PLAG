@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['bscalligraphic',['bsCalligraphic',['../class_q_c_p_item_bracket.html#a7ac3afd0b24a607054e7212047d59dbda0333e35b7183ca344f06435133ca53b5',1,'QCPItemBracket']]],
-  ['bscurly',['bsCurly',['../class_q_c_p_item_bracket.html#a7ac3afd0b24a607054e7212047d59dbda2f39852776671dab9ef24020d3b56660',1,'QCPItemBracket']]],
-  ['bsellipse',['bsEllipse',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336eac24eb1553531e1f911d6d89788b753c3',1,'QCPSelectionDecoratorBracket']]],
-  ['bshalfellipse',['bsHalfEllipse',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336eab01a1199a5de13fb7abecf3de9b00335',1,'QCPSelectionDecoratorBracket']]],
-  ['bsplus',['bsPlus',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336ea1eadfcca827ad4465d8a6d50c3948b9e',1,'QCPSelectionDecoratorBracket']]],
-  ['bsround',['bsRound',['../class_q_c_p_item_bracket.html#a7ac3afd0b24a607054e7212047d59dbdad2626a7b6509a484d6b7b3210be33966',1,'QCPItemBracket']]],
-  ['bssquare',['bsSquare',['../class_q_c_p_item_bracket.html#a7ac3afd0b24a607054e7212047d59dbda44d78ec5c23946228633281791ec7134',1,'QCPItemBracket']]],
-  ['bssquarebracket',['bsSquareBracket',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336ea9faefe261e5f11f946fd052f01198913',1,'QCPSelectionDecoratorBracket']]],
-  ['bsuserstyle',['bsUserStyle',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336eaacc82a3e9ed4908e11dd78678e59705e',1,'QCPSelectionDecoratorBracket']]]
+  ['bscalligraphic',['bsCalligraphic',['../class_q_c_p_item_bracket.html#a7ac3afd0b24a607054e7212047d59dbda8f29f5ef754e2dc9a9efdedb2face0f3',1,'QCPItemBracket']]],
+  ['bscurly',['bsCurly',['../class_q_c_p_item_bracket.html#a7ac3afd0b24a607054e7212047d59dbda5024ce4023c2d8de4221f1cd4816acd8',1,'QCPItemBracket']]],
+  ['bsellipse',['bsEllipse',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336ea7cab0f2f406e293094a7a1e4903f6e8c',1,'QCPSelectionDecoratorBracket']]],
+  ['bshalfellipse',['bsHalfEllipse',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336eafa8ad19b1822c9c03fbe5e9ff8eeeea2',1,'QCPSelectionDecoratorBracket']]],
+  ['bsplus',['bsPlus',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336ea86eb6ae27e6296576fdc46d13c840530',1,'QCPSelectionDecoratorBracket']]],
+  ['bsround',['bsRound',['../class_q_c_p_item_bracket.html#a7ac3afd0b24a607054e7212047d59dbda394627b0830a26ee3e0a02ca67a9f918',1,'QCPItemBracket']]],
+  ['bssquare',['bsSquare',['../class_q_c_p_item_bracket.html#a7ac3afd0b24a607054e7212047d59dbda7f9df4a7359bfe3dac1dbe4ccf5d220c',1,'QCPItemBracket']]],
+  ['bssquarebracket',['bsSquareBracket',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336eaa10a8d25d409b09256a13220a4d74f81',1,'QCPSelectionDecoratorBracket']]],
+  ['bsuserstyle',['bsUserStyle',['../class_q_c_p_selection_decorator_bracket.html#aa6d18517ec0553575bbef0de4252336ea5a627cacdaa30ce434371d6a034b991d',1,'QCPSelectionDecoratorBracket']]]
 ];

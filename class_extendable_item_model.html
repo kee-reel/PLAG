@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_extendable_item_model.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -87,7 +108,7 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>LoadData</b> ()</td></tr>
 <tr class="separator:ae5887f5d5086a094d712e2f7a1f6b84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5bd69969f4763302af447d57bcea89c"><td class="memItemLeft" align="right" valign="top"><a id="af5bd69969f4763302af447d57bcea89c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>AttachRelation</b> (QString relationName, <a class="el" href="class_q_map.html">TableStructMap</a> fields, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; defaultData)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>AttachRelation</b> (QString relationName, TableStructMap fields, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; defaultData)</td></tr>
 <tr class="separator:af5bd69969f4763302af447d57bcea89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5ce2033c7ba133259dc5c46a98e4694"><td class="memItemLeft" align="right" valign="top"><a id="ad5ce2033c7ba133259dc5c46a98e4694"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetActiveRelation</b> (QString relationName)</td></tr>
@@ -99,10 +120,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataTypeEditor</b>
 virtual QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> (const QModelIndex &amp;index, int role) const</td></tr>
 <tr class="separator:a7b8f0527a5d89bf515e4ba1177294e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae75da3ede02d0f81e3a3523a99d9306f"><td class="memItemLeft" align="right" valign="top"><a id="ae75da3ede02d0f81e3a3523a99d9306f"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>itemData</b> (const QModelIndex &amp;index) const override</td></tr>
+QMap&lt; int, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>itemData</b> (const QModelIndex &amp;index) const override</td></tr>
 <tr class="separator:ae75da3ede02d0f81e3a3523a99d9306f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b036aaedcde7d3c018dc7e36327ee9a"><td class="memItemLeft" align="right" valign="top"><a id="a8b036aaedcde7d3c018dc7e36327ee9a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setItemData</b> (const QModelIndex &amp;index, const <a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt; &amp;roles) override</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setItemData</b> (const QModelIndex &amp;index, const QMap&lt; int, QVariant &gt; &amp;roles) override</td></tr>
 <tr class="separator:a8b036aaedcde7d3c018dc7e36327ee9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af798eeed6826786f0c576e1f4547f191"><td class="memItemLeft" align="right" valign="top"><a id="af798eeed6826786f0c576e1f4547f191"></a>
 virtual Qt::ItemFlags&#160;</td><td class="memItemRight" valign="bottom"><b>flags</b> (const QModelIndex &amp;index) const</td></tr>
@@ -146,72 +167,6 @@ virtual QMimeData *&#160;</td><td class="memItemRight" valign="bottom"><b>mimeDa
 <tr class="memitem:ae6dc27740bcfff8ecd88e3af76f7d3ac"><td class="memItemLeft" align="right" valign="top"><a id="ae6dc27740bcfff8ecd88e3af76f7d3ac"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>dropMimeData</b> (const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &amp;parent)</td></tr>
 <tr class="separator:ae6dc27740bcfff8ecd88e3af76f7d3ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8af322e238acd14f86aa629cddc2a70a"><td class="memItemLeft" align="right" valign="top"><a id="a8af322e238acd14f86aa629cddc2a70a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ExtendableItemModel</b> (QString tableName, <a class="el" href="class_i_extendable_data_manager.html">IExtendableDataManager</a> *dataManager, QObject *parent=0)</td></tr>
-<tr class="separator:a8af322e238acd14f86aa629cddc2a70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5887f5d5086a094d712e2f7a1f6b84b"><td class="memItemLeft" align="right" valign="top"><a id="ae5887f5d5086a094d712e2f7a1f6b84b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>LoadData</b> ()</td></tr>
-<tr class="separator:ae5887f5d5086a094d712e2f7a1f6b84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5bd69969f4763302af447d57bcea89c"><td class="memItemLeft" align="right" valign="top"><a id="af5bd69969f4763302af447d57bcea89c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>AttachRelation</b> (QString relationName, <a class="el" href="class_q_map.html">TableStructMap</a> fields, <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt; defaultData)</td></tr>
-<tr class="separator:af5bd69969f4763302af447d57bcea89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5ce2033c7ba133259dc5c46a98e4694"><td class="memItemLeft" align="right" valign="top"><a id="ad5ce2033c7ba133259dc5c46a98e4694"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetActiveRelation</b> (QString relationName)</td></tr>
-<tr class="separator:ad5ce2033c7ba133259dc5c46a98e4694"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0e36f250b83dd82d21f261d336e7e5c"><td class="memItemLeft" align="right" valign="top"><a id="aa0e36f250b83dd82d21f261d336e7e5c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataTypeEditor</b> (QString dataChunk, QString fieldName, QWidget *widget)</td></tr>
-<tr class="separator:aa0e36f250b83dd82d21f261d336e7e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9ef36b1912f6a510541509df53e9e03"><td class="memItemLeft" align="right" valign="top"><a id="aa9ef36b1912f6a510541509df53e9e03"></a>
-virtual QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> (const QModelIndex &amp;index, int role) const</td></tr>
-<tr class="separator:aa9ef36b1912f6a510541509df53e9e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c3b45277b46768f1fba5bc9ab4a388e"><td class="memItemLeft" align="right" valign="top"><a id="a5c3b45277b46768f1fba5bc9ab4a388e"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>itemData</b> (const QModelIndex &amp;index) const override</td></tr>
-<tr class="separator:a5c3b45277b46768f1fba5bc9ab4a388e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b036aaedcde7d3c018dc7e36327ee9a"><td class="memItemLeft" align="right" valign="top"><a id="a8b036aaedcde7d3c018dc7e36327ee9a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setItemData</b> (const QModelIndex &amp;index, const <a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt; &amp;roles) override</td></tr>
-<tr class="separator:a8b036aaedcde7d3c018dc7e36327ee9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71d1609484e15a16e2a07c54aa465381"><td class="memItemLeft" align="right" valign="top"><a id="a71d1609484e15a16e2a07c54aa465381"></a>
-virtual Qt::ItemFlags&#160;</td><td class="memItemRight" valign="bottom"><b>flags</b> (const QModelIndex &amp;index) const</td></tr>
-<tr class="separator:a71d1609484e15a16e2a07c54aa465381"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ad119a5b156acf0b8ae4090e8ec72ce"><td class="memItemLeft" align="right" valign="top"><a id="a5ad119a5b156acf0b8ae4090e8ec72ce"></a>
-virtual QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>headerData</b> (int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const</td></tr>
-<tr class="separator:a5ad119a5b156acf0b8ae4090e8ec72ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae296561b96cb7d302d27d90a8743e911"><td class="memItemLeft" align="right" valign="top"><a id="ae296561b96cb7d302d27d90a8743e911"></a>
-virtual QModelIndex&#160;</td><td class="memItemRight" valign="bottom"><b>index</b> (int row, int column, const QModelIndex &amp;parent=QModelIndex()) const</td></tr>
-<tr class="separator:ae296561b96cb7d302d27d90a8743e911"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ea988b185fb922797fb153ac284516f"><td class="memItemLeft" align="right" valign="top"><a id="a5ea988b185fb922797fb153ac284516f"></a>
-virtual QModelIndex&#160;</td><td class="memItemRight" valign="bottom"><b>parent</b> (const QModelIndex &amp;index) const</td></tr>
-<tr class="separator:a5ea988b185fb922797fb153ac284516f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a850c9252fb6b59d3e481e564e1c89a60"><td class="memItemLeft" align="right" valign="top"><a id="a850c9252fb6b59d3e481e564e1c89a60"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>rowCount</b> (const QModelIndex &amp;parent=QModelIndex()) const</td></tr>
-<tr class="separator:a850c9252fb6b59d3e481e564e1c89a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25cdc83a4bb99ee802aa1b8533e0775e"><td class="memItemLeft" align="right" valign="top"><a id="a25cdc83a4bb99ee802aa1b8533e0775e"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>columnCount</b> (const QModelIndex &amp;parent=QModelIndex()) const</td></tr>
-<tr class="separator:a25cdc83a4bb99ee802aa1b8533e0775e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adff898fac861b1cc06783b1b5f810d36"><td class="memItemLeft" align="right" valign="top"><a id="adff898fac861b1cc06783b1b5f810d36"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>insertRows</b> (int row, int count, const QModelIndex &amp;parent)</td></tr>
-<tr class="separator:adff898fac861b1cc06783b1b5f810d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa00ea86bd42efb9e82e08da187b6c7ec"><td class="memItemLeft" align="right" valign="top"><a id="aa00ea86bd42efb9e82e08da187b6c7ec"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>insertColumns</b> (int column, int count, const QModelIndex &amp;parent)</td></tr>
-<tr class="separator:aa00ea86bd42efb9e82e08da187b6c7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a066c457590916ebd1fb9e9694415c988"><td class="memItemLeft" align="right" valign="top"><a id="a066c457590916ebd1fb9e9694415c988"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>removeRows</b> (int row, int count, const QModelIndex &amp;parent)</td></tr>
-<tr class="separator:a066c457590916ebd1fb9e9694415c988"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2adfee96dc6e2c8f050c1bba9a4cf170"><td class="memItemLeft" align="right" valign="top"><a id="a2adfee96dc6e2c8f050c1bba9a4cf170"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>moveRows</b> (const QModelIndex &amp;sourceParent, int sourceRow, int count, const QModelIndex &amp;destinationParent, int destinationChild)</td></tr>
-<tr class="separator:a2adfee96dc6e2c8f050c1bba9a4cf170"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dd835fbda7d078df7b57253fe05712a"><td class="memItemLeft" align="right" valign="top"><a id="a8dd835fbda7d078df7b57253fe05712a"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setData</b> (const QModelIndex &amp;index, const QVariant &amp;value, int role)</td></tr>
-<tr class="separator:a8dd835fbda7d078df7b57253fe05712a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab54a2f3ff7d15f81bb092e14f60f7e3b"><td class="memItemLeft" align="right" valign="top"><a id="ab54a2f3ff7d15f81bb092e14f60f7e3b"></a>
-virtual QStringList&#160;</td><td class="memItemRight" valign="bottom"><b>mimeTypes</b> () const</td></tr>
-<tr class="separator:ab54a2f3ff7d15f81bb092e14f60f7e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca88d8b2053673df21d519c3e606a414"><td class="memItemLeft" align="right" valign="top"><a id="aca88d8b2053673df21d519c3e606a414"></a>
-virtual QMimeData *&#160;</td><td class="memItemRight" valign="bottom"><b>mimeData</b> (const QModelIndexList &amp;indexes) const</td></tr>
-<tr class="separator:aca88d8b2053673df21d519c3e606a414"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fae485a9730a567ab5071a788a47581"><td class="memItemLeft" align="right" valign="top"><a id="a7fae485a9730a567ab5071a788a47581"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>dropMimeData</b> (const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &amp;parent)</td></tr>
-<tr class="separator:a7fae485a9730a567ab5071a788a47581"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -221,20 +176,24 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>tableName</b></td>
 <tr class="memitem:a05024d7077bdcd12ce918a8e01ec11e9"><td class="memItemLeft" align="right" valign="top"><a id="a05024d7077bdcd12ce918a8e01ec11e9"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>coreRelationName</b></td></tr>
 <tr class="separator:a05024d7077bdcd12ce918a8e01ec11e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35af9444e4c17fcf463fbcaa3a25e842"><td class="memItemLeft" align="right" valign="top"><a id="a35af9444e4c17fcf463fbcaa3a25e842"></a>
+<tr class="memitem:a029551b7e099bb27c166fefb0d58c22f"><td class="memItemLeft" align="right" valign="top"><a id="a029551b7e099bb27c166fefb0d58c22f"></a>
 <a class="el" href="class_i_extendable_data_manager.html">IExtendableDataManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>dataManager</b></td></tr>
-<tr class="separator:a35af9444e4c17fcf463fbcaa3a25e842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a029551b7e099bb27c166fefb0d58c22f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/DataManagers/ExtendableDataManager/<a class="el" href="_old_plugins_2_data_managers_2_extendable_data_manager_2extendableitemmodel_8h_source.html">extendableitemmodel.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/DataManagers/ExtendableDataManager/extendableitemmodel.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/<a class="el" href="extendableitemmodel_8h_source.html">extendableitemmodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/extendableitemmodel.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_extendable_item_model.html">ExtendableItemModel</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

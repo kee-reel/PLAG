@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_d.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -89,8 +110,8 @@ $(function() {
 , <a class="el" href="class_q_c_p_plottable_interface1_d.html#af6330919e8023277d08c958a6074fc76">QCPPlottableInterface1D</a>
 </li>
 <li>dataPixelPosition()
-: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#abc363be6268d4547aa5324cb88138f30">QCPAbstractPlottable1D&lt; DataType &gt;</a>
-, <a class="el" href="class_q_c_p_bars.html#a71faeb70a3834f1f391c1a7e11c9fce7">QCPBars</a>
+: <a class="el" href="class_q_c_p_abstract_plottable1_d.html#a14cf167457cda163575e6eec2a0b178d">QCPAbstractPlottable1D&lt; DataType &gt;</a>
+, <a class="el" href="class_q_c_p_bars.html#a55cdaf565cd3384158d1f7f89533bc2d">QCPBars</a>
 , <a class="el" href="class_q_c_p_error_bars.html#a7397bc40751c9c6e2ea188895b2152f8">QCPErrorBars</a>
 , <a class="el" href="class_q_c_p_plottable_interface1_d.html#a78911838cfbcfd2d8df9ad2fdbfb8e93">QCPPlottableInterface1D</a>
 </li>
@@ -122,7 +143,7 @@ $(function() {
 </li>
 <li>dataValueRange()
 : <a class="el" href="class_q_c_p_abstract_plottable1_d.html#ac6201b01aee550ef0a240183781d1f9a">QCPAbstractPlottable1D&lt; DataType &gt;</a>
-, <a class="el" href="class_q_c_p_error_bars.html#af3a66650bc2a36b06a7d77f879b7eb8c">QCPErrorBars</a>
+, <a class="el" href="class_q_c_p_error_bars.html#a09b99cf293b6041ae8d5c52cf8dd599c">QCPErrorBars</a>
 , <a class="el" href="class_q_c_p_plottable_interface1_d.html#a9ca7fcf14d885a200879768679b19be9">QCPPlottableInterface1D</a>
 </li>
 <li>dateTimeToKey()
@@ -140,19 +161,22 @@ $(function() {
 <li>donePainting()
 : <a class="el" href="class_q_c_p_abstract_paint_buffer.html#a41b0dc6e7744f19fae09f8532c207dc1">QCPAbstractPaintBuffer</a>
 </li>
+<li>dot()
+: <a class="el" href="class_q_c_p_vector2_d.html#a39f8d28db7dbffcca6aa63a1f1f6e176">QCPVector2D</a>
+</li>
 <li>doubleClicked()
 : <a class="el" href="class_q_c_p_text_element.html#a9c6fd27ae8a7c3a02df7a6bbd3509e40">QCPTextElement</a>
 </li>
 <li>draw()
 : <a class="el" href="class_q_c_p_abstract_paint_buffer.html#afb998c7525e3ae37d9d2d46c7aaf461a">QCPAbstractPaintBuffer</a>
-, <a class="el" href="class_q_c_p_paint_buffer_pixmap.html#a7f8df231d2439e6b9953b86798815600">QCPPaintBufferPixmap</a>
+, <a class="el" href="class_q_c_p_paint_buffer_pixmap.html#af7bfc685e56a0a9329e57cd9a265eb74">QCPPaintBufferPixmap</a>
 </li>
 <li>drawBracket()
 : <a class="el" href="class_q_c_p_selection_decorator_bracket.html#a57b65b5508d5bd0f27c9318f3d4646be">QCPSelectionDecoratorBracket</a>
 </li>
 <li>drawDecoration()
 : <a class="el" href="class_q_c_p_selection_decorator.html#a4f8eb49e277063845391e803ae23054a">QCPSelectionDecorator</a>
-, <a class="el" href="class_q_c_p_selection_decorator_bracket.html#ae96f09ef95abf81a2514d54149387097">QCPSelectionDecoratorBracket</a>
+, <a class="el" href="class_q_c_p_selection_decorator_bracket.html#a1ceb893063ea3d7197a24098018f4bfb">QCPSelectionDecoratorBracket</a>
 </li>
 <li>drawLine()
 : <a class="el" href="class_q_c_p_painter.html#a0b4b1b9bd495e182c731774dc800e6e0">QCPPainter</a>
@@ -168,11 +192,14 @@ $(function() {
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

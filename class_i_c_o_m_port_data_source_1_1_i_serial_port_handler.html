@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_i_c_o_m_port_data_source_1_1_i_serial_port_handler.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="class_i_c_o_m_port_data_source.html">ICOMPortDataSource</a></li><li class="navelem"><a class="el" href="class_i_c_o_m_port_data_source_1_1_i_serial_port_handler.html">ISerialPortHandler</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
@@ -82,15 +99,11 @@ Inheritance diagram for ICOMPortDataSource::ISerialPortHandler:</div>
   <img src="class_i_c_o_m_port_data_source_1_1_i_serial_port_handler.png" usemap="#ICOMPortDataSource::ISerialPortHandler_map" alt=""/>
   <map id="ICOMPortDataSource::ISerialPortHandler_map" name="ICOMPortDataSource::ISerialPortHandler_map">
 <area href="class_serial_port_handler.html" alt="SerialPortHandler" shape="rect" coords="0,56,245,80"/>
-<area href="class_serial_port_handler.html" alt="SerialPortHandler" shape="rect" coords="255,56,500,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a5acb19aed8512d48795a9387f908f3ee"><td class="memItemLeft" align="right" valign="top"><a id="a5acb19aed8512d48795a9387f908f3ee"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>WriteData</b> (QByteArray data)=0</td></tr>
-<tr class="separator:a5acb19aed8512d48795a9387f908f3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5acb19aed8512d48795a9387f908f3ee"><td class="memItemLeft" align="right" valign="top"><a id="a5acb19aed8512d48795a9387f908f3ee"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>WriteData</b> (QByteArray data)=0</td></tr>
 <tr class="separator:a5acb19aed8512d48795a9387f908f3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -100,24 +113,9 @@ Signals</h2></td></tr>
 <tr class="memitem:a235481399766f136f500441abc73718a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_c_o_m_port_data_source_1_1_i_serial_port_handler.html#a235481399766f136f500441abc73718a">ReadData</a> (QByteArray *buffer)</td></tr>
 <tr class="memdesc:a235481399766f136f500441abc73718a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ReadData.  <a href="#a235481399766f136f500441abc73718a">More...</a><br /></td></tr>
 <tr class="separator:a235481399766f136f500441abc73718a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a235481399766f136f500441abc73718a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_c_o_m_port_data_source_1_1_i_serial_port_handler.html#a235481399766f136f500441abc73718a">ReadData</a> (QByteArray *buffer)</td></tr>
-<tr class="memdesc:a235481399766f136f500441abc73718a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ReadData.  <a href="#a235481399766f136f500441abc73718a">More...</a><br /></td></tr>
-<tr class="separator:a235481399766f136f500441abc73718a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7b986512ad271308820d33784625f662"><td class="memItemLeft" align="right" valign="top"><a id="a7b986512ad271308820d33784625f662"></a>
-virtual QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>GetInstance</b> ()=0</td></tr>
-<tr class="separator:a7b986512ad271308820d33784625f662"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a914268e4bcf02899a4b834ea42d547fd"><td class="memItemLeft" align="right" valign="top"><a id="a914268e4bcf02899a4b834ea42d547fd"></a>
-virtual QSerialPort *&#160;</td><td class="memItemRight" valign="bottom"><b>GetSerialPort</b> ()=0</td></tr>
-<tr class="separator:a914268e4bcf02899a4b834ea42d547fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb744b02ee29c7eed02e8fa5f033d3a5"><td class="memItemLeft" align="right" valign="top"><a id="adb744b02ee29c7eed02e8fa5f033d3a5"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>OpenPort</b> (QIODevice::OpenMode openMode)=0</td></tr>
-<tr class="separator:adb744b02ee29c7eed02e8fa5f033d3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b45abd54ee0348088c6cce6e19d62df"><td class="memItemLeft" align="right" valign="top"><a id="a7b45abd54ee0348088c6cce6e19d62df"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ClosePort</b> ()=0</td></tr>
-<tr class="separator:a7b45abd54ee0348088c6cce6e19d62df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b986512ad271308820d33784625f662"><td class="memItemLeft" align="right" valign="top"><a id="a7b986512ad271308820d33784625f662"></a>
 virtual QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>GetInstance</b> ()=0</td></tr>
 <tr class="separator:a7b986512ad271308820d33784625f662"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,41 +137,7 @@ Public Attributes</h2></td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a235481399766f136f500441abc73718a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a235481399766f136f500441abc73718a">&#9670;&nbsp;</a></span>ReadData <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ICOMPortDataSource::ISerialPortHandler::ReadData </td>
-          <td>(</td>
-          <td class="paramtype">QByteArray *&#160;</td>
-          <td class="paramname"><em>buffer</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>ReadData. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">buffer</td><td>After emitting this signal buffer wipes out. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a235481399766f136f500441abc73718a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a235481399766f136f500441abc73718a">&#9670;&nbsp;</a></span>ReadData <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a235481399766f136f500441abc73718a">&#9670;&nbsp;</a></span>ReadData</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -207,14 +171,18 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/DataSources/COMPortDataSource/<a class="el" href="_old_plugins_2_data_sources_2_c_o_m_port_data_source_2icomportdatasource_8h_source.html">icomportdatasource.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="icomportdatasource_8h_source.html">icomportdatasource.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_c_o_m_port_data_source.html">ICOMPortDataSource</a></li><li class="navelem"><a class="el" href="class_i_c_o_m_port_data_source_1_1_i_serial_port_handler.html">ISerialPortHandler</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

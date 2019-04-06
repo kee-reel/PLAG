@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_q_c_p_graph_data.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -88,36 +109,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1b1e440a430a4a83d9a3f6f247510f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f8dd30360356f66cc418a170a9f3792"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_q_c_p_range.html">QCPRange</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_graph_data.html#a2f8dd30360356f66cc418a170a9f3792">valueRange</a> () const</td></tr>
 <tr class="separator:a2f8dd30360356f66cc418a170a9f3792"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c32177f12f902f4e05f712837082bd6"><td class="memItemLeft" align="right" valign="top"><a id="a2c32177f12f902f4e05f712837082bd6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPGraphData</b> (double key, double value)</td></tr>
-<tr class="separator:a2c32177f12f902f4e05f712837082bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e0f37ea101eeec245d8c32a2206b204"><td class="memItemLeft" align="right" valign="top"><a id="a5e0f37ea101eeec245d8c32a2206b204"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>sortKey</b> () const</td></tr>
-<tr class="separator:a5e0f37ea101eeec245d8c32a2206b204"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72fdaf738f679ef93bea3d552ba42d1b"><td class="memItemLeft" align="right" valign="top"><a id="a72fdaf738f679ef93bea3d552ba42d1b"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>mainKey</b> () const</td></tr>
-<tr class="separator:a72fdaf738f679ef93bea3d552ba42d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b1e440a430a4a83d9a3f6f247510f27"><td class="memItemLeft" align="right" valign="top"><a id="a1b1e440a430a4a83d9a3f6f247510f27"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>mainValue</b> () const</td></tr>
-<tr class="separator:a1b1e440a430a4a83d9a3f6f247510f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f8dd30360356f66cc418a170a9f3792"><td class="memItemLeft" align="right" valign="top"><a id="a2f8dd30360356f66cc418a170a9f3792"></a>
-<a class="el" href="class_q_c_p_range.html">QCPRange</a>&#160;</td><td class="memItemRight" valign="bottom"><b>valueRange</b> () const</td></tr>
-<tr class="separator:a2f8dd30360356f66cc418a170a9f3792"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c32177f12f902f4e05f712837082bd6"><td class="memItemLeft" align="right" valign="top"><a id="a2c32177f12f902f4e05f712837082bd6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QCPGraphData</b> (double key, double value)</td></tr>
-<tr class="separator:a2c32177f12f902f4e05f712837082bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e0f37ea101eeec245d8c32a2206b204"><td class="memItemLeft" align="right" valign="top"><a id="a5e0f37ea101eeec245d8c32a2206b204"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>sortKey</b> () const</td></tr>
-<tr class="separator:a5e0f37ea101eeec245d8c32a2206b204"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72fdaf738f679ef93bea3d552ba42d1b"><td class="memItemLeft" align="right" valign="top"><a id="a72fdaf738f679ef93bea3d552ba42d1b"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>mainKey</b> () const</td></tr>
-<tr class="separator:a72fdaf738f679ef93bea3d552ba42d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b1e440a430a4a83d9a3f6f247510f27"><td class="memItemLeft" align="right" valign="top"><a id="a1b1e440a430a4a83d9a3f6f247510f27"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>mainValue</b> () const</td></tr>
-<tr class="separator:a1b1e440a430a4a83d9a3f6f247510f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f8dd30360356f66cc418a170a9f3792"><td class="memItemLeft" align="right" valign="top"><a id="a2f8dd30360356f66cc418a170a9f3792"></a>
-<a class="el" href="class_q_c_p_range.html">QCPRange</a>&#160;</td><td class="memItemRight" valign="bottom"><b>valueRange</b> () const</td></tr>
-<tr class="separator:a2f8dd30360356f66cc418a170a9f3792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -125,18 +116,6 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a4646eac7f7a48970ea0fc5153aab0e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c98dfd21b82321a173db4ff860dfd21"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_c_p_graph_data.html#a1c98dfd21b82321a173db4ff860dfd21">sortKeyIsMainKey</a> ()</td></tr>
 <tr class="separator:a1c98dfd21b82321a173db4ff860dfd21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4646eac7f7a48970ea0fc5153aab0e77"><td class="memItemLeft" align="right" valign="top"><a id="a4646eac7f7a48970ea0fc5153aab0e77"></a>
-static <a class="el" href="class_q_c_p_graph_data.html">QCPGraphData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>fromSortKey</b> (double <a class="el" href="class_q_c_p_graph_data.html#a5e0f37ea101eeec245d8c32a2206b204">sortKey</a>)</td></tr>
-<tr class="separator:a4646eac7f7a48970ea0fc5153aab0e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61da5d975de269a23d98ad18bc4f4ab3"><td class="memItemLeft" align="right" valign="top"><a id="a61da5d975de269a23d98ad18bc4f4ab3"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>sortKeyIsMainKey</b> ()</td></tr>
-<tr class="separator:a61da5d975de269a23d98ad18bc4f4ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4646eac7f7a48970ea0fc5153aab0e77"><td class="memItemLeft" align="right" valign="top"><a id="a4646eac7f7a48970ea0fc5153aab0e77"></a>
-static <a class="el" href="class_q_c_p_graph_data.html">QCPGraphData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>fromSortKey</b> (double <a class="el" href="class_q_c_p_graph_data.html#a5e0f37ea101eeec245d8c32a2206b204">sortKey</a>)</td></tr>
-<tr class="separator:a4646eac7f7a48970ea0fc5153aab0e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61da5d975de269a23d98ad18bc4f4ab3"><td class="memItemLeft" align="right" valign="top"><a id="a61da5d975de269a23d98ad18bc4f4ab3"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>sortKeyIsMainKey</b> ()</td></tr>
-<tr class="separator:a61da5d975de269a23d98ad18bc4f4ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -368,15 +347,19 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/<a class="el" href="_old_plugins_2_views_2_a_r_neural_network_view_2qcustomplot_8h_source.html">qcustomplot.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/ARNeuralNetworkView/qcustomplot.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/qcustomplot.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:35 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_q_c_p_graph_data.html">QCPGraphData</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:58 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

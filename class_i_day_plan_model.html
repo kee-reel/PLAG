@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_i_day_plan_model.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -69,15 +90,14 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="_old_plugins_2_models_2_day_plan_model_2idayplanmodel_8h_source.html">idayplanmodel.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="idayplanmodel_8h_source.html">idayplanmodel.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for IDayPlanModel:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_i_day_plan_model.png" usemap="#IDayPlanModel_map" alt=""/>
   <map id="IDayPlanModel_map" name="IDayPlanModel_map">
-<area href="class_day_plan_model.html" alt="DayPlanModel" shape="rect" coords="0,112,98,136"/>
-<area href="class_day_plan_model.html" alt="DayPlanModel" shape="rect" coords="108,112,206,136"/>
+<area href="class_day_plan_model.html" alt="DayPlanModel" shape="rect" coords="0,56,98,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -92,27 +112,22 @@ virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom">
 <tr class="memitem:a166bea4d5e6bdd840da0298d66af2b00"><td class="memItemLeft" align="right" valign="top"><a id="a166bea4d5e6bdd840da0298d66af2b00"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataTypeEditor</b> (QWidget *widget)=0</td></tr>
 <tr class="separator:a166bea4d5e6bdd840da0298d66af2b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89e742efd93a479f622cd522859282fa"><td class="memItemLeft" align="right" valign="top"><a id="a89e742efd93a479f622cd522859282fa"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetTaskModel</b> ()=0</td></tr>
-<tr class="separator:a89e742efd93a479f622cd522859282fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ad0012427d4de5fc3542fdbde2aedfd"><td class="memItemLeft" align="right" valign="top"><a id="a5ad0012427d4de5fc3542fdbde2aedfd"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDateModel</b> ()=0</td></tr>
-<tr class="separator:a5ad0012427d4de5fc3542fdbde2aedfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a166bea4d5e6bdd840da0298d66af2b00"><td class="memItemLeft" align="right" valign="top"><a id="a166bea4d5e6bdd840da0298d66af2b00"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataTypeEditor</b> (QWidget *widget)=0</td></tr>
-<tr class="separator:a166bea4d5e6bdd840da0298d66af2b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>defgroup <a class="el" href="class_day_plan_model.html">DayPlanModel</a> ingroup MainMenuPlugin_rel_m defgroup DayPlanModel_int Interface ingroup <a class="el" href="class_day_plan_model.html">DayPlanModel</a> defgroup DayPlanModel_imp Implementation ingroup <a class="el" href="class_day_plan_model.html">DayPlanModel</a> addtogroup DayPlanModel_int { </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/DayPlanModel/<a class="el" href="_old_plugins_2_models_2_day_plan_model_2idayplanmodel_8h_source.html">idayplanmodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="idayplanmodel_8h_source.html">idayplanmodel.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_day_plan_model.html">IDayPlanModel</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

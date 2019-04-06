@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_raw_image_delegate.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -80,26 +101,21 @@ QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>GetValue</b> ()</
 <tr class="memitem:af186a0557ec922b7afc9c95b69a0b5b5"><td class="memItemLeft" align="right" valign="top"><a id="af186a0557ec922b7afc9c95b69a0b5b5"></a>
 QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>GetWidget</b> ()</td></tr>
 <tr class="separator:af186a0557ec922b7afc9c95b69a0b5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6a448f768f7ba6d7763a8fda00adc73"><td class="memItemLeft" align="right" valign="top"><a id="ac6a448f768f7ba6d7763a8fda00adc73"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetValue</b> (QVariant value)</td></tr>
-<tr class="separator:ac6a448f768f7ba6d7763a8fda00adc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17753f455c9f9b72332c6f11ce7f8b8b"><td class="memItemLeft" align="right" valign="top"><a id="a17753f455c9f9b72332c6f11ce7f8b8b"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>GetValue</b> ()</td></tr>
-<tr class="separator:a17753f455c9f9b72332c6f11ce7f8b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c798f1c7f40f7d3e87e5ed44dc3fa89"><td class="memItemLeft" align="right" valign="top"><a id="a2c798f1c7f40f7d3e87e5ed44dc3fa89"></a>
-QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>GetWidget</b> ()</td></tr>
-<tr class="separator:a2c798f1c7f40f7d3e87e5ed44dc3fa89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/TaskSketchModel/<a class="el" href="_old_plugins_2_models_2_task_sketch_model_2rawimagedelegate_8h_source.html">rawimagedelegate.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/TaskSketchModel/rawimagedelegate.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/TaskSketchModel/<a class="el" href="rawimagedelegate_8h_source.html">rawimagedelegate.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/TaskSketchModel/rawimagedelegate.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:44 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_raw_image_delegate.html">RawImageDelegate</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:00 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

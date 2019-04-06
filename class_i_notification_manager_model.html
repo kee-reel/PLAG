@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_i_notification_manager_model.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -71,56 +92,33 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="_old_plugins_2_models_2_notification_manger_model_2inotificationmanagermodel_8h_source.html">inotificationmanagermodel.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="inotificationmanagermodel_8h_source.html">inotificationmanagermodel.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for INotificationManagerModel:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_i_notification_manager_model.png" usemap="#INotificationManagerModel_map" alt=""/>
   <map id="INotificationManagerModel_map" name="INotificationManagerModel_map">
-<area href="class_notification_manager_model.html" alt="NotificationManagerModel" shape="rect" coords="0,112,164,136"/>
-<area href="class_notification_manager_model.html" alt="NotificationManagerModel" shape="rect" coords="174,112,338,136"/>
+<area href="class_notification_manager_model.html" alt="NotificationManagerModel" shape="rect" coords="0,56,164,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a4a5953a6c0d0770aabe089428baacc47"><td class="memItemLeft" align="right" valign="top"><a id="a4a5953a6c0d0770aabe089428baacc47"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Duration</b> { <b>SHORT</b> = 0, 
-<b>LONG</b> = 1, 
-<b>SHORT</b> = 0, 
 <b>LONG</b> = 1
  }</td></tr>
 <tr class="separator:a4a5953a6c0d0770aabe089428baacc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd2473577a61a2dcb1e66133c6d12207"><td class="memItemLeft" align="right" valign="top"><a id="afd2473577a61a2dcb1e66133c6d12207"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>TimeType</b> { <b>RTC_TIME</b> = 0, 
-<b>FROM_DEVICE_START</b> = 2, 
-<b>RTC_TIME</b> = 0, 
 <b>FROM_DEVICE_START</b> = 2
  }</td></tr>
 <tr class="separator:afd2473577a61a2dcb1e66133c6d12207"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a5953a6c0d0770aabe089428baacc47"><td class="memItemLeft" align="right" valign="top"><a id="a4a5953a6c0d0770aabe089428baacc47"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Duration</b> { <b>SHORT</b> = 0, 
-<b>LONG</b> = 1, 
-<b>SHORT</b> = 0, 
-<b>LONG</b> = 1
- }</td></tr>
-<tr class="separator:a4a5953a6c0d0770aabe089428baacc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd2473577a61a2dcb1e66133c6d12207"><td class="memItemLeft" align="right" valign="top"><a id="afd2473577a61a2dcb1e66133c6d12207"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>TimeType</b> { <b>RTC_TIME</b> = 0, 
-<b>FROM_DEVICE_START</b> = 2, 
-<b>RTC_TIME</b> = 0, 
-<b>FROM_DEVICE_START</b> = 2
- }</td></tr>
-<tr class="separator:afd2473577a61a2dcb1e66133c6d12207"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafe588f4a1663bfd2ecd646fd5b7c1bc"><td class="memItemLeft" align="right" valign="top"><a id="aafe588f4a1663bfd2ecd646fd5b7c1bc"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>TimeoutFunc</b>) (int)</td></tr>
-<tr class="separator:aafe588f4a1663bfd2ecd646fd5b7c1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafe588f4a1663bfd2ecd646fd5b7c1bc"><td class="memItemLeft" align="right" valign="top"><a id="aafe588f4a1663bfd2ecd646fd5b7c1bc"></a>
 typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>TimeoutFunc</b>) (int)</td></tr>
 <tr class="separator:aafe588f4a1663bfd2ecd646fd5b7c1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:ace7b0889068f46f491577a7243b7d8c3"><td class="memItemLeft" align="right" valign="top"><a id="ace7b0889068f46f491577a7243b7d8c3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnTimerTimeout</b> (int)</td></tr>
-<tr class="separator:ace7b0889068f46f491577a7243b7d8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace7b0889068f46f491577a7243b7d8c3"><td class="memItemLeft" align="right" valign="top"><a id="ace7b0889068f46f491577a7243b7d8c3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnTimerTimeout</b> (int)</td></tr>
 <tr class="separator:ace7b0889068f46f491577a7243b7d8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,45 +152,22 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetAlarmedToa
 <tr class="memitem:a387a9d894c4305fa167af1c70fa0efbe"><td class="memItemLeft" align="right" valign="top"><a id="a387a9d894c4305fa167af1c70fa0efbe"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>CancelAlarm</b> ()=0</td></tr>
 <tr class="separator:a387a9d894c4305fa167af1c70fa0efbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c4bede667ac2975fd1f07033935e285"><td class="memItemLeft" align="right" valign="top"><a id="a8c4bede667ac2975fd1f07033935e285"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowNotification</b> (QString title, QString message, int id=0)=0</td></tr>
-<tr class="separator:a8c4bede667ac2975fd1f07033935e285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a619033c08d87d59a737ea74c71fff093"><td class="memItemLeft" align="right" valign="top"><a id="a619033c08d87d59a737ea74c71fff093"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>CancelNotification</b> (int id=0)=0</td></tr>
-<tr class="separator:a619033c08d87d59a737ea74c71fff093"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae70217c61011ce4f38f8a62579a41751"><td class="memItemLeft" align="right" valign="top"><a id="ae70217c61011ce4f38f8a62579a41751"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowToast</b> (const QString &amp;message, INotificationManagerModel::Duration duration=LONG)=0</td></tr>
-<tr class="separator:ae70217c61011ce4f38f8a62579a41751"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f1bba63147dd8722421c14184ecf61"><td class="memItemLeft" align="right" valign="top"><a id="ad5f1bba63147dd8722421c14184ecf61"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>PlanApplicationWakeup</b> (TimeType timePlan, QDateTime time)=0</td></tr>
-<tr class="separator:ad5f1bba63147dd8722421c14184ecf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a582bdc6aa5c54cef91bb87c7d572338b"><td class="memItemLeft" align="right" valign="top"><a id="a582bdc6aa5c54cef91bb87c7d572338b"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>SetAlarm</b> (TimeType type, QDateTime time)=0</td></tr>
-<tr class="separator:a582bdc6aa5c54cef91bb87c7d572338b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac14e4f8922b6425e8dce3fc6e292e08e"><td class="memItemLeft" align="right" valign="top"><a id="ac14e4f8922b6425e8dce3fc6e292e08e"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>SetRepeatingAlarm</b> (TimeType type, QDateTime triggerTime, QDateTime interval)=0</td></tr>
-<tr class="separator:ac14e4f8922b6425e8dce3fc6e292e08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf368dc49361ac70e57b39788c67f3c9"><td class="memItemLeft" align="right" valign="top"><a id="aaf368dc49361ac70e57b39788c67f3c9"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetAlarmedNotification</b> (TimeType type, QDateTime time, QString title, QString message, int id=0)=0</td></tr>
-<tr class="separator:aaf368dc49361ac70e57b39788c67f3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae944b74b1fbc7f2fa6ef4615d4a6c4e2"><td class="memItemLeft" align="right" valign="top"><a id="ae944b74b1fbc7f2fa6ef4615d4a6c4e2"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetAlarmedToast</b> (TimeType type, QDateTime time, const QString &amp;message, INotificationManagerModel::Duration duration=LONG)=0</td></tr>
-<tr class="separator:ae944b74b1fbc7f2fa6ef4615d4a6c4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a387a9d894c4305fa167af1c70fa0efbe"><td class="memItemLeft" align="right" valign="top"><a id="a387a9d894c4305fa167af1c70fa0efbe"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>CancelAlarm</b> ()=0</td></tr>
-<tr class="separator:a387a9d894c4305fa167af1c70fa0efbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>addtogroup AndroidNotificationModel_int { </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/NotificationMangerModel/<a class="el" href="_old_plugins_2_models_2_notification_manger_model_2inotificationmanagermodel_8h_source.html">inotificationmanagermodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="inotificationmanagermodel_8h_source.html">inotificationmanagermodel.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_notification_manager_model.html">INotificationManagerModel</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

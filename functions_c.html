@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +53,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_c.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,10 +108,10 @@ $(function() {
 : <a class="el" href="class_q_c_p_layer.html#a183b90941fc78f0b136edd77c5fb6966">QCPLayer</a>
 </li>
 <li>ciHSV
-: <a class="el" href="class_q_c_p_color_gradient.html#ac5dca17cc24336e6ca176610e7f77fc1a3662ff840f7db088d58e5bdb1105e3a4">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#ac5dca17cc24336e6ca176610e7f77fc1af14ae62fcae11ecc07234eeaec5856cb">QCPColorGradient</a>
 </li>
 <li>ciRGB
-: <a class="el" href="class_q_c_p_color_gradient.html#ac5dca17cc24336e6ca176610e7f77fc1a18d3bb189bc5ac3c9ef345dad522fde4">QCPColorGradient</a>
+: <a class="el" href="class_q_c_p_color_gradient.html#ac5dca17cc24336e6ca176610e7f77fc1a5e30f725c9cfe93999e268a9f92afbe7">QCPColorGradient</a>
 </li>
 <li>clear()
 : <a class="el" href="class_q_c_p_abstract_paint_buffer.html#a9e253f4541dfc01992b77e8830bd7722">QCPAbstractPaintBuffer</a>
@@ -141,12 +162,13 @@ $(function() {
 : <a class="el" href="class_q_c_p_data_container.html#aa7f7cf239b85b1a28de3d675cc5b3da1">QCPDataContainer&lt; DataType &gt;</a>
 </li>
 <li>contains()
-: <a class="el" href="class_q_c_p_data_range.html#a13ca398776374a3160aa85433718b812">QCPDataRange</a>
+: <a class="el" href="class_q_c_p_bars_group.html#ae26da07a23553052a178fb3fae90d0dc">QCPBarsGroup</a>
+, <a class="el" href="class_q_c_p_data_range.html#a13ca398776374a3160aa85433718b812">QCPDataRange</a>
 , <a class="el" href="class_q_c_p_data_selection.html#ab1ad3d5bbb55749c3f7ab1e45429c932">QCPDataSelection</a>
 , <a class="el" href="class_q_c_p_range.html#ae9842b48b6d38dc5e9607358e3083cc8">QCPRange</a>
 </li>
 <li>coordsToPixels()
-: <a class="el" href="class_q_c_p_abstract_plottable.html#a7ad84a36472441cf1f555c5683d0da93">QCPAbstractPlottable</a>
+: <a class="el" href="class_q_c_p_abstract_plottable.html#a5acb50ae984eef09a7ab92315d2ad708">QCPAbstractPlottable</a>
 </li>
 <li>coordToCell()
 : <a class="el" href="class_q_c_p_color_map_data.html#aca5b29e0ca2f299c9060fc6e1f74d0c8">QCPColorMapData</a>
@@ -161,21 +183,24 @@ $(function() {
 : <a class="el" href="class_q_c_p_axis_ticker_text.html#aa195c4fd0364d0393f1798fb495d6a60">QCPAxisTickerText</a>
 </li>
 <li>csCandlestick
-: <a class="el" href="class_q_c_p_financial.html#a0f800e21ee98d646dfc6f8f89d10ebfba70109b20d14e2ff148fdbd500902e567">QCPFinancial</a>
+: <a class="el" href="class_q_c_p_financial.html#a0f800e21ee98d646dfc6f8f89d10ebfbac803cbd39f26e3f206bcc7028679e62f">QCPFinancial</a>
 </li>
 <li>csOhlc
-: <a class="el" href="class_q_c_p_financial.html#a0f800e21ee98d646dfc6f8f89d10ebfba3acf5bf7e9047684023e3236755768de">QCPFinancial</a>
+: <a class="el" href="class_q_c_p_financial.html#a0f800e21ee98d646dfc6f8f89d10ebfba3a516016c9298d3e95dd82aa203c4390">QCPFinancial</a>
 </li>
 <li>currentLayer()
 : <a class="el" href="class_q_custom_plot.html#a0421d647f420b0b4c57aec1708857af5">QCustomPlot</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:46 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

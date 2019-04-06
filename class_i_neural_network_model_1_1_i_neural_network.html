@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_i_neural_network_model_1_1_i_neural_network.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="class_i_neural_network_model.html">INeuralNetworkModel</a></li><li class="navelem"><a class="el" href="class_i_neural_network_model_1_1_i_neural_network.html">INeuralNetwork</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -79,11 +96,8 @@ Inheritance diagram for INeuralNetworkModel::INeuralNetwork:</div>
   <img src="class_i_neural_network_model_1_1_i_neural_network.png" usemap="#INeuralNetworkModel::INeuralNetwork_map" alt=""/>
   <map id="INeuralNetworkModel::INeuralNetwork_map" name="INeuralNetworkModel::INeuralNetwork_map">
 <area href="class_a_r_t_network.html" alt="ARTNetwork" shape="rect" coords="0,56,227,80"/>
-<area href="class_a_r_t_network.html" alt="ARTNetwork" shape="rect" coords="237,56,464,80"/>
-<area href="class_genetic_algorithm.html" alt="GeneticAlgorithm" shape="rect" coords="474,56,701,80"/>
-<area href="class_genetic_algorithm.html" alt="GeneticAlgorithm" shape="rect" coords="711,56,938,80"/>
-<area href="class_perceptron_network.html" alt="PerceptronNetwork" shape="rect" coords="948,56,1175,80"/>
-<area href="class_perceptron_network.html" alt="PerceptronNetwork" shape="rect" coords="1185,56,1412,80"/>
+<area href="class_genetic_algorithm.html" alt="GeneticAlgorithm" shape="rect" coords="237,56,464,80"/>
+<area href="class_perceptron_network.html" alt="PerceptronNetwork" shape="rect" coords="474,56,701,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -113,40 +127,20 @@ virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt;&#
 <tr class="memitem:a767cdb2dfd88c7db1dfbd8620cffafc9"><td class="memItemLeft" align="right" valign="top"><a id="a767cdb2dfd88c7db1dfbd8620cffafc9"></a>
 virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>RunTestSet</b> ()=0</td></tr>
 <tr class="separator:a767cdb2dfd88c7db1dfbd8620cffafc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21b05dafd766b32341d22b52d4714903"><td class="memItemLeft" align="right" valign="top"><a id="a21b05dafd766b32341d22b52d4714903"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetNetworkParams</b> (QJsonObject params)=0</td></tr>
-<tr class="separator:a21b05dafd766b32341d22b52d4714903"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a840c7196b8c3e1065b8c0a62a1b49fb2"><td class="memItemLeft" align="right" valign="top"><a id="a840c7196b8c3e1065b8c0a62a1b49fb2"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupSamplesF</b> (QJsonObject parameters, <a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_q_pair.html">InputSampleF</a> &gt; *samples)=0</td></tr>
-<tr class="separator:a840c7196b8c3e1065b8c0a62a1b49fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af04047a560d8b5f68651173f62510d02"><td class="memItemLeft" align="right" valign="top"><a id="af04047a560d8b5f68651173f62510d02"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupSamplesI</b> (QJsonObject parameters, <a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_q_pair.html">InputSampleI</a> &gt; *samples)=0</td></tr>
-<tr class="separator:af04047a560d8b5f68651173f62510d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a128bb0ed83f4b3b309691943eca77954"><td class="memItemLeft" align="right" valign="top"><a id="a128bb0ed83f4b3b309691943eca77954"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>AddLayer</b> (QJsonObject layerParams)=0</td></tr>
-<tr class="separator:a128bb0ed83f4b3b309691943eca77954"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0940ee0d739ae2ea00eb28ef21019597"><td class="memItemLeft" align="right" valign="top"><a id="a0940ee0d739ae2ea00eb28ef21019597"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetLayers</b> ()=0</td></tr>
-<tr class="separator:a0940ee0d739ae2ea00eb28ef21019597"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbfcfb4e09800b0f32f141b071eca3d8"><td class="memItemLeft" align="right" valign="top"><a id="adbfcfb4e09800b0f32f141b071eca3d8"></a>
-virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>RunTrainSet</b> ()=0</td></tr>
-<tr class="separator:adbfcfb4e09800b0f32f141b071eca3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f00d2ce86d5e006f161762ad7631d3b"><td class="memItemLeft" align="right" valign="top"><a id="a4f00d2ce86d5e006f161762ad7631d3b"></a>
-virtual <a class="el" href="class_q_vector.html">QVector</a>&lt; QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>RunTrainingAndGetResult</b> ()=0</td></tr>
-<tr class="separator:a4f00d2ce86d5e006f161762ad7631d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a767cdb2dfd88c7db1dfbd8620cffafc9"><td class="memItemLeft" align="right" valign="top"><a id="a767cdb2dfd88c7db1dfbd8620cffafc9"></a>
-virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>RunTestSet</b> ()=0</td></tr>
-<tr class="separator:a767cdb2dfd88c7db1dfbd8620cffafc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/NeuralNetworkModel/<a class="el" href="_old_plugins_2_models_2_neural_network_model_2ineuralnetworkmodel_8h_source.html">ineuralnetworkmodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="ineuralnetworkmodel_8h_source.html">ineuralnetworkmodel.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_neural_network_model.html">INeuralNetworkModel</a></li><li class="navelem"><a class="el" href="class_i_neural_network_model_1_1_i_neural_network.html">INeuralNetwork</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

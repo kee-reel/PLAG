@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_neural_network_model.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,12 +81,8 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-slots">Public Slots</a> &#124;
-<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_neural_network_model-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -79,76 +97,15 @@ Inheritance diagram for NeuralNetworkModel:</div>
   <map id="NeuralNetworkModel_map" name="NeuralNetworkModel_map">
 <area href="class_plugin_base.html" title="This interface provides basic methods for all plugins. " alt="PluginBase" shape="rect" coords="81,56,233,80"/>
 <area href="class_i_neural_network_model.html" alt="INeuralNetworkModel" shape="rect" coords="243,56,395,80"/>
-<area href="class_i_neural_network_model.html" alt="INeuralNetworkModel" shape="rect" coords="567,56,719,80"/>
 <area href="class_i_plugin.html" title="This interface provides basic methods for all plugins. " alt="IPlugin" shape="rect" coords="162,0,314,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
-Public Slots</h2></td></tr>
-<tr class="memitem:ad119ec2e74e7cadd04ae9c087ee0e443"><td class="memItemLeft" align="right" valign="top"><a id="ad119ec2e74e7cadd04ae9c087ee0e443"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReferencePluginClosed</b> (PluginInfo *pluginInfo) override</td></tr>
-<tr class="separator:ad119ec2e74e7cadd04ae9c087ee0e443"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b36f01977c1e90134b06f8d80872377"><td class="memItemLeft" align="right" valign="top"><a id="a6b36f01977c1e90134b06f8d80872377"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Open</b> (IModelPlugin *model) override</td></tr>
-<tr class="separator:a6b36f01977c1e90134b06f8d80872377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a755fad2f3c4242b5a00cb151757f144c"><td class="memItemLeft" align="right" valign="top"><a id="a755fad2f3c4242b5a00cb151757f144c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Close</b> () override</td></tr>
-<tr class="separator:a755fad2f3c4242b5a00cb151757f144c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_slots_class_i_plugin"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_class_i_plugin')"><img src="closed.png" alt="-"/>&#160;Public Slots inherited from <a class="el" href="class_i_plugin.html">IPlugin</a></td></tr>
-<tr class="memitem:a2168e932856b984e571d493f49568992 inherit pub_slots_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a2168e932856b984e571d493f49568992"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onReferenceReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *reference)=0</td></tr>
-<tr class="separator:a2168e932856b984e571d493f49568992 inherit pub_slots_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
-Signals</h2></td></tr>
-<tr class="memitem:a7c0da9bbaf1649ff6f6c2039c9796940"><td class="memItemLeft" align="right" valign="top"><a id="a7c0da9bbaf1649ff6f6c2039c9796940"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClose</b> (PluginInfo *)</td></tr>
-<tr class="separator:a7c0da9bbaf1649ff6f6c2039c9796940"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac360b3170a7b6824b20aac6aab0ffc79"><td class="memItemLeft" align="right" valign="top"><a id="ac360b3170a7b6824b20aac6aab0ffc79"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClose</b> ()</td></tr>
-<tr class="separator:ac360b3170a7b6824b20aac6aab0ffc79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header signals_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('signals_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
-<tr class="memitem:a6ecc1aa9db1cecb123679c71262cead8 inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a6ecc1aa9db1cecb123679c71262cead8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:a6ecc1aa9db1cecb123679c71262cead8 inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb79f6aa7708440126afad50bce83a32 inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="abb79f6aa7708440126afad50bce83a32"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:abb79f6aa7708440126afad50bce83a32 inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad34235ae16d16e61f20470497dc53e3b inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ad34235ae16d16e61f20470497dc53e3b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:ad34235ae16d16e61f20470497dc53e3b inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header signals_class_i_plugin"><td colspan="2" onclick="javascript:toggleInherit('signals_class_i_plugin')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_i_plugin.html">IPlugin</a></td></tr>
-<tr class="memitem:a0d3a6b2aa652b127ab693df292790cca inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a0d3a6b2aa652b127ab693df292790cca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:a0d3a6b2aa652b127ab693df292790cca inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26f0a7edd6c50a9b5b6e8d9443c1bee3 inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a26f0a7edd6c50a9b5b6e8d9443c1bee3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:a26f0a7edd6c50a9b5b6e8d9443c1bee3 inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a6bc1065d86cbf667d37eb4ddb03879fd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
-<tr class="separator:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2c329e799b50218eff2d27c747b5e99d"><td class="memItemLeft" align="right" valign="top"><a id="a2c329e799b50218eff2d27c747b5e99d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPluginInfo</b> (PluginInfo *pluginInfo) override</td></tr>
-<tr class="separator:a2c329e799b50218eff2d27c747b5e99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae10c5a6387aa0752663d4c0ee07ed5ca"><td class="memItemLeft" align="right" valign="top"><a id="ae10c5a6387aa0752663d4c0ee07ed5ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnAllSetup</b> () override</td></tr>
-<tr class="separator:ae10c5a6387aa0752663d4c0ee07ed5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9c3d8c5d6ae87dc0ed6e0650e614eb3"><td class="memItemLeft" align="right" valign="top"><a id="ab9c3d8c5d6ae87dc0ed6e0650e614eb3"></a>
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>GetLastError</b> () override</td></tr>
-<tr class="separator:ab9c3d8c5d6ae87dc0ed6e0650e614eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a90c7d6d41097d4daefbdcf70895b46"><td class="memItemLeft" align="right" valign="top"><a id="a3a90c7d6d41097d4daefbdcf70895b46"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AddReferencePlugin</b> (PluginInfo *pluginInfo) override</td></tr>
-<tr class="separator:a3a90c7d6d41097d4daefbdcf70895b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b115f31c0e9116c2ea3134a29e8dc24"><td class="memItemLeft" align="right" valign="top"><a id="a2b115f31c0e9116c2ea3134a29e8dc24"></a>
 <a class="el" href="class_i_neural_network_model_1_1_i_neural_network.html">INeuralNetwork</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>SetupNetwork</b> (QJsonObject networkParams) override</td></tr>
 <tr class="separator:a2b115f31c0e9116c2ea3134a29e8dc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b72baffadb10d4cc731ee5785a9e0c1"><td class="memItemLeft" align="right" valign="top"><a id="a9b72baffadb10d4cc731ee5785a9e0c1"></a>
-<a class="el" href="class_i_neural_network_model_1_1_i_neural_network.html">INeuralNetwork</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>SetupNetwork</b> (QJsonObject networkParams) override</td></tr>
-<tr class="separator:a9b72baffadb10d4cc731ee5785a9e0c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:ada314e7c79b6e45d2807acba46d25dc8 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ada314e7c79b6e45d2807acba46d25dc8"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (const <a class="el" href="struct_meta_info.html">MetaInfo</a> &amp;metaInfo, const QJsonObject &amp;metaInfoJsonObject) override</td></tr>
@@ -190,6 +147,30 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onAllReferenc
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_slots_class_i_plugin"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_class_i_plugin')"><img src="closed.png" alt="-"/>&#160;Public Slots inherited from <a class="el" href="class_i_plugin.html">IPlugin</a></td></tr>
+<tr class="memitem:a2168e932856b984e571d493f49568992 inherit pub_slots_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a2168e932856b984e571d493f49568992"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onReferenceReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *reference)=0</td></tr>
+<tr class="separator:a2168e932856b984e571d493f49568992 inherit pub_slots_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('signals_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
+<tr class="memitem:a6ecc1aa9db1cecb123679c71262cead8 inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a6ecc1aa9db1cecb123679c71262cead8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:a6ecc1aa9db1cecb123679c71262cead8 inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb79f6aa7708440126afad50bce83a32 inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="abb79f6aa7708440126afad50bce83a32"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:abb79f6aa7708440126afad50bce83a32 inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad34235ae16d16e61f20470497dc53e3b inherit signals_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ad34235ae16d16e61f20470497dc53e3b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:ad34235ae16d16e61f20470497dc53e3b inherit signals_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header signals_class_i_plugin"><td colspan="2" onclick="javascript:toggleInherit('signals_class_i_plugin')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_i_plugin.html">IPlugin</a></td></tr>
+<tr class="memitem:a0d3a6b2aa652b127ab693df292790cca inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a0d3a6b2aa652b127ab693df292790cca"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:a0d3a6b2aa652b127ab693df292790cca inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26f0a7edd6c50a9b5b6e8d9443c1bee3 inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a26f0a7edd6c50a9b5b6e8d9443c1bee3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:a26f0a7edd6c50a9b5b6e8d9443c1bee3 inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a6bc1065d86cbf667d37eb4ddb03879fd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
+<tr class="separator:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_slots_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pro_slots_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Protected Slots inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:ae00bb6214162abc83e05a983b4bd4640 inherit pro_slots_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ae00bb6214162abc83e05a983b4bd4640"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onReferenceReady</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *reference) override</td></tr>
@@ -216,10 +197,10 @@ template&lt;class T &gt; </td></tr>
 <tr class="separator:a21ef424393f846a1f3d3a7283c16caee inherit pro_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:a8e42955422640f8014aff87f242a3d5c inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a8e42955422640f8014aff87f242a3d5c"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, <a class="el" href="class_i_plugin.html">IPlugin</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesMap</b></td></tr>
+QMap&lt; QString, <a class="el" href="class_i_plugin.html">IPlugin</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesMap</b></td></tr>
 <tr class="separator:a8e42955422640f8014aff87f242a3d5c inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3792623c30203d82de060eea737321a inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ac3792623c30203d82de060eea737321a"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; QString, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesReadyMap</b></td></tr>
+QMap&lt; QString, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_referencesReadyMap</b></td></tr>
 <tr class="separator:ac3792623c30203d82de060eea737321a inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aa0c8bcbf614a222aecbde4f55fb6a4 inherit pro_attribs_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a2aa0c8bcbf614a222aecbde4f55fb6a4"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_lastErrorString</b></td></tr>
@@ -238,15 +219,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesRead
 <tr class="separator:af26000611e1bd088ef9f3fd2f79d84b3 inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/NeuralNetworkModel/<a class="el" href="_old_plugins_2_models_2_neural_network_model_2neuralnetworkmodel_8h_source.html">neuralnetworkmodel.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/NeuralNetworkModel/neuralnetworkmodel.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/NeuralNetworkModel/<a class="el" href="neuralnetworkmodel_8h_source.html">neuralnetworkmodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/NeuralNetworkModel/neuralnetworkmodel.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:28 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_neural_network_model.html">NeuralNetworkModel</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

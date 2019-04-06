@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_fuzzy_rule.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -75,7 +96,6 @@ Inheritance diagram for FuzzyRule:</div>
   <img src="class_fuzzy_rule.png" usemap="#FuzzyRule_map" alt=""/>
   <map id="FuzzyRule_map" name="FuzzyRule_map">
 <area href="class_i_fuzzy_logic_model_1_1_i_fuzzy_rule.html" alt="IFuzzyLogicModel::IFuzzyRule" shape="rect" coords="0,0,183,24"/>
-<area href="class_i_fuzzy_logic_model_1_1_i_fuzzy_rule.html" alt="IFuzzyLogicModel::IFuzzyRule" shape="rect" coords="193,0,376,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -88,40 +108,29 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddCondition<
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddConsequence</b> (<a class="el" href="class_i_fuzzy_logic_model_1_1_i_output_variable.html">IFuzzyLogicModel::IOutputVariable</a> *variable, <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *set) override</td></tr>
 <tr class="separator:acb1ebf589fa8118645516bcccd27ee21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafa5f093531d912e73a4f8cb4bbb1e05"><td class="memItemLeft" align="right" valign="top"><a id="aafa5f093531d912e73a4f8cb4bbb1e05"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; <a class="el" href="class_i_fuzzy_logic_model_1_1_i_input_variable.html">IFuzzyLogicModel::IInputVariable</a> *, <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetConditions</b> () override</td></tr>
+virtual QMap&lt; <a class="el" href="class_i_fuzzy_logic_model_1_1_i_input_variable.html">IFuzzyLogicModel::IInputVariable</a> *, <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetConditions</b> () override</td></tr>
 <tr class="separator:aafa5f093531d912e73a4f8cb4bbb1e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a793fbe040a6e45c1f03da4116ed606d1"><td class="memItemLeft" align="right" valign="top"><a id="a793fbe040a6e45c1f03da4116ed606d1"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; <a class="el" href="class_i_fuzzy_logic_model_1_1_i_output_variable.html">IFuzzyLogicModel::IOutputVariable</a> *, <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetConsequences</b> () override</td></tr>
+virtual QMap&lt; <a class="el" href="class_i_fuzzy_logic_model_1_1_i_output_variable.html">IFuzzyLogicModel::IOutputVariable</a> *, <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetConsequences</b> () override</td></tr>
 <tr class="separator:a793fbe040a6e45c1f03da4116ed606d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92ea27e8823fd8f900a88424281a5b25"><td class="memItemLeft" align="right" valign="top"><a id="a92ea27e8823fd8f900a88424281a5b25"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetOutput</b> () override</td></tr>
+virtual QMap&lt; <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetOutput</b> () override</td></tr>
 <tr class="separator:a92ea27e8823fd8f900a88424281a5b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2357686a56fbdd0f14ca6949dc7bf9c"><td class="memItemLeft" align="right" valign="top"><a id="ac2357686a56fbdd0f14ca6949dc7bf9c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddCondition</b> (<a class="el" href="class_i_fuzzy_logic_model_1_1_i_input_variable.html">IFuzzyLogicModel::IInputVariable</a> *variable, <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *set) override</td></tr>
-<tr class="separator:ac2357686a56fbdd0f14ca6949dc7bf9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef9a866ef4e7e91afc7f5c784bdf4bac"><td class="memItemLeft" align="right" valign="top"><a id="aef9a866ef4e7e91afc7f5c784bdf4bac"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddConsequence</b> (<a class="el" href="class_i_fuzzy_logic_model_1_1_i_output_variable.html">IFuzzyLogicModel::IOutputVariable</a> *variable, <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *set) override</td></tr>
-<tr class="separator:aef9a866ef4e7e91afc7f5c784bdf4bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92b8a24485612f691dff463d3f3ac55f"><td class="memItemLeft" align="right" valign="top"><a id="a92b8a24485612f691dff463d3f3ac55f"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; <a class="el" href="class_i_fuzzy_logic_model_1_1_i_input_variable.html">IFuzzyLogicModel::IInputVariable</a> *, <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetConditions</b> () override</td></tr>
-<tr class="separator:a92b8a24485612f691dff463d3f3ac55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8e58c5aeb572988c0dde04f32d92478"><td class="memItemLeft" align="right" valign="top"><a id="af8e58c5aeb572988c0dde04f32d92478"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; <a class="el" href="class_i_fuzzy_logic_model_1_1_i_output_variable.html">IFuzzyLogicModel::IOutputVariable</a> *, <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetConsequences</b> () override</td></tr>
-<tr class="separator:af8e58c5aeb572988c0dde04f32d92478"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d6cc2c827f9a50469fac9b7c1374e8b"><td class="memItemLeft" align="right" valign="top"><a id="a7d6cc2c827f9a50469fac9b7c1374e8b"></a>
-virtual <a class="el" href="class_q_map.html">QMap</a>&lt; <a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetOutput</b> () override</td></tr>
-<tr class="separator:a7d6cc2c827f9a50469fac9b7c1374e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/FuzzyLogicModel/<a class="el" href="_old_plugins_2_models_2_fuzzy_logic_model_2fuzzyrule_8h_source.html">fuzzyrule.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/FuzzyLogicModel/fuzzyrule.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/FuzzyLogicModel/<a class="el" href="fuzzyrule_8h_source.html">fuzzyrule.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/FuzzyLogicModel/fuzzyrule.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_fuzzy_rule.html">FuzzyRule</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

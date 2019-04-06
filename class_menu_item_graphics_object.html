@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_menu_item_graphics_object.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#signals">Signals</a> &#124;
@@ -89,12 +110,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClicked</b> (<a cla
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a52470711e476149989d2ce987694c559"><td class="memItemLeft" align="right" valign="top"><a id="a52470711e476149989d2ce987694c559"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MenuItemGraphicsObject</b> (<a class="el" href="class_menu_item_graphics_object.html">MenuItemGraphicsObject</a> *ParentMenuItem, IMainMenuModel::MenuItem *<a class="el" href="class_menu_item_graphics_object.html">MenuItemGraphicsObject</a>, <a class="el" href="struct_meta_info.html">MetaInfo</a> *ViewPlugin, QWidget *parent=0)</td></tr>
-<tr class="separator:a52470711e476149989d2ce987694c559"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fabd069df87e7d05c94cd9027aa345b"><td class="memItemLeft" align="right" valign="top"><a id="a4fabd069df87e7d05c94cd9027aa345b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MenuItemGraphicsObject</b> (QString name, QWidget *parent=0)</td></tr>
-<tr class="separator:a4fabd069df87e7d05c94cd9027aa345b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a045fc50c8e1f2a0c4494df1f7c4c3875"><td class="memItemLeft" align="right" valign="top"><a id="a045fc50c8e1f2a0c4494df1f7c4c3875"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MenuItemGraphicsObject</b> (<a class="el" href="class_menu_item_graphics_object.html">MenuItemGraphicsObject</a> *ParentMenuItem, QWeakPointer&lt; <a class="el" href="class_i_u_i_manager_1_1_i_u_i_element.html">IUIManager::IUIElement</a> &gt; <a class="el" href="class_menu_item_graphics_object.html">MenuItemGraphicsObject</a>, <a class="el" href="struct_meta_info.html">MetaInfo</a> ViewPlugin, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:a045fc50c8e1f2a0c4494df1f7c4c3875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab94571343e3347ded419856b39df27d8"><td class="memItemLeft" align="right" valign="top"><a id="ab94571343e3347ded419856b39df27d8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MenuItemGraphicsObject</b> (QString name, QWidget *parent=nullptr)</td></tr>
+<tr class="separator:ab94571343e3347ded419856b39df27d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab17f3bcb176ffd6550df607a3e8eb3a9"><td class="memItemLeft" align="right" valign="top"><a id="ab17f3bcb176ffd6550df607a3e8eb3a9"></a>
 virtual QRectF&#160;</td><td class="memItemRight" valign="bottom"><b>boundingRect</b> () const</td></tr>
 <tr class="separator:ab17f3bcb176ffd6550df607a3e8eb3a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,12 +128,12 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a94290bfb4d0a10a7adb0516c84239b53"><td class="memItemLeft" align="right" valign="top"><a id="a94290bfb4d0a10a7adb0516c84239b53"></a>
 <a class="el" href="class_menu_item_graphics_object.html">MenuItemGraphicsObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>parentMenuItem</b></td></tr>
 <tr class="separator:a94290bfb4d0a10a7adb0516c84239b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ef02d05fd891595b1e52ca326897727"><td class="memItemLeft" align="right" valign="top"><a id="a5ef02d05fd891595b1e52ca326897727"></a>
-IMainMenuModel::MenuItem *&#160;</td><td class="memItemRight" valign="bottom"><b>menuItem</b></td></tr>
-<tr class="separator:a5ef02d05fd891595b1e52ca326897727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d9594a1c25a956d3e34cab975dde29a"><td class="memItemLeft" align="right" valign="top"><a id="a8d9594a1c25a956d3e34cab975dde29a"></a>
-<a class="el" href="struct_meta_info.html">MetaInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>viewPluginMeta</b></td></tr>
-<tr class="separator:a8d9594a1c25a956d3e34cab975dde29a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b943b0d1f967b2d8392701b25b2a77c"><td class="memItemLeft" align="right" valign="top"><a id="a6b943b0d1f967b2d8392701b25b2a77c"></a>
+QWeakPointer&lt; <a class="el" href="class_i_u_i_manager_1_1_i_u_i_element.html">IUIManager::IUIElement</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>menuItem</b></td></tr>
+<tr class="separator:a6b943b0d1f967b2d8392701b25b2a77c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3066852a232e7371502c006d9576a35a"><td class="memItemLeft" align="right" valign="top"><a id="a3066852a232e7371502c006d9576a35a"></a>
+<a class="el" href="struct_meta_info.html">MetaInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><b>viewPluginMeta</b></td></tr>
+<tr class="separator:a3066852a232e7371502c006d9576a35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -142,15 +163,20 @@ QRectF&#160;</td><td class="memItemRight" valign="bottom"><b>boundRect</b></td><
 <tr class="separator:ae78d7732b7108406484238c3814bb1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/MainMenuView/<a class="el" href="menuitem_8h_source.html">menuitem.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/MainMenuView/menuitem.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/MainMenuView/<a class="el" href="menuitem_8h_source.html">menuitem.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsBuildFiles/build/debug/MainMenuView/moc/moc_menuitem.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/MainMenuView/menuitem.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:28 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_menu_item_graphics_object.html">MenuItemGraphicsObject</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

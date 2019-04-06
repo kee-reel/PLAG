@@ -5,7 +5,6 @@ var searchData=
   ['perceptronnetwork',['PerceptronNetwork',['../class_perceptron_network.html',1,'']]],
   ['perceptronnetworkviewplugin',['PerceptronNetworkViewPlugin',['../class_perceptron_network_view_plugin.html',1,'']]],
   ['pluginbase',['PluginBase',['../class_plugin_base.html',1,'']]],
-  ['pluginlinker',['PluginLinker',['../class_plugin_linker.html',1,'']]],
   ['pluginlinkercore',['PluginLinkerCore',['../class_plugin_linker_core.html',1,'']]],
   ['pomodorobutton',['PomodoroButton',['../class_pomodoro_button.html',1,'']]],
   ['pomodoromodel',['PomodoroModel',['../class_pomodoro_model.html',1,'']]],

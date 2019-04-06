@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_output_variable.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -74,12 +95,8 @@ Inheritance diagram for OutputVariable:</div>
  <div class="center">
   <img src="class_output_variable.png" usemap="#OutputVariable_map" alt=""/>
   <map id="OutputVariable_map" name="OutputVariable_map">
-<area href="class_i_fuzzy_logic_model_1_1_i_output_variable.html" alt="IFuzzyLogicModel::IOutputVariable" shape="rect" coords="109,56,318,80"/>
-<area href="class_i_fuzzy_logic_model_1_1_i_output_variable.html" alt="IFuzzyLogicModel::IOutputVariable" shape="rect" coords="547,56,756,80"/>
+<area href="class_i_fuzzy_logic_model_1_1_i_output_variable.html" alt="IFuzzyLogicModel::IOutputVariable" shape="rect" coords="0,56,209,80"/>
 <area href="class_i_fuzzy_logic_model_1_1_i_variable.html" alt="IFuzzyLogicModel::IVariable" shape="rect" coords="0,0,209,24"/>
-<area href="class_i_fuzzy_logic_model_1_1_i_variable.html" alt="IFuzzyLogicModel::IVariable" shape="rect" coords="219,0,428,24"/>
-<area href="class_i_fuzzy_logic_model_1_1_i_variable.html" alt="IFuzzyLogicModel::IVariable" shape="rect" coords="438,0,647,24"/>
-<area href="class_i_fuzzy_logic_model_1_1_i_variable.html" alt="IFuzzyLogicModel::IVariable" shape="rect" coords="657,0,866,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -100,44 +117,28 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddRule</b> (
 <tr class="memitem:af622b38eccc2b0717527b38005c0eb6e"><td class="memItemLeft" align="right" valign="top"><a id="af622b38eccc2b0717527b38005c0eb6e"></a>
 virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>GetOutput</b> () override</td></tr>
 <tr class="separator:af622b38eccc2b0717527b38005c0eb6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47579ff7a2d84884c52adc7dc54fa649"><td class="memItemLeft" align="right" valign="top"><a id="a47579ff7a2d84884c52adc7dc54fa649"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>OutputVariable</b> (QString name, float min, float max)</td></tr>
-<tr class="separator:a47579ff7a2d84884c52adc7dc54fa649"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e30cac495f5900fe23ebec419d64510"><td class="memItemLeft" align="right" valign="top"><a id="a2e30cac495f5900fe23ebec419d64510"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddSet</b> (<a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html">IFuzzyLogicModel::IFuzzySet</a> *set) override</td></tr>
-<tr class="separator:a2e30cac495f5900fe23ebec419d64510"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8291480da4120fe12333f5984d78133d"><td class="memItemLeft" align="right" valign="top"><a id="a8291480da4120fe12333f5984d78133d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddInput</b> (<a class="el" href="class_i_fuzzy_logic_model_1_1_i_input_variable.html">IFuzzyLogicModel::IInputVariable</a> *variable) override</td></tr>
-<tr class="separator:a8291480da4120fe12333f5984d78133d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a630d142f94b350e6042d5845b39434a1"><td class="memItemLeft" align="right" valign="top"><a id="a630d142f94b350e6042d5845b39434a1"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddRule</b> (<a class="el" href="class_i_fuzzy_logic_model_1_1_i_fuzzy_rule.html">IFuzzyLogicModel::IFuzzyRule</a> *rule) override</td></tr>
-<tr class="separator:a630d142f94b350e6042d5845b39434a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0616f0c750cf38a8d8ac9835642a98c1"><td class="memItemLeft" align="right" valign="top"><a id="a0616f0c750cf38a8d8ac9835642a98c1"></a>
-virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>GetOutput</b> () override</td></tr>
-<tr class="separator:a0616f0c750cf38a8d8ac9835642a98c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_types_class_i_fuzzy_logic_model_1_1_i_output_variable"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_i_fuzzy_logic_model_1_1_i_output_variable')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="class_i_fuzzy_logic_model_1_1_i_output_variable.html">IFuzzyLogicModel::IOutputVariable</a></td></tr>
-<tr class="memitem:a2b89169fe5d29391eaf2ed7eabe6a82b inherit pub_types_class_i_fuzzy_logic_model_1_1_i_output_variable"><td class="memItemLeft" align="right" valign="top"><a id="a2b89169fe5d29391eaf2ed7eabe6a82b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>DefuzzyficationFuncType</b> { <b>Mamdani</b>, 
-<b>Mamdani</b>
- }</td></tr>
-<tr class="separator:a2b89169fe5d29391eaf2ed7eabe6a82b inherit pub_types_class_i_fuzzy_logic_model_1_1_i_output_variable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b89169fe5d29391eaf2ed7eabe6a82b inherit pub_types_class_i_fuzzy_logic_model_1_1_i_output_variable"><td class="memItemLeft" align="right" valign="top"><a id="a2b89169fe5d29391eaf2ed7eabe6a82b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>DefuzzyficationFuncType</b> { <b>Mamdani</b>, 
-<b>Mamdani</b>
+<tr class="memitem:a2b89169fe5d29391eaf2ed7eabe6a82b inherit pub_types_class_i_fuzzy_logic_model_1_1_i_output_variable"><td class="memItemLeft" align="right" valign="top"><a id="a2b89169fe5d29391eaf2ed7eabe6a82b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>DefuzzyficationFuncType</b> { <b>Mamdani</b>
  }</td></tr>
 <tr class="separator:a2b89169fe5d29391eaf2ed7eabe6a82b inherit pub_types_class_i_fuzzy_logic_model_1_1_i_output_variable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/FuzzyLogicModel/<a class="el" href="_old_plugins_2_models_2_fuzzy_logic_model_2outputvariable_8h_source.html">outputvariable.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/FuzzyLogicModel/outputvariable.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/FuzzyLogicModel/<a class="el" href="outputvariable_8h_source.html">outputvariable.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/FuzzyLogicModel/outputvariable.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:28 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_output_variable.html">OutputVariable</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

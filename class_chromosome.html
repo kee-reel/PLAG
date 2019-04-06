@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_chromosome.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -79,12 +100,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2df6c471bc3dd1b248f93f9bccc0e483"><td class="memItemLeft" align="right" valign="top"><a id="a2df6c471bc3dd1b248f93f9bccc0e483"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>GetValue</b> ()</td></tr>
 <tr class="separator:a2df6c471bc3dd1b248f93f9bccc0e483"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61b3ad7248489642452df6c6c24bf580"><td class="memItemLeft" align="right" valign="top"><a id="a61b3ad7248489642452df6c6c24bf580"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Chromosome</b> (<a class="el" href="struct_genetic_algorithm_params_1_1_parameters.html">GeneticAlgorithmParams::Parameters</a> *params)</td></tr>
-<tr class="separator:a61b3ad7248489642452df6c6c24bf580"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2df6c471bc3dd1b248f93f9bccc0e483"><td class="memItemLeft" align="right" valign="top"><a id="a2df6c471bc3dd1b248f93f9bccc0e483"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetValue</b> ()</td></tr>
-<tr class="separator:a2df6c471bc3dd1b248f93f9bccc0e483"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -94,35 +109,33 @@ static <a class="el" href="class_chromosome.html">Chromosome</a> *&#160;</td><td
 <tr class="memitem:a01362e7b1547ddef9e79ce2e94d46f85"><td class="memItemLeft" align="right" valign="top"><a id="a01362e7b1547ddef9e79ce2e94d46f85"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>ModificateBit</b> (int value, int pos)</td></tr>
 <tr class="separator:a01362e7b1547ddef9e79ce2e94d46f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52681e533a2753379d4411cc4ccb0de7"><td class="memItemLeft" align="right" valign="top"><a id="a52681e533a2753379d4411cc4ccb0de7"></a>
-static <a class="el" href="class_chromosome.html">Chromosome</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Breed</b> (<a class="el" href="class_chromosome.html">Chromosome</a> *mother, <a class="el" href="class_chromosome.html">Chromosome</a> *father, bool withMutation=true)</td></tr>
-<tr class="separator:a52681e533a2753379d4411cc4ccb0de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8409e525ebad5a755b5737a5f7af40cc"><td class="memItemLeft" align="right" valign="top"><a id="a8409e525ebad5a755b5737a5f7af40cc"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>ModificateBit</b> (int value, int pos)</td></tr>
-<tr class="separator:a8409e525ebad5a755b5737a5f7af40cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:af1e2825bfa9ca01f83610d68d7773238"><td class="memItemLeft" align="right" valign="top"><a id="af1e2825bfa9ca01f83610d68d7773238"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>fitness</b></td></tr>
 <tr class="separator:af1e2825bfa9ca01f83610d68d7773238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa60777d06dea079aad3e6f3c6ff14531"><td class="memItemLeft" align="right" valign="top"><a id="aa60777d06dea079aad3e6f3c6ff14531"></a>
+<tr class="memitem:a9802175d2f1b9e093e2cbd93fdd22de7"><td class="memItemLeft" align="right" valign="top"><a id="a9802175d2f1b9e093e2cbd93fdd22de7"></a>
 <a class="el" href="class_q_vector.html">QVector</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>genes</b></td></tr>
-<tr class="separator:aa60777d06dea079aad3e6f3c6ff14531"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a593c1ab3ef5eb34a5cfd2dda1b18e734"><td class="memItemLeft" align="right" valign="top"><a id="a593c1ab3ef5eb34a5cfd2dda1b18e734"></a>
+<tr class="separator:a9802175d2f1b9e093e2cbd93fdd22de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e23041223b3fdcf0758f67c41b8d346"><td class="memItemLeft" align="right" valign="top"><a id="a3e23041223b3fdcf0758f67c41b8d346"></a>
 <a class="el" href="struct_genetic_algorithm_params_1_1_parameters.html">GeneticAlgorithmParams::Parameters</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>params</b></td></tr>
-<tr class="separator:a593c1ab3ef5eb34a5cfd2dda1b18e734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a3e23041223b3fdcf0758f67c41b8d346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/NeuralNetworkModel/GeneticAlgorithm/<a class="el" href="_old_plugins_2_models_2_neural_network_model_2_genetic_algorithm_2chromosome_8h_source.html">chromosome.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Models/NeuralNetworkModel/GeneticAlgorithm/chromosome.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/NeuralNetworkModel/GeneticAlgorithm/<a class="el" href="chromosome_8h_source.html">chromosome.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/NeuralNetworkModel/GeneticAlgorithm/chromosome.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_chromosome.html">Chromosome</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_add_form.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#signals">Signals</a> &#124;
@@ -83,24 +104,9 @@ Signals</h2></td></tr>
 <tr class="memitem:aa161d4984cedd6ca6cc3dab1641beeea"><td class="memItemLeft" align="right" valign="top"><a id="aa161d4984cedd6ca6cc3dab1641beeea"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClose</b> ()</td></tr>
 <tr class="separator:aa161d4984cedd6ca6cc3dab1641beeea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa161d4984cedd6ca6cc3dab1641beeea"><td class="memItemLeft" align="right" valign="top"><a id="aa161d4984cedd6ca6cc3dab1641beeea"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClose</b> ()</td></tr>
-<tr class="separator:aa161d4984cedd6ca6cc3dab1641beeea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a623e493b6c6cb526d2a624010fe6efca"><td class="memItemLeft" align="right" valign="top"><a id="a623e493b6c6cb526d2a624010fe6efca"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>AddForm</b> (QWidget *parent=0)</td></tr>
-<tr class="separator:a623e493b6c6cb526d2a624010fe6efca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2edb1f6faa703e3f5129bb91907964d1"><td class="memItemLeft" align="right" valign="top"><a id="a2edb1f6faa703e3f5129bb91907964d1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetModel</b> (QAbstractItemModel *model)</td></tr>
-<tr class="separator:a2edb1f6faa703e3f5129bb91907964d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69270641ff426d5420c021390e023e34"><td class="memItemLeft" align="right" valign="top"><a id="a69270641ff426d5420c021390e023e34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowModelData</b> (const QModelIndex &amp;index, bool isNew=false)</td></tr>
-<tr class="separator:a69270641ff426d5420c021390e023e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a488387f47577f8742c920e761e9e2c63"><td class="memItemLeft" align="right" valign="top"><a id="a488387f47577f8742c920e761e9e2c63"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>event</b> (QEvent *event) override</td></tr>
-<tr class="separator:a488387f47577f8742c920e761e9e2c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d8db74422482094ff9a810af6bbc51e"><td class="memItemLeft" align="right" valign="top"><a id="a5d8db74422482094ff9a810af6bbc51e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>AddForm</b> (QWidget *parent=nullptr)</td></tr>
 <tr class="separator:a5d8db74422482094ff9a810af6bbc51e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,16 +121,20 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>event</b> (QEvent *ev
 <tr class="separator:a488387f47577f8742c920e761e9e2c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/TaskListView/<a class="el" href="_old_plugins_2_views_2_task_list_view_2addform_8h_source.html">addform.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/TaskListView/addform.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/TaskListView/<a class="el" href="addform_8h_source.html">addform.h</a></li>
 <li>/home/curunir/Documents/MASS/Plugins/PluginsBuildFiles/build/debug/TaskListView/moc/moc_addform.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/TaskListView/addform.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_add_form.html">AddForm</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -25,7 +32,7 @@
    <div id="projectname">MASS
    &#160;<span id="projectnumber">v0.0.1</span>
    </div>
-   <div id="projectbrief">Multiple Application Support System</div>
+   <div id="projectbrief">Multi-Application Support System</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_design_proxy_model.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +81,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -89,10 +110,10 @@ QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> (const Q
 QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>headerData</b> (int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const</td></tr>
 <tr class="separator:adc16f436d8f8ebb49ec84d0522de78e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a284a7a1bc33649c564bb94aa35679493"><td class="memItemLeft" align="right" valign="top"><a id="a284a7a1bc33649c564bb94aa35679493"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>itemData</b> (const QModelIndex &amp;index) const override</td></tr>
+QMap&lt; int, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>itemData</b> (const QModelIndex &amp;index) const override</td></tr>
 <tr class="separator:a284a7a1bc33649c564bb94aa35679493"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a454ea6f6abce08efbbfa96aca0c07947"><td class="memItemLeft" align="right" valign="top"><a id="a454ea6f6abce08efbbfa96aca0c07947"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setItemData</b> (const QModelIndex &amp;index, const <a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt; &amp;roles) override</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setItemData</b> (const QModelIndex &amp;index, const QMap&lt; int, QVariant &gt; &amp;roles) override</td></tr>
 <tr class="separator:a454ea6f6abce08efbbfa96aca0c07947"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9ed0694e9fbddd5d0693017281e502e"><td class="memItemLeft" align="right" valign="top"><a id="ac9ed0694e9fbddd5d0693017281e502e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>DesignProxyModel</b> (QAbstractItemModel *model, <a class="el" href="class_q_vector.html">QVector</a>&lt; int &gt; modelIndexesShown=<a class="el" href="class_q_vector.html">QVector</a>&lt; int &gt;())</td></tr>
@@ -116,64 +137,26 @@ QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> (const Q
 QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>headerData</b> (int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const</td></tr>
 <tr class="separator:adc16f436d8f8ebb49ec84d0522de78e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee8734f8ebdfb948ad51f4d1603b78aa"><td class="memItemLeft" align="right" valign="top"><a id="aee8734f8ebdfb948ad51f4d1603b78aa"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>itemData</b> (const QModelIndex &amp;index) const override</td></tr>
+QMap&lt; int, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>itemData</b> (const QModelIndex &amp;index) const override</td></tr>
 <tr class="separator:aee8734f8ebdfb948ad51f4d1603b78aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a454ea6f6abce08efbbfa96aca0c07947"><td class="memItemLeft" align="right" valign="top"><a id="a454ea6f6abce08efbbfa96aca0c07947"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setItemData</b> (const QModelIndex &amp;index, const <a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt; &amp;roles) override</td></tr>
-<tr class="separator:a454ea6f6abce08efbbfa96aca0c07947"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f32a37a9e0e12091ffa25d12c2cf172"><td class="memItemLeft" align="right" valign="top"><a id="a2f32a37a9e0e12091ffa25d12c2cf172"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DesignProxyModel</b> (QAbstractItemModel *model)</td></tr>
-<tr class="separator:a2f32a37a9e0e12091ffa25d12c2cf172"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83da41a240aa8524cc5694b0db9eacfa"><td class="memItemLeft" align="right" valign="top"><a id="a83da41a240aa8524cc5694b0db9eacfa"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> (const QModelIndex &amp;index, int role) const</td></tr>
-<tr class="separator:a83da41a240aa8524cc5694b0db9eacfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc16f436d8f8ebb49ec84d0522de78e0"><td class="memItemLeft" align="right" valign="top"><a id="adc16f436d8f8ebb49ec84d0522de78e0"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>headerData</b> (int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const</td></tr>
-<tr class="separator:adc16f436d8f8ebb49ec84d0522de78e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee8734f8ebdfb948ad51f4d1603b78aa"><td class="memItemLeft" align="right" valign="top"><a id="aee8734f8ebdfb948ad51f4d1603b78aa"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>itemData</b> (const QModelIndex &amp;index) const override</td></tr>
-<tr class="separator:aee8734f8ebdfb948ad51f4d1603b78aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a454ea6f6abce08efbbfa96aca0c07947"><td class="memItemLeft" align="right" valign="top"><a id="a454ea6f6abce08efbbfa96aca0c07947"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setItemData</b> (const QModelIndex &amp;index, const <a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt; &amp;roles) override</td></tr>
-<tr class="separator:a454ea6f6abce08efbbfa96aca0c07947"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9ed0694e9fbddd5d0693017281e502e"><td class="memItemLeft" align="right" valign="top"><a id="ac9ed0694e9fbddd5d0693017281e502e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DesignProxyModel</b> (QAbstractItemModel *model, <a class="el" href="class_q_vector.html">QVector</a>&lt; int &gt; modelIndexesShown=<a class="el" href="class_q_vector.html">QVector</a>&lt; int &gt;())</td></tr>
-<tr class="separator:ac9ed0694e9fbddd5d0693017281e502e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83da41a240aa8524cc5694b0db9eacfa"><td class="memItemLeft" align="right" valign="top"><a id="a83da41a240aa8524cc5694b0db9eacfa"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> (const QModelIndex &amp;index, int role) const</td></tr>
-<tr class="separator:a83da41a240aa8524cc5694b0db9eacfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc16f436d8f8ebb49ec84d0522de78e0"><td class="memItemLeft" align="right" valign="top"><a id="adc16f436d8f8ebb49ec84d0522de78e0"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>headerData</b> (int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const</td></tr>
-<tr class="separator:adc16f436d8f8ebb49ec84d0522de78e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af77cf612ad06d4789c64eb56c5df847f"><td class="memItemLeft" align="right" valign="top"><a id="af77cf612ad06d4789c64eb56c5df847f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>columnCount</b> (const QModelIndex &amp;parent) const</td></tr>
-<tr class="separator:af77cf612ad06d4789c64eb56c5df847f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f32a37a9e0e12091ffa25d12c2cf172"><td class="memItemLeft" align="right" valign="top"><a id="a2f32a37a9e0e12091ffa25d12c2cf172"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DesignProxyModel</b> (QAbstractItemModel *model)</td></tr>
-<tr class="separator:a2f32a37a9e0e12091ffa25d12c2cf172"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83da41a240aa8524cc5694b0db9eacfa"><td class="memItemLeft" align="right" valign="top"><a id="a83da41a240aa8524cc5694b0db9eacfa"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> (const QModelIndex &amp;index, int role) const</td></tr>
-<tr class="separator:a83da41a240aa8524cc5694b0db9eacfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc16f436d8f8ebb49ec84d0522de78e0"><td class="memItemLeft" align="right" valign="top"><a id="adc16f436d8f8ebb49ec84d0522de78e0"></a>
-QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>headerData</b> (int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const</td></tr>
-<tr class="separator:adc16f436d8f8ebb49ec84d0522de78e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee8734f8ebdfb948ad51f4d1603b78aa"><td class="memItemLeft" align="right" valign="top"><a id="aee8734f8ebdfb948ad51f4d1603b78aa"></a>
-<a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>itemData</b> (const QModelIndex &amp;index) const override</td></tr>
-<tr class="separator:aee8734f8ebdfb948ad51f4d1603b78aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a454ea6f6abce08efbbfa96aca0c07947"><td class="memItemLeft" align="right" valign="top"><a id="a454ea6f6abce08efbbfa96aca0c07947"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>setItemData</b> (const QModelIndex &amp;index, const <a class="el" href="class_q_map.html">QMap</a>&lt; int, QVariant &gt; &amp;roles) override</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>setItemData</b> (const QModelIndex &amp;index, const QMap&lt; int, QVariant &gt; &amp;roles) override</td></tr>
 <tr class="separator:a454ea6f6abce08efbbfa96aca0c07947"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/DayPlanView/<a class="el" href="_old_plugins_2_views_2_day_plan_view_2designproxymodel_8h_source.html">designproxymodel.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/OldPlugins/Views/DayPlanView/designproxymodel.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/DayPlanView/<a class="el" href="_day_plan_view_2designproxymodel_8h_source.html">designproxymodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/DayPlanView/designproxymodel.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 5 2019 08:39:27 for MASS by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_design_proxy_model.html">DesignProxyModel</a></li>
+    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>
