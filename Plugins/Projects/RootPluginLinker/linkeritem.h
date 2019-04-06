@@ -12,7 +12,7 @@
 
 #include "../../../Application/icoreplugin.h"
 #include "../../Common/plugin_base.h"
-#include "../../Interfaces/imainmenumodule.h"
+
 #include "../../Interfaces/ipluginlinker.h"
 
 class LinkerItem :
