@@ -3,6 +3,6 @@
     "Interface": "IDayPlanView",
     "Name": "DayPlanView",
     "RelatedPluginInterfaces": [
-        "IDayPlanModel"
+        "IDayPlan"
     ]
 }

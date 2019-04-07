@@ -3,19 +3,23 @@
 
 #include <QtCore>
 
-//! defgroup TaskCalendar_int Interface
-//!     ingroup TaskCalendar
-//! defgroup TaskCalendar_imp Implementation
-//!     ingroup TaskCalendar
+//!  \defgroup TaskCalendar TaskCalendar
+//!      \ingroup Plugins
+//!  \defgroup TaskCalendar_int Interface
+//!      \ingroup TaskCalendar
+//!  \defgroup TaskCalendar_imp Implementation
+//!      \ingroup TaskCalendar
+//!  \defgroup TaskCalendar_dep Dependent plugins
+//!      \ingroup TaskCalendar
 
-//! addtogroup TaskCalendar_int
-//! {
+//!  \addtogroup TaskCalendar_int
+//!  \{
 class ITaskCalendar
 {
 public:
     virtual void LinkEditorWidget(QWidget*) = 0;
 
 };
-//! }
+//!  \}
 Q_DECLARE_INTERFACE(ITaskCalendar, "ITaskCalendar")
 #endif // ITASKCALENDAR_H

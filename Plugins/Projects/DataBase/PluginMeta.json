@@ -1,0 +1,7 @@
+{
+    "Interface": "IDataBase",
+    "Name": "DataBasePlugin",
+    "RelatedPluginInterfaces": [
+        ""
+    ]
+}

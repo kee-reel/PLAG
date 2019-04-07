@@ -10,7 +10,15 @@ template <class T>
 class QWeakPointer;
 class QPluginLoader;
 class QWidget;
-//! \addtogroup MASS MASS
+
+//!  \defgroup MainApp MainApp
+//!
+//!  \defgroup ICorePlugin Core plugin interface
+//!      \ingroup MainApp
+//!
+//!  \defgroup Plugins Plugins
+
+//! \addtogroup MainApp ICorePlugin
 //! @{
 
 //! \brief Interface for plugin CorePlugin.

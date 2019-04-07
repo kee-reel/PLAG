@@ -1,6 +1,6 @@
 #include "tablehandler.h"
 
-TableHandler::TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataManager *dataManager, QString tableName)
+TableHandler::TableHandler(IDataBase *dataSource, IExtendableDataManager *dataManager, QString tableName)
 {
     this->dataSource = dataSource;
     this->dataManager = dataManager;

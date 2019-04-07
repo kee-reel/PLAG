@@ -3,7 +3,7 @@
 # Project created by QtCreator 2017-02-01T20:08:55
 #
 #-------------------------------------------------
-TARGET = PerceptronNetworkViewPlugin
+TARGET = PerceptronLearningAlgorithmView
 TEMPLATE = lib
 QT += widgets
 
@@ -13,11 +13,11 @@ include(../../Common/BuildInfo.pri)
 
 SOURCES += \
     qcustomplot.cpp \
-    perceptronneuralnetworkview.cpp
+    perceptronlearningalgorithmview.cpp
 
 HEADERS += \
     qcustomplot.h \
-    perceptronneuralnetworkview.h
+    perceptronlearningalgorithmview.h
 
 
 DISTFILES += \

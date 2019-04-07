@@ -32,10 +32,10 @@ void ModbusDeviceDataManager::onAllReferencesSet()
     {
         auto&& interfaceName = iter.key();
         auto&& plugin = iter.value();
-        if(!QString::compare(interfaceName, "ICOMPortDataSource", Qt::CaseInsensitive))
+        if(!QString::compare(interfaceName, "ICOMPortDataManager", Qt::CaseInsensitive))
         {
             auto instance = plugin->getObject();
-            myReferencedPlugin = qobject_cast<ICOMPortDataSource*>(instance);
+            myReferencedPlugin = qobject_cast<ICOMPortDataManager*>(instance);
         }
     }
     PluginBase::onAllReferencesSet();

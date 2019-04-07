@@ -1,0 +1,8 @@
+{
+    "Type": "VIEWPLUGIN",
+    "Interface": "IModbusDataReaderView",
+    "Name": "ModbusDataReaderView",
+    "RelatedPluginInterfaces": [
+        "IModbusDataReader"
+    ]
+}

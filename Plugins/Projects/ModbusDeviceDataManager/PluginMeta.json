@@ -3,6 +3,6 @@
     "Interface": "IModbusDeviceDataManager",
     "Name": "ModbusDeviceDataManager",
     "RelatedPluginInterfaces": [
-        "ICOMPortDataSource"
+        "ICOMPortDataManager"
     ]
 }

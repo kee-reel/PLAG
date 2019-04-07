@@ -19,9 +19,6 @@ void ExtendableItemModel::LoadData()
 {
     qDebug() << "Load data";
 
-    if(rootItem)
-        return;
-
     rootItem = new Item(nullptr, &defaultTask);
     QMap<QString, QVariant::Type> newRelationStruct =
     {
@@ -173,7 +170,9 @@ QMap<QString, QVariant> ExtendableItemModel::ConvertToHeadedMap(QMap<QString, QV
             chunksMap.insert(chunkName, QVariant(headedValuesMap));
         }
         else
-            qCritical() << "Well... Shit! Chunk" << chunkName << "is corrupted :c";
+        {
+            qWarning() << "Chunk" << chunkName << "is corrupted";
+        }
 
         ++valuesNamesIter;
         ++valuesIter;

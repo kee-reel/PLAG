@@ -1,0 +1,10 @@
+{
+    "Interface": "IPomodoroManager",
+    "Name": "PomodoroManager",
+    "RelatedPluginInterfaces": [
+        "IUserTaskManager",
+        "IExtendableDataManager",
+        "IPluginLinker",
+        "INotificationManager"
+    ]
+}

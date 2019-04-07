@@ -10,14 +10,14 @@
 #include "../../Common/plugin_base.h"
 
 #include "../../Interfaces/iextendabledatamanager.h"
-#include "../../Interfaces/idatabasesource.h"
+#include "../../Interfaces/idatabase.h"
 
 #include "tablehandler.h"
 #include "extendableitemmodel.h"
 
-//! \addtogroup ExtendableDataBaseManagerPlugin_imp
-//! \{
-class ExtendableDataBaseManagerPlugin : public PluginBase, IExtendableDataManager
+//! \addtogroup ExtendableDataBaseManager_imp
+//!  \{
+class ExtendableDataBaseManager : public PluginBase, IExtendableDataManager
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "ExtendableDataManager" FILE "PluginMeta.json")
@@ -27,8 +27,8 @@ class ExtendableDataBaseManagerPlugin : public PluginBase, IExtendableDataManage
     )
 
 public:
-    ExtendableDataBaseManagerPlugin();
-    virtual ~ExtendableDataBaseManagerPlugin() override;
+    ExtendableDataBaseManager();
+    virtual ~ExtendableDataBaseManager() override;
 
 
     // PluginBase interface
@@ -55,7 +55,7 @@ public:
 
 private:
     QString lastError;
-    IDataBaseSourcePlugin* dataSource;
+    IDataBase* dataSource;
 
     QMap<QString, QMap<QString, QWidget*> > dataTypeEditorsMap;
 
@@ -63,5 +63,5 @@ private:
     void SetupTable(QString &tableName);
     QAbstractItemModel *CreateProxy(QVector<QPair<QString, QString> > &dataModelFields);
 };
-//! \}
+//!  \}
 #endif // TASKDBTOOLPLUGIN_H

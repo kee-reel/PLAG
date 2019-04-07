@@ -7,15 +7,17 @@
 
 class QAbstractItemModel;
 
-//! \defgroup ExtendableDataBaseManagerPlugin ExtendableDataBaseManagerPlugin
-//!     \ingroup MainMenuPlugin_rel_dm
-//! \defgroup ExtendableDataBaseManagerPlugin_int Interfaces
-//!     \ingroup ExtendableDataBaseManagerPlugin
-//! \defgroup ExtendableDataBaseManagerPlugin_imp Implementation
-//!     \ingroup ExtendableDataBaseManagerPlugin
+//!  \defgroup ExtendableDataManager ExtendableDataManager
+//!      \ingroup Plugins
+//! \defgroup ExtendableDataBaseManager_int Interfaces
+//!     \ingroup ExtendableDataBaseManager
+//! \defgroup ExtendableDataBaseManager_imp Implementation
+//!     \ingroup ExtendableDataBaseManager
+//!  \defgroup ExtendableDataBaseManager_dep Dependent plugins
+//!      \ingroup ExtendableDataBaseManager
 
-//! \addtogroup ExtendableDataBaseManagerPlugin_int
-//! \{
+//! \addtogroup ExtendableDataBaseManager_int
+//!  \{
 //! \brief
 class IExtendableDataManager
 {

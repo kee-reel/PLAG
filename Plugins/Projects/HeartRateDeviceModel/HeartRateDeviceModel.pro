@@ -1,5 +1,5 @@
 
-TARGET = HeartRateDeviceModel
+TARGET = HeartRateDevice
 TEMPLATE = lib
 QT += widgets serialport serialbus charts
 
@@ -8,10 +8,10 @@ DEFINES += PLUGIN_BASE_QOBJECT
 include(../../Common/BuildInfo.pri)
 
 SOURCES += \
-    heartratedevicemodel.cpp
+    heartratedevice.cpp
 
-HEADERS +=\
-    heartratedevicemodel.h
+HEADERS += \
+    heartratedevice.h
 
 DISTFILES += \
     PluginMeta.json

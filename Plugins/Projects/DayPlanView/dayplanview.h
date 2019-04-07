@@ -8,12 +8,12 @@
 
 #include "../../Common/plugin_base.h"
 
-#include "../../Interfaces/idayplanmodel.h"
+#include "../../Interfaces/idayplan.h"
 #include "datetimetypeeditor.h"
 #include "designproxymodel.h"
 
-//! addtogroup DayPlanView_imp
-//! {
+//! \addtogroup DayPlanView_dep
+//!  \{
 class DayPlanView : public PluginBase
 {
     Q_OBJECT
@@ -35,8 +35,8 @@ private:
     QWidget *referenceWidget;
 
 private:
-    IDayPlanModel *dayPlanModel;
+    IDayPlan *DayPlan;
     QAbstractItemModel * itemModel;
 };
-//! }
+//!  \}
 #endif // DAYPLANVIEW_H

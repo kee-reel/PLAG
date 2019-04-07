@@ -12,12 +12,12 @@
 #include "../../Common/plugin_base.h"
 
 #include "../../Interfaces/imodbusdevicedatamanager.h"
-#include "../../Interfaces/icomportdatasource.h"
+#include "../../Interfaces/icomportdatamanager.h"
 
 #include "modbusdevicehandler.h"
 
-//! addtogroup ModbusDeviceDataManager_imp
-//! {
+//! \addtogroup ModbusDeviceDataManager_imp
+//!  \{
 class ModbusDeviceDataManager : public
     PluginBase,
     IModbusDeviceDataManager
@@ -50,13 +50,13 @@ signals:
     void ModbusListUpdated();
 
 private:
-    ICOMPortDataSource *myReferencedPlugin;
+    ICOMPortDataManager *myReferencedPlugin;
 
 private:
     // Write your internal methods here
     QModbusReply *lastRequest;
     QModbusClient *modbusDevice;
-    ICOMPortDataSource::ISerialPortHandler *connectedPort;
+    ICOMPortDataManager::ISerialPortHandler *connectedPort;
     QMap<int, ModbusDeviceHandler*> deviceHandlers;
     QStringListModel devicesNames;
 
@@ -74,5 +74,5 @@ private slots:
 signals:
     void DataUnitRecieved(const QModbusDataUnit &dataUnit);
 };
-//! }
+//!  \}
 #endif // MODBUSDEVICEDATAMANAGER_H

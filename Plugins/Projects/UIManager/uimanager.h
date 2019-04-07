@@ -15,8 +15,8 @@
 
 #include "uielement.h"
 
-//! addtogroup UIManager_imp
-//! {
+//! \addtogroup UIManager_imp
+//!  \{
 class UIManager : public PluginBase, public IUIManager
 {
     Q_OBJECT
@@ -77,5 +77,5 @@ private:
     QMap<int, QSharedPointer<UIElement>> m_elementsMap;
     QList<QWidget *> m_widgetStack;
 };
-//! }
+//!  \}
 #endif // UIMANAGER_H

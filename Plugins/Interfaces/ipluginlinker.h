@@ -7,13 +7,17 @@
 #include "../../Application/ipluginhandler.h"
 #include "../Common/iplugin.h"
 
-//! defgroup PluginLinker_int Interface
-//!     ingroup PluginLinker
-//! defgroup PluginLinker_imp Implementation
-//!     ingroup PluginLinker
+//!  \defgroup PluginLinker PluginLinker
+//!      \ingroup Plugins
+//!  \defgroup PluginLinker_int Interface
+//!      \ingroup PluginLinker
+//!  \defgroup PluginLinker_imp Implementation
+//!      \ingroup PluginLinker
+//!  \defgroup PluginLinker_dep Dependent plugins
+//!      \ingroup PluginLinker
 
-//! addtogroup PluginLinker_int
-//! {
+//!  \addtogroup PluginLinker_int
+//!  \{
 class IPluginLinker
 {
 public:
@@ -50,6 +54,6 @@ public:
 signals:
     void onLinkageFinished();
 };
-//! }
+//!  \}
 Q_DECLARE_INTERFACE(IPluginLinker, "IPluginLinker")
 #endif // IPLUGINLINKER_H

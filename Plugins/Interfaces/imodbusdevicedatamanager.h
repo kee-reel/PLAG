@@ -5,13 +5,17 @@
 #include <QSerialPort>
 #include <QModbusDataUnit>
 
-//! defgroup ModbusDeviceDataManager_int Interface
-//!     ingroup ModbusDeviceDataManager
-//! defgroup ModbusDeviceDataManager_imp Implementation
-//!     ingroup ModbusDeviceDataManager
+//!  \defgroup ModbusDeviceDataManager ModbusDeviceDataManager
+//!      \ingroup Plugins
+//!  \defgroup ModbusDeviceDataManager_int Interface
+//!      \ingroup ModbusDeviceDataManager
+//!  \defgroup ModbusDeviceDataManager_imp Implementation
+//!      \ingroup ModbusDeviceDataManager
+//!  \defgroup ModbusDeviceDataManager_dep Dependent plugins
+//!      \ingroup ModbusDeviceDataManager
 
-//! addtogroup ModbusDeviceDataManager_int
-//! {
+//!  \addtogroup ModbusDeviceDataManager_int
+//!  \{
 class IModbusDeviceDataManager
 {
 public:
@@ -54,6 +58,6 @@ signals:
     void ErrorOccurred(QString error);
     void ModbusListUpdated();
 };
-//! }
+//!  \}
 Q_DECLARE_INTERFACE(IModbusDeviceDataManager, "IModbusDeviceDataManager")
 #endif // IMODBUSDEVICEDATAMANAGER_H

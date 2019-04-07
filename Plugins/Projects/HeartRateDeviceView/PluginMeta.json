@@ -3,6 +3,6 @@
     "Interface": "IHeartRateDeviceView",
     "Name": "HeartRateDeviceView",
     "RelatedPluginInterfaces": [
-        "IHeartRateDeviceModel"
+        "IHeartRateDevice"
     ]
 }

@@ -1,6 +1,5 @@
 #include "linkeritem.h"
 
-#include "../../Interfaces/inewarchtestplugin.h"
 #include "../../Common/iplugin.h"
 
 LinkerItem::LinkerItem(QWeakPointer<IPluginHandler> pluginHandler, QSharedPointer<MetaInfo> metaInfo, int uid) :

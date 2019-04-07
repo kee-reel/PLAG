@@ -1,0 +1,7 @@
+{
+    "Interface": "ILearningAlgorithm",
+    "Name": "NeuralNetwork",
+    "RelatedPluginInterfaces": [
+        "IPluginLinker"
+    ]
+}

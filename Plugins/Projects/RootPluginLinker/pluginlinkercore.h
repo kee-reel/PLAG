@@ -10,11 +10,11 @@
 #include <QMap>
 #include <QHash>
 
-#include "../../Interfaces/ipluginlinker.h"
-#include "../../Interfaces/iuimanager.h"
-
 #include "../../../Application/icoreplugin.h"
 #include "../../Common/plugin_base.h"
+
+#include "../../Interfaces/ipluginlinker.h"
+#include "../../Interfaces/iuimanager.h"
 
 #include "linkeritem.h"
 

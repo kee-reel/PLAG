@@ -6,10 +6,10 @@
 #include <QString>
 
 #include "../../Common/plugin_base.h"
-#include "../../Interfaces/iheartratedevicemodel.h"
+#include "../../Interfaces/iheartratedevice.h"
 
-//! addtogroup HeartRateDeviceView_imp
-//! {
+//! \addtogroup HeartRateDevice_imp
+//!  \{
 class HeartRateDeviceView : public PluginBase
 {
     Q_OBJECT
@@ -19,7 +19,7 @@ class HeartRateDeviceView : public PluginBase
     )
 
 public:
-    explicit HeartRateDeviceView(QWidget *parent = 0);
+    explicit HeartRateDeviceView(QWidget *parent = nullptr);
     virtual ~HeartRateDeviceView() override;
 
     // PluginBase interface
@@ -38,9 +38,9 @@ private slots:
     void on_spinDataIndex_valueChanged(int position);
 
 private:
-    IHeartRateDeviceModel *myReferencedPlugin;
+    IHeartRateDevice *myReferencedPlugin;
     int dataIndex;
 
 };
-//! }
+//!  \}
 #endif // HEARTRATEDEVICEVIEW_H

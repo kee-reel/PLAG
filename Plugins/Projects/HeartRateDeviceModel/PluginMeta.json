@@ -1,10 +1,9 @@
 {
-    "Type": "MODELPLUGIN",
-    "Interface": "IHeartRateDeviceModel",
-    "Name": "HeartRateDeviceModel",
+    "Interface": "IHeartRateDevice",
+    "Name": "HeartRateDevice",
     "RelatedPluginInterfaces": [
-        "IFuzzyLogicModel",
+        "iFuzzyLogicManager",
         "IPluginLinker",
-        "IExperimentControlModel"
+        "IModbusDataReader"
     ]
 }

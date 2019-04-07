@@ -1,0 +1,7 @@
+{
+    "Interface": "",
+    "Name": "PomodoroManagerView",
+    "RelatedPluginInterfaces": [
+        "IPomodoroManager"
+    ]
+}

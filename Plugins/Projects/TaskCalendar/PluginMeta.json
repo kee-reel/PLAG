@@ -3,6 +3,6 @@
     "Name": "TaskCalendar",
     "RelatedPluginInterfaces": [
         "IExtendableDataManager",
-        "ITaskTreeModel"
+        "IUserTaskManager"
     ]
 }

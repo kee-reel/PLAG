@@ -4,7 +4,7 @@
 DayPlanView::DayPlanView(QWidget *parent) :
     PluginBase(parent)
 {
-    dayPlanModel = nullptr;
+    DayPlan = nullptr;
     itemModel = nullptr;
     connect(ui->buttonExit, &QPushButton::clicked, [this](){
         emit onClose(this);
@@ -21,10 +21,10 @@ void DayPlanView::onAllReferencesSet()
     {
         auto&& interfaceName = iter.key();
         auto&& plugin = iter.value();
-        if(!QString::compare(interfaceName, "IDayPlanModel", Qt::CaseInsensitive))
+        if(!QString::compare(interfaceName, "IDayPlan", Qt::CaseInsensitive))
         {
             auto instance = plugin->getObject();
-            dayPlanModel = qobject_cast<IDayPlanModel*>(instance);
+            DayPlan = qobject_cast<IDayPlan*>(instance);
         }
     }
     PluginBase::onAllReferencesSet();
@@ -32,12 +32,12 @@ void DayPlanView::onAllReferencesSet()
 
 void DayPlanView::onAllReferencesReady()
 {
-    dayPlanModel->SetDataTypeEditor(new DateTimeTypeEditor());
+    DayPlan->SetDataTypeEditor(new DateTimeTypeEditor());
 
-    auto model = dayPlanModel->GetTaskModel();
+    auto model = DayPlan->GetTaskModel();
     itemModel = new DesignProxyModel(model);
     ui->treeView->setModel(itemModel);
-    model = dayPlanModel->GetDateModel();
+    model = DayPlan->GetDateModel();
     itemModel = new DesignProxyModel(model);
     ui->treeView_2->setModel(itemModel);
 
@@ -51,8 +51,8 @@ void DayPlanView::onAllReferencesReady()
 
 //void DayPlanView::OnAllSetup()
 //{
-//    if(dayPlanModel == nullptr) return;
-//    dayPlanModel->SetDataTypeEditor(new DateTimeTypeEditor());
+//    if(DayPlan == nullptr) return;
+//    DayPlan->SetDataTypeEditor(new DateTimeTypeEditor());
 //}
 
 //QString DayPlanView::GetLastError()
@@ -74,9 +74,9 @@ void DayPlanView::onAllReferencesReady()
 //        qDebug() << "New IModelPlugin added (" << pluginInfo->Meta->Name << ").";
 //        connect(this, SIGNAL(OnClose(PluginInfo*)), pluginInfo->Instance, SLOT(ReferencePluginClosed(PluginInfo*)));
 
-//        if(dayPlanModel = qobject_cast<IDayPlanModel*>(pluginInfo->Instance))
+//        if(DayPlan = qobject_cast<IDayPlan*>(pluginInfo->Instance))
 //        {
-//            qDebug() << "IDayPlanModel Binded";
+//            qDebug() << "IDayPlan Binded";
 //            pluginInfo->Plugin.model->AddReferencePlugin(this->pluginInfo);
 //        }
 //    } break;
@@ -106,12 +106,12 @@ void DayPlanView::onAllReferencesReady()
 //        return false;
 //    }
 
-//    if(dayPlanModel)
+//    if(DayPlan)
 //    {
-//        auto model = dayPlanModel->GetTaskModel();
+//        auto model = DayPlan->GetTaskModel();
 //        itemModel = new DesignProxyModel(model);
 //        ui->treeView->setModel(itemModel);
-//        model = dayPlanModel->GetDateModel();
+//        model = DayPlan->GetDateModel();
 //        itemModel = new DesignProxyModel(model);
 //        ui->treeView_2->setModel(itemModel);
 //    }

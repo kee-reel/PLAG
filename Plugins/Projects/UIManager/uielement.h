@@ -4,6 +4,8 @@
 #include "../../Interfaces/iuimanager.h"
 #include "../../Interfaces/ipluginlinker.h"
 
+//! \addtogroup UIManager_imp
+//!  \{
 class UIElement : public QObject, public IUIManager::IUIElement
 {
     Q_OBJECT
@@ -39,5 +41,5 @@ private:
     QWeakPointer<IPluginLinker::ILinkerItem> m_linkerItem;
     QMap<int, QWeakPointer<UIElement> > m_connectedElements;
 };
-
+//! \}
 #endif // UIELEMENT_H

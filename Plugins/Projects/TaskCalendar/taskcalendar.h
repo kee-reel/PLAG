@@ -9,10 +9,10 @@
 
 #include "../../Interfaces/itaskcalendar.h"
 #include "../../Interfaces/iextendabledatamanager.h"
-#include "../../Interfaces/itasktreemodel.h"
+#include "../../Interfaces/iusertaskmanager.h"
 
-//! addtogroup TaskCalendar_imp
-//! {
+//! \addtogroup TaskCalendar_imp
+//!  \{
 class TaskCalendar :
         public PluginBase,
         public ITaskCalendar
@@ -39,8 +39,8 @@ public:
 
 private:
     IExtendableDataManager *dataManager;
-    ITaskTreeModel *taskTree;
+    IUserTaskManager *taskTree;
     QWidget* customDataWidget;
 };
-//! }
+//!  \}
 #endif // TASKCALENDAR_H

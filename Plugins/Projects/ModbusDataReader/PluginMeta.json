@@ -1,0 +1,8 @@
+{
+    "Interface": "IModbusDataReader",
+    "Name": "ModbusDataReader",
+    "RelatedPluginInterfaces": [
+        "IModbusDeviceDataManager",
+        "IPluginLinker"
+    ]
+}

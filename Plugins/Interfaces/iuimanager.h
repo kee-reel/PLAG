@@ -4,13 +4,17 @@
 #include <QtCore>
 #include "../Common/iplugin.h"
 
-//! defgroup UIManager_int Interface
-//!     ingroup UIManager
-//! defgroup UIManager_imp Implementation
-//!     ingroup UIManager
+//!  \defgroup UIManager UIManager
+//!      \ingroup Plugins
+//!  \defgroup UIManager_int Interface
+//!      \ingroup UIManager
+//!  \defgroup UIManager_imp Implementation
+//!      \ingroup UIManager
+//!  \defgroup UIManager_dep Dependent plugins
+//!      \ingroup UIManager
 
-//! addtogroup UIManager_int
-//! {
+//!  \addtogroup UIManager_int
+//!  \{
 class IUIManager
 {
 public:
@@ -43,6 +47,6 @@ public:
 protected:
     virtual ~IUIManager() {}
 };
-//! }
+//!  \}
 Q_DECLARE_INTERFACE(IUIManager, "IUIManager")
 #endif // IUIMANAGER_H

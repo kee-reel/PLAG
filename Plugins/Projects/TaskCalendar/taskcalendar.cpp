@@ -19,9 +19,9 @@ void TaskCalendar::onAllReferencesSet()
         {
             dataManager = castPluginToInterface<IExtendableDataManager>(plugin);
         }
-        else if(!QString::compare(interfaceName, "ITaskTreeModel", Qt::CaseInsensitive))
+        else if(!QString::compare(interfaceName, "IUserTaskManager", Qt::CaseInsensitive))
         {
-            taskTree = castPluginToInterface<ITaskTreeModel>(plugin);
+            taskTree = castPluginToInterface<IUserTaskManager>(plugin);
         }
     }
     PluginBase::onAllReferencesSet();
@@ -33,10 +33,10 @@ void TaskCalendar::onAllReferencesReady()
         {"Date",   QVariant::DateTime}
     };
     QVector<QVariant> defaultData;
-    defaultData << QDateTime::currentDateTime().toString(Qt::ISODate);
-    dataManager->AddExtention("ITaskTreeModel", "ITaskCalendar", newRelationStruct, defaultData);
+    defaultData << QDateTime::currentDateTime();
+    dataManager->AddExtention("IUserTaskManager", "ITaskCalendar", newRelationStruct, defaultData);
 
-    dataManager->SetActiveExtention("ITaskTreeModel", "ITaskCalendar");
+    dataManager->SetActiveExtention("IUserTaskManager", "ITaskCalendar");
 
     PluginBase::onAllReferencesReady();
 }

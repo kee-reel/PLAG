@@ -1,0 +1,9 @@
+{
+    "Interface": "ITaskSketchManager",
+    "Name": "TaskSketchManager",
+    "RelatedPluginInterfaces": [
+        "IExtendableDataManager",
+        "IUserTaskManager",
+        "IPluginLinker"
+    ]
+}

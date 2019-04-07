@@ -23,10 +23,10 @@ void HeartRateDeviceView::onAllReferencesSet()
     {
         auto&& interfaceName = iter.key();
         auto&& plugin = iter.value();
-        if(!QString::compare(interfaceName, "IHeartRateDeviceModel", Qt::CaseInsensitive))
+        if(!QString::compare(interfaceName, "IHeartRateDevice", Qt::CaseInsensitive))
         {
             auto instance = plugin->getObject();
-            myReferencedPlugin = qobject_cast<IHeartRateDeviceModel*>(instance);
+            myReferencedPlugin = qobject_cast<IHeartRateDevice*>(instance);
             connect(instance, SIGNAL(HeartbeatData(float)), this, SLOT(OnHeartbitData(float)));
             connect(instance, SIGNAL(TempoData(float)), this, SLOT(OnTempoData(float)));
         }

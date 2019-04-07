@@ -1,16 +1,20 @@
-#ifndef IWORKTIMERMODEL_H
-#define IWORKTIMERMODEL_H
+#ifndef IWorkTimer_H
+#define IWorkTimer_H
 
 #include <QtCore>
 
-//! defgroup WorkTimerModel_int Interface
-//!     ingroup WorkTimerModel
-//! defgroup WorkTimerModel_imp Implementation
-//!     ingroup WorkTimerModel
+//!  \defgroup WorkTimer WorkTimer
+//!      \ingroup Plugins
+//!  \defgroup WorkTimer_int Interface
+//!      \ingroup WorkTimer
+//!  \defgroup WorkTimer_imp Implementation
+//!      \ingroup WorkTimer
+//!  \defgroup WorkTimer_dep Dependent plugins
+//!      \ingroup WorkTimer
 
-//! addtogroup WorkTimerModel_int
-//! {
-class IWorkTimerModel
+//!  \addtogroup WorkTimer_int
+//!  \{
+class IWorkTimer
 {
 public:
     ///
@@ -30,6 +34,6 @@ signals:
     ///
     void SecondTick();
 };
-//! }
-Q_DECLARE_INTERFACE(IWorkTimerModel, "IWorkTimerModel")
-#endif // IWORKTIMERMODEL_H
+//!  \}
+Q_DECLARE_INTERFACE(IWorkTimer, "IWorkTimer")
+#endif // IWorkTimer_H

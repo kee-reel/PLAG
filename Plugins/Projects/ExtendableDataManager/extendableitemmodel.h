@@ -13,8 +13,8 @@
 #include "../../Interfaces/iextendabledatamanager.h"
 #include "item.h"
 
-//! \addtogroup ExtendableDataBaseManagerPlugin_imp
-//! \{
+//! \addtogroup ExtendableDataBaseManager_imp
+//!  \{
 class ExtendableItemModel : public QAbstractItemModel
 {
     typedef IExtendableDataManager::ManagerDataItem ManagerDataItem;
@@ -72,5 +72,5 @@ private:
     QMap<QString, QVariant> ConvertToHeadedMap(QMap<QString, QVariant> headerMap, QMap<QString, QVariant> valuesMap) const;
     void ReadSameModelMime(int beginRow, int row, const QModelIndex &parent, QMap<quintptr, QMap<int, quintptr> > &newItems);
 };
-//! \}
+//!  \}
 #endif // EXTENDABLEITEMMODEL_H

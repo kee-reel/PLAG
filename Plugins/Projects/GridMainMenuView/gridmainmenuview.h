@@ -15,8 +15,8 @@
 #include "uniquepushbutton.h"
 #include "aspectawaregridlayout.h"
 
-//! addtogroup GridMainMenuView_imp
-//! {
+//! \addtogroup UIManager_dep
+//!  \{
 class GridMainMenuView : public PluginBase
 {
     Q_OBJECT
@@ -67,5 +67,5 @@ public:
 protected:
     virtual void closeEvent(QCloseEvent *event) override;
 };
-//! }
+//!  \}
 #endif // GRIDMAINMENUVIEW_H

@@ -7,11 +7,11 @@
 #include <QVariant>
 
 #include "../../Interfaces/iextendabledatamanager.h"
-#include "../../Interfaces/idatabasesource.h"
+#include "../../Interfaces/idatabase.h"
 #include "extendableitemmodel.h"
 
-//! \addtogroup ExtendableDataBaseManagerPlugin_imp
-//! \{
+//! \addtogroup ExtendableDataBaseManager_imp
+//!  \{
 class TableHandler
 {
     typedef IExtendableDataManager::ManagerDataItem ManagerDataItem;
@@ -25,7 +25,7 @@ public:
         {QVariant::ByteArray,  "BLOB"}
     };
 
-    TableHandler(IDataBaseSourcePlugin *dataSource, IExtendableDataManager *dataManager, QString tableName = "");
+    TableHandler(IDataBase *dataSource, IExtendableDataManager *dataManager, QString tableName = "");
     ~TableHandler();
 
     inline QString TableName() { return tableName; }
@@ -49,7 +49,7 @@ public:
 
 
 private:
-    IDataBaseSourcePlugin *dataSource;
+    IDataBase *dataSource;
     IExtendableDataManager *dataManager;
     ExtendableItemModel *itemModel;
     QString tableName;
@@ -72,5 +72,5 @@ private:
     QString GetFieldsNames(QString tableName, TableStructMap &tableStruct, bool includeId = false);
     void InstallModel();
 };
-//! \}
+//!  \}
 #endif // TABLEHANDLER_H

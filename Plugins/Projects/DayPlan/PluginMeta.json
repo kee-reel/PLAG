@@ -1,0 +1,9 @@
+{
+    "Interface": "IDayPlan",
+    "Name": "DayPlan",
+    "RelatedPluginInterfaces": [
+        "IUserTaskManager",
+        "IExtendableDataManager",
+        "IPluginLinker"
+    ]
+}
