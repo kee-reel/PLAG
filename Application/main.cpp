@@ -21,7 +21,7 @@
 //! - **TaskSketchManager** - holds user sketches
 //! - **TaskSketchView** - allows user to draw sketches, save them and observe gallery of drawed sketches
 //! - **AndroidNotificationsModel** - provides API for using specific Android features (notifications and toasts) and set alarm on Adroid devices
-//! - **ExtendableDataBaseManager** - provides access to information in data base in abstract item models
+//! - **ExtendableDataManager** - provides access to information in data base in abstract item models
 //! - **CipherDataBase** - provide access to [SQLite plugin](https://github.com/devbean/QtCipherSqlitePlugin)
 //!
 //! \section contacts_sec Project growing

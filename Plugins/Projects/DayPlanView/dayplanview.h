@@ -12,7 +12,7 @@
 #include "datetimetypeeditor.h"
 #include "designproxymodel.h"
 
-//! \addtogroup DayPlanView_dep
+//! \addtogroup DayPlan_dep
 //!  \{
 class DayPlanView : public PluginBase
 {

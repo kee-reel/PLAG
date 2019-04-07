@@ -7,15 +7,15 @@ class QSqlQuery;
 
 //!  \defgroup DataBase DataBase
 //!      \ingroup Plugins
-//!  \defgroup IDataBase_int Interface
+//!  \defgroup DataBase_int Interface
 //!      \ingroup DataBase
-//!  \defgroup IDataBase_impl Implementation
+//!  \defgroup DataBase_imp Implementation
 //!      \ingroup DataBase
 //!  \defgroup DataBase_dep Dependent plugins
 //!      \ingroup DataBase
 
 
-//! \addtogroup IDataBase_int
+//! \addtogroup DataBase_int
 //!  \{
 //! \brief This interface determine data source as data base.
 //!

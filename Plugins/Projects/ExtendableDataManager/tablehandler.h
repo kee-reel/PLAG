@@ -10,7 +10,7 @@
 #include "../../Interfaces/idatabase.h"
 #include "extendableitemmodel.h"
 
-//! \addtogroup ExtendableDataBaseManager_imp
+//! \addtogroup ExtendableDataManager_imp
 //!  \{
 class TableHandler
 {

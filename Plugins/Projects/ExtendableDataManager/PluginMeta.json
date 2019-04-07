@@ -1,6 +1,6 @@
 {
     "Interface": "IExtendableDataManager",
-    "Name": "ExtendableDataBaseManager",
+    "Name": "ExtendableDataManager",
     "RelatedPluginInterfaces": [
         "IDataBase"
     ]

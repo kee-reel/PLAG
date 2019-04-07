@@ -1,5 +1,5 @@
-#ifndef IExperimentControl_H
-#define IExperimentControl_H
+#ifndef IModbusDataReader_H
+#define IModbusDataReader_H
 
 #include "imodbusdevicedatamanager.h"
 #include <QtCore>
@@ -7,16 +7,16 @@
 #include <QSerialPort>
 #include <QModbusDataUnit>
 
-//!  \defgroup ExperimentControl ExperimentControl
+//!  \defgroup ModbusDataReader ModbusDataReader
 //!      \ingroup Plugins
-//!  \defgroup ExperimentControl_int Interface
-//!      \ingroup ExperimentControl
-//!  \defgroup ExperimentControl_imp Implementation
-//!      \ingroup ExperimentControl
-//!  \defgroup ExperimentControl_dep Dependent plugins
-//!      \ingroup ExperimentControl
+//!  \defgroup ModbusDataReader_int Interface
+//!      \ingroup ModbusDataReader
+//!  \defgroup ModbusDataReader_imp Implementation
+//!      \ingroup ModbusDataReader
+//!  \defgroup ModbusDataReader_dep Dependent plugins
+//!      \ingroup ModbusDataReader
 
-//!  \addtogroup ExperimentControl_int
+//!  \addtogroup ModbusDataReader_int
 //!  \{
 class IModbusDataReader
 {
@@ -62,5 +62,5 @@ signals:
     void ExperimentStateChanged(bool state);
 };
 //!  \}
-Q_DECLARE_INTERFACE(IModbusDataReader, "IExperimentControl")
-#endif // IExperimentControl_H
+Q_DECLARE_INTERFACE(IModbusDataReader, "IModbusDataReader")
+#endif // IModbusDataReader_H

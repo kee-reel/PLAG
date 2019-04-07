@@ -1,8 +1,5 @@
 #ifndef PARAMETERS_H
 #define PARAMETERS_H
-//! \addtogroup NeuralNetwork_imp
-//!  \{
-//!
 
 namespace Parameters {
 
@@ -58,5 +55,4 @@ namespace GeneticAlgorithmParams {
 }
 
 }
-//!  \}
 #endif // PARAMETERS_H

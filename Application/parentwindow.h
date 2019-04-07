@@ -8,9 +8,6 @@
 #include <QVBoxLayout>
 
 #include "pluginloader.h"
-//! \defgroup MASS MASS
-//! \brief MASS application.
-//! @{
 
 //! \brief Main application widget class.
 class ParentWindow : public QWidget
@@ -37,6 +34,4 @@ private:
     const int MAX_TRIES_TO_CLOSE_APP = 2;
     int triesToCloseApp;
 };
-
-//! @}
 #endif // PARENTWINDOW_H

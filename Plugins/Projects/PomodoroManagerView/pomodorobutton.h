@@ -9,8 +9,6 @@
 #include <QDebug>
 #include <QAudioOutput>
 
-//! \addtogroup PomodoroView_imp
-//!  \{
 class PomodoroButton : public QWidget
 {
     Q_OBJECT
@@ -41,5 +39,4 @@ private slots:
 signals:
     void OnStartPomodoro();
 };
-//!  \}
 #endif // POMODOROBUTTON_H

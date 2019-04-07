@@ -10,8 +10,6 @@
 #include <QDebug>
 #include <QBuffer>
 
-//! \addtogroup TaskSketchView_imp
-//!  \{
 class PaintWidget : public QWidget
 {
     Q_OBJECT
@@ -40,5 +38,4 @@ protected:
     virtual void resizeEvent(QResizeEvent *event);
 
 };
-//!  \}
 #endif // PAINTWIDGET_H

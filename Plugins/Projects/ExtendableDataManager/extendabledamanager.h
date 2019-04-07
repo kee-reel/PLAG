@@ -15,9 +15,9 @@
 #include "tablehandler.h"
 #include "extendableitemmodel.h"
 
-//! \addtogroup ExtendableDataBaseManager_imp
+//! \addtogroup ExtendableDataManager_imp
 //!  \{
-class ExtendableDataBaseManager : public PluginBase, IExtendableDataManager
+class ExtendableDataManager : public PluginBase, IExtendableDataManager
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "ExtendableDataManager" FILE "PluginMeta.json")
@@ -27,8 +27,8 @@ class ExtendableDataBaseManager : public PluginBase, IExtendableDataManager
     )
 
 public:
-    ExtendableDataBaseManager();
-    virtual ~ExtendableDataBaseManager() override;
+    ExtendableDataManager();
+    virtual ~ExtendableDataManager() override;
 
 
     // PluginBase interface

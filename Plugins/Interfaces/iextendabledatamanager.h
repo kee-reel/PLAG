@@ -9,16 +9,15 @@ class QAbstractItemModel;
 
 //!  \defgroup ExtendableDataManager ExtendableDataManager
 //!      \ingroup Plugins
-//! \defgroup ExtendableDataBaseManager_int Interfaces
-//!     \ingroup ExtendableDataBaseManager
-//! \defgroup ExtendableDataBaseManager_imp Implementation
-//!     \ingroup ExtendableDataBaseManager
-//!  \defgroup ExtendableDataBaseManager_dep Dependent plugins
-//!      \ingroup ExtendableDataBaseManager
+//! \defgroup ExtendableDataManager_int Interfaces
+//!     \ingroup ExtendableDataManager
+//! \defgroup ExtendableDataManager_imp Implementation
+//!     \ingroup ExtendableDataManager
+//!  \defgroup ExtendableDataManager_dep Dependent plugins
+//!      \ingroup ExtendableDataManager
 
-//! \addtogroup ExtendableDataBaseManager_int
-//!  \{
-//! \brief
+//! \addtogroup ExtendableDataManager_int
+//! \{
 class IExtendableDataManager
 {
 public:
@@ -49,5 +48,5 @@ public:
     virtual bool DeleteItem(QString treeName, int id) = 0;
 };
 Q_DECLARE_INTERFACE(IExtendableDataManager, "IExtendableDataManager v0.1")
-//! @}
+//! \}
 #endif // ITASKDBTOOLPLUGIN_H

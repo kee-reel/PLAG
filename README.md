@@ -6,29 +6,26 @@ Main application which are storing in folder ["/Application"](/Application) load
 
 Among all loaded plugins it searches the one, which inherits interface [ICorePlugin](https://github.com/CurunirCingar/MASS/blob/master/Application/rootinterface.h). If it finds one - it will send all other loaded plugins to it by using AddPlugin(). After all main application calls Run() method.
 
-If plugin implements [ICorePlugin](https://github.com/CurunirCingar/MASS/blob/master/Application/rootinterface.h) interface it should take care of whole system plugins interactions. Here's it's code:
+If plugin implements [ICorePlugin](https://github.com/CurunirCingar/MASS/blob/master/Application/rootinterface.h) interface it should take care of whole system plugins interactions. Here's it's code ([doc](https://curunircingar.github.io/MASS/class_i_core_plugin.html)):
 ```cpp
 class ICorePlugin
 {
 public:
+    virtual void addPlugins(const QVector<QWeakPointer<IPluginHandler>> &pluginHandlers) = 0;
+    virtual void start(QWeakPointer<IPluginHandler> selfHandler, QWidget *parentWidget) = 0;
+    virtual bool close() = 0;
+protected:
     virtual ~ICorePlugin() {}
-    virtual void AddPlugin(QObject* instance, QJsonObject* meta) = 0;
-    virtual void Run(QWidget* parentWidget) = 0;
 };
 ```
 
-So, that's all that designed in a non-modular way - everything else is contained in plugins :)
+So, that's all that designed in a non-modular way - everything else contains in plugins :)
 
 ## Plugins implementation aspect
-All plugins are loaded with using of [QPluginLoader](http://doc.qt.io/qt-5/qpluginloader.html) and should contain [plugin specific macroses](http://doc.qt.io/qt-5/plugins-howto.html).
-If you use QtCreator then you can use the custom wizard ([it is here](https://github.com/CurunirCingar/MASS/tree/master/Docs/QtCreator%20wizard)). It generates all plugin-specific code for you and you don't even need to figure out how all this stuff works.
+All plugins are loaded using [QPluginLoader](http://doc.qt.io/qt-5/qpluginloader.html) and should contain [plugin specific macroses](http://doc.qt.io/qt-5/plugins-howto.html).
+If you're using QtCreator then you can use custom wizard for generating solutions for new plugins - [link](https://github.com/CurunirCingar/MASS/tree/master/Docs/QtCreator%20wizard).
 
 ## Development
-Currently there are exists only one core plugin (implementation of ICorePlugin) - [MainMenuModel](https://github.com/CurunirCingar/MASS/tree/master/Plugins/Models/MainMenuModel). There are implemented:
-- Specific plugins architecture 
-- Plugins linker
-- Widgets management
-
 All plugins (including core plugin) contains in ["/Plugins"](/Plugins). Description of the plugins-related theme is separated from the current page because theoretically, you could make your own implementation of core plugin.
 
 So if you want to read more about the already implemented architecture of these plugins and how all this stuff works - jump [here](/Plugins).

@@ -12,14 +12,10 @@ class QPluginLoader;
 class QWidget;
 
 //!  \defgroup MainApp MainApp
-//!
-//!  \defgroup ICorePlugin Core plugin interface
-//!      \ingroup MainApp
-//!
 //!  \defgroup Plugins Plugins
 
 //! \addtogroup MainApp ICorePlugin
-//! @{
+//! \{
 
 //! \brief Interface for plugin CorePlugin.
 //! \details This interface represents most significant plugin in whole system. If plugin implements this
@@ -46,6 +42,6 @@ protected:
     virtual ~ICorePlugin() {}
 };
 Q_DECLARE_INTERFACE(ICorePlugin, "ICorePlugin")
-//! @}
+//! \}
 #endif // ICOREPLUGIN_H
 

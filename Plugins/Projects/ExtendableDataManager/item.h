@@ -9,8 +9,6 @@
 
 #include "../../Interfaces/iextendabledatamanager.h"
 
-//! \addtogroup ExtendableDataBaseManager_imp
-//!  \{
 class Item : public IExtendableDataManager::ManagerDataItem
 {
 public:
@@ -113,5 +111,4 @@ private:
     QVariant *decoration;
     QList<Item*> childItems;
 };
-//!  \}
-#endif // TREEITEM_H
+#endif // ITEM_H

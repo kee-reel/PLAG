@@ -3,7 +3,7 @@
 
 #include <QtCore>
 
-//!  \defgroup UIManager UIManager
+//!  \defgroup TaskSketchManager TaskSketchManager
 //!      \ingroup Plugins
 //! \defgroup TaskSketchManager_int Interface
 //!     \ingroup TaskSketchManager

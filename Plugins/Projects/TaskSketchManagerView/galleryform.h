@@ -9,8 +9,8 @@
 namespace Ui {
 class GalleryForm;
 }
-//! \addtogroup TaskSketchView_imp
-//!  \{
+
+
 class GalleryForm : public QWidget
 {
     Q_OBJECT
@@ -36,5 +36,4 @@ signals:
     void OnItemDelete(int index);
     void OnItemConvert(int index);
 };
-//!  \}
 #endif // GALLERYFORM_H

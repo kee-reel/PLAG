@@ -11,7 +11,7 @@ class QVector;
 typedef QPair<QVector<float>, QVector<float>> InputSampleF;
 typedef QPair<QVector<int>, QVector<int>> InputSampleI;
 
-//!  \defgroup UIManager UIManager
+//!  \defgroup MachineLearningManager MachineLearningManager
 //!      \ingroup Plugins
 //! \defgroup MachineLearningManager_int Interfaces
 //!     \ingroup MachineLearningManager

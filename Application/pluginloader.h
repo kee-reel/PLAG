@@ -14,9 +14,6 @@
 #include "icoreplugin.h"
 #include "ipluginhandler.h"
 
-//! \addtogroup MASS MASS
-//! @{
-
 //! \brief Loads all files from directory and tries to specify
 //! between them plugin with interface RootModel and initialize it.
 class PluginLoader : QObject
@@ -66,5 +63,4 @@ private:
     QDir m_internalPluginsPath;
 
 };
-//! @}
 #endif // PLUGINMANAGER_H

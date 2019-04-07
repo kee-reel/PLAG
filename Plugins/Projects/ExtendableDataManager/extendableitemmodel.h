@@ -13,7 +13,7 @@
 #include "../../Interfaces/iextendabledatamanager.h"
 #include "item.h"
 
-//! \addtogroup ExtendableDataBaseManager_imp
+//! \addtogroup ExtendableDataManager_imp
 //!  \{
 class ExtendableItemModel : public QAbstractItemModel
 {
