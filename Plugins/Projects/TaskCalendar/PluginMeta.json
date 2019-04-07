@@ -1,8 +1,0 @@
-{
-    "Interface": "ITaskCalendar",
-    "Name": "TaskCalendar",
-    "RelatedPluginInterfaces": [
-        "IExtendableDataManager",
-        "IUserTaskManager"
-    ]
-}

@@ -1,7 +1,0 @@
-{
-    "IsCorePlugin": true,
-    "Interface": "IPluginLinker",
-    "Name": "PluginLinker",
-    "RelatedPluginInterfaces": [
-    ]
-}

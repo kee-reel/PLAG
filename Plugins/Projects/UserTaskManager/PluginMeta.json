@@ -1,8 +1,0 @@
-{
-    "Interface": "IUserTaskManager",
-    "Name": "UserTaskManager",
-    "RelatedPluginInterfaces": [
-        "IExtendableDataManager",
-        "IPluginLinker"
-    ]
-}

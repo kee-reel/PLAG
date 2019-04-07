@@ -1,7 +1,0 @@
-{
-    "Interface": "",
-    "Name": "PerceptronNetworkView",
-    "RelatedPluginInterfaces": [
-        "ILearningAlgorithm"
-    ]
-}

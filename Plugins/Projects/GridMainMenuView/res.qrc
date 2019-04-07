@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>Menu.qml</file>
-        <file>MenuForm.ui.qml</file>
-    </qresource>
-</RCC>

@@ -1,9 +1,0 @@
-{
-    "Interface": "IHeartRateDevice",
-    "Name": "HeartRateDevice",
-    "RelatedPluginInterfaces": [
-        "iFuzzyLogicManager",
-        "IPluginLinker",
-        "IModbusDataReader"
-    ]
-}
