@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['databasesourceplugin',['DataBaseSourcePlugin',['../class_data_base_source_plugin.html',1,'']]],
-  ['datachannel',['DataChannel',['../class_data_channel.html',1,'']]],
-  ['datachartwidget',['DataChartWidget',['../class_data_chart_widget.html',1,'']]],
-  ['datetimetypeeditor',['DateTimeTypeEditor',['../class_date_time_type_editor.html',1,'']]],
-  ['dayplanmodel',['DayPlanModel',['../class_day_plan_model.html',1,'']]],
-  ['dayplanview',['DayPlanView',['../class_day_plan_view.html',1,'']]],
-  ['designproxymodel',['DesignProxyModel',['../class_design_proxy_model.html',1,'']]],
-  ['deviceinfo',['DeviceInfo',['../struct_i_c_o_m_port_data_source_1_1_device_info.html',1,'ICOMPortDataSource']]]
+  ['cachedlabel',['CachedLabel',['../struct_q_c_p_axis_painter_private_1_1_cached_label.html',1,'QCPAxisPainterPrivate']]],
+  ['chromosome',['Chromosome',['../class_chromosome.html',1,'']]],
+  ['comparinglayer',['ComparingLayer',['../class_comparing_layer.html',1,'']]],
+  ['comportdatamanager',['COMPortDataManager',['../class_c_o_m_port_data_manager.html',1,'']]],
+  ['connectionsettings',['ConnectionSettings',['../struct_i_modbus_device_data_manager_1_1_connection_settings.html',1,'IModbusDeviceDataManager']]]
 ];

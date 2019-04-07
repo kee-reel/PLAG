@@ -1,4 +1,5 @@
 var modules =
 [
-    [ "MainMenuPlugin", "group___main_menu_plugin.html", "group___main_menu_plugin" ]
+    [ "MainApp", "group___main_app.html", "group___main_app" ],
+    [ "Plugins", "group___plugins.html", "group___plugins" ]
 ];

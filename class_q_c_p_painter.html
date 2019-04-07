@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('class_q_c_p_painter.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>QPainter subclass used internally.  
+<p><a class="el" href="class_q_painter.html">QPainter</a> subclass used internally.  
  <a href="class_q_c_p_painter.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for QCPPainter:</div>
@@ -100,6 +100,7 @@ Inheritance diagram for QCPPainter:</div>
  <div class="center">
   <img src="class_q_c_p_painter.png" usemap="#QCPPainter_map" alt=""/>
   <map id="QCPPainter_map" name="QCPPainter_map">
+<area href="class_q_painter.html" alt="QPainter" shape="rect" coords="0,0,79,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -163,9 +164,9 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
 <tr class="separator:a0189e641bbf7dc31ac15aef7b36501fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>QPainter subclass used internally. </p>
-<p>This QPainter subclass is used to provide some extended functionality e.g. for tweaking position consistency between antialiased and non-antialiased painting. Further it provides workarounds for QPainter quirks.</p>
-<dl class="section warning"><dt>Warning</dt><dd>This class intentionally hides non-virtual functions of QPainter, e.g. setPen, save and restore. So while it is possible to pass a <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a> instance to a function that expects a QPainter pointer, some of the workarounds and tweaks will be unavailable to the function (because it will call the base class implementations of the functions actually hidden by <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a>). </dd></dl>
+<div class="textblock"><p><a class="el" href="class_q_painter.html">QPainter</a> subclass used internally. </p>
+<p>This <a class="el" href="class_q_painter.html">QPainter</a> subclass is used to provide some extended functionality e.g. for tweaking position consistency between antialiased and non-antialiased painting. Further it provides workarounds for <a class="el" href="class_q_painter.html">QPainter</a> quirks.</p>
+<dl class="section warning"><dt>Warning</dt><dd>This class intentionally hides non-virtual functions of <a class="el" href="class_q_painter.html">QPainter</a>, e.g. setPen, save and restore. So while it is possible to pass a <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a> instance to a function that expects a <a class="el" href="class_q_painter.html">QPainter</a> pointer, some of the workarounds and tweaks will be unavailable to the function (because it will call the base class implementations of the functions actually hidden by <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a>). </dd></dl>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a156cf16444ff5e0d81a73c615fdb156d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a156cf16444ff5e0d81a73c615fdb156d">&#9670;&nbsp;</a></span>PainterMode</h2>
@@ -234,7 +235,7 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Creates a new <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a> instance on the specified paint <em>device</em> and sets default values. Just like the analogous QPainter constructor, begins painting on <em>device</em> immediately.</p>
+<p>Creates a new <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a> instance on the specified paint <em>device</em> and sets default values. Just like the analogous <a class="el" href="class_q_painter.html">QPainter</a> constructor, begins painting on <em>device</em> immediately.</p>
 <p>Like <a class="el" href="class_q_c_p_painter.html#a0a41146ccd619dceab6e25ec7b46b044">begin</a>, this method sets QPainter::NonCosmeticDefaultPen in Qt versions before Qt5. </p>
 
 </div>
@@ -314,7 +315,7 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Restores the painter (see QPainter::restore). Since <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a> adds some new internal state to QPainter, the save/restore functions are reimplemented to also save/restore those members.</p>
+<p>Restores the painter (see QPainter::restore). Since <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a> adds some new internal state to <a class="el" href="class_q_painter.html">QPainter</a>, the save/restore functions are reimplemented to also save/restore those members.</p>
 <dl class="section note"><dt>Note</dt><dd>this function hides the non-virtual base class implementation.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_q_c_p_painter.html#a8fd6821ee6fecbfa04444c9062912abd">save</a> </dd></dl>
 
@@ -334,7 +335,7 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Saves the painter (see QPainter::save). Since <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a> adds some new internal state to QPainter, the save/restore functions are reimplemented to also save/restore those members.</p>
+<p>Saves the painter (see QPainter::save). Since <a class="el" href="class_q_c_p_painter.html" title="QPainter subclass used internally. ">QCPPainter</a> adds some new internal state to <a class="el" href="class_q_painter.html">QPainter</a>, the save/restore functions are reimplemented to also save/restore those members.</p>
 <dl class="section note"><dt>Note</dt><dd>this function hides the non-virtual base class implementation.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_q_c_p_painter.html#a64908e6298d5bbd83457dc987cc3a022">restore</a> </dd></dl>
 
@@ -471,8 +472,8 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/qcustomplot.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/PerceptronNeuralNetworkView/qcustomplot.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -480,7 +481,7 @@ QStack&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mAnti
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_q_c_p_painter.html">QCPPainter</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:51:59 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 20:02:57 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

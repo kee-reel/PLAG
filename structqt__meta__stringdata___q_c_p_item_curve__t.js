@@ -1,5 +1,5 @@
 var structqt__meta__stringdata___q_c_p_item_curve__t =
 [
-    [ "data", "structqt__meta__stringdata___q_c_p_item_curve__t.html#ac6d43f09ee6cd9ad95da06d7fd942e8f", null ],
-    [ "stringdata0", "structqt__meta__stringdata___q_c_p_item_curve__t.html#a52ddb589fe5c4e7eba75b1eb50799729", null ]
+    [ "data", "structqt__meta__stringdata___q_c_p_item_curve__t.html#aefa1980daaea3597455049679846f767", null ],
+    [ "stringdata0", "structqt__meta__stringdata___q_c_p_item_curve__t.html#ae975dd15d485b9a5ec394204e9aacbbd", null ]
 ];

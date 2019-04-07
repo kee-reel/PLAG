@@ -11,5 +11,7 @@ var searchData=
   ['length',['length',['../class_q_c_p_vector2_d.html#a10adb5ab031fe94f0b64a3c5aefb552e',1,'QCPVector2D::length()'],['../class_q_c_p_data_range.html#a1e7836058f755c6ab9f11996477b7150',1,'QCPDataRange::length()']]],
   ['lengthsquared',['lengthSquared',['../class_q_c_p_vector2_d.html#a766585459d84cb149334fda1a498b2e5',1,'QCPVector2D']]],
   ['limititeratorstodatarange',['limitIteratorsToDataRange',['../class_q_c_p_data_container.html#aa1b36f5ae86a5a5a0b92141d3a0945c4',1,'QCPDataContainer']]],
+  ['load',['load',['../class_i_plugin_handler.html#ac60e56171c6228b0cda232c63bf77f67',1,'IPluginHandler::load()'],['../class_plugin_handler.html#a0a5217e88e84e4f251afec6e3217ec6e',1,'PluginHandler::load()']]],
+  ['loaderready',['loaderReady',['../interfaceorg_1_1kde_1_1necessitas_1_1ministro_1_1_i_ministro_callback.html#ac67b08ed6184a57c5c732f2f8911a3bf',1,'org::kde::necessitas::ministro::IMinistroCallback']]],
   ['loadpreset',['loadPreset',['../class_q_c_p_color_gradient.html#aa0aeec1528241728b9671bf8e60b1622',1,'QCPColorGradient']]]
 ];

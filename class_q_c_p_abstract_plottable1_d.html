@@ -105,6 +105,7 @@ Inheritance diagram for QCPAbstractPlottable1D&lt; DataType &gt;:</div>
 <area href="class_q_c_p_abstract_plottable.html" title="The abstract base class for all data representing objects in a plot. " alt="QCPAbstractPlottable" shape="rect" coords="0,112,228,136"/>
 <area href="class_q_c_p_plottable_interface1_d.html" title="Defines an abstract interface for one-dimensional plottables. " alt="QCPPlottableInterface1D" shape="rect" coords="238,112,466,136"/>
 <area href="class_q_c_p_layerable.html" title="Base class for all drawable objects. " alt="QCPLayerable" shape="rect" coords="0,56,228,80"/>
+<area href="class_q_object.html" alt="QObject" shape="rect" coords="0,0,228,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -651,7 +652,7 @@ template&lt;class DataType &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>A helper method which draws a line with the passed <em>painter</em>, according to the pixel data in <em>lineData</em>. NaN points create gaps in the line, as expected from <a class="el" href="class_q_custom_plot.html" title="The central class of the library. This is the QWidget which displays the plot and interacts with the ...">QCustomPlot</a>'s plottables (this is the main difference to QPainter's regular drawPolyline, which handles NaNs by lagging or crashing).</p>
+<p>A helper method which draws a line with the passed <em>painter</em>, according to the pixel data in <em>lineData</em>. NaN points create gaps in the line, as expected from <a class="el" href="class_q_custom_plot.html" title="The central class of the library. This is the QWidget which displays the plot and interacts with the ...">QCustomPlot</a>'s plottables (this is the main difference to <a class="el" href="class_q_painter.html">QPainter</a>'s regular drawPolyline, which handles NaNs by lagging or crashing).</p>
 <p>Further it uses a faster line drawing technique based on <a class="el" href="class_q_c_p_painter.html#a0b4b1b9bd495e182c731774dc800e6e0">QCPPainter::drawLine</a> rather than <code>QPainter::drawPolyline</code> if the configured <a class="el" href="class_q_custom_plot.html#a94a33cbdadbbac5934843508bcfc210d">QCustomPlot::setPlottingHints()</a> and <em>painter</em> style allows. </p>
 
 </div>
@@ -947,7 +948,7 @@ template&lt;class DataType &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/PerceptronNeuralNetworkView/<a class="el" href="qcustomplot_8h_source.html">qcustomplot.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -955,7 +956,7 @@ template&lt;class DataType &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_q_c_p_abstract_plottable1_d.html">QCPAbstractPlottable1D</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 20:02:57 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['ui_5faddform',['Ui_AddForm',['../class_ui___add_form.html',1,'']]],
-  ['ui_5fform',['Ui_Form',['../class_ui___form.html',1,'']]],
-  ['ui_5fgalleryform',['Ui_GalleryForm',['../class_ui___gallery_form.html',1,'']]],
-  ['uielement',['UIElement',['../class_u_i_element.html',1,'']]],
-  ['uimanager',['UIManager',['../class_u_i_manager.html',1,'']]],
-  ['uniquepushbutton',['UniquePushButton',['../class_unique_push_button.html',1,'']]]
+  ['tablehandler',['TableHandler',['../class_table_handler.html',1,'']]],
+  ['taskcalendar',['TaskCalendar',['../class_task_calendar.html',1,'']]],
+  ['tasksketchmanager',['TaskSketchManager',['../class_task_sketch_manager.html',1,'']]],
+  ['tasksketchmanagerview',['TaskSketchManagerView',['../class_task_sketch_manager_view.html',1,'']]],
+  ['ticklabeldata',['TickLabelData',['../struct_q_c_p_axis_painter_private_1_1_tick_label_data.html',1,'QCPAxisPainterPrivate']]],
+  ['trapezoidalmembershipfunc',['TrapezoidalMembershipFunc',['../class_trapezoidal_membership_func.html',1,'']]],
+  ['triangularmembershipfunc',['TriangularMembershipFunc',['../class_triangular_membership_func.html',1,'']]]
 ];

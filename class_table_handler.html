@@ -87,15 +87,15 @@ $(document).ready(function(){initNavTree('class_table_handler.html','');});
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_table_handler-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">TableHandler Class Reference<div class="ingroups"><a class="el" href="group___main_menu_plugin.html">MainMenuPlugin</a> &raquo; <a class="el" href="group___main_menu_plugin__rel.html">Related plugins</a> &raquo; <a class="el" href="group___main_menu_plugin__rel__dm.html">DataManager plugins</a> &raquo; <a class="el" href="group___extendable_data_base_manager_plugin.html">ExtendableDataBaseManagerPlugin</a> &raquo; <a class="el" href="group___extendable_data_base_manager_plugin__imp.html">Implementation</a></div></div>  </div>
+<div class="title">TableHandler Class Reference<div class="ingroups"><a class="el" href="group___plugins.html">Plugins</a> &raquo; <a class="el" href="group___extendable_data_manager.html">ExtendableDataManager</a> &raquo; <a class="el" href="group___extendable_data_manager__imp.html">Implementation</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:affda2117a337d3b5ddf9eb30e75f327d"><td class="memItemLeft" align="right" valign="top"><a id="affda2117a337d3b5ddf9eb30e75f327d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TableHandler</b> (<a class="el" href="class_i_data_base_source_plugin.html">IDataBaseSourcePlugin</a> *dataSource, <a class="el" href="class_i_extendable_data_manager.html">IExtendableDataManager</a> *dataManager, QString tableName=&quot;&quot;)</td></tr>
-<tr class="separator:affda2117a337d3b5ddf9eb30e75f327d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c4282d95a1a0435a893bd8f7f194b4e"><td class="memItemLeft" align="right" valign="top"><a id="a1c4282d95a1a0435a893bd8f7f194b4e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>TableHandler</b> (<a class="el" href="class_i_data_base.html">IDataBase</a> *dataSource, <a class="el" href="class_i_extendable_data_manager.html">IExtendableDataManager</a> *dataManager, QString tableName=&quot;&quot;)</td></tr>
+<tr class="separator:a1c4282d95a1a0435a893bd8f7f194b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20dc6faa1425f198209d56bb535b1a72"><td class="memItemLeft" align="right" valign="top"><a id="a20dc6faa1425f198209d56bb535b1a72"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>TableName</b> ()</td></tr>
 <tr class="separator:a20dc6faa1425f198209d56bb535b1a72"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,7 +112,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetRelation</b> (QStr
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetActiveRelation</b> (QString relationName)</td></tr>
 <tr class="separator:a46215bc7cc52ed769968c6bd0ce38f10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a980a585573055a91c3d1e03cb28269fd"><td class="memItemLeft" align="right" valign="top"><a id="a980a585573055a91c3d1e03cb28269fd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataTypeEditor</b> (QString dataChunk, QString fieldName, QWidget *widget)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataTypeEditor</b> (QString dataChunk, QString fieldName, <a class="el" href="class_q_widget.html">QWidget</a> *widget)</td></tr>
 <tr class="separator:a980a585573055a91c3d1e03cb28269fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a656e0c98391e7fe201c523542adc50a2"><td class="memItemLeft" align="right" valign="top"><a id="a656e0c98391e7fe201c523542adc50a2"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteRelation</b> (QString relationName)</td></tr>
@@ -133,7 +133,7 @@ QList&lt; <a class="el" href="struct_i_extendable_data_manager_1_1_manager_data_
 <a class="el" href="struct_i_extendable_data_manager_1_1_manager_data_item.html">ManagerDataItem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetItem</b> (int id)</td></tr>
 <tr class="separator:ae7dd49579da94f64ab6e0194e9f9ed0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2a1680219752ae5d66b69b3269aee82"><td class="memItemLeft" align="right" valign="top"><a id="ac2a1680219752ae5d66b69b3269aee82"></a>
-QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetModel</b> ()</td></tr>
+<a class="el" href="class_q_abstract_item_model.html">QAbstractItemModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetModel</b> ()</td></tr>
 <tr class="separator:ac2a1680219752ae5d66b69b3269aee82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa95f95bc82d4e627c6394bb41b4305a6"><td class="memItemLeft" align="right" valign="top"><a id="aa95f95bc82d4e627c6394bb41b4305a6"></a>
 TableStructMap&#160;</td><td class="memItemRight" valign="bottom"><b>GetHeader</b> ()</td></tr>
@@ -163,8 +163,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/<a class="el" href="tablehandler_8h_source.html">tablehandler.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/tablehandler.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/ExtendableDataManager/<a class="el" href="tablehandler_8h_source.html">tablehandler.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/ExtendableDataManager/tablehandler.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -172,7 +172,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_table_handler.html">TableHandler</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:52:00 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 20:02:58 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

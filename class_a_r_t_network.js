@@ -1,6 +1,6 @@
 var class_a_r_t_network =
 [
-    [ "NetworkParams", "class_a_r_t_network.html#a71deee5d6ab1571d49a259123c75dd12", null ],
+    [ "NetworkParams", "class_a_r_t_network.html#a0f641b5d90300bd8569d81ae73621a03", null ],
     [ "ARTNetwork", "class_a_r_t_network.html#a61c52fca3530afacf1c06a33cafea866", null ],
     [ "~ARTNetwork", "class_a_r_t_network.html#af37e8b56d837bb55c95ab78ae28f2d75", null ],
     [ "AddLayer", "class_a_r_t_network.html#a6025aa2fef98b81bc1dd9346fee1fd14", null ],

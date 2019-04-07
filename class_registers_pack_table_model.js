@@ -1,7 +1,7 @@
 var class_registers_pack_table_model =
 [
     [ "RegistersPackTableModel", "class_registers_pack_table_model.html#a0b7373bc44313b28d44acbabff62261e", null ],
-    [ "AddRegisterPack", "class_registers_pack_table_model.html#a6d5b496791962b082c764db3081cf06f", null ],
+    [ "AddRegisterPack", "class_registers_pack_table_model.html#acddc1c430b17989289337392dbc11cc7", null ],
     [ "CleanStoredData", "class_registers_pack_table_model.html#a4c38de469769232df6f4bfbd2927a167", null ],
     [ "columnCount", "class_registers_pack_table_model.html#a329df514c77877dd729063bbd672cadb", null ],
     [ "data", "class_registers_pack_table_model.html#a0ede5dcd169b5a7408cdad7a5594167b", null ],

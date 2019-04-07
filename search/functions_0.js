@@ -10,6 +10,7 @@ var searchData=
   ['addgraph',['addGraph',['../class_q_custom_plot.html#a6fb2873d35a8a8089842d81a70a54167',1,'QCustomPlot']]],
   ['additem',['addItem',['../class_q_c_p_legend.html#a3ab274de52d2951faea45a6d975e6b3f',1,'QCPLegend']]],
   ['addlayer',['addLayer',['../class_q_custom_plot.html#ad5255393df078448bb6ac83fa5db5f52',1,'QCustomPlot']]],
+  ['addplugins',['addPlugins',['../class_main_menu_model_plugin.html#aa028954e32921165c9b15290a35b5fc2',1,'MainMenuModelPlugin::addPlugins()'],['../class_i_core_plugin.html#a1aa63a82fb43d7c3590002af03161d70',1,'ICorePlugin::addPlugins()']]],
   ['addtick',['addTick',['../class_q_c_p_axis_ticker_text.html#aada3db69e5fc6585aaa4ea5d89552eb0',1,'QCPAxisTickerText']]],
   ['addticks',['addTicks',['../class_q_c_p_axis_ticker_text.html#aba34051300eecaefbedb2df8feff2d45',1,'QCPAxisTickerText::addTicks(const QMap&lt; double, QString &gt; &amp;ticks)'],['../class_q_c_p_axis_ticker_text.html#a8140c730e20b0050e1b702af3db00b2e',1,'QCPAxisTickerText::addTicks(const QVector&lt; double &gt; &amp;positions, const QVector&lt; QString &gt; &amp;labels)']]],
   ['addtolegend',['addToLegend',['../class_q_c_p_abstract_plottable.html#aa64e93cb5b606d8110d2cc0a349bb30f',1,'QCPAbstractPlottable::addToLegend(QCPLegend *legend)'],['../class_q_c_p_abstract_plottable.html#a70f8cabfd808f7d5204b9f18c45c13f5',1,'QCPAbstractPlottable::addToLegend()']]],

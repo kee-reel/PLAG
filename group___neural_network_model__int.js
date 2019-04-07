@@ -1,17 +1,17 @@
 var group___neural_network_model__int =
 [
-    [ "INeuralNetworkModel", "class_i_neural_network_model.html", [
-      [ "INeuralNetwork", "class_i_neural_network_model_1_1_i_neural_network.html", [
-        [ "~INeuralNetwork", "class_i_neural_network_model_1_1_i_neural_network.html#ac055d7d73a26133b3c52110b1bb160b3", null ],
-        [ "AddLayer", "class_i_neural_network_model_1_1_i_neural_network.html#a128bb0ed83f4b3b309691943eca77954", null ],
-        [ "ResetLayers", "class_i_neural_network_model_1_1_i_neural_network.html#a0940ee0d739ae2ea00eb28ef21019597", null ],
-        [ "RunTestSet", "class_i_neural_network_model_1_1_i_neural_network.html#a767cdb2dfd88c7db1dfbd8620cffafc9", null ],
-        [ "RunTrainingAndGetResult", "class_i_neural_network_model_1_1_i_neural_network.html#a4f00d2ce86d5e006f161762ad7631d3b", null ],
-        [ "RunTrainSet", "class_i_neural_network_model_1_1_i_neural_network.html#adbfcfb4e09800b0f32f141b071eca3d8", null ],
-        [ "SetNetworkParams", "class_i_neural_network_model_1_1_i_neural_network.html#a21b05dafd766b32341d22b52d4714903", null ],
-        [ "SetupSamplesF", "class_i_neural_network_model_1_1_i_neural_network.html#a840c7196b8c3e1065b8c0a62a1b49fb2", null ],
-        [ "SetupSamplesI", "class_i_neural_network_model_1_1_i_neural_network.html#af04047a560d8b5f68651173f62510d02", null ]
+    [ "INeuralNetworkManager", "class_i_neural_network_manager.html", [
+      [ "INeuralNetwork", "class_i_neural_network_manager_1_1_i_neural_network.html", [
+        [ "~INeuralNetwork", "class_i_neural_network_manager_1_1_i_neural_network.html#adb1ee3f0072faae1f210977972d802a4", null ],
+        [ "AddLayer", "class_i_neural_network_manager_1_1_i_neural_network.html#a8872ee8d9c57df85f00d9893f51e9f43", null ],
+        [ "ResetLayers", "class_i_neural_network_manager_1_1_i_neural_network.html#ad7f5bd9577a522be8dea4e7afd18de86", null ],
+        [ "RunTestSet", "class_i_neural_network_manager_1_1_i_neural_network.html#a87ef938d940adc8cd45e660410449d5b", null ],
+        [ "RunTrainingAndGetResult", "class_i_neural_network_manager_1_1_i_neural_network.html#a0ed395979e0456304f53852b74efd1e2", null ],
+        [ "RunTrainSet", "class_i_neural_network_manager_1_1_i_neural_network.html#a1d75ecdb734ae9822f108faa1558024e", null ],
+        [ "SetNetworkParams", "class_i_neural_network_manager_1_1_i_neural_network.html#aedae1b244a93d193be3a31dddaf7a229", null ],
+        [ "SetupSamplesF", "class_i_neural_network_manager_1_1_i_neural_network.html#adf044c9854b9d256648c19eaa8719ef8", null ],
+        [ "SetupSamplesI", "class_i_neural_network_manager_1_1_i_neural_network.html#ad76a065505a54cd5d764591ff129de74", null ]
       ] ],
-      [ "SetupNetwork", "class_i_neural_network_model.html#a4732c112899b5f3a4d81db89c7d389a4", null ]
+      [ "SetupNetwork", "class_i_neural_network_manager.html#ad9ab541e243a56de176b21e8c340837c", null ]
     ] ]
 ];

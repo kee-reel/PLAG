@@ -10,7 +10,7 @@ var searchData=
   ['saverastered',['saveRastered',['../class_q_custom_plot.html#ad7723ce2edfa270632ef42b03a444352',1,'QCustomPlot']]],
   ['scalerange',['scaleRange',['../class_q_c_p_axis.html#a31d18ddf3a4f21ceb077db8ae5b69856',1,'QCPAxis::scaleRange(double factor)'],['../class_q_c_p_axis.html#a7072ff96fe690148f1bbcdb4f773ea1c',1,'QCPAxis::scaleRange(double factor, double center)']]],
   ['scaletypechanged',['scaleTypeChanged',['../class_q_c_p_axis.html#a3505ed8a93bd2e349d858d84996bf767',1,'QCPAxis']]],
-  ['secondtick',['SecondTick',['../class_i_work_timer_model.html#a5f9e1096d5eeeb4fb7ed4f1aaff5ba2a',1,'IWorkTimerModel']]],
+  ['secondtick',['SecondTick',['../class_i_work_timer.html#a4e7b60288fb5d2c0c15be8d58acb4249',1,'IWorkTimer']]],
   ['selectablechanged',['selectableChanged',['../class_q_c_p_axis.html#aa5ff1fd851139028a3bb4efcb31de9fc',1,'QCPAxis::selectableChanged()'],['../class_q_c_p_abstract_plottable.html#a663b1a44123c8340ac041a29d1e2c973',1,'QCPAbstractPlottable::selectableChanged()']]],
   ['selected',['selected',['../class_q_c_p_abstract_plottable.html#a0b3b514474fe93354fc74cfc144184b4',1,'QCPAbstractPlottable']]],
   ['selectedaxes',['selectedAxes',['../class_q_custom_plot.html#a7e6b07792b1cb2c31681596582d14dbe',1,'QCustomPlot']]],
@@ -241,6 +241,7 @@ var searchData=
   ['settypey',['setTypeY',['../class_q_c_p_item_position.html#ac2a454aa5a54c1615c50686601ec4510',1,'QCPItemPosition']]],
   ['setupfullaxesbox',['setupFullAxesBox',['../class_q_c_p_axis_rect.html#a5fa906175447b14206954f77fc7f1ef4',1,'QCPAxisRect']]],
   ['setupperending',['setUpperEnding',['../class_q_c_p_axis.html#a69119b892fc306f651763596685aa377',1,'QCPAxis']]],
+  ['setupplugins',['setupPlugins',['../class_plugin_loader.html#a4c3e8ed67fc217c420d7eac1812cbee4',1,'PluginLoader']]],
   ['setusedscatterproperties',['setUsedScatterProperties',['../class_q_c_p_selection_decorator.html#a808c1607cd4e83869c04986e332455c0',1,'QCPSelectionDecorator']]],
   ['setvalueaxis',['setValueAxis',['../class_q_c_p_abstract_plottable.html#a71626a07367e241ec62ad2c34baf21cb',1,'QCPAbstractPlottable']]],
   ['setvaluerange',['setValueRange',['../class_q_c_p_color_map_data.html#ada1b2680ba96a5f4175b6d341cf75d23',1,'QCPColorMapData']]],
@@ -265,7 +266,8 @@ var searchData=
   ['sortkeyismainkey',['sortKeyIsMainKey',['../class_q_c_p_plottable_interface1_d.html#a229e65e7ab968dd6cd0e259fa504b79d',1,'QCPPlottableInterface1D::sortKeyIsMainKey()'],['../class_q_c_p_abstract_plottable1_d.html#a022e8905f5a667d8379493d6a037e79f',1,'QCPAbstractPlottable1D::sortKeyIsMainKey()'],['../class_q_c_p_graph_data.html#a1c98dfd21b82321a173db4ff860dfd21',1,'QCPGraphData::sortKeyIsMainKey()'],['../class_q_c_p_curve_data.html#a1b78f228e31ca40a1e69add44537918c',1,'QCPCurveData::sortKeyIsMainKey()'],['../class_q_c_p_bars_data.html#aebaabda335bd4c9f81bd585d16b63aa8',1,'QCPBarsData::sortKeyIsMainKey()'],['../class_q_c_p_statistical_box_data.html#a4710ae44b85d4b34b13c3f9301f28c01',1,'QCPStatisticalBoxData::sortKeyIsMainKey()'],['../class_q_c_p_financial_data.html#a1121db9420a7694144f6a99b09257a5f',1,'QCPFinancialData::sortKeyIsMainKey()'],['../class_q_c_p_error_bars.html#aa00fcef7b0cb5c54bafe32ab4b16e674',1,'QCPErrorBars::sortKeyIsMainKey()']]],
   ['span',['span',['../class_q_c_p_data_selection.html#a890f9291e0b7f065747040de5d68ff7d',1,'QCPDataSelection']]],
   ['squeeze',['squeeze',['../class_q_c_p_data_container.html#a82fcc511def22287fc62579d0706387c',1,'QCPDataContainer']]],
+  ['start',['start',['../class_main_menu_model_plugin.html#a9fe42a639a7c3d5c6b6894684bca74f2',1,'MainMenuModelPlugin::start()'],['../class_plugin_linker_core.html#ae01f1f6291a0d85ebda1d1772d5411af',1,'PluginLinkerCore::start()'],['../class_i_core_plugin.html#ab58f55c21b488cfd5ce1c1adc6d56a59',1,'ICorePlugin::start()']]],
   ['started',['started',['../class_q_c_p_selection_rect.html#a7b7162d19f4f2174d3644ff1a5d335aa',1,'QCPSelectionRect']]],
   ['startpainting',['startPainting',['../class_q_c_p_abstract_paint_buffer.html#a9e9f29b19c033cf02fb96f1a148463f3',1,'QCPAbstractPaintBuffer::startPainting()'],['../class_q_c_p_paint_buffer_pixmap.html#a357964ef7d28cfa530338be4e5c93234',1,'QCPPaintBufferPixmap::startPainting()']]],
-  ['starttimer',['StartTimer',['../class_i_work_timer_model.html#a67412cb852847255971fe12b2ea13456',1,'IWorkTimerModel::StartTimer()'],['../class_i_work_timer_model.html#a28f12c8570470de2a97f6baf2b5e2950',1,'IWorkTimerModel::StartTimer(int intervalInSeconds)']]]
+  ['starttimer',['StartTimer',['../class_i_work_timer.html#aac46ce522a7a343158c44b0bf3010fbd',1,'IWorkTimer::StartTimer()'],['../class_i_work_timer.html#a8633f3394b10e73eb6ec26f2fc4fdc01',1,'IWorkTimer::StartTimer(int intervalInSeconds)']]]
 ];

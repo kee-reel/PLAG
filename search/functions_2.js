@@ -13,6 +13,8 @@ var searchData=
   ['clearitems',['clearItems',['../class_q_custom_plot.html#abdfd07d4f0591d0cf967f85013fd3645',1,'QCustomPlot::clearItems()'],['../class_q_c_p_legend.html#a24795c7250eb5214fcea16b7217b4dfb',1,'QCPLegend::clearItems()']]],
   ['clearplottables',['clearPlottables',['../class_q_custom_plot.html#a9a409bb3201878adb7ffba1c89c4e004',1,'QCustomPlot']]],
   ['clicked',['clicked',['../class_q_c_p_text_element.html#ad2246a0e701c0655623f048737298334',1,'QCPTextElement']]],
+  ['close',['close',['../class_i_core_plugin.html#a83250886bc9f715d207548091d084469',1,'ICorePlugin']]],
+  ['closeplugins',['closePlugins',['../class_plugin_loader.html#a046ba8e885726a91e157146245021830',1,'PluginLoader']]],
   ['colorize',['colorize',['../class_q_c_p_color_gradient.html#aaf423ceb943e177b0ed2c48c811d83dc',1,'QCPColorGradient::colorize(const double *data, const QCPRange &amp;range, QRgb *scanLine, int n, int dataIndexFactor=1, bool logarithmic=false)'],['../class_q_c_p_color_gradient.html#acf0cc7fba83ef21f7b8d5d5258519db3',1,'QCPColorGradient::colorize(const double *data, const unsigned char *alpha, const QCPRange &amp;range, QRgb *scanLine, int n, int dataIndexFactor=1, bool logarithmic=false)']]],
   ['colormaps',['colorMaps',['../class_q_c_p_color_scale.html#a556adc6b0216ebc1cc4317c541956d06',1,'QCPColorScale']]],
   ['columncount',['columnCount',['../class_q_c_p_layout_grid.html#a1a2962cbf45011405b64b913afa8e7a2',1,'QCPLayoutGrid']]],

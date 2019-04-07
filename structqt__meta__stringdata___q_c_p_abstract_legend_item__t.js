@@ -1,5 +1,5 @@
 var structqt__meta__stringdata___q_c_p_abstract_legend_item__t =
 [
-    [ "data", "structqt__meta__stringdata___q_c_p_abstract_legend_item__t.html#afedc8a30b9d66c03673486e9c892c35b", null ],
-    [ "stringdata0", "structqt__meta__stringdata___q_c_p_abstract_legend_item__t.html#a4987f6d279add0af922402e1f2e28b6b", null ]
+    [ "data", "structqt__meta__stringdata___q_c_p_abstract_legend_item__t.html#abecf8f45bdc698c93d55fa165e6e2a92", null ],
+    [ "stringdata0", "structqt__meta__stringdata___q_c_p_abstract_legend_item__t.html#a50942a22daf54e477794ee3d49877fdd", null ]
 ];

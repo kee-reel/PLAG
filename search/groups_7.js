@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['related_20plugins',['Related plugins',['../group___main_menu_plugin__rel.html',1,'']]]
+  ['notificationmanager',['NotificationManager',['../group___notification_manager.html',1,'']]]
 ];

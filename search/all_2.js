@@ -10,7 +10,6 @@ var searchData=
   ['children',['children',['../class_q_c_p_layer.html#a183b90941fc78f0b136edd77c5fb6966',1,'QCPLayer']]],
   ['chromosome',['Chromosome',['../class_chromosome.html',1,'']]],
   ['cihsv',['ciHSV',['../class_q_c_p_color_gradient.html#ac5dca17cc24336e6ca176610e7f77fc1af14ae62fcae11ecc07234eeaec5856cb',1,'QCPColorGradient']]],
-  ['cipherdatabasesourceplugin',['CipherDataBaseSourcePlugin',['../group___cipher_data_base_source_plugin.html',1,'']]],
   ['cirgb',['ciRGB',['../class_q_c_p_color_gradient.html#ac5dca17cc24336e6ca176610e7f77fc1a5e30f725c9cfe93999e268a9f92afbe7',1,'QCPColorGradient']]],
   ['clear',['clear',['../class_q_c_p_abstract_paint_buffer.html#a9e253f4541dfc01992b77e8830bd7722',1,'QCPAbstractPaintBuffer::clear()'],['../class_q_c_p_paint_buffer_pixmap.html#a14badbd010a3cde6b55817ccb7b65217',1,'QCPPaintBufferPixmap::clear()'],['../class_q_c_p_data_selection.html#a385dd665e6690d39afb8bbd727b1e00b',1,'QCPDataSelection::clear()'],['../class_q_c_p_margin_group.html#a144b67f216e4e86c3a3a309e850285fe',1,'QCPMarginGroup::clear()'],['../class_q_c_p_layout.html#a02883bdf2769b5b227f0232dba1ac4ee',1,'QCPLayout::clear()'],['../class_q_c_p_axis_ticker_text.html#a21826d2fcd9a25c194d34d4f67aa1460',1,'QCPAxisTickerText::clear()'],['../class_q_c_p_data_container.html#a7e2b29736c6fd761649bda1a54ba967f',1,'QCPDataContainer::clear()'],['../class_q_c_p_bars_group.html#a3ddf23928c6cd89530bd34ab7ba7b177',1,'QCPBarsGroup::clear()'],['../class_q_c_p_color_map_data.html#a9910ba830e96955bd5c8e5bef1e77ef3',1,'QCPColorMapData::clear()']]],
   ['clearalpha',['clearAlpha',['../class_q_c_p_color_map_data.html#a14d08b9c3720cd719400079b86d3906b',1,'QCPColorMapData']]],
@@ -19,12 +18,14 @@ var searchData=
   ['clearitems',['clearItems',['../class_q_custom_plot.html#abdfd07d4f0591d0cf967f85013fd3645',1,'QCustomPlot::clearItems()'],['../class_q_c_p_legend.html#a24795c7250eb5214fcea16b7217b4dfb',1,'QCPLegend::clearItems()']]],
   ['clearplottables',['clearPlottables',['../class_q_custom_plot.html#a9a409bb3201878adb7ffba1c89c4e004',1,'QCustomPlot']]],
   ['clicked',['clicked',['../class_q_c_p_text_element.html#ad2246a0e701c0655623f048737298334',1,'QCPTextElement']]],
+  ['close',['close',['../class_i_core_plugin.html#a83250886bc9f715d207548091d084469',1,'ICorePlugin']]],
+  ['closeplugins',['closePlugins',['../class_plugin_loader.html#a046ba8e885726a91e157146245021830',1,'PluginLoader']]],
   ['colorinterpolation',['ColorInterpolation',['../class_q_c_p_color_gradient.html#ac5dca17cc24336e6ca176610e7f77fc1',1,'QCPColorGradient']]],
   ['colorize',['colorize',['../class_q_c_p_color_gradient.html#aaf423ceb943e177b0ed2c48c811d83dc',1,'QCPColorGradient::colorize(const double *data, const QCPRange &amp;range, QRgb *scanLine, int n, int dataIndexFactor=1, bool logarithmic=false)'],['../class_q_c_p_color_gradient.html#acf0cc7fba83ef21f7b8d5d5258519db3',1,'QCPColorGradient::colorize(const double *data, const unsigned char *alpha, const QCPRange &amp;range, QRgb *scanLine, int n, int dataIndexFactor=1, bool logarithmic=false)']]],
   ['colormaps',['colorMaps',['../class_q_c_p_color_scale.html#a556adc6b0216ebc1cc4317c541956d06',1,'QCPColorScale']]],
   ['columncount',['columnCount',['../class_q_c_p_layout_grid.html#a1a2962cbf45011405b64b913afa8e7a2',1,'QCPLayoutGrid']]],
   ['comparinglayer',['ComparingLayer',['../class_comparing_layer.html',1,'']]],
-  ['comportdatasource',['COMPortDataSource',['../class_c_o_m_port_data_source.html',1,'']]],
+  ['comportdatamanager',['COMPortDataManager',['../class_c_o_m_port_data_manager.html',1,'COMPortDataManager'],['../group___c_o_m_port_data_manager.html',1,'(Global Namespace)']]],
   ['connectionsettings',['ConnectionSettings',['../struct_i_modbus_device_data_manager_1_1_connection_settings.html',1,'IModbusDeviceDataManager']]],
   ['constbegin',['constBegin',['../class_q_c_p_data_container.html#a49d7622999e2de67fa2331626a3159aa',1,'QCPDataContainer']]],
   ['constend',['constEnd',['../class_q_c_p_data_container.html#aa7f7cf239b85b1a28de3d675cc5b3da1',1,'QCPDataContainer']]],
@@ -36,5 +37,6 @@ var searchData=
   ['createtickvector',['createTickVector',['../class_q_c_p_axis_ticker_text.html#aa195c4fd0364d0393f1798fb495d6a60',1,'QCPAxisTickerText']]],
   ['cscandlestick',['csCandlestick',['../class_q_c_p_financial.html#a0f800e21ee98d646dfc6f8f89d10ebfbac803cbd39f26e3f206bcc7028679e62f',1,'QCPFinancial']]],
   ['csohlc',['csOhlc',['../class_q_c_p_financial.html#a0f800e21ee98d646dfc6f8f89d10ebfba3a516016c9298d3e95dd82aa203c4390',1,'QCPFinancial']]],
-  ['currentlayer',['currentLayer',['../class_q_custom_plot.html#a0421d647f420b0b4c57aec1708857af5',1,'QCustomPlot']]]
+  ['currentlayer',['currentLayer',['../class_q_custom_plot.html#a0421d647f420b0b4c57aec1708857af5',1,'QCustomPlot']]],
+  ['mainapp',['mainapp',['../namespacecom_1_1mass_1_1mainapp.html',1,'com::mass']]]
 ];

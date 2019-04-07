@@ -88,11 +88,9 @@ $(document).ready(function(){initNavTree('class_i_experiment_control_model.html'
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_i_experiment_control_model-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">IExperimentControlModel Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">IExperimentControlModel Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group___experiment_control_model__int.html">Interface</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="iexperimentcontrolmodel_8h_source.html">iexperimentcontrolmodel.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for IExperimentControlModel:</div>
 <div class="dyncontent">
@@ -137,7 +135,7 @@ virtual QDateTime&#160;</td><td class="memItemRight" valign="bottom"><b>GetExper
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>SaveExperimentData</b> (QString filename)=0</td></tr>
 <tr class="separator:ad8dbdfd577bffa91e84874017fd7118a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af07ec52b6ec12a12ba76464f3f045d6f"><td class="memItemLeft" align="right" valign="top"><a id="af07ec52b6ec12a12ba76464f3f045d6f"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetAvailablePorts</b> ()=0</td></tr>
+virtual <a class="el" href="class_q_abstract_item_model.html">QAbstractItemModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetAvailablePorts</b> ()=0</td></tr>
 <tr class="separator:af07ec52b6ec12a12ba76464f3f045d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab09f95027480a266e42bbf3dc836ccb8"><td class="memItemLeft" align="right" valign="top"><a id="ab09f95027480a266e42bbf3dc836ccb8"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateAvailablePorts</b> ()=0</td></tr>
@@ -149,16 +147,16 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>OpenPort</b> 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ScanForDevice</b> (int deviceId)=0</td></tr>
 <tr class="separator:adc8e60091661ca2938f45f72651cca78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade34638df0891d49842f9a7fb44286fa"><td class="memItemLeft" align="right" valign="top"><a id="ade34638df0891d49842f9a7fb44286fa"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetAvailableModbusDeviceHandlers</b> ()=0</td></tr>
+virtual <a class="el" href="class_q_abstract_item_model.html">QAbstractItemModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetAvailableModbusDeviceHandlers</b> ()=0</td></tr>
 <tr class="separator:ade34638df0891d49842f9a7fb44286fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae593d0597c74ffd47cf313ef98015695"><td class="memItemLeft" align="right" valign="top"><a id="ae593d0597c74ffd47cf313ef98015695"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetAvailableModbusDeviceNames</b> ()=0</td></tr>
+virtual <a class="el" href="class_q_abstract_item_model.html">QAbstractItemModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetAvailableModbusDeviceNames</b> ()=0</td></tr>
 <tr class="separator:ae593d0597c74ffd47cf313ef98015695"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a295ae948b4fcd7a89246769c092833"><td class="memItemLeft" align="right" valign="top"><a id="a3a295ae948b4fcd7a89246769c092833"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ClosePort</b> (int modelIndex)=0</td></tr>
 <tr class="separator:a3a295ae948b4fcd7a89246769c092833"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86ce5dd3c744776c5386709389ac74bc"><td class="memItemLeft" align="right" valign="top"><a id="a86ce5dd3c744776c5386709389ac74bc"></a>
-virtual QAbstractItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>GetRegisterPacks</b> ()=0</td></tr>
+virtual <a class="el" href="class_q_abstract_item_model.html">QAbstractItemModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetRegisterPacks</b> ()=0</td></tr>
 <tr class="separator:a86ce5dd3c744776c5386709389ac74bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc30cd57615d19e56bb013a5705c2f88"><td class="memItemLeft" align="right" valign="top"><a id="afc30cd57615d19e56bb013a5705c2f88"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDeviceForSetup</b> (QString deviceName)=0</td></tr>
@@ -170,10 +168,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddRegisterPa
 virtual QList&lt; QLineSeries * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetRegistersLineSeries</b> ()=0</td></tr>
 <tr class="separator:a4342c79b3e7e8f87fd99fc21622ab054"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>defgroup <a class="el" href="class_experiment_control_model.html">ExperimentControlModel</a> ingroup MainMenuPlugin_rel_m defgroup ExperimentControlModel_int Interface ingroup <a class="el" href="class_experiment_control_model.html">ExperimentControlModel</a> defgroup ExperimentControlModel_imp Implementation ingroup <a class="el" href="class_experiment_control_model.html">ExperimentControlModel</a> addtogroup ExperimentControlModel_int { </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsInterfaces/<a class="el" href="iexperimentcontrolmodel_8h_source.html">iexperimentcontrolmodel.h</a></li>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/curunir/Documents/MASS/Plugins/Interfaces/<a class="el" href="iexperimentcontrolmodel_8h_source.html">iexperimentcontrolmodel.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -181,7 +177,7 @@ virtual QList&lt; QLineSeries * &gt;&#160;</td><td class="memItemRight" valign="
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_i_experiment_control_model.html">IExperimentControlModel</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 09:27:44 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

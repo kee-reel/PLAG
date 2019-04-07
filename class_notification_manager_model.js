@@ -8,8 +8,8 @@ var class_notification_manager_model =
     [ "PlanApplicationWakeup", "class_notification_manager_model.html#aeb45050bcd2206c8964e08a0b71f1459", null ],
     [ "SetAlarm", "class_notification_manager_model.html#af877d9fe5f1ff91c26518390c3ec95a4", null ],
     [ "SetAlarmedNotification", "class_notification_manager_model.html#a1aba79d509d8e4f08f33fb2596e0aac1", null ],
-    [ "SetAlarmedToast", "class_notification_manager_model.html#a5f4a32f9ca74d98ae8ecf528b0a2c748", null ],
+    [ "SetAlarmedToast", "class_notification_manager_model.html#aade406b28ff127d7b237c9202b684f90", null ],
     [ "SetRepeatingAlarm", "class_notification_manager_model.html#a51f77e96c6985e00d92cd1723d1b98ea", null ],
     [ "ShowNotification", "class_notification_manager_model.html#ad8d3cbf5ecae86e99bb70ad8afcd6cff", null ],
-    [ "ShowToast", "class_notification_manager_model.html#ab0ea6e4de8e277136cfe27d0cb788023", null ]
+    [ "ShowToast", "class_notification_manager_model.html#a1545c7050b6f1d275968355579e37190", null ]
 ];

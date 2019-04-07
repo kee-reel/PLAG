@@ -15,6 +15,7 @@ var searchData=
   ['inverse',['inverse',['../class_q_c_p_data_selection.html#ae8097f4e4ffee7b1b5df27c93eb365db',1,'QCPDataSelection']]],
   ['inverted',['inverted',['../class_q_c_p_color_gradient.html#a9f72f501de429829ec446333316decda',1,'QCPColorGradient']]],
   ['isactive',['isActive',['../class_q_c_p_selection_rect.html#ad27c1569c6ea8fa48e24b81e2a302df3',1,'QCPSelectionRect']]],
+  ['iscoreplugin',['isCorePlugin',['../class_plugin_handler.html#a37769d7c21488f38991d597ee56316b0',1,'PluginHandler']]],
   ['isempty',['isEmpty',['../class_q_c_p_data_range.html#ac32e53fc05d6cd2eac96b96a7265d3b8',1,'QCPDataRange::isEmpty()'],['../class_q_c_p_data_selection.html#a7f7526b475998dc0c3d6c376b24736c9',1,'QCPDataSelection::isEmpty()'],['../class_q_c_p_margin_group.html#ae0d32656d8a5fc5690c4e7693f9d0539',1,'QCPMarginGroup::isEmpty()'],['../class_q_c_p_data_container.html#a7bdebfccd2f9f84bf032882f9d6b00a8',1,'QCPDataContainer::isEmpty()'],['../class_q_c_p_bars_group.html#aac959e79e852e8ef9aea6e0449ad000a',1,'QCPBarsGroup::isEmpty()'],['../class_q_c_p_color_map_data.html#aea88cc75a76ca571acf29b2ba8ac970d',1,'QCPColorMapData::isEmpty()']]],
   ['isnone',['isNone',['../class_q_c_p_scatter_style.html#a72db6bcb1e1abd6e53c1315dd3dea7e4',1,'QCPScatterStyle']]],
   ['isnull',['isNull',['../class_q_c_p_vector2_d.html#ace99f200b347b14864808213eef16593',1,'QCPVector2D']]],

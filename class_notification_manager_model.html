@@ -87,20 +87,19 @@ $(document).ready(function(){initNavTree('class_notification_manager_model.html'
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_notification_manager_model-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">NotificationManagerModel Class Reference</div>  </div>
+<div class="title">NotificationManagerModel Class Reference<div class="ingroups"><a class="el" href="group___plugins.html">Plugins</a> &raquo; <a class="el" href="group___notification_manager.html">NotificationManager</a> &raquo; <a class="el" href="group___notification_manager__imp.html">Implementation</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="notificationmanagermodel_8h_source.html">notificationmanagermodel.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for NotificationManagerModel:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_notification_manager_model.png" usemap="#NotificationManagerModel_map" alt=""/>
   <map id="NotificationManagerModel_map" name="NotificationManagerModel_map">
-<area href="class_plugin_base.html" title="This interface provides basic methods for all plugins. " alt="PluginBase" shape="rect" coords="87,56,251,80"/>
-<area href="class_i_notification_manager_model.html" alt="INotificationManagerModel" shape="rect" coords="261,56,425,80"/>
-<area href="class_i_plugin.html" title="This interface provides basic methods for all plugins. " alt="IPlugin" shape="rect" coords="174,0,338,24"/>
+<area href="class_plugin_base.html" title="This interface provides basic methods for all plugins. " alt="PluginBase" shape="rect" coords="85,56,246,80"/>
+<area href="class_i_notification_manager.html" alt="INotificationManager" shape="rect" coords="256,56,417,80"/>
+<area href="class_p_l_u_g_i_n___b_a_s_e___p_a_r_e_n_t.html" alt="PLUGIN_BASE_PARENT" shape="rect" coords="0,0,161,24"/>
+<area href="class_i_plugin.html" title="This interface provides basic methods for all plugins. " alt="IPlugin" shape="rect" coords="171,0,332,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -129,10 +128,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>onOpen</b> (<a class=
 <tr class="memitem:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a6bc1065d86cbf667d37eb4ddb03879fd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class="el" href="class_i_plugin.html">IPlugin</a> *)</td></tr>
 <tr class="separator:a6bc1065d86cbf667d37eb4ddb03879fd inherit signals_class_i_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header signals_class_i_notification_manager_model"><td colspan="2" onclick="javascript:toggleInherit('signals_class_i_notification_manager_model')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_i_notification_manager_model.html">INotificationManagerModel</a></td></tr>
-<tr class="memitem:ace7b0889068f46f491577a7243b7d8c3 inherit signals_class_i_notification_manager_model"><td class="memItemLeft" align="right" valign="top"><a id="ace7b0889068f46f491577a7243b7d8c3"></a>
+<tr class="inherit_header signals_class_i_notification_manager"><td colspan="2" onclick="javascript:toggleInherit('signals_class_i_notification_manager')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="class_i_notification_manager.html">INotificationManager</a></td></tr>
+<tr class="memitem:a483b6e2158723456d1b8d19634cfb600 inherit signals_class_i_notification_manager"><td class="memItemLeft" align="right" valign="top"><a id="a483b6e2158723456d1b8d19634cfb600"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>OnTimerTimeout</b> (int)</td></tr>
-<tr class="separator:ace7b0889068f46f491577a7243b7d8c3 inherit signals_class_i_notification_manager_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a483b6e2158723456d1b8d19634cfb600 inherit signals_class_i_notification_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -148,9 +147,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowNotification</b> 
 <tr class="memitem:a1d09e341a489c15a183d5048a8fd984e"><td class="memItemLeft" align="right" valign="top"><a id="a1d09e341a489c15a183d5048a8fd984e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>CancelNotification</b> (int id) override</td></tr>
 <tr class="separator:a1d09e341a489c15a183d5048a8fd984e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0ea6e4de8e277136cfe27d0cb788023"><td class="memItemLeft" align="right" valign="top"><a id="ab0ea6e4de8e277136cfe27d0cb788023"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowToast</b> (const QString &amp;message, INotificationManagerModel::Duration duration=LONG) override</td></tr>
-<tr class="separator:ab0ea6e4de8e277136cfe27d0cb788023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1545c7050b6f1d275968355579e37190"><td class="memItemLeft" align="right" valign="top"><a id="a1545c7050b6f1d275968355579e37190"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowToast</b> (const QString &amp;message, INotificationManager::Duration duration=LONG) override</td></tr>
+<tr class="separator:a1545c7050b6f1d275968355579e37190"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb45050bcd2206c8964e08a0b71f1459"><td class="memItemLeft" align="right" valign="top"><a id="aeb45050bcd2206c8964e08a0b71f1459"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>PlanApplicationWakeup</b> (TimeType timePlan, QDateTime secs) override</td></tr>
 <tr class="separator:aeb45050bcd2206c8964e08a0b71f1459"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,9 +162,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>SetRepeatingAlarm</b> 
 <tr class="memitem:a1aba79d509d8e4f08f33fb2596e0aac1"><td class="memItemLeft" align="right" valign="top"><a id="a1aba79d509d8e4f08f33fb2596e0aac1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetAlarmedNotification</b> (TimeType type, QDateTime time, QString title, QString message, int id) override</td></tr>
 <tr class="separator:a1aba79d509d8e4f08f33fb2596e0aac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f4a32f9ca74d98ae8ecf528b0a2c748"><td class="memItemLeft" align="right" valign="top"><a id="a5f4a32f9ca74d98ae8ecf528b0a2c748"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetAlarmedToast</b> (TimeType type, QDateTime time, const QString &amp;message, INotificationManagerModel::Duration duration) override</td></tr>
-<tr class="separator:a5f4a32f9ca74d98ae8ecf528b0a2c748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aade406b28ff127d7b237c9202b684f90"><td class="memItemLeft" align="right" valign="top"><a id="aade406b28ff127d7b237c9202b684f90"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetAlarmedToast</b> (TimeType type, QDateTime time, const QString &amp;message, INotificationManager::Duration duration) override</td></tr>
+<tr class="separator:aade406b28ff127d7b237c9202b684f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdccf55ebc22214455f916ea21ef809a"><td class="memItemLeft" align="right" valign="top"><a id="afdccf55ebc22214455f916ea21ef809a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>CancelAlarm</b> () override</td></tr>
 <tr class="separator:afdccf55ebc22214455f916ea21ef809a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,10 +186,10 @@ virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 virtual const <a class="el" href="struct_meta_info.html">MetaInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginMetaInfo</b> () const override</td></tr>
 <tr class="separator:a7ae48825e6984c4886026d57721d3e23 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a950df1028f072b43d4bfeae8fc922093 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a950df1028f072b43d4bfeae8fc922093"></a>
-virtual QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () override</td></tr>
+virtual <a class="el" href="class_q_object.html">QObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () override</td></tr>
 <tr class="separator:a950df1028f072b43d4bfeae8fc922093 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77caddaa8f211832f6026ff53ebd6364 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a77caddaa8f211832f6026ff53ebd6364"></a>
-virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () override</td></tr>
+virtual <a class="el" href="class_q_widget.html">QWidget</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () override</td></tr>
 <tr class="separator:a77caddaa8f211832f6026ff53ebd6364 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7836e433d09e68536777827867b85f45 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a7836e433d09e68536777827867b85f45"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isReady</b> () override</td></tr>
@@ -255,12 +254,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesSet<
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesReady</b></td></tr>
 <tr class="separator:af26000611e1bd088ef9f3fd2f79d84b3 inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>addtogroup AndroidNotificationModel_imp { </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/NotificationManagerModel/<a class="el" href="notificationmanagermodel_8h_source.html">notificationmanagermodel.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsBuildFiles/build/debug/NotificationManagerModel/moc/moc_notificationmanagermodel.cpp</li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/NotificationManagerModel/common_notificationmanagermodel.cpp</li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/NotificationManagerModel/<a class="el" href="notificationmanagermodel_8h_source.html">notificationmanagermodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/BuildFiles/build/debug/NotificationManagerModel/moc/moc_notificationmanagermodel.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/NotificationManagerModel/common_notificationmanagermodel.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -268,7 +265,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesRead
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_notification_manager_model.html">NotificationManagerModel</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 10:13:42 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

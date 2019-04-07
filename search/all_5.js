@@ -13,7 +13,8 @@ var searchData=
   ['fsasciifractions',['fsAsciiFractions',['../class_q_c_p_axis_ticker_pi.html#a262f1534c7f0c79a7d5237f5d1e2c54ca05a5457e0e14cb726f623e25282066b3',1,'QCPAxisTickerPi']]],
   ['fsfloatingpoint',['fsFloatingPoint',['../class_q_c_p_axis_ticker_pi.html#a262f1534c7f0c79a7d5237f5d1e2c54ca00f097b669b2a0e22f508f1ae97877d8',1,'QCPAxisTickerPi']]],
   ['fsunicodefractions',['fsUnicodeFractions',['../class_q_c_p_axis_ticker_pi.html#a262f1534c7f0c79a7d5237f5d1e2c54ca92f38a938c8b179b23363d9993681c55',1,'QCPAxisTickerPi']]],
-  ['fuzzylogicmodel',['FuzzyLogicModel',['../class_fuzzy_logic_model.html',1,'']]],
+  ['fuzzylogic',['FuzzyLogic',['../group___fuzzy_logic.html',1,'']]],
+  ['fuzzylogicmanager',['FuzzyLogicManager',['../class_fuzzy_logic_manager.html',1,'']]],
   ['fuzzyrule',['FuzzyRule',['../class_fuzzy_rule.html',1,'']]],
   ['fuzzyset',['FuzzySet',['../class_fuzzy_set.html',1,'']]],
   ['fuzzysetunion',['FuzzySetUnion',['../class_fuzzy_set_union.html',1,'']]]

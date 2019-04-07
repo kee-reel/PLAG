@@ -11,6 +11,7 @@ var searchData=
   ['addgraph',['addGraph',['../class_q_custom_plot.html#a6fb2873d35a8a8089842d81a70a54167',1,'QCustomPlot']]],
   ['additem',['addItem',['../class_q_c_p_legend.html#a3ab274de52d2951faea45a6d975e6b3f',1,'QCPLegend']]],
   ['addlayer',['addLayer',['../class_q_custom_plot.html#ad5255393df078448bb6ac83fa5db5f52',1,'QCustomPlot']]],
+  ['addplugins',['addPlugins',['../class_main_menu_model_plugin.html#aa028954e32921165c9b15290a35b5fc2',1,'MainMenuModelPlugin::addPlugins()'],['../class_i_core_plugin.html#a1aa63a82fb43d7c3590002af03161d70',1,'ICorePlugin::addPlugins()']]],
   ['addtick',['addTick',['../class_q_c_p_axis_ticker_text.html#aada3db69e5fc6585aaa4ea5d89552eb0',1,'QCPAxisTickerText']]],
   ['addticks',['addTicks',['../class_q_c_p_axis_ticker_text.html#aba34051300eecaefbedb2df8feff2d45',1,'QCPAxisTickerText::addTicks(const QMap&lt; double, QString &gt; &amp;ticks)'],['../class_q_c_p_axis_ticker_text.html#a8140c730e20b0050e1b702af3db00b2e',1,'QCPAxisTickerText::addTicks(const QVector&lt; double &gt; &amp;positions, const QVector&lt; QString &gt; &amp;labels)']]],
   ['addtolegend',['addToLegend',['../class_q_c_p_abstract_plottable.html#aa64e93cb5b606d8110d2cc0a349bb30f',1,'QCPAbstractPlottable::addToLegend(QCPLegend *legend)'],['../class_q_c_p_abstract_plottable.html#a70f8cabfd808f7d5204b9f18c45c13f5',1,'QCPAbstractPlottable::addToLegend()']]],
@@ -29,6 +30,7 @@ var searchData=
   ['aesubgrid',['aeSubGrid',['../namespace_q_c_p.html#ae55dbe315d41fe80f29ba88100843a0caaedf83369188a15a69f92bb1d85ca97b',1,'QCP']]],
   ['aezeroline',['aeZeroLine',['../namespace_q_c_p.html#ae55dbe315d41fe80f29ba88100843a0ca261f8ea78cf3c9561726223ffa33dc12',1,'QCP']]],
   ['afterreplot',['afterReplot',['../class_q_custom_plot.html#a6f4fa624af060bc5919c5f266cf426a0',1,'QCustomPlot']]],
+  ['alarmreceiver',['AlarmReceiver',['../classcom_1_1_m_a_s_s_1_1_alarm_receiver.html',1,'com.MASS.AlarmReceiver'],['../classcom_1_1mass_1_1mainapp_1_1_alarm_receiver.html',1,'com.mass.mainapp.AlarmReceiver']]],
   ['alpha',['alpha',['../class_q_c_p_color_map_data.html#a4f7e6b7a97017400cbbd46f0660e68ea',1,'QCPColorMapData']]],
   ['anchor',['anchor',['../class_q_c_p_abstract_item.html#a139c255ea8831642fac91748e29a5adb',1,'QCPAbstractItem']]],
   ['anchors',['anchors',['../class_q_c_p_abstract_item.html#a81d1ecfea3368b836cf9675a0045e659',1,'QCPAbstractItem']]],
@@ -53,5 +55,6 @@ var searchData=
   ['axisrectat',['axisRectAt',['../class_q_custom_plot.html#a4a08842fc3e9ba6bed83aa410c5c5ba5',1,'QCustomPlot']]],
   ['axisrectcount',['axisRectCount',['../class_q_custom_plot.html#a8f85940aaac50efb466287d9d2d04ec6',1,'QCustomPlot']]],
   ['axisrects',['axisRects',['../class_q_custom_plot.html#a12af771429e2d7e313c8c5d5fca068fe',1,'QCustomPlot']]],
-  ['axistype',['AxisType',['../class_q_c_p_axis.html#ae2bcc1728b382f10f064612b368bc18a',1,'QCPAxis']]]
+  ['axistype',['AxisType',['../class_q_c_p_axis.html#ae2bcc1728b382f10f064612b368bc18a',1,'QCPAxis']]],
+  ['about',['About',['../index.html',1,'']]]
 ];

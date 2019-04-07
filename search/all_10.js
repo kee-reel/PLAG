@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['related_20plugins',['Related plugins',['../group___main_menu_plugin__rel.html',1,'']]],
+  ['r',['R',['../classcom_1_1mass_1_1mainapp_1_1_r.html',1,'com::mass::mainapp']]],
   ['range',['range',['../class_q_c_p_selection_rect.html#a23ab082ffa04be1dbf9afb9e633ab815',1,'QCPSelectionRect']]],
   ['rangechanged',['rangeChanged',['../class_q_c_p_axis.html#a0894084e4c16a1736534c4095746f910',1,'QCPAxis::rangeChanged()'],['../class_q_c_p_axis.html#aac8576288e8e31f16186124bc10dd10d',1,'QCPAxis::rangeChanged()']]],
   ['rangedragaxes',['rangeDragAxes',['../class_q_c_p_axis_rect.html#aae5f99a044ca911685a306f01b7ff941',1,'QCPAxisRect']]],
@@ -9,7 +9,7 @@ var searchData=
   ['rangezoomaxis',['rangeZoomAxis',['../class_q_c_p_axis_rect.html#a679c63f2b8daccfe6ec5110dce3dd3b6',1,'QCPAxisRect']]],
   ['rangezoomfactor',['rangeZoomFactor',['../class_q_c_p_axis_rect.html#ae4e6c4d143aacc88d2d3c56f117c2fe1',1,'QCPAxisRect']]],
   ['rawimagedelegate',['RawImageDelegate',['../class_raw_image_delegate.html',1,'']]],
-  ['readdata',['ReadData',['../class_i_c_o_m_port_data_source_1_1_i_serial_port_handler.html#a235481399766f136f500441abc73718a',1,'ICOMPortDataSource::ISerialPortHandler']]],
+  ['readdata',['ReadData',['../class_i_c_o_m_port_data_manager_1_1_i_serial_port_handler.html#a2c5eecc8f3192292a36a7bb4866f8d01',1,'ICOMPortDataManager::ISerialPortHandler']]],
   ['reallength',['realLength',['../class_q_c_p_line_ending.html#acacd24d386d459b282d3c57f16a5405d',1,'QCPLineEnding']]],
   ['reallocatebuffer',['reallocateBuffer',['../class_q_c_p_abstract_paint_buffer.html#aee7506a52bd7e5a07c2af27935eb13e7',1,'QCPAbstractPaintBuffer::reallocateBuffer()'],['../class_q_c_p_paint_buffer_pixmap.html#ad49f3205ba3463b1c44f8db3cfcc90f0',1,'QCPPaintBufferPixmap::reallocateBuffer()']]],
   ['realvisibility',['realVisibility',['../class_q_c_p_layerable.html#ab054e88f15d485defcb95e7376f119e7',1,'QCPLayerable']]],
@@ -20,7 +20,7 @@ var searchData=
   ['registerhandler',['RegisterHandler',['../class_registers_pack_handler_1_1_register_handler.html',1,'RegistersPackHandler']]],
   ['registerspackhandler',['RegistersPackHandler',['../class_registers_pack_handler.html',1,'']]],
   ['registerspacktablemodel',['RegistersPackTableModel',['../class_registers_pack_table_model.html',1,'']]],
-  ['regsterspack',['RegstersPack',['../struct_i_experiment_control_model_1_1_regsters_pack.html',1,'IExperimentControlModel']]],
+  ['regsterspack',['RegstersPack',['../struct_i_modbus_data_reader_1_1_regsters_pack.html',1,'IModbusDataReader']]],
   ['relatedpluginnames',['RelatedPluginNames',['../struct_meta_info.html#af5bc1655c415bd30829ecea93f060054',1,'MetaInfo']]],
   ['remove',['remove',['../class_q_c_p_layout.html#a6c58f537d8086f352576ab7c5b15d0bc',1,'QCPLayout::remove()'],['../class_q_c_p_data_container.html#ae5f569a120648b167efa78835f12fd38',1,'QCPDataContainer::remove(double sortKeyFrom, double sortKeyTo)'],['../class_q_c_p_data_container.html#a2dbded7f0732bacf9db48fdfbbb620bc',1,'QCPDataContainer::remove(double sortKey)'],['../class_q_c_p_bars_group.html#a215e28a5944f1159013a0e19169220e7',1,'QCPBarsGroup::remove()']]],
   ['removeafter',['removeAfter',['../class_q_c_p_data_container.html#abbe5d87ffc10b5aeffa5bb42cf03aa3c',1,'QCPDataContainer']]],
@@ -33,6 +33,7 @@ var searchData=
   ['removelayer',['removeLayer',['../class_q_custom_plot.html#a40f75e342c5eaab6a86066a42a0e2a94',1,'QCustomPlot']]],
   ['removeplottable',['removePlottable',['../class_q_custom_plot.html#af3dafd56884208474f311d6226513ab2',1,'QCustomPlot::removePlottable(QCPAbstractPlottable *plottable)'],['../class_q_custom_plot.html#afc210e0021480f8119bccf37839dbcc8',1,'QCustomPlot::removePlottable(int index)']]],
   ['replot',['replot',['../class_q_c_p_layer.html#adefd53b6db02f470151c416f42e37180',1,'QCPLayer::replot()'],['../class_q_custom_plot.html#aa4bfe7d70dbe67e81d877819b75ab9af',1,'QCustomPlot::replot()']]],
+  ['requestloader',['requestLoader',['../interfaceorg_1_1kde_1_1necessitas_1_1ministro_1_1_i_ministro.html#a3d7c6602e2f6151d53df20f674b97af1',1,'org::kde::necessitas::ministro::IMinistro']]],
   ['rescale',['rescale',['../class_q_c_p_axis.html#a499345f02ebce4b23d8ccec96e58daa9',1,'QCPAxis']]],
   ['rescaleaxes',['rescaleAxes',['../class_q_c_p_abstract_plottable.html#a1491c4a606bccd2d09e65e11b79eb882',1,'QCPAbstractPlottable::rescaleAxes()'],['../class_q_custom_plot.html#ad86528f2cee6c7e446dea4a6e8839935',1,'QCustomPlot::rescaleAxes()']]],
   ['rescaledatarange',['rescaleDataRange',['../class_q_c_p_color_scale.html#a425983db4478543924ddbd04ea20a356',1,'QCPColorScale::rescaleDataRange()'],['../class_q_c_p_color_map.html#a856608fa3dd1cc290bcd5f29a5575774',1,'QCPColorMap::rescaleDataRange()']]],
@@ -49,5 +50,6 @@ var searchData=
   ['rprefreshhint',['rpRefreshHint',['../class_q_custom_plot.html#a45d61392d13042e712a956d27762aa39a49666a5854a68dbcca8b277b03331260',1,'QCustomPlot']]],
   ['rudotspercentimeter',['ruDotsPerCentimeter',['../namespace_q_c_p.html#a715d46153da230990aa887d0f0602452a4224e01f49b331489ad8cb12b619b229',1,'QCP']]],
   ['rudotsperinch',['ruDotsPerInch',['../namespace_q_c_p.html#a715d46153da230990aa887d0f0602452affb887d8efe79c39a1aca2acd7002afc',1,'QCP']]],
-  ['rudotspermeter',['ruDotsPerMeter',['../namespace_q_c_p.html#a715d46153da230990aa887d0f0602452a707d005dea5c4ab694e4270d9c6094e8',1,'QCP']]]
+  ['rudotspermeter',['ruDotsPerMeter',['../namespace_q_c_p.html#a715d46153da230990aa887d0f0602452a707d005dea5c4ab694e4270d9c6094e8',1,'QCP']]],
+  ['runcoreplugin',['runCorePlugin',['../class_plugin_loader.html#afcbd709ad9f6d3d89b31eceda36269df',1,'PluginLoader']]]
 ];

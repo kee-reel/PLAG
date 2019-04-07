@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['openitem',['openItem',['../group___main_menu_plugin__int.html#gaf868a11f2129dc90b123f0c1cd2d03f9',1,'IMainMenuModel']]],
   ['operator_2a',['operator*',['../class_q_c_p_range.html#a558b1248ff6a9e41fd5b2630555a8acc',1,'QCPRange::operator*()'],['../class_q_c_p_range.html#a5cb2332f6957021f47cc768089f4f090',1,'QCPRange::operator*()']]],
   ['operator_2a_3d',['operator*=',['../class_q_c_p_vector2_d.html#aa52a246d168f475a4231c7bdfdac7df1',1,'QCPVector2D::operator*=()'],['../class_q_c_p_range.html#a6876aa9620ff2f0f7f1873f998372cef',1,'QCPRange::operator*=()']]],
   ['operator_2b',['operator+',['../class_q_c_p_range.html#af53ea6fb823a4a5897162b865841de04',1,'QCPRange::operator+()'],['../class_q_c_p_range.html#a9fb2e9941d32001482df670c0d704977',1,'QCPRange::operator+()'],['../class_q_c_p_data_selection.html#a49c0217af248959d59abfdd29401b678',1,'QCPDataSelection::operator+()'],['../class_q_c_p_data_selection.html#a5feed9419bd3df5cb4d4a761580545cc',1,'QCPDataSelection::operator+()'],['../class_q_c_p_data_selection.html#aa574f51a74d6998e9be95e252e6be287',1,'QCPDataSelection::operator+()'],['../class_q_c_p_data_selection.html#a0822e3133b80b5dedfc8050a19c1e0c5',1,'QCPDataSelection::operator+()']]],

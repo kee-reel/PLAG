@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['perceptronnetworkviewplugin',['PerceptronNetworkViewPlugin',['../group___perceptron_network_view_plugin.html',1,'']]],
-  ['pomodoromodel',['PomodoroModel',['../group___pomodoro_model.html',1,'']]],
-  ['pomodoroview',['PomodoroView',['../group___pomodoro_view.html',1,'']]]
+  ['machinelearningmanager',['MachineLearningManager',['../group___machine_learning_manager.html',1,'']]],
+  ['mainapp',['MainApp',['../group___main_app.html',1,'']]],
+  ['modbusdatareader',['ModbusDataReader',['../group___modbus_data_reader.html',1,'']]],
+  ['modbusdevicedatamanager',['ModbusDeviceDataManager',['../group___modbus_device_data_manager.html',1,'']]]
 ];

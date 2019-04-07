@@ -14,6 +14,7 @@ var searchData=
   ['plottablecount',['plottableCount',['../class_q_custom_plot.html#a5f4f15991c14bf9ad659bb2a19dfbed4',1,'QCustomPlot']]],
   ['plottabledoubleclick',['plottableDoubleClick',['../class_q_custom_plot.html#a86a3ab7263c9c4e008e70d6c5fce9fbd',1,'QCustomPlot']]],
   ['plottables',['plottables',['../class_q_c_p_axis.html#ac5e0f6f65c75efb5fd32275d6e4ef0d6',1,'QCPAxis::plottables()'],['../class_q_c_p_axis_rect.html#a587d073a97b27bc7293fab4b2774ad59',1,'QCPAxisRect::plottables()']]],
+  ['pluginloader',['PluginLoader',['../class_plugin_loader.html#a185dfbaa5ebe25721a790310c4d1431d',1,'PluginLoader']]],
   ['position',['position',['../class_q_c_p_abstract_item.html#a2589c3d298f9a576d77d9addb440a18d',1,'QCPAbstractItem']]],
   ['positions',['positions',['../class_q_c_p_abstract_item.html#a709f655ac3f7f22d452714134662b454',1,'QCPAbstractItem']]]
 ];

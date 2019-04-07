@@ -1,8 +1,8 @@
 var class_neural_layer =
 [
-    [ "LayerParams", "class_neural_layer.html#a9a46b30c0d9d329e3d2d943ae628683f", null ],
-    [ "LayerType", "class_neural_layer.html#a236cebae478f3f55e8256ce1b554bcb3", null ],
-    [ "NetworkParams", "class_neural_layer.html#ac3d37a368a77b07386981ecd0e0e55bb", null ],
+    [ "LayerParams", "class_neural_layer.html#a48d12d382aedd1d503479d8f2d54f233", null ],
+    [ "LayerType", "class_neural_layer.html#a29a02a2a8e44fa22616f46284ba1c2d1", null ],
+    [ "NetworkParams", "class_neural_layer.html#ac2c303ff478dae67f2b3d5e83414e8d9", null ],
     [ "NeuralLayer", "class_neural_layer.html#a33736379abd178ba2ab394ad39a2e284", null ],
     [ "ActivationFunc", "class_neural_layer.html#a3e565a98ae1d7353795575f575de1830", null ],
     [ "ActivationFuncDerivative", "class_neural_layer.html#af2c164486c9757912f72ff06ab976d39", null ],

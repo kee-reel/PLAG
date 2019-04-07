@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MASS: Main Page</title>
+<title>MASS: About</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,15 +83,42 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">MASS Documentation</div>  </div>
+<div class="title">About </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><p>Written with Qt framework. </p>
+<h1><a class="anchor" id="intro_sec"></a>
+Main idea</h1>
+<p>It allows you to build whole your system from plugins. Each plugin holds responsibility only for determined set of functionality. There only 4 main types of plugins:</p><ul>
+<li><b>Model</b> - buisness logic and communication with other plugins</li>
+<li><b>View</b> - user interface</li>
+<li><b>DataManager</b> - provides data structures which not relate from source (database, network, COM-port and etc.)</li>
+<li><b>DataSource</b> - communicates with data source</li>
+</ul>
+<h1><a class="anchor" id="plugins_sec"></a>
+Exsisting plugins</h1>
+<ul>
+<li><b>MainMenuModel</b> - holds links to plugins which available in main menu</li>
+<li><b>MainMenuView</b> - provides main menu UI</li>
+<li><b>TaskListModel</b> - holds information about user tasks</li>
+<li><b>TaskListView</b> - shows user tasks in tree sturcture</li>
+<li><b><a class="el" href="class_pomodoro_manager.html">PomodoroManager</a></b> - holds information about user projects and finished <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">pomodoros</a></li>
+<li><b>PomodoroView</b> - allows user to run pomodoros for selected projects</li>
+<li><b><a class="el" href="class_task_sketch_manager.html">TaskSketchManager</a></b> - holds user sketches</li>
+<li><b>TaskSketchView</b> - allows user to draw sketches, save them and observe gallery of drawed sketches</li>
+<li><b>AndroidNotificationsModel</b> - provides API for using specific Android features (notifications and toasts) and set alarm on Adroid devices</li>
+<li><b><a class="el" href="class_extendable_data_manager.html">ExtendableDataManager</a></b> - provides access to information in data base in abstract item models</li>
+<li><b>CipherDataBase</b> - provide access to <a href="https://github.com/devbean/QtCipherSqlitePlugin">SQLite plugin</a></li>
+</ul>
+<h1><a class="anchor" id="contacts_sec"></a>
+Project growing</h1>
+<p>If you interested in idea of crossplatform application which unlimitedly extendable and have some ideas or suggestions, please send me a message: *curunir.ru*. I really need your help in bringing this project to life. <b>Thank you.</b> </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Apr 6 2019 22:52:02 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 20:02:58 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

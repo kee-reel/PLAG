@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('class_pomodoro_view.html','');});
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_pomodoro_view-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">PomodoroView Class Reference<div class="ingroups"><a class="el" href="group___main_menu_plugin.html">MainMenuPlugin</a> &raquo; <a class="el" href="group___main_menu_plugin__rel.html">Related plugins</a> &raquo; <a class="el" href="group___main_menu_plugin__rel__v.html">View plugins</a> &raquo; <a class="el" href="group___pomodoro_view.html">PomodoroView</a> &raquo; <a class="el" href="group___pomodoro_view__imp.html">Implementation</a></div></div>  </div>
+<div class="title">PomodoroView Class Reference<div class="ingroups"><a class="el" href="group___pomodoro_view.html">PomodoroView</a> &raquo; <a class="el" href="group___pomodoro_view__imp.html">Implementation</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -96,6 +96,7 @@ Inheritance diagram for PomodoroView:</div>
   <img src="class_pomodoro_view.png" usemap="#PomodoroView_map" alt=""/>
   <map id="PomodoroView_map" name="PomodoroView_map">
 <area href="class_plugin_base.html" title="This interface provides basic methods for all plugins. " alt="PluginBase" shape="rect" coords="81,56,233,80"/>
+<area href="class_p_l_u_g_i_n___b_a_s_e___p_a_r_e_n_t.html" alt="PLUGIN_BASE_PARENT" shape="rect" coords="0,0,152,24"/>
 <area href="class_i_plugin.html" title="This interface provides basic methods for all plugins. " alt="IPlugin" shape="rect" coords="162,0,314,24"/>
 </map>
  </div></div>
@@ -103,7 +104,7 @@ Inheritance diagram for PomodoroView:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a73074fd29303bf2e933f6e4fcba3e05a"><td class="memItemLeft" align="right" valign="top"><a id="a73074fd29303bf2e933f6e4fcba3e05a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PomodoroView</b> (QWidget *parent=0)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PomodoroView</b> (<a class="el" href="class_q_widget.html">QWidget</a> *parent=0)</td></tr>
 <tr class="separator:a73074fd29303bf2e933f6e4fcba3e05a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4aedfdee70a86212612466d4170e21f0"><td class="memItemLeft" align="right" valign="top"><a id="a4aedfdee70a86212612466d4170e21f0"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onAllReferencesSet</b> () override</td></tr>
@@ -112,7 +113,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onAllReferenc
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onAllReferencesReady</b> () override</td></tr>
 <tr class="separator:adcba633566803c2e89c3b0623f9307d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6e1150784fc09e65d53eb5d9a1fe798"><td class="memItemLeft" align="right" valign="top"><a id="ac6e1150784fc09e65d53eb5d9a1fe798"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>eventFilter</b> (QObject *watched, QEvent *event) override</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>eventFilter</b> (<a class="el" href="class_q_object.html">QObject</a> *watched, QEvent *event) override</td></tr>
 <tr class="separator:ac6e1150784fc09e65d53eb5d9a1fe798"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:ada314e7c79b6e45d2807acba46d25dc8 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ada314e7c79b6e45d2807acba46d25dc8"></a>
@@ -132,10 +133,10 @@ virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 virtual const <a class="el" href="struct_meta_info.html">MetaInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginMetaInfo</b> () const override</td></tr>
 <tr class="separator:a7ae48825e6984c4886026d57721d3e23 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a950df1028f072b43d4bfeae8fc922093 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a950df1028f072b43d4bfeae8fc922093"></a>
-virtual QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () override</td></tr>
+virtual <a class="el" href="class_q_object.html">QObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () override</td></tr>
 <tr class="separator:a950df1028f072b43d4bfeae8fc922093 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77caddaa8f211832f6026ff53ebd6364 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a77caddaa8f211832f6026ff53ebd6364"></a>
-virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () override</td></tr>
+virtual <a class="el" href="class_q_widget.html">QWidget</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () override</td></tr>
 <tr class="separator:a77caddaa8f211832f6026ff53ebd6364 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7836e433d09e68536777827867b85f45 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a7836e433d09e68536777827867b85f45"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isReady</b> () override</td></tr>
@@ -221,8 +222,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesRead
 <tr class="separator:af26000611e1bd088ef9f3fd2f79d84b3 inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PomodoroView/<a class="el" href="pomodoroview_8h_source.html">pomodoroview.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/PomodoroView/pomodoroview.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/PomodoroView/<a class="el" href="pomodoroview_8h_source.html">pomodoroview.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/PomodoroView/pomodoroview.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -230,7 +231,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesRead
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_pomodoro_view.html">PomodoroView</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 10:13:42 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

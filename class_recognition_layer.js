@@ -1,6 +1,6 @@
 var class_recognition_layer =
 [
-    [ "NetworkParams", "class_recognition_layer.html#acde635417a1da14a2dba1ec04542341b", null ],
+    [ "NetworkParams", "class_recognition_layer.html#ae88a7eb0ddc634d8dc78c547625a02e5", null ],
     [ "RecognitionLayer", "class_recognition_layer.html#aeac3da57473f65476beb397fb6230d67", null ],
     [ "CreateNewNeuron", "class_recognition_layer.html#a775e058d1b7f2a6d2bcdae95f7d3c567", null ],
     [ "Input", "class_recognition_layer.html#a0a13b30e2eace25d061274ef149fc944", null ],

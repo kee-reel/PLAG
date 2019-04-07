@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('class_u_i_element.html','');});
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_u_i_element-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">UIElement Class Reference</div>  </div>
+<div class="title">UIElement Class Reference<div class="ingroups"><a class="el" href="group___plugins.html">Plugins</a> &raquo; <a class="el" href="group___u_i_manager.html">UIManager</a> &raquo; <a class="el" href="group___u_i_manager__imp.html">Implementation</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -96,6 +96,7 @@ Inheritance diagram for UIElement:</div>
  <div class="center">
   <img src="class_u_i_element.png" usemap="#UIElement_map" alt=""/>
   <map id="UIElement_map" name="UIElement_map">
+<area href="class_q_object.html" alt="QObject" shape="rect" coords="0,0,141,24"/>
 <area href="class_i_u_i_manager_1_1_i_u_i_element.html" alt="IUIManager::IUIElement" shape="rect" coords="151,0,292,24"/>
 </map>
  </div></div>
@@ -125,7 +126,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>onConnectionsChanged<
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad5ac3a68e58a929720ffd0a6c521a0eb"><td class="memItemLeft" align="right" valign="top"><a id="ad5ac3a68e58a929720ffd0a6c521a0eb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UIElement</b> (QWeakPointer&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; linkerItem, QObject *parent=nullptr)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UIElement</b> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; linkerItem, <a class="el" href="class_q_object.html">QObject</a> *parent=nullptr)</td></tr>
 <tr class="separator:ad5ac3a68e58a929720ffd0a6c521a0eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3a16801739c8d1608f126aa764f6039"><td class="memItemLeft" align="right" valign="top"><a id="ab3a16801739c8d1608f126aa764f6039"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isOpened</b> () const</td></tr>
@@ -137,13 +138,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isOpened</b> () const
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getElementId</b> () const</td></tr>
 <tr class="separator:aaacb59d92af60dd56e35308ac86b53ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb48d99d5ff94f7a2e2aa80a60fff925"><td class="memItemLeft" align="right" valign="top"><a id="adb48d99d5ff94f7a2e2aa80a60fff925"></a>
-QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>getElementWidget</b> () const</td></tr>
+<a class="el" href="class_q_widget.html">QWidget</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getElementWidget</b> () const</td></tr>
 <tr class="separator:adb48d99d5ff94f7a2e2aa80a60fff925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0e86d4f322dd7bf469657df4385784e"><td class="memItemLeft" align="right" valign="top"><a id="ae0e86d4f322dd7bf469657df4385784e"></a>
-const QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>getElementSignalsLinkObject</b> () const</td></tr>
+const <a class="el" href="class_q_object.html">QObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getElementSignalsLinkObject</b> () const</td></tr>
 <tr class="separator:ae0e86d4f322dd7bf469657df4385784e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82b882b1883b219f0140f906600e1216"><td class="memItemLeft" align="right" valign="top"><a id="a82b882b1883b219f0140f906600e1216"></a>
-QMap&lt; int, QWeakPointer&lt; IUIElement &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getConnectedElements</b> ()</td></tr>
+QMap&lt; int, <a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; IUIElement &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getConnectedElements</b> ()</td></tr>
 <tr class="separator:a82b882b1883b219f0140f906600e1216"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaf5dc35ffa36529b8a314c4a386038c"><td class="memItemLeft" align="right" valign="top"><a id="aeaf5dc35ffa36529b8a314c4a386038c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> ()</td></tr>
@@ -155,13 +156,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr
 <a class="el" href="class_q_vector.html">QVector</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getConnectedElementsIDs</b> ()</td></tr>
 <tr class="separator:ade74b138ee846d76fa1c0eec569ff213"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa95d85759980326776d00fc2d123e9b"><td class="memItemLeft" align="right" valign="top"><a id="afa95d85759980326776d00fc2d123e9b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addConnectedElement</b> (QWeakPointer&lt; <a class="el" href="class_u_i_element.html">UIElement</a> &gt; element)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addConnectedElement</b> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_u_i_element.html">UIElement</a> &gt; element)</td></tr>
 <tr class="separator:afa95d85759980326776d00fc2d123e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/UIManager/<a class="el" href="uielement_8h_source.html">uielement.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsBuildFiles/build/debug/UIManager/moc/moc_uielement.cpp</li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/UIManager/uielement.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/UIManager/<a class="el" href="uielement_8h_source.html">uielement.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/BuildFiles/build/debug/UIManager/moc/moc_uielement.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/UIManager/uielement.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -169,7 +170,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>addConnectedElement</
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_u_i_element.html">UIElement</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:52:01 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 20:02:58 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

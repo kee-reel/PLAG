@@ -1,128 +1,127 @@
 var hierarchy =
 [
+    [ "com.mass.mainapp.BuildConfig", "classcom_1_1mass_1_1mainapp_1_1_build_config.html", null ],
     [ "QCPAxisPainterPrivate::CachedLabel", "struct_q_c_p_axis_painter_private_1_1_cached_label.html", null ],
     [ "Chromosome", "class_chromosome.html", null ],
     [ "ComparingLayer", "class_comparing_layer.html", null ],
     [ "IModbusDeviceDataManager::ConnectionSettings", "struct_i_modbus_device_data_manager_1_1_connection_settings.html", null ],
-    [ "ICOMPortDataSource::DeviceInfo", "struct_i_c_o_m_port_data_source_1_1_device_info.html", null ],
+    [ "ICOMPortDataManager::DeviceInfo", "struct_i_c_o_m_port_data_manager_1_1_device_info.html", null ],
     [ "FuzzySetUnion", "class_fuzzy_set_union.html", null ],
-    [ "ICOMPortDataSource", "class_i_c_o_m_port_data_source.html", [
-      [ "COMPortDataSource", "class_c_o_m_port_data_source.html", null ]
+    [ "ICOMPortDataManager", "class_i_c_o_m_port_data_manager.html", [
+      [ "COMPortDataManager", "class_c_o_m_port_data_manager.html", null ]
     ] ],
-    [ "ICorePlugin", null, [
+    [ "ICorePlugin", "class_i_core_plugin.html", [
       [ "MainMenuModelPlugin", "class_main_menu_model_plugin.html", null ],
       [ "PluginLinkerCore", "class_plugin_linker_core.html", null ]
     ] ],
-    [ "IDataBaseSourcePlugin", "class_i_data_base_source_plugin.html", [
-      [ "DataBaseSourcePlugin", "class_data_base_source_plugin.html", null ]
+    [ "IDataBase", "class_i_data_base.html", [
+      [ "DataBase", "class_data_base.html", null ]
     ] ],
     [ "IDataChannel", null, [
       [ "DataChannel", "class_data_channel.html", null ]
     ] ],
-    [ "IDayPlanModel", "class_i_day_plan_model.html", [
-      [ "DayPlanModel", "class_day_plan_model.html", null ]
-    ] ],
-    [ "IExperimentControlModel", "class_i_experiment_control_model.html", [
-      [ "ExperimentControlModel", "class_experiment_control_model.html", null ]
+    [ "IDayPlan", "class_i_day_plan.html", [
+      [ "DayPlan", "class_day_plan.html", null ]
     ] ],
     [ "IExperimentSetup", null, [
       [ "ExperimentSetup", "class_experiment_setup.html", null ]
     ] ],
     [ "IExtendableDataManager", "class_i_extendable_data_manager.html", [
-      [ "ExtendableDataBaseManagerPlugin", "class_extendable_data_base_manager_plugin.html", null ]
+      [ "ExtendableDataManager", "class_extendable_data_manager.html", null ]
     ] ],
-    [ "IFuzzyLogicModel", "class_i_fuzzy_logic_model.html", [
-      [ "FuzzyLogicModel", "class_fuzzy_logic_model.html", null ]
+    [ "IFuzzyLogicManager", "class_i_fuzzy_logic_manager.html", [
+      [ "FuzzyLogicManager", "class_fuzzy_logic_manager.html", null ]
     ] ],
-    [ "IFuzzyLogicModel::IFuzzyRule", "class_i_fuzzy_logic_model_1_1_i_fuzzy_rule.html", [
+    [ "IFuzzyLogicManager::IFuzzyRule", "class_i_fuzzy_logic_manager_1_1_i_fuzzy_rule.html", [
       [ "FuzzyRule", "class_fuzzy_rule.html", null ]
     ] ],
-    [ "IFuzzyLogicModel::IFuzzySet", "class_i_fuzzy_logic_model_1_1_i_fuzzy_set.html", [
+    [ "IFuzzyLogicManager::IFuzzySet", "class_i_fuzzy_logic_manager_1_1_i_fuzzy_set.html", [
       [ "FuzzySet", "class_fuzzy_set.html", null ]
     ] ],
-    [ "IHeartRateDeviceModel", "class_i_heart_rate_device_model.html", [
-      [ "HeartRateDeviceModel", "class_heart_rate_device_model.html", null ]
+    [ "IHeartRateDevice", "class_i_heart_rate_device.html", [
+      [ "HeartRateDevice", "class_heart_rate_device.html", null ]
+    ] ],
+    [ "IInterface", null, [
+      [ "org.kde.necessitas.ministro.IMinistro", "interfaceorg_1_1kde_1_1necessitas_1_1ministro_1_1_i_ministro.html", null ],
+      [ "org.kde.necessitas.ministro.IMinistroCallback", "interfaceorg_1_1kde_1_1necessitas_1_1ministro_1_1_i_ministro_callback.html", null ]
+    ] ],
+    [ "IMachineLearningManager::ILearningAlgorithm", "class_i_machine_learning_manager_1_1_i_learning_algorithm.html", [
+      [ "ARTNetwork", "class_a_r_t_network.html", null ],
+      [ "GeneticAlgorithm", "class_genetic_algorithm.html", null ],
+      [ "Perceptron", "class_perceptron.html", null ]
     ] ],
     [ "IPluginLinker::ILinkerItem", "class_i_plugin_linker_1_1_i_linker_item.html", [
       [ "LinkerItem", "class_linker_item.html", null ]
     ] ],
-    [ "IMainMenuModel", "class_i_main_menu_model.html", null ],
-    [ "IFuzzyLogicModel::IMembershipFunc", "class_i_fuzzy_logic_model_1_1_i_membership_func.html", [
+    [ "IMachineLearningManager", "class_i_machine_learning_manager.html", [
+      [ "MachineLearningManager", "class_machine_learning_manager.html", null ]
+    ] ],
+    [ "IFuzzyLogicManager::IMembershipFunc", "class_i_fuzzy_logic_manager_1_1_i_membership_func.html", [
       [ "MembershipFunc", "class_membership_func.html", [
         [ "TrapezoidalMembershipFunc", "class_trapezoidal_membership_func.html", null ],
         [ "TriangularMembershipFunc", "class_triangular_membership_func.html", null ]
       ] ]
     ] ],
-    [ "IMainMenuModel::IMenuItem", "class_i_main_menu_model_1_1_i_menu_item.html", null ],
+    [ "IModbusDataReader", "class_i_modbus_data_reader.html", [
+      [ "ModbusDataReader", "class_modbus_data_reader.html", null ]
+    ] ],
     [ "IModbusDeviceDataManager", "class_i_modbus_device_data_manager.html", [
       [ "ModbusDeviceDataManager", "class_modbus_device_data_manager.html", null ]
     ] ],
     [ "IModbusDeviceDataManager::IModbusDeviceHandler", "class_i_modbus_device_data_manager_1_1_i_modbus_device_handler.html", [
       [ "ModbusDeviceHandler", "class_modbus_device_handler.html", null ]
     ] ],
-    [ "IMyCoolModule", "class_i_my_cool_module.html", null ],
-    [ "INeuralNetworkModel::INeuralNetwork", "class_i_neural_network_model_1_1_i_neural_network.html", [
-      [ "ARTNetwork", "class_a_r_t_network.html", null ],
-      [ "GeneticAlgorithm", "class_genetic_algorithm.html", null ],
-      [ "PerceptronNetwork", "class_perceptron_network.html", null ]
-    ] ],
-    [ "INeuralNetworkModel", "class_i_neural_network_model.html", [
-      [ "NeuralNetworkModel", "class_neural_network_model.html", null ]
-    ] ],
-    [ "INewArchTestPlugin", "class_i_new_arch_test_plugin.html", null ],
-    [ "INotificationManagerModel", "class_i_notification_manager_model.html", [
-      [ "NotificationManagerModel", "class_notification_manager_model.html", null ]
+    [ "INotificationManager", "class_i_notification_manager.html", [
+      [ "NotificationManager", "class_notification_manager.html", null ]
     ] ],
     [ "IPlugin", "class_i_plugin.html", [
       [ "PluginBase", "class_plugin_base.html", [
-        [ "COMPortDataSource", "class_c_o_m_port_data_source.html", null ],
-        [ "DataBaseSourcePlugin", "class_data_base_source_plugin.html", null ],
-        [ "DayPlanModel", "class_day_plan_model.html", null ],
+        [ "COMPortDataManager", "class_c_o_m_port_data_manager.html", null ],
+        [ "DataBase", "class_data_base.html", null ],
+        [ "DayPlan", "class_day_plan.html", null ],
         [ "DayPlanView", "class_day_plan_view.html", null ],
-        [ "ExperimentControlModel", "class_experiment_control_model.html", null ],
-        [ "ExperimentControlView", "class_experiment_control_view.html", null ],
-        [ "ExtendableDataBaseManagerPlugin", "class_extendable_data_base_manager_plugin.html", null ],
-        [ "FuzzyLogicModel", "class_fuzzy_logic_model.html", null ],
+        [ "ExtendableDataManager", "class_extendable_data_manager.html", null ],
+        [ "FuzzyLogicManager", "class_fuzzy_logic_manager.html", null ],
         [ "GridMainMenuView", "class_grid_main_menu_view.html", null ],
-        [ "HeartRateDeviceModel", "class_heart_rate_device_model.html", null ],
+        [ "HeartRateDevice", "class_heart_rate_device.html", null ],
         [ "HeartRateDeviceView", "class_heart_rate_device_view.html", null ],
+        [ "MachineLearningManager", "class_machine_learning_manager.html", null ],
         [ "MainMenuModelPlugin", "class_main_menu_model_plugin.html", null ],
-        [ "MainMenuPluginView", "class_main_menu_plugin_view.html", null ],
+        [ "ModbusDataReader", "class_modbus_data_reader.html", null ],
+        [ "ModbusDataReaderView", "class_modbus_data_reader_view.html", null ],
         [ "ModbusDeviceDataManager", "class_modbus_device_data_manager.html", null ],
-        [ "NeuralNetworkModel", "class_neural_network_model.html", null ],
-        [ "NotificationManagerModel", "class_notification_manager_model.html", null ],
-        [ "PerceptronNetworkViewPlugin", "class_perceptron_network_view_plugin.html", null ],
+        [ "NotificationManager", "class_notification_manager.html", null ],
+        [ "PerceptronLearningAlgorithmView", "class_perceptron_learning_algorithm_view.html", null ],
         [ "PluginLinkerCore", "class_plugin_linker_core.html", null ],
-        [ "PomodoroModel", "class_pomodoro_model.html", null ],
-        [ "PomodoroView", "class_pomodoro_view.html", null ],
+        [ "PomodoroManager", "class_pomodoro_manager.html", null ],
+        [ "PomodoroManagerView", "class_pomodoro_manager_view.html", null ],
         [ "TaskCalendar", "class_task_calendar.html", null ],
-        [ "TaskListView", "class_task_list_view.html", null ],
-        [ "TaskSketchModel", "class_task_sketch_model.html", null ],
-        [ "TaskSketchView", "class_task_sketch_view.html", null ],
-        [ "TaskTreeModel", "class_task_tree_model.html", null ],
+        [ "TaskSketchManager", "class_task_sketch_manager.html", null ],
+        [ "TaskSketchManagerView", "class_task_sketch_manager_view.html", null ],
         [ "UIManager", "class_u_i_manager.html", null ],
-        [ "ViewPluginBase", "class_view_plugin_base.html", null ],
-        [ "WorkTimerModel", "class_work_timer_model.html", null ]
+        [ "UserTaskManager", "class_user_task_manager.html", null ],
+        [ "UserTaskManagerView", "class_user_task_manager_view.html", null ],
+        [ "ViewPluginBase", "class_view_plugin_base.html", null ]
       ] ]
+    ] ],
+    [ "IPluginHandler", "class_i_plugin_handler.html", [
+      [ "PluginHandler", "class_plugin_handler.html", null ]
     ] ],
     [ "IPluginLinker", "class_i_plugin_linker.html", [
       [ "MainMenuModelPlugin", "class_main_menu_model_plugin.html", null ],
       [ "PluginLinkerCore", "class_plugin_linker_core.html", null ]
     ] ],
-    [ "IPomodoroModel", "class_i_pomodoro_model.html", [
-      [ "PomodoroModel", "class_pomodoro_model.html", null ]
+    [ "IPomodoroManager", "class_i_pomodoro_manager.html", [
+      [ "PomodoroManager", "class_pomodoro_manager.html", null ]
     ] ],
-    [ "ICOMPortDataSource::ISerialPortHandler", "class_i_c_o_m_port_data_source_1_1_i_serial_port_handler.html", [
+    [ "ICOMPortDataManager::ISerialPortHandler", "class_i_c_o_m_port_data_manager_1_1_i_serial_port_handler.html", [
       [ "SerialPortHandler", "class_serial_port_handler.html", null ]
     ] ],
     [ "ITaskCalendar", "class_i_task_calendar.html", [
       [ "TaskCalendar", "class_task_calendar.html", null ]
     ] ],
-    [ "ITaskSketchModel", "class_i_task_sketch_model.html", [
-      [ "TaskSketchModel", "class_task_sketch_model.html", null ]
-    ] ],
-    [ "ITaskTreeModel", "class_i_task_tree_model.html", [
-      [ "TaskTreeModel", "class_task_tree_model.html", null ]
+    [ "ITaskSketchManager", "class_i_task_sketch_manager.html", [
+      [ "TaskSketchManager", "class_task_sketch_manager.html", null ]
     ] ],
     [ "IUIManager::IUIElement", "class_i_u_i_manager_1_1_i_u_i_element.html", [
       [ "UIElement", "class_u_i_element.html", null ]
@@ -130,51 +129,48 @@ var hierarchy =
     [ "IUIManager", "class_i_u_i_manager.html", [
       [ "UIManager", "class_u_i_manager.html", null ]
     ] ],
-    [ "IFuzzyLogicModel::IVariable", "class_i_fuzzy_logic_model_1_1_i_variable.html", [
-      [ "IFuzzyLogicModel::IInputVariable", "class_i_fuzzy_logic_model_1_1_i_input_variable.html", [
+    [ "IUserTaskManager", "class_i_user_task_manager.html", [
+      [ "UserTaskManager", "class_user_task_manager.html", null ]
+    ] ],
+    [ "IFuzzyLogicManager::IVariable", "class_i_fuzzy_logic_manager_1_1_i_variable.html", [
+      [ "IFuzzyLogicManager::IInputVariable", "class_i_fuzzy_logic_manager_1_1_i_input_variable.html", [
         [ "InputVariable", "class_input_variable.html", null ]
       ] ],
-      [ "IFuzzyLogicModel::IOutputVariable", "class_i_fuzzy_logic_model_1_1_i_output_variable.html", [
+      [ "IFuzzyLogicManager::IOutputVariable", "class_i_fuzzy_logic_manager_1_1_i_output_variable.html", [
         [ "OutputVariable", "class_output_variable.html", null ]
       ] ]
     ] ],
-    [ "IViewPlugin", null, [
+    [ "IViewPlugin", "class_i_view_plugin.html", [
       [ "IDayPlanView", "class_i_day_plan_view.html", null ],
       [ "IExperimentControlView", "class_i_experiment_control_view.html", null ]
     ] ],
-    [ "IWorkTimerModel", "class_i_work_timer_model.html", [
-      [ "WorkTimerModel", "class_work_timer_model.html", null ]
-    ] ],
-    [ "Perceptron::LayerParams", "struct_perceptron_1_1_layer_params.html", null ],
+    [ "IWorkTimer", "class_i_work_timer.html", null ],
+    [ "Parameters::Perceptron::LayerParams", "struct_parameters_1_1_perceptron_1_1_layer_params.html", null ],
     [ "LayerParams", "struct_layer_params.html", null ],
     [ "IExtendableDataManager::ManagerDataItem", "struct_i_extendable_data_manager_1_1_manager_data_item.html", [
-      [ "Item", "class_item.html", null ],
       [ "Item", "class_item.html", null ]
     ] ],
     [ "MetaInfo", "struct_meta_info.html", null ],
-    [ "Perceptron::NetworkParams", "struct_perceptron_1_1_network_params.html", null ],
-    [ "ART::NetworkParams", "struct_a_r_t_1_1_network_params.html", null ],
+    [ "Parameters::Perceptron::NetworkParams", "struct_parameters_1_1_perceptron_1_1_network_params.html", null ],
+    [ "Parameters::ART::NetworkParams", "struct_parameters_1_1_a_r_t_1_1_network_params.html", null ],
     [ "NetworkParams", "struct_network_params.html", null ],
     [ "NeuralLayer", "class_neural_layer.html", [
       [ "InputNeuralLayer", "class_input_neural_layer.html", null ],
       [ "OutputNeuralLayer", "class_output_neural_layer.html", null ]
     ] ],
     [ "Neuron", "class_neuron.html", null ],
-    [ "GeneticAlgorithmParams::Parameters", "struct_genetic_algorithm_params_1_1_parameters.html", null ],
-    [ "PLUGIN_BASE_PARENT", null, [
+    [ "Parameters::GeneticAlgorithmParams::Parameters", "struct_parameters_1_1_genetic_algorithm_params_1_1_parameters.html", null ],
+    [ "PLUGIN_BASE_PARENT", "class_p_l_u_g_i_n___b_a_s_e___p_a_r_e_n_t.html", [
       [ "PluginBase", "class_plugin_base.html", null ]
     ] ],
+    [ "IModbusDataReader::PortInfo", "struct_i_modbus_data_reader_1_1_port_info.html", null ],
     [ "IModbusDeviceDataManager::PortInfo", "struct_i_modbus_device_data_manager_1_1_port_info.html", null ],
-    [ "IExperimentControlModel::PortInfo", "struct_i_experiment_control_model_1_1_port_info.html", null ],
-    [ "QAbstractItemModel", null, [
+    [ "QAbstractItemModel", "class_q_abstract_item_model.html", [
       [ "ExtendableItemModel", "class_extendable_item_model.html", null ],
       [ "RegistersPackTableModel", "class_registers_pack_table_model.html", null ]
     ] ],
-    [ "QAbstractTableModel", null, [
+    [ "QAbstractTableModel", "class_q_abstract_table_model.html", [
       [ "ModbusDevicesModel", "class_modbus_devices_model.html", null ]
-    ] ],
-    [ "QChartView", null, [
-      [ "DataChartWidget", "class_data_chart_widget.html", null ]
     ] ],
     [ "QCPAbstractPaintBuffer", "class_q_c_p_abstract_paint_buffer.html", [
       [ "QCPPaintBufferPixmap", "class_q_c_p_paint_buffer_pixmap.html", null ]
@@ -228,27 +224,22 @@ var hierarchy =
     ] ],
     [ "QCPStatisticalBoxData", "class_q_c_p_statistical_box_data.html", null ],
     [ "QCPVector2D", "class_q_c_p_vector2_d.html", null ],
-    [ "QDateTimeEdit", null, [
+    [ "QDateTimeEdit", "class_q_date_time_edit.html", [
       [ "DateTimeTypeEditor", "class_date_time_type_editor.html", null ]
     ] ],
-    [ "QGraphicsItem", null, [
-      [ "MenuItemGraphicsObject", "class_menu_item_graphics_object.html", null ]
-    ] ],
-    [ "QGridLayout", null, [
+    [ "QGridLayout", "class_q_grid_layout.html", [
       [ "AspectAwareGridLayout", "class_aspect_aware_grid_layout.html", null ]
     ] ],
-    [ "QIdentityProxyModel", null, [
+    [ "QIdentityProxyModel", "class_q_identity_proxy_model.html", [
       [ "DesignProxyModel", "class_design_proxy_model.html", null ],
       [ "DesignProxyModel", "class_design_proxy_model.html", null ],
       [ "DesignProxyModel", "class_design_proxy_model.html", null ]
     ] ],
-    [ "QMainWindow", null, [
-      [ "MainWindow", "class_main_window.html", null ]
-    ] ],
-    [ "QObject", null, [
+    [ "QObject", "class_q_object.html", [
       [ "LinkerItem", "class_linker_item.html", null ],
       [ "ModbusDeviceHandler", "class_modbus_device_handler.html", null ],
-      [ "PerceptronNetwork", "class_perceptron_network.html", null ],
+      [ "Perceptron", "class_perceptron.html", null ],
+      [ "PluginLoader", "class_plugin_loader.html", null ],
       [ "QCPBarsGroup", "class_q_c_p_bars_group.html", null ],
       [ "QCPLayer", "class_q_c_p_layer.html", null ],
       [ "QCPLayerable", "class_q_c_p_layerable.html", [
@@ -297,53 +288,68 @@ var hierarchy =
       [ "RegistersPackHandler", "class_registers_pack_handler.html", null ],
       [ "UIElement", "class_u_i_element.html", null ]
     ] ],
-    [ "QPainter", null, [
+    [ "QPainter", "class_q_painter.html", [
       [ "QCPPainter", "class_q_c_p_painter.html", null ]
     ] ],
     [ "QPair< A, B >", "class_q_pair.html", null ],
-    [ "QPair< float, float >", "class_q_pair.html", null ],
-    [ "QPushButton", null, [
+    [ "QPushButton", "class_q_push_button.html", [
       [ "UniquePushButton", "class_unique_push_button.html", null ]
     ] ],
-    [ "QSerialPort", null, [
+    [ "QSerialPort", "class_q_serial_port.html", [
       [ "SerialPortHandler", "class_serial_port_handler.html", null ]
     ] ],
-    [ "QStyledItemDelegate", null, [
+    [ "QStyledItemDelegate", "class_q_styled_item_delegate.html", [
       [ "QImageItemDelegate", "class_q_image_item_delegate.html", null ]
     ] ],
     [ "qt_meta_stringdata_AddForm_t", "structqt__meta__stringdata___add_form__t.html", null ],
     [ "qt_meta_stringdata_AspectAwareGridLayout_t", "structqt__meta__stringdata___aspect_aware_grid_layout__t.html", null ],
+    [ "qt_meta_stringdata_COMPortDataManager_t", "structqt__meta__stringdata___c_o_m_port_data_manager__t.html", null ],
     [ "qt_meta_stringdata_COMPortDataSource_t", "structqt__meta__stringdata___c_o_m_port_data_source__t.html", null ],
+    [ "qt_meta_stringdata_DataBase_t", "structqt__meta__stringdata___data_base__t.html", null ],
     [ "qt_meta_stringdata_DataBaseSourcePlugin_t", "structqt__meta__stringdata___data_base_source_plugin__t.html", null ],
     [ "qt_meta_stringdata_DataChartWidget_t", "structqt__meta__stringdata___data_chart_widget__t.html", null ],
     [ "qt_meta_stringdata_DateTimeTypeEditor_t", "structqt__meta__stringdata___date_time_type_editor__t.html", null ],
+    [ "qt_meta_stringdata_DayPlan_t", "structqt__meta__stringdata___day_plan__t.html", null ],
     [ "qt_meta_stringdata_DayPlanModel_t", "structqt__meta__stringdata___day_plan_model__t.html", null ],
     [ "qt_meta_stringdata_DayPlanView_t", "structqt__meta__stringdata___day_plan_view__t.html", null ],
     [ "qt_meta_stringdata_ExperimentControlModel_t", "structqt__meta__stringdata___experiment_control_model__t.html", null ],
     [ "qt_meta_stringdata_ExperimentControlView_t", "structqt__meta__stringdata___experiment_control_view__t.html", null ],
-    [ "qt_meta_stringdata_ExtendableDataBaseManagerPlugin_t", "structqt__meta__stringdata___extendable_data_base_manager_plugin__t.html", null ],
+    [ "qt_meta_stringdata_ExtendableDataManager_t", "structqt__meta__stringdata___extendable_data_manager__t.html", null ],
+    [ "qt_meta_stringdata_FuzzyLogicManager_t", "structqt__meta__stringdata___fuzzy_logic_manager__t.html", null ],
     [ "qt_meta_stringdata_FuzzyLogicModel_t", "structqt__meta__stringdata___fuzzy_logic_model__t.html", null ],
     [ "qt_meta_stringdata_GalleryForm_t", "structqt__meta__stringdata___gallery_form__t.html", null ],
     [ "qt_meta_stringdata_GalleryItem_t", "structqt__meta__stringdata___gallery_item__t.html", null ],
     [ "qt_meta_stringdata_GridMainMenuView_t", "structqt__meta__stringdata___grid_main_menu_view__t.html", null ],
+    [ "qt_meta_stringdata_HeartRateDevice_t", "structqt__meta__stringdata___heart_rate_device__t.html", null ],
     [ "qt_meta_stringdata_HeartRateDeviceModel_t", "structqt__meta__stringdata___heart_rate_device_model__t.html", null ],
     [ "qt_meta_stringdata_HeartRateDeviceView_t", "structqt__meta__stringdata___heart_rate_device_view__t.html", null ],
     [ "qt_meta_stringdata_LinkerItem_t", "structqt__meta__stringdata___linker_item__t.html", null ],
+    [ "qt_meta_stringdata_MachineLearningManager_t", "structqt__meta__stringdata___machine_learning_manager__t.html", null ],
     [ "qt_meta_stringdata_MainMenuPluginView_t", "structqt__meta__stringdata___main_menu_plugin_view__t.html", null ],
     [ "qt_meta_stringdata_MainWindow_t", "structqt__meta__stringdata___main_window__t.html", null ],
     [ "qt_meta_stringdata_MenuItemGraphicsObject_t", "structqt__meta__stringdata___menu_item_graphics_object__t.html", null ],
+    [ "qt_meta_stringdata_ModbusDataReader_t", "structqt__meta__stringdata___modbus_data_reader__t.html", null ],
+    [ "qt_meta_stringdata_ModbusDataReaderView_t", "structqt__meta__stringdata___modbus_data_reader_view__t.html", null ],
     [ "qt_meta_stringdata_ModbusDeviceDataManager_t", "structqt__meta__stringdata___modbus_device_data_manager__t.html", null ],
     [ "qt_meta_stringdata_ModbusDeviceHandler_t", "structqt__meta__stringdata___modbus_device_handler__t.html", null ],
     [ "qt_meta_stringdata_ModbusDevicesModel_t", "structqt__meta__stringdata___modbus_devices_model__t.html", null ],
     [ "qt_meta_stringdata_MyCoolModule_t", "structqt__meta__stringdata___my_cool_module__t.html", null ],
     [ "qt_meta_stringdata_NeuralNetworkModel_t", "structqt__meta__stringdata___neural_network_model__t.html", null ],
+    [ "qt_meta_stringdata_NotificationManager_t", "structqt__meta__stringdata___notification_manager__t.html", null ],
     [ "qt_meta_stringdata_NotificationManagerModel_t", "structqt__meta__stringdata___notification_manager_model__t.html", null ],
     [ "qt_meta_stringdata_PaintWidget_t", "structqt__meta__stringdata___paint_widget__t.html", null ],
+    [ "qt_meta_stringdata_ParentWindow_t", "structqt__meta__stringdata___parent_window__t.html", null ],
+    [ "qt_meta_stringdata_Perceptron_t", "structqt__meta__stringdata___perceptron__t.html", null ],
+    [ "qt_meta_stringdata_PerceptronLearningAlgorithmView_t", "structqt__meta__stringdata___perceptron_learning_algorithm_view__t.html", null ],
     [ "qt_meta_stringdata_PerceptronNetwork_t", "structqt__meta__stringdata___perceptron_network__t.html", null ],
+    [ "qt_meta_stringdata_PerceptronNetworkView_t", "structqt__meta__stringdata___perceptron_network_view__t.html", null ],
     [ "qt_meta_stringdata_PerceptronNetworkViewPlugin_t", "structqt__meta__stringdata___perceptron_network_view_plugin__t.html", null ],
     [ "qt_meta_stringdata_PluginBase_t", "structqt__meta__stringdata___plugin_base__t.html", null ],
     [ "qt_meta_stringdata_PluginLinkerCore_t", "structqt__meta__stringdata___plugin_linker_core__t.html", null ],
+    [ "qt_meta_stringdata_PluginLoader_t", "structqt__meta__stringdata___plugin_loader__t.html", null ],
     [ "qt_meta_stringdata_PomodoroButton_t", "structqt__meta__stringdata___pomodoro_button__t.html", null ],
+    [ "qt_meta_stringdata_PomodoroManager_t", "structqt__meta__stringdata___pomodoro_manager__t.html", null ],
+    [ "qt_meta_stringdata_PomodoroManagerView_t", "structqt__meta__stringdata___pomodoro_manager_view__t.html", null ],
     [ "qt_meta_stringdata_PomodoroModel_t", "structqt__meta__stringdata___pomodoro_model__t.html", null ],
     [ "qt_meta_stringdata_PomodoroView_t", "structqt__meta__stringdata___pomodoro_view__t.html", null ],
     [ "qt_meta_stringdata_QCP_t", "structqt__meta__stringdata___q_c_p__t.html", null ],
@@ -404,6 +410,8 @@ var hierarchy =
     [ "qt_meta_stringdata_SessionData_t", "structqt__meta__stringdata___session_data__t.html", null ],
     [ "qt_meta_stringdata_TaskCalendar_t", "structqt__meta__stringdata___task_calendar__t.html", null ],
     [ "qt_meta_stringdata_TaskListView_t", "structqt__meta__stringdata___task_list_view__t.html", null ],
+    [ "qt_meta_stringdata_TaskSketchManager_t", "structqt__meta__stringdata___task_sketch_manager__t.html", null ],
+    [ "qt_meta_stringdata_TaskSketchManagerView_t", "structqt__meta__stringdata___task_sketch_manager_view__t.html", null ],
     [ "qt_meta_stringdata_TaskSketchModel_t", "structqt__meta__stringdata___task_sketch_model__t.html", null ],
     [ "qt_meta_stringdata_TaskSketchView_t", "structqt__meta__stringdata___task_sketch_view__t.html", null ],
     [ "qt_meta_stringdata_TaskTreeModel_t", "structqt__meta__stringdata___task_tree_model__t.html", null ],
@@ -411,11 +419,10 @@ var hierarchy =
     [ "qt_meta_stringdata_UIElement_t", "structqt__meta__stringdata___u_i_element__t.html", null ],
     [ "qt_meta_stringdata_UIManager_t", "structqt__meta__stringdata___u_i_manager__t.html", null ],
     [ "qt_meta_stringdata_UniquePushButton_t", "structqt__meta__stringdata___unique_push_button__t.html", null ],
+    [ "qt_meta_stringdata_UserTaskManager_t", "structqt__meta__stringdata___user_task_manager__t.html", null ],
+    [ "qt_meta_stringdata_UserTaskManagerView_t", "structqt__meta__stringdata___user_task_manager_view__t.html", null ],
     [ "qt_meta_stringdata_WorkTimerModel_t", "structqt__meta__stringdata___work_timer_model__t.html", null ],
-    [ "QTimer", null, [
-      [ "QExtendedTimer", "class_q_extended_timer.html", null ]
-    ] ],
-    [ "QTreeView", null, [
+    [ "QTreeView", "class_q_tree_view.html", [
       [ "MyTreeView", "class_my_tree_view.html", null ],
       [ "MyTreeView", "class_my_tree_view.html", null ],
       [ "MyTreeView", "class_my_tree_view.html", null ]
@@ -435,29 +442,30 @@ var hierarchy =
     [ "QVector< QVector< float > >", "class_q_vector.html", null ],
     [ "QVector< RegistersPackHandler::RegisterHandler *>", "class_q_vector.html", null ],
     [ "QVector< UniquePushButton *>", "class_q_vector.html", null ],
-    [ "QWidget", null, [
+    [ "QWeakPointer< T >", "class_q_weak_pointer.html", null ],
+    [ "QWeakPointer< IPluginHandler >", "class_q_weak_pointer.html", null ],
+    [ "QWeakPointer< IPluginLinker::ILinkerItem >", "class_q_weak_pointer.html", null ],
+    [ "QWeakPointer< QCPAbstractPaintBuffer >", "class_q_weak_pointer.html", null ],
+    [ "QWidget", "class_q_widget.html", [
       [ "AddForm", "class_add_form.html", null ],
       [ "GalleryForm", "class_gallery_form.html", null ],
       [ "GalleryItem", "class_gallery_item.html", null ],
-      [ "MainForm", "class_main_form.html", null ],
-      [ "MainForm", "class_main_form.html", null ],
-      [ "MainForm", "class_main_form.html", null ],
-      [ "MainForm", "class_main_form.html", null ],
-      [ "MenuItemGraphicsObject", "class_menu_item_graphics_object.html", null ],
       [ "PaintWidget", "class_paint_widget.html", null ],
+      [ "ParentWindow", "class_parent_window.html", null ],
       [ "PomodoroButton", "class_pomodoro_button.html", null ],
       [ "QCustomPlot", "class_q_custom_plot.html", null ]
     ] ],
+    [ "com.mass.mainapp.R", "classcom_1_1mass_1_1mainapp_1_1_r.html", null ],
     [ "RawImageDelegate", "class_raw_image_delegate.html", null ],
     [ "RecognitionLayer", "class_recognition_layer.html", null ],
     [ "RegistersPackHandler::RegisterHandler", "class_registers_pack_handler_1_1_register_handler.html", null ],
-    [ "IExperimentControlModel::RegstersPack", "struct_i_experiment_control_model_1_1_regsters_pack.html", [
+    [ "IModbusDataReader::RegstersPack", "struct_i_modbus_data_reader_1_1_regsters_pack.html", [
       [ "RegistersPackHandler", "class_registers_pack_handler.html", null ]
     ] ],
-    [ "SessionData", "struct_session_data.html", null ],
     [ "TableHandler", "class_table_handler.html", null ],
     [ "QCPAxisPainterPrivate::TickLabelData", "struct_q_c_p_axis_painter_private_1_1_tick_label_data.html", null ],
     [ "Ui_AddForm", "class_ui___add_form.html", [
+      [ "Ui::AddForm", "class_ui_1_1_add_form.html", null ],
       [ "Ui::AddForm", "class_ui_1_1_add_form.html", null ]
     ] ],
     [ "Ui_Form", "class_ui___form.html", [
@@ -469,10 +477,34 @@ var hierarchy =
       [ "Ui::Form", "class_ui_1_1_form.html", null ],
       [ "Ui::Form", "class_ui_1_1_form.html", null ],
       [ "Ui::Form", "class_ui_1_1_form.html", null ],
+      [ "Ui::Form", "class_ui_1_1_form.html", null ],
+      [ "Ui::Form", "class_ui_1_1_form.html", null ],
+      [ "Ui::Form", "class_ui_1_1_form.html", null ],
+      [ "Ui::Form", "class_ui_1_1_form.html", null ],
+      [ "Ui::Form", "class_ui_1_1_form.html", null ],
       [ "Ui::Form", "class_ui_1_1_form.html", null ]
     ] ],
     [ "Ui_GalleryForm", "class_ui___gallery_form.html", [
+      [ "Ui::GalleryForm", "class_ui_1_1_gallery_form.html", null ],
       [ "Ui::GalleryForm", "class_ui_1_1_gallery_form.html", null ]
     ] ],
-    [ "IPomodoroModel::WorkSetup", "struct_i_pomodoro_model_1_1_work_setup.html", null ]
+    [ "IPomodoroManager::WorkSetup", "struct_i_pomodoro_manager_1_1_work_setup.html", null ],
+    [ "BroadcastReceiver", null, [
+      [ "com.MASS.AlarmReceiver", "classcom_1_1_m_a_s_s_1_1_alarm_receiver.html", null ],
+      [ "com.MASS.AlarmReceiver", "classcom_1_1_m_a_s_s_1_1_alarm_receiver.html", null ],
+      [ "com.mass.mainapp.AlarmReceiver", "classcom_1_1mass_1_1mainapp_1_1_alarm_receiver.html", null ],
+      [ "com.mass.mainapp.AlarmReceiver", "classcom_1_1mass_1_1mainapp_1_1_alarm_receiver.html", null ]
+    ] ],
+    [ "QSharedPointer< QCPDataContainer< QCPBarsData > >", "class_q_shared_pointer_3_01_q_c_p_data_container_3_01_q_c_p_bars_data_01_4_01_4.html", null ],
+    [ "QSharedPointer< QCPDataContainer< QCPCurveData > >", "class_q_shared_pointer_3_01_q_c_p_data_container_3_01_q_c_p_curve_data_01_4_01_4.html", null ],
+    [ "QSharedPointer< QCPDataContainer< QCPFinancialData > >", "class_q_shared_pointer_3_01_q_c_p_data_container_3_01_q_c_p_financial_data_01_4_01_4.html", null ],
+    [ "QSharedPointer< QCPDataContainer< QCPGraphData > >", "class_q_shared_pointer_3_01_q_c_p_data_container_3_01_q_c_p_graph_data_01_4_01_4.html", null ],
+    [ "QSharedPointer< QCPDataContainer< QCPStatisticalBoxData > >", "class_q_shared_pointer_3_01_q_c_p_data_container_3_01_q_c_p_statistical_box_data_01_4_01_4.html", null ],
+    [ "QtActivity", null, [
+      [ "com.mass.mainapp.QtActivityExtention", "classcom_1_1mass_1_1mainapp_1_1_qt_activity_extention.html", null ],
+      [ "com.mass.mainapp.QtActivityExtention", "classcom_1_1mass_1_1mainapp_1_1_qt_activity_extention.html", null ]
+    ] ],
+    [ "QTimer", null, [
+      [ "QExtendedTimer", "class_q_extended_timer.html", null ]
+    ] ]
 ];

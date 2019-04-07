@@ -89,11 +89,9 @@ $(document).ready(function(){initNavTree('class_u_i_manager.html','');});
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_u_i_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">UIManager Class Reference</div>  </div>
+<div class="title">UIManager Class Reference<div class="ingroups"><a class="el" href="group___plugins.html">Plugins</a> &raquo; <a class="el" href="group___u_i_manager.html">UIManager</a> &raquo; <a class="el" href="group___u_i_manager__imp.html">Implementation</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="uimanager_8h_source.html">uimanager.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for UIManager:</div>
 <div class="dyncontent">
@@ -102,6 +100,7 @@ Inheritance diagram for UIManager:</div>
   <map id="UIManager_map" name="UIManager_map">
 <area href="class_plugin_base.html" title="This interface provides basic methods for all plugins. " alt="PluginBase" shape="rect" coords="81,56,233,80"/>
 <area href="class_i_u_i_manager.html" alt="IUIManager" shape="rect" coords="243,56,395,80"/>
+<area href="class_p_l_u_g_i_n___b_a_s_e___p_a_r_e_n_t.html" alt="PLUGIN_BASE_PARENT" shape="rect" coords="0,0,152,24"/>
 <area href="class_i_plugin.html" title="This interface provides basic methods for all plugins. " alt="IPlugin" shape="rect" coords="162,0,314,24"/>
 </map>
  </div></div>
@@ -112,13 +111,13 @@ Public Slots</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>pop</b> ()</td></tr>
 <tr class="separator:a61702cac8f2eef823e10706778507d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf6a0772b4fa636f98f42238fe560a26"><td class="memItemLeft" align="right" valign="top"><a id="aaf6a0772b4fa636f98f42238fe560a26"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (QWidget *widget)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (<a class="el" href="class_q_widget.html">QWidget</a> *widget)</td></tr>
 <tr class="separator:aaf6a0772b4fa636f98f42238fe560a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cb9495d6a26b026f133d9c80669d0e6"><td class="memItemLeft" align="right" valign="top"><a id="a7cb9495d6a26b026f133d9c80669d0e6"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>count</b> ()</td></tr>
 <tr class="separator:a7cb9495d6a26b026f133d9c80669d0e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48d340d02036d87a76dc50d1e9637202"><td class="memItemLeft" align="right" valign="top"><a id="a48d340d02036d87a76dc50d1e9637202"></a>
-QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>getTop</b> ()</td></tr>
+<a class="el" href="class_q_widget.html">QWidget</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getTop</b> ()</td></tr>
 <tr class="separator:a48d340d02036d87a76dc50d1e9637202"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_slots_class_i_plugin"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_class_i_plugin')"><img src="closed.png" alt="-"/>&#160;Public Slots inherited from <a class="el" href="class_i_plugin.html">IPlugin</a></td></tr>
 <tr class="memitem:a2168e932856b984e571d493f49568992 inherit pub_slots_class_i_plugin"><td class="memItemLeft" align="right" valign="top"><a id="a2168e932856b984e571d493f49568992"></a>
@@ -154,13 +153,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>onClose</b> (<a class
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6b63ef66fc2fe305f1e0e078cc79f224"><td class="memItemLeft" align="right" valign="top"><a id="a6b63ef66fc2fe305f1e0e078cc79f224"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>eventFilter</b> (QObject *watched, QEvent *event) override</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>eventFilter</b> (<a class="el" href="class_q_object.html">QObject</a> *watched, QEvent *event) override</td></tr>
 <tr class="separator:a6b63ef66fc2fe305f1e0e078cc79f224"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4cee589513399888dc2f4c98075047e"><td class="memItemLeft" align="right" valign="top"><a id="ae4cee589513399888dc2f4c98075047e"></a>
-virtual const QWeakPointer&lt; <a class="el" href="class_i_u_i_manager_1_1_i_u_i_element.html">IUIElement</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getRootElement</b> () override</td></tr>
+virtual const <a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_u_i_manager_1_1_i_u_i_element.html">IUIElement</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getRootElement</b> () override</td></tr>
 <tr class="separator:ae4cee589513399888dc2f4c98075047e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d07c7a1d8a92e741a05d21a2cb17179"><td class="memItemLeft" align="right" valign="top"><a id="a1d07c7a1d8a92e741a05d21a2cb17179"></a>
-virtual const <a class="el" href="class_q_vector.html">QVector</a>&lt; QWeakPointer&lt; <a class="el" href="class_i_u_i_manager_1_1_i_u_i_element.html">IUIElement</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getChildElements</b> () override</td></tr>
+virtual const <a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_u_i_manager_1_1_i_u_i_element.html">IUIElement</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getChildElements</b> () override</td></tr>
 <tr class="separator:a1d07c7a1d8a92e741a05d21a2cb17179"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:ada314e7c79b6e45d2807acba46d25dc8 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ada314e7c79b6e45d2807acba46d25dc8"></a>
@@ -180,10 +179,10 @@ virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 virtual const <a class="el" href="struct_meta_info.html">MetaInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginMetaInfo</b> () const override</td></tr>
 <tr class="separator:a7ae48825e6984c4886026d57721d3e23 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a950df1028f072b43d4bfeae8fc922093 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a950df1028f072b43d4bfeae8fc922093"></a>
-virtual QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () override</td></tr>
+virtual <a class="el" href="class_q_object.html">QObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () override</td></tr>
 <tr class="separator:a950df1028f072b43d4bfeae8fc922093 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77caddaa8f211832f6026ff53ebd6364 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a77caddaa8f211832f6026ff53ebd6364"></a>
-virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () override</td></tr>
+virtual <a class="el" href="class_q_widget.html">QWidget</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () override</td></tr>
 <tr class="separator:a77caddaa8f211832f6026ff53ebd6364 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7836e433d09e68536777827867b85f45 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a7836e433d09e68536777827867b85f45"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isReady</b> () override</td></tr>
@@ -253,12 +252,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesSet<
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesReady</b></td></tr>
 <tr class="separator:af26000611e1bd088ef9f3fd2f79d84b3 inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>addtogroup UIManager_imp { </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/UIManager/<a class="el" href="uimanager_8h_source.html">uimanager.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsBuildFiles/build/debug/UIManager/moc/moc_uimanager.cpp</li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/UIManager/uimanager.cpp</li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/UIManager/<a class="el" href="uimanager_8h_source.html">uimanager.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/BuildFiles/build/debug/UIManager/moc/moc_uimanager.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/UIManager/uimanager.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -266,7 +263,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesRead
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_u_i_manager.html">UIManager</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:52:01 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 20:02:58 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

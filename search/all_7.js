@@ -6,7 +6,7 @@ var searchData=
   ['hasitem',['hasItem',['../class_q_custom_plot.html#af0b57f35646079f93fa6161a65b36109',1,'QCustomPlot::hasItem()'],['../class_q_c_p_legend.html#ad0f698e33db454a6c103b5206740e599',1,'QCPLegend::hasItem()']]],
   ['hasitemwithplottable',['hasItemWithPlottable',['../class_q_c_p_legend.html#a4b90a442af871582df85c2bc13f91e88',1,'QCPLegend']]],
   ['hasplottable',['hasPlottable',['../class_q_custom_plot.html#a72cefbfbb9e699940e37be605bd9c51e',1,'QCustomPlot']]],
-  ['heartratedevicemodel',['HeartRateDeviceModel',['../class_heart_rate_device_model.html',1,'']]],
+  ['heartratedevice',['HeartRateDevice',['../class_heart_rate_device.html',1,'HeartRateDevice'],['../group___heart_rate_device.html',1,'(Global Namespace)']]],
   ['heartratedeviceview',['HeartRateDeviceView',['../class_heart_rate_device_view.html',1,'']]],
   ['height',['height',['../class_q_c_p_axis_rect.html#acc4377809e79d9a089ab790f39429b0d',1,'QCPAxisRect']]]
 ];

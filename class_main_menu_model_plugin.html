@@ -88,7 +88,7 @@ $(document).ready(function(){initNavTree('class_main_menu_model_plugin.html','')
 <a href="#properties">Properties</a> &#124;
 <a href="class_main_menu_model_plugin-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">MainMenuModelPlugin Class Reference<div class="ingroups"><a class="el" href="group___main_menu_plugin.html">MainMenuPlugin</a> &raquo; <a class="el" href="group___main_menu_plugin__imp.html">Implementation</a></div></div>  </div>
+<div class="title">MainMenuModelPlugin Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -98,27 +98,29 @@ Inheritance diagram for MainMenuModelPlugin:</div>
   <img src="class_main_menu_model_plugin.png" usemap="#MainMenuModelPlugin_map" alt=""/>
   <map id="MainMenuModelPlugin_map" name="MainMenuModelPlugin_map">
 <area href="class_plugin_base.html" title="This interface provides basic methods for all plugins. " alt="PluginBase" shape="rect" coords="81,56,233,80"/>
+<area href="class_i_core_plugin.html" title="Interface for plugin CorePlugin. " alt="ICorePlugin" shape="rect" coords="243,56,395,80"/>
 <area href="class_i_plugin_linker.html" alt="IPluginLinker" shape="rect" coords="405,56,557,80"/>
+<area href="class_p_l_u_g_i_n___b_a_s_e___p_a_r_e_n_t.html" alt="PLUGIN_BASE_PARENT" shape="rect" coords="0,0,152,24"/>
 <area href="class_i_plugin.html" title="This interface provides basic methods for all plugins. " alt="IPlugin" shape="rect" coords="162,0,314,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa028954e32921165c9b15290a35b5fc2"><td class="memItemLeft" align="right" valign="top"><a id="aa028954e32921165c9b15290a35b5fc2"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addPlugins</b> (const <a class="el" href="class_q_vector.html">QVector</a>&lt; QWeakPointer&lt; IPluginHandler &gt;&gt; &amp;pluginHandlers) override</td></tr>
+<tr class="memitem:aa028954e32921165c9b15290a35b5fc2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_menu_model_plugin.html#aa028954e32921165c9b15290a35b5fc2">addPlugins</a> (const <a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_handler.html">IPluginHandler</a> &gt;&gt; &amp;pluginHandlers) override</td></tr>
+<tr class="memdesc:aa028954e32921165c9b15290a35b5fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recieve loaded plugin with it's meta data.  <a href="#aa028954e32921165c9b15290a35b5fc2">More...</a><br /></td></tr>
 <tr class="separator:aa028954e32921165c9b15290a35b5fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fe42a639a7c3d5c6b6894684bca74f2"><td class="memItemLeft" align="right" valign="top"><a id="a9fe42a639a7c3d5c6b6894684bca74f2"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> (QWeakPointer&lt; IPluginHandler &gt; selfHandler, QWidget *parentWidget) override</td></tr>
+<tr class="memitem:a9fe42a639a7c3d5c6b6894684bca74f2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_menu_model_plugin.html#a9fe42a639a7c3d5c6b6894684bca74f2">start</a> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_handler.html">IPluginHandler</a> &gt; selfHandler, <a class="el" href="class_q_widget.html">QWidget</a> *parentWidget) override</td></tr>
+<tr class="memdesc:a9fe42a639a7c3d5c6b6894684bca74f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts plugin work. Some kind of 'start' signal.  <a href="#a9fe42a639a7c3d5c6b6894684bca74f2">More...</a><br /></td></tr>
 <tr class="separator:a9fe42a639a7c3d5c6b6894684bca74f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01d90569806e1e188a41396d1b526270"><td class="memItemLeft" align="right" valign="top"><a id="a01d90569806e1e188a41396d1b526270"></a>
-virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () override</td></tr>
+virtual <a class="el" href="class_q_widget.html">QWidget</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () override</td></tr>
 <tr class="separator:a01d90569806e1e188a41396d1b526270"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a2c3c545487262ed9fc007761da56be"><td class="memItemLeft" align="right" valign="top"><a id="a5a2c3c545487262ed9fc007761da56be"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getCorePluginUID</b> () override</td></tr>
 <tr class="separator:a5a2c3c545487262ed9fc007761da56be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dddafc1039d59037e3721e6fd9f3f30"><td class="memItemLeft" align="right" valign="top"><a id="a6dddafc1039d59037e3721e6fd9f3f30"></a>
-virtual QMap&lt; int, QWeakPointer&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginsMap</b> () override</td></tr>
+virtual QMap&lt; int, <a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginsMap</b> () override</td></tr>
 <tr class="separator:a6dddafc1039d59037e3721e6fd9f3f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_plugin_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_plugin_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_plugin_base.html">PluginBase</a></td></tr>
 <tr class="memitem:ada314e7c79b6e45d2807acba46d25dc8 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="ada314e7c79b6e45d2807acba46d25dc8"></a>
@@ -138,7 +140,7 @@ virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 virtual const <a class="el" href="struct_meta_info.html">MetaInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginMetaInfo</b> () const override</td></tr>
 <tr class="separator:a7ae48825e6984c4886026d57721d3e23 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a950df1028f072b43d4bfeae8fc922093 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a950df1028f072b43d4bfeae8fc922093"></a>
-virtual QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () override</td></tr>
+virtual <a class="el" href="class_q_object.html">QObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () override</td></tr>
 <tr class="separator:a950df1028f072b43d4bfeae8fc922093 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7836e433d09e68536777827867b85f45 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="a7836e433d09e68536777827867b85f45"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isReady</b> () override</td></tr>
@@ -155,12 +157,16 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onAllReferenc
 <tr class="memitem:aff4f0ec88c528ae7a06a57c04a976551 inherit pub_methods_class_plugin_base"><td class="memItemLeft" align="right" valign="top"><a id="aff4f0ec88c528ae7a06a57c04a976551"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onAllReferencesReady</b> ()</td></tr>
 <tr class="separator:aff4f0ec88c528ae7a06a57c04a976551 inherit pub_methods_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_i_core_plugin"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_i_core_plugin')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_i_core_plugin.html">ICorePlugin</a></td></tr>
+<tr class="memitem:a83250886bc9f715d207548091d084469 inherit pub_methods_class_i_core_plugin"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_core_plugin.html#a83250886bc9f715d207548091d084469">close</a> ()=0</td></tr>
+<tr class="memdesc:a83250886bc9f715d207548091d084469 inherit pub_methods_class_i_core_plugin"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts plugin work. Some kind of 'start' signal.  <a href="class_i_core_plugin.html#a83250886bc9f715d207548091d084469">More...</a><br /></td></tr>
+<tr class="separator:a83250886bc9f715d207548091d084469 inherit pub_methods_class_i_core_plugin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_i_plugin_linker"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_i_plugin_linker')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_i_plugin_linker.html">IPluginLinker</a></td></tr>
 <tr class="memitem:a641b1a030cf3b05ecccb923a259efc2e inherit pub_methods_class_i_plugin_linker"><td class="memItemLeft" align="right" valign="top"><a id="a641b1a030cf3b05ecccb923a259efc2e"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>addCorePlugin</b> (QWeakPointer&lt; IPluginHandler &gt; pluginHandler)=0</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>addCorePlugin</b> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_handler.html">IPluginHandler</a> &gt; pluginHandler)=0</td></tr>
 <tr class="separator:a641b1a030cf3b05ecccb923a259efc2e inherit pub_methods_class_i_plugin_linker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1c83e684c047e06cd89940734c98dda inherit pub_methods_class_i_plugin_linker"><td class="memItemLeft" align="right" valign="top"><a id="ab1c83e684c047e06cd89940734c98dda"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>addPlugin</b> (QWeakPointer&lt; IPluginHandler &gt; pluginHandler)=0</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>addPlugin</b> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_handler.html">IPluginHandler</a> &gt; pluginHandler)=0</td></tr>
 <tr class="separator:ab1c83e684c047e06cd89940734c98dda inherit pub_methods_class_i_plugin_linker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca4ffb1c142f8fbf24d6cb269856984a inherit pub_methods_class_i_plugin_linker"><td class="memItemLeft" align="right" valign="top"><a id="aca4ffb1c142f8fbf24d6cb269856984a"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setupLinks</b> ()=0</td></tr>
@@ -258,9 +264,93 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesSet<
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesReady</b></td></tr>
 <tr class="separator:af26000611e1bd088ef9f3fd2f79d84b3 inherit pro_attribs_class_plugin_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa028954e32921165c9b15290a35b5fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa028954e32921165c9b15290a35b5fc2">&#9670;&nbsp;</a></span>addPlugins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainMenuModelPlugin::addPlugins </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_handler.html">IPluginHandler</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>pluginHandlers</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Recieve loaded plugin with it's meta data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Plugin</td><td>instance. </td></tr>
+    <tr><td class="paramname">Plugin</td><td>meta data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_i_core_plugin.html#a1aa63a82fb43d7c3590002af03161d70">ICorePlugin</a>.</p>
+
+</div>
+</div>
+<a id="a9fe42a639a7c3d5c6b6894684bca74f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fe42a639a7c3d5c6b6894684bca74f2">&#9670;&nbsp;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainMenuModelPlugin::start </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_handler.html">IPluginHandler</a> &gt;&#160;</td>
+          <td class="paramname"><em>selfHandler</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_q_widget.html">QWidget</a> *&#160;</td>
+          <td class="paramname"><em>parentWidget</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Starts plugin work. Some kind of 'start' signal. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">This</td><td>will be parent widget for all widgets in app. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_i_core_plugin.html#ab58f55c21b488cfd5ce1c1adc6d56a59">ICorePlugin</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/RootPluginLinker/<a class="el" href="mainmenumodelplugin_8h_source.html">mainmenumodelplugin.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/RootPluginLinker/mainmenumodelplugin.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/RootPluginLinker/<a class="el" href="mainmenumodelplugin_8h_source.html">mainmenumodelplugin.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/RootPluginLinker/mainmenumodelplugin.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -268,7 +358,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isAllReferencesRead
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_main_menu_model_plugin.html">MainMenuModelPlugin</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 20:02:57 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

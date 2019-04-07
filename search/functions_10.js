@@ -7,7 +7,7 @@ var searchData=
   ['rangezoomaxes',['rangeZoomAxes',['../class_q_c_p_axis_rect.html#a86aac0f435f209d60dacd22cda10c104',1,'QCPAxisRect']]],
   ['rangezoomaxis',['rangeZoomAxis',['../class_q_c_p_axis_rect.html#a679c63f2b8daccfe6ec5110dce3dd3b6',1,'QCPAxisRect']]],
   ['rangezoomfactor',['rangeZoomFactor',['../class_q_c_p_axis_rect.html#ae4e6c4d143aacc88d2d3c56f117c2fe1',1,'QCPAxisRect']]],
-  ['readdata',['ReadData',['../class_i_c_o_m_port_data_source_1_1_i_serial_port_handler.html#a235481399766f136f500441abc73718a',1,'ICOMPortDataSource::ISerialPortHandler']]],
+  ['readdata',['ReadData',['../class_i_c_o_m_port_data_manager_1_1_i_serial_port_handler.html#a2c5eecc8f3192292a36a7bb4866f8d01',1,'ICOMPortDataManager::ISerialPortHandler']]],
   ['reallength',['realLength',['../class_q_c_p_line_ending.html#acacd24d386d459b282d3c57f16a5405d',1,'QCPLineEnding']]],
   ['reallocatebuffer',['reallocateBuffer',['../class_q_c_p_abstract_paint_buffer.html#aee7506a52bd7e5a07c2af27935eb13e7',1,'QCPAbstractPaintBuffer::reallocateBuffer()'],['../class_q_c_p_paint_buffer_pixmap.html#ad49f3205ba3463b1c44f8db3cfcc90f0',1,'QCPPaintBufferPixmap::reallocateBuffer()']]],
   ['realvisibility',['realVisibility',['../class_q_c_p_layerable.html#ab054e88f15d485defcb95e7376f119e7',1,'QCPLayerable']]],
@@ -24,6 +24,7 @@ var searchData=
   ['removelayer',['removeLayer',['../class_q_custom_plot.html#a40f75e342c5eaab6a86066a42a0e2a94',1,'QCustomPlot']]],
   ['removeplottable',['removePlottable',['../class_q_custom_plot.html#af3dafd56884208474f311d6226513ab2',1,'QCustomPlot::removePlottable(QCPAbstractPlottable *plottable)'],['../class_q_custom_plot.html#afc210e0021480f8119bccf37839dbcc8',1,'QCustomPlot::removePlottable(int index)']]],
   ['replot',['replot',['../class_q_c_p_layer.html#adefd53b6db02f470151c416f42e37180',1,'QCPLayer::replot()'],['../class_q_custom_plot.html#aa4bfe7d70dbe67e81d877819b75ab9af',1,'QCustomPlot::replot()']]],
+  ['requestloader',['requestLoader',['../interfaceorg_1_1kde_1_1necessitas_1_1ministro_1_1_i_ministro.html#a3d7c6602e2f6151d53df20f674b97af1',1,'org::kde::necessitas::ministro::IMinistro']]],
   ['rescale',['rescale',['../class_q_c_p_axis.html#a499345f02ebce4b23d8ccec96e58daa9',1,'QCPAxis']]],
   ['rescaleaxes',['rescaleAxes',['../class_q_c_p_abstract_plottable.html#a1491c4a606bccd2d09e65e11b79eb882',1,'QCPAbstractPlottable::rescaleAxes()'],['../class_q_custom_plot.html#ad86528f2cee6c7e446dea4a6e8839935',1,'QCustomPlot::rescaleAxes()']]],
   ['rescaledatarange',['rescaleDataRange',['../class_q_c_p_color_scale.html#a425983db4478543924ddbd04ea20a356',1,'QCPColorScale::rescaleDataRange()'],['../class_q_c_p_color_map.html#a856608fa3dd1cc290bcd5f29a5575774',1,'QCPColorMap::rescaleDataRange()']]],
@@ -32,5 +33,6 @@ var searchData=
   ['restore',['restore',['../class_q_c_p_painter.html#a64908e6298d5bbd83457dc987cc3a022',1,'QCPPainter']]],
   ['right',['right',['../class_q_c_p_axis_rect.html#a3f819d4a1b2193723d1fdafc573eea10',1,'QCPAxisRect']]],
   ['rowcoltoindex',['rowColToIndex',['../class_q_c_p_layout_grid.html#a682ba76f130810ffd294032a1bfbcfcb',1,'QCPLayoutGrid']]],
-  ['rowcount',['rowCount',['../class_q_c_p_layout_grid.html#a19c66fd76cbce58a8e94f33797e0c0aa',1,'QCPLayoutGrid']]]
+  ['rowcount',['rowCount',['../class_q_c_p_layout_grid.html#a19c66fd76cbce58a8e94f33797e0c0aa',1,'QCPLayoutGrid']]],
+  ['runcoreplugin',['runCorePlugin',['../class_plugin_loader.html#afcbd709ad9f6d3d89b31eceda36269df',1,'PluginLoader']]]
 ];

@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('class_extendable_item_model.html','');
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_extendable_item_model-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ExtendableItemModel Class Reference<div class="ingroups"><a class="el" href="group___main_menu_plugin.html">MainMenuPlugin</a> &raquo; <a class="el" href="group___main_menu_plugin__rel.html">Related plugins</a> &raquo; <a class="el" href="group___main_menu_plugin__rel__dm.html">DataManager plugins</a> &raquo; <a class="el" href="group___extendable_data_base_manager_plugin.html">ExtendableDataBaseManagerPlugin</a> &raquo; <a class="el" href="group___extendable_data_base_manager_plugin__imp.html">Implementation</a></div></div>  </div>
+<div class="title">ExtendableItemModel Class Reference<div class="ingroups"><a class="el" href="group___plugins.html">Plugins</a> &raquo; <a class="el" href="group___extendable_data_manager.html">ExtendableDataManager</a> &raquo; <a class="el" href="group___extendable_data_manager__imp.html">Implementation</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -96,13 +96,14 @@ Inheritance diagram for ExtendableItemModel:</div>
  <div class="center">
   <img src="class_extendable_item_model.png" usemap="#ExtendableItemModel_map" alt=""/>
   <map id="ExtendableItemModel_map" name="ExtendableItemModel_map">
+<area href="class_q_abstract_item_model.html" alt="QAbstractItemModel" shape="rect" coords="0,0,131,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8af322e238acd14f86aa629cddc2a70a"><td class="memItemLeft" align="right" valign="top"><a id="a8af322e238acd14f86aa629cddc2a70a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ExtendableItemModel</b> (QString tableName, <a class="el" href="class_i_extendable_data_manager.html">IExtendableDataManager</a> *dataManager, QObject *parent=0)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ExtendableItemModel</b> (QString tableName, <a class="el" href="class_i_extendable_data_manager.html">IExtendableDataManager</a> *dataManager, <a class="el" href="class_q_object.html">QObject</a> *parent=0)</td></tr>
 <tr class="separator:a8af322e238acd14f86aa629cddc2a70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5887f5d5086a094d712e2f7a1f6b84b"><td class="memItemLeft" align="right" valign="top"><a id="ae5887f5d5086a094d712e2f7a1f6b84b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>LoadData</b> ()</td></tr>
@@ -114,7 +115,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AttachRelation</b> (Q
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetActiveRelation</b> (QString relationName)</td></tr>
 <tr class="separator:ad5ce2033c7ba133259dc5c46a98e4694"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0e36f250b83dd82d21f261d336e7e5c"><td class="memItemLeft" align="right" valign="top"><a id="aa0e36f250b83dd82d21f261d336e7e5c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataTypeEditor</b> (QString dataChunk, QString fieldName, QWidget *widget)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDataTypeEditor</b> (QString dataChunk, QString fieldName, <a class="el" href="class_q_widget.html">QWidget</a> *widget)</td></tr>
 <tr class="separator:aa0e36f250b83dd82d21f261d336e7e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b8f0527a5d89bf515e4ba1177294e4e"><td class="memItemLeft" align="right" valign="top"><a id="a7b8f0527a5d89bf515e4ba1177294e4e"></a>
 virtual QVariant&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> (const QModelIndex &amp;index, int role) const</td></tr>
@@ -181,8 +182,8 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>coreRelationName</
 <tr class="separator:a029551b7e099bb27c166fefb0d58c22f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/<a class="el" href="extendableitemmodel_8h_source.html">extendableitemmodel.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/ExtendableDataManager/extendableitemmodel.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/ExtendableDataManager/<a class="el" href="extendableitemmodel_8h_source.html">extendableitemmodel.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/ExtendableDataManager/extendableitemmodel.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -190,7 +191,7 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>coreRelationName</
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_extendable_item_model.html">ExtendableItemModel</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:51:56 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 20:02:57 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

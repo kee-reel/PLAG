@@ -96,6 +96,7 @@ Inheritance diagram for LinkerItem:</div>
  <div class="center">
   <img src="class_linker_item.png" usemap="#LinkerItem_map" alt=""/>
   <map id="LinkerItem_map" name="LinkerItem_map">
+<area href="class_q_object.html" alt="QObject" shape="rect" coords="0,0,151,24"/>
 <area href="class_i_plugin_linker_1_1_i_linker_item.html" alt="IPluginLinker::ILinkerItem" shape="rect" coords="161,0,312,24"/>
 </map>
  </div></div>
@@ -128,7 +129,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>onConnectionsChanged<
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a75ba007081ab7f3ca27175fc415befa5"><td class="memItemLeft" align="right" valign="top"><a id="a75ba007081ab7f3ca27175fc415befa5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LinkerItem</b> (QWeakPointer&lt; IPluginHandler &gt; pluginHandler, QSharedPointer&lt; <a class="el" href="struct_meta_info.html">MetaInfo</a> &gt; metaInfo, int uid)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>LinkerItem</b> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_handler.html">IPluginHandler</a> &gt; pluginHandler, QSharedPointer&lt; <a class="el" href="struct_meta_info.html">MetaInfo</a> &gt; metaInfo, int uid)</td></tr>
 <tr class="separator:a75ba007081ab7f3ca27175fc415befa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dafbf48ab5687fae2cbc38970ecf521"><td class="memItemLeft" align="right" valign="top"><a id="a9dafbf48ab5687fae2cbc38970ecf521"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isLoaded</b> () const override</td></tr>
@@ -143,16 +144,16 @@ virtual <a class="el" href="struct_meta_info.html">MetaInfo</a>&#160;</td><td cl
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getPluginUID</b> () const override</td></tr>
 <tr class="separator:af826d74230cce3c597564236706c6978"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4b3cafb1afff3675d6bd2bc30d2fbaa"><td class="memItemLeft" align="right" valign="top"><a id="aa4b3cafb1afff3675d6bd2bc30d2fbaa"></a>
-virtual QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () const override</td></tr>
+virtual <a class="el" href="class_q_widget.html">QWidget</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getWidget</b> () const override</td></tr>
 <tr class="separator:aa4b3cafb1afff3675d6bd2bc30d2fbaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a261e6d1d5679d2d691bb50c74cda1ad2"><td class="memItemLeft" align="right" valign="top"><a id="a261e6d1d5679d2d691bb50c74cda1ad2"></a>
-virtual const QObject *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () const override</td></tr>
+virtual const <a class="el" href="class_q_object.html">QObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getObject</b> () const override</td></tr>
 <tr class="separator:a261e6d1d5679d2d691bb50c74cda1ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ba863f3fbb3aaaacf23f90d871d8313"><td class="memItemLeft" align="right" valign="top"><a id="a2ba863f3fbb3aaaacf23f90d871d8313"></a>
-virtual QMap&lt; int, QWeakPointer&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferences</b> () override</td></tr>
+virtual QMap&lt; int, <a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferences</b> () override</td></tr>
 <tr class="separator:a2ba863f3fbb3aaaacf23f90d871d8313"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea2359bc361d5bc1621642ddda1b6ab3"><td class="memItemLeft" align="right" valign="top"><a id="aea2359bc361d5bc1621642ddda1b6ab3"></a>
-virtual QMap&lt; int, QWeakPointer&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferents</b> () override</td></tr>
+virtual QMap&lt; int, <a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_i_plugin_linker_1_1_i_linker_item.html">IPluginLinker::ILinkerItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferents</b> () override</td></tr>
 <tr class="separator:aea2359bc361d5bc1621642ddda1b6ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab49054f278db6332b6bdff13ac957f49"><td class="memItemLeft" align="right" valign="top"><a id="ab49054f278db6332b6bdff13ac957f49"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> () override</td></tr>
@@ -170,16 +171,16 @@ const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getInt
 const QList&lt; QString &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getReferenceNamesList</b> ()</td></tr>
 <tr class="separator:a26cfcfb9d7c6faf291086cc570d17676"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4f9a839b20bbe4ac30e75a970c65497"><td class="memItemLeft" align="right" valign="top"><a id="ab4f9a839b20bbe4ac30e75a970c65497"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addReference</b> (QWeakPointer&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addReference</b> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
 <tr class="separator:ab4f9a839b20bbe4ac30e75a970c65497"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf3969dd5aac7d0df669692c0be47547"><td class="memItemLeft" align="right" valign="top"><a id="aaf3969dd5aac7d0df669692c0be47547"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeReference</b> (QWeakPointer&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>removeReference</b> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
 <tr class="separator:aaf3969dd5aac7d0df669692c0be47547"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaa3159f125da358eafeae02c6b4a6aa"><td class="memItemLeft" align="right" valign="top"><a id="adaa3159f125da358eafeae02c6b4a6aa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addReferent</b> (QWeakPointer&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addReferent</b> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
 <tr class="separator:adaa3159f125da358eafeae02c6b4a6aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab987a49b785f432dda6578b9afc3cd91"><td class="memItemLeft" align="right" valign="top"><a id="ab987a49b785f432dda6578b9afc3cd91"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeReferent</b> (QWeakPointer&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>removeReferent</b> (<a class="el" href="class_q_weak_pointer.html">QWeakPointer</a>&lt; <a class="el" href="class_linker_item.html">LinkerItem</a> &gt; linkItem)</td></tr>
 <tr class="separator:ab987a49b785f432dda6578b9afc3cd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2139d3bf6e9918088cba03956c1d8ee4"><td class="memItemLeft" align="right" valign="top"><a id="a2139d3bf6e9918088cba03956c1d8ee4"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> ()</td></tr>
@@ -192,9 +193,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>unload</b> ()</td></t
 <tr class="separator:adb11746da21fdfc3f66041916170a7bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/RootPluginLinker/<a class="el" href="linkeritem_8h_source.html">linkeritem.h</a></li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsBuildFiles/build/debug/RootPluginLinker/moc/moc_linkeritem.cpp</li>
-<li>/home/curunir/Documents/MASS/Plugins/PluginsProjects/RootPluginLinker/linkeritem.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/RootPluginLinker/<a class="el" href="linkeritem_8h_source.html">linkeritem.h</a></li>
+<li>/home/curunir/Documents/MASS/Plugins/BuildFiles/build/debug/RootPluginLinker/moc/moc_linkeritem.cpp</li>
+<li>/home/curunir/Documents/MASS/Plugins/Projects/RootPluginLinker/linkeritem.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -202,7 +203,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>unload</b> ()</td></t
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_linker_item.html">LinkerItem</a></li>
-    <li class="footer">Generated on Sat Apr 6 2019 22:51:57 for MASS by
+    <li class="footer">Generated on Sun Apr 7 2019 20:02:57 for MASS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

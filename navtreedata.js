@@ -1,7 +1,11 @@
 var NAVTREE =
 [
   [ "MASS", "index.html", [
-    [ "MASSP-Work-timer", "md__home_curunir__documents__m_a_s_s__plugins__plugins_projects__m_a_s_s_p-_work-timer__r_e_a_d_m_e.html", null ],
+    [ "About", "index.html", [
+      [ "Main idea", "index.html#intro_sec", null ],
+      [ "Exsisting plugins", "index.html#plugins_sec", null ],
+      [ "Project growing", "index.html#contacts_sec", null ]
+    ] ],
     [ "Plugin types", "md__home_curunir__documents__m_a_s_s__plugins__r_e_a_d_m_e.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [
@@ -34,24 +38,24 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"class_gallery_form.html#ac733697191bca916d42a2a2cf8370f29",
-"class_i_plugin_linker_1_1_i_linker_item.html#a940a83c69a054fa68874eb45181df58e",
-"class_main_form.html#af5c793d14da28ffb85334e9788f64756",
-"class_q_c_p_abstract_item.html#a42715ad5f3d7fca6854025fa5636f436",
-"class_q_c_p_axis.html#a7a89df74ba427fac311bf4cc92fbddca",
-"class_q_c_p_axis_ticker.html#ac0c6e9587c36fdeefb5518c00fe7ab15",
-"class_q_c_p_color_map.html#a5d8158b62d55fcfeaabcb68ce0083e87",
-"class_q_c_p_data_selection.html#a7f7526b475998dc0c3d6c376b24736c9",
-"class_q_c_p_item_bracket.html",
-"class_q_c_p_item_text.html#a0be2841772f83663c4db307928b82816",
-"class_q_c_p_layout_grid.html#a36c85a7eaf342680fb9b8a4977486f16",
-"class_q_c_p_range.html#a9fb2e9941d32001482df670c0d704977",
-"class_q_c_p_text_element.html#ad2246a0e701c0655623f048737298334",
-"class_recognition_layer.html#a0a13b30e2eace25d061274ef149fc944",
-"class_ui___form.html#a8b578ed7177cec1f9e4198bacc714a82",
-"functions_func_d.html",
-"struct_q_c_p_axis_painter_private_1_1_cached_label.html#a461597cbd470914a9d24b64d16037a88",
-"structqt__meta__stringdata___q_c_p_line_ending__t.html#afd1b8860d3c0d66e6e4abf54197c47e6"
+"class_gallery_form.html#a35c02818800500003232f66795481e6d",
+"class_i_plugin_linker_1_1_i_linker_item.html#ad2777dc10d3a6cb0fa47d544bdc4e35c",
+"class_output_variable.html#af622b38eccc2b0717527b38005c0eb6e",
+"class_q_c_p_abstract_plottable.html#a8d06a59ea23324cce6330ebf2262c0ed",
+"class_q_c_p_axis_painter_private.html#acbebb1f868906200f968627bc907b77d",
+"class_q_c_p_bars.html#a2a88cd5b16ec7b71e5a590f95b50c5ce",
+"class_q_c_p_curve.html",
+"class_q_c_p_financial.html#afd4b51de5be8e53776b649f9877a50e6",
+"class_q_c_p_item_pixmap.html#a1396cce7f26c7b8e9512906284380c4d",
+"class_q_c_p_layer.html#a704aa71bba469383c3a3c598c1ec0d28",
+"class_q_c_p_legend.html#ab580a01c3c0a239374ed66c29edf5ad2",
+"class_q_c_p_selection_decorator_bracket.html#adb2d0876f25a77c88042b70818f1d6e4",
+"class_q_custom_plot.html#a810ef958ebe84db661c7288b526c0deb",
+"class_u_i_manager.html#a1d07c7a1d8a92e741a05d21a2cb17179",
+"class_view_plugin_base.html",
+"galleryitem_8h_source.html",
+"struct_q_c_p_axis_painter_private_1_1_tick_label_data.html",
+"structqt__meta__stringdata___q_c_p_item_rect__t.html#afa834fc750155dc73e11d8649c4a861f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
