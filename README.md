@@ -2,11 +2,10 @@
 
 #### The main idea of this application is to build a whole application in a modular way - all the application functionality is provided by composing different subsets of plugins, where each plugin should have responsibility over a [s](https://en.wikipedia.org/wiki/Single_responsibility_principle)ingle part of the functionality.
 ## How it works
-Main application which are storing in folder ["/Application"](/Application) loads all plugins from folder ["/Application/Plugins"](/Application/Plugins).
+1. When main [application](/Application) starts it loads all plugins from folder ["/Application/Plugins"](/Application/Plugins).
 
-Among all loaded plugins it searches the one, which inherits interface [ICorePlugin](https://github.com/CurunirCingar/MASS/blob/master/Application/rootinterface.h). If it finds one - it will send all other loaded plugins to it by using AddPlugin(). After all main application calls Run() method.
-
-If plugin implements [ICorePlugin](https://github.com/CurunirCingar/MASS/blob/master/Application/rootinterface.h) interface it should take care of whole system plugins interactions. Here's it's code ([doc](https://curunircingar.github.io/MASS/class_i_core_plugin.html)):
+2. Among all loaded plugins it searches plugin, that inherits interface [ICorePlugin](/Application/icoreplugin.h) ([doc](https://curunircingar.github.io/MASS/class_i_core_plugin.html)). 
+That's how it looks:
 ```cpp
 class ICorePlugin
 {
@@ -19,13 +18,13 @@ protected:
 };
 ```
 
-So, that's all that designed in a non-modular way - everything else contains in plugins :)
+3. If main application finds plugin with ICorePlugin interface - it will send all other loaded plugins to it with addPlugins(). Than main application calls start() and passes reference to core plugin itself and parent QWidget. After that all application behavior controlled by plugins only.
+
+## Development
+All plugins (including core plugin) contains in another repo - https://github.com/CurunirCingar/MASS-Plugins. It's divided from this repo because it's possible to use any plugins set developed by you or any other developer on planet Earth. 
+
+So if you want to read more about already implemented plugins set and how all this stuff works, visit repo mentioned above.
 
 ## Plugins implementation aspect
 All plugins are loaded using [QPluginLoader](http://doc.qt.io/qt-5/qpluginloader.html) and should contain [plugin specific macroses](http://doc.qt.io/qt-5/plugins-howto.html).
-If you're using QtCreator then you can use custom wizard for generating solutions for new plugins - [link](https://github.com/CurunirCingar/MASS/tree/master/Docs/QtCreator%20wizard).
-
-## Development
-All plugins (including core plugin) contains in ["/Plugins"](/Plugins). Description of the plugins-related theme is separated from the current page because theoretically, you could make your own implementation of core plugin.
-
-So if you want to read more about the already implemented architecture of these plugins and how all this stuff works - jump [here](/Plugins).
+If you're using QtCreator then you can use custom wizard for generating solutions for new plugins - [link](https://github.com/CurunirCingar/MASS/tree/master/Resources/QtCreator%20wizard).
