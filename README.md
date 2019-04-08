@@ -1,4 +1,4 @@
-# MASS - Multiple Application Support System
+# MASS - Multi-Application Support System
 
 #### The main idea of this application is to build a whole application in a modular way - all the application functionality is provided by composing different subsets of plugins, where each plugin should have responsibility over a [s](https://en.wikipedia.org/wiki/Single_responsibility_principle)ingle part of the functionality.
 ## How it works
