@@ -17,6 +17,7 @@ SOURCES += main.cpp\
     pluginhandler.cpp
 
 HEADERS  += \
+    iapplication.h \
     parentwindow.h \
     pluginloader.h \
     icoreplugin.h \
@@ -72,13 +73,6 @@ RESOURCES += \
     rsc.qrc
 
 DISTFILES += \
-    android/AndroidManifest.xml \
-    android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradlew \
-    android/res/values/libs.xml \
-    android/build.gradle \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew.bat \
     android/AndroidManifest.xml \
     android/gradle/wrapper/gradle-wrapper.jar \
     android/gradlew \

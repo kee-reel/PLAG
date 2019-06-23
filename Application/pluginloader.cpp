@@ -6,10 +6,9 @@
 
 PluginLoader::PluginLoader(QWidget *parent) :
     QObject(parent),
-    m_corePlugin(nullptr)
+    m_corePluginInstance(nullptr)
 {
     this->m_parent = parent;
-    m_corePluginHandler = nullptr;
 }
 
 PluginLoader::~PluginLoader()
@@ -94,6 +93,30 @@ void PluginLoader::loadFilesFromDirectory(QDir directory, QDir dstDirectory)
     }
 }
 
+QSharedPointer<PluginHandler> PluginLoader::makePluginHandlerPrivate(QString path)
+{
+    if(!QLibrary::isLibrary(path))
+    {
+        qCritical() << QString("PluginLoader: can't load plugin '%1': not a library.").arg(path);
+        return QSharedPointer<PluginHandler>();
+    }
+
+    auto handler = new PluginHandler(path);
+    return QSharedPointer<PluginHandler>(handler);
+}
+
+void PluginLoader::registerPlugin(QSharedPointer<PluginHandler> handler)
+{
+    if(handler->isCorePlugin())
+    {
+        m_corePluginHandlers.append(handler);
+    }
+    else
+    {
+        m_pluginHandlers.append(handler);
+    }
+}
+
 bool PluginLoader::setupPlugins()
 {
     loadPluginsToHome();
@@ -103,7 +126,7 @@ bool PluginLoader::setupPlugins()
 
     foreach (QString file, libsDir.entryList(QDir::Files))
     {
-        setupPlugin(libsDir.absolutePath() + "/" + file);
+        makePluginHandler(libsDir.absolutePath() + "/" + file);
     }
 
     qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
@@ -116,8 +139,8 @@ bool PluginLoader::setupPlugins()
         }
 
         auto instance = plugin.data()->getInstance();
-        auto *corePluginPtr = castToPlugin<ICorePlugin>(instance);
-        if(!corePluginPtr)
+        auto* corePluginInstance = castToPlugin<ICorePlugin>(instance);
+        if(!corePluginInstance)
         {
             qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
             plugin.data()->unload();
@@ -125,10 +148,11 @@ bool PluginLoader::setupPlugins()
         }
 
         m_corePluginHandler = plugin;
+        m_corePluginInstance = corePluginInstance;
         break;
     }
 
-    bool isSetupSucceed = m_corePluginHandler != nullptr;
+    bool isSetupSucceed = m_corePluginInstance != nullptr;
     if(!isSetupSucceed)
     {
         qDebug() << "PluginLoader::setupPlugins: no core plugins loaded, "
@@ -140,47 +164,45 @@ bool PluginLoader::setupPlugins()
 
 void PluginLoader::runCorePlugin()
 {
-    assert(m_corePluginHandler);
+    assert(m_corePluginInstance);
 
+    qDebug() << "PluginLoader::runCorePlugin: starting core plugin." << endl;
+    m_corePluginInstance->coreInit(this);
+}
+
+bool PluginLoader::closePlugins()
+{
+    return m_corePluginInstance->coreFini();
+}
+
+QWidget *PluginLoader::getParentWidget()
+{
+    return m_parent;
+}
+
+QWeakPointer<IPluginHandler> PluginLoader::getCorePlugin()
+{
+    return m_corePluginHandler;
+}
+
+QVector<QWeakPointer<IPluginHandler> > PluginLoader::getPlugins()
+{
     QVector<QWeakPointer<IPluginHandler>> pluginHandlers(m_pluginHandlers.size());
     for(int i = 0; i < m_pluginHandlers.size(); ++i)
     {
         pluginHandlers[i] = QWeakPointer<IPluginHandler>(m_pluginHandlers[i]);
     }
-
-    qDebug() << "PluginLoader::runCorePlugin: starting core plugin." << endl;
-    auto instance = m_corePluginHandler.data()->getInstance();
-    m_corePlugin = castToPlugin<ICorePlugin>(instance);
-    m_corePlugin->addPlugins(pluginHandlers);
-    m_corePlugin->start(m_corePluginHandler, m_parent);
+    return pluginHandlers;
 }
 
-bool PluginLoader::closePlugins()
+QWeakPointer<IPluginHandler> PluginLoader::makePluginHandler(QString path)
 {
-    return m_corePlugin->close();
-}
-
-bool PluginLoader::setupPlugin(QString pluginName)
-{
-    if(!QLibrary::isLibrary(pluginName))
+    auto handler = makePluginHandlerPrivate(path);
+    if(!handler.isNull())
     {
-        qCritical() << QString("PluginLoader: can't load plugin '%1': not a library.").arg(pluginName);
-        return false;
+        registerPlugin(handler);
     }
-
-    auto handler = new PluginHandler(pluginName);
-    auto handlerInterface = QSharedPointer<IPluginHandler>(handler);
-
-    if(handler->isCorePlugin())
-    {
-        m_corePluginHandlers.append(handlerInterface);
-    }
-    else
-    {
-        m_pluginHandlers.append(handlerInterface);
-    }
-
-    return true;
+    return handler;
 }
 
 template <class Type>

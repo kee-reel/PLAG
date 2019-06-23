@@ -11,12 +11,15 @@
 #include <QStandardPaths>
 #include <QtSql>
 
+#include "iapplication.h"
 #include "icoreplugin.h"
 #include "ipluginhandler.h"
 
+class PluginHandler;
+
 //! \brief Loads all files from directory and tries to specify
 //! between them plugin with interface RootModel and initialize it.
-class PluginLoader : QObject
+class PluginLoader : public QObject, public IApplication
 {
     Q_OBJECT
     QString packageName = "com.mass";
@@ -44,23 +47,30 @@ public slots:
     ///
     bool closePlugins();
 
+    // IApplication interface
+public:
+    virtual QWidget *getParentWidget() override;
+    virtual QWeakPointer<IPluginHandler> getCorePlugin() override;
+    virtual QVector<QWeakPointer<IPluginHandler> > getPlugins() override;
+    virtual QWeakPointer<IPluginHandler> makePluginHandler(QString path) override;
+
 private:
     void loadPluginsToHome();
     void loadFilesFromDirectory(QDir directory, QDir dstDirectory);
-    bool setupPlugin(QString pluginName);
+    void registerPlugin(QSharedPointer<PluginHandler> handler);
+    QSharedPointer<PluginHandler> makePluginHandlerPrivate(QString path);
 
     template<class Type>
     Type *castToPlugin(QObject *possiblePlugin);
 
 private:
     QWidget *m_parent;
-    ICorePlugin* m_corePlugin;
-    QSharedPointer<IPluginHandler> m_corePluginHandler;
+    QSharedPointer<PluginHandler> m_corePluginHandler;
+    ICorePlugin* m_corePluginInstance;
 
-    QList<QSharedPointer<IPluginHandler>> m_pluginHandlers;
-    QList<QSharedPointer<IPluginHandler>> m_corePluginHandlers;
+    QList<QSharedPointer<PluginHandler>> m_pluginHandlers;
+    QList<QSharedPointer<PluginHandler>> m_corePluginHandlers;
 
     QDir m_internalPluginsPath;
-
 };
 #endif // PLUGINMANAGER_H

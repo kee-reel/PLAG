@@ -1,10 +1,10 @@
-#ifndef ICOREPLUGIN_H
-#define ICOREPLUGIN_H
+#ifndef IAPPLICATION_H
+#define IAPPLICATION_H
 
 #include <QtGlobal>
 #include <QObject>
 
-#include "iapplication.h"
+#include "ipluginhandler.h"
 
 template <class T>
 class QWeakPointer;
@@ -23,20 +23,20 @@ class QWidget;
 //! When PluginLoader class loads plugins from directory it searchs the plugin which
 //! inherits from ICorePlugin. If it find one - it will send all loaded plugins to it by using AddPlugin()
 //! method.
-class ICorePlugin
+class IApplication
 {
 public:
-    //! \brief Starts plugin work. Some kind of 'start' signal.
-    //! \param This will be parent widget for all widgets in app.
-    virtual void coreInit(IApplication* app) = 0;
+    virtual QWidget* getParentWidget() = 0;
 
-    //! \brief Starts plugin work. Some kind of 'start' signal.
-    //! \param This will be parent widget for all widgets in app.
-    virtual bool coreFini() = 0;
+    virtual QWeakPointer<IPluginHandler> getCorePlugin() = 0;
+
+    virtual QVector<QWeakPointer<IPluginHandler>> getPlugins() = 0;
+
+    virtual QWeakPointer<IPluginHandler> makePluginHandler(QString path) = 0;
 protected:
-    virtual ~ICorePlugin() {}
+    virtual ~IApplication() {}
 };
-Q_DECLARE_INTERFACE(ICorePlugin, "ICorePlugin")
+Q_DECLARE_INTERFACE(IApplication, "IApplication")
 //! \}
-#endif // ICOREPLUGIN_H
+#endif // IAPPLICATION_H
 

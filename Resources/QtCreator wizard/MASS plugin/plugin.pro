@@ -21,4 +21,4 @@ DEFINES += \\
 DISTFILES += \\
     PluginMeta.json
 
-include(../../PluginsCommon/BuildInfo.pri)
+include(../../Common/BuildInfo.pri)

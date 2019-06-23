@@ -6,10 +6,10 @@
 #include <QDebug>
 #include <QString>
 
-#include "../../PluginsCommon/plugin_base.h"
+#include "../../Common/plugin_base.h"
 
 @if %{CreateNewInterface}
-#include "../../PluginsInterfaces/%{IFileName}"
+#include "../../Interfaces/%{IFileName}"
 
 @endif
 //! \addtogroup %{CN}_imp
@@ -23,7 +23,7 @@ class %{CN} :
 @endif
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "TimeKeeper.Module.Test" FILE "PluginMeta.json")
+    Q_PLUGIN_METADATA(IID "MASS.Module.%{CN}" FILE "PluginMeta.json")
     Q_INTERFACES(
         IPlugin
 @if %{CreateNewInterface}
