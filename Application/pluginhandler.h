@@ -9,7 +9,7 @@
 
 class PluginHandler : public IPluginHandler
 {
-    const QString META_DATA_CORE_FLAG = "IsCorePlugin";
+    const QString META_DATA_CORE_FLAG = "isCorePlugin";
 
 public:
     PluginHandler(QString m_filename, QObject *m_parent = nullptr);

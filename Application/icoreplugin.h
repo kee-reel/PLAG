@@ -1,15 +1,7 @@
 #ifndef ICOREPLUGIN_H
 #define ICOREPLUGIN_H
 
-#include <QtGlobal>
-#include <QObject>
-
 #include "iapplication.h"
-
-template <class T>
-class QWeakPointer;
-class QPluginLoader;
-class QWidget;
 
 //!  \defgroup MainApp MainApp
 //!  \defgroup Plugins Plugins

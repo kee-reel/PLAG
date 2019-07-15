@@ -59,7 +59,7 @@ ParentWindow::ParentWindow(QWidget *parent) :
     RegisterNativeMethods();
 #endif
     setWindowIcon(QIcon("://Resources/Logo256.png"));
-    pluginManager = new PluginLoader(this);
+    m_pluginManager = QSharedPointer<PluginLoader>(new PluginLoader(this));
 }
 
 ParentWindow::~ParentWindow()
@@ -68,10 +68,10 @@ ParentWindow::~ParentWindow()
 
 bool ParentWindow::Init()
 {
-    if(pluginManager->setupPlugins())
+    if(m_pluginManager->setupPlugins())
     {
         SetupWidget();
-        pluginManager->runCorePlugin();
+        m_pluginManager->runCorePlugin();
         return true;
     }
     else
@@ -103,7 +103,7 @@ void ParentWindow::resizeEvent(QResizeEvent *event)
 
 void ParentWindow::closeEvent(QCloseEvent *event)
 {
-    bool needToClose = pluginManager->closePlugins();
+    bool needToClose = m_pluginManager->closePlugins();
 
     if(!needToClose)
     {

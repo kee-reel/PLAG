@@ -57,3 +57,7 @@ CMakeLists.txt.user*
 */.qmake.stash
 
 MASSP-*
+
+# Android build
+android-build/
+*.so-deployment-settings.*

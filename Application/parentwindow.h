@@ -29,7 +29,7 @@ private:
     void SetupWidget();
 
 private:
-    PluginLoader *pluginManager;
+    QSharedPointer<PluginLoader> m_pluginManager;
     QVBoxLayout *layout;
     const int MAX_TRIES_TO_CLOSE_APP = 2;
     int triesToCloseApp;
