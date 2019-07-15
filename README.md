@@ -10,15 +10,25 @@ That's how it looks:
 class ICorePlugin
 {
 public:
-    virtual void addPlugins(const QVector<QWeakPointer<IPluginHandler>> &pluginHandlers) = 0;
-    virtual void start(QWeakPointer<IPluginHandler> selfHandler, QWidget *parentWidget) = 0;
-    virtual bool close() = 0;
+    virtual void coreInit(IApplication* app) = 0;
+    virtual bool coreFini() = 0;
 protected:
     virtual ~ICorePlugin() {}
 };
 ```
 
-3. If main application finds plugin with ICorePlugin interface - it will send all other loaded plugins to it with addPlugins(). Than main application calls start() and passes reference to core plugin itself and parent QWidget. After that all application behavior controlled by plugins only.
+3. If main application finds plugin with ICorePlugin interface - it will pass instance that inherits [IApplication](/Application/iapplication.h) interface:
+```cpp
+class IApplication
+{
+public:
+    virtual QWidget* getParentWidget() = 0;
+    virtual QWeakPointer<IPluginHandler> getCorePlugin() = 0;
+    virtual QVector<QWeakPointer<IPluginHandler>> getPlugins() = 0;
+    virtual QWeakPointer<IPluginHandler> makePluginHandler(QString path) = 0;
+};
+```
+to coreInit() method. After that all application behavior controlled by plugins only.
 
 ## Development process
 All plugins (including core plugin) contains in another repo: https://github.com/CurunirCingar/MASS-Plugins. It's divided from this repo because it's possible to use any plugins set developed by you or any other developer on planet Earth. But if you want to read more about already implemented plugins set and how all this stuff works, visit repo mentioned above.
