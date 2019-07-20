@@ -31,7 +31,7 @@ private:
 private:
     QSharedPointer<PluginLoader> m_pluginManager;
     QVBoxLayout *layout;
-    const int MAX_TRIES_TO_CLOSE_APP = 2;
+    const int MAX_TRIES_TO_CLOSE_APP = 1;
     int triesToCloseApp;
 };
 #endif // PARENTWINDOW_H

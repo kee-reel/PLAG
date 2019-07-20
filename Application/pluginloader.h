@@ -66,7 +66,7 @@ private:
 private:
     QWidget *m_parent;
     QSharedPointer<PluginHandler> m_corePluginHandler;
-    ICorePlugin* m_corePluginInstance;
+    ICore* m_corePluginInstance;
 
     QList<QSharedPointer<PluginHandler>> m_pluginHandlers;
     QList<QSharedPointer<PluginHandler>> m_corePluginHandlers;

@@ -50,13 +50,13 @@ target_wrapper.*
 CMakeLists.txt.user*
 
 # Documentation and some staff
-#Docs/Generated/html/*
+Docs/Generated/
 *.db
 
 .directory
 */.qmake.stash
 
-MASSP-*
+MASS-Plugins/
 
 # Android build
 android-build/

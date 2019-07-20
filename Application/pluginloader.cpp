@@ -139,7 +139,7 @@ bool PluginLoader::setupPlugins()
         }
 
         auto instance = plugin.data()->getInstance();
-        auto* corePluginInstance = castToPlugin<ICorePlugin>(instance);
+        auto* corePluginInstance = castToPlugin<ICore>(instance);
         if(!corePluginInstance)
         {
             qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
