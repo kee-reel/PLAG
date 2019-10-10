@@ -100,7 +100,6 @@ void ParentWindow::resizeEvent(QResizeEvent *event)
     layout->setGeometry(QRect(0, 0, event->size().width(), event->size().height()));
 }
 
-
 void ParentWindow::closeEvent(QCloseEvent *event)
 {
     bool needToClose = m_pluginManager->closePlugins();

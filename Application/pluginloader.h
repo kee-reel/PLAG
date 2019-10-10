@@ -50,7 +50,6 @@ public slots:
     // IApplication interface
 public:
     virtual QWidget *getParentWidget() override;
-    virtual QWeakPointer<IPluginHandler> getCorePlugin() override;
     virtual QVector<QWeakPointer<IPluginHandler> > getPlugins() override;
     virtual QWeakPointer<IPluginHandler> makePluginHandler(QString path) override;
 
@@ -67,6 +66,7 @@ private:
     QWidget *m_parent;
     QSharedPointer<PluginHandler> m_corePluginHandler;
     ICore* m_corePluginInstance;
+    uid_t m_uidGeneratorCounter;
 
     QList<QSharedPointer<PluginHandler>> m_pluginHandlers;
     QList<QSharedPointer<PluginHandler>> m_corePluginHandlers;

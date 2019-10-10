@@ -2,10 +2,11 @@
 
 #include <QDebug>
 
-PluginHandler::PluginHandler(QString filename, QObject *parent) :
+PluginHandler::PluginHandler(uid_t uid, QString filename, QObject *parent) :
+    m_uid(uid),
     m_instance(nullptr),
     m_pluginLoader(new QPluginLoader(filename, parent)),
-    m_meta(m_pluginLoader->metaData())
+    m_meta(new QJsonObject(m_pluginLoader->metaData()))
 {
 }
 
@@ -14,9 +15,14 @@ QObject *PluginHandler::getInstance()
     return m_instance;
 }
 
-const QJsonObject &PluginHandler::getMeta()
+QWeakPointer<QJsonObject> PluginHandler::getMeta()
 {
     return m_meta;
+}
+
+uid_t PluginHandler::getUID()
+{
+    return m_uid;
 }
 
 bool PluginHandler::load()
@@ -71,7 +77,7 @@ QString PluginHandler::getLastError()
 
 bool PluginHandler::isCorePlugin()
 {
-    QJsonObject metaData = m_meta.value("MetaData").toObject();
+    QJsonObject metaData = m_meta.data()->value("MetaData").toObject();
 
     if(!metaData.contains(META_DATA_CORE_FLAG))
     {

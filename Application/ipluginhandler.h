@@ -1,9 +1,7 @@
 #ifndef I_PLUGIN_HANDLER_H
 #define I_PLUGIN_HANDLER_H
 
-class QObject;
-class QJsonObject;
-class QString;
+#include <QtCore>
 
 class IPluginHandler
 {
@@ -34,7 +32,12 @@ public:
        @brief Returns meta info of plugin. Available even if plugin not loaded.
        @return Meta info of plugin in JSON format.
      */
-    virtual const QJsonObject &getMeta() = 0;
+    virtual QWeakPointer<QJsonObject> getMeta() = 0;
+    /**
+       @brief Returns unique id of plugin that could be used to identify plugin inside system.
+       @return unique id.
+     */
+    virtual uid_t getUID() = 0;
 };
 
 #endif // I_PLUGIN_HANDLER_H

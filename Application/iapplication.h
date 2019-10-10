@@ -6,11 +6,6 @@
 
 #include "ipluginhandler.h"
 
-template <class T>
-class QWeakPointer;
-class QPluginLoader;
-class QWidget;
-
 //!  \defgroup MainApp MainApp
 //!  \defgroup Plugins Plugins
 
@@ -28,15 +23,10 @@ class IApplication
 public:
     virtual QWidget* getParentWidget() = 0;
 
-    virtual QWeakPointer<IPluginHandler> getCorePlugin() = 0;
-
     virtual QVector<QWeakPointer<IPluginHandler>> getPlugins() = 0;
 
     virtual QWeakPointer<IPluginHandler> makePluginHandler(QString path) = 0;
-protected:
-    virtual ~IApplication() {}
 };
-Q_DECLARE_INTERFACE(IApplication, "IApplication")
+Q_DECLARE_INTERFACE(IApplication, "f6ea01805788fffa5b98c77c5dcccb4243be58dd")
 //! \}
 #endif // IAPPLICATION_H
-

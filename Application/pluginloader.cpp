@@ -6,7 +6,8 @@
 
 PluginLoader::PluginLoader(QWidget *parent) :
     QObject(parent),
-    m_corePluginInstance(nullptr)
+    m_corePluginInstance(nullptr),
+    m_uidGeneratorCounter(0)
 {
     this->m_parent = parent;
 }
@@ -101,7 +102,7 @@ QSharedPointer<PluginHandler> PluginLoader::makePluginHandlerPrivate(QString pat
         return QSharedPointer<PluginHandler>();
     }
 
-    auto handler = new PluginHandler(path);
+    auto handler = new PluginHandler(m_uidGeneratorCounter++, path);
     return QSharedPointer<PluginHandler>(handler);
 }
 
@@ -111,10 +112,7 @@ void PluginLoader::registerPlugin(QSharedPointer<PluginHandler> handler)
     {
         m_corePluginHandlers.append(handler);
     }
-    else
-    {
-        m_pluginHandlers.append(handler);
-    }
+    m_pluginHandlers.append(handler);
 }
 
 bool PluginLoader::setupPlugins()
@@ -178,11 +176,6 @@ bool PluginLoader::closePlugins()
 QWidget *PluginLoader::getParentWidget()
 {
     return m_parent;
-}
-
-QWeakPointer<IPluginHandler> PluginLoader::getCorePlugin()
-{
-    return m_corePluginHandler;
 }
 
 QVector<QWeakPointer<IPluginHandler> > PluginLoader::getPlugins()
