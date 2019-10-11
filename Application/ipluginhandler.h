@@ -39,5 +39,6 @@ public:
      */
     virtual uid_t getUID() = 0;
 };
+typedef QWeakPointer<IPluginHandler> IPluginHandlerPtr;
 
 #endif // I_PLUGIN_HANDLER_H

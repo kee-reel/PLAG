@@ -178,17 +178,17 @@ QWidget *PluginLoader::getParentWidget()
     return m_parent;
 }
 
-QVector<QWeakPointer<IPluginHandler> > PluginLoader::getPlugins()
+QVector<IPluginHandlerPtr > PluginLoader::getPlugins()
 {
-    QVector<QWeakPointer<IPluginHandler>> pluginHandlers(m_pluginHandlers.size());
+    QVector<IPluginHandlerPtr> pluginHandlers(m_pluginHandlers.size());
     for(int i = 0; i < m_pluginHandlers.size(); ++i)
     {
-        pluginHandlers[i] = QWeakPointer<IPluginHandler>(m_pluginHandlers[i]);
+        pluginHandlers[i] = IPluginHandlerPtr(m_pluginHandlers[i]);
     }
     return pluginHandlers;
 }
 
-QWeakPointer<IPluginHandler> PluginLoader::makePluginHandler(QString path)
+IPluginHandlerPtr PluginLoader::makePluginHandler(QString path)
 {
     auto handler = makePluginHandlerPrivate(path);
     if(!handler.isNull())

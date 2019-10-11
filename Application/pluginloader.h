@@ -50,8 +50,8 @@ public slots:
     // IApplication interface
 public:
     virtual QWidget *getParentWidget() override;
-    virtual QVector<QWeakPointer<IPluginHandler> > getPlugins() override;
-    virtual QWeakPointer<IPluginHandler> makePluginHandler(QString path) override;
+    virtual QVector<IPluginHandlerPtr > getPlugins() override;
+    virtual IPluginHandlerPtr makePluginHandler(QString path) override;
 
 private:
     void loadPluginsToHome();
