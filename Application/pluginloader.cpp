@@ -113,6 +113,7 @@ void PluginLoader::registerPlugin(QSharedPointer<PluginHandler> handler)
         m_corePluginHandlers.append(handler);
     }
     m_pluginHandlers.append(handler);
+    m_rawPluginHandlers.append(handler);
 }
 
 bool PluginLoader::setupPlugins()
@@ -160,12 +161,12 @@ bool PluginLoader::setupPlugins()
     return isSetupSucceed;
 }
 
-void PluginLoader::runCorePlugin()
+void PluginLoader::runCorePlugin(QWeakPointer<IApplication> app)
 {
     assert(m_corePluginInstance);
 
     qDebug() << "PluginLoader::runCorePlugin: starting core plugin." << endl;
-    m_corePluginInstance->coreInit(this);
+    m_corePluginInstance->coreInit(app);
 }
 
 bool PluginLoader::closePlugins()
@@ -178,14 +179,9 @@ QWidget *PluginLoader::getParentWidget()
     return m_parent;
 }
 
-QVector<IPluginHandlerPtr > PluginLoader::getPlugins()
+const QVector<IPluginHandlerPtr> &PluginLoader::getPlugins()
 {
-    QVector<IPluginHandlerPtr> pluginHandlers(m_pluginHandlers.size());
-    for(int i = 0; i < m_pluginHandlers.size(); ++i)
-    {
-        pluginHandlers[i] = IPluginHandlerPtr(m_pluginHandlers[i]);
-    }
-    return pluginHandlers;
+    return m_rawPluginHandlers;
 }
 
 IPluginHandlerPtr PluginLoader::makePluginHandler(QString path)

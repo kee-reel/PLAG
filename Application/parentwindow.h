@@ -14,7 +14,7 @@ class ParentWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ParentWindow(QWidget *parent = 0);
+    explicit ParentWindow(QWidget *parent = nullptr);
     virtual ~ParentWindow() override;
 
     // QWidget interface

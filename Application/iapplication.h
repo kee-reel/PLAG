@@ -23,7 +23,7 @@ class IApplication
 public:
     virtual QWidget* getParentWidget() = 0;
 
-    virtual QVector<IPluginHandlerPtr> getPlugins() = 0;
+    virtual const QVector<IPluginHandlerPtr> &getPlugins() = 0;
 
     virtual IPluginHandlerPtr makePluginHandler(QString path) = 0;
 };

@@ -20,7 +20,7 @@ class ICore
 public:
     //! \brief Starts plugin work. Some kind of 'start' signal.
     //! \param This will be parent widget for all widgets in app.
-    virtual void coreInit(IApplication* app) = 0;
+    virtual void coreInit(QWeakPointer<IApplication> app) = 0;
 
     //! \brief Starts plugin work. Some kind of 'start' signal.
     //! \param This will be parent widget for all widgets in app.

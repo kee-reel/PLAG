@@ -71,7 +71,7 @@ bool ParentWindow::Init()
     if(m_pluginManager->setupPlugins())
     {
         SetupWidget();
-        m_pluginManager->runCorePlugin();
+        m_pluginManager->runCorePlugin(m_pluginManager);
         return true;
     }
     else
@@ -84,14 +84,11 @@ void ParentWindow::SetupWidget()
 {
     layout = new QVBoxLayout(this);
     this->setLayout(layout);
+    QScreen *screen = QApplication::primaryScreen();
 #ifdef Q_OS_ANDROID
-    QScreen *screen = QApplication::primaryScreen();
-    this->resize(screen->size().width(),
-                 screen->size().height());
+    this->resize(screen->size().width(), screen->size().height());
 #else
-    QScreen *screen = QApplication::primaryScreen();
-    this->resize(screen->size().width()/3,
-                 screen->size().height()/2);
+    this->resize(screen->size().width()/3, screen->size().height()/2);
 #endif
 }
 

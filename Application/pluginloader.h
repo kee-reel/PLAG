@@ -41,7 +41,7 @@ public slots:
     ///
     /// \brief Calls Run method on selected core plugin.
     ///
-    void runCorePlugin();
+    void runCorePlugin(QWeakPointer<IApplication> app);
     ///
     /// \brief Calls Run method on selected core plugin.
     ///
@@ -50,7 +50,7 @@ public slots:
     // IApplication interface
 public:
     virtual QWidget *getParentWidget() override;
-    virtual QVector<IPluginHandlerPtr > getPlugins() override;
+    virtual const QVector<IPluginHandlerPtr> &getPlugins() override;
     virtual IPluginHandlerPtr makePluginHandler(QString path) override;
 
 private:
@@ -68,8 +68,9 @@ private:
     ICore* m_corePluginInstance;
     uid_t m_uidGeneratorCounter;
 
-    QList<QSharedPointer<PluginHandler>> m_pluginHandlers;
-    QList<QSharedPointer<PluginHandler>> m_corePluginHandlers;
+    QVector<QSharedPointer<PluginHandler>> m_pluginHandlers;
+    QVector<IPluginHandlerPtr> m_rawPluginHandlers;
+    QVector<QSharedPointer<PluginHandler>> m_corePluginHandlers;
 
     QDir m_internalPluginsPath;
 };
