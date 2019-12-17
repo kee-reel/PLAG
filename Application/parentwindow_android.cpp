@@ -1,10 +1,10 @@
 #include "parentwindow.h"
 
 #include <QMessageBox>
-
-#ifdef Q_OS_ANDROID
-#include <QtAndroid>
 #include <QDebug>
+#include <QApplication>
+
+#include <QtAndroid>
 #include <QAndroidJniEnvironment>
 
 void OnAndroidAlarmRecieved(JNIEnv *, jobject)
@@ -49,69 +49,13 @@ void RegisterNativeMethods()
 
     env->DeleteLocalRef(objectClass);
 }
-#endif
 
-ParentWindow::ParentWindow(QWidget *parent) :
-    QWidget(parent),
-    triesToCloseApp(0)
+void ParentWindow::init()
 {
-#ifdef Q_OS_ANDROID
-    RegisterNativeMethods();
-#endif
-    setWindowIcon(QIcon("://Resources/Logo256.png"));
-    m_pluginManager = QSharedPointer<PluginLoader>(new PluginLoader(this));
-}
-
-ParentWindow::~ParentWindow()
-{
-}
-
-bool ParentWindow::Init()
-{
-    if(m_pluginManager->setupPlugins())
-    {
-        SetupWidget();
-        m_pluginManager->runCorePlugin(m_pluginManager);
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-void ParentWindow::SetupWidget()
-{
+	RegisterNativeMethods();
+	
     layout = new QVBoxLayout(this);
     this->setLayout(layout);
     QScreen *screen = QApplication::primaryScreen();
-#ifdef Q_OS_ANDROID
-    this->resize(screen->size().width(), screen->size().height());
-#else
-    this->resize(screen->size().width()/3, screen->size().height()/2);
-#endif
-}
-
-void ParentWindow::resizeEvent(QResizeEvent *event)
-{
-    layout->setGeometry(QRect(0, 0, event->size().width(), event->size().height()));
-}
-
-void ParentWindow::closeEvent(QCloseEvent *event)
-{
-    bool needToClose = m_pluginManager->closePlugins();
-
-    if(!needToClose)
-    {
-        needToClose = ++triesToCloseApp >= MAX_TRIES_TO_CLOSE_APP;
-    }
-
-    if(needToClose)
-    {
-        event->accept();
-    }
-    else
-    {
-        event->ignore();
-    }
+	this->resize(screen->size().width(), screen->size().height());
 }

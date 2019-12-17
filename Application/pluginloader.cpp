@@ -1,112 +1,41 @@
 #include "pluginloader.h"
 
 #include <QMessageBox>
+#include <QDesktopServices>
+#include <utility>
 
 #include "pluginhandler.h"
 
-PluginLoader::PluginLoader(QWidget *parent) :
-	QObject(parent),
+const auto PLUGINS_DIR_NAME = QStringLiteral("Plugins");
+
+PluginLoader::PluginLoader(QWidget *parentWidget) :
+	m_parentWidget(parentWidget),
+	m_pluginsPath(QStringLiteral("%1/%2/").arg(QDir::currentPath()).arg(PLUGINS_DIR_NAME)),
 	m_corePluginInstance(nullptr),
 	m_uidGeneratorCounter(0)
 {
-	this->m_parent = parent;
 }
 
-PluginLoader::~PluginLoader()
+void PluginLoader::setup()
 {
-}
-
-void PluginLoader::loadPluginsToHome()
-{
-//    qDebug() << "PluginLoader::loadPluginsToHome: home path:" << QDir::homePath() << endl <<
-//             "PluginLoader::loadPluginsToHome: root path:" << QDir::rootPath() << endl <<
-//             "PluginLoader::loadPluginsToHome: current path:" << QDir::currentPath() << endl <<
-//             "PluginLoader::loadPluginsToHome: temp path:" << QDir::tempPath();
-	m_internalPluginsPath = QDir(QString("%1/%2/").arg(QDir::currentPath()).arg(pluginsSubdirName));
-	QApplication::addLibraryPath(m_internalPluginsPath.absolutePath());
-//    qDebug() << "PluginLoader::loadPluginsToHome: library paths:" << QApplication::libraryPaths();
-	//TODO: DT entry
-#ifdef Q_OS_ANDROID
-
-	QDir storageDirectoryPath("/storage/emulated/0/Android/data/" + packageName);
-
-	if(!m_internalPluginsPath.exists())
+	if(initPlugins())
 	{
-		m_internalPluginsPath.mkdir(m_internalPluginsPath.absolutePath());
+		Q_EMIT readyToStart();
 	}
-
-	if(!storageDirectoryPath.exists())
+	else
 	{
-		storageDirectoryPath.mkdir(storageDirectoryPath.absolutePath());
-	}
-
-	qDebug() << "Storage:" << storageDirectoryPath.absolutePath() << endl << storageDirectoryPath.entryList(
-	             QDir::AllEntries);
-	qDebug() << "Internal:" << m_internalPluginsPath.absolutePath() << endl << m_internalPluginsPath.entryList(
-	             QDir::AllEntries);
-	loadFilesFromDirectory(storageDirectoryPath, m_internalPluginsPath);
-
-	for(QString dirPath : storageDirectoryPath.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
-	{
-		QDir subDir(storageDirectoryPath.absolutePath() + "/" + dirPath);
-		QDir dstSubDir(m_internalPluginsPath.absolutePath() + "/" + dirPath);
-
-		if(!dstSubDir.exists())
+		int res = QMessageBox::question(m_parentWidget, QStringLiteral("No plugins"), 
+										QStringLiteral("No required plugins found in directory %1. Open wiki page with more information?")
+										.arg(m_pluginsPath.absolutePath()));
+		if(res == QMessageBox::Yes)
 		{
-			qDebug() << "Needs to create" << subDir.absolutePath();
-			dstSubDir.mkdir(dstSubDir.absolutePath());
+			QDesktopServices::openUrl(QUrl(QStringLiteral("https://gitlab.com/c4rb0n_un1t/MASS/wikis/home"), QUrl::TolerantMode));
 		}
-
-		loadFilesFromDirectory(subDir, dstSubDir);
-	}
-
-#endif
-}
-
-void PluginLoader::loadFilesFromDirectory(QDir directory, QDir dstDirectory)
-{
-	qDebug() << "LoadFilesFromDirectory" << directory.absolutePath() << endl << directory.entryList(QDir::Files);
-	QFile fileToCopy;
-	QFile existingFile;
-
-	for(QString file : directory.entryList(QDir::Files))
-	{
-		qDebug() << "File" << file;
-		// If internal file already exists - delete it
-		existingFile.setFileName(dstDirectory.absolutePath() + "/" + file);
-
-		if(existingFile.exists())
-		{
-			qDebug() << "Already exists. Overriding.";
-			existingFile.remove();
-		}
-
-		// Copy storage file to internal storage
-		QDir storagePluginPath(directory.absolutePath() + "/" + file);
-		fileToCopy.setFileName(storagePluginPath.absolutePath());
-		fileToCopy.open(QIODevice::ReadOnly);
-		fileToCopy.copy(dstDirectory.absolutePath() + "/" + file);
-		fileToCopy.close();
-		//        qDebug() << fileToCopy.remove();
-		//        qDebug() << storagePluginPath.absolutePath() << fileToCopy.isOpen() << fileToCopy.errorString();
-		//        qDebug() << internalPluginsPath.absolutePath() + file << fileToCopy.errorString();
-		fileToCopy.close();
+		Q_EMIT startFailed();
 	}
 }
 
-QSharedPointer<PluginHandler> PluginLoader::makePluginHandlerPrivate(QString path)
-{
-	if(!QLibrary::isLibrary(path))
-	{
-		qCritical() << QString("PluginLoader: can't load plugin '%1': not a library.").arg(path);
-		return QSharedPointer<PluginHandler>();
-	}
-
-	auto handler = new PluginHandler(m_uidGeneratorCounter++, path);
-	return QSharedPointer<PluginHandler>(handler);
-}
-
-void PluginLoader::registerPlugin(QSharedPointer<PluginHandler> handler)
+void PluginLoader::registerPlugin(const QSharedPointer<PluginHandler>& handler)
 {
 	if(handler->isCorePlugin())
 	{
@@ -116,66 +45,58 @@ void PluginLoader::registerPlugin(QSharedPointer<PluginHandler> handler)
 	m_rawPluginHandlers.append(handler);
 }
 
-bool PluginLoader::setupPlugins()
+bool PluginLoader::initPlugins()
 {
-	loadPluginsToHome();
-	QDir libsDir(m_internalPluginsPath);
-//	qDebug() << "PluginLoader::setupPlugins: loading plugins by path:" << libsDir.absolutePath();
-	QApplication::addLibraryPath(m_internalPluginsPath.absolutePath());
-
-	foreach (QString file, libsDir.entryList(QDir::Files))
+	QDir libsDir(m_pluginsPath);
+	//	qDebug() << "PluginLoader::setupPlugins: loading plugins by path:" << libsDir.absolutePath();
+	QApplication::addLibraryPath(m_pluginsPath.absolutePath());
+	
+	Q_FOREACH (QString file, libsDir.entryList(QDir::Files))
 	{
 		makePluginHandler(libsDir.absolutePath() + "/" + file);
 	}
-
-//	qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
-
-	for(const auto& plugin : m_corePluginHandlers)
+	
+	//	qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
+	
+	for(const auto& plugin : qAsConst(m_corePluginHandlers))
 	{
 		if(!plugin.data()->load())
 		{
 			continue;
 		}
-
+		
 		auto instance = plugin.data()->getInstance();
 		auto* corePluginInstance = castToPlugin<ICore>(instance);
 		if(!corePluginInstance)
 		{
-//			qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
+			//qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
 			plugin.data()->unload();
 			continue;
 		}
-
+		
 		m_corePluginHandler = plugin;
 		m_corePluginInstance = corePluginInstance;
 		break;
 	}
-
-	bool isSetupSucceed = m_corePluginInstance != nullptr;
-	if(!isSetupSucceed)
-	{
-		qDebug() << "PluginLoader::setupPlugins: no core plugins loaded, application can't be started without core plugin.";
-	}
-
-	return isSetupSucceed;
+	
+	return m_corePluginInstance != nullptr;
 }
 
-void PluginLoader::runCorePlugin(QWeakPointer<IApplication> app)
+void PluginLoader::start(QWeakPointer<IApplication> app)
 {
-	assert(m_corePluginInstance);
-
-//	qDebug() << "PluginLoader::runCorePlugin: starting core plugin." << endl;
-	m_corePluginInstance->coreInit(app);
+	Q_ASSERT(m_corePluginInstance);
+	//	qDebug() << "PluginLoader::runCorePlugin: starting core plugin." << endl;
+	m_corePluginInstance->coreInit(std::move(app));
 }
 
-bool PluginLoader::closePlugins()
+bool PluginLoader::stop()
 {
 	return m_corePluginInstance->coreFini();
 }
 
 QWidget *PluginLoader::getParentWidget()
 {
-	return m_parent;
+	return m_parentWidget;
 }
 
 const QVector<IPluginHandlerPtr> &PluginLoader::getPlugins()
@@ -183,11 +104,12 @@ const QVector<IPluginHandlerPtr> &PluginLoader::getPlugins()
 	return m_rawPluginHandlers;
 }
 
-IPluginHandlerPtr PluginLoader::makePluginHandler(QString path)
+IPluginHandlerPtr PluginLoader::makePluginHandler(const QString &path)
 {
-	auto handler = makePluginHandlerPrivate(path);
+	auto handler = PluginHandler::make(m_uidGeneratorCounter, path);
 	if(!handler.isNull())
 	{
+		++m_uidGeneratorCounter;
 		registerPlugin(handler);
 	}
 	return handler;
@@ -197,11 +119,11 @@ template <class Type>
 Type *PluginLoader::castToPlugin(QObject *possiblePlugin)
 {
 	Type *plugin = qobject_cast<Type *>(possiblePlugin);
-
+	
 	if(!plugin)
 	{
 		qDebug() << "PluginLoader::castToPlugin: can't cast the plugin " << possiblePlugin->objectName() << ": wrong type.";
 	}
-
+	
 	return plugin;
 }

@@ -7,7 +7,6 @@ class IPluginHandler
 {
 	// IPlugin interface
 public:
-	virtual ~IPluginHandler() = default;
 	/**
 	   @brief Load plugin and make it available at Instance() method.
 	   @return Is load succeeed. If not error message became available at GetLastError().
@@ -38,8 +37,11 @@ public:
 	   @return unique id.
 	 */
 	virtual uid_t getUID() = 0;
+
+protected:
+	virtual ~IPluginHandler() = default;
 };
-typedef QWeakPointer<IPluginHandler> IPluginHandlerPtr;
+using IPluginHandlerPtr = QWeakPointer<IPluginHandler>;
 
 
 #endif // I_PLUGIN_HANDLER_H

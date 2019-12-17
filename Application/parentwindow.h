@@ -6,8 +6,9 @@
 #include <QPainter>
 #include <QResizeEvent>
 #include <QVBoxLayout>
+#include <QLabel>
 
-#include "pluginloader.h"
+class PluginLoader;
 
 //! \brief Main application widget class.
 class ParentWindow : public QWidget
@@ -15,23 +16,23 @@ class ParentWindow : public QWidget
     Q_OBJECT
 public:
     explicit ParentWindow(QWidget *parent = nullptr);
-    virtual ~ParentWindow() override;
 
     // QWidget interface
 protected:
-    virtual void resizeEvent(QResizeEvent* event) override;
-    virtual void closeEvent(QCloseEvent *event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 public:
-    bool Init();
+    void start();
 
 private:
-    void SetupWidget();
+    void init();
+
+private Q_SLOTS:
+	void onReadyToStart();
+	void onStartFailed();
 
 private:
     QSharedPointer<PluginLoader> m_pluginManager;
-    QVBoxLayout *layout;
-    const int MAX_TRIES_TO_CLOSE_APP = 1;
-    int triesToCloseApp;
+    QVBoxLayout *layout{nullptr};
 };
 #endif // PARENTWINDOW_H

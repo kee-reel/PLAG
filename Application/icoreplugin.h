@@ -26,7 +26,7 @@ public:
     //! \param This will be parent widget for all widgets in app.
     virtual bool coreFini() = 0;
 protected:
-    virtual ~ICore() {}
+	virtual ~ICore() = default;
 };
 Q_DECLARE_INTERFACE(ICore, "ICore")
 //! \}

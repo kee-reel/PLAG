@@ -88,8 +88,11 @@ public class QtActivityExtention extends QtActivity
 
     public static void cancelAlarm() {
         Log.i(TAG, "cancelAlarm");
-        AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
-        manager.cancel(pendingIntent);
+        if(pendingIntent != null)
+        {
+			AlarmManager manager = (AlarmManager)instance.getSystemService(Context.ALARM_SERVICE);
+			manager.cancel(pendingIntent);
+        }
     }
 
     public static void processAlarm() {

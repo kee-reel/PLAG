@@ -1,13 +1,31 @@
 #include "pluginhandler.h"
 
 #include <QDebug>
+#include <utility>
 
-PluginHandler::PluginHandler(uid_t uid, QString filename, QObject *parent) :
+PluginHandler::PluginHandler(uid_t uid, QSharedPointer<QPluginLoader> pluginLoader) :
     m_uid(uid),
     m_instance(nullptr),
-    m_pluginLoader(new QPluginLoader(filename, parent)),
+    m_pluginLoader(std::move(pluginLoader)),
     m_meta(new QJsonObject(m_pluginLoader->metaData()))
 {
+}
+
+QSharedPointer<PluginHandler> PluginHandler::make(uid_t uid, const QString& filename)
+{
+	if(!QLibrary::isLibrary(filename))
+	{
+		qDebug() << QStringLiteral("PluginLoader: can't load plugin '%1': not a library.").arg(filename);
+		return nullptr;
+	}
+	
+	QSharedPointer<QPluginLoader> pluginLoader(new QPluginLoader(filename));
+	if(pluginLoader->isLoaded())
+	{
+		qDebug() << QStringLiteral("PluginLoader: can't load plugin '%1': already loaded.").arg(filename);
+		return nullptr;
+	}
+	return QSharedPointer<PluginHandler>(new PluginHandler(uid, pluginLoader));
 }
 
 QObject *PluginHandler::getInstance()
@@ -34,8 +52,7 @@ bool PluginHandler::load()
 
     if(!m_pluginLoader->load())
     {
-        m_lastError = QString("Can't load the plugin %1. Error: %2")
-                      .arg(m_pluginLoader->fileName()).arg(m_pluginLoader->errorString());
+        m_lastError = QStringLiteral("Can't load the plugin %1. Error: %2").arg(m_pluginLoader->fileName(), m_pluginLoader->errorString());
         qDebug() << m_lastError;
         return false;
     }
@@ -44,8 +61,7 @@ bool PluginHandler::load()
 
     if(!possiblePlugin)
     {
-        m_lastError = QString("Can't load the plugin %1: not a plugin. Error: %2")
-                      .arg(m_pluginLoader->fileName()).arg(m_pluginLoader->errorString());
+        m_lastError = QStringLiteral("Can't load the plugin %1: not a plugin. Error: %2").arg(m_pluginLoader->fileName(), m_pluginLoader->errorString());
         qCritical() << m_lastError;
 
         unload();
@@ -60,8 +76,7 @@ bool PluginHandler::unload()
 {
     if(!m_pluginLoader->unload())
     {
-        m_lastError = QString("Can't unload the plugin %1. Error: %2")
-                      .arg(m_pluginLoader->fileName()).arg(m_pluginLoader->errorString());
+        m_lastError = QStringLiteral("Can't unload the plugin %1. Error: %2").arg(m_pluginLoader->fileName(), m_pluginLoader->errorString());
         qCritical() << m_lastError;
         return false;
     }
@@ -77,7 +92,7 @@ QString PluginHandler::getLastError()
 
 bool PluginHandler::isCorePlugin()
 {
-    QJsonObject metaData = m_meta.data()->value("MetaData").toObject();
+    QJsonObject metaData = m_meta.data()->value(QStringLiteral("MetaData")).toObject();
 
     if(!metaData.contains(META_DATA_CORE_FLAG))
     {

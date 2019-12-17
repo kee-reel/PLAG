@@ -11,18 +11,30 @@ TEMPLATE = app
 
 include(common.pri)
 
-SOURCES += main.cpp\
-    parentwindow.cpp \
-    pluginloader.cpp \
-    pluginhandler.cpp
+SOURCES += main.cpp \
+    parentwindow_common.cpp \
+    pluginhandler.cpp \
+    pluginloader.cpp
+
+android {
+SOURCES += \
+	parentwindow_android.cpp \
+	pluginloader_android.cpp
+HEADERS += pluginloader_android.h
+} else {
+SOURCES += parentwindow_pc.cpp
+}
 
 HEADERS  += \
     iapplication.h \
+    icoreplugin.h \
+    ipluginhandler.h \
     parentwindow.h \
     pluginloader.h \
-    icoreplugin.h \
-    pluginhandler.h \
-    ipluginhandler.h
+    pluginhandler.h
+
+RESOURCES += \
+    rsc.qrc
 
 android {
     QT += androidextras
@@ -68,15 +80,3 @@ android {
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 }
-
-RESOURCES += \
-    rsc.qrc
-
-DISTFILES += \
-    android/AndroidManifest.xml \
-    android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradlew \
-    android/res/values/libs.xml \
-    android/build.gradle \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew.bat

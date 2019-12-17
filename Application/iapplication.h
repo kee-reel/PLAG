@@ -21,11 +21,11 @@
 class IApplication
 {
 public:
-    virtual QWidget* getParentWidget() = 0;
-
-    virtual const QVector<IPluginHandlerPtr> &getPlugins() = 0;
-
-    virtual IPluginHandlerPtr makePluginHandler(QString path) = 0;
+	virtual QWidget* getParentWidget() = 0;
+	
+	virtual const QVector<IPluginHandlerPtr> &getPlugins() = 0;
+	
+	virtual IPluginHandlerPtr makePluginHandler(const QString &path) = 0;
 };
 Q_DECLARE_INTERFACE(IApplication, "f6ea01805788fffa5b98c77c5dcccb4243be58dd")
 //! \}
