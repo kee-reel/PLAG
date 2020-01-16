@@ -92,7 +92,7 @@ QString PluginHandler::getLastError()
 
 bool PluginHandler::isCorePlugin()
 {
-    QJsonObject metaData = m_meta.data()->value(QStringLiteral("MetaData")).toObject();
+    QJsonObject metaData = m_meta->value(QStringLiteral("MetaData")).toObject();
 
     if(!metaData.contains(META_DATA_CORE_FLAG))
     {

@@ -60,17 +60,17 @@ bool PluginLoader::initPlugins()
 	
 	for(const auto& plugin : qAsConst(m_corePluginHandlers))
 	{
-		if(!plugin.data()->load())
+		if(!plugin->load())
 		{
 			continue;
 		}
 		
-		auto instance = plugin.data()->getInstance();
+		auto instance = plugin->getInstance();
 		auto* corePluginInstance = castToPlugin<ICore>(instance);
 		if(!corePluginInstance)
 		{
 			//qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
-			plugin.data()->unload();
+			plugin->unload();
 			continue;
 		}
 		
