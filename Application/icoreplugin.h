@@ -28,7 +28,7 @@ public:
 protected:
 	virtual ~ICore() = default;
 };
-Q_DECLARE_INTERFACE(ICore, "ICore")
+Q_DECLARE_INTERFACE(ICore, "ICore/1.0")
 //! \}
 #endif // ICOREPLUGIN_H
 

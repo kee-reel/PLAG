@@ -31,5 +31,7 @@ INCLUDEPATH += $${IMPORT_PATH}
 # Включаем С++11 для всех платформ
 CONFIG += c++11
 
-QMAKE_CXXFLAGS += -rdynamic
+!win32 {
+    QMAKE_CXXFLAGS += -rdynamic
+}
 QMAKE_CXXFLAGS += -D__GXX_MERGED_TYPEINFO_NAMES

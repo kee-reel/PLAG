@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <utility>
 
-PluginHandler::PluginHandler(uid_t uid, QSharedPointer<QPluginLoader> pluginLoader) :
+PluginHandler::PluginHandler(quint32 uid, QSharedPointer<QPluginLoader> pluginLoader) :
     m_uid(uid),
     m_instance(nullptr),
     m_pluginLoader(std::move(pluginLoader)),
@@ -11,7 +11,7 @@ PluginHandler::PluginHandler(uid_t uid, QSharedPointer<QPluginLoader> pluginLoad
 {
 }
 
-QSharedPointer<PluginHandler> PluginHandler::make(uid_t uid, const QString& filename)
+QSharedPointer<PluginHandler> PluginHandler::make(quint32 uid, const QString& filename)
 {
 	if(!QLibrary::isLibrary(filename))
 	{
@@ -38,7 +38,7 @@ QWeakPointer<QJsonObject> PluginHandler::getMeta()
     return m_meta;
 }
 
-uid_t PluginHandler::getUID()
+quint32 PluginHandler::getUID()
 {
     return m_uid;
 }

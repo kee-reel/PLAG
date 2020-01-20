@@ -13,11 +13,11 @@ class PluginHandler : public IPluginHandler
 {
 	Q_DISABLE_COPY(PluginHandler)
 private:
-	PluginHandler(uid_t uid, QSharedPointer<QPluginLoader> pluginLoader);
+	PluginHandler(quint32 uid, QSharedPointer<QPluginLoader> pluginLoader);
 
 public:
 	~PluginHandler() override = default;
-	static QSharedPointer<PluginHandler> make(uid_t uid, const QString& m_filename);
+	static QSharedPointer<PluginHandler> make(quint32 uid, const QString& m_filename);
 
 	// IPlugin interface
 	public:
@@ -26,7 +26,7 @@ public:
 	QString getLastError() override;
 	QObject *getInstance() override;
 	QWeakPointer<QJsonObject> getMeta() override;
-	uid_t getUID() override;
+	quint32 getUID() override;
 	/**
 	   @brief Flag that indicates that plugin meta says that it is core plugin.
 	   @return Is this core plugin.
@@ -34,7 +34,7 @@ public:
 	bool isCorePlugin();
 	
 private:
-	uid_t m_uid;
+	quint32 m_uid;
 	QObject *m_instance;
 	QSharedPointer<QPluginLoader> m_pluginLoader;
 	QSharedPointer<QJsonObject> m_meta;

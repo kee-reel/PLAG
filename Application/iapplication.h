@@ -27,6 +27,6 @@ public:
 	
 	virtual IPluginHandlerPtr makePluginHandler(const QString &path) = 0;
 };
-Q_DECLARE_INTERFACE(IApplication, "f6ea01805788fffa5b98c77c5dcccb4243be58dd")
+Q_DECLARE_INTERFACE(IApplication, "IApplication/1.0")
 //! \}
 #endif // IAPPLICATION_H

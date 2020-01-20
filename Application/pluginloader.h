@@ -55,7 +55,7 @@ private:
 	QDir m_pluginsPath;
 	QSharedPointer<PluginHandler> m_corePluginHandler;
 	ICore* m_corePluginInstance;
-	uid_t m_uidGeneratorCounter;
+	quint32 m_uidGeneratorCounter;
 	
 	QVector<QSharedPointer<PluginHandler>> m_pluginHandlers;
 	QVector<IPluginHandlerPtr> m_rawPluginHandlers;

@@ -36,7 +36,7 @@ public:
 	   @brief Returns unique id of plugin that could be used to identify plugin inside system.
 	   @return unique id.
 	 */
-	virtual uid_t getUID() = 0;
+        virtual quint32 getUID() = 0;
 
 protected:
 	virtual ~IPluginHandler() = default;
