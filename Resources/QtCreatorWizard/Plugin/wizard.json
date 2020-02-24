@@ -158,6 +158,21 @@
                     "source": "plugin.pro",
                     "target": "%{Path}/%{CN}.pro",
                     "openAsProject": true
+                },
+                {
+                    "source": "form.ui",
+                    "target": "%{Path}/form.ui",
+                    "condition": "%{JS: '%{PluginType}' == 'QWidget')}"
+                },
+                {
+                    "source": "form.qml",
+                    "target": "%{Path}/form.qml",
+                    "condition": "%{JS: '%{PluginType}' == 'QWidget with QML')}"
+                },
+                {
+                    "source": "res.qrc",
+                    "target": "%{Path}/res.qrc",
+                    "condition": "%{JS: '%{PluginType}' == 'QWidget with QML')}"
                 }
             ]
         }

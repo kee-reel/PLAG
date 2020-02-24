@@ -1,0 +1,18 @@
+{
+	"iplugin": {
+		"interfaces": [
+		"IPlugin/1.0"
+@if '%{PluginType}' === 'QWidget' || '%{PluginType}' === 'QWidget with QML'
+		, "IUIElement/1.0"
+@endif
+@if %{CreateNewInterface}
+		, "%{InterfaceName}/1.0"
+@endif
+		],
+		"references": {},
+		"info": {
+			"name": "%{CN}",
+			"about": ""
+		}
+	}
+}

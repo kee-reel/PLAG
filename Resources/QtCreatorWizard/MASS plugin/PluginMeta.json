@@ -1,6 +1,0 @@
-{
-    "Interface": "%{InterfaceName}",
-    "Name": "%{CN}",
-    "RelatedPluginInterfaces": [
-    ]
-}
