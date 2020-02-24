@@ -27,7 +27,7 @@ SOURCES += parentwindow_pc.cpp
 
 HEADERS  += \
     iapplication.h \
-    icoreplugin.h \
+    icore.h \
     ipluginhandler.h \
     parentwindow.h \
     pluginloader.h \

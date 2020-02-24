@@ -1,5 +1,5 @@
-#ifndef ICOREPLUGIN_H
-#define ICOREPLUGIN_H
+#ifndef ICORE_H
+#define ICORE_H
 
 #include "iapplication.h"
 
@@ -13,7 +13,7 @@
 //! \details This interface represents most significant plugin in whole system. If plugin implements this
 //! interface it should take care of whole system plugins interactions.
 //! When PluginLoader class loads plugins from directory it searchs the plugin which
-//! inherits from ICorePlugin. If it find one - it will send all loaded plugins to it by using AddPlugin()
+//! inherits from ICore. If it find one - it will send all loaded plugins to it by using AddPlugin()
 //! method.
 class ICore
 {
@@ -30,5 +30,5 @@ protected:
 };
 Q_DECLARE_INTERFACE(ICore, "ICore/1.0")
 //! \}
-#endif // ICOREPLUGIN_H
+#endif // ICORE_H
 

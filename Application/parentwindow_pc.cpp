@@ -11,5 +11,5 @@ void ParentWindow::init()
     this->setLayout(layout);
     QScreen *screen = QApplication::primaryScreen();
 //    this->resize(screen->size().width()/3, screen->size().height()/2);
-	this->resize(1600, 700);
+	this->resize(540, 960);
 }

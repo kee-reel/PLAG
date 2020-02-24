@@ -12,7 +12,7 @@
 #include <QtSql>
 
 #include "iapplication.h"
-#include "icoreplugin.h"
+#include "icore.h"
 #include "ipluginhandler.h"
 
 class PluginHandler;

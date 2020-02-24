@@ -5,7 +5,6 @@
 
 class IPluginHandler
 {
-	// IPlugin interface
 public:
 	/**
 	   @brief Load plugin and make it available at Instance() method.
