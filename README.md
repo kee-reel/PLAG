@@ -57,4 +57,3 @@ All plugins (including core plugin) contains in another repo: https://gitlab.com
 
 ## Considerable plugins implementation aspect
 All plugins are loaded using [QPluginLoader](http://doc.qt.io/qt-5/qpluginloader.html) and should contain [plugin specific macroses](http://doc.qt.io/qt-5/plugins-howto.html).
-If you're using QtCreator then you can use custom wizard for generating solutions for new plugins - [link](/Resources/QtCreator%20wizard).
