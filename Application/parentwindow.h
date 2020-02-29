@@ -1,5 +1,5 @@
-#ifndef PARENTWINDOW_H
-#define PARENTWINDOW_H
+#pragma once
+
 
 #include <QWidget>
 #include <QScreen>
@@ -35,4 +35,4 @@ private:
     QSharedPointer<PluginLoader> m_pluginManager;
     QVBoxLayout *layout{nullptr};
 };
-#endif // PARENTWINDOW_H
+

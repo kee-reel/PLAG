@@ -1,5 +1,5 @@
-#ifndef I_PLUGIN_HANDLER_H
-#define I_PLUGIN_HANDLER_H
+#pragma once
+
 
 #include <QtCore>
 
@@ -43,4 +43,4 @@ protected:
 using IPluginHandlerPtr = QWeakPointer<IPluginHandler>;
 
 
-#endif // I_PLUGIN_HANDLER_H
+

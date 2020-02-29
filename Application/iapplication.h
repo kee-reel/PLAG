@@ -1,5 +1,5 @@
-#ifndef IAPPLICATION_H
-#define IAPPLICATION_H
+#pragma once
+
 
 #include <QtGlobal>
 #include <QObject>
@@ -31,4 +31,4 @@ protected:
 };
 Q_DECLARE_INTERFACE(IApplication, "IApplication/1.0")
 //! \}
-#endif // IAPPLICATION_H
+

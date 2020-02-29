@@ -1,5 +1,5 @@
-#ifndef PLUGIN_H
-#define PLUGIN_H
+#pragma once
+
 
 #include <QFile>
 #include <QPluginLoader>
@@ -41,4 +41,4 @@ private:
 	QString m_lastError;
 };
 
-#endif // PLUGIN_H
+

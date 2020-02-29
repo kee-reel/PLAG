@@ -1,5 +1,5 @@
-#ifndef PLUGINMANAGER_H
-#define PLUGINMANAGER_H
+#pragma once
+
 
 #include <QApplication>
 #include <QDebug>
@@ -61,4 +61,4 @@ private:
 	QVector<IPluginHandlerPtr> m_rawPluginHandlers;
 	QVector<QSharedPointer<PluginHandler>> m_corePluginHandlers;
 };
-#endif // PLUGINMANAGER_H
+

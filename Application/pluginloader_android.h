@@ -1,5 +1,5 @@
-#ifndef PLUGINMANAGERANDROID_H
-#define PLUGINMANAGERANDROID_H
+#pragma once
+
 
 #include "pluginloader.h"
 
@@ -28,4 +28,4 @@ private:
 private:
 	QDir m_publicStorageDirectory;
 };
-#endif // PLUGINMANAGERANDROID_H
+

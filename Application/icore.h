@@ -1,5 +1,5 @@
-#ifndef ICORE_H
-#define ICORE_H
+#pragma once
+
 
 #include "iapplication.h"
 
@@ -30,5 +30,5 @@ protected:
 };
 Q_DECLARE_INTERFACE(ICore, "ICore/1.0")
 //! \}
-#endif // ICORE_H
+
 
