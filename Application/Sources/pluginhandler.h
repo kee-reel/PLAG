@@ -5,7 +5,7 @@
 #include <QPluginLoader>
 #include <QtGlobal>
 
-#include "ipluginhandler.h"
+#include "../Interfaces/ipluginhandler.h"
 
 const QString META_DATA_CORE_FLAG = QStringLiteral("isCorePlugin");
 

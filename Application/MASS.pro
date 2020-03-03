@@ -11,30 +11,34 @@ TEMPLATE = app
 
 include(common.pri)
 
-SOURCES += main.cpp \
-    parentwindow_common.cpp \
-    pluginhandler.cpp \
-    pluginloader.cpp
+SOURCES += \
+	Sources/main.cpp \
+    Sources/parentwindow_common.cpp \
+    Sources/pluginhandler.cpp \
+    Sources/pluginloader.cpp
 
 android {
 SOURCES += \
-	parentwindow_android.cpp \
-	pluginloader_android.cpp
-HEADERS += pluginloader_android.h
+	Sources/parentwindow_android.cpp \
+	Sources/pluginloader_android.cpp
+	
+HEADERS += \
+	Sources/pluginloader_android.h
 } else {
-SOURCES += parentwindow_pc.cpp
+SOURCES += \
+	Sources/parentwindow_pc.cpp
 }
 
 HEADERS  += \
-    iapplication.h \
-    icore.h \
-    ipluginhandler.h \
-    parentwindow.h \
-    pluginloader.h \
-    pluginhandler.h
+    Interfaces/iapplication.h \
+    Interfaces/icore.h \
+    Interfaces/ipluginhandler.h \
+    Sources/parentwindow.h \
+    Sources/pluginloader.h \
+    Sources/pluginhandler.h
 
 RESOURCES += \
-    rsc.qrc
+    Resources/rsc.qrc
 
 android {
     QT += androidextras

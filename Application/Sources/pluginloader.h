@@ -11,9 +11,9 @@
 #include <QStandardPaths>
 #include <QtSql>
 
-#include "iapplication.h"
-#include "icore.h"
-#include "ipluginhandler.h"
+#include "../Interfaces/iapplication.h"
+#include "../Interfaces/icore.h"
+#include "../Interfaces/ipluginhandler.h"
 
 class PluginHandler;
 
