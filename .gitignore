@@ -49,15 +49,15 @@ target_wrapper.*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
-# Documentation and some staff
+# Project structure
 Docs/Generated/
 *.db
-
-.directory
 */.qmake.stash
-
 MASS-Plugins/
 
 # Android build
 android-build/
 *.so-deployment-settings.*
+
+# System
+.directory
