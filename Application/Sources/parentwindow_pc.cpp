@@ -6,10 +6,6 @@
 
 void ParentWindow::init()
 {
-    setWindowIcon(QIcon(QStringLiteral("://Resources/Logo256.png")));
-    layout = new QVBoxLayout(this);
-    this->setLayout(layout);
-    QScreen *screen = QApplication::primaryScreen();
-//    this->resize(screen->size().width()/3, screen->size().height()/2);
+	setWindowIcon(QIcon(QStringLiteral("://Resources/Logo256.png")));
 	this->resize(540, 960);
 }

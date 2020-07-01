@@ -7,8 +7,6 @@
 
 #include "../Interfaces/ipluginhandler.h"
 
-const QString META_DATA_CORE_FLAG = QStringLiteral("isCorePlugin");
-
 class PluginHandler : public IPluginHandler
 {
 	Q_DISABLE_COPY(PluginHandler)
@@ -20,19 +18,22 @@ public:
 	static QSharedPointer<PluginHandler> make(quint32 uid, const QString& m_filename);
 
 	// IPlugin interface
-	public:
+public:
 	bool load() override;
 	bool unload() override;
 	QString getLastError() override;
 	QObject *getInstance() override;
 	QWeakPointer<QJsonObject> getMeta() override;
 	quint32 getUID() override;
+	QString getFileName() override;
+
+public:
 	/**
 	   @brief Flag that indicates that plugin meta says that it is core plugin.
 	   @return Is this core plugin.
 	 */
 	bool isCorePlugin();
-	
+
 private:
 	quint32 m_uid;
 	QObject *m_instance;

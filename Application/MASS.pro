@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += widgets sql gui qml quick multimedia
+QT += core widgets quickwidgets qml quick sql gui multimedia
 
 TARGET = MASS
 TEMPLATE = app
@@ -38,7 +38,7 @@ HEADERS  += \
     Sources/pluginhandler.h
 
 RESOURCES += \
-    Resources/rsc.qrc
+    res.qrc
 
 android {
     QT += androidextras

@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <QtCore>
 
 class IPluginHandler
@@ -35,7 +34,12 @@ public:
 	   @brief Returns unique id of plugin that could be used to identify plugin inside system.
 	   @return unique id.
 	 */
-        virtual quint32 getUID() = 0;
+	virtual quint32 getUID() = 0;
+	/**
+	   @brief Returns file name of this plugin.
+	   @return file name.
+	 */
+	virtual QString getFileName() = 0;
 
 protected:
 	virtual ~IPluginHandler() = default;

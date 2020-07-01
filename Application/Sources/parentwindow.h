@@ -1,38 +1,41 @@
 #pragma once
 
-
 #include <QWidget>
-#include <QScreen>
-#include <QPainter>
-#include <QResizeEvent>
-#include <QVBoxLayout>
-#include <QLabel>
+#include <QQuickItem>
+#include <QQmlContext>
+#include <QQuickWidget>
 
 class PluginLoader;
 
 //! \brief Main application widget class.
-class ParentWindow : public QWidget
+class ParentWindow : public QQuickWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    explicit ParentWindow(QWidget *parent = nullptr);
+	explicit ParentWindow(QWidget *parent = nullptr);
 
-    // QWidget interface
+	// QObject interface
 protected:
-    void resizeEvent(QResizeEvent* event) override;
+	void childEvent(QChildEvent* event) override;
+
+	// QWidget interface
+protected:
+	void resizeEvent(QResizeEvent* event) override;
 
 public:
-    void start();
+	void start();
 
 private:
-    void init();
+	void init();
+	void resizeChildren(int w, int h);
 
-private Q_SLOTS:
+private slots:
+	void onUserAsk(const QString& question, const QVariantList& options);
+	void onOptionChosen(int index);
 	void onReadyToStart();
 	void onStartFailed();
 
 private:
-    QSharedPointer<PluginLoader> m_pluginManager;
-    QVBoxLayout *layout{nullptr};
+	QSharedPointer<PluginLoader> m_pluginManager;
 };
 
