@@ -61,7 +61,7 @@ private:
 	template<class Type>
 	Type *castToPlugin(QObject *possiblePlugin);
 
-private:
+protected:
 	struct UserAskData
 	{
 		quint32 askId;

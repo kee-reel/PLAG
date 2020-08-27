@@ -19,7 +19,7 @@ OBJECTS_DIR = $${BUILD_PATH}/obj
 # Включаем С++11 для всех платформ
 CONFIG += c++11
 
-QMAKE_CXXFLAGS += -W
+QMAKE_CXXFLAGS += -Wall
 QMAKE_CXXFLAGS += -Wno-undef
 
 win32 {

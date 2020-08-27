@@ -3,6 +3,8 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QApplication>
+#include <QScreen>
+#include <QVBoxLayout>
 
 #include <QtAndroid>
 #include <QAndroidJniEnvironment>
@@ -54,7 +56,7 @@ void ParentWindow::init()
 {
 	RegisterNativeMethods();
 
-	layout = new QVBoxLayout(this);
+	//	layout = new QVBoxLayout(parentWidget());
 	QScreen *screen = QApplication::primaryScreen();
 	this->resize(screen->size().width(), screen->size().height());
 }
