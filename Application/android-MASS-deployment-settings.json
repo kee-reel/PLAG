@@ -7,7 +7,7 @@
    "toolchain-prefix": "llvm",
    "tool-prefix": "llvm",
    "ndk-host": "linux-x86_64",
-   "architectures": {"armeabi-v7a":"arm-linux-androideabi"},
+   "architectures": {"arm64-v8a":"aarch64-linux-android"},
    "android-package-source-directory": "/home/curunir/Projects/MASS/Application/android",
    "android-min-sdk-version": "21",
    "android-target-sdk-version": "28",

@@ -30,11 +30,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
             <!-- Application arguments -->
             <!-- meta-data android:name="android.app.arguments" android:value="arg1 arg2 arg3"/ -->
             <!-- Application arguments -->
-
             <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
             <meta-data android:name="android.app.qt_sources_resource_id" android:resource="@array/qt_sources"/>
             <meta-data android:name="android.app.repository" android:value="default"/>
@@ -53,14 +51,10 @@
             <meta-data android:name="android.app.fatal_error_msg" android:value="@string/fatal_error_msg"/>
             <meta-data android:name="android.app.load_local_libs_resource_id" android:resource="@array/load_local_libs"/>
             <!-- Messages maps -->
-
-
             <!-- Splash screen -->
             <!-- meta-data android:name="android.app.splash_screen_drawable" android:resource="@drawable/logo"/ -->
             <!-- meta-data android:name="android.app.splash_screen_sticky" android:value="true"/ -->
             <!-- Splash screen -->
-
-
             <!-- Background running -->
             <!--
                  Warning: changing this value to true may cause unexpected crashes if the
@@ -70,13 +64,9 @@
             -->
             <meta-data android:name="android.app.background_running" android:value="true"/>
             <!-- Background running -->
-
-
             <!-- auto screen scale factor -->
             <meta-data android:name="android.app.auto_screen_scale_factor" android:value="false"/>
             <!-- auto screen scale factor -->
-
-
             <!-- extract android style -->
             <!--
                  available android:values :
@@ -87,9 +77,7 @@
             <meta-data android:name="android.app.extract_android_style" android:value="full"/>
             <!-- extract android style -->
         </activity>
-
         <!-- For adding service(s) please check: https://wiki.qt.io/AndroidServices -->
-
         <receiver android:name=".AlarmReceiver" android:enabled="true" android:exported="true"/>
     </application>
 

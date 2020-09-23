@@ -39,7 +39,6 @@ Makefile*
 target_wrapper.*
 
 # QtCreator
-
 *.autosave
 
 # QtCtreator Qml
@@ -61,3 +60,9 @@ android-build/
 
 # System
 .directory
+
+# Linux build
+*MASS
+*linker
+*app_process
+

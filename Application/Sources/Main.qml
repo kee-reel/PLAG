@@ -19,7 +19,7 @@ Item {
 		Image {
 			id: logoImage
 			source: "qrc:/Resources/Logo512.png"
-			Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+			Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 			Layout.preferredWidth: parentSize / 3
 			Layout.preferredHeight: width
 			Layout.margins: parentSize / 20
