@@ -69,7 +69,7 @@ void PluginLoaderAndroid::onPermissionsChecked()
 
 void PluginLoaderAndroid::loadFilesFromDirectory(QDir srcDirectory, QDir dstDirectory)
 {
-	//	qDebug() << "LoadFilesFromDirectory" << directory.absolutePath() << endl << directory.entryList(QDir::Files);
+	//	qDebug() << "LoadFilesFromDirectory" << directory.absolutePath() << "" << directory.entryList(QDir::Files);
 	QFile fileToCopy;
 
 	for(QString file : srcDirectory.entryList(QDir::Files))
@@ -96,9 +96,9 @@ void PluginLoaderAndroid::loadFilesFromDirectory(QDir srcDirectory, QDir dstDire
 
 bool PluginLoaderAndroid::loadPluginsToAppDirectory(QDir pluginsPath)
 {
-	//	qDebug() << "PluginLoader::loadPluginsToHome: home path:" << QDir::homePath() << endl <<
-	//				"root path:" << QDir::rootPath() << endl <<
-	//				"current path:" << QDir::currentPath() << endl <<
+	//	qDebug() << "PluginLoader::loadPluginsToHome: home path:" << QDir::homePath() << "" <<
+	//				"root path:" << QDir::rootPath() << "" <<
+	//				"current path:" << QDir::currentPath() << "" <<
 	//				"temp path:" << QDir::tempPath();
 
 	qDebug() << pluginsPath.mkpath(pluginsPath.absolutePath());
@@ -108,9 +108,9 @@ bool PluginLoaderAndroid::loadPluginsToAppDirectory(QDir pluginsPath)
 
 	m_publicStorageDirectory.mkpath(m_publicStorageDirectory.absolutePath());
 
-	//	qDebug() << "Storage:" << m_publicStorageDirectory.absolutePath() << endl << m_publicStorageDirectory.entryList(
+	//	qDebug() << "Storage:" << m_publicStorageDirectory.absolutePath() << "" << m_publicStorageDirectory.entryList(
 	//					QDir::AllEntries);
-	//	qDebug() << "Internal:" << pluginsPath.absolutePath() << endl << pluginsPath.entryList(
+	//	qDebug() << "Internal:" << pluginsPath.absolutePath() << "" << pluginsPath.entryList(
 	//					QDir::AllEntries);
 
 	loadFilesFromDirectory(m_publicStorageDirectory, pluginsPath);

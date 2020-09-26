@@ -95,7 +95,7 @@ void PluginLoader::onAnswered(quint32 askId, quint16 optionIndex)
 void PluginLoader::start(QWeakPointer<IApplication> app)
 {
 	Q_ASSERT(!m_corePluginInstance.isNull());
-	//	qDebug() << "PluginLoader::runCorePlugin: starting core plugin." << endl;
+	//	qDebug() << "PluginLoader::runCorePlugin: starting core plugin.";
 
 	m_corePluginInstance->first->coreInit(m_corePluginInstance->second, this, std::move(app));
 }
