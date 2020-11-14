@@ -55,5 +55,14 @@ Plugin handlers are used to manage plugins loading/unloading that could be calle
 ## Development process
 All plugins (including core plugin) contains in another repo: https://gitlab.com/c4rb0n_un1t/MASS-Plugins. It's divided from this repo because it's possible to use any plugins set developed by you or any other developer.
 
-## Considerable plugins implementation aspect
-All plugins are loaded using [QPluginLoader](http://doc.qt.io/qt-5/qpluginloader.html) and should contain [plugin specific macroses](http://doc.qt.io/qt-5/plugins-howto.html).
+If you just want quick start - run:
+```bash
+git clone https://gitlab.com/c4rb0n_un1t/MASS
+cd MASS
+git clone https://gitlab.com/c4rb0n_un1t/MASS-Plugins
+cd MASS-Plugins
+cd Projects
+git clone https://gitlab.com/c4rb0n_un1t/mass-common-plugins
+git clone https://gitlab.com/c4rb0n_un1t/mass-pim-plugins
+```
+It will download all needed repos. How to run the project you could read in https://gitlab.com/c4rb0n_un1t/MASS-Plugins README.
