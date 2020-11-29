@@ -57,12 +57,11 @@ All plugins (including core plugin) contains in another repo: https://gitlab.com
 
 If you just want quick start - run:
 ```bash
-git clone https://gitlab.com/c4rb0n_un1t/MASS
+git clone https://gitlab.com/c4rb0n_un1t/MASS.git
 cd MASS
-git clone https://gitlab.com/c4rb0n_un1t/MASS-Plugins
-cd MASS-Plugins
-cd Projects
-git clone https://gitlab.com/c4rb0n_un1t/mass-common-plugins
-git clone https://gitlab.com/c4rb0n_un1t/mass-pim-plugins
+git clone https://gitlab.com/c4rb0n_un1t/MASS-Plugins.git
+cd MASS-Plugins/Projects
+git clone https://gitlab.com/c4rb0n_un1t/mass-common-plugins.git
+git clone https://gitlab.com/c4rb0n_un1t/mass-pim-plugins.git
 ```
 It will download all needed repos. How to run the project you could read in https://gitlab.com/c4rb0n_un1t/MASS-Plugins README.
