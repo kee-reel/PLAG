@@ -1,4 +1,4 @@
-#include "parentwindow.h"
+#include "application.h"
 
 #include <QMessageBox>
 #include <QDebug>

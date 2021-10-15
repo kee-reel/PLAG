@@ -1,8 +1,10 @@
 #include "pluginloader.h"
 
+#ifndef IS_CLI_APP
 #include <QMessageBox>
 #include <QDesktopServices>
 #include <utility>
+#endif
 
 #include "pluginhandler.h"
 
@@ -30,7 +32,6 @@ void PluginLoader::setup()
 		                .arg(m_pluginsPath.absolutePath()), {"Ok", "No, just leave"});
 
 	}
-
 }
 
 void PluginLoader::registerPlugin(const QSharedPointer<PluginHandler>& handler)
@@ -46,20 +47,21 @@ void PluginLoader::registerPlugin(const QSharedPointer<PluginHandler>& handler)
 bool PluginLoader::initPlugins()
 {
 	QDir libsDir(m_pluginsPath);
-	//	qDebug() << "PluginLoader::setupPlugins: loading plugins by path:" << libsDir.absolutePath();
-	QApplication::addLibraryPath(m_pluginsPath.absolutePath());
+	qDebug() << "PluginLoader::setupPlugins: loading plugins by path:" << libsDir.absolutePath();
+	QCoreApplication::addLibraryPath(m_pluginsPath.absolutePath());
 
 	Q_FOREACH (QString file, libsDir.entryList(QDir::Files))
 	{
 		makePluginHandler(libsDir.absolutePath() + "/" + file);
 	}
 
-	//	qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
+	qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
 
-	for(const auto& plugin : qAsConst(m_corePluginHandlers))
+	for(const auto& plugin : m_corePluginHandlers)
 	{
 		if(!plugin->load())
 		{
+			qDebug() << "Can't load plguin:" << plugin->getFileName();
 			continue;
 		}
 
@@ -67,7 +69,7 @@ bool PluginLoader::initPlugins()
 		auto* corePluginInstance = castToPlugin<ICore>(instance);
 		if(!corePluginInstance)
 		{
-			//qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
+			qDebug() << "PluginLoader::setupPlugins:" << m_corePluginHandlers.count() << "core plugins found, trying to load.";
 			plugin->unload();
 			continue;
 		}
@@ -84,19 +86,19 @@ void PluginLoader::onAnswered(quint32 askId, quint16 optionIndex)
 {
 	if(m_internalAskId != askId)
 		return;
-
+#ifndef IS_CLI_APP
 	if(optionIndex == 0)
 	{
 		QDesktopServices::openUrl(QUrl(QStringLiteral("https://gitlab.com/c4rb0n_un1t/MASS/wikis/home"), QUrl::TolerantMode));
 	}
+#endif
 	Q_EMIT startFailed();
 }
 
 void PluginLoader::start(QWeakPointer<IApplication> app)
 {
 	Q_ASSERT(!m_corePluginInstance.isNull());
-	//	qDebug() << "PluginLoader::runCorePlugin: starting core plugin.";
-
+	qDebug() << "PluginLoader::runCorePlugin: starting core plugin.";
 	m_corePluginInstance->first->coreInit(m_corePluginInstance->second, this, std::move(app));
 }
 
@@ -140,6 +142,11 @@ IPluginHandlerPtr PluginLoader::makePluginHandler(const QString &path)
 		registerPlugin(handler);
 	}
 	return handler;
+}
+
+QStringList PluginLoader::getCommandLineArguments()
+{
+	return QCoreApplication::arguments();
 }
 
 quint32 PluginLoader::askUser(const QString& question, const QVariantList& options)

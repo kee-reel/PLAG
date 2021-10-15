@@ -52,7 +52,6 @@ CMakeLists.txt.user*
 Docs/Generated/
 *.db
 */.qmake.stash
-MASS-Plugins/
 
 # Android build
 android-build/
@@ -62,7 +61,5 @@ android-build/
 .directory
 
 # Linux build
-*MASS
 *linker
 *app_process
-

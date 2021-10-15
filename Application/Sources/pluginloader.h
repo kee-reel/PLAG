@@ -1,10 +1,7 @@
 #pragma once
 
-
-#include <QApplication>
 #include <QDebug>
 #include <QString>
-#include <QWidget>
 #include <QObject>
 #include <QPluginLoader>
 #include <QDir>
@@ -32,6 +29,7 @@ public:
 	QWidget *getParentWidget() override;
 	const QVector<IPluginHandlerPtr> &getPlugins() override;
 	IPluginHandlerPtr makePluginHandler(const QString &path) override;
+	QStringList getCommandLineArguments() override;
 	quint32 askUser(const QString& question, const QVariantList& options) override;
 
 signals:

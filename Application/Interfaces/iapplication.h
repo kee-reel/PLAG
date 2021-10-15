@@ -27,6 +27,8 @@ public:
 
 	virtual IPluginHandlerPtr makePluginHandler(const QString &path) = 0;
 
+	virtual QStringList getCommandLineArguments() = 0;
+
 	virtual quint32 askUser(const QString& question, const QVariantList& options) = 0;
 
 signals:
