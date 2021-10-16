@@ -4,7 +4,8 @@
 
 #### Analogy: it's like applications in OS, but plugins in application.
 
-> This project made with C++/Qt for Linux, Windows, MacOS, Android and iOS. Once you've made a plugin, you can use it for all these platforms.
+> This project made with C++/Qt for Linux, Windows, MacOS, Android and iOS.
+> Once you've made a plugin, you can use it for all these platforms.
 
 ## Development process
 
@@ -23,11 +24,11 @@ Or you can use existing plugins framework. You can read about it here: [gitlab.c
 3. If main application finds plugin with ICore interface - it will:
 
 * Load this plugin
-* Pass an object that inherits [IApplication](/Application/Interfaces/iapplication.h) interface this plugin
+* Pass an object that inherits [IApplication](/Application/Interfaces/iapplication.h) interface into this plugin
 
-> IApplication represents main application and provides method for loading new plugins (other than ICore plugin).
+> IApplication represents main application and provides method for loading new plugins (other than ICore plugin)
 
-4. Everything else is implemented in loaded plugins. 
+4. ICore plugin will load remaining pluings and aggreate them in working application.
 
 ## Participation in development
 
