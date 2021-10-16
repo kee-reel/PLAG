@@ -28,7 +28,7 @@ Or you can use existing plugins framework. You can read about it here: [gitlab.c
 
 > IApplication represents main application and provides method for loading new plugins (other than ICore plugin)
 
-4. ICore plugin will load remaining pluings and aggreate them in working application.
+4. ICore plugin will load remaining pluings and aggreate them into working application.
 
 ## Participation in development
 
