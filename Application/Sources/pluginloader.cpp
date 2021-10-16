@@ -12,7 +12,7 @@ const auto PLUGINS_DIR_NAME = QStringLiteral("Plugins");
 
 PluginLoader::PluginLoader(QWidget *parentWidget) :
 	m_parentWidget(parentWidget),
-	m_pluginsPath(QStringLiteral("%1/%2/").arg(QDir::currentPath()).arg(PLUGINS_DIR_NAME)),
+    m_pluginsPath(QStringLiteral("%1/../Application/%2/").arg(QDir::currentPath()).arg(PLUGINS_DIR_NAME)),
 	m_pluginUidGeneratorCounter(1),
 	m_askUidGeneratorCounter(1),
 	m_internalAskId(0)
@@ -28,7 +28,7 @@ void PluginLoader::setup()
 	}
 	else
 	{
-		m_internalAskId = askUser(QString("No required plugins found in directory %1. Open wiki page with more information?")
+        m_internalAskId = askUser(QString("No core plugin found in directory %1.\nOpen project page for more information?")
 		                .arg(m_pluginsPath.absolutePath()), {"Ok", "No, just leave"});
 
 	}

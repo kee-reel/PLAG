@@ -13,7 +13,7 @@ Every plugin is stored in separate repository.
 
 You can implement your own ICore plugin and whole framework of plugins that it will work with.
 
-Or you can use existing plugins framework. You can read about it here: [gitlab.com/c4rb0n_un1t/PLAGins](https://gitlab.com/c4rb0n_un1t/PLAGins).
+Or you can use existing plugins framework. You can read about it here: [gitlab.com/kee-reel/PLAGins](https://gitlab.com/kee-reel/PLAGins).
 
 ## How it works
 
