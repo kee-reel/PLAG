@@ -1,4 +1,4 @@
-package com.MASS;
+package com.PLAG;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

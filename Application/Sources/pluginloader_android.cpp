@@ -58,7 +58,7 @@ void PluginLoaderAndroid::onPermissionsChecked()
 		                .arg(m_publicStorageDirectory.absolutePath()));
 		if(res == QMessageBox::Yes)
 		{
-			QDesktopServices::openUrl(QUrl("https://gitlab.com/c4rb0n_un1t/MASS/wikis/home", QUrl::TolerantMode));
+            QDesktopServices::openUrl(QUrl("https://kee-reel.com/mass-ru", QUrl::TolerantMode));
 		}
 		else
 		{

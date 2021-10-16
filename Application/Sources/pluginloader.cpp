@@ -89,7 +89,7 @@ void PluginLoader::onAnswered(quint32 askId, quint16 optionIndex)
 #ifndef IS_CLI_APP
 	if(optionIndex == 0)
 	{
-		QDesktopServices::openUrl(QUrl(QStringLiteral("https://gitlab.com/c4rb0n_un1t/MASS/wikis/home"), QUrl::TolerantMode));
+        QDesktopServices::openUrl(QUrl(QStringLiteral("https://kee-reel.com/mass-ru"), QUrl::TolerantMode));
 	}
 #endif
 	Q_EMIT startFailed();

@@ -24,7 +24,7 @@
 
 
     <application android:name="org.qtproject.qt5.android.bindings.QtApplication" android:hardwareAccelerated="true" android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".QtActivityExtention" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation" android:label="MASS" android:launchMode="singleTop" android:screenOrientation="unspecified" android:extractNativeLibs="true">
+        <activity android:name=".QtActivityExtention" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation" android:label="PLAG" android:launchMode="singleTop" android:screenOrientation="unspecified" android:extractNativeLibs="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

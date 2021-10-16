@@ -49,7 +49,6 @@ target_wrapper.*
 CMakeLists.txt.user*
 
 # Project structure
-Docs/Generated/
 *.db
 */.qmake.stash
 
