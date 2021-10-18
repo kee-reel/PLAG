@@ -36,6 +36,7 @@ void PluginLoader::setup()
 
 void PluginLoader::registerPlugin(const QSharedPointer<PluginHandler>& handler)
 {
+    qDebug() << handler->getFileName();
 	if(handler->isCorePlugin())
 	{
 		m_corePluginHandlers.append(handler);
