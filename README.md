@@ -7,14 +7,6 @@
 > This project made with C++/Qt for Linux, Windows, MacOS, Android and iOS.
 > Once you've made a plugin, you can use it for all these platforms.
 
-## Development process
-
-Every plugin is stored in separate repository.
-
-You can implement your own ICore plugin and whole framework of plugins that it will work with.
-
-Or you can use existing plugins framework. You can read about it here: [gitlab.com/kee-reel/PLAGins](https://gitlab.com/kee-reel/PLAGins).
-
 ## How it works
 
 1. When main application starts it loads all plugins from folder "/Application/Plugins".
@@ -29,6 +21,14 @@ Or you can use existing plugins framework. You can read about it here: [gitlab.c
 > IApplication represents main application and provides method for loading new plugins (other than ICore plugin)
 
 4. ICore plugin will load remaining pluings and aggreate them into working application.
+
+## Development process
+
+Every plugin is stored in separate repository.
+
+You can implement your own ICore plugin and whole framework of plugins that it will work with.
+
+Or you can use existing plugins framework. You can read about it here: [gitlab.com/kee-reel/PLAGins](https://gitlab.com/kee-reel/PLAGins).
 
 ## Participation in development
 
