@@ -1,4 +1,4 @@
-# PLAG - PLugin AGgregatior
+# PLAG - PLugins AGgregator
 
 #### Main idea: an application where __all__ features are implemented in plugins.
 
